@@ -1,0 +1,561 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>万店联盟欢迎你</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar am-topbar-inverse admin-header">
+  <div class="am-topbar-brand">
+    <strong>&nbsp;&nbsp;&nbsp;&nbsp;万店联盟&nbsp;&nbsp;</strong> <small>后台管理</small>
+  </div>
+  
+  
+  <div class="am-popup" id="my-popup">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title"><span class="am-icon-user"></span>登录</h4>
+      <span data-am-modal-close class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+      456
+    </div>
+  </div>
+</div>
+
+<div class="am-popup" id="my-popu">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title"><span class="am-icon-pencil"></span>注册</h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+      456
+    </div>
+  </div>
+</div>
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+    	<
+      <li><a href="javascript:;"><button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-popup'}">登录</button></a></li>
+      <li><a href="javascript:;"><button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-popu'}">注册</button></a></li>
+    	
+      <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="admin-user.html"><span class="am-icon-user"></span> 资料</a></li>
+          <li><a href="admin-404.html"><span class="am-icon-cog"></span> 设置</a></li>
+          <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+      </li>
+      
+      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <div class="admin-sidebar am-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list">
+        <li><a href="admin-index.html"><span class="am-icon-home"></span> 首页</a></li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 万店联盟展示 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+            <li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+            <li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
+            <li><a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
+            <li><a href="admin-log.html"><span class="am-icon-calendar"></span> 系统日志</a></li>
+            <li><a href="admin-404.html"><span class="am-icon-cogs"></span> 设置</a></li>
+          </ul>
+        </li>
+        <li><a href="admin-table.html"><span class="am-icon-table"></span> 表格</a></li>
+        <li>
+          <a class="am-cf" data-am-collapse="{target: '#zuzhi-nav'}"><span class="am-icon-file"></span> 组织机构<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list admin-sidebar-sub am-collapse" id="zuzhi-nav">
+            <li><a href="admin-ogintext.html"><span class="am-icon-calendar"></span> 组织机构列表</a></li>
+            <li><a href="admin-oginLu.html"><span class="am-icon-cogs"></span> 组织机构录入</a></li>
+          </ul>
+        </li>
+        <li>
+        	<a class="am-cf" data-am-collapse="{target: '#guanli-nav'}"><span class="am-icon-file"></span> 员工管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-collapse" id="guanli-nav">
+            <li><a href="admin-ygong.html"><span class="am-icon-calendar"></span> 员工列表</a></li>
+            <li><a href="admin-404.html"><span class="am-icon-cogs"></span> 员工录入</a></li>
+          </ul>
+        </li>
+        <li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
+        <li><a href="admin-quanxian.html"><span class="am-icon-sign-out"></span> 万店联盟权限管理</a></li>
+      </ul>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>时光静好，与君语；细水流年，与君同。—— 万店联盟</p>
+        </div>
+      </div>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-tag"></span>万店联盟</p>
+          <p>时光静好，与君语；细水流年，与君同。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- sidebar end -->
+     
+  <!-- content start -->
+  
+     
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+    	 <div class="am-cf am-padding">
+        <div class="am-fl am-cf">
+        	<strong class="am-text-primary am-text-lg">组织机构编辑</strong>
+        </div>
+      </div>
+      <hr/>
+      <div class="wrap-yluru">
+      	
+      	
+      	<form class="am-form" action="<?php url()?>" method="post">
+            <table style="border: 0;">
+              <thead>
+              <tr style="height: 30px;">
+                <th class="table-one1" style="text-align: right;">机构名称:</th>
+                <th class="table-one2" style="vertical-align: middle;"><input type="text" name="name" id="" value="" /></th>
+              </tr>
+              </thead>
+              <tbody>
+              	
+              	
+              <tr>
+                <th class="table-one1">地区:</th>
+                <th class="table-one3" style="margin-left: 19px;">
+                	<select id="s_province" name="provinces"></select>
+                	        
+      			                  
+      			                  
+                </th>
+                <th class="table-one3" style="margin-left: 20px;">
+                	<select id="s_city" name="city" ></select>
+                
+                </th>
+                <th class="table-one3" style="margin-left: 15px;">
+                	<select id="s_county" name="county"></select>
+              
+                </th>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr style="height: 30px;">
+                <th class="table-one1" style="text-align: right;">详细地址:</th>
+                <th class="table-one2" style="vertical-align: middle;"><input type="text" name="address" id="" value="" /></th>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr>
+                <th class="table-one1">部门类型:</th>
+                <th class="table-one3">
+                	          <select name="type_id" value="" class="table-one1-select">
+                                <?php foreach($info as $k=>$v):?>
+      				                    <option value="<?php echo $v['id'];?>"><?php echo $v['name'];?></option>
+                                <?php endforeach;?>
+      			                  </select>
+                </th>
+              </tr>
+              </tbody>
+              
+              
+              <tbody>
+              <tr style="height: 30px;">
+                <th class="table-one1" style="text-align: right;">纬度:</th>
+                <th class="table-one2" style="vertical-align: middle;"><input type="text" style="width: 200px;" id="lngX" name="latitude" value ="34.74661"/></th>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr style="height: 30px;">
+                <th class="table-one1" style="text-align: right;">经度:</th>
+                <th class="table-one2" style="vertical-align: middle;"><input type="text" style="width: 200px;" id="latY" name="longitude" value="113.71433"/></th>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr>
+                <th class="table-one1">上级部门:</th>
+                <th class="table-one3">
+                	          <select name="pid" value="" class="table-one1-select">
+                              <?php foreach($data as $k=>$v):?>
+      				                    <option value="<?php echo $v['id']?>"><?php echo $v['name'];?></option>
+                                <?php endforeach;?>
+      			                  </select>
+                </th>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr>
+                <th class="table-one1">备注:</th>
+                <th class="table-one2">
+                	<textarea name="note" rows="" cols=""></textarea>
+                </th>
+              </tr>
+              </tbody>
+              
+             
+            </table>
+        
+      	
+   <div class="am-margin">
+      <button type="submit" class="am-btn am-btn-primary am-btn-xs frome-Btn-one">提交保存</button>
+      <button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+    </div>
+
+      	
+      <div id="getFromeText">
+        
+      </div>
+      
+  </form>
+  
+    	
+		<div id="mapContainer" style="width: 1200px;height: 500px;">
+    	<div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 1000000;">
+    	       <p id="mapClass">
+            <b>请输入关键字：</b>
+            <input type="text" id="keyword" name="keyword" value="" onkeydown='keydown(event)' style="width: 300px;"/>
+    	       </p>
+            <div id="result1" name="result1"></div>
+      </div>
+      </div>
+
+
+
+   
+   
+    
+    
+   	 
+   
+   
+   </div>
+    
+    <div class ='panel'>
+      <!--<input id = 'input' value = '' disabled></input>-->
+   </div>
+    
+    
+ </div>
+</div>
+  <!-- content end -->
+
+
+
+
+<!--[if lt IE 9]>-->
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<!--<![endif]-->
+
+<script src="_assets/js/app.js"></script>
+<script src="_assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=7419eabccee2f0b06f9783d1fc97246c&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>
+<script type="text/javascript" src="assets/js/demo.js"></script>
+<script type="text/javascript" src="assets/js/area.js"></script>
+ <!--<script type="text/javascript" src="assets/js/treMove.js"></script>--> 
+<script type="text/javascript">_init_area();</script>
+
+<script type="text/javascript">
+      var windowsArr = [];
+        var marker = [];
+        // var longListX = document.getElementById("lngX").placeholder;
+        // var longListY = document.getElementById("latY").placeholder;
+        // console.log(longListX);
+        // console.log(longListY);
+        var mapObj = new AMap.Map("mapContainer",{
+            resizeEnable: true,
+            view: new AMap.View2D({
+                resizeEnable: true,
+                zoom:20,//地图显示的缩放级别
+                isHotspot: true,
+                center:[113.71433,34.74661]
+            }),
+            keyboardEnable:false
+        });
+        
+
+    
+    
+    
+ function moveMaps(){
+    AMap.plugin('AMap.Geocoder',function(){
+        var geocoder = new AMap.Geocoder({
+            city: "010"//城市，默认：“全国”
+        });
+        var markerS = new AMap.Marker({
+            map:mapObj,
+            bubble:true
+            
+        })
+        
+         mapObj.on('click',function(e){
+            markerS.setPosition(e.lnglat);
+            geocoder.getAddress(e.lnglat,function(status,result){
+
+            })
+        })
+    });
+    	
+    }
+    
+    moveMaps();
+    
+    
+  
+        
+        
+        
+    var placeSearch = new AMap.PlaceSearch();  //构造地点查询类
+//  var infoWindow=new AMap.AdvancedInfoWindow({});
+    mapObj.on('hotspotclick', function(result) {
+        placeSearch.getDetails(result.id, function(status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+                placeSearch_CallBack(result);
+            }
+        });
+    });
+    //回调函数
+    function placeSearch_CallBack(data) { //infoWindow.open(map, result.lnglat);
+        var poiArr = data.poiList.pois;
+        var location = poiArr[0].location;
+    }
+
+        
+        
+
+        
+        var clickEventListener=AMap.event.addListener(mapObj,'click',function(e){
+            document.getElementById("lngX").value=e.lnglat.getLng();
+            document.getElementById("latY").value=e.lnglat.getLat();
+        });
+   
+   
+        document.getElementById("keyword").onkeyup = keydown;
+        //输入提示
+        function autoSearch() {
+            var keywords = document.getElementById("keyword").value;
+            var auto;
+            //加载输入提示插件
+                AMap.service(["AMap.Autocomplete"], function() {
+                var autoOptions = {
+                    city: "" //城市，默认全国
+                };
+                auto = new AMap.Autocomplete(autoOptions);
+                //查询成功时返回查询结果
+                if ( keywords.length > 0) {
+                    auto.search(keywords, function(status, result){
+                        autocomplete_CallBack(result);
+                    });
+                }
+                else {
+                    document.getElementById("result1").style.display = "none";
+                }
+            });
+        }
+   
+        //输出输入提示结果的回调函数
+        function autocomplete_CallBack(data) {
+            var resultStr = "";
+            var tipArr = data.tips;
+            if (tipArr&&tipArr.length>0) {
+                for (var i = 0; i < tipArr.length; i++) {
+                    resultStr += "<div id='divid" + (i + 1) + "' onmouseover='openMarkerTipById(" + (i + 1)
+                                + ",this)' onclick='selectResult(" + i + ")' onmouseout='onmouseout_MarkerStyle(" + (i + 1)
+                                + ",this)' style=\"font-size: 13px;cursor:pointer;padding:5px 5px 5px 5px;\"" + "data=" + tipArr[i].adcode + ">" + tipArr[i].name + "<span style='color:#C1C1C1;'>"+ tipArr[i].district + "</span></div>";
+                }
+            }
+            else  {
+                resultStr = " π__π 亲,人家找不到结果!<br />要不试试：<br />1.请确保所有字词拼写正确<br />2.尝试不同的关键字<br />3.尝试更宽泛的关键字";
+            }
+            document.getElementById("result1").curSelect = -1;
+            document.getElementById("result1").tipArr = tipArr;
+            document.getElementById("result1").innerHTML = resultStr;
+            document.getElementById("result1").style.display = "block";
+        }
+   
+        //输入提示框鼠标滑过时的样式
+        function openMarkerTipById(pointid, thiss) {  //根据id打开搜索结果点tip
+            thiss.style.background = '#CAE1FF';
+        }
+   
+        //输入提示框鼠标移出时的样式
+        function onmouseout_MarkerStyle(pointid, thiss) {  //鼠标移开后点样式恢复
+            thiss.style.background = "";
+        }
+   
+        //从输入提示框中选择关键字并查询
+        function selectResult(index) {
+        	
+            if(index<0){
+                return;
+            }
+            if (navigator.userAgent.indexOf("MSIE") > 0) {
+                document.getElementById("keyword").onpropertychange = null;
+                document.getElementById("keyword").onfocus = focus_callback;
+            }
+            //截取输入提示的关键字部分
+            var text = document.getElementById("divid" + (index + 1)).innerHTML.replace(/<[^>].*?>.*<\/[^>].*?>/g,"");
+            var cityCode = document.getElementById("divid" + (index + 1)).getAttribute('data');
+            document.getElementById("keyword").value = text;
+            document.getElementById("result1").style.display = "none";
+            //根据选择的输入提示关键字查询
+            mapObj.plugin(["AMap.PlaceSearch"], function() {
+                var msearch = new AMap.PlaceSearch();  //构造地点查询类
+                AMap.event.addListener(msearch, "complete", placeSearch_CallBack); //查询成功时的回调函数
+                msearch.setCity(cityCode);
+                msearch.search(text);  //关键字查询查询
+            });
+        }
+   
+        //定位选择输入提示关键字
+        function focus_callback() {
+            if (navigator.userAgent.indexOf("MSIE") > 0) {
+                document.getElementById("keyword").onpropertychange = autoSearch;
+           }
+        }
+   
+        //输出关键字查询结果的回调函数
+        function placeSearch_CallBack(data) {
+            //清空地图上的InfoWindow和Marker
+            windowsArr = [];
+            marker     = [];
+            mapObj.clearMap();
+            var resultStr1 = "";
+            var poiArr = data.poiList.pois;
+            var resultCount = poiArr.length;
+            for (var i = 0; i < resultCount; i++) {
+                resultStr1 += "<div id='divid" + (i + 1) + "' onmouseover='openMarkerTipById1(" + i + ",this)' onmouseout='onmouseout_MarkerStyle(" + (i + 1) + ",this)' style=\"font-size: 12px;cursor:pointer;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\"><table><tr><td><img src=\"http://webapi.amap.com/images/" + (i + 1) + ".png\"></td>" + "<td><h3><font color=\"#00a6ac\">名称: " + poiArr[i].name + "</font></h3>";
+                    resultStr1 += TipContents(poiArr[i].type, poiArr[i].address, poiArr[i].tel) + "</td></tr></table></div>";
+                    addmarker(i, poiArr[i]);
+            }
+            mapObj.setFitView();
+        }
+   
+        //鼠标滑过查询结果改变背景样式，根据id打开信息窗体
+        function openMarkerTipById1(pointid, thiss) {
+            thiss.style.background = '#CAE1FF';
+            windowsArr[pointid].open(mapObj, marker[pointid]);
+        }
+   
+        //添加查询结果的marker&infowindow
+        function addmarker(i, d) {
+        	
+            var lngX = d.location.getLng();
+            var latY = d.location.getLat();
+            var markerOption = {
+                map:mapObj,
+                icon:"http://webapi.amap.com/images/" + (i + 1) + ".png",
+                position:new AMap.LngLat(lngX, latY),
+                bubble:true
+            };
+            var mar = new AMap.Marker(markerOption);
+            marker.push(new AMap.LngLat(lngX, latY));
+   
+            var infoWindow = new AMap.InfoWindow({
+                content:"<h3><font color=\"#00a6ac\">  " + (i + 1) + ". " + d.name + "</font></h3>" + TipContents(d.type, d.address, d.tel),
+                size:new AMap.Size(300, 0),
+                autoMove:true,
+                offset:new AMap.Pixel(0,-30)
+            });
+            windowsArr.push(infoWindow);
+           var aa = function (e) {
+                var nowPosition = mar.getPosition(),
+                    lng_str = nowPosition.lng,
+                    lat_str = nowPosition.lat;
+                infoWindow.open(mapObj, nowPosition);
+                document.getElementById("lngX").value = lng_str;
+                document.getElementById("latY").value = lat_str;
+            };
+            AMap.event.addListener(mar, "mouseover", aa);
+        }
+   
+        //infowindow显示内容
+        function TipContents(type, address, tel){  //窗体内容
+        	moveMaps();
+            if (type == "" || type == "undefined" || type == null || type == " undefined" || typeof type == "undefined") {
+                type = "暂无";
+            }
+            if (address == "" || address == "undefined" || address == null || address == " undefined" || typeof address == "undefined") {
+                address = "暂无";
+            }
+            if (tel == "" || tel == "undefined" || tel == null || tel == " undefined" || typeof address == "tel") {
+                tel = "暂无";
+            }
+            var str = "  地址：" + address + "<br />  电话：" + tel + " <br />  类型：" + type;
+            return str;
+        }
+        function keydown(event){
+            var key = (event||window.event).keyCode;
+            var result = document.getElementById("result1")
+            var cur = result.curSelect;
+          
+            if(key===40){
+                if(cur + 1 < result.childNodes.length){
+                    if(result.childNodes[cur]){
+                        result.childNodes[cur].style.background='';
+                    }
+                    result.curSelect=cur + 1;
+                    result.childNodes[cur+1].style.background='#CAE1FF';
+                    document.getElementById("keyword").value = result.tipArr[cur+1].name;
+                }
+            }else if(key===38){
+                if(cur - 1>=0){
+                    if(result.childNodes[cur]){
+                        result.childNodes[cur].style.background='';
+                    }
+                    result.curSelect=cur-1;
+                    result.childNodes[cur-1].style.background='#CAE1FF';
+                    document.getElementById("keyword").value = result.tipArr[cur-1].name;
+                }
+            }else if(key === 13){
+                var res = document.getElementById("result1");
+                if(res && res['curSelect'] !== -1){
+                    selectResult(document.getElementById("result1").curSelect);
+                }
+            }else{
+                autoSearch();
+            }
+        }
+
+
+</script>
+
+
+</body>
+</html>

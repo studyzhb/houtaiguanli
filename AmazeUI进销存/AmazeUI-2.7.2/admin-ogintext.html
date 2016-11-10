@@ -1,0 +1,392 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>万店联盟欢迎你</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+  
+
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<div class="body-all">
+
+<header class="am-topbar am-topbar-inverse admin-header">
+  <div class="am-topbar-brand">
+    <strong>&nbsp;&nbsp;&nbsp;&nbsp;万店联盟&nbsp;&nbsp;</strong> <small>后台管理</small>
+  </div>
+  
+  
+  <div class="am-popup" id="my-popup">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title"><span class="am-icon-user"></span>登录</h4>
+      <span data-am-modal-close class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+      456
+    </div>
+  </div>
+</div>
+
+<div class="am-popup" id="my-popu">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title"><span class="am-icon-pencil"></span>注册</h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+      456
+    </div>
+  </div>
+</div>
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+    	<
+      <li><a href="javascript:;"><button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-popup'}">登录</button></a></li>
+      <li><a href="javascript:;"><button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-popu'}">注册</button></a></li>
+    	
+      <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="admin-user.html"><span class="am-icon-user"></span> 资料</a></li>
+          <li><a href="admin-404.html"><span class="am-icon-cog"></span> 设置</a></li>
+          <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+      </li>
+      
+      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list">
+        <li><a href="admin-index.html"><span class="am-icon-home"></span> 首页</a></li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 万店联盟展示 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+            <li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+            <li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
+            <li><a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
+            <li><a href="admin-log.html"><span class="am-icon-calendar"></span> 系统日志</a></li>
+            <li><a href="admin-404.html"><span class="am-icon-cogs"></span> 设置</a></li>
+          </ul>
+        </li>
+        <li><a href="admin-table.html"><span class="am-icon-table"></span> 表格</a></li>
+        <li>
+        	<a class="am-cf" data-am-collapse="{target: '#zuzhi-nav'}"><span class="am-icon-file"></span> 组织机构<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list admin-sidebar-sub am-collapse" id="zuzhi-nav">
+            <li><a href="admin-ogintext.html"><span class="am-icon-calendar"></span> 组织机构列表</a></li>
+            <li><a href="admin-oginLu.html"><span class="am-icon-cogs"></span> 组织机构录入</a></li>
+            <li><a href="admin-oginLu.html"><span class="am-icon-cogs"></span> 组织机构编辑</a></li>
+          </ul>
+        </li>
+        <li>
+        	<a class="am-cf" data-am-collapse="{target: '#guanli-nav'}"><span class="am-icon-file"></span> 员工管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list admin-sidebar-sub am-collapse" id="guanli-nav">
+            <li><a href="admin-ygong.html"><span class="am-icon-calendar"></span> 员工列表</a></li>
+            <li><a href="admin-ygong.html"><span class="am-icon-cogs"></span> 员工录入</a></li>
+          </ul>
+        </li>
+        <li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
+        <li><a href="admin-quanxian.html"><span class="am-icon-sign-out"></span> 万店联盟权限管理</a></li>
+      </ul>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>时光静好，与君语；细水流年，与君同。—— 万店联盟</p>
+        </div>
+      </div>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-tag"></span>万店联盟</p>
+          <p>时光静好，与君语；细水流年，与君同。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- sidebar end -->
+     
+  <!-- content start -->
+  
+  
+  <div class="am-popup" id="pop1">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title"><span class="am-icon-pencil"></span>添加</h4>
+      <span data-am-modal-close class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+        <div class="wrap-yluru">
+      	<ul>
+      		<li style="font-size: 20px; color: #0D0D0D;">基本信息设置:&nbsp;</li>
+      		<li>
+      			<span>总经办:&nbsp;</span><input type="text" name="" class="ogin-li-one" value="" />
+      		</li>
+      		<li>
+      			<span>河南省:&nbsp;</span><input type="text" name="" class="ogin-li-two" value="" />
+      		</li>
+      		<li>
+      			<span>郑州市:&nbsp;</span><input type="text" name="" class="ogin-li-tre" value="" />
+      		</li>
+      		<li>
+      			<span>金水县/区:&nbsp;</span><input type="text" name="" class="ogin-li-fou" value="" />
+      		</li>
+      		<li>
+      		   <span>升龙环球大厦:&nbsp;</span><input type="text" name="" class="ogin-li-fiv" value="" />
+      		</li>
+      		<li>
+      		   <span>经度:&nbsp;</span><input type="text" name="" id="lnglatX" value="" />
+      		</li>
+      		<li>
+      		   <span>纬度:&nbsp;</span><input type="text" name="" id="lnglatY" value="" />
+      		</li>
+      		
+      	</ul>
+    <div class="am-margin" style="margin: 0 auto;width: 200px;">
+      <button type="button" data-am-modal-close class="am-btn am-btn-primary am-btn-xs" id="ogin-one">提交保存</button>
+      <button type="button" data-am-modal-close class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+  <!--内容部分-->
+  
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-padding">
+        <div class="am-fl am-cf">
+        	<strong class="am-text-primary am-text-lg">组织机构列表</strong>
+        </div>
+      </div>        
+     <hr />          
+ <div class="am-g">
+ 	
+ 	      <div class="am-u-sm-12 am-u-md-6">
+          <div class="am-btn-toolbar">
+            <div class="am-btn-group am-btn-group-xs">
+            	<a href="admin-oginLu.html">
+              <button type="button" class="am-btn am-btn-default plus-btn"><span class="am-icon-plus"></span> 新增</button>
+            	</a>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="am-u-sm-12 am-u-md-3">
+          <div class="am-input-group am-input-group-sm">
+            <input type="text" class="am-form-field">
+          <span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="button">搜索</button>
+          </span>
+          </div>
+        </div>
+ </div>       
+        
+        <div class="am-u-sm-12">
+          <form class="am-form">
+            <table class="am-table am-table-striped am-table-hover table-main">
+              <thead class="am-panel-secondary">
+              <tr class="thead-th">
+                <th class="table-check">机构名称</th>
+                <th class="table-id" style="width: 100px;">省</th>
+                <th class="table-title" style="width: 200px;">市</th>
+                <th class="table-type" style="width: 200px;">县/区</th>
+                <th class="table-author am-hide-sm-only" style="width: 400px;">地址</th>
+                <th class="table-date am-hide-sm-only" style="width: 150px;">经度</th>
+                <th class="table-set" >纬度</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+             <tbody class="tbody-td">
+              <tr class="am-panel-danger">
+                <td>总经办</td>
+                <td>河南省</td>
+                <td>郑州市</td>
+                <td>金水区</td>
+                <td class="am-hide-sm-only">金水区升龙环球大厦</td>
+                <td>纬度</td>
+                <td class="am-hide-sm-only">经度</td>
+                <td >
+                	
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                      	<span class="am-icon-pencil-square-o"></span>编辑
+                      </a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                      	<span class="am-icon-plus" style="color:#3bb4f2;" data-am-modal="{target:'#pop1'}">新增</span>
+                      </a>
+                      
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary ogin-open" data-am-collapse='{target: "#staf-one"}'>
+                      	<span class="am-icon-chevron-down">展开</span>
+                      </a>
+                      
+                    </div>
+                  </div>
+                </td>
+                
+              </tr>
+              </tbody>
+              
+              <tbody id="staf-one" class="am-collapse">
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;采购部</td>
+                <td>河南省</td>
+                <td>郑州市</td>
+                <td>金水区</td>
+                <td class="am-hide-sm-only">金水区升龙环球大厦</td>
+                <td>654.51</td>
+                <td class="am-hide-sm-only">546.51</td>
+                <td >
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="admin-bianji.html"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="admin-oginLu.html">
+                      	<span class="am-icon-plus" style="color:#3bb4f2;">新增</span>
+                      </a>
+                    </div>
+                  </div>
+                  
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;采购部</td>
+                <td>河南省</td>
+                <td>郑州市</td>
+                <td>金水区</td>
+                <td class="am-hide-sm-only">金水区升龙环球大厦</td>
+                <td>654.51</td>
+                <td class="am-hide-sm-only">546.51</td>
+                <td >
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="admin-bianji.html"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="admin-oginLu.html">
+                      	<span class="am-icon-plus" style="color:#3bb4f2;">新增</span>
+                      </a>
+                    </div>
+                  </div>
+                  
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;采购部</td>
+                <td>河南省</td>
+                <td>郑州市</td>
+                <td>金水区</td>
+                <td class="am-hide-sm-only">金水区升龙环球大厦</td>
+                <td>654.51</td>
+                <td class="am-hide-sm-only">546.51</td>
+                <td >
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="admin-bianji.html"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="admin-oginLu.html">
+                      	<span class="am-icon-plus" style="color:#3bb4f2;">新增</span>
+                      </a>
+                    </div>
+                  </div>
+                  
+                </td>
+              </tr>
+              </tbody>
+             
+            </table>
+            
+            
+
+
+
+            
+     <div class="am-cf">
+              共 15 条记录
+              <div class="am-fr">
+                <ul class="am-pagination">
+                  <li class="am-disabled"><a href="#">«</a></li>
+                  <li class="am-active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">»</a></li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+            
+          </form>
+        </div>
+    </div>
+ </div>
+ 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+  <!-- content end -->
+
+
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script type="text/javascript" src="assets/js/demo.js"></script>
+
+</body>
+</html>

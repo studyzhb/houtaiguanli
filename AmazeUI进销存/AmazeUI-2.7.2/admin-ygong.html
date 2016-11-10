@@ -1,0 +1,392 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>万店联盟欢迎你</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar am-topbar-inverse admin-header">
+  <div class="am-topbar-brand">
+    <strong>&nbsp;&nbsp;&nbsp;&nbsp;万店联盟&nbsp;&nbsp;</strong> <small>后台管理</small>
+  </div>
+  
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+      <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="admin-user.html"><span class="am-icon-user"></span> 资料</a></li>
+          <li><a href="admin-404.html"><span class="am-icon-cog"></span> 设置</a></li>
+          <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+      </li>
+      
+      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list">
+        <li><a href="admin-index.html"><span class="am-icon-home"></span> 首页</a></li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 万店联盟展示 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+            <li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+            <li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
+            <li><a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
+            <li><a href="admin-log.html"><span class="am-icon-calendar"></span> 系统日志</a></li>
+            <li><a href="admin-404.html"><span class="am-icon-cogs"></span> 设置</a></li>
+          </ul>
+        </li>
+        <li><a href="admin-table.html"><span class="am-icon-table"></span> 表格</a></li>
+        <li>
+        	<a class="am-cf" data-am-collapse="{target: '#zuzhi-nav'}"><span class="am-icon-file"></span> 组织机构<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list admin-sidebar-sub am-collapse" id="zuzhi-nav">
+            <li><a href="admin-ogintext.html"><span class="am-icon-calendar"></span> 组织机构列表</a></li>
+            <li><a href="admin-oginLu.html"><span class="am-icon-cogs"></span> 组织机构录入</a></li>
+          </ul>
+        </li>
+        <li>
+        	<a class="am-cf" data-am-collapse="{target: '#guanli-nav'}"><span class="am-icon-file"></span> 员工管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-collapse" id="guanli-nav">
+            <li><a href="admin-ygong.html"><span class="am-icon-calendar"></span> 员工列表</a></li>
+            <li><a href="admin-yluru.html"><span class="am-icon-cogs"></span> 员工录入</a></li>
+          </ul>
+        </li>
+        <li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
+        <li><a href="admin-quanxian.html"><span class="am-icon-sign-out"></span> 万店联盟权限管理</a></li>
+      </ul>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>时光静好，与君语；细水流年，与君同。—— 万店联盟</p>
+        </div>
+      </div>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-tag"></span>万店联盟</p>
+          <p>时光静好，与君语；细水流年，与君同。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- sidebar end -->
+     
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+    	
+    	
+      <div class="am-cf am-padding">
+        <div class="am-fl am-cf">
+        	<strong class="am-text-primary am-text-lg">员工管理</strong>
+        </div>
+        <br />
+        <hr>
+      <div class="am-u-sm-12 am-u-md-6">
+          <div class="am-btn-toolbar">
+            <div class="am-btn-group am-btn-group-xs">
+            	<a href="admin-yluru.html">
+            		
+              <button type="button" class="am-btn am-btn-default plus-btn luru-plus"><span class="am-icon-plus"></span> 新增</button>
+            	</a>
+            		
+            	<!--<a href="###">
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 停用</button>
+            	</a>-->
+            </div>
+          </div>
+        </div>
+        
+        <div class="am-u-sm-12 am-u-md-3">
+          <div class="am-input-group am-input-group-sm">
+            <input type="text" class="am-form-field">
+          <span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="button">搜索</button>
+          </span>
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+ <div class="am-popup">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title"><span class="am-icon-pencil"></span>添加新员工</h4>
+      <span data-am-modal-close class="am-close">&times;</span>
+    </div>
+    
+    <div class="luru-show">
+    	 <div class="am-cf am-padding">
+        <div class="am-fl am-cf">
+        	<strong class="am-text-primary am-text-lg">员工录入</strong>
+        </div>
+        <br />
+        <hr>
+      </div>
+      
+      
+      
+
+<div class="luru-btn">
+<div class="am-btn-group">
+  <button type="button" class="am-btn am-btn-warning am-radius">保存</button>
+</div>
+
+<div class="am-btn-group">
+  <button type="button" class="am-btn am-btn-warning am-radius">取消</button>
+</div>
+    	
+   </div>   
+ 
+</div>
+    
+    
+    
+    <!--<div class="am-popup-bd">
+        <div class="wrap">
+        	<div class="wrap-two">
+        	   <p style="font-size: 20px; color: #0D0D0D;">新员工信息录入</p>
+        	   <p class="p-one"><span>姓&nbsp;&nbsp;&nbsp;名:</span><input type="text" name="" class="ipt2-one" value="" /><span>&nbsp;登&nbsp;录&nbsp;名：</span><input type="text" name="" class="ipt2-one" value="" /><span>性&nbsp;&nbsp;&nbsp;&nbsp;别：</span><input type="radio" name="name" style="width: 20px;" value="" />男<input type="radio" name="name" style="width: 20px;" value="" />女</p>
+        	   <p class="p-one"><span>年&nbsp;&nbsp;&nbsp;龄:</span><input type="text" name="" class="" value="" /><span>生&nbsp;&nbsp;&nbsp;日:</span><input type="text" name="" class="" value="" /><span>联系电话:</span><input type="text" name="" class="" value="" style="width: 142px;"/></p>
+        	   <p class="p-two"><span>籍&nbsp;&nbsp;&nbsp;贯:</span><input type="text" name="" id="" value="" /><span>联系地址:</span><input type="text" name="" id="" value="" style="width: 222px;"/></p>
+             <p class="p-tre"><span>身份证号码:</span><input type="text" name="" class="ipt2-fiv" value="" style="width: 465px;"/></p>
+        	   <p class="p-two"><span>联系电话:</span><input type="text" name="" class="ipt2-fou" value="" /><span>单位/部门:</span><input type="text" name="" class="ipt2-two" value="" style="width: 195px;"/></p>
+        	   <p class="p-two"><span>学位:</span><input type="text" name="" id="" value="" /><span>角色/职位:</span><input type="text" name="" class="ipt2-tre" value="" style="width: 240px;"/></p>
+        	   <p class="p-one"><span>工作经历:</span><input type="text" name="" class="" value="" style="width: 478px;"/></p>
+        	   <p class="p-one"><span>紧急联系人:</span><input type="text" name="" id="" value="" /><span>紧急联系人电话:</span><input type="text" name="" id="" value="" style="width: 228px;"/></p>
+             <p class="p-tre"><span>备&nbsp;&nbsp;&nbsp;注:</span><input type="text" name="" id="" value="" /></p>
+          </div>
+        <div class="wrap-btn">
+        	<span data-am-modal-close class="btn-right">保存</span><span  data-am-modal-close>取消</span>
+        </div>
+        </div>
+    </div>-->
+  </div>
+</div>
+      
+      
+        <div class="am-panel" style="padding: 8px 10px;">
+                      <!--<header class="am-panel-hd">
+                            <h3 class="am-panel-titleam-panel-secondary"  style="font-size: 20px;height: 20px;">员工列表</h3>
+                      </header>-->
+         <div class="am-panel-bd">
+         	
+            <table class="am-table am-table-striped table-main">
+              <thead>
+              <tr>
+                <th class="table-check">登录账户</th>
+                <th class="table-id">姓名</th>
+                <th class="table-title">单位/部门</th>
+                <th class="table-type">角色/职位</th>
+                <th class="table-author am-hide-sm-only">联系电话</th>
+                <th class="table-date am-hide-sm-only">身份证号</th>
+                <th class="table-set">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><span class="am-icon-exclamation-circle" style="color: red;"></span>&nbsp;52</td>
+                
+                <td>张三</td>
+                <td>技术部</td>
+                <td class="am-hide-sm-only">前端</td>
+                <td>13500001111</td>
+                <td class="am-hide-sm-only">321634165465165164161561641616516146</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only an-yg-stop">停用</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr>
+                <td><span class="am-icon-exclamation-circle" style="color: red;"></span>&nbsp;52</td>
+                
+                <td>张三</td>
+                <td>技术部</td>
+                <td class="am-hide-sm-only">前端</td>
+                <td>13500001111</td>
+                <td class="am-hide-sm-only">321634165465165164161561641616516146</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only an-yg-stop">停用</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr>
+                <td><span class="am-icon-exclamation-circle" style="color: red;"></span>&nbsp;52</td>
+                
+                <td>张三</td>
+                <td>技术部</td>
+                <td class="am-hide-sm-only">前端</td>
+                <td>13500001111</td>
+                <td class="am-hide-sm-only">321634165465165164161561641616516146</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only an-yg-stop">停用</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr>
+                <td><span class="am-icon-exclamation-circle" style="color: red;"></span>&nbsp;52</td>
+                
+                <td>张三</td>
+                <td>技术部</td>
+                <td class="am-hide-sm-only">前端</td>
+                <td>13500001111</td>
+                <td class="am-hide-sm-only">321634165465165164161561641616516146</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only an-yg-stop"> 停用</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr>
+                <td><span class="am-icon-exclamation-circle" style="color: red;"></span>&nbsp;52</td>
+                
+                <td>张三</td>
+                <td>技术部</td>
+                <td class="am-hide-sm-only">前端</td>
+                <td>13500001111</td>
+                <td class="am-hide-sm-only">321634165465165164161561641616516146</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only an-yg-stop"> 停用</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tbody>
+              <tr>
+                <td><span class="am-icon-exclamation-circle" style="color: red;"></span>&nbsp;52</td>
+                
+                <td>张三</td>
+                <td>技术部</td>
+                <td class="am-hide-sm-only">前端</td>
+                <td>13500001111</td>
+                <td class="am-hide-sm-only">321634165465165164161561641616516146</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only an-yg-stop">停用</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            
+            
+            
+         <div class="am-cf">
+              共 15 条记录
+              <div class="am-fr">
+                <ul class="am-pagination">
+                  <li class="am-disabled"><a href="#">«</a></li>
+                  <li class="am-active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">»</a></li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+            
+         </div>
+         
+        </div>
+        
+        
+        
+        
+         
+    
+    </div>
+ </div>
+ 
+           
+ 
+ 
+ 
+ 
+ 
+ 
+  <!-- content end -->
+
+
+
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<!--[if lt IE 9]>-->
+<!--<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>-->
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<!--<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--<script src="assets/js/jquery.min.js"></script>-->
+<!--<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script type="text/javascript" src="assets/js/demo.js"></script>
+</body>
+</html>
