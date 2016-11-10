@@ -1,0 +1,62 @@
+@import 'reset';
+@mixin prefixed($name,$val){
+	-webkit-#{$name}:$val;
+	$name:$val;
+	-moz-#{$name}:$val;
+	-ms-#{$name}:$val;
+	-o-#{$name}:$val;
+}
+html,body{
+	width:100%;
+	height:100%;
+}
+body{
+	display:-webkit-box;
+	@include prefixed(box-orient,vertical);
+}
+.col-md-2{
+	@include prefixed('box-flex',2);
+}
+.col-md-10{
+	@include prefixed(box-flex,10);
+}
+.col-md-8{
+	@include prefixed(box-flex,8);
+}
+.col-md-6{
+	@include prefixed(box-flex,6);
+}
+header{
+	height:100px;
+	width:100%;
+	background-color:#272b35;
+	display:-webkit-box;
+	@include prefixed(box-orient,horizontal);
+
+	.header-center{
+		text-align:center;
+		line-height:100px;
+		background-color:#28c6c9;
+		color:#fff;
+	}
+}
+section{
+	display:-webkit-box;
+	@include prefixed(box-flex,1);
+	@include prefixed(box-orient,horizontal);
+	
+	.left-menu-list{
+		padding-top:20px;
+		background-color:#272b35;
+		color:#28c6c9;
+		font:16px/40px "MicrosoftYaHei";
+		text-align:center;
+		height:800px;
+		ul[class=kind-lar]{
+			li{
+				height:40px;
+				cursor:pointer;		
+			}
+		}
+	}
+}

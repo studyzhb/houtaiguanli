@@ -1,0 +1,145 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3,
+h4, h5, h6, p, blockquote, pre, a, abbr, acronym,
+address, big, cite, code, del, dfn, em, font, img, ins,
+kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+:focus {
+  outline: 0; }
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+th, td {
+  text-align: left;
+  font-weight: normal; }
+
+img, iframe {
+  border: none;
+  text-decoration: none; }
+
+ol, ul {
+  list-style: none; }
+
+input, textarea, select, button {
+  font-size: 100%;
+  font-family: inherit; }
+
+select {
+  margin: inherit; }
+
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #000;
+  background-color: #000;
+  height: 1px; }
+
+html {
+  font: 125%/1 "microsoft yahei","Arial Narrow"; }
+
+a {
+  text-decoration: none; }
+
+a:visited {
+  color: #666; }
+
+a:hover, a:active, a:focus {
+  color: #ff8400;
+  /* text-decoration:underline;*/ }
+
+.clearfix:after {
+  content: ".";
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+  display: block; }
+
+html, body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -moz-vertical: vertical;
+  -ms-vertical: vertical;
+  -o-vertical: vertical; }
+
+.col-md-2 {
+  -webkit-box-flex: 2;
+  -moz-2: 2;
+  -ms-2: 2;
+  -o-2: 2; }
+
+.col-md-10 {
+  -webkit-box-flex: 10;
+  -moz-10: 10;
+  -ms-10: 10;
+  -o-10: 10; }
+
+.col-md-8 {
+  -webkit-box-flex: 8;
+  -moz-8: 8;
+  -ms-8: 8;
+  -o-8: 8; }
+
+.col-md-6 {
+  -webkit-box-flex: 6;
+  -moz-6: 6;
+  -ms-6: 6;
+  -o-6: 6; }
+
+header {
+  height: 100px;
+  width: 100%;
+  background-color: #272b35;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -moz-horizontal: horizontal;
+  -ms-horizontal: horizontal;
+  -o-horizontal: horizontal; }
+  header .header-center {
+    text-align: center;
+    line-height: 100px;
+    background-color: #28c6c9;
+    color: #fff; }
+
+section {
+  display: -webkit-box;
+  -webkit-box-flex: 1;
+  -moz-1: 1;
+  -ms-1: 1;
+  -o-1: 1;
+  -webkit-box-orient: horizontal;
+  -moz-horizontal: horizontal;
+  -ms-horizontal: horizontal;
+  -o-horizontal: horizontal; }
+  section .left-menu-list {
+    padding-top: 20px;
+    background-color: #272b35;
+    color: #28c6c9;
+    font: 16px/40px "MicrosoftYaHei";
+    text-align: center;
+    height: 800px; }
+    section .left-menu-list ul[class=kind-lar] li {
+      height: 40px;
+      cursor: pointer; }
+
+/*# sourceMappingURL=index.css.map */
