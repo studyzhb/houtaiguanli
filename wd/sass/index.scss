@@ -1,0 +1,75 @@
+@import 'reset';
+.btn {
+   // font-size: 12px;
+    //border-radius: 0px;
+    //padding: 8px 16px;
+    //height: 32px;
+    //line-height: 14px;
+
+
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.btn-primary{
+	color: #fff;
+    border: 1px solid #09c;
+    background-color: #09c;
+}
+
+.padding-top-20{
+	padding-top:20px;
+}
+
+//弹出区域
+
+.add-con-area{
+	width:70%;
+	height:90%;
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;
+	background-color:#fff;
+	z-index:9999;
+	display:none;
+	overflow:auto;
+}
+
+.add-alert-area{
+	width:100%;
+	height:100%;
+	position:absolute;
+	background-color:#000;
+	opacity:0.1;
+	display:none;
+	z-index:9998;
+
+}
+
+.space-4{
+  margin-top: 20px; 
+}
+
+.control-label{
+	text-align:center;
+	font-size:16px;
+	line-height:1.5;
+}

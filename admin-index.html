@@ -26,9 +26,9 @@
 	<section>
 		<div class="col-md-2 left-menu-list">
 			<ul class="kind-lar">
-				<li><a href="#/user"><i class="iconfont icon-xiangyoujiantou"></i>&nbsp;&nbsp;表&nbsp;&nbsp;&nbsp;&nbsp;格</a></li>
-				<li><a href="#/user"><i class="iconfont icon-xiangyoujiantou"></i>&nbsp;&nbsp;组织机构</a></li>
-				<li><a href="#/organ"><i class="iconfont icon-xiangyoujiantou"></i>&nbsp;&nbsp;员工管理</a></li>
+				<li><a href="#/"><i class="iconfont icon-xiangyoujiantou"></i>&nbsp;&nbsp;表&nbsp;&nbsp;&nbsp;&nbsp;格</a></li>
+				<li><a href="#/organ"><i class="iconfont icon-xiangyoujiantou"></i>&nbsp;&nbsp;组织机构</a></li>
+				<li><a href="#/organ-user"><i class="iconfont icon-xiangyoujiantou"></i>&nbsp;&nbsp;员工管理</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10">
@@ -39,7 +39,7 @@
 
 	<script type="text/ng-template" id="templates/organization.html">
 		 <h1 style="color:#0E90D2">组织机构列表</h1>
-		<a class="btn btn-default" id="addOrgan" href="#/user">新增</a>
+		<a class="btn btn-primary" href="#/user">新增</a>
 		<table class="table">
 		    <thead>
 		        <tr>
@@ -67,37 +67,142 @@
 		    </tbody>
 		</table>
 	</script>
-	<script type="text/ng-template" id="templates/org-user.html">
-		 <div class="am-topbar-brand">
-    		11111
-  		</div>
+
+	<script type="text/ng-template" id="templates/organ-user-list.html">
+		 <h1 style="color:#0E90D2">用户管理</h1>
+		<a class="btn btn-primary" href="#/organ-user-input">新增</a>
+		<table class="table table-bordered table-hover" style="margin-top:40px;text-align:center;" align="center" valign="middle">
+		    <thead>
+		        <tr>
+		            <th>登录账户</th>
+		            <th>姓名</th>
+		            <th>单位/部门</th>
+		            <th>角色/职位</th>
+		            <th>联系电话</th>
+		            <th>身份证号</th>
+		            <th>操作</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr align="center">
+		            <td>test</td>
+		            <td>test</td>
+		            <td>test</td>
+		            <td>test</td>
+		            <td>test</td>
+		            <td>test</td>
+		            <td>
+		            	<div class="input-group">
+			            	<input type="button" class="btn btn-default" value="编辑"/>
+			            	<input type="button" class="btn btn-primary" value="停用"/>
+		            	</div>
+		            </td>                                   
+		        </tr>
+		    </tbody>
+		</table>
 	</script>
 
-	<script type="text/ng-template" id="templates/organ-input.html">
-		<form method="" action="" role="form">
+	<script type="text/ng-template" id="templates/org-user.html">
+		 <div class="am-topbar-brand">
+    		
+  		</div>
+	</script>
 	
-			<div class="form-group">
+	
+
+	<script type="text/ng-template" id="templates/organ-input.html">
+		
+		<form role="form" class="space-4">
+			<div class="form-group clearfix">
 				<label for="" class="col-sm-2 control-label">机构名称</label>
 				<div class="col-sm-10">
 					<input type="text" name="" value="" class="form-control">
 				</div>
 			</div>
-
-			<div class="form-group">
+			
+			<div class="form-group clearfix">
 				<label for="" class="col-sm-2 control-label">详细地址</label>
 				<div class="col-sm-10">
 					<input type="text" name="" value="" class="form-control">
 				</div>
 			</div>
-
-			<div class="form-group">
+			
+			<div class="form-group clearfix">
 				<label for="" class="col-sm-2 control-label">部门类型</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group clearfix">
+				<label for="" class="col-sm-2 control-label">地区</label>
+				<div class="col-sm-10">
+					<div class="col-sm-3">
+						<select required="" class="form-control" ng-model="selectedProvince" ng-options="item.id as item.text for item in regionData">  
+					        <option value="">省</option>  
+					  	</select>
+				  	</div>
+
+				  	<div class="col-sm-3">
+					    <select class="form-control" ng-model="selectedCity" ng-options="item.id as item.text for item in citys">  
+					        <option value="">市</option>  
+					    </select> 
+				    </div>
+				    <div class="col-sm-3"> 
+					    <select class="form-control" ng-model="selectedDstrict" ng-options="item.id as item.text for item in districts">  
+					        <option value="">区</option>  
+					    </select>
+				    </div>
+				</div>
+			</div>
+		</form>
+
+		<script type="text/ng-template" id="templates/organ-user-input.html">
+		
+		<form role="form" class="space-4">
+			<div class="form-group clearfix">
+				<label for="" class="col-sm-2 control-label">姓名</label>
 				<div class="col-sm-10">
 					<input type="text" name="" value="" class="form-control">
 				</div>
 			</div>
+			
+			<div class="form-group clearfix">
+				<label for="" class="col-sm-2 control-label">登录名</label>
+				<div class="col-sm-10">
+					<input type="text" name="" value="" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-group clearfix">
+				<label for="" class="col-sm-2 control-label">身份证号</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control">
+				</div>
+			</div>
 
+			<div class="form-group clearfix">
+				<label for="" class="col-sm-2 control-label">电话</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control">
+				</div>
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="" class="col-sm-2 control-label">性别</label>
+				<div class="radio-inline col-sm-10">
+					<input type="radio" name="sex">男
+					<input type="radio" name="sex">女
+				</div>
+			</div>
+
+			
 		</form>
+		
+	
 	</script>
+
+
+	
+
 </body>
 </html>
