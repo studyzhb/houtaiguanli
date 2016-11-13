@@ -243,19 +243,114 @@
 				<div class="authority">
 					<div class="authority-head">
 						<div class="manage-head">
-							<h6 class="layout padding-left manage-head-con">组织机构列表
+							<h6 class="layout padding-left manage-head-con">物品信息列表
 							<span class="fr text-small text-normal padding-top">发布时间：</span>
 							<span class="fr margin-large-right padding-top text-small text-normal">最新版本：<em class="text-main">2.4.0.160708</em></span>
 							</h6>
 						</div>
+                        
 					</div>
 					
+                    <!-- 内容区 -->
+                        
+                    <div class="authority-content padding-top-20">
+                       
+                        <div class="list-content show">
+                            <div class="panel">
+                                <form action="#" class="navbar-form navbar-center">
+                                    <div class="input-group">
+                                        <input type="text" name="search" id="search" class="form-control">
+                                        <span class="input-group-addon">搜索</span>
+                                    </div>
+                                </form>
+                                
+                                <!-- <div class="panel-heading clearfix"> -->
+                                    <ul class="list-inline">
+                                        <li class="h3">分类</li>
+
+                                        <li><a href="#">类别1</a></li>
+                                        <li><a href="#">类别2</a></li>
+                                        <li><a href="#">类别3</a></li>
+                                        <li><a href="#">类别4</a></li>
+                                        <li><a href="#">类别5</a></li>
+                                        <li><a href="#">类别6</a></li>
+                                        <li><a href="#">类别7</a></li>
+                                        
+                                        
+                                        
+                                    </ul>
+                                <!-- </div> -->
+
+                                <!-- <div class="panel-heading clearfix"> -->
+                                    <ul class="list-inline">
+                                        <li class="h3">品牌</li>
+
+                                        <li><a href="#">品牌1</a></li>
+                                        <li><a href="#">品牌2</a></li>
+                                        <li><a href="#">品牌3</a></li>
+                                        <li><a href="#">品牌4</a></li>
+                                        <li><a href="#">品牌5</a></li>
+                                        <li><a href="#">品牌6</a></li>
+                                        <li><a href="#">品牌7</a></li>
+                                       
+                                        
+                                    </ul>
+                                <!-- </div> -->
+                                
+                                <div class="panel-body">
+                                    
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+
+                                                <th>商品全称</th>
+                                                <th>商品简称</th>
+                                                <th>助记码</th>
+                                                <th>商品编码</th>
+                                                <th>国际条码</th>
+                                                <th>计价方式</th>
+                                                <th>显示标志</th>
+                                                <th>主供应商</th>
+                                                <th>零售单位</th>
+                                                <th>规格</th>
+                                                <th>分类</th>
+                                                <th>品牌</th>
+                                                <th>原产地</th>
+                                                <th>生产厂家</th>
+                                                <th>其他</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+        
+                                </div>
+                            </div>
+                        </div>                  
+
+                        <div class="show-page padding-big-right">
+                            <div class="page">
+                                <div class="page">
+                                    <ul class="offcial-page margin-top margin-big-right">
+                                        <li>共<em class="margin-small-left margin-small-right">1</em>条数据</li>
+                                        <li>每页显示<em class="margin-small-left margin-small-right">15</em>条</li>
+                                        <li><a class="next disable">上一页</a></li>
+                                        <li></li>
+                                        <li><a class="next disable">下一页</a></li>
+                                        <li><span class="fl">共<em class="margin-small-left margin-small-right">1</em>页</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    
+                    <!-- --------------------------------------- -->
+
 				</div>
 			</div>
 		</div>
 
 		<script>
-			$(".sidebar-title").live('click', function() {
+			$(".sidebar-title").on('click', function() {
 				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
 					$(this).next().slideDown(200);
 					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
