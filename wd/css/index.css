@@ -154,4 +154,10 @@ a:hover, a:active, a:focus {
 .cursor-pointer {
   cursor: pointer; }
 
+.table-extend-content {
+  background-color: #f00;
+  float: left;
+  width: 100%;
+  min-height: 40px; }
+
 /*# sourceMappingURL=index.css.map */
