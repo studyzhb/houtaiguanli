@@ -1,5 +1,12 @@
 $(function(){
 
+
+    $('.nav-hover-content').hover(function(){
+        $(this).children('.show-content').show();
+    },function(){
+        $(this).children('.show-content').hide();
+    })
+
 	function formatTemplate(dta, tmpl) {  
         var b;
         var format = { 
@@ -63,7 +70,6 @@ $(function(){
     $('#city-list').on('change',function(){
         // $('#contry-list').html('县');
         indexPage.addCountry($('#province-list')[0].value,this.value);
-
     })
 
     $('#province-list').on('change',function(){
@@ -80,10 +86,5 @@ $(function(){
         $(".add-con-area").hide();
         $(".add-alert-area").hide();
     })
-
-
-
-
-   
 
 })

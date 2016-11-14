@@ -73,3 +73,28 @@
 	font-size:16px;
 	line-height:1.5;
 }
+
+.nav-hover-content{
+    position:relative;
+}
+.show-content{
+    position:absolute;
+    top:35px;
+    z-index:9998;
+    width:500px;
+    left:0;
+    display:none;
+}
+.table-input-border{
+    border-bottom:1px solid #ccc;   
+}
+.table-title-margin-10{
+    margin-bottom:10px;
+}
+.table-input-disabled{
+    border:1px solid #ccc;
+    background-color:#ccc;
+}
+.cursor-pointer{
+    cursor:pointer;
+}
