@@ -1,5 +1,13 @@
 $(function(){
-
+    // if(!$(".sidebar-title").parent(".sidebar-nav").hasClass('sidebar-nav-fold')){
+        // $(".sidebar-title").next().hide().end().addClass('sidebar-nav-fold');
+    // }
+    
+    $('.purchaselist-info').dblclick(function(){
+        console.log($(this).data('info'));
+        $(".add-con-area").show();
+        $(".add-alert-area").show();
+    });
 
     $('.nav-hover-content').hover(function(){
         $(this).children('.show-content').show();

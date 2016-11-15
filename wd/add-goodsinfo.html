@@ -14,13 +14,13 @@
 	<link rel="stylesheet" type="text/css" href="./css/account.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
-
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
 	<script type="text/javascript" src="./js/haidao.validate.js"></script>
 	<script type="text/javascript" src="./js/config.js"></script>
-	
+	<script src="./js/index.js"></script>
 </head>
 <body>
 		<div class="view-topbar">
@@ -169,7 +169,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="add-goodsinfo.html">
+                                <a href="#">
                                     <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
                                     <span class="text-normal">添加商品信息</span>
                                 </a>
@@ -237,7 +237,7 @@
                             </li>
                         </ul>
                     </div>
-                    
+
                     <div class="sidebar-nav">
                         <div class="sidebar-title">
                             <a href="#">
@@ -261,158 +261,243 @@
                         </ul>
                     </div>
 
-
 				</div>
 			</div>
 			<div class="view-product">
 				<div class="authority">
 					<div class="authority-head">
 						<div class="manage-head">
-							<h6 class="layout padding-left manage-head-con">商品库存
+							<h6 class="layout padding-left manage-head-con">添加商品信息
 							<span class="fr text-small text-normal padding-top">发布时间：</span>
 							<span class="fr margin-large-right padding-top text-small text-normal">最新版本：<em class="text-main">2.4.0.160708</em></span>
 							</h6>
 						</div>
 					</div>
-				    
-                    <nav class="navbar navbar-default" role="navigation">
-                        <div class="container">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#">商品库存查询</a>
-                        </div>
-                        <div>
-                            <ul class="nav navbar-nav">
-                                <li><a href="#">日期</a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        类别1
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">类别1-1</a></li>
-                                        <li><a href="#">类别1-2</a></li>
-                                        <li><a href="#">类别1-3</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">类别1-4</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">类别1-5</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">类型</a></li>
-                                <li><a href="#">商品编码</a></li>
-                                <li><a href="#">条码</a></li>
-                                <li><a href="#">类别</a></li>
-                            </ul>
-                            <form action="#" class="navbar-form navbar-right">
-                                <div class="input-group">
-                                    <input type="text" name="search" id="search" class="form-control">
-                                    <span class="input-group-addon">搜索</span>
-                                </div>
-                            </form>
-                        </div>
-                        </div>
-                    </nav>
-                   
-                    <div class="container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                   <th>
-                                       类别编码
-                                   </th>
-                                   <th>
-                                       类别名称
-                                   </th> 
-                                   <th>
-                                       商品编码
-                                   </th> 
-                                   <th>
-                                       国际条形码
-                                   </th>
-                                   <th>
-                                       商品名称
-                                   </th>  
-                                    <th>
-                                       单位
-                                   </th>
-                                   <th>
-                                       仓库名称
-                                   </th>
-                                    <th>
-                                       库存数量
-                                   </th>
-                                   <th>
-                                       大包装数量
-                                   </th>
-                                   <th>
-                                       当前零售价
-                                   </th>
-                                   <th>
-                                       进货价
-                                   </th>
-                                   <th>
-                                       进货金额
-                                   </th>
-                                   <th>
-                                       零售金额
-                                   </th>
-                                </tr>
-                            </thead>
+					
+                    <!-- 主要内容区 -->
+                    <div class="container padding-top-20">
+                        <!-- <table class="table">
+                            <caption class="table-title-margin-10">单据信息</caption>
                             <tbody>
-                                <tr class="purchaselist-info" data-info="test">
-                                    <td>
-                                        test
+                                <tr>
+                                    <td class="col-ms-3">
+                                        供应商：
+                                        <select name="" id="">
+                                            <option value="">----------</option>
+                                        </select>
                                     </td>
-                                    <td>
-                                        test
+                                    <td class="col-ms-3">单据编号
+                                        <input type="text" disabled class="table-input-disabled" />
                                     </td>
-                                    <td>
-                                        test
+                                    <td class="col-ms-3">
+                                            制单日期
+                                            <input type="text" disabled />
                                     </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
+                                    <td class="col-ms-3">采购仓库
+                                        <select name="" id="">
+                                            <option value="">----------</option>
+                                        </select></td>                    
                                 </tr>
+                                <tr>
+                                    <td>业务员<input type="text" class="table-input-border"/></td>
+                                    <td>制单人<input type="text" class="table-input-border"/></td>
+                                    <td>备注<input type="text" class="table-input-border"/></td>
+                                    <td>有效期
+                                        <select name="" id="">
+                                            <option value="">----------</option>
+                                        </select></td>  
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>审核日期(审核人)<input type="text" class="table-input-border"/></td>
+                                    <td>审核人(入库人)<input type="text" class="table-input-border"/></td>
+                                    <td>单据摘要<input type="text" class="table-input-border"/></td>
+                                    <td>定金金额<input type="text" class="table-input-border"/></td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                        </table> -->
+
+                        <table class="table">
+                            <caption class="table-title-margin-10">商品基本信息</caption>
+                            <tbody>
+                                <tr>
+                                    <td class="col-ms-3">
+                                        <div>
+                                            <span>商品编码</span>
+                                            <input type="text" class="table-input-border"/>
+                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
+                                        </div>
+                                    </td>
+                                    <td class="col-ms-3">
+                                        <div>
+                                            <span>国际条码</span>
+                                            <input type="text" class="table-input-border"/>
+                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
+                                        </div>
+                                    </td>
+                                    <td class="col-ms-3">
+                                        <div>
+                                            <span>计价方式</span>
+                                            <input type="text" class="table-input-border"/>
+                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
+                                        </div>
+                                    </td>
+                                    <td class="col-ms-3">显示标志
+                                        <input type="text" class="table-input-border"/>    
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>商品全称<input type="text" class="table-input-border" /></td>
+                                    <td>商品简称<input type="text"  class="table-input-border" /></td>
+                                    <td>助记码<input type="text"  class="table-input-border" /></td>
+                                    <td>主供应商
+                                        <input type="text"  class="table-input-border" />
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td>零售单位<input type="text" class="table-input-border"/></td>
+                                    <td>规格<input type="text" class="table-input-border"/></td>
+                                    <td>分类<input type="text" class="table-input-border"/></td>
+                                    <td>品牌<input type="text" class="table-input-border"/></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    <td>原产地<input type="text" class="table-input-border"/></td>
+                                    <td>生产厂家<input type="text" class="table-input-border"/></td>
+                                    <td></td>
+                                    <td></td>
+                                    
+                                </tr>
+                                
                             </tbody>
                         </table>
-                    </div>
-                
 
+                        <table class="table">
+                            <caption class="table-title-margin-10">价格信息</caption>
+                            <tbody>
+                                <tr>
+                                    <td class="col-ms-3">
+                                        <div>
+                                            <span>进货价</span>
+                                            <input type="text" class="table-input-border"/>
+                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
+                                        </div>
+                                    </td>
+                                    <td class="col-ms-3">
+                                        <div>
+                                            <span>毛利率</span>
+                                            <input type="text" class="table-input-border"/>
+                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
+                                        </div>
+                                    </td>
+                                    <td class="col-ms-3">
+                                        <div>
+                                            <span>进项税率</span>
+                                            <input type="text" class="table-input-border"/>
+                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
+                                        </div>
+                                    </td>
+                                    <td class="col-ms-3">数量
+                                        <input type="text" class="table-input-border"/>    
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <td>单价<input type="text" class="table-input-border" /></td>
+                                    <td>金额<input type="text"  class="table-input-border" /></td>
+                                    <td>库存量<input type="text"  class="table-input-border" /></td>
+                                    <td>可销天数
+                                        <input type="text"  class="table-input-border" />
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td>零售价<input type="text" class="table-input-border"/></td>
+                                    <td>进货状态<input type="text" class="table-input-border"/></td>
+                                    <td>备注<input type="text" class="table-input-border"/></td>
+                                    <td></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+
+                        <table class="table">
+                            <caption class="table-title-margin-10">扩展信息</caption>
+                            <tbody>
+                                <tr>
+                                    <td class="col-ms-3">采购周期（天）
+                                        <input type="text" class="table-input-border"/>    
+                                    </td> 
+                                    <td class="col-ms-3">失效预警天数
+                                        <input type="text" class="table-input-border"/>    
+                                    </td> 
+                                    <td class="col-ms-3">保质期(天)
+                                        <input type="text" class="table-input-border"/>    
+                                    </td> 
+                                    <td class="col-ms-3">前台营业员提成
+                                        <input type="text" class="table-input-border"/>    
+                                    </td>                    
+                                </tr>
+                                <tr>
+                                    <!-- <td>单价<input type="text" class="table-input-border disabled-change" /></td> -->
+                                    <td class="col-ms-3">营业员提成金额
+                                        <input type="text" class="table-input-border"/>    
+                                    </td> 
+                                    <td class="col-ms-3">营业员提成比例
+                                        <input type="text" class="table-input-border"/>    
+                                    </td> 
+                                    <td class="col-ms-3">最后修改人
+                                        <input type="text" class="table-input-border"/>    
+                                    </td> 
+                                    <td class="col-ms-3">允许采购订货
+                                        <input type="text" class="table-input-border"/>    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>允许采购退货<input type="text" class="table-input-border"/></td>
+                                    <td>允许前台销售<input type="text" class="table-input-border"/></td>
+                                    <td>允许前台手工折扣及会员折扣<input type="text" class="table-input-border"/></td>
+                                    <td></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+
+                        <!-- <table class="table">
+                            <caption class="table-title-margin-10">合计</caption>
+                            <tr>
+                                <th>
+                                    采购商品总数量
+                                    
+                                </th>
+                                <th>
+                                    采购商品总金额
+                                    
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    100
+                                    
+                                </td>
+                                <td>
+                                    10000
+                                    
+                                </td>
+                            </tr>
+                        </table> -->
+                    </div>
 
 				</div>
 			</div>
 		</div>
 
 		<script>
-			$(".sidebar-title").live('click', function() {
+
+
+			$(".sidebar-title").on('click', function() {
 				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
 					$(this).next().slideDown(200);
 					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
@@ -426,5 +511,5 @@
 
 </body>
 
-<script src="./js/index.js"></script>
+
 </html>

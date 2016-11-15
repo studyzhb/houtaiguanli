@@ -1,0 +1,26 @@
+.location {
+  padding-bottom: 9px;
+  border-bottom: solid 1px #eee;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  color: #686f7f;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+  .location a {
+    display: inline-block;
+    color: #686f7f;
+    text-decoration: none; }
+    .location a i {
+      display: inline-block;
+      margin-right: 5px;
+      width: 14px;
+      height: 14px;
+      text-indent: -9999px;
+      background: url(./img/skin_icons.png) no-repeat;
+      vertical-align: middle; }
+  .location a.back {
+    margin-right: 15px; }
+
+/*# sourceMappingURL=content-input-list.css.map */

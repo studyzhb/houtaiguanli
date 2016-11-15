@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/account.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
-
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
@@ -237,7 +237,7 @@
                             </li>
                         </ul>
                     </div>
-                    
+
                     <div class="sidebar-nav">
                         <div class="sidebar-title">
                             <a href="#">
@@ -261,158 +261,123 @@
                         </ul>
                     </div>
 
-
 				</div>
 			</div>
 			<div class="view-product">
 				<div class="authority">
 					<div class="authority-head">
 						<div class="manage-head">
-							<h6 class="layout padding-left manage-head-con">商品库存
+							<h6 class="layout padding-left manage-head-con">添加供货商信息
 							<span class="fr text-small text-normal padding-top">发布时间：</span>
 							<span class="fr margin-large-right padding-top text-small text-normal">最新版本：<em class="text-main">2.4.0.160708</em></span>
 							</h6>
 						</div>
 					</div>
-				    
-                    <nav class="navbar navbar-default" role="navigation">
-                        <div class="container">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#">商品库存查询</a>
-                        </div>
-                        <div>
-                            <ul class="nav navbar-nav">
-                                <li><a href="#">日期</a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        类别1
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">类别1-1</a></li>
-                                        <li><a href="#">类别1-2</a></li>
-                                        <li><a href="#">类别1-3</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">类别1-4</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">类别1-5</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">类型</a></li>
-                                <li><a href="#">商品编码</a></li>
-                                <li><a href="#">条码</a></li>
-                                <li><a href="#">类别</a></li>
-                            </ul>
-                            <form action="#" class="navbar-form navbar-right">
-                                <div class="input-group">
-                                    <input type="text" name="search" id="search" class="form-control">
-                                    <span class="input-group-addon">搜索</span>
+					
+                    <!-- 主要内容区 -->
+                    <div class="container padding-top-20">
+
+                        <!-- <div class="panel panel-default">
+                            <div class="panel-heading">
+                                基本信息
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
-                        </div>
-                    </nav>
-                   
-                    <div class="container">
+                            </div>
+                        </div> -->
+
+
+                        <form method="POST" action="">
                         <table class="table">
-                            <thead>
-                                <tr>
-                                   <th>
-                                       类别编码
-                                   </th>
-                                   <th>
-                                       类别名称
-                                   </th> 
-                                   <th>
-                                       商品编码
-                                   </th> 
-                                   <th>
-                                       国际条形码
-                                   </th>
-                                   <th>
-                                       商品名称
-                                   </th>  
-                                    <th>
-                                       单位
-                                   </th>
-                                   <th>
-                                       仓库名称
-                                   </th>
-                                    <th>
-                                       库存数量
-                                   </th>
-                                   <th>
-                                       大包装数量
-                                   </th>
-                                   <th>
-                                       当前零售价
-                                   </th>
-                                   <th>
-                                       进货价
-                                   </th>
-                                   <th>
-                                       进货金额
-                                   </th>
-                                   <th>
-                                       零售金额
-                                   </th>
-                                </tr>
-                            </thead>
+                            <caption class="table-title-margin-10">基本信息</caption>
                             <tbody>
-                                <tr class="purchaselist-info" data-info="test">
+                                <tr>
                                     <td>
-                                        test
+                                        供应商编号:
+                                        <input type="text" name="" disabled class="table-input-disabled" />
                                     </td>
                                     <td>
-                                        test
+                                        供应商：
+                                        <input type="text" class="table-input-border"/>
+                                    </td>
+                                    <td>助记码
+                                        <input type="text" disabled class="table-input-disabled" />
                                     </td>
                                     <td>
-                                        test
+                                            地址
+                                            <input type="text" class="table-input-border"/>
                                     </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
+                                                  
                                 </tr>
+                                <tr>
+                                    <td>邮政编码<input type="text" class="table-input-border"/></td>
+                                    <td>联系人<input type="text" class="table-input-border"/></td>
+                                    <td>电话<input type="text" class="table-input-border"/></td>
+                                    <td>手机号码<input type="text" class="table-input-border"/></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>email<input type="text" class="table-input-border"/></td>
+                                    <td>run_id<input type="text" class="table-input-border"/></td>
+                                    <td>statements_id<input type="text" class="table-input-border"/></td>
+                                    <td>khh<input type="text" class="table-input-border"/></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    <td>khr<input type="text" class="table-input-border"/></td>
+                                    <td>zh<input type="text" class="table-input-border"/></td>
+                                    <td>syw<input type="text" class="table-input-border"/></td>
+                                    <td>status<input type="text" class="table-input-border"/></td>
+                                    
+                                </tr>
+                                
                             </tbody>
                         </table>
+                            <input type="submit" name="" value="保存信息" class="btn btn-defalut">
+                        </form>
+                        
                     </div>
-                
-
 
 				</div>
 			</div>
 		</div>
 
 		<script>
-			$(".sidebar-title").live('click', function() {
+			$(".sidebar-title").on('click', function() {
 				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
 					$(this).next().slideDown(200);
 					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
@@ -423,7 +388,6 @@
 			});
 		</script>
 	
-
 </body>
 
 <script src="./js/index.js"></script>
