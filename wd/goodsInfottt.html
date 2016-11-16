@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/account.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
-    <link rel="stylesheet" href="./css/content-input-list.css">
+
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
@@ -106,7 +106,7 @@
                             </li>
                             <li>
                                 <a href="admin-author.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_market.png" width="16" height="16" /></b>
+                                    <b class="sidebar-icon"><img src="Images/icon_market.png" width="16" height="16" /></b>
                                     <span class="text-normal">权限管理</span>
                                 </a>
                             </li>
@@ -266,89 +266,32 @@
 			<div class="view-product">
 				<div class="authority">
 					<div class="authority-head">
-                        
-						<!--导航栏-->
-                    <div class="location">
-                      <a href="#" class="back"><i></i><span>返回列表页</span></a>
-                      <a href="#" class="home"><i></i><span>首页</span></a>
-                      <i class="arrow"></i>
-                      <a href="#"><span>分类</span></a>
-                      <i class="arrow"></i>
-                      <span>分类</span>
-                    </div>
-                    <div class="line10"></div>
-                        
-                        
-                    </div>
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="#">商品信息</a>
+                            </li>
+                            <li class="nav-hover-content">
+                                <a href="#">快消</a>   
+                            </li>
+                            <li class="active">矿泉水</li>
+                            
+                        </ol>
+						<!-- <div class="manage-head"> -->
+							<!-- <h6 class="layout padding-left manage-head-con">物品信息列表 -->
+                                
+                                
+							<!-- <span class="fr text-small text-normal padding-top">发布时间：</span>
+							<span class="fr margin-large-right padding-top text-small text-normal">最新版本：<em class="text-main">2.4.0.160708</em></span> -->
+							<!-- </h6> -->
 
+						<!-- </div> -->
+                        
+					</div>
 					
                     <!-- 内容区 -->
                         
                     <div class="authority-content padding-top-10">
-                        <div class="toolbar-wrap">
-                            <div class="toolbar list clearfix">
-                                <div class="box-wrap">
-                                    <div class="l-list">
-                                        <ul class="icon-list clearfix">
-                                            <li>
-                                                <a href="add-goodsinfo.html" class="add button">
-                                                    <i></i>
-                                                    <span>新增</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <!-- 工具分类功能 -->
-                                        <div class="menu-list">
-                                            <div class="single-select">
-                                                <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>111111111</span><i></i>
-                                                    </a>
-                                                    <div class="select-items">
-                                                        <ul>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                    <i class="arrow"></i>
-                                                </div>
-
-                                                <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>222222</span><i></i>
-                                                    </a>
-                                                    <div class="select-items">
-                                                        <ul>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                    <i class="arrow"></i>
-                                                </div>
-
-                                                <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>111111111</span><i></i>
-                                                    </a>
-                                                    <div class="select-items">
-                                                        <ul>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                    <i class="arrow"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="r-list">
-                                        <input type="text" class="keyword" name="" value="">
-                                        <a href="" class="btn-search">查询</a>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <nav class="navbar navbar-default" role="navigation">
+                        <nav class="navbar navbar-default" role="navigation">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <a class="navbar-brand" href="#">商品信息</a>
@@ -372,8 +315,8 @@
                                                                 <li><a href="#">类别6</a></li>
                                                                 <li><a href="#">类别7</a></li>
                                                             </ul>
-                                                        </div> 
-                                                        <nav class="navbar navbar-default show-content" role="navigation">
+                                                        </div> -->
+                                                        <!-- <nav class="navbar navbar-default show-content" role="navigation">
                                                             <div class="container-fluid">
                                                                 <div>
                                                                     <ul class="nav navbar-nav">
@@ -392,7 +335,7 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                        </nav>
+                                                        </nav> -->
                                                     </li>
                                                     <li><a href="#">类别2</a></li>
                                                     <li><a href="#">类别3</a></li>
@@ -421,16 +364,16 @@
                                     </ul>
                                 </div>
                             </div>
-                        </nav> -->
+                        </nav>
 
                         <div class="list-content show">
                             <div class="panel clearfix">
-                                <!-- <form action="#" class="navbar-form navbar-right">
+                                <form action="#" class="navbar-form navbar-right">
                                     <div class="input-group">
                                         <input type="text" name="search" id="search" class="form-control">
                                         <span class="input-group-addon">搜索</span>
                                     </div>
-                                </form> -->
+                                </form>
                                 
                                 <!-- <div class="panel-heading clearfix"> 
                                     <ul class="list-inline">
@@ -470,9 +413,9 @@
                                 
                                 <div class="panel-body">
 
-                                   <!--  <a class="btn btn-primary" href="add-goodsinfo.html">
+                                    <a class="btn btn-primary" href="add-goodsinfo.html">
                                         新增
-                                    </a> -->
+                                    </a>
                         <div class="list-content show">
                             <div class="offcial-table tr-border margin-big-top clearfix" id="goodsInfoList">
                                 <div class="tr-th clearfix">

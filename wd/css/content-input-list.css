@@ -348,7 +348,7 @@ textarea.input {
     left: 8px;
     width: 14px;
     height: 14px;
-    background: url(skin_icons.png) no-repeat -308px -28px; }
+    background: url(../img/skin_icons.png) no-repeat -308px -28px; }
   .date-input .input {
     padding-left: 25px;
     width: 170px; }
