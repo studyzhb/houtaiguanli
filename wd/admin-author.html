@@ -179,9 +179,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="goods-detail.html">
                                     <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
-                                    <span class="text-normal">004</span>
+                                    <span class="text-normal">商品信息编辑</span>
                                 </a>
                             </li>
                             <li>
@@ -268,15 +268,25 @@
 			</div>
 			<div class="view-product">
 				<div class="authority">
-					<div class="authority-head">
+					<!-- <div class="authority-head">
 						<div class="manage-head">
 							<h6 class="layout padding-left manage-head-con"><span class="page-title">权限管理</span>
 							<span class="fr text-small text-normal padding-top"></span>
 							<span class="fr margin-large-right padding-top text-small text-normal"><em class="text-main"></em></span>
 							</h6>
 						</div>
-					</div>
+					</div> -->
 					<div class="authority-content padding-top-20">
+                        <!--导航栏-->
+                        <div class="location">
+                          <a href="#" class="back"><i></i><span>返回列表页</span></a>
+                          <a href="#" class="home"><i></i><span>首页</span></a>
+                          <i class="arrow"></i>
+                          <a href="#"><span>内容管理</span></a>
+                          <i class="arrow"></i>
+                          <span>编辑内容</span>
+                        </div>
+                        <div class="line10"></div>
 						<div id="show-content">
 											
 						</div>
@@ -344,6 +354,31 @@
                         <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
                       </dl>
                       <dl>
+                        <dt>所处角色</dt>
+                        <dd>
+                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
+                            
+                          </div>
+                        <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
+                      </dl>
+                      <dl>
+                        <dt>权限菜单1：</dt>
+
+                      </dl>
+                      <dl>
+
+                        <dd>权限1<input type="radio" name="author1" style="margin-right:20px">权限2<input type="radio" name="author1" style="margin-right:20px">权限3<input type="radio" name="author1" style="margin-right:20px"></dd>
+
+                      </dl>
+                      <dl>
+                        <dt>权限菜单2：</dt>
+                      </dl>
+                      <dl>
+
+                        <dd>权限1<input type="checkbox" name="author1" style="margin-right:20px">权限2<input type="checkbox" name="author1" style="margin-right:20px">权限3<input type="checkbox" name="author1" style="margin-right:20px"></dd>
+
+                      </dl>
+                      <!--<dl>
                         <dt>显示状态</dt>
                         <dd>
                           <div class="rule-multi-radio multi-radio">
@@ -362,7 +397,7 @@
                             </span>
                           </div>
                         </dd>
-                      </dl>
+                      </dl>-->
                       
                       
                       
@@ -386,8 +421,8 @@
                     <!--工具栏-->
                     <div class="page-footer">
                       <div class="btn-wrap" style="position: static;">
-                        <input type="submit" name="btnSubmit" value="提交保存" id="btnSubmit" class="button">
-                        <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);">
+                        <input type="submit" name="btnSubmit" value="提交保存" id="btnSubmit" class="button" style="border-radius:0">
+                        <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);" style="border-radius:0">
                       </div>
                     </div>
                     <!--/工具栏-->
@@ -396,8 +431,8 @@
 						  
 						
 		</script>
-
-
+        
+        
 		<script type="text/template" id="add-userlist-html">
 			<form method="post" action="" id="form1">
 

@@ -179,9 +179,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="goods-detail.html">
                                     <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
-                                    <span class="text-normal">004</span>
+                                    <span class="text-normal">商品信息编辑</span>
                                 </a>
                             </li>
                             <li>
@@ -268,15 +268,25 @@
 			</div>
 			<div class="view-product">
 				<div class="authority">
-					<div class="authority-head">
+					<!-- <div class="authority-head">
 						<div class="manage-head">
 							<h6 class="layout padding-left manage-head-con"><span class="page-title">组织机构</span>
 							<span class="fr text-small text-normal padding-top">发布时间：</span>
 							<span class="fr margin-large-right padding-top text-small text-normal">最新版本：<em class="text-main">2.4.0.160708</em></span>
 							</h6>
 						</div>
-					</div>
+					</div> -->
 					<div class="authority-content padding-top-20">
+						<!--导航栏-->
+	                    <div class="location">
+	                      <a href="#" class="back"><i></i><span>返回列表页</span></a>
+	                      <a href="#" class="home"><i></i><span>首页</span></a>
+	                      <i class="arrow"></i>
+	                      <a href="#"><span>内容管理</span></a>
+	                      <i class="arrow"></i>
+	                      <span>编辑内容</span>
+	                    </div>
+	                    <div class="line10"></div>
 						<div id="show-content">
 											
 						</div>
@@ -314,6 +324,7 @@
 				</div>
 			</div>
 		</script>
+		
 
 		<script type="text/template" id="userlist-html">
 			<div class="toolbar-wrap">
@@ -340,6 +351,33 @@
 
 						  
 						<div class="list-content show">
+							<div class="table-container">
+			<table class="ltable" width="100%">
+				<tbody>
+					<tr class="odd_bg">
+						<th width="6%">
+							选择
+						</th>
+						<th width="6%">
+							编号
+						</th>
+						<th width="6%">
+							类别名称
+						</th>
+						<th width="6%">
+							调用别名
+						</th>
+						<th width="6%">
+							排序
+						</th>
+						<th width="6%">
+							操作
+						</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 							<div class="offcial-table tr-border margin-big-top clearfix" id="admin-storage-userlist">
 								<div class="tr-th clearfix">
 									<div class="th w10">
@@ -352,7 +390,7 @@
 										所属区域
 									</div>
 									<div class="th w15">
-										上级部门
+										经纬度
 									</div>
 									<div class="th w15">
 										联系电话
@@ -365,7 +403,7 @@
 									</div>
 								</div>
 								<div class="tr clearfix border-bottom-none">
-									<div class="td w10">
+									<div class="td w10" style="font-weight:bold">
 										万店联盟
 									</div>
 									<div class="td w10">
@@ -375,7 +413,7 @@
 										区域一
 									</div>
 									<div class="td w15">
-										www
+										www/sss
 									</div>
 									<div class="td w15">
 										123456
@@ -386,9 +424,40 @@
 									</div>
 									
 									<div class="td w15">
-										<a href="#" class="" onclick="showuserinfo()">编辑</a>
-										<a href="#" class="" onclick="showuserinfo()">添加新成员</a>
+										<a href="#" class="" onclick="show_child_content(this)">展开</a>
+										<a href="#" class="" onclick="showuserinfo()">添加</a>
 									</div>
+									<div class="table-extend-content">
+                                        <table class="table table-child-con">
+                                            <tr>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                            </tr>
+                                            <tr>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                            </tr>
+                                            <tr>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                                <td>test</td>
+                                            </tr>
+                                        </table>
+                                    </div>
 								</div>
 							</div>
 						</div>
@@ -734,6 +803,16 @@
 					$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
 				}
 			});
+
+			function show_child_content(obj){
+				if($(obj).parent().next('.table-extend-content').css('display')=='none'){
+					$(obj).parent().next('.table-extend-content').css('display','block');
+				}else{
+					$(obj).parent().next('.table-extend-content').css('display','none');
+				}
+				
+			}
+
 
 			$('#show-content').append($('#userlist-html').html());
 			$('.page-title').text('组织机构列表');
