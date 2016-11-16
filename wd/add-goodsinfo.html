@@ -5,7 +5,7 @@
 	<title>万店联盟后台管理系统</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="icon" type="image/png" href="img/favicon.png">
   	<link rel="apple-touch-icon-precomposed" href="img/app-icon72x72@2x.png">
@@ -15,6 +15,8 @@
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
     <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/content-input-list.css">
+
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
@@ -275,219 +277,194 @@
 					</div>
 					
                     <!-- 主要内容区 -->
-                    <div class="container padding-top-20">
-                        <!-- <table class="table">
-                            <caption class="table-title-margin-10">单据信息</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-ms-3">
-                                        供应商：
-                                        <select name="" id="">
-                                            <option value="">----------</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-ms-3">单据编号
-                                        <input type="text" disabled class="table-input-disabled" />
-                                    </td>
-                                    <td class="col-ms-3">
-                                            制单日期
-                                            <input type="text" disabled />
-                                    </td>
-                                    <td class="col-ms-3">采购仓库
-                                        <select name="" id="">
-                                            <option value="">----------</option>
-                                        </select></td>                    
-                                </tr>
-                                <tr>
-                                    <td>业务员<input type="text" class="table-input-border"/></td>
-                                    <td>制单人<input type="text" class="table-input-border"/></td>
-                                    <td>备注<input type="text" class="table-input-border"/></td>
-                                    <td>有效期
-                                        <select name="" id="">
-                                            <option value="">----------</option>
-                                        </select></td>  
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>审核日期(审核人)<input type="text" class="table-input-border"/></td>
-                                    <td>审核人(入库人)<input type="text" class="table-input-border"/></td>
-                                    <td>单据摘要<input type="text" class="table-input-border"/></td>
-                                    <td>定金金额<input type="text" class="table-input-border"/></td>
-                                    
-                                </tr>
-                                
-                            </tbody>
-                        </table> -->
+                    <div class="main-body padding-top-20">
+                        
+                        <form method="post" action="" id="form1">
 
-                        <table class="table">
-                            <caption class="table-title-margin-10">商品基本信息</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>商品编码</span>
-                                            <input type="text" class="table-input-border"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>国际条码</span>
-                                            <input type="text" class="table-input-border"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>计价方式</span>
-                                            <input type="text" class="table-input-border"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">显示标志
-                                        <input type="text" class="table-input-border"/>    
-                                    </td>                    
-                                </tr>
-                                <tr>
-                                    <td>商品全称<input type="text" class="table-input-border" /></td>
-                                    <td>商品简称<input type="text"  class="table-input-border" /></td>
-                                    <td>助记码<input type="text"  class="table-input-border" /></td>
-                                    <td>主供应商
-                                        <input type="text"  class="table-input-border" />
-                                    </td> 
-                                </tr>
-                                <tr>
-                                    <td>零售单位<input type="text" class="table-input-border"/></td>
-                                    <td>规格<input type="text" class="table-input-border"/></td>
-                                    <td>分类<input type="text" class="table-input-border"/></td>
-                                    <td>品牌<input type="text" class="table-input-border"/></td>
-                                    
-                                </tr>
+                    <!--导航栏-->
+                    <div class="location">
+                      <a href="#" class="back"><i></i><span>返回列表页</span></a>
+                      <a href="#" class="home"><i></i><span>首页</span></a>
+                      <i class="arrow"></i>
+                      <a href="#"><span>内容管理</span></a>
+                      <i class="arrow"></i>
+                      <span>编辑内容</span>
+                    </div>
+                    <div class="line10"></div>
+                    <!--/导航栏-->
 
-                                <tr>
-                                    <td>原产地<input type="text" class="table-input-border"/></td>
-                                    <td>生产厂家<input type="text" class="table-input-border"/></td>
-                                    <td></td>
-                                    <td></td>
-                                    
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                    <!--内容-->
+                    <div id="floatHead" class="content-tab-wrap" style="height: 42px;">
+                      <div class="content-tab">
+                        <div class="content-tab-ul-wrap">
+                          <div class="tab-title"><span>基本信息</span><i></i></div><ul>
+                            <li><a class="selected" href="javascript:;">基本信息</a></li>
+                            
+                            <li><a href="javascript:;" class="">详细描述</a></li>
+                            <li><a href="javascript:;" class="">SEO选项</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
 
-                        <table class="table">
-                            <caption class="table-title-margin-10">价格信息</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>进货价</span>
-                                            <input type="text" class="table-input-border"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>毛利率</span>
-                                            <input type="text" class="table-input-border"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>进项税率</span>
-                                            <input type="text" class="table-input-border"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">数量
-                                        <input type="text" class="table-input-border"/>    
-                                    </td>                    
-                                </tr>
-                                <tr>
-                                    <td>单价<input type="text" class="table-input-border" /></td>
-                                    <td>金额<input type="text"  class="table-input-border" /></td>
-                                    <td>库存量<input type="text"  class="table-input-border" /></td>
-                                    <td>可销天数
-                                        <input type="text"  class="table-input-border" />
-                                    </td> 
-                                </tr>
-                                <tr>
-                                    <td>零售价<input type="text" class="table-input-border"/></td>
-                                    <td>进货状态<input type="text" class="table-input-border"/></td>
-                                    <td>备注<input type="text" class="table-input-border"/></td>
-                                    <td></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                    <div class="tab-content" style="display: block;">
+                      <dl>
+                        <dt>所属类别</dt>
+                        <dd>
+                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
+                            <select name="ddlCategoryId" id="ddlCategoryId" datatype="*" sucmsg=" " nullmsg="请选择！" class="Validform_error" style="display: none;">
+                        <option value="">请选择类别...</option>
+                        <option value="25">公司介绍</option>
 
-                        <table class="table">
-                            <caption class="table-title-margin-10">扩展信息</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-ms-3">采购周期（天）
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">失效预警天数
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">保质期(天)
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">前台营业员提成
-                                        <input type="text" class="table-input-border"/>    
-                                    </td>                    
-                                </tr>
-                                <tr>
-                                    <!-- <td>单价<input type="text" class="table-input-border disabled-change" /></td> -->
-                                    <td class="col-ms-3">营业员提成金额
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">营业员提成比例
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">最后修改人
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">允许采购订货
-                                        <input type="text" class="table-input-border"/>    
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>允许采购退货<input type="text" class="table-input-border"/></td>
-                                    <td>允许前台销售<input type="text" class="table-input-border"/></td>
-                                    <td>允许前台手工折扣及会员折扣<input type="text" class="table-input-border"/></td>
-                                    <td></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                    </select>
+                          </div>
+                        <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
+                      </dl>
+                      <dl>
+                        <dt>显示状态</dt>
+                        <dd>
+                          <div class="rule-multi-radio multi-radio"><div class="boxwrap"><a href="javascript:;" class="">正常</a><a href="javascript:;" class="">待审核</a><a href="javascript:;" class="selected">不显示</a></div>
+                            <span id="rblStatus" style="display: none;"><input id="rblStatus_0" type="radio" name="rblStatus" value="0" checked="checked"><label for="rblStatus_0">正常</label><input id="rblStatus_1" type="radio" name="rblStatus" value="1"><label for="rblStatus_1">待审核</label><input id="rblStatus_2" type="radio" name="rblStatus" value="2"><label for="rblStatus_2">不显示</label></span>
+                          </div>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>推荐类型</dt>
+                        <dd>
+                          <div class="rule-multi-checkbox multi-checkbox"><div class="boxwrap"><a href="javascript:;" class="">允许评论</a><a href="javascript:;" class="">置顶</a><a href="javascript:;" class="">推荐</a><a href="javascript:;" class="">热门</a><a href="javascript:;" class="">幻灯片</a></div>
+                            <span id="cblItem" style="display: none;"><input id="cblItem_0" type="checkbox" name="cblItem$0" value="1"><label for="cblItem_0">允许评论</label><input id="cblItem_1" type="checkbox" name="cblItem$1" value="1"><label for="cblItem_1">置顶</label><input id="cblItem_2" type="checkbox" name="cblItem$2" value="1"><label for="cblItem_2">推荐</label><input id="cblItem_3" type="checkbox" name="cblItem$3" value="1"><label for="cblItem_3">热门</label><input id="cblItem_4" type="checkbox" name="cblItem$4" value="1"><label for="cblItem_4">幻灯片</label></span>
+                          </div>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>内容标题</dt>
+                        <dd>
+                          <input name="txtTitle" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
+                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
+                        </dd>
+                      </dl>
+                      
+                      <dl>
+                        <dt>Tags标签</dt>
+                        <dd>
+                          <input name="txtTags" type="text" id="txtTags" class="input normal" datatype="*0-500" sucmsg=" ">
+                          <span class="Validform_checktip">多个可用英文逗号分隔开，如：a,b</span>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>封面图片</dt>
+                        <dd>
+                          <input name="txtImgUrl" type="text" id="txtImgUrl" class="input normal upload-path">
+                          <div class="upload-box upload-img"><div class="upload-btn webuploader-container"><div class="webuploader-pick">浏览...</div><div id="rt_rt_1b1jluisi301cg755p1bjv15c81" style="position: absolute; top: 0px; left: 0px; width: 67px; height: 32px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" accept=""><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></div></div>
+                        </dd>
+                      </dl>
+                      
+                      
+                      
+                      
+                      
+                      
+                      <dl>
+                        <dt>排序数字</dt>
+                        <dd>
+                          <input name="txtSortId" type="text" value="99" id="txtSortId" class="input small" datatype="n" sucmsg=" ">
+                          <span class="Validform_checktip">*数字，越小越向前</span>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>浏览次数</dt>
+                        <dd>
+                          <input name="txtClick" type="text" value="0" id="txtClick" class="input small" datatype="n" sucmsg=" ">
+                          <span class="Validform_checktip">点击浏览该信息自动+1</span>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>发布时间</dt>
+                        <dd>
+                          <div class="date-input"><i></i><input name="txtAddTime" type="text" id="txtAddTime" class="input rule-date-input" onfocus="WdatePicker({dateFmt:&#39;yyyy-MM-dd HH:mm:ss&#39;})" datatype="/^\s*$|^\d{4}\-\d{1,2}\-\d{1,2}\s{1}(\d{1,2}:){2}\d{1,2}$/" errormsg="请选择正确的日期" sucmsg=" "></div>
+                          <span class="Validform_checktip">不选择默认当前发布时间</span>
+                        </dd>
+                      </dl>
+                      
+                      
+                    </div>
 
-                        <!-- <table class="table">
-                            <caption class="table-title-margin-10">合计</caption>
-                            <tr>
-                                <th>
-                                    采购商品总数量
-                                    
-                                </th>
-                                <th>
-                                    采购商品总金额
-                                    
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    100
-                                    
-                                </td>
-                                <td>
-                                    10000
-                                    
-                                </td>
-                            </tr>
-                        </table> -->
+
+
+                    <div class="tab-content" style="display: none;">
+                      <dl>
+                        <dt>调用别名</dt>
+                        <dd>
+                          <input name="txtCallIndex" type="text" id="txtCallIndex" class="input normal" datatype="/^\s*$|^[a-zA-Z0-9\-\_]{2,50}$/" sucmsg=" ">
+                          <span class="Validform_checktip">*别名访问，非必填，不可重复</span>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>URL链接</dt>
+                        <dd>
+                          <input name="txtLinkUrl" type="text" maxlength="255" id="txtLinkUrl" class="input normal">
+                          <span class="Validform_checktip">填写后直接跳转到该网址</span>
+                        </dd>
+                      </dl>
+                      
+                      
+                      <dl>
+                        <dt>内容摘要</dt>
+                        <dd>
+                          <textarea name="txtZhaiyao" rows="2" cols="20" id="txtZhaiyao" class="input" datatype="*0-255" sucmsg=" "></textarea>
+                          <span class="Validform_checktip">不填写则自动截取内容前255字符</span>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>内容描述</dt>
+                        <dd>
+                          
+                        </dd>
+                      </dl>
+                    </div>
+
+                    <div class="tab-content" style="display: none;">
+                      <dl>
+                        <dt>SEO标题</dt>
+                        <dd>
+                          <input name="txtSeoTitle" type="text" maxlength="255" id="txtSeoTitle" class="input normal" datatype="*0-100" sucmsg=" ">
+                          <span class="Validform_checktip">255个字符以内</span>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>SEO关健字</dt>
+                        <dd>
+                          <textarea name="txtSeoKeywords" rows="2" cols="20" id="txtSeoKeywords" class="input" datatype="*0-255" sucmsg=" "></textarea>
+                          <span class="Validform_checktip">以“,”逗号区分开，255个字符以内</span>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>SEO描述</dt>
+                        <dd>
+                          <textarea name="txtSeoDescription" rows="2" cols="20" id="txtSeoDescription" class="input" datatype="*0-255" sucmsg=" "></textarea>
+                          <span class="Validform_checktip">255个字符以内</span>
+                        </dd>
+                      </dl>
+                    </div>
+                    <!--/内容-->
+
+                    <!--工具栏-->
+                    <div class="page-footer">
+                      <div class="btn-wrap" style="position: static;">
+                        <input type="submit" name="btnSubmit" value="提交保存" id="btnSubmit" class="button">
+                        <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);">
+                      </div>
+                    </div>
+                    <!--/工具栏-->
+
+                    </form>
+                        
+
+                        
+
+                        
+
+                       
                     </div>
 
 				</div>
