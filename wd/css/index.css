@@ -176,4 +176,9 @@ a:hover, a:active, a:focus {
     left: 0;
     top: 0; }
 
+.main-body {
+  padding: 10px 15px;
+  margin: 10px 15px;
+  min-width: 285px; }
+
 /*# sourceMappingURL=index.css.map */
