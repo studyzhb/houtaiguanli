@@ -263,7 +263,6 @@ tbody {
 
 .relative {
   position: relative;
-  width: 968px;
   line-height: 28px;
   z-index: 200;
   margin-top: 10px; }
@@ -272,13 +271,15 @@ tbody {
   clear: both;
   zoom: 1; }
   .secitem dt {
-    float: left; }
+    float: left;
+    margin-right: 1em; }
   .secitem dd {
     overflow: inherit;
     display: block;
     zoom: 1; }
   .secitem a {
-    margin: 0 1em; }
+    margin-right: 1em;
+    cursor: pointer; }
 
 .subwayline {
   float: left;
@@ -287,7 +288,6 @@ tbody {
 .subarea {
   clear: both;
   overflow: hidden;
-  padding: 3px 10px;
   margin: 3px 0;
   zoom: 1; }
 

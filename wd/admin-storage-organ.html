@@ -562,11 +562,18 @@
                       </dl>
                       <dl>
                         <dt>地区</dt>
+                        <dd class="click-show-area">
+                          <input name="txtTitle" type="text" id="txtTitle" disabled class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！" placeholder="请点击选择地区">
+                          <span class="Validform_checktip Validform_wrong">请点击！</span>
+                        </dd>
+                      </dl>
+                      <!--<dl>
+                        <dt>地区</dt>
                         <dd>
                         	<div class="rule-single-select single-select">
                         		<div class="boxwrap">
                         			<a class="select-tit" href="javascript:;">
-                        				<span>请选择省...</span><i></i>
+                        				<span id="title-province">请选择省...</span><i></i>
                         			</a>
                         			<div class="select-items" style="display: none;">
                         				<ul id="province-list">
@@ -591,7 +598,7 @@
                           </div>  
 						
                         <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
-                      </dl>
+                      </dl>-->
 
                       <dl>
                         <dt>经纬度</dt>
@@ -689,123 +696,84 @@
 
 
 		</script>
-			<div class="add-con-area">
+			<div class="add-con-area" style="width:600px;height:500px;overflow:hidden;">
 				<div class="text-right">
 					<div class="btn btn-default" id="closeConArea">X</div>
 				</div>
-				<form role="form" class="space-4">
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">姓名</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">登录名</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">密码</label>
-					<div class="col-sm-6">
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">性别</label>
-					<div class="radio-inline col-sm-6">
-						<div class="col-sm-2">
-							<input type="radio" name="sex">男
-						</div>	
-						<div class="col-sm-2">
-							<input type="radio" name="sex">女
-						</div>	
-						
-						
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">年龄</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">生日</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
+				<div class="area-container padding-left-20" style="border:none">
+                                            <div class="relative relative-show" style="border:1px solid #e1e1e1;padding:0 10px;">
+                                                <dl class="secitem" >
+                                                    <dt>
+                                                        区域
+                                                    </dt>
+                                                    <dd>
+                                                    	<div id="province-list">
+                                                    		
+                                                    	</div>
+                                                        
 
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">籍贯</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
+                                                        
+                                                        
+                                                    </dd>
 
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">联系地址</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
+                                                    <div class="subarea" id="city-list">
+                                                            <span class="wordindex" style="margin-right:32px;">市</span>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                        </div>
+                                                        <div class="subarea" id="contry-list">
+                                                            <span class="wordindex" style="margin-right:30px;">县/区</span>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                        </div>
 
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">联系电话</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">组织机构</label>
-					<div class="col-sm-3">
-						<select class="form-control">  
-						    <option value="">----</option>  
-						    <option value="1">总经办</option>  
-						    <option value="2">技术部</option>  
-						    <option value="3">采购部</option>  
-						    
-						</select>
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">角色</label>
-					<div class="col-sm-3">
-						<select class="form-control">  
-						    <option value="">----</option>  
-						    <option value="1">总经办</option>  
-						    <option value="2">技术部</option>  
-						    <option value="3">采购部</option>  
-						</select>
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">职位</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
+                                                </dl>
+
+
+                                            </div>
+                                            
+                                            <!-- <div class="bar">
+                                                <div class="barcon clearfix">
+                                                    <span>已选择</span>
+                                                    <a href="" class="par">已选</a> 
+                                                    <div class="selectedRightSection">
+                                                        <a href="#" class="button">保存</a>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            
+											
+                                        </div>
 				
+										<div class="text-center padding-top-20">
 
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">备注</label>
-					<div class="col-sm-6">
-						<textarea class="form-control" rows="3">
-							
-						</textarea>
-					</div>
-				</div>
-				<div class="form-group clearfix text-center">
-					<button id="fat-btn" class="btn btn-primary" 
-    type="button">点击保存
-					</button>
-				</div>
-			</form>
+                                            	<button class="button" id="save-area">保存</button>
+                                         </div>
+
+				
+				
 
 
 		</div>		
@@ -813,7 +781,7 @@
 			
 		</div>
 		<div id="mapContainer" style="width:100%;height:800px;margin-top:30px;display:none">
-	    	<div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 1000000;">
+	    	<div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 100;">
 	          <b>请输入关键字：</b>
 	            <input type="text" class="input normal" id="keyword" name="keyword" value="" onkeydown='keydown(event)' style="width: 300px;"/>
 	          <div id="result1" name="result1"></div>

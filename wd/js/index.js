@@ -1,30 +1,32 @@
 var indexPage={
         addProvince:function(){
             //创建省份类select
+            $('#province-list').html('');
             $.each(config.area.citylist,function(index,item){
                 console.log(item.p)
-                $('#province-list').html('');
-                $('<li>').appendTo($('#province-list')).html(item.p);
+                
+                $('<a>').appendTo($('#province-list')).html(item.p);
             });
         },
         addCity:function(parVal){
-            $('#city-list').html('')
+            $('#city-list a').remove();
+            console.log(parVal);
             $.each(config.area.citylist,function(index,item){
                 if(item.p==parVal){
                     $.each(item.c,function(i,cityO){
-                        $('<li>').appendTo($('#city-list')).html(cityO.n);
+                        $('<a>').appendTo($('#city-list')).html(cityO.n);
                     })
                 }
             });
         },
         addCountry:function(parP,parC){
-            $('#contry-list').html('');
+            $('#contry-list a').remove();
             $.each(config.area.citylist,function(index,item){
                 if(item.p==parP){
                     $.each(item.c,function(i,cityO){
                         if(cityO.n==parC&&cityO.a){
                             $.each(cityO.a,function(a,contryO){
-                                $('<li>').appendTo($('#contry-list')).html(contryO.s);
+                                $('<a>').appendTo($('#contry-list')).html(contryO.s);
                             })
                         }
 
@@ -57,7 +59,32 @@ $(function(){
 
     })
 
+    $('#province-list').on('click','a',function(){
+        console.log($(this).text());
+        $('#save-area').data('pro',$(this).text());
+        $('#save-area').data('city','');
+        $('#save-area').data('country','');
+        $(this).addClass('active-p').siblings().removeClass('active-p');
 
+        indexPage.addCity($(this).text());
+    });
+    
+
+    $('#city-list').on('click','a',function(){
+        $('#save-area').data('city',$(this).text());
+        $('#save-area').data('country','');
+        console.log($(this).text(),$('#province-list .active-p').text());
+        indexPage.addCountry($('#province-list .active-p').text(),$(this).text());
+    });
+
+    $('#country-list').on('click','a',function(){
+        $('#save-area').data('country',$(this).text());
+        
+    });
+
+    $('#save-area').click(function(){
+        console.log($('#save-area').data('pro'),$('#save-area').data('city'),$('#save-area').data('country'));
+    });
 
     $('.location span').each(function(){
         $(this).text($(this).data('title'));
@@ -122,16 +149,41 @@ $(function(){
         } 
     })
 
-
-    $('#city-list').on('click',function(){
-        // $('#contry-list').html('县');
-        indexPage.addCountry($('#province-list')[0].value,this.value);
+    $('#show-content').on('click','.click-show-area',function(){
+        
+        $(".add-con-area").show();
+        $(".add-alert-area").show();
     })
+    
 
-    $('#province-list').on('click',function(){
-        // $('#city-list').html('市');
-        indexPage.addCity(this.value);
-    })
+    // $('#show-content').on('click','#province-list li',function(){
+    //     alert($(this).text());
+    //     $('#title-province').text($(this).text());
+    //     indexPage.addCity($(this).text());
+    //     $(this).parents('.select-items').css('display','none').next().css('display','none');
+    // });
+
+    // $('#show-content').on('click','#city-list li',function(){
+        
+    //     console.log($(this).text(),$('#province-list').text());
+
+    //     indexPage.addCountry($('#province-list').text(),$(this).text());
+    // });
+
+    // $('#show-content').on('click','#cpuntry-list li',function(){
+    //     alert($(this).text());
+    // });
+
+
+    // $('#city-list').on('click',function(){
+    //     // $('#contry-list').html('县');
+    //     indexPage.addCountry($('#province-list')[0].value,this.value);
+    // })
+
+    // $('#province-list').on('click',function(){
+    //     // $('#city-list').html('市');
+    //     indexPage.addCity(this.value);
+    // })
 
     $('#add-organ').click(function(){
     	$(".add-con-area").show();
