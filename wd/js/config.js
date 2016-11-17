@@ -42,3 +42,34 @@ var config={
 
 }
 
+/**
+ * cookie
+ */
+var cookieUtil={
+	//天数
+	setCookie:function(user,name){
+		document.cookie=user+"="+name;
+	},
+	setExpiresDate:function(user,name,value){
+		var da=new Date();
+		var expiresDay=da.getDate()+value;
+		da.setDate(expiresDay);
+		document.cookie=user+"="+name+";expires="+da+";path=/";
+	},
+	getCookie:function(name) {
+		if(document.cookie.length>0){
+			var start=document.cookie.indexOf(name+"=");
+			if(start!=-1){
+				start=document.cookie.indexOf(name+"=")+name.length+1;
+			}else{
+				return '';
+			}
+			var end=document.cookie.indexOf(';',start)!=-1?document.cookie.indexOf(';',start):document.cookie.length;
+			return document.cookie.substring(start,end);
+		}
+		return "";
+	},
+	removeCookie:function(name){
+		this.setExpiresDate(name,1,-1);
+	}
+};

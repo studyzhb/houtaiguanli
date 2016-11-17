@@ -96,7 +96,7 @@
 									<span class="text-normal">组织机构列表</span>
 								</a>
 							</li>
-							<li>
+							<li data-selected="selected">
 								<a href="admin-storage-user.html">
 									<b class="sidebar-icon"><img src="./img/icon_message.png" width="16" height="16"></b>
 									<span class="text-normal">员工管理</span>
@@ -279,12 +279,12 @@
 					<div class="authority-content padding-top-20">
 						<!--导航栏-->
 	                    <div class="location">
-	                      <a href="#" class="back"><i></i><span>返回列表页</span></a>
+	                      <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
 	                      <a href="#" class="home"><i></i><span>首页</span></a>
 	                      <i class="arrow"></i>
-	                      <a href="#"><span>内容管理</span></a>
+	                      <a href="#"><span data-title="组织机构">内容管理</span></a>
 	                      <i class="arrow"></i>
-	                      <span>编辑内容</span>
+	                      <span data-title="员工管理">编辑内容</span>
 	                    </div>
 	                    <div class="line10"></div>
 						<div id="show-content">
@@ -422,15 +422,15 @@
 			<form method="post" action="" id="form1">
 
                     <!--导航栏-->
-                    <div class="location">
-                      <!--<a href="#" class="back"><i></i><span>返回列表页</span></a>-->
+                    <!--<div class="location">
+                      <a href="#" class="back"><i></i><span>返回列表页</span></a>
                       <a href="#" class="home"><i></i><span>首页</span></a>
                       <i class="arrow"></i>
                       <a href="#"><span>返回列表页</span></a>
                       <i class="arrow"></i>
                       <span>编辑内容</span>
                     </div>
-                    <div class="line10"></div>
+                    <div class="line10"></div>-->
                     <!--/导航栏-->
                     
                     <!--内容-->
@@ -447,34 +447,7 @@
                     </div>
 
                     <div class="tab-content" style="display: block;">
-                      <dl>
-                        <dt>所属部门</dt>
-                        <dd>
-                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
-                            
-                          </div>
-                        <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
-                      </dl>
-                      <dl>
-                        <dt>显示状态</dt>
-                        <dd>
-                          <div class="rule-multi-radio multi-radio">
-                          	<div class="boxwrap">
-                          		<a href="javascript:;" class="">正常</a>
-                          		<a href="javascript:;" class="">待审核</a>
-                          		<a href="javascript:;" class="selected">不显示</a>
-                          	</div>
-                            <span id="rblStatus" style="display: none;">
-                            	<input id="rblStatus_0" type="radio" name="rblStatus" value="0" checked="checked">
-                            	<label for="rblStatus_0">正常</label>
-                            	<input id="rblStatus_1" type="radio" name="rblStatus" value="1">
-                            	<label for="rblStatus_1">待审核</label>
-                            	<input id="rblStatus_2" type="radio" name="rblStatus" value="2">
-                            	<label for="rblStatus_2">不显示</label>
-                            </span>
-                          </div>
-                        </dd>
-                      </dl>
+                      
                       
                       <dl>
                         <dt>姓名</dt>
@@ -485,7 +458,7 @@
                       </dl>
                       
                       <dl>
-                        <dt>登录账号</dt>
+                        <dt>工号</dt>
                         <dd>
                           <input name="txtTags" type="text" id="txtTags" class="input normal" datatype="*0-500" sucmsg=" ">
                           <span class="Validform_checktip">多个可用英文逗号分隔开，如：a,b</span>
@@ -507,9 +480,7 @@
 								</div>	
 								<div class="col-sm-2">
 									<input type="radio" name="sex">女
-								</div>	
-								
-								
+								</div>			
 							</div>
                         </dd>
                       </dl>
@@ -523,9 +494,53 @@
                       <dl>
                         <dt>生日</dt>
                         <dd>
-                          <input name="txtTitle" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
-                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
+                          <dd>
+                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
+                            
+                          </div>
+                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
+                            
+                          </div>
+                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
+                            
+                          </div>
+                        <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
+                        
+                      </dl>
+                      <dl>
+                        <dt>所属部门</dt>
+                        <dd>
+                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
+                            
+                          </div>
+                        <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
+                      </dl>
+                      <dl>
+                        <dt>显示状态</dt>
+                        <dd>
+                          <div class="rule-multi-radio multi-radio">
+                          	<div class="boxwrap">
+                          		<a href="javascript:;" class="">正常</a>
+                          		<a href="javascript:;" class="selected">停用</a>
+                          		<!--<a href="javascript:;" class="selected">不显示</a>-->
+                          	</div>
+                            <span id="rblStatus" style="display: none;">
+                            	<input id="rblStatus_0" type="radio" name="rblStatus" value="0" checked="checked">
+                            	<label for="rblStatus_0">正常</label>
+                            	<input id="rblStatus_1" type="radio" name="rblStatus" value="1">
+                            	<label for="rblStatus_1">停用</label>
+                            	
+                            </span>
+                          </div>
                         </dd>
+                      </dl>
+                      <dl>
+                        <dt>角色</dt>
+                        <dd>
+                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
+                            
+                          </div>
+                        <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
                       </dl>
                       <dl>
                         <dt>联系地址</dt>
@@ -747,15 +762,15 @@
 		</div>
 
 		<script>
-			$(".sidebar-title").live('click', function() {
-				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-					$(this).next().slideDown(200);
-					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
-				} else {
-					$(this).next().slideUp(200);
-					$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
-				}
-			});
+			// $(".sidebar-title").live('click', function() {
+			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			// 		$(this).next().slideDown(200);
+			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+			// 	} else {
+			// 		$(this).next().slideUp(200);
+			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			// 	}
+			// });
 
 			$('#show-content').append($('#userlist-html').html());
 			$('.page-title').text('员工管理');

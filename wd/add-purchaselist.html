@@ -253,7 +253,7 @@
                                     <span class="text-normal">采购单列表</span>
                                 </a>
                             </li>
-                            <li>
+                            <li data-selected="selected">
                                 <a href="add-purchaselist.html">
                                     <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
                                     <span class="text-normal">新增采购单</span>
@@ -279,12 +279,12 @@
                     <div class="container-fluid padding-top-20 padding-left-20">
                         <!--导航栏-->
                         <div class="location">
-                          <a href="#" class="back"><i></i><span>返回列表页</span></a>
+                          <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
                           <a href="#" class="home"><i></i><span>首页</span></a>
                           <i class="arrow"></i>
-                          <a href="#"><span>内容管理</span></a>
+                          <a href="#"><span data-title="采购单管理">内容管理</span></a>
                           <i class="arrow"></i>
-                          <span>编辑内容</span>
+                          <span data-title="添加采购单">编辑内容</span>
                         </div>
                         <div class="line10"></div>
                         <table class="table">
@@ -408,15 +408,15 @@
 		</div>
 
 		<script>
-			$(".sidebar-title").on('click', function() {
-				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-					$(this).next().slideDown(200);
-					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
-				} else {
-					$(this).next().slideUp(200);
-					$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
-				}
-			});
+			// $(".sidebar-title").on('click', function() {
+			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			// 		$(this).next().slideDown(200);
+			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+			// 	} else {
+			// 		$(this).next().slideUp(200);
+			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			// 	}
+			// });
 		</script>
 	
 

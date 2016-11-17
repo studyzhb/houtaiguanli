@@ -18,7 +18,9 @@
 .input.small {
     width: 50px;
 }
-
+.input.middle {
+    width: 100px;
+}
 textarea.input {
     width: 300px;
     height: 65px;
@@ -241,11 +243,12 @@ textarea.input {
     		position: relative;
 		    padding: 5px;
 		    min-width: 120px;
-		    max-height: 280px;
+		    max-height: 100px;
 		    border: 1px solid #eee;
 		    background: #fff;
 		    overflow-y: auto;
 		    overflow-x: hidden;
+		    z-index:10;
 		    li{
 		    	display: block;
 			    padding: 4px 10px;

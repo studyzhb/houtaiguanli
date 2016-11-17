@@ -146,7 +146,7 @@ a:hover, a:active, a:focus {
   border-bottom: 1px solid #ccc; }
 
 .table-title-margin-10 {
-  margin-bottom: 10px; }
+  margin: 20px 0; }
 
 .table-input-disabled {
   border: 1px solid #ccc;
@@ -186,8 +186,9 @@ a:hover, a:active, a:focus {
 .padding-left-20 {
   padding-left: 20px; }
 
-.table-child-con td {
-  text-align: center; }
+.table-child-con {
+  text-align: left;
+  padding-left: 50px; }
 
 /**
 *琛ㄦ牸鍒楄〃
@@ -219,7 +220,8 @@ a:hover, a:active, a:focus {
     padding: 8px 0;
     border-bottom: 1px solid #eee;
     line-height: 1.5em;
-    color: #666; }
+    color: #666;
+    text-align: center; }
     .ltable td .folder-open {
       display: inline-block;
       margin-right: 2px;
@@ -244,5 +246,78 @@ tbody {
   display: table-row-group;
   vertical-align: middle;
   border-color: inherit; }
+
+.area-container {
+  border: solid 1px #e1e1e1;
+  margin: 0 auto;
+  clear: both;
+  font-size: 12px;
+  padding: 0 15px 10px;
+  color: gray;
+  position: relative;
+  z-index: 8;
+  margin-bottom: 19px; }
+
+.relative-show {
+  height: auto; }
+
+.relative {
+  position: relative;
+  width: 968px;
+  line-height: 28px;
+  z-index: 200;
+  margin-top: 10px; }
+
+.secitem {
+  clear: both;
+  zoom: 1; }
+  .secitem dt {
+    float: left; }
+  .secitem dd {
+    overflow: inherit;
+    display: block;
+    zoom: 1; }
+  .secitem a {
+    margin: 0 1em; }
+
+.subwayline {
+  float: left;
+  margin-right: 5px; }
+
+.subarea {
+  clear: both;
+  overflow: hidden;
+  padding: 3px 10px;
+  margin: 3px 0;
+  zoom: 1; }
+
+a.par {
+  background: url() no-repeat right -554px #fff;
+  border: 1px solid #ffbc89;
+  padding: 0 22px 0 5px;
+  color: gray !important;
+  margin-right: 5px;
+  margin-bottom: 5px; }
+
+.wordindex {
+  font-weight: 700;
+  margin-right: 10px;
+  color: #EB6100;
+  float: left;
+  display: inline-block; }
+
+.selectedRightSection {
+  float: right;
+  position: relative;
+  z-index: 999; }
+
+.bar {
+  height: auto;
+  min-height: 40px; }
+
+.barcon {
+  background: #f9f9f9;
+  padding: 25px 15px;
+  zoom: 1; }
 
 /*# sourceMappingURL=index.css.map */

@@ -172,7 +172,7 @@
                                     <span class="text-normal">添加商品信息</span>
                                 </a>
                             </li>
-                            <li>
+                            <li data-selected="selected">
                                 <a href="goods-brand.html">
                                     <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
                                     <span class="text-normal">品牌信息</span>
@@ -279,12 +279,12 @@
 					<div class="authority-content padding-top-20">
                         <!--导航栏-->
                         <div class="location">
-                          <a href="#" class="back"><i></i><span>返回列表页</span></a>
+                          <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
                           <a href="#" class="home"><i></i><span>首页</span></a>
                           <i class="arrow"></i>
-                          <a href="#"><span>内容管理</span></a>
+                          <a href="#"><span data-title="商品管理">内容管理</span></a>
                           <i class="arrow"></i>
-                          <span>编辑内容</span>
+                          <span data-title="品牌信息">编辑内容</span>
                         </div>
                         <div class="line10"></div>
 						<div id="show-content">
@@ -586,15 +586,15 @@
 		</div>
 
 		<script>
-			$(".sidebar-title").live('click', function() {
-				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-					$(this).next().slideDown(200);
-					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
-				} else {
-					$(this).next().slideUp(200);
-					$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
-				}
-			});
+			// $(".sidebar-title").live('click', function() {
+			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			// 		$(this).next().slideDown(200);
+			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+			// 	} else {
+			// 		$(this).next().slideUp(200);
+			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			// 	}
+			// });
 
 			$('#show-content').append($('#userlist-html').html());
 			$('.page-title').text('商品品牌');

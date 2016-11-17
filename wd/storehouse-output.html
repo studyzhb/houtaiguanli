@@ -218,7 +218,7 @@
                                     <span class="text-normal">商品入库</span>
                                 </a>
                             </li>
-                            <li>
+                            <li data-selected="selected">
                                 <a href="storehouse-output.html">
                                     <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
                                     <span class="text-normal">商品出库</span>
@@ -276,12 +276,12 @@
 					<div class="container-fluid padding-left-20">
                         <!--导航栏-->
                         <div class="location" style="margin-top:20px">
-                          <a href="#" class="back"><i></i><span>返回列表页</span></a>
+                          <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
                           <a href="#" class="home"><i></i><span>首页</span></a>
                           <i class="arrow"></i>
-                          <a href="#"><span>内容管理</span></a>
+                          <a href="#"><span data-title="仓储系统">内容管理</span></a>
                           <i class="arrow"></i>
-                          <span>编辑内容</span>
+                          <span data-title="商品出库">编辑内容</span>
                         </div>
                         <div class="line10"></div>               
                     </div>
@@ -292,15 +292,15 @@
 		</div>
 
 		<script>
-			$(".sidebar-title").live('click', function() {
-				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-					$(this).next().slideDown(200);
-					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
-				} else {
-					$(this).next().slideUp(200);
-					$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
-				}
-			});
+			// $(".sidebar-title").live('click', function() {
+			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			// 		$(this).next().slideDown(200);
+			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+			// 	} else {
+			// 		$(this).next().slideUp(200);
+			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			// 	}
+			// });
 		</script>
 	
 

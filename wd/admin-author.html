@@ -102,7 +102,7 @@
 									<span class="text-normal">员工管理</span>
 								</a>
 							</li>
-							<li>
+							<li data-selected="selected">
                                 <a href="admin-author.html">
                                     <b class="sidebar-icon"><img src="./img/icon_market.png" width="16" height="16" /></b>
                                     <span class="text-normal">权限管理</span>
@@ -279,12 +279,12 @@
 					<div class="authority-content padding-top-20">
                         <!--导航栏-->
                         <div class="location">
-                          <a href="#" class="back"><i></i><span>返回列表页</span></a>
+                          <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
                           <a href="#" class="home"><i></i><span>首页</span></a>
                           <i class="arrow"></i>
-                          <a href="#"><span>内容管理</span></a>
+                          <a href="#"><span data-title="组织机构">内容管理</span></a>
                           <i class="arrow"></i>
-                          <span>编辑内容</span>
+                          <span data-title="角色添加设置">编辑内容</span>
                         </div>
                         <div class="line10"></div>
 						<div id="show-content">
@@ -331,7 +331,7 @@
                     <div class="line10"></div>
                     <!--/导航栏-->
                     
-                    <!--内容-->
+                    <!--内容
                     <div id="floatHead" class="content-tab-wrap" style="height: 42px;">
                       <div class="content-tab">
                         <div class="content-tab-ul-wrap">
@@ -342,10 +342,50 @@
                           </ul>
                         </div>
                       </div>
-                    </div>
+                    </div>-->
 
                     <div class="tab-content" style="display: block;">
-                      <dl>
+                        <div class="offcial-table tr-border margin-big-top clearfix" id="admin-storage-userlist">
+                                <div class="tr-th clearfix">
+                                    <div class="th w20">
+                                        角色名称
+                                    </div>
+                                    <div class="th w20">
+                                        权限介绍
+                                    </div>
+                                    <div class="th w20">
+                                        创建时间
+                                    </div>
+                                    <div class="th w20">
+                                        修改时间
+                                    </div>
+                                    <div class="th w20">
+                                        备注
+                                    </div>
+                                    
+                                </div>
+                                <div class="tr clearfix border-bottom-none">
+                                    <div class="td w20">
+                                        管理员
+                                    </div>
+                                    <div class="td w20">
+                                        暂无
+                                    </div>
+                                    <div class="td w20">
+                                        2016-11-11
+                                    </div>
+                                    <div class="td w20">
+                                        2016-11-11
+                                    </div>
+                                    <div class="td w20">
+                                        123456
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                      <!--<dl>
                         <dt>所属部门</dt>
                         <dd>
                           <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
@@ -362,22 +402,29 @@
                         <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
                       </dl>
                       <dl>
-                        <dt>权限菜单1：</dt>
+                        <dt>角色名称</dt>
+                        <dd>
+                          <input name="txtTitle" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
+                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
+                        </dd>
+                      </dl>
+                      <dl>
+                        <dt>权限菜单1</dt>
 
                       </dl>
                       <dl>
 
-                        <dd>权限1<input type="radio" name="author1" style="margin-right:20px">权限2<input type="radio" name="author1" style="margin-right:20px">权限3<input type="radio" name="author1" style="margin-right:20px"></dd>
+                        <dd><input type="radio" name="author1" style="margin:0 20px">权限1<input type="radio" name="author1" style="margin:0 20px">权限2<input type="radio" name="author1" style="margin:0 20px">权限3</dd>
 
                       </dl>
                       <dl>
-                        <dt>权限菜单2：</dt>
+                        <dt>权限菜单2</dt>
                       </dl>
                       <dl>
 
-                        <dd>权限1<input type="checkbox" name="author1" style="margin-right:20px">权限2<input type="checkbox" name="author1" style="margin-right:20px">权限3<input type="checkbox" name="author1" style="margin-right:20px"></dd>
+                        <dd><input type="checkbox" name="author1" style="margin:0 20px">权限1<input type="checkbox" name="author1" style="margin:0 20px">权限2<input type="checkbox" name="author1" style="margin:0 20px">权限3</dd></dd>
 
-                      </dl>
+                      </dl>-->
                       <!--<dl>
                         <dt>显示状态</dt>
                         <dd>
@@ -397,7 +444,7 @@
                             </span>
                           </div>
                         </dd>
-                      </dl>-->
+                      </dl>
                       
                       
                       
@@ -409,7 +456,7 @@
                           <textarea name="txtZhaiyao" rows="2" cols="20" id="txtZhaiyao" class="input" datatype="*0-255" sucmsg=" "></textarea>
                           <span class="Validform_checktip">不填写则自动截取内容前255字符</span>
                         </dd>
-                      </dl>
+                      </dl>-->
                       
                     </div>
 
@@ -418,13 +465,13 @@
                     
                     <!--/内容-->
 
-                    <!--工具栏-->
+                    <!--工具栏
                     <div class="page-footer">
                       <div class="btn-wrap" style="position: static;">
                         <input type="submit" name="btnSubmit" value="提交保存" id="btnSubmit" class="button" style="border-radius:0">
                         <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);" style="border-radius:0">
                       </div>
-                    </div>
+                    </div>-->
                     <!--/工具栏-->
 
                     </form>
@@ -458,32 +505,28 @@
 
                     <div class="tab-content" style="display: block;">
                       <dl>
-                        <dt>所属部门</dt>
+                        <dt>角色名称</dt>
                         <dd>
-                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
-                            
-                          </div>
-                        <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
+                          <input name="txtTitle" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
+                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
+                        </dd>
                       </dl>
                       <dl>
-                        <dt>显示状态</dt>
-                        <dd>
-                          <div class="rule-multi-radio multi-radio">
-                          	<div class="boxwrap">
-                          		<a href="javascript:;" class="">管理员</a>
-                          		<a href="javascript:;" class="">开发者</a>
-                          		<a href="javascript:;" class="selected">测试员</a>
-                          	</div>
-                            <span id="rblStatus" style="display: none;">
-                            	<input id="rblStatus_0" type="radio" name="rblStatus" value="0" checked="checked">
-                            	<label for="rblStatus_0">正常</label>
-                            	<input id="rblStatus_1" type="radio" name="rblStatus" value="1">
-                            	<label for="rblStatus_1">待审核</label>
-                            	<input id="rblStatus_2" type="radio" name="rblStatus" value="2">
-                            	<label for="rblStatus_2">不显示</label>
-                            </span>
-                          </div>
-                        </dd>
+                        <dt>权限菜单1</dt>
+
+                      </dl>
+                      <dl>
+
+                        <dd><input type="radio" name="author1" style="margin:0 20px">权限1<input type="radio" name="author1" style="margin:0 20px">权限2<input type="radio" name="author1" style="margin:0 20px">权限3</dd>
+
+                      </dl>
+                      <dl>
+                        <dt>权限菜单2</dt>
+                      </dl>
+                      <dl>
+
+                        <dd><input type="checkbox" name="author1" style="margin:0 20px">权限1<input type="checkbox" name="author1" style="margin:0 20px">权限2<input type="checkbox" name="author1" style="margin:0 20px">权限3</dd></dd>
+
                       </dl>
                       
                       
@@ -641,15 +684,15 @@
 		</div>
 
 		<script>
-			$(".sidebar-title").live('click', function() {
-				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-					$(this).next().slideDown(200);
-					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
-				} else {
-					$(this).next().slideUp(200);
-					$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
-				}
-			});
+			// $(".sidebar-title").live('click', function() {
+			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			// 		$(this).next().slideDown(200);
+			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+			// 	} else {
+			// 		$(this).next().slideUp(200);
+			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			// 	}
+			// });
 
 			$('#show-content').append($('#userlist-html').html());
 			$('.page-title').text('权限管理');

@@ -128,7 +128,7 @@
                                     <span class="text-normal">供应商区域</span>
                                 </a>
                             </li>
-                            <li>
+                            <li data-selected="selected">
                                 <a href="supplier-goods.html">
                                     <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
                                     <span class="text-normal">供应商资料</span>
@@ -278,7 +278,7 @@
                         <div class="container-fluid">
                         <!--导航栏-->
                         <div class="location" style="margin-top:20px">
-                          <a href="#" class="back"><i></i><span>返回列表页</span></a>
+                          <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
                           <a href="#" class="home"><i></i><span>首页</span></a>
                           <i class="arrow"></i>
                           <a href="#"><span>内容管理</span></a>
@@ -299,7 +299,7 @@
                                             </li>
                                         </ul>
                                         <!-- 工具分类功能 -->
-                                        <div class="menu-list">
+                                        <!-- <div class="menu-list">
                                             <div class="single-select">
                                                 <div class="boxwrap">
                                                     <a href="" class="select-tit">
@@ -337,7 +337,92 @@
                                                     <i class="arrow"></i>
                                                 </div>
                                             </div>
+                                        </div> -->
+
+                                        <!-- 三级联动 -->
+                                        
+                                        <div class="area-container padding-left-20">
+                                            <div class="relative relative-show">
+                                                <dl class="secitem" style="border-bottom:1px solid #e1e1e1">
+                                                    <dt>
+                                                        区域
+                                                    </dt>
+                                                    <dd>
+                                                        <a href="">河南省</a>
+                                                        <a href="">河南省</a>
+                                                        <a href="">河南省</a>
+                                                        <a href="">河南省</a>
+                                                        <a href="">河南省</a>
+
+                                                        <div class="subarea">
+                                                            <!-- <span class="wordindex">z</span> -->
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                        </div>
+                                                        <div class="subarea">
+                                                            <!-- <span class="wordindex">z</span> -->
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                        </div>
+                                                        <div class="subarea">
+                                                            <!-- <span class="wordindex">z</span> -->
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>
+                                                        </div>
+                                                    </dd>
+
+                                                </dl>
+
+
+                                            </div>
+                                            
+                                            <div class="bar">
+                                                <div class="barcon clearfix">
+                                                    <span>已选择</span>
+                                                    <a href="" class="par">已选</a>
+                                                    <div class="selectedRightSection">
+                                                        <a href="#" class="button">保存该筛选条件</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
+
+
+
                                     </div>
 
                                     <div class="r-list">
@@ -350,7 +435,7 @@
                             </div>
                         </div>
                         <!-- <a class="btn btn-primary table-title-margin-10" href="add-supplier-goods.html">新增供应商</a> -->
-                        <table class="table">
+                        <table class="ltable">
                             <thead>
                                 <tr>
                                     <th>商品编码</th>
@@ -446,15 +531,15 @@
 		</div>
 
 		<script>
-			$(".sidebar-title").on('click', function() {
-				if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-					$(this).next().slideDown(200);
-					$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
-				} else {
-					$(this).next().slideUp(200);
-					$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
-				}
-			});
+			// $(".sidebar-title").on('click', function() {
+			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			// 		$(this).next().slideDown(200);
+			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+			// 	} else {
+			// 		$(this).next().slideUp(200);
+			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			// 	}
+			// });
 		</script>
 	
         <!-- 新增信息区 -->
