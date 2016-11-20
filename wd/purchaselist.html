@@ -297,7 +297,7 @@
                                     <div class="l-list">
                                         <ul class="icon-list clearfix">
                                             <li>
-                                                <a href="add-goodsinfo.html" class="add button">
+                                                <a href="add-purchaselist.html" class="add button">
                                                     <i></i>
                                                     <span>新增</span>
                                                 </a>
@@ -437,7 +437,7 @@
                 <div class="text-right">
                     <div class="btn btn-default" id="closeConArea">X</div>
                 </div>
-                <div class="container">
+                <div style="padding:0 10px">
         <div class="table-responsive">
         <table class="table">
                 <caption class="table-title-margin-10">采购单详细信息</caption>
@@ -507,10 +507,15 @@
                 </tbody>
                 
             </table>
-            <div class="text-center">
-                <button class="btn btn-primary">确定修改</button>
-            </div>
+            
                 
+            </div>
+
+            <div class="page-footer text-center">
+              <div class="btn-wrap" style="position: static;">
+                <input type="submit" name="btnSubmit" value="提交保存" id="btnSubmit" class="button" style="border-radius:0">
+                <input name="btnReturn" type="button" value="确认审核" class="button button-yellow" onclick="javascript:history.back(-1);" style="border-radius:0">
+              </div>
             </div>
         </div>
 

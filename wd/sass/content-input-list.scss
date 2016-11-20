@@ -21,6 +21,10 @@
 .input.middle {
     width: 100px;
 }
+.none-tb.input{
+    border-top:none;
+    border-bottom:none;
+}
 textarea.input {
     width: 300px;
     height: 65px;
@@ -469,8 +473,9 @@ textarea.input {
     .r-list{
 	    display: block;
 	    position: absolute;
-	    top: 0;
+	    //top: 0;
 	    right: 0;
+	    bottom:7px;
 
 	    .keyword {
 		    display: block;

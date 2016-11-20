@@ -5,7 +5,7 @@
 	<title>万店联盟后台管理系统</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="icon" type="image/png" href="img/favicon.png">
   	<link rel="apple-touch-icon-precomposed" href="img/app-icon72x72@2x.png">
@@ -478,9 +478,47 @@
                                 
                             </tbody>
                         </table>
-                        <div class="panel">
-                            
-                        </div>
+                        <!-- <div class="panel">
+                            <div class="panel-heading table-title-margin-10" style="text-align:center;">
+                                一品多码
+                            </div>
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                <div class="row" >
+                                    <div class="col-md-2" style="">
+                                        <input type="button" name="" value="一品多码" class="form-control">
+                                        <input type="button" name="" value="一码多品" class="form-control">
+                                    </div>
+                                    <div class="col-md-8" style="height:auto;min-height:100px">
+                                        <table class="table">
+                                            <tr>
+                                                <th>编码</th>
+                                                <th>条形码</th>
+                                                <th>条形码</th>
+                                                <th>条形码</th>
+                                            </tr>
+                                            <td class="col-ms-3">营业员提成金额
+                                                <input type="text" class="table-input-border"/>    
+                                            </td> 
+                                            <td class="col-ms-3">营业员提成比例
+                                                <input type="text" class="table-input-border"/>    
+                                            </td> 
+                                            <td class="col-ms-3">最后修改人
+                                                <input type="text" class="table-input-border"/>    
+                                            </td> 
+                                            <td class="col-ms-3">允许采购订货
+                                                <input type="text" class="table-input-border"/>    
+                                            </td>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-2" style="">
+                                        <input type="button" name="" value="增加" class="form-control">
+                                        <input type="button" name="" value="删除" class="form-control">
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div> -->
                         <table class="ltable">
                             <caption class="table-title-margin-10">一品多码信息</caption>
                             <tr>
@@ -490,11 +528,33 @@
                             </tr>
                             <tr>
                                 <td width="10%"><a href="#">一品多码</a></td>
-                                <td width="80%" rowspan="5">123222225151 nsafnoasf safasf safasgas gsagsafg sagfsa
-                                    123222225151 nsafnoasf safasf safasgas gsagsafg sagfsa
-                                    123222225151 nsafnoasf safasf safasgas gsagsafg sagfsa
+                                <td width="80%" rowspan="5" style="border:1px solid #ccc;padding:0 0;">
+                                    <div class="container-fluid" id="goodsAddmore">
+                                        <div class="row" style="border-bottom:1px solid #ccc;">
+                                            <div class="col-md-3">条形码</div>
+                                            <div class="col-md-3">国际编码</div>
+                                            <div class="col-md-3">商品名称</div>
+                                            <div class="col-md-3">备注</div>
+                                        </div>
+                                        <div class="row" style="border-bottom:1px solid #ccc;">
+                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                                            
+                                        </div>
+                                        <div class="row" style="border-bottom:1px solid #ccc;">
+                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                                            
+                                        </div>
+                                        
+                                        
+                                    </div>
                                 </td>
-                                <td width="10%"><a href="#">添加</a></td>
+                                <td width="10%"><a href="#" class="addmore-goods-name">添加</a></td>
                             </tr>
                             <tr>
                                 <td width="10%">一码多品</td>
@@ -516,14 +576,20 @@
                                 
                                 <td width="10%" style="border:none"></td>
                             </tr>
+                            
                         </table>
                         
                     <!-- </div> -->
                         
 
-                        
+                         
 
-                        
+                    <div class="page-footer text-center">
+                      <div class="btn-wrap" style="position: static;">
+                        <input type="submit" name="btnSubmit" value="提交保存" id="btnSubmit" class="button" style="border-radius:0">
+                        <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);" style="border-radius:0">
+                      </div>
+                    </div>
 
                        
                     </div>
@@ -532,24 +598,18 @@
 			</div>
 		</div>
 
-		<script>
-
-   //          $(".sidebar-nav").find('.sidebar-trans').hide();
-
-			// $(".sidebar-title").on('click', function() {
+        <script type="text/template">
+            <div class="row" style="border-bottom:1px solid #ccc;">
+                <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
+                <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
                 
+            </div>
+        </script>
+       
 
-			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-
-			// 		$(this).next().slideDown(200);
-			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
-
-			// 	} else {
-			// 		$(this).next().slideUp(200);
-			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
-			// 	}
-			// });
-		</script>
+		
 	
 
 </body>

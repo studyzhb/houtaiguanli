@@ -74,10 +74,12 @@ $(function(){
         $('#save-area').data('city',$(this).text());
         $('#save-area').data('country','');
         console.log($(this).text(),$('#province-list .active-p').text());
+        $(this).addClass('active-p').siblings().removeClass('active-p');
         indexPage.addCountry($('#province-list .active-p').text(),$(this).text());
     });
 
-    $('#country-list').on('click','a',function(){
+    $('#contry-list').on('click','a',function(){
+        $(this).addClass('active-p').siblings().removeClass('active-p');
         $('#save-area').data('country',$(this).text());
         
     });
@@ -193,6 +195,18 @@ $(function(){
     $('#closeConArea').click(function(){
         $(".add-con-area").hide();
         $(".add-alert-area").hide();
+    })
+
+
+
+    //添加一品多码
+    
+    $('.addmore-goods-name').on('click',function(){
+
+        var html=$('script[type="text/template"]').html();
+        $('#goodsAddmore').append(html);
+
+        console.log($('#goodsAddmore'));
     })
 
 })

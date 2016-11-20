@@ -243,8 +243,8 @@ ol{padding-left: 24px;}
 .list-inline li{display:inline-block;padding:0 10px;width:auto;}
 /***布局***/
 .layout{width: 100%;}
-.container{margin: 0 auto;width: 1200px;}
-/*宽度比例*/
+/*.container{margin: 0 auto;width: 1200px;}
+宽度比例*/
 .w10 { width: 10%; }
 .w20 { width: 20%; }
 .w30 { width: 30%; }

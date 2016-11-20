@@ -320,4 +320,11 @@ a.par {
   padding: 25px 15px;
   zoom: 1; }
 
+.active-p {
+  color: #0f0; }
+
+.none-tb.input {
+  border-top: none;
+  border-bottom: none; }
+
 /*# sourceMappingURL=index.css.map */
