@@ -1,0 +1,24 @@
+<ion-view view-title="养生菜谱">
+
+	<ion-content ng-controller="skinController">
+		<div class="bar bar-header item-input-inset">
+		  <label class="item-input-wrapper icon-list-left">
+		    <i class="icon ion-ios-search placeholder-icon"></i>
+		    <input type="search" placeholder="输入您喜欢的蔬菜" ng-model="name" 
+		    style="font-size:14px;font-family:'微软雅黑'">
+		  </label>
+		  <button class="button button-royal" ng-click="search()">确定</button>
+		</div>
+
+
+		<div class="list" ng-repeat="nam in cai" id="cart">
+			<h2 id="tit">{{nam.name}}</h2>
+			<a class="item" href="#/tab/zuofa?{{nam.id}}" id="shipu">
+				<img src="{{nam.img}}" alt="">
+			</a>
+			
+			<p id="op">{{nam.nutrition}}</p>
+		</div>
+
+	</ion-content>
+</ion-view

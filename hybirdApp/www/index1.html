@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link rel="manifest" href="manifest.json">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="js/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controller.js"></script>
+  </head>
+  <body ng-app="starter">
+  <!-- 侧边导航 -->
+  <ion-side-menus>
+    <ion-side-menu-content>
+      <!-- 头部导航 -->
+      <ion-nav-bar class="bar-stable">
+        <!-- 返回按钮 -->
+        <ion-nav-back-button></ion-nav-back-button>
+
+      </ion-nav-bar>
+      <!-- 视图 -->
+      <ion-nav-view></ion-nav-view>
+    </ion-side-menu-content>
+    <!-- 侧边栏内容 -->
+    <ion-side-menu>
+      <ion-header-bar class="bar-calm">
+        <h1 class="title">主页</h1>
+      </ion-header-bar>
+      <ion-content style="background-image:url(img/hua.jpg);background-size:cover;padding-top:30px;">
+        <ion-list style="background:0;">
+          <ion-item href="#/tab/home" menu-close class="item-icon-left item-icon-right" style="opacity:0.6;margin-top:10px;" >
+              <i class="icon ion-ios-people-outline" style="color:red;font-size:26px;"></i>我的主页
+              <i class="icon ion-ios-arrow-right"></i>
+          </ion-item>
+          <ion-item href="#/tab/search" menu-close  class="item-icon-left item-icon-right" style="opacity:0.6;margin-top:10px;">
+            <i class="icon ion-ios-medical-outline" style="color:pink;font-size:26px;"></i>养生小常识
+            <i class="icon ion-ios-arrow-right"></i>
+          </ion-item>
+          <ion-item href="#/tab/skin" menu-close  class="item-icon-left item-icon-right" style="opacity:0.6;margin-top:10px;">
+            <i class="icon ion-ios-heart-outline" style="color:blue;font-size:26px;"></i>我营养记录
+            <i class="icon ion-ios-arrow-right"></i>
+          </ion-item> 
+          <ion-item href="#/tab/mine" menu-close  class="item-icon-left item-icon-right" style="opacity:0.6;margin-top:10px;">
+            <i class="icon ion-happy-outline" style="color:yellow;font-size:26px;"></i>
+            参与的活动
+            <i class="icon ion-ios-arrow-right"></i>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-side-menu>
+  </ion-side-menus>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+
+<ion-view view-title="养生须知">
+	
+	<ion-content ng-controller="moreController">
+		<ion-refresher
+			pulling-text="刷新中..."
+			on-refresh = "doRefresh(2)">
+		</ion-refresher>
+		<div class="list">
+		    <a class="item item-avatar" href="#/tab/retail?{{a.id}}" ng-repeat="a in aa">
+		      <img src='{{a.img}}'>
+		      <h2 class="title">{{a.title}}</h2>
+		      <p >{{a.retail}}</p>
+		    </a>
+		</div>
+	</ion-content>
+</ion-view>

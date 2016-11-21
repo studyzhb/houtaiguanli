@@ -1,0 +1,19 @@
+<ion-view view-title="跟着步骤走">
+	<ion-content ng-controller="zuofaController">
+		<div class="list card" ng-repeat="make in set">
+			<div class="item item-avatar">
+				<img src="{{make.img}}" alt="">
+				<h2 style="font-family:'微软雅黑';padding:6px;">{{make.name}}</h2>
+				<p style="padding-left:30px;">发布事间 ：2016-5-20</p>
+			</div>
+			<div class="item item-body">
+			    <img class="full-image" src="{{make.img}}">
+			    <p ng-repeat="x in zuofa">{{x}}</p>
+			    <p>
+			      <a href="#" class="subdued">30 喜欢</a>
+			      <a href="#" class="subdued">500 评论</a>
+			    </p>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

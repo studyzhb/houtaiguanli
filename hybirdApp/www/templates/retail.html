@@ -1,0 +1,23 @@
+<ion-view view-title="详情介绍">
+	<ion-content ng-controller="retailController">
+		<div class="list card list-inset" ng-repeat="re in oRetail">
+			<div class="item item-avatar">
+				<img src="{{re.img}}" alt="">
+				<h2>{{re.menu}}</h2>
+				<p>{{re.time}}</p>
+			</div>
+			<div class="item item-body">
+			    <img class="full-image" src="{{re.img}}">
+			    <p>{{re.retail}}</p>
+			    <p>
+			      <a href="#" class="subdued">30 喜欢</a>
+			      <a href="#" class="subdued">500 评论</a>
+			    </p>
+			</div>
+		</div>
+		<!-- <ion-item> -->
+			<button class="button button-full button-dark" ng-click="loadMore()" style="width:96%;margin:0 auto;">点击加载更多</button>
+		<!-- </ion-item> -->
+		
+	</ion-content>
+</ion-view>
