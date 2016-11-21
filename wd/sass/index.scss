@@ -263,7 +263,15 @@ tbody {
     //padding: 3px 10px;
     //padding-left:35px;
     margin: 3px 0;
+    position:relative;
     zoom: 1;
+    .checkbox{
+        position:absolute;
+        left:14px;
+        
+        top:4px;
+        
+    }
 }
 
 a.par{
@@ -273,6 +281,7 @@ a.par{
     color: gray!important;
     margin-right: 5px;
     margin-bottom: 5px;
+    display:inline-block;
 }
 .wordindex {
     font-weight: 700;
@@ -284,8 +293,10 @@ a.par{
 
 .selectedRightSection{
     float: right;
-    position: relative;
+    position: absolute;
     z-index: 999;
+    right:0;
+    bottom:0;
 }
 .bar{
     height:auto;
@@ -295,15 +306,27 @@ a.par{
     background: #f9f9f9;
     padding: 25px 15px;
     zoom: 1;
-
+    position:relative;
 }
-.active-p{
+a.active-p{
     color:#0f0;   
 }
 //border-right
 
-.none-tb.input{
-    border-top:none;
-    border-bottom:none;
+
+.icon-menu-control{
+
+    background: url(../img/skin_icons.png) no-repeat -56px 0;
 }
 
+.sidebar-title{
+    border-bottom:1px solid #eee;
+}
+
+
+.sidebar-trans{
+    display:none;
+}
+.ltable tr th{
+    font-weight:bold;
+}

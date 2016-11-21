@@ -1,3 +1,4 @@
+
 var indexPage={
         addProvince:function(){
             //创建省份类select
@@ -208,5 +209,12 @@ $(function(){
 
         console.log($('#goodsAddmore'));
     })
+
+
+    //打印
+    $('.printpage').click(function(){
+        document.body.innerHTML=document.getElementById('printcontent').innerHTML;
+        window.print();
+    });
 
 })

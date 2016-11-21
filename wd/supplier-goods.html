@@ -281,9 +281,9 @@
                           <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
                           <a href="#" class="home"><i></i><span>首页</span></a>
                           <i class="arrow"></i>
-                          <a href="#"><span>内容管理</span></a>
+                          <a href="#"><span data-title="供应商档案">内容管理</span></a>
                           <i class="arrow"></i>
-                          <span>编辑内容</span>
+                          <span data-title="供应商资料">编辑内容</span>
                         </div>
                         <div class="line10"></div>
                         <div class="toolbar-wrap">
@@ -341,13 +341,14 @@
                                                         区域
                                                     </dt>
                                                     <dd>
-                                                        <a href="">河南省</a>
-                                                        <a href="">河南省</a>
-                                                        <a href="">河南省</a>
-                                                        <a href="">河南省</a>
-                                                        <a href="">河南省</a>
+                                                        <a href="javascript:;" class="pro-area">河南省</a>
+                                                        <a href="javascript:;" class="pro-area">河南省</a>
+                                                        <a href="javascript:;" class="pro-area">河南省</a>
+                                                        <a href="javascript:;" class="pro-area">河南省</a>
+                                                        <a href="javascript:;" class="pro-area">河南省</a>
 
-                                                        <div class="subarea" style="padding-left:35px;">
+                                                        <div class="subarea city-area" style="padding-left:35px;display:none;">
+                                                            <input type="checkbox" name="" value="" class="checkbox" />
                                                             <!-- <span class="wordindex">z</span> -->
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
@@ -363,7 +364,8 @@
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
                                                         </div>
-                                                        <div class="subarea" style="padding-left:35px;">
+                                                        <div class="subarea country-area" style="padding-left:35px;display:none;margin-left:10px;">
+                                                            <input type="checkbox" name="" value="" class="checkbox" />
                                                             <!-- <span class="wordindex">z</span> -->
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
@@ -379,22 +381,7 @@
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
                                                         </div>
-                                                        <div class="subarea" style="padding-left:35px;">
-                                                            <!-- <span class="wordindex">z</span> -->
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                        </div>
+                                                        
                                                     </dd>
 
                                                 </dl>
@@ -402,10 +389,10 @@
 
                                             </div>
                                             
-                                            <div class="bar">
-                                                <div class="barcon clearfix">
+                                            <div class="bar" style="display:none;">
+                                                <div class="barcon clearfix" >
                                                     <span>已选择</span>
-                                                    <a href="" class="par">已选</a>
+                                                    <a href="#" class="par" >已选</a>
                                                     <div class="selectedRightSection">
                                                         <a href="#" class="button">保存该筛选条件</a>
                                                     </div>
@@ -548,15 +535,15 @@
                 <div class="text-right">
                     <div class="btn btn-default" id="closeConArea">X</div>
                 </div>
-                <div class="container">
+                <div style="padding:0 10px;">
         <div class="table-responsive">
         <table class="table">
-                <caption class="table-title-margin-10">采购单详细信息</caption>
+                <caption class="table-title-margin-10">供应商信息</caption>
                 
                 <tbody>
                     <tr>
                         <td class="col-md-3">
-                            审&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;核：
+                            供应商名称
                             <input type="text" class="table-input-border"/>
                         </td>
                         <td class="col-md-3">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态
@@ -568,30 +555,13 @@
                                 <input type="text" class="table-input-border" />
    
                         </td>
-                        <td class="col-md-3">供应商&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="table-input-border"/></td>
+                        <td class="col-md-3">区域<input type="text" class="table-input-border"/></td>
                         
                         
                     </tr>
-                    <tr>
-                        <td>币&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;种<input type="text" class="table-input-border"/></td>
-                        <td>订货总金额<input type="text" class="table-input-border"/></td>
-                        <td>已付定金<input type="text" class="table-input-border"/></td>
-                        <td>操作员&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="table-input-border"/></td>
-                        
-                    </tr>
-                    <tr>
-                        <td>业务员&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="table-input-border"/></td>
-                        <td>仓库名称<input type="text" class="table-input-border"/></td>
-                        <td>机构区域<input type="text" class="table-input-border"/></td>
-                        <td>操作日期<input type="text" class="table-input-border"/></td>
-                        
-                    </tr>
-                    <tr>
-                        <td>打印标记<input type="text" class="table-input-border"/></td>
-                        <td>备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="table-input-border"/></td>
-                        <td>审核人<input type="text" class="table-input-border"/></td>
-                        <td>审核日期<input type="text" class="table-input-border"/></td>
-                    </tr>
+                    
+                    
+                    
                 </tbody>
             </table>
 
@@ -632,7 +602,31 @@
 
 
 
+
+
 </body>
 
 <script src="./js/index.js"></script>
+<script>
+    $('.pro-area').on('click',function(){
+        $(this).addClass('active-p').siblings().removeClass('active-p');
+        $('.city-area').css('display','block');
+    });
+    $('.city-area').on('click','a',function(){
+        $('.country-area').css('display','block');
+        $(this).addClass('active-p').siblings().removeClass('active-p');
+    });
+    $('.country-area').on('click','a',function(){
+        $('.bar').css('display','block');
+        $(this).addClass('active-p').siblings().removeClass('active-p');
+        //$('.selectedRightSection').before($('span'))
+        //$('.par').text($(this).text());
+        $('<a class="par">').text($(this).text()).insertBefore('.selectedRightSection');
+    });
+    $('.selectedRightSection').on('click','a',function(){
+        $('.city-area').css('display','none');
+        $('.country-area').css('display','none');
+        $(this).parents('.bar').css('display','none');
+    })
+</script>
 </html>

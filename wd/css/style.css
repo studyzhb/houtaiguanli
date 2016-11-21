@@ -1,7 +1,7 @@
 body{font-family: 'Lantinghei SC','microsoft yahei', Tahoma, Helvetica, SimSun, sans-serif;}
 
 .body-bottom{margin-bottom: 50px;}
-.icon-arrow-down, .icon-notice { display: block; width: 16px; height: 16px; background: url(../images/icon_set.png) no-repeat; }
+.icon-arrow-down, .icon-notice { display: block; width: 16px; height: 16px; background: url(../img/icon_news.png) no-repeat; }
 .icon-arrow-down { background-position: 0 0; }
 .icon-notice { background-position: -26px 0; }
 
@@ -404,7 +404,7 @@ a.submit-order:hover{background:#40b2da;color:#fff}
 #Validform_msg a.Validform_close:hover{color:#cc0;}
 #Validform_msg .Validform_info{padding:8px;border:1px solid #000; border-top:none; text-align:left;}
 
-.icon {background: url(../images/icon_control.png) no-repeat;display: inline-block;}
+.icon {background: url(../img/icon_news.png) no-repeat;display: inline-block;}
 .icon-identify{background-position: -72px 0;}
 .icon-been-set{background-position: -145px 0;}
 .icon-unset{background-position: -167px 0;}
