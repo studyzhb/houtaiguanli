@@ -422,7 +422,7 @@
                                 <!-- 加载编辑器的容器 -->
                                 <div class="row">
                                     <div class="col-ms-12">
-                                        <script id="container" name="content" type="text/plain" >
+                                        <script id="container" name="content" type="text/plain" style="height:300px">
                                             这里写你的初始化内容
                                         </script>
                                     </div>
@@ -487,7 +487,7 @@
                       </div>
                     </div>
                     <!--/工具栏-->
-
+						
                     </form>
                         
 
@@ -600,13 +600,14 @@
         */
 
         var ue = UE.getEditor('container', {
+        		autoHeight: false,
                 toolbars: [
                     ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
                     
                 ],
                 autoHeightEnabled: true,
                 autoFloatEnabled: true
-            });
+            }).setHeight(300);
 
          var ue1=UE.getEditor('container1', {
                 toolbars: [

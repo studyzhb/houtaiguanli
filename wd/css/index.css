@@ -344,4 +344,12 @@ a.active-p {
 .ltable tr th {
   font-weight: bold; }
 
+.table-menu {
+  height: 68px;
+  /*background-color: #f00;*/ }
+  .table-menu table td {
+    height: 34px;
+    text-align: center;
+    line-height: 34px; }
+
 /*# sourceMappingURL=index.css.map */

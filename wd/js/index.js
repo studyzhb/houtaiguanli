@@ -41,6 +41,7 @@ var indexPage={
         }
     }
 
+
 $(function(){
     // if(!$(".sidebar-title").parent(".sidebar-nav").hasClass('sidebar-nav-fold')){
         // $(".sidebar-title").next().hide().end().addClass('sidebar-nav-fold');
@@ -216,5 +217,8 @@ $(function(){
         document.body.innerHTML=document.getElementById('printcontent').innerHTML;
         window.print();
     });
+    
+    
+    
 
 })
