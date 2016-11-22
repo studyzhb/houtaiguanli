@@ -426,71 +426,19 @@
                         <table class="ltable">
                             <thead>
                                 <tr>
-                                    <th>商品编码</th>
-                                    <th>商品名称</th>
+                                    <th>供应商名称</th>
                                     <th>助记码</th>
                                     <th>地址</th>
                                     <th>地址一</th>
-                                    <th>邮编</th>
                                     <th>联系人</th>
-                                    <th>传真</th>
                                     <th>电话</th>
                                     <th>手机</th>
-                                    <th>订货标志</th>
                                     <th>Email</th>
-                                    <th>备注</th>
-                                    <th>送货区域</th>
-                                    <th>送货天数</th>
+                                    <th>备注</th>                                   
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="purchaselist-info" data-info="test">
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                    <td>
-                                        test
-                                    </td>
-                                </tr>
+                            <tbody id="supplier-message-list">
+                                
                             </tbody>
                         </table>
                     </div>
@@ -518,82 +466,17 @@
 			</div>
 		</div>
 
-		<script>
-			// $(".sidebar-title").on('click', function() {
-			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-			// 		$(this).next().slideDown(200);
-			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
-			// 	} else {
-			// 		$(this).next().slideUp(200);
-			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
-			// 	}
-			// });
-		</script>
 	
         <!-- 新增信息区 -->
-            <div class="add-con-area">
-                <div class="text-right">
-                    <div class="btn btn-default" id="closeConArea">X</div>
-                </div>
-                <div style="padding:0 10px;">
-        <div class="table-responsive">
-        <table class="table">
-                <caption class="table-title-margin-10">供应商信息</caption>
-                
-                <tbody>
-                    <tr>
-                        <td class="col-md-3">
-                            供应商名称
-                            <input type="text" class="table-input-border"/>
-                        </td>
-                        <td class="col-md-3">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态
-                            <input type="text" class="table-input-border"/>
-                        </td>
-                        <td class="col-md-3">
-                            
-                                采购单号
-                                <input type="text" class="table-input-border" />
-   
-                        </td>
-                        <td class="col-md-3">区域<input type="text" class="table-input-border"/></td>
-                        
-                        
-                    </tr>
-                    
-                    
-                    
-                </tbody>
-            </table>
-
-            <table class="table">
-                <caption class="table-title-margin-10">结算信息</caption>
-                <tbody>
-                    <tr>
-                        <td class="col-md-3">
-                            经营方式
-                            <input class="" type="text" class="table-input-border"/>
-                        </td>
-                        <td class="col-md-3">结算方式
-                            <input type="text" class="table-input-border"/>
-                        </td>
-                        <td class="col-md-3">结算天数<input type="text" class="table-input-border"/></td>
-                        <td class="col-md-3">结算标志<input type="text" class="table-input-border"/></td>
-                    </tr>
-                    <tr>
-                        <td>开户行&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="table-input-border"/></td>
-                        <td>开户人&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="table-input-border"/></td>
-                        <td>税务号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="table-input-border"/></td>
-                        <td>账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号<input type="text" class="table-input-border"/></td>  
-                    </tr>
-                </tbody>
-                
-            </table>
-            <div class="text-center">
-                <button class="btn btn-primary">确定修改</button>
+        <div class="add-con-area">
+            <div class="text-right">
+                <div class="btn btn-default" id="closeConArea">X</div>
             </div>
-                
+            <div style="padding:0 10px;">
+                <form id="singleWillUpdateInfo" action="http://192.168.1.18/wp/public/index.php/admin/supplier/update" method="POST">
+                    
+                </form>
             </div>
-        </div>
 
         </div>      
         <div class="add-alert-area">
@@ -601,7 +484,113 @@
         </div>
 
 
+         <!--供货商列表页-->
 
+        <script type="text/template" id="showSupplierList">
+            <tr class="alertSingleSupplier" data-info="{id}">
+                <td>
+                    {name}
+                </td>
+                <td>
+                    {z_name}
+                </td>
+                <td>
+                    {address}
+                </td>
+                <td>
+                    {addresso}
+                </td>
+                <td>
+                    {khr}
+                </td>
+                <td>
+                    {ptel}
+                </td>
+                <td>
+                    {tel}
+                </td>
+                <td>
+                    {email}
+                </td>
+                <td>
+                    {name}
+                </td>
+            </tr>
+        </script>
+
+        <script type="text/template" id="updateSingleSupplier">
+             <table class="table">
+                            <caption class="table-title-margin-10">基本信息</caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        供应商编号
+                                        <input type="text" name="coding" disabled class="table-input-disabled" id="supplierNum" value="{coding}"/>
+                                    </td>
+                                    <td>
+                                        供应商
+                                        <input type="text" name="name" class="table-input-border"/>
+                                    </td>
+                                    <td>助记码
+                                        <input type="text" name="z_name" class="table-input-border" />
+                                    </td>
+                                    <td style="overflow: visible;" id="areaid" data-idnum = "">
+                                        地址
+                                        <select name="provinces" id="province-list">
+                                        	<option value="">--省--</option>
+                                        </select>
+                                        <select name="city" id="city-list">
+                                        	<option value="">--市--</option>
+                                        </select>
+                                        <select name="country" id="contry-list">
+                                        	<option value="">--县--</option>
+                                        </select>
+                                    </td>
+                                     <td>
+                                        	
+                                    </td>            
+                                </tr>
+                                <tr>
+                                    <td>邮政编码<input type="text" name="postcode" class="table-input-border"/></td>
+                                    <td>传真<input type="text" name="fax" class="table-input-border"/></td>
+                                    <td>联系人<input type="text" name="contact" class="table-input-border"/></td>
+                                    <td>电话<input type="text" name="ptel" class="table-input-border"/></td>
+                                    <td>手机号码<input type="text" name="tel" class="table-input-border"/></td> 
+                                </tr>
+                                <tr>
+                                    <td>email<input type="text" name="email" class="table-input-border"/></td>
+                                    <td>经营方式
+                                    	<select name="run_id" id="run_method">
+                                    		<option value="">--经营方式--</option>
+                                    	</select>
+                                    </td>
+                                    <td>结算方式
+                                    	<select name="statements_id" id="statements_method">
+                                    		<option value="">--结算方式--</option>
+                                    	</select>
+                                    </td>
+                                    <td>khh<input type="text" name="khh" class="table-input-border"/></td>
+                                    <td>khr<input type="text" name="khr" class="table-input-border"/></td>
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td>zh<input type="text" name="zh" class="table-input-border"/></td>
+                                    <td>syw<input type="text" name="syw" class="table-input-border"/></td>
+                                    <td>status
+                                    	<select name="status">
+                                    		<option value="0">禁用</option>
+                                    		<option value="1" selected>启用</option>
+                                    	</select>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                            <input type="submit" value="确定更新" class="btn btn-defalut">
+        </script>
 
 
 </body>
@@ -628,5 +617,45 @@
         $('.country-area').css('display','none');
         $(this).parents('.bar').css('display','none');
     })
+
+    //更新供货商信息列表
+    
+   
+   var singleWiillSupplierHtml=$('#updateSingleSupplier').html();
+   config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
+        console.log(obj.data);
+        var arr=[];
+        var supplierhtml=$('#showSupplierList').html();
+        $.each(obj.data,function(index,item){
+
+            arr.push(config.formatTemplate(item,supplierhtml));
+        });
+        $('#supplier-message-list').append(arr.join(''));
+    });
+
+    $('#supplier-message-list').on('dblclick','.alertSingleSupplier',function(){
+        //console.log($(this).data('info'));
+        //首先获取供货商信息(服务器获取)TODO
+        var supplierId=$(this).data('info');
+        config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
+            $.each(obj.data,function(index,item){
+                if(item.id==supplierId){
+                    // console.log(item);
+                    $('#singleWillUpdateInfo').append(config.formatTemplate(item,singleWiillSupplierHtml));
+                    
+                }
+            })
+        })
+
+        $(".add-con-area").show();
+        $(".add-alert-area").show();
+        
+        
+
+    });
+
+    // $('#singleWillUpdateInfo').on('click','#confirmSingleUpdate',function(){
+    //     //确定更新.....TODO
+    // });
 </script>
 </html>
