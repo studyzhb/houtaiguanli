@@ -14,8 +14,8 @@
 	<link rel="stylesheet" type="text/css" href="./css/account.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
     <link rel="stylesheet" href="./css/content-input-list.css">
-
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
@@ -128,13 +128,13 @@
                                     <span class="text-normal">供应商区域</span>
                                 </a>
                             </li>
-                            <li data-selected="selected">
+                            <li>
                                 <a href="supplier-goods.html">
                                     <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
                                     <span class="text-normal">供应商资料</span>
                                 </a>
                             </li>
-                            <li>
+                            <li data-selected="selected">
                                 <a href="add-supplier-goods.html">
                                     <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
                                     <span class="text-normal">添加供货商信息</span>
@@ -238,6 +238,7 @@
                             </li>
                         </ul>
                     </div>
+
                     <div class="sidebar-nav">
                         <div class="sidebar-title">
                             <a href="#">
@@ -267,265 +268,76 @@
 				<div class="authority">
 					<!-- <div class="authority-head">
 						<div class="manage-head">
-							<h6 class="layout padding-left manage-head-con">供应商资料
+							<h6 class="layout padding-left manage-head-con">添加供货商信息
 							<span class="fr text-small text-normal padding-top">发布时间：</span>
 							<span class="fr margin-large-right padding-top text-small text-normal">最新版本：<em class="text-main">2.4.0.160708</em></span>
 							</h6>
 						</div>
 					</div> -->
-					<div class="authority-content padding-top-20">
-
-                        <div class="container-fluid">
+					
+                    <!-- 主要内容区 -->
+                    <div class="container-fluid padding-top-20 padding-left-20">
                         <!--导航栏-->
-                        <div class="location" style="margin-top:20px">
+                        <div class="location">
                           <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
                           <a href="#" class="home"><i></i><span>首页</span></a>
                           <i class="arrow"></i>
-                          <a href="#"><span data-title="供应商档案">内容管理</span></a>
+                          <a href="#"><span data-title="供货商管理">内容管理</span></a>
                           <i class="arrow"></i>
-                          <span data-title="供应商资料">编辑内容</span>
+                          <span data-title="添加供货商">编辑内容</span>
                         </div>
                         <div class="line10"></div>
-                        <div class="toolbar-wrap">
-                            <div class="toolbar list clearfix">
-                                <div class="box-wrap">
-                                    <div class="l-list">
-                                        
-                                        <!-- 工具分类功能 -->
-                                        <!-- <div class="menu-list">
-                                            <div class="single-select">
-                                                <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>111111111</span><i></i>
-                                                    </a>
-                                                    <div class="select-items">
-                                                        <ul>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                    <i class="arrow"></i>
-                                                </div>
-
-                                                <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>222222</span><i></i>
-                                                    </a>
-                                                    <div class="select-items">
-                                                        <ul>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                    <i class="arrow"></i>
-                                                </div>
-
-                                                <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>111111111</span><i></i>
-                                                    </a>
-                                                    <div class="select-items">
-                                                        <ul>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                    <i class="arrow"></i>
-                                                </div>
-                                            </div>
-                                        </div> -->
-
-                                        <!-- 三级联动 -->
-                                        
-                                        <div class="area-container padding-left-20">
-                                            <div class="relative relative-show">
-                                                <dl class="secitem" style="border-bottom:1px solid #e1e1e1">
-                                                    <dt>
-                                                        区域
-                                                    </dt>
-                                                    <dd>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-
-                                                        <div class="subarea city-area" style="padding-left:35px;display:none;">
-                                                            <!--<input type="checkbox" name="" value="" class="checkbox" />
-                                                             <span class="wordindex">z</span> -->
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                        </div>
-                                                        <div class="subarea country-area" style="padding-left:35px;display:none;margin-left:10px;">
-                                                            <!--<input type="checkbox" name="" value="" class="checkbox" />
-                                                             <span class="wordindex">z</span> -->
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
-                                                        </div>
-                                                        
-                                                    </dd>
-
-                                                </dl>
-                
-
-                                            </div>
-                                            
-                                            <div class="bar" style="display:none;">
-                                                <div class="barcon clearfix" >
-                                                    <span>已选择</span>
-                                                    <a href="#" class="par" >已选</a>
-                                                    <div class="selectedRightSection">
-                                                        <a href="#" class="button">保存该筛选条件</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        
-                                        <ul class="icon-list clearfix">
-                                            <li>
-                                                <a href="add-supplier-goods.html" class="add button">
-                                                    <i></i>
-                                                    <span>新增</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-
-
+                        <!-- <div class="panel panel-default">
+                            <div class="panel-heading">
+                                基本信息
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
                                     </div>
-
-                                    <div class="r-list">
-                                        <input type="text" class="keyword" name="" value="">
-                                        <a href="" class="btn-search">查询</a>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
                                     </div>
-
-
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- <a class="btn btn-primary table-title-margin-10" href="add-supplier-goods.html">新增供应商</a> -->
-                        <table class="ltable">
-                            <thead>
-                                <tr>
-                                    <th>供应商名称</th>
-                                    <th>助记码</th>
-                                    <th>地址</th>
-                                    <th>地址一</th>
-                                    <th>联系人</th>
-                                    <th>电话</th>
-                                    <th>手机</th>
-                                    <th>Email</th>
-                                    <th>备注</th>                                   
-                                </tr>
-                            </thead>
-                            <tbody id="supplier-message-list">
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                        
+                        </div> -->
 
 
-
-                                          
-                        <div class="show-page padding-big-right">
-                            <div class="page">
-                                <div class="page">
-                                    <ul class="offcial-page margin-top margin-big-right">
-                                        <li>共<em class="margin-small-left margin-small-right">1</em>条数据</li>
-                                        <li>每页显示<em class="margin-small-left margin-small-right">15</em>条</li>
-                                        <li><a class="next disable">上一页</a></li>
-                                        <li>....</li>
-                                        <li><a class="next disable">下一页</a></li>
-                                        <li><span class="fl">共<em class="margin-small-left margin-small-right">1</em>页</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-				</div>
-			</div>
-		</div>
-
-	
-        <!-- 新增信息区 -->
-        <div class="add-con-area">
-            <div class="text-right">
-                <div class="btn btn-default" id="closeConArea">X</div>
-            </div>
-            <div style="padding:0 10px;">
-                <form id="singleWillUpdateInfo" action="http://192.168.1.18/wp/public/index.php/admin/supplier/update" method="POST">
-                    
-                </form>
-            </div>
-
-        </div>      
-        <div class="add-alert-area">
-            
-        </div>
-
-
-         <!--供货商列表页-->
-
-        <script type="text/template" id="showSupplierList">
-            <tr class="alertSingleSupplier" data-info="{id}">
-                <td>
-                    {name}
-                </td>
-                <td>
-                    {z_name}
-                </td>
-                <td>
-                    {address}
-                </td>
-                <td>
-                    {addresso}
-                </td>
-                <td>
-                    {khr}
-                </td>
-                <td>
-                    {ptel}
-                </td>
-                <td>
-                    {tel}
-                </td>
-                <td>
-                    {email}
-                </td>
-                <td>
-                    {name}
-                </td>
-            </tr>
-        </script>
-
-        <script type="text/template" id="updateSingleSupplier">
-             <table class="table">
+                        <form method="POST" action="http://192.168.1.18/wp/public/index.php/admin/supplier/add">
+                        <table class="table">
                             <caption class="table-title-margin-10">基本信息</caption>
                             <tbody>
                                 <tr>
                                     <td>
                                         供应商编号
-                                        <input type="text" name="coding" disabled class="table-input-disabled" id="supplierNum" value="{coding}"/>
+                                        <input type="text" name="coding" disabled class="table-input-disabled" id="supplierNum" />
                                     </td>
                                     <td>
                                         供应商
@@ -589,73 +401,122 @@
                                 
                             </tbody>
                         </table>
-                            <input type="submit" value="确定更新" class="btn btn-defalut">
-        </script>
+                            <input type="submit" value="保存信息" class="btn btn-defalut">
+                        </form>
+                        
+                    </div>
 
+				</div>
+			</div>
+		</div>
 
+		<script>
+			// $(".sidebar-title").on('click', function() {
+			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			// 		$(this).next().slideDown(200);
+			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+			// 	} else {
+			// 		$(this).next().slideUp(200);
+			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			// 	}
+			// });
+		</script>
+	
 </body>
 
 <script src="./js/index.js"></script>
-<script>
-    $('.pro-area').on('click',function(){
-        $(this).addClass('active-p').siblings().removeClass('active-p');
-        $('.city-area').css('display','block');
-    });
-    $('.city-area').on('click','a',function(){
-        $('.country-area').css('display','block');
-        $(this).addClass('active-p').siblings().removeClass('active-p');
-    });
-    $('.country-area').on('click','a',function(){
-        $('.bar').css('display','block');
-        $(this).addClass('active-p').siblings().removeClass('active-p');
-        //$('.selectedRightSection').before($('span'))
-        //$('.par').text($(this).text());
-        $('<a class="par">').text($(this).text()).insertBefore('.selectedRightSection');
-    });
-    $('.selectedRightSection').on('click','a',function(){
-        $('.city-area').css('display','none');
-        $('.country-area').css('display','none');
-        $(this).parents('.bar').css('display','none');
-    })
-
-    //更新供货商信息列表
-    
-   
-   var singleWiillSupplierHtml=$('#updateSingleSupplier').html();
-   config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
-        console.log(obj.data);
-        var arr=[];
-        var supplierhtml=$('#showSupplierList').html();
-        $.each(obj.data,function(index,item){
-
-            arr.push(config.formatTemplate(item,supplierhtml));
-        });
-        $('#supplier-message-list').append(arr.join(''));
-    });
-
-    $('#supplier-message-list').on('dblclick','.alertSingleSupplier',function(){
-        //console.log($(this).data('info'));
-        //首先获取供货商信息(服务器获取)TODO
-        var supplierId=$(this).data('info');
-        config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
-            $.each(obj.data,function(index,item){
-                if(item.id==supplierId){
-                    // console.log(item);
-                    $('#singleWillUpdateInfo').append(config.formatTemplate(item,singleWiillSupplierHtml));
-                    
+<script type="text/javascript">
+	var supplierPage={
+		area_p:config.area_num.root,
+        addProvince:function(){
+            //创建省份类select
+            $('#province-list').html('<option>--省--</option>');
+            $.each(this.area_p.province,function(index,item){
+				
+                $('<option>').appendTo($('#province-list')).html(item['-Name']);
+            });
+        },
+        addCity:function(parVal){
+            $('#city-list').html('<option>--市--</option>');
+            
+            $.each(this.area_p.province,function(index,item){
+                if(item['-Name']==parVal){
+                    $.each(item.city,function(i,cityO){
+                    	console.log(cityO);
+                        $('<option>').appendTo($('#city-list')).html(cityO['-Name']);
+                    })
                 }
-            })
-        })
-
-        $(".add-con-area").show();
-        $(".add-alert-area").show();
+            });
+        },
+        addCountry:function(parP,parC){
+            $('#contry-list').html('<option>--县--</option>');
+            $.each(this.area_p.province,function(index,item){
+                if(item['-Name']==parP){
+                    $.each(item.city,function(i,cityO){
+                        if(cityO['-Name']==parC){
+                            $.each(cityO.district,function(a,contryO){
+                            	//console.log(contryO['-Id']);
+                               var ss=$('<option id='+contryO['-Id']+'>').appendTo($('#contry-list')).html(contryO['-Name']);
+                               
+                            })
+                        }
+                    })
+                }
+            });
+        },
+        selectResu:function(){
+             
+            
+        },
+        createSupplierNum:function(val){
+        	console.log(typeof val)
+        	val+=Math.floor(Math.random()*1000);
+        	$('#supplierNum').val(val);
+        }
+    }
+	
+	supplierPage.addProvince();
+	
+	$('#province-list').on('change',function(){
+        supplierPage.addCity($(this).val());
         
         
-
     });
+    
 
-    // $('#singleWillUpdateInfo').on('click','#confirmSingleUpdate',function(){
-    //     //确定更新.....TODO
-    // });
+    $('#city-list').on('change',function(){
+        supplierPage.addCountry($('#province-list').val(),$(this).val());
+    });
+    
+    $('#contry-list').on('change',function(){
+	var self=this;
+    	if($(this).val()!='--县--'){
+    		$(this).find('option').each(function(i,item){
+    			if($(this).val()==$(self).val()){
+//  				console.log($(this)[0].id);
+    				supplierPage.createSupplierNum($(this)[0].id);
+    			}
+    			
+    		});
+    		//$('#areaid').data('idnum',$(this).attr('value'));
+    		//supplierPage.createSupplierNum($(this).attr('value'));
+    		
+    	}else{
+    		alert('请重新选择');
+    	}
+  		
+    });
+    
+    config.ajax('get',config.ajaxAddress.addSupplier,function(data){
+    	//console.log(data,typeof data);
+    	$.each(data.run, function(index,item) {
+    		$('<option value='+item.id+'>').appendTo($('#run_method')).html(item.run);
+    	});
+    	$.each(data.statements, function(index,item) {
+    		$('<option value='+item.id+'>').appendTo($('#statements_method')).html(item.statements);
+    	});
+	
+    })
+	
 </script>
 </html>

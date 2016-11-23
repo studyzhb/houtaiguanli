@@ -291,7 +291,7 @@ textarea.input{ width:300px; height:65px; }
 		.imglist ul li .details .tools a.hot.selected{ background-position:-78px -78px; }
 		.imglist ul li .details .tools a.pic{ background-position:-106px -50px; }
 		.imglist ul li .details .tools a.pic.selected{ background-position:-106px -78px; }
-		.imglist ul li .details .tools .sort{ float:right; margin:0; margin-left:-1px; padding:0 2px; border:1px solid #e8e8e8; width:39px; height:28px; line-height:28px; text-align:center; color:#66; font-size:12px; }
+		.imglist ul li .details .tools .sort{ float:right; margin:0; margin-left:-1px; padding:0 2px; border:1px solid #e8e8e8; width:39px; height:28px; line-height:28px; text-align:center; color:#666; font-size:12px; }
 	.imglist ul li .details.nopic h1{ display:block; position:static; top:0px; padding:17px 20px; }
 		.imglist ul li .details.nopic h1 span a{ color:#2a72c5 }
 	.imglist ul li .details.nopic .remark{ display:block; margin:10px 15px; padding:0; height:140px; color:#666; font-size:12px; line-height:20px; text-overflow:ellipsis; overflow:hidden; }
@@ -394,7 +394,7 @@ textarea.input{ width:300px; height:65px; }
 	.border-table th,.border-table td{ margin:0; padding:2px 10px; line-height:26px; height:28px; border:1px solid #eee; vertical-align:middle; white-space:nowrap; word-break:keep-all; }
 	.border-table td input{ vertical-align:middle; }
 	.border-table td .position{ position:relative; min-height:100%; }
-	.border-table td .ibtn{ position:absolute;top:0; right:-7px; background:#cc; border:none; color:#666; cursor:pointer; font-family:"Microsoft Yahei"; font-size:12px; height:25px; line-height:25px; padding:0 12px; }
+	.border-table td .ibtn{ position:absolute;top:0; right:-7px; background:#ccc; border:none; color:#666; cursor:pointer; font-family:"Microsoft Yahei"; font-size:12px; height:25px; line-height:25px; padding:0 12px; }
 	.border-table td .ibtn:hover{ color:#fff; background:#FF9C30; }
 	.border-table thead th{ color:#333; font-weight:normal; white-space:nowrap; text-align:center; background:#f9f9f9; }
 	.border-table tbody th{padding-right:5px; text-align:right;color:#707070;background-color:#f9f9f9}

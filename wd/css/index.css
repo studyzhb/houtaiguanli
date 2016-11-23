@@ -102,7 +102,7 @@ a:hover, a:active, a:focus {
 
 .add-con-area {
   width: 70%;
-  height: 90%;
+  height: 51%;
   position: absolute;
   left: 0;
   right: 0;
@@ -143,14 +143,16 @@ a:hover, a:active, a:focus {
   display: none; }
 
 .table-input-border {
-  border-bottom: 1px solid #ccc; }
+  border-bottom: 1px solid #ccc;
+  text-align: center; }
 
 .table-title-margin-10 {
   margin: 20px 0; }
 
 .table-input-disabled {
   border: 1px solid #ccc;
-  background-color: #ccc; }
+  background-color: #ccc;
+  text-align: center; }
 
 .cursor-pointer {
   cursor: pointer; }
@@ -351,5 +353,22 @@ a.active-p {
     height: 34px;
     text-align: center;
     line-height: 34px; }
+
+.next.active {
+  background: #09c; }
+
+.disabledWrap {
+  position: relative; }
+  .disabledWrap:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    background: #fff;
+    opacity: 0;
+    left: 0;
+    top: 0; }
 
 /*# sourceMappingURL=index.css.map */
