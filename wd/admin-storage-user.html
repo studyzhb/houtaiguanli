@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
 	<link rel="stylesheet" href="./css/content-input-list.css">
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+	<script src="./js/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
 	<script type="text/javascript" src="./js/haidao.validate.js"></script>
@@ -419,7 +420,7 @@
 
 
 		<script type="text/template" id="add-userlist-html">
-			<form method="post" action="" id="form1">
+			<form method="post" action="" id="storage-user-add">
 
                     <!--导航栏-->
                     <!--<div class="location">
@@ -439,20 +440,18 @@
                         <div class="content-tab-ul-wrap">
                           <div class="tab-title"><span>基本信息</span><i></i></div><ul>
                             <li><a class="selected" href="javascript:;">基本信息</a></li>
-                            
-                      
+
                           </ul>
                         </div>
                       </div>
                     </div>
 
                     <div class="tab-content" style="display: block;">
-                      
-                      
+
                       <dl>
                         <dt>姓名</dt>
                         <dd>
-                          <input name="txtTitle" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
+                          <input name="username" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！" required>
                           <span class="Validform_checktip Validform_wrong">请填写信息！</span>
                         </dd>
                       </dl>
@@ -637,7 +636,7 @@
 
                     </form>
 		</script>
-			<div class="add-con-area">
+			<!--<div class="add-con-area">
 				<div class="text-right">
 					<div class="btn btn-default" id="closeConArea">X</div>
 				</div>
@@ -759,7 +758,7 @@
 		</div>		
 		<div class="add-alert-area">
 			
-		</div>
+		</div>-->
 
 		<script>
 			// $(".sidebar-title").live('click', function() {
@@ -779,7 +778,25 @@
 				var add_usercon=$('#add-userlist-html').html();
 				$('#show-content').append(add_usercon);
 				$('.page-title').text('添加员工');
+				console.log($('#storage-user-add').validate);
+				
 			}
+
+			$('#storage-user-add').validate({
+					rules:{
+						username:{
+							require:true
+						}
+					},
+					message:{
+						username:{
+							require:'请填写信息'
+						}
+					}
+				})
+
+
+
 		</script>
 
 </body>

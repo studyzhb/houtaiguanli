@@ -348,8 +348,8 @@
                                                         <a href="javascript:;" class="pro-area">河南省</a>
 
                                                         <div class="subarea city-area" style="padding-left:35px;display:none;">
-                                                            <input type="checkbox" name="" value="" class="checkbox" />
-                                                            <!-- <span class="wordindex">z</span> -->
+                                                            <!--<input type="checkbox" name="" value="" class="checkbox" />
+                                                             <span class="wordindex">z</span> -->
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
@@ -365,8 +365,8 @@
                                                             <a href="#">郑州</a>
                                                         </div>
                                                         <div class="subarea country-area" style="padding-left:35px;display:none;margin-left:10px;">
-                                                            <input type="checkbox" name="" value="" class="checkbox" />
-                                                            <!-- <span class="wordindex">z</span> -->
+                                                            <!--<input type="checkbox" name="" value="" class="checkbox" />
+                                                             <span class="wordindex">z</span> -->
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
@@ -409,8 +409,6 @@
                                                 </a>
                                             </li>
                                         </ul>
-
-
                                     </div>
 
                                     <div class="r-list">
@@ -453,6 +451,7 @@
                                         <li id="pagewrap"><a href="#" class="next active">1</a></li>
                                         <li><a class="next disable">下一页</a></li>
                                         <li><span class="fl">共<em class="margin-small-left margin-small-right" id="detailpage">1</em>页</span></li>
+                                        <li><span class="fl">跳转到<input type="text" value="1" id="gotoWhere">页</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -714,6 +713,18 @@ var supplierPage={
         
     });
     
+    /**
+     * 跳转翻页
+     */
+    $('#gotoWhere').on('focus',function(){
+       $(this).on('keyup',function(e){
+           console.log(e.keyCode,$(this).val());
+           if(e.keyCode==13){
+               supplierPage.selectIndex=$(this).val();
+               gotopage();
+           }
+       })
+    })
 
     $('#city-list').on('change',function(){
         supplierPage.addCountry($('#province-list').val(),$(this).val());
@@ -754,10 +765,12 @@ var supplierPage={
         $(this).addClass('active-p').siblings().removeClass('active-p');
         $('.city-area').css('display','block');
     });
+
     $('.city-area').on('click','a',function(){
         $('.country-area').css('display','block');
         $(this).addClass('active-p').siblings().removeClass('active-p');
     });
+
     $('.country-area').on('click','a',function(){
         $('.bar').css('display','block');
         $(this).addClass('active-p').siblings().removeClass('active-p');
@@ -765,6 +778,7 @@ var supplierPage={
         //$('.par').text($(this).text());
         $('<a class="par">').text($(this).text()).insertBefore('.selectedRightSection');
     });
+
     $('.selectedRightSection').on('click','a',function(){
         $('.city-area').css('display','none');
         $('.country-area').css('display','none');
@@ -837,6 +851,10 @@ var supplierPage={
         
         $(this).addClass('active').siblings().removeClass('active');
         supplierPage.selectIndex=$(this).text();
+        gotopage();
+    });
+
+    function gotopage(){
         config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
             $('#supplier-message-list').html('');
 
@@ -846,8 +864,8 @@ var supplierPage={
                 arr.push(config.formatTemplate(item,supplierhtml));
             });
             $('#supplier-message-list').append(arr.join(''));
-        },{'p':$(this).text()});
-    });
+        },{'p':supplierPage.selectIndex});
+    }
 
     function addSupplierMessage(){
         $('.addorupdatetitle').text('添加供货商信息');
@@ -878,7 +896,7 @@ var supplierPage={
    
     $('#singleWillUpdateInfo').on('click','.confirmmess',function(){
          $('.add-alert-area').css('z-index','9999');
-         console.log($('#supplierNum').val())
+         console.log($('#supplierNum').val());
         $('#singleWillUpdateInfo').ajaxForm(options);
     })
     

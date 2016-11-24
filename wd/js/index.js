@@ -30,7 +30,6 @@ var indexPage={
                                 $('<a>').appendTo($('#contry-list')).html(contryO.s);
                             })
                         }
-
                     })
                 }
             });
