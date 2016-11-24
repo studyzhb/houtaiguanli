@@ -341,15 +341,17 @@
                                                         区域
                                                     </dt>
                                                     <dd>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-                                                        <a href="javascript:;" class="pro-area">河南省</a>
-
+                                                        <div class="provinces-supplier">
+                                                            <a href="javascript:;" class="pro-area">河南省</a>
+                                                            <a href="javascript:;" class="pro-area">河南省</a>
+                                                            <a href="javascript:;" class="pro-area">河南省</a>
+                                                            <a href="javascript:;" class="pro-area">河南省</a>
+                                                            <a href="javascript:;" class="pro-area">河南省</a>
+                                                        </div>
+                                                        
                                                         <div class="subarea city-area" style="padding-left:35px;display:none;">
                                                             <!--<input type="checkbox" name="" value="" class="checkbox" />
-                                                             <span class="wordindex">z</span> -->
+                                                             <span class="wordindex">z</span> 
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
@@ -362,11 +364,11 @@
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>-->
                                                         </div>
                                                         <div class="subarea country-area" style="padding-left:35px;display:none;margin-left:10px;">
                                                             <!--<input type="checkbox" name="" value="" class="checkbox" />
-                                                             <span class="wordindex">z</span> -->
+                                                             <span class="wordindex">z</span> 
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
@@ -379,7 +381,7 @@
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
                                                             <a href="#">郑州</a>
-                                                            <a href="#">郑州</a>
+                                                            <a href="#">郑州</a>-->
                                                         </div>
                                                         
                                                     </dd>
@@ -658,6 +660,7 @@
 var supplierPage={
         selectIndex:1,
 		area_p:config.area_num.root,
+        area:{},
         addProvince:function(){
             //创建省份类select
             $('#province-list').html('<option>--省--</option>');
@@ -761,14 +764,30 @@ var supplierPage={
 
 
 /*====================================================================================================================*/
-    $('.pro-area').on('click',function(){
+    $('.provinces-supplier').on('click','.pro-area',function(){
         $(this).addClass('active-p').siblings().removeClass('active-p');
-        $('.city-area').css('display','block');
+        supplierPage.area.provinces=$(this).text();
+        //请求数据获取市级区域
+        config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
+            $('.city-area').css('display','block').html('');
+            $.each(obj.address,function(index,item){
+                $('<a href="javascript:;">').appendTo($('.city-area')).html(item);
+            });
+           
+        },{'add':'city','provices':$(this).text()});
     });
 
     $('.city-area').on('click','a',function(){
-        $('.country-area').css('display','block');
+       
         $(this).addClass('active-p').siblings().removeClass('active-p');
+        //请求数据获取市级区域
+        config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
+             $('.country-area').css('display','block').html('');
+            $.each(obj.address,function(index,item){
+                $('<a href="javascript:;">').appendTo($('.country-area')).html(item);
+            });
+           
+        },{'add':'county','city':$(this).text(),'provices':supplierPage.area.provinces});
     });
 
     $('.country-area').on('click','a',function(){
@@ -793,7 +812,11 @@ var supplierPage={
         $('#detailcount').text(obj.count);
         var page=obj.count%2==0?obj.count/2:obj.count/2+1;
          $('#detailpage').text(page);
+         $.each(obj.address,function(index,item){
+             $('<a href="javascript:;" class="pro-area">').appendTo($('.provinces-supplier')).html(item);
+         });
          $('#pagewrap').html('');
+         
          for(var i=1;i<=page;i++){
              if(i==1){
                  $('<a href="#" class="next active">').appendTo($('#pagewrap')).text(i);
@@ -808,7 +831,7 @@ var supplierPage={
             arr.push(config.formatTemplate(item,supplierhtml));
         });
         $('#supplier-message-list').append(arr.join(''));
-    });
+    },{'add':'provinces'});
 
 /*
 更新单个
