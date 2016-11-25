@@ -5,8 +5,10 @@
 var zhizhao;
 var mendian;
 var idcard;
- var http = window.localStorage.getItem('http');
-
+alert(document.cookie);
+ //var http = window.localStorage.getItem('http');
+ var http="htttp://wwww.baidu.com"
+alert('ssss---111');
 $(function() {
                 //点击获取验证码
                 $(document).on('click','#verification',function(){
@@ -28,7 +30,9 @@ $(function() {
                 });
 
     //---------------------------------------点击注册-----------------------------------------
+        
             $('#bt').click(function(){
+                alert('sssss');
                 var code = $('#phone').val();
                 var pwd  = $('#pw').val();
                 var realName = $('#realName').val();

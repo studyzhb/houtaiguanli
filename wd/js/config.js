@@ -49,13 +49,18 @@ var config={
     	$.ajax({
     		type:method,
 		   	url:url,
-		   	data:data||'',
+		   	data:data||{date:new Date().getTime()},
 		   	success: function(msg){
-		   		console.log(msg)
+		   		//console.log(msg);
+           alert(msg);
 		   		if(fun){
 		   			fun(msg);
 		   		} 	
-		   }
+		   },
+       error:function(e){
+         console.log(JSON.stringify(e));
+        
+        }
     	})
 		
 		// var test='{"data":[{"id": 2,"coding": "234561","name": "可口可乐","barcode": "1215456131311","jname": "可口可乐","typename": "饮用水","eachsale": "瓶","brandname": "拉芳","suppliername": "供货商七"}]}'
