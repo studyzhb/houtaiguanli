@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>get与post和upload</title>
+	</head>
+
+	<body>
+		<h2>GET</h2>
+		<form action="index.php" method="post" id="infor">
+
+			<label for="name">姓名：</label><input type="text" name="name" id="name" /><br />
+			<label for="age">年龄：</label><input type="number" name="age" id="age" /><br />
+			<label for="address">地址：</label><textarea name="address" id="address"></textarea>
+			<input type="button" id="goto" value="提交" />
+		</form>
+		<hr>
+		<h2>POST</h2>
+		<form action="index.php" method="post" id="infor2">
+
+			<label for="name">姓名：</label><input type="text" name="name" id="name2" /><br />
+			<label for="age">年龄：</label><input type="number" name="age" id="age2" /><br />
+			<label for="address">地址：</label><textarea name="address" id="address2"></textarea>
+			<input type="button" id="goto2" value="提交" />
+		</form>
+		<hr />
+		submit 上传
+		 <form action="upload.php" method="post" enctype="multipart/form-data" >
+			<label for="file">Filename:</label>
+			<input type="file" name="file" id="file" /> 
+			<br />
+			<input type="submit" name="submit" value="Submit" autocomplete=false/>
+		</form>
+		<hr />
+		ajax 上传
+		 <form name="uploadstr">
+			<label for="file">Filename:</label>
+			<input type="file" name="file2" id="file2" /> 
+			<br />
+			<input type="button" name="upload" id="upload" value="Ajax上传" />
+		</form>
+		<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$("#goto").click(function() {
+			var name = $("#name").val();
+			var age = $("#age").val();
+			var address = $("#address").val();
+				$.ajax({
+					type: "get",
+					url: "regedit.php?name="+name+"&age="+age+"&address="+address,
+					data: $('#yourformid').serialize(), // 你的formid
+					async: true,
+					dataType:'json',
+					success: function(data) {
+						console.log(data);
+					},
+					error: function(request) {
+						alert("Connection error");
+					}
+				});
+			});
+			$("#goto2").click(function() {
+				var name = $("#name2").val();
+				var age = $("#age2").val();
+				var address = $("#address2").val();
+				$.ajax({
+					type: "post",
+					url: "regedit2.php",
+					data: $('#infor2').serialize(), // 你的formid
+					async: true,
+					dataType:'json',
+					success: function(data) {
+						console.log(data);
+					},
+					error: function(request) {
+						alert("Connection error");
+					}
+				});
+			});
+			
+			$(':file2').change(function(){
+			    var file = this.files[0];
+			    name = file.name;
+			    size = file.size;
+			    type = file.type;
+			    //your validation
+			    console.log(name+"/"+size+"/"+type);
+			});
+			$("#upload").click(function() {
+				var formData = new FormData($(':uploadstr')[0]);
+				$.ajax({
+				    url: 'upload.php',  //server script to process data
+				    type: 'POST',
+				    data: new FormData($(':uploadstr')[0]),
+				    xhr: function() {  // custom xhr
+				        myXhr = $.ajaxSettings.xhr();
+				        if(myXhr.upload){ // check if upload property exists
+				            myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // for handling the progress of the upload
+				        }
+				        return myXhr;
+				    },
+				    //Ajax事件
+				    //beforeSend: beforeSendHandler,
+				    success: function(data) {
+						console.log(data);
+					},
+				    error: function(request) {
+						alert("Connection error");
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

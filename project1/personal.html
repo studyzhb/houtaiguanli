@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="css/universally.css">
+    <link rel="stylesheet" href="css/personal.css">
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/MD5.js"></script>
+
+</head>
+<body>
+
+<!-----------------------------二维码----------------------------------------------------------->
+
+<div class="erweima">
+    <p>扫一扫下载APP</p>
+    <img src="images/erweima.jpg" />
+</div>
+
+<!----------------------------------添加银行卡界面----------------------------------------->
+
+<div class="mask opacity"></div>
+<div class="flavouredcard">
+
+         <button id="TCcard"><img src="img/tuichu.png"></button>
+            <div class="find">
+                <span></span>
+                <span>选择银行</span>
+            </div>
+
+            <div class="from">
+                <div class="text_box" style="margin-top: 32px;">
+
+                        <a>卡类型</a>
+                        <a>农业银行</a>
+                        <a>储蓄卡</a>
+
+                </div>
+                <div class="text_box marginTop12">
+                    <label for="card ">&nbsp;&nbsp;&nbsp;持卡人</label>
+                    <input type="text" placeholder="" id="card " class="pw"  >
+                </div>
+                <div class="text_box">
+                    <label for="cardnumber">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卡号</label>
+                    <input type="text" placeholder="" id="cardnumber">
+                </div>
+                <div class="text_box">
+                    <label for="phone">&nbsp;&nbsp;&nbsp;手机号</label>
+                    <input type="text" placeholder="" id="phone">
+                </div>
+                <div class="text_box">
+                    <label for="financed ">支付密码</label>
+                    <input type="text" placeholder="" id="financed ">
+                </div>
+            </div>
+                <button id="Tcard">提交审核</button>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-----------------------------------头部---------------------------------->
+<div class="Searchbar">
+    <div class="Search">
+        <div class="SearchL">
+            <img src="images/toplogo.png">
+            <div class="site">
+                <select id="city">
+                    <!--<option value="全国" selected="selected">全国</option>
+                    <option value="杭州市">杭州市</option>
+                    <option value="北京市">北京市</option>
+                    <option value="大庆市">大庆市</option>-->
+                </select>
+            </div>
+        </div>
+        <div class="SearchR">
+
+            <div class="Sch">
+                <img src="images/img1 (11).png">
+                <input type="search" placeholder="请输入期数" id="mySearch" />
+                <button id="youSearch">搜索</button>
+            </div>
+
+            <div class="phone">
+                <img src="images/img1 (4).png" />
+                <h2>400-000-0000</h2>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!----------------------------------------------导航条--------------------------------------------->
+
+<div class="navQ">
+    <div class="nav">
+        <ul class="ulL" id="qiehuan">
+            <li><a href="index.html" >首页</a></li>
+            <li><a href="wantcar.html" >我要合车</a></li>
+            <li><a href="#">服务保障</a></li>
+            <li><a href="#">合车规则</a></li>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">新手指引</a></li>
+        </ul>
+
+        <ul class="ulR">
+            <li><img src="images/touxiang.png"></li>
+            <li><a>蜡笔小新</a></li>
+        </ul>
+        <div id="username">
+             <ul>
+			<li><a href="#" id="mY">我的</a></li>
+			<li><a href="#" id="shezhi">设置</a></li>
+			<li><a href="#" id="left">退出</a></li>
+		    </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-----------------------------------------------个人中心------------------------------------------------>
+
+<div class="container">
+    <div class="personal">
+        <div class="personalLeft">
+            <div class="username">
+                <!--<img src="images/touxiang.png">-->
+                <!--<span class="uID">蜡笔小新</span>-->
+                <!--<p>余额<span> 0.00</span></p>-->
+            </div>
+             <ul id="usid">
+                <li><img src="img/img3.png" class="tubiao1"><img src="img/img4.png" class="tubiao2"><a href="#">基本资料</a><img src="img/tubiao%20(3).png" class="jiantou"><img src="img/tubiao%20(2).png" class="jiantou1"></li>
+                <li><img src="img/tubiao%20(5).png" class="tubiao1"><img src="img/tubiao%20(4).png" class="tubiao2"><a href="#">钱包</a><img src="img/tubiao%20(3).png" class="jiantou"><img src="img/tubiao%20(2).png" class="jiantou1"></li>
+                <li><img src="img/tubiao%20(1).png" class="tubiao1"><img src="img/img2.png" class="tubiao2"><a href="#">合车状态</a><img src="img/tubiao%20(3).png" class="jiantou"><img src="img/tubiao%20(2).png" class="jiantou1"></li>
+                <li><img src="img/tubiao%20(7).png" class="tubiao1"><img src="img/img1.png" class="tubiao2"><a href="#">认证</a><img src="img/tubiao%20(3).png" class="jiantou"><img src="img/tubiao%20(2).png" class="jiantou1"></li>
+                <li><img src="img/tubiao%20(14).png" class="tubiao1"><img src="img/tubiao%20(13).png" class="tubiao2"><a href="#">关注</a><img src="img/tubiao%20(3).png" class="jiantou"><img src="img/tubiao%20(2).png" class="jiantou1"></li>
+                <li><img src="img/img5.png" class="tubiao1"><img src="img/img6.png" class="tubiao2"><a href="#">交易记录</a><img src="img/tubiao%20(3).png" class="jiantou"><img src="img/tubiao%20(2).png" class="jiantou1"></li>
+                <li><img src="img/tubiao%20(9).png" class="tubiao1"><img src="img/tubiao%20(8).png" class="tubiao2"><a href="#" name="shezhi">设置</a><img src="img/tubiao%20(3).png" class="jiantou"><img src="img/tubiao%20(2).png" class="jiantou1"></li>
+            </ul>
+        </div>
+
+        <div class="dis">
+            <div class="personalRightTop">
+                <h2 >个人资料</h2>
+            </div>
+            <div class="revisions">
+                <ul>
+                    <li class="XGYH"><label>昵称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" id="name"> <button id="BT" >修改</button><button>取消</button></li>
+                    <li><label>修改密码</label><input type="text" ><button id="pwBT">修改</button></li>
+                    <li><label>手机号&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" ><button id="phoneBT">修改</button> </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="undis">
+        	
+        	<div class="tixian" style="display: none;">
+        	
+        	<div class="personalRightTop">
+                <h2>提交审核</h2>
+            </div>
+            <div class="look">
+                <ul>
+                    <li><img src="img/tubiao%20(1).png"></li>
+                    <li><p>提现申请已提交</p></li>
+                    <li><label>储蓄卡</label><input type="text" value="农业银行 尾号1234"> </li>
+                    <li><label>提现金额</label><input type="text" value="￥0.00"></li>
+                    <li><button>提现</button></li>
+                </ul>
+            </div>	
+        	</div>
+        	
+        	
+        	
+        	
+        	
+        	
+        	<div class="qBao">
+            <div class="personalRightTop">
+                <ul class="muchT">
+                    <li><a href="#" class="xiahuaxian">提现</a> </li>
+                    <li><a href="#">充值</a> </li>
+                    <li><a href="#">银行卡</a> </li>
+                </ul>
+            </div>
+            <div class="howmuch ismuch">
+                <ul>
+                    <li>储蓄卡<span>农业银行（1234）</span>
+                        <div style="display: none">
+                            <ul>
+                                <li>农业银行(1234)</li>
+                                <li>工商银行（1234）</li>
+                                <li>建设银行（1234）</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <p>提现金额</p>
+                        <input type="text" value="￥">
+                    </li>
+                    <li>
+                        <p>钱包余额￥0.00</p>
+                        <button id="tixian">提现</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="recharge nomuch">
+                <ul>
+                    <li>储蓄卡<span>农业银行（1234）</span>
+                        <div style="display: none">
+                            <ul>
+                                <li>农业银行(1234)</li>
+                                <li>工商银行（1234）</li>
+                                <li>建设银行（1234）</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <p>提现金额</p>
+                        <input type="text" value="￥">
+                    </li>
+                    <li>
+                        <p>钱包余额￥0.00</p>
+                        <button id="chongzhi">充值</button>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="plastic nomuch">
+                <button id="TJcard">+添加银行卡</button>
+                <ul class="credit ">
+                    <!--<li><span>农业银行</span><span>储蓄卡</span><input type="text" value="62284809231808" ><a href="#" class="removeK">删除</a> </li>-->
+                    <!--<li><span>农业银行</span><span>储蓄卡</span><input type="text" value="62284809231808" ><a href="#">删除</a> </li>-->
+                </ul>
+            </div>
+        </div>
+
+      </div>
+
+
+        <div class="undis">
+            <div class="personalRightTop">
+                <ul class="keepon">
+                    <li ><a href="#" class="xiahuaxian">进行中</a> </li>
+                    <li><a href="#">代付款</a> </li>
+                    <li><a href="#">已结束</a> </li>
+                </ul>
+            </div>
+            <div class="jingxing xianshi">
+            	<div class="kong">
+                <!--<ul>
+                    <li><span>1302期</span>【成都】 宝马640i 2014款 手动 舒适型</li>
+                    <li>2010年、13.7万公里</li>
+                    <li><div class="div1"><div class="div2"></div></div> <span>95%</span></li>
+                    <li><img src="images/img1%20(6).png">合车剩余时间:<span>1:12:06</span></li>
+                </ul>
+                <div class="heche">
+                    <p>合车价10.22万</p>
+                    <span>预计销售价16.88万</span>
+                </div>-->
+                </div>
+            </div>
+
+            <div class="daifukuang yingchang">
+                <!--<ul>-->
+                    <!--<li><span>1302期</span>【成都】 宝马640i 2014款 手动 舒适型</li>-->
+                    <!--<li>2010年、13.7万公里</li>-->
+                    <!--<li><div class="div1"><div class="div2"></div></div> <span>95%</span></li>-->
+                    <!--<li><img src="images/img1%20(6).png">合车剩余时间:<span>1:12:06</span></li>-->
+                <!--</ul>-->
+                <!--<div class="daifu">-->
+                    <!--<p>合车价10.22万</p>-->
+                    <!--<span>预计销售价16.88万</span>-->
+                    <!--<button>去付款</button>-->
+                <!--</div>-->
+            </div>
+
+            <div class="yijieshu yingchang">
+            	
+                <ul>
+                    <li><span>1302期</span>【成都】 宝马640i 2014款 手动 舒适型
+                    	<b class='close'></b></li>
+                    <li>2010年、13.7万公里</li>
+                    <li><div class="div1"></div><span>95%</span></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="undis">
+            <div class="personalRightTop">
+                <h2>车辆认证</h2>
+            </div>
+            <div class="personalRight">
+                <!--<ul>-->
+                    <!--<li><label>联系人姓名</label><input type="text" placeholder=""><img src="images/renzheng.png" class="liuliu"></li>-->
+                    <!--<li><label>车商名称&nbsp;</label><input type="text" placeholder=""><img src="images/renzheng.png" class="liuliu"></li>-->
+                    <!--<li><label>门店照片&nbsp;</label><input type="text" placeholder=""><img src="images/renzheng.png" class="liuliu"></li>-->
+                    <!--<li><label>门店地址&nbsp;</label><input type="text" placeholder=""><img src="images/renzheng.png" class="liuliu"></li>-->
+                    <!--<li><label>营业执照&nbsp;</label><input type="text" placeholder=""><img src="images/renzheng.png" class="liuliu"></li>-->
+                    <!--<li><label>身份证&nbsp;&nbsp;</label><input type="text" placeholder=""><img src="images/renzheng.png" class="liuliu"></li>-->
+                    <!--<li><label>联系电话&nbsp;</label><input type="text" placeholder=""><img src="images/renzheng.png" class="liuliu"></li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+
+        <div class="undis">
+            <div class="personalRightTop">
+                <h2>关注</h2>
+            </div>
+
+
+            <div class="concern">
+                <!--<div class="big">
+                    <!--<img src="images/guanzhu.png" />
+                    <ul>
+                        <li><span>1302期</span>【成都】 宝马640i 2014款 手动 舒适型 <img src="img/tubiao%20(14).png"></li>
+                        <li>2010年、13.7万公里</li>
+                        <li><div class="div1"><div class="div2"></div></div> <span>95%</span></li>
+                        <li><span>合车价10.22万</span> <button> 我要合车》</button></li>
+                    </ul>-->
+                
+            </div>
+        </div>
+
+
+
+
+
+        <div class="undis">
+            <div class="personalRightTop">
+                <h2>交易记录</h2>
+            </div>
+            <div class="trades">
+                <!--<ul>-->
+                    <!--<li><img src="img/tubiao%20(5).png"> <span>-20000.00</span><span>某某某-转账</span><span>11:13</span> <span><a href="#" class="Move">删除</a></span></li>-->
+                    <!--<li><img src="img/tubiao%20(5).png"> <span>-20000.00</span><span>某某某-转账</span><span>11:13</span> <span><a href="#" class="Move">删除</a></span></li>-->
+                    <!--<li><img src="img/tubiao%20(5).png"> <span>-20000.00</span><span>某某某-转账</span><span>11:13</span> <span><a href="#" class="Move">删除</a></span></li>-->
+                    <!--<li><img src="img/tubiao%20(5).png"> <span>-20000.00</span><span>某某某-转账</span><span>11:13</span> <span><a href="#" class="Move">删除</a></span></li>-->
+                    <!--<li><img src="img/tubiao%20(5).png"> <span>-20000.00</span><span>某某某-转账</span><span>11:13</span> <span><a href="#" class="Move">删除</a></span></li>-->
+                    <!--<li><img src="img/tubiao%20(5).png"> <span>-20000.00</span><span>某某某-转账</span><span>11:13</span> <span><a href="#" class="Move">删除</a></span></li>-->
+                    <!--<li><img src="img/tubiao%20(5).png"> <span>-20000.00</span><span>某某某-转账</span><span>11:13</span> <span><a href="#" class="Move">删除</a></span></li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+
+
+
+
+        <div class="undis">
+            
+            <div class="personalRightTop">
+                <h2>设置支付密码</h2>
+            </div>
+         	<div class='zhiFu'>
+            	请输入密码:  <input type="password" name="" id="zhiMi" value="" />
+            <button class='sure'>确定<tton>	
+         	</div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="js/personal.js"></script>
+<script type="text/javascript" src="js/universally.js"></script>
+
+
+</body>
+</html>

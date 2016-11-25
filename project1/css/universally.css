@@ -1,0 +1,453 @@
+body, div, dl, dt, dd, ul, ol, li, h1,a,
+h2, h3, h4, h5, h6, p, pre, code, form,
+fieldset, legend, input, textarea, p, blockquote,
+th, td, hr, button, article, aside, details,
+figcaption, figure, footer, header, menu, nav, section {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+dl{
+	list-style: none;
+}
+body {
+  font: 12px/1.5 '微软雅黑';
+
+}
+
+
+.sider{
+	position: fixed;
+	top: 300px;
+	right: 0px;
+	height: 208px;
+  display: none;
+
+}
+.right_box{
+	height: 50px;
+	margin-top: 2px;
+	background: pink;
+	display: block;
+	position: relative;
+
+}
+
+.iconBox {
+	display: block;
+	height: 50px;
+	width: 55px;
+	background: gray;
+	position: absolute;
+	right: 0;
+	top:0;
+	text-align: center;
+	line-height: 50px;
+	z-index: 999;
+}
+
+.tipBox{
+	
+	display: block;
+	height: 50px;
+	width: 110px;
+	background: red;
+	position: absolute;
+	right: -55px;
+	top: 0;
+	z-index: 998;
+	line-height: 50px;
+	font-size: 12px;
+	color: white;
+	text-indent:5px;
+	border-radius:5px;
+
+
+}
+
+
+
+.Searchbar{
+	  width: 100%;
+	  height: 164px;
+	  background: white!important;
+}
+.Search{
+	   width: 1190px;
+	   height: 164px;
+	   margin: 0 auto;
+	   background: white;
+}
+
+.SearchL{
+	 height: 164px;
+	width: 550px;
+	float: left;
+}
+
+.SearchL img {
+	  display: block;
+	  float: left;
+	  margin-top: 30px;
+	
+
+}
+
+.SearchL .site{
+	 float: left;
+   margin-left:33px ;
+	 height: 44px;
+	 width: 100px;
+	 border: 1px #E4E4E4 solid;
+	 border-radius: 5px;
+	 margin-top:63px;
+	 font-size: 18px;
+	 color: #5c5c5c;
+	 text-align: center;
+	 line-height: 44px;
+	
+	 
+}
+.SearchR {
+	   height: 164px;
+	   width: 600px;
+	   float: right;
+}
+
+
+.SearchR .Sch{
+	margin-top: 63px;
+  width: 336px;
+  height: 42px;
+  background: #fff;
+  float: left;
+  border: 1px solid rgb(255,0,0);
+  border-radius:5px ;
+	
+}
+
+ .SearchR .Sch img{
+ 	
+ 	     float: left;
+ 	     margin: 10px;
+ 	     margin-left: 14px;
+ 	
+ }
+
+.SearchR .Sch input{
+	width: 180px;
+  height: 42px;
+  border: none;
+  text-indent: 10px;
+  line-height: 42px;
+  float: left;
+  outline-style: none;
+  font-size:16px;
+  color: #b7b7b7;
+}
+.SearchR .Sch button{
+	width: 66px;
+  height: 42px;
+  background: red;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Microsoft Yahei";
+  cursor: pointer;
+  float: right;
+  outline-style: none;
+}
+
+.phone{
+	float: right;
+	margin-top:63px;
+	width: 220px;
+
+}
+
+.phone img{
+	  float: left;
+	  vertical-align: middle;
+	  margin-top:1px ;
+	
+}
+
+.phone h2{
+	color: #FF0000;
+	font-size: 26px;
+	float: right;
+	
+}
+
+.navQ{
+	  width: 100%;
+	  height: 60px;
+	  background: red;
+	
+	
+}
+.nav{
+	height: 60px;
+	width:1190px;
+	background: red;
+	margin: 0 auto;
+	position: relative;
+}
+
+.nav .ulL{
+	height: 60px;
+	float: left;
+	}
+.nav .ulL li{
+	
+	height: 60px;
+	float: left;
+    width: 120px;
+}
+
+.nav .ulL li a {
+	font-size: 16px;
+	color: white;
+	height: 60px;
+	line-height: 60px;
+	float: left;	
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	width: 120px;
+}
+.nav .ulL li a:hover{
+	background: pink;
+
+}
+
+.nav .ulR{
+	height: 60px;
+	float: right;
+	}
+.nav .ulR li{
+	
+	height: 60px;
+	float: left;
+ }
+.nav .ulR li img{
+    margin-top: 10px;
+	height: 39px;
+	width: 39px;
+}
+
+.nav .ulR  li a{
+	font-size: 14px;
+	color: white;	
+	width: 80px;
+	height: 50px;
+	line-height:60px;
+	float: right;
+	font-weight: bold;	
+	height: 60px;
+	text-align: center;
+	display: block;
+	background: red;
+}
+
+
+#username{
+	  height: 146px;
+	  width: 132px;
+	 -webkit-border-radius: 5px;
+	 -moz-border-radius: 5px;
+	 border-radius: 5px;
+	 background: white;
+	 position: absolute;
+	 right: -5px;
+	 bottom: -146px;
+	 display: none;
+	 text-align: center;
+	 z-index: 999;
+	line-height: 43px;
+
+}
+
+
+
+#username ul li a{
+      font-size: 20px;
+	  color: #373737;
+}
+
+
+
+.select{
+	      height: 350px;
+	      width: 1190px;
+        margin: 0 auto;
+}
+
+.selectTop{
+	   height:50px;
+	   margin-top:20px;
+     width: 1190px;
+     border-bottom:1px solid gainsboro; 	
+}
+.selectTop p {
+	    font-size:24px;
+  	   font-weight:bold;
+  	   color: #383838;
+  	   cursor: pointer;
+  	   float: left;
+  	   margin-bottom:16px;
+}
+    .selectTop span{
+	       font-size:20px;
+  	     margin-bottom:16px;
+  	     color: gray;
+  	     cursor: pointer;
+  	     float: right;
+}
+
+   .selectB{
+   	   margin: 0px;
+   	   padding: 0px;
+   	   width:1190px;
+   	   height: 350px;
+   	   position: relative;
+   	
+   }
+ 
+  .selectB img{
+  	 position: absolute;
+  	 left: 0px;
+  	 top: 10px;
+  	 margin-top:50px ;  
+  	 width: 664px;
+  	 height: 196px;
+  }
+  
+ .selectB ul{
+ 	  float: right;
+ 	 margin-right:20px ;
+ 	  margin-top:30px ;
+ }
+ .selectB ul li {
+ 	 
+ 	 width: 480px;
+ 	 border-bottom: 1px solid gainsboro;
+ 	 height: 30px;
+ 	 font-size:18px ;
+   padding-top: 14px;
+ 	
+ }
+ 
+ .selectB ul li span {
+ 	     height: 10px;
+ 	     width: 10px;
+ 	     border-radius:50%;
+ 	     background: black;
+ 	     display: block;
+ 	     float: left;
+ 	     margin-top:10px ;
+ }
+ 
+ .selectB ul li a{
+ 	   font-size: 12px;
+ 	   color: #000000;
+ 	   padding-left:20px ;
+ 	
+ 	
+ }
+
+ 
+ .bottom{
+ 	  height:280px;
+ 	  width: 100%;
+ 	  background: #dadada;
+ }
+ .bottomT{
+ 	  height: 280px;
+ 	  margin: 0 auto;
+    width: 1190px;
+    text-align: center;
+ }
+ .bottomT img{
+ 	    margin-left: auto;
+ 	    margin-right: auto;
+ 	    margin-top:64px ;
+	    margin-bottom: 24px;
+ }
+ .bottom p {
+ 	       font-size: 20px;
+ 	       margin-top:20px;
+ 	       color: gray;
+ }
+
+ .bottom ul {
+ 	
+ 	  margin-left:380px ;
+ 	
+ }
+
+
+.bottom ul li {
+	
+	  float: left;
+	  font-size:16px;
+	  padding:0 10px;
+	   color: gray;
+	  margin-top:50px;
+}
+
+.bottom ul li:nth-child(1){
+	     padding-right:30px ;
+
+}
+.dianji{
+	float: left;
+    width: 220px;
+	height: 60px;
+}
+#min{
+	width: 60px;
+	height: 60px;
+	float: left;
+	text-align: center;
+	line-height: 60px;
+	font-size: 16px;
+}
+
+.shuzhi{
+	float: left;
+	width: 100px;
+	height: 60px;
+}
+.shuzhi input{
+	 width: 50px;
+	 border: none;
+	height: 60px;
+	outline: none;
+	line-height: 60px;
+}
+
+#plus{
+	width: 60px;
+	height: 60px;
+	float: left;
+	text-align: center;
+	line-height: 60px;
+	font-size: 16px;
+}
+#city{
+	  border: none;
+	  outline: none;	
+}
+#xl{
+	 border: none;
+	 outline: none;	
+}

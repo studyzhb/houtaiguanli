@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9a5069b9-ea89-465f-ae2e-2644f93f4934" name="Locolhost" url="http://192.168.0.117">
+        <fileTransfer mountedRoot="F:\" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

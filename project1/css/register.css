@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+
+
+
+.File{
+	height: 292px;
+	width: 560px;
+	border-radius:5px;
+	/*background: #F6F6F6;
+	border:1px solid #E6E6E6;*/
+	background: url(../images/shangchuang.png) no-repeat;
+	margin-left: 93px;
+	margin-top: 50px;
+	position: absolute;
+	bottom: 0;
+	float: left;
+	
+}
+.from .uploading{
+	 margin-left:auto ;
+	 margin-right: auto;
+	 width: 650px;
+	 height: 330px;
+	 margin-top: 32px;
+	 text-align: center;
+	 position: relative;
+	 
+}
+.from .uploading span:nth-child(1){
+	 font-size:22px;
+	 color: black;
+     float: left;	
+     display: block;
+    
+}
+.from .uploading span:nth-child(2) a{
+	 font-size: 20px;
+	 float: right;
+	 color: green;
+	display: block;
+
+}
+strong{
+	position: absolute;
+	right: -120px;
+	top: 20px;
+	color: red;
+}
+.text_box{
+	position: relative;
+}

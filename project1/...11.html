@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+  <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<body>
+  <form>
+      <input type="file" name="chuang" id="chuang">
+
+  </form>
+    <script  type="text/javascript">
+
+        $("#chuang").change(function() {
+            var filePath = $('#chuang').val();
+            console.log(filePath)
+
+
+            $.ajax({
+                url: 'http://192.168.0.202:8080/heche/main/uploadUserImg',
+                type: 'post',
+                contentType: "multipart/form-data;charset=utf-8",
+                data: {
+
+                    'img': filePath
+                },
+
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        })
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

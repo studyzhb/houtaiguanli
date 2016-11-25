@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	    <script src="js/jquery-1.11.0.js"></script>
+		
+	<body>
+	
+
+	
+	<!--<p> 
+   <label>上传图片</label>
+   <input type="file" name="fileToUpload" id="fileToUpload" class="inp_fileToUpload" multiple="multiple"/> 
+  <img src="$web.site$web.tpl#**#adminht/images/lb_head.jpg" width="30px" height="30px" class="img_upload" id="img" /> 
+</p> 
+	<!--<input class="ke-input-text" type="text" id="url" value="" readonly="readonly" />
+	<input type="button" id="uploadButton" value="Upload" />
+  </p>-->
+<!--<script type="text/javascript">
+	$(function() {
+		$('.inp_fileToUpload').change(function() {
+			var formdata = new FormData();
+			var v_this = $(this);
+			var fileObj = v_this.get(0).files;
+			url = "/upload/upload_json.ashx";
+			//var fileObj=document.getElementById("fileToUpload").files; 
+			formdata.append("imgFile", fileObj[0]);
+			jQuery.ajax({
+				url: url,
+				type: 'post',
+				data: formdata,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType: "json",
+				success: function(data) {
+					if(data.error == 0) {
+						v_this.parent().children(".img_upload").attr("src", data.url);
+						//$("#img").attr("src",data.url); 
+					}
+				}
+			});
+			return false;
+		});
+	});
+</script>-->
+
+
+<p>
+	<label>ajax上传</label>
+	<input type="file" name="fileToUpload" id="fileToUpload" class="inp_fileToUpload" multiple="multiple" />
+	<img src="$web.site$web.tpl#**#adminht/images/lb_head.jpg" width="30px" height="30px" class="img_upload" id="img" />
+</p>
+<p>
+	<label>最新修改人员：</label>
+	<input readonly="readonly" type="text" size="30" />
+</p>
+<input type="submit"  value="提交"  class="upload" />
+<div>
+
+<script type="text/javascript">
+	$(function() {
+		$(".upload").live("change", function() { //现在这个已经适用于多个file表单。 
+			ajaxFileUpload($(this).attr("id"), $(this).parent().children(".img_upload").attr("id"));
+		})
+	})
+
+	function ajaxFileUpload(file_id, img_id) {
+		jQuery.ajaxFileUpload({
+			url: 'http://192.168.0.202:8080/heche/main/uploadUserImg', //用于文件上传的服务器端请求地址 
+			secureuri: false, //是否需要安全协议，一般设置为false 
+			fileElementId: file_id, //文件上传域的ID 
+			dataType: 'json', //返回值类型 一般设置为json 
+			success: function(data, status) //服务器成功响应处理函数 
+				{
+					if(data.error == 0) {
+						$("#" + img_id).attr("src", data.url);
+					} else {
+						alert(data.message);
+					}
+				},
+			error: function(data, status, e) //服务器响应失败处理函数 
+				{
+					alert(e);
+				}
+		})
+		return false;
+	}
+</script>
+</div>
+</div>
+
+
+  
+	
+	</body>
+</html>
