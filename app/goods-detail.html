@@ -7,16 +7,17 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
 	<script src="./js/rem.js"></script>
+	
 	<link rel="stylesheet" href="./css/goodsdetail.css"/>
 </head>
 <body>
 	<section>
-		<div class="main">
+		<div class="main" id="content1">
 			<h3 class="h3-title">
 				商品详情
 			</h3>
 
-			<div class="img-content">
+			<div class="img-content" >
 				<div class="img-single">
 					<img src="./img/test1.png" alt="">
 				</div>
@@ -30,5 +31,22 @@
 			</div>
 		</div>
 	</section>
+	
 </body>
+<script>
+	// alert(111111)
+	// $(function(){
+	// 	console.log($('#content1').height());
+	// })
+	document.onload=function(){
+		
+		
+	}
+	console.log(document.body.scrollHeight,document.body.clientHeight);
+		var h=document.getElementById('content1');
+		setTimeout(function(){
+			console.log(h.clientWidth,h.clientHeight,'111');
+		},1000)
+		
+</script>
 </html>

@@ -75,6 +75,9 @@ a:hover, a:active, a:focus {
 .w60 {
   width: 60px !important; }
 
+.w80 {
+  width: 80px !important; }
+
 .btn {
   display: inline-block;
   padding: 6px 12px;
