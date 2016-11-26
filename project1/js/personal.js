@@ -2,11 +2,10 @@
  * Created by Administrator on 2016/11/8.
  */
        $(function(){
-      var dizhi = 'http://122.114.48.44:8080';
+      var dizhi = 'http://122.114.48.44:8080/';
       var userNumber = localStorage.getItem('userNumber');
       var endtime = new Array();
-     var http = window.localStorage.getItem('http');
-
+      var http ='http://122.114.48.44:8080/heche/';
 
 
    $('#usid li ').click(function(){
@@ -33,21 +32,26 @@
                sessionStorage.removeItem('ifClick');
            }
    
-// 
-//         if(sessionStorage.getItem('ifClick')){
-//             $('#usid li').eq(2).click();
-//             sessionStorage.removeItem('ifClick');
-//         }
-//         
-//        if(sessionStorage.getItem('ifClick')){
-//             $('#usid li').eq(2).click();
-//             sessionStorage.removeItem('ifClick');
-//         }
-// 
-//         if(sessionStorage.getItem('ifClick')){
-//             $('#usid li').eq(4).click();
-//             sessionStorage.removeItem('ifClick');
-//         }
+   
+           if(sessionStorage.getItem('ifC')){
+               $('#usid li').eq(2).click();
+               sessionStorage.removeItem('ifC');
+           }
+           
+           if(sessionStorage.getItem('come')){
+               $('#usid li').eq(2).click();
+               sessionStorage.removeItem('come');
+           }
+           
+          if(sessionStorage.getItem('ifCl')){
+               $('#usid li').eq(2).click();
+               sessionStorage.removeItem('ifCl');
+           }
+   
+           if(sessionStorage.getItem('ifCli')){
+               $('#usid li').eq(4).click();
+               sessionStorage.removeItem('ifCli');
+           }
    
    
    
@@ -93,7 +97,7 @@
 
 
     
-              var dizhi = 'http://192.168.0.202:8080';
+             
 
            //---------------------------个人中心用户名余额-----------------------------------------
 
@@ -194,12 +198,13 @@
                                    //console.log(data);
                                   var result = data.result;
                                    $('.concern').html('');
-                                   var cern = '';
+                                  
                                     var len =result.length;
+//                                  console.log(len)
                                   if (len>0)  {
-                                      for (var i=0;i< result.length;i++){
-                                          var a = parseFloat(result[i].runKilometer / 10000);
-                                          var b = parseFloat(result[i].joinPrice / 10000);
+                                      for (var i=0;i< result.length;i++){  
+                                      	   
+                                      	   var cern = '';
                                           var c = result[i].goodId;
                                           cern += '<div class="big">';
                                           cern += '<img src =" '+ dizhi+result[i].headImg  +'">';
@@ -208,13 +213,17 @@
                                           cern += '<span>'+'第' + result[i].periods + '期</span>';
                                           cern +=  result[i].goodName
                                           cern +=  '<img src ="img/tubiao%20(14).png"  giD='+c+' class="quguan">';
-                                          cern += '<li>'+result[i].purchasedDataYear +'年' + '/'+ a+'万公里</li>';
-                                          cern +=  '<li><div class="div1"><div class="div2"></div></div><span>95%</span></li>';
-                                          cern +=  '<li><span>合车价'+  b + '万</span><button>我要合车》</button></li></ul></div>';
+                                          cern += '<li>'+result[i].purchasedDataYear +'年' + '/'+ result[i].runKilometer+'万公里</li>';
+                                          cern += '<li><div class="div1"><div class="div2"></div></div>'
+                                          cern += '<span>'+result[i].nowPercent+'%</span></li>'
+                                          cern +=  '<li><span>合车价'+  result[i].joinPrice + '万</span><button class="guanzhu" goido='+ c+'>我要合车》</button></li></ul></div>';
+                                         
+                                          $('.concern').append(cern);
+                                          var  div5Width = parseInt($('.div1').width()*result[i].nowPercent/100)
+//                                        console.log(div5Width)
+                                          $('.big:nth-of-type('+(i+1)+')').find('.div2').css('width',div5Width);
+                                         }
                                       }
-                                      $('.concern').html(cern);
-            
-                                  }
                                   }
                            })
                        }
@@ -224,7 +233,7 @@
            //-----------------------------------取消关注-------------------------------------
                        $(document).on('click', '.quguan', function() {
                            var concernID = $(this).attr('giD');
-
+                           var $me = $(this);
                            $.ajax({
                                type: 'post',
                                url: http + 'user/delUserCollect',
@@ -235,7 +244,8 @@
                                     "goodId" :concernID
                                }),
                                success:function(data){
-                                       alert(data.msg);
+                                   alert(data.msg);
+                                   $me.closest('.big').remove();
                                },
                                error:function() {
                                    alert('取消失败了');
@@ -243,6 +253,16 @@
                            })
                        })
 
+
+      //---------------------------------------关注转到详情---------------------------------------------------------
+                   $(document).on('click', '.guanzhu', function() {              
+                           var guood = $(this).attr('goido');
+                           window.localStorage.setItem('guood',guood);
+//                         console.log(guood);
+                           window.localStorage.setItem('comeFrom',5);
+                           location.href = 'detail.html';
+                   })   
+                  
            //查询订单列表..........................进行中------------------------------
                     function ongoing(){
                         $.ajax({
@@ -265,10 +285,10 @@
 //                                var list= [];
                                 for (var i=0;i< result.length;i++){
                                 var jx = '';
-                                 var div1Width = parseInt($('.div1').width()*result[i].nowPercent/100)
-                                 console.log(result[i].nowPercent)                                 
-                                 console.log($('.div1').width())
-                                 console.log(div1Width)
+                                
+//                               console.log(result[i].nowPercent)                                 
+//                               console.log($('.div1').width())
+//                               console.log(div1Width)
 //                               list.push(div1Width);
                                endtime[i] = result[i].endTime;
                                 show ()
@@ -289,7 +309,8 @@
                                 jx +=  '<span>预计销售价'+ result[i].estimatePrice +'万</span>';
                                 jx +=  '</div>';
                                 jx +=  '</div>';
-                                 $('.jingxing').html(jx);
+                                 $('.jingxing').append(jx);
+                                  var div1Width = parseInt($('.div1').width()*result[i].nowPercent/100)
                                  $('.kong:nth-of-type('+(i+1)+')').find('.div2').css('width',div1Width);
                                 }
                                   
@@ -334,12 +355,6 @@
 
 
 
-
-
-
-
-
-
            //查询订单列表----------------------------------代付款-------------------------------------
                function behalf (){
                    $.ajax({
@@ -361,10 +376,10 @@
                            
                            var len =result.length;
                            for (var i=0;i< result.length;i++){
-                           	      var dfk = '';
+                           	     var dfk = '';
                                  endtime[i] = result[i].endTime;
                                  yixi()
-                               var div2Width = parseInt($('.div1').width()*result[i].nowPercent/100)
+                             
                                var c = result[i].goodId;
                                dfk += '<ul class="FK">';
                                dfk += '<li><span>'+'第' + result[i].periods + '期</span>';
@@ -379,9 +394,10 @@
                                dfk += '<div class="daifu">';
                                dfk += '<p>合车价'+  result[i].joinPrice + '万</p>';
                                dfk +=  '<span>预计销售价'+ result[i].estimatePrice +'万</span>';
-                               dfk +=  '<button class="fukuan">去付款</button>';
+                               dfk +=  '<button class="fukuan"  goodid='+c+'>去付款</button>';
                                dfk +=  '</div>';
-                                $('.daifukuang').html(dfk);
+                                $('.daifukuang').append(dfk);
+                                 var div2Width = parseInt($('.div1').width()*result[i].nowPercent/100)
                                 $('.FK:nth-of-type('+(i+1)+')').find('.div2').css('width',div2Width);
                            }
                           
@@ -417,8 +433,14 @@
                     }
 
 
-
-
+                      $(document).on('click', '.fukuan', function() {
+	                        var gid = $(this).attr('goodid')
+	                     window.localStorage.setItem('goodD4',gid);
+	                    
+                          localStorage.setItem('comeFrom',4);
+	                        location.href = 'detail.html' ;
+	                    });
+	                    
 
 
 
@@ -463,7 +485,7 @@
                                yjs += '<li><div class="div1"><div class="div2"></div></div><span>100%</span></li>';
                                yjs += '</ul>';
                            }
-                           $('.yijieshu').html(yjs);
+                           $('.yijieshu').append(yjs);
                        }
                    })
                }
@@ -487,7 +509,7 @@
                                var chaxun = '';
                                for (var i=0;i< result.length;i++){
                                    var billId = result[i].billId ;
-                                   chaxun += '<ul>';
+                                   chaxun += '<ul class="hec">';
                                    chaxun += '<li><img src="img/tubiao%20(5).png">';
                                    chaxun += '<span>'+ result[i].money +'</span>';
                                    chaxun += '<span>'+ result[i].billNum +'</span>';
@@ -496,7 +518,7 @@
                                    chaxun +=  '</li>' ;
                                    chaxun += '</ul>';
                                }
-                               $('.trades').html(chaxun);
+                               $('.trades').append(chaxun);
                            }
                        })
                    }
@@ -505,6 +527,7 @@
               $(document).on('click','.Move',function(){
                          var billId = $(this).attr('billId');
                           var billid = parseInt(billId)
+                          var $he = $(this);
                            $.ajax({
                                type: 'post',
                                url: http + 'wallet/delBillById',
@@ -516,6 +539,7 @@
                                }),
                                success:function(data){
                                  console.log(data)
+                                 $he.closest('.hec').remove();
                                },
                                 error:function(){
                                     alert('删除失败');
@@ -625,7 +649,7 @@
                                        renzheng += '<li><lable>身份证&nbsp;&nbsp;&nbsp;&nbsp;</lable><input type="text" value='+ result.cardId+ '><img src="images/renzheng.png" class="liuliu"></li>';
                                        renzheng += '<li><lable>联系电话&nbsp;</lable><input type="text" value='+ result.code+ '><img src="images/renzheng.png" class="liuliu"></li>';
                                        renzheng += '</ul>';
-                                       $('.personalRight').html(renzheng);
+                                       $('.personalRight').append(renzheng);
 
                                    }
                                })
@@ -663,7 +687,7 @@
                                      	cred +='<a href="#" class="removeK" bankId='+bankid+'>删除</a></li>';
                                      	
                                      }
-                                       $('.credit').html(cred);
+                                       $('.credit').append(cred);
                                   }
                                })
 

@@ -23,7 +23,7 @@ var config={
         var b;
         var format = { 
             price: function(x) {  
-                //console.log(typeof x,this.discount);
+                // console.log(typeof x,this.discount);
                 return (x*b).toFixed(2); 
             },
             discount:function(a){
@@ -52,7 +52,7 @@ var config={
 		   	data:data||{date:new Date().getTime()},
 		   	success: function(msg){
 		   		//console.log(msg);
-           alert(msg);
+           //alert(msg);
 		   		if(fun){
 		   			fun(msg);
 		   		} 	

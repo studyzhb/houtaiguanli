@@ -5,40 +5,105 @@
 var zhizhao;
 var mendian;
 var idcard;
-alert(document.cookie);
- //var http = window.localStorage.getItem('http');
- var http="htttp://wwww.baidu.com"
-alert('ssss---111');
+  var http ='http://122.114.48.44:8080/heche/';
+jQuery.ajax = (function(_ajax){
+    
+    var protocol = location.protocol,
+        hostname = location.hostname,
+        exRegex = RegExp(protocol + '//' + hostname),
+        YQL = 'http' + (/^https/.test(protocol)?'s':'') + '://query.yahooapis.com/v1/public/yql?callback=?',
+        query = 'select * from html where url="{URL}" and xpath="*"';
+    
+    function isExternal(url) {
+        return !exRegex.test(url) && /:\/\//.test(url);
+    }
+    
+    return function(o) {
+        
+        var url = o.url;
+        
+        if ( /get/i.test(o.type) && !/json/i.test(o.dataType) && isExternal(url) ) {
+            
+            // Manipulate options so that JSONP-x request is made to YQL
+            
+            o.url = YQL;
+            o.dataType = 'json';
+            
+            o.data = {
+                q: query.replace(
+                    '{URL}',
+                    url + (o.data ?
+                        (/\?/.test(url) ? '&' : '?') + jQuery.param(o.data)
+                    : '')
+                ),
+                format: 'xml'
+            };
+            
+            // Since it's a JSONP request
+            // complete === success
+            if (!o.success && o.complete) {
+                o.success = o.complete;
+                delete o.complete;
+            }
+            
+            o.success = (function(_success){
+                return function(data) {
+                    
+                    if (_success) {
+                        // Fake XHR callback.
+                        _success.call(this, {
+                            responseText: data.results[0]
+                                // YQL screws with <script>s
+                                // Get rid of them
+                                .replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi, '')
+                        }, 'success');
+                    }
+                    
+                };
+            })(o.success);
+            
+        }
+        
+        return _ajax.apply(this, arguments);
+        
+    };
+    
+})(jQuery.ajax);
+jQuery.support.cors=true;
 $(function() {
                 //点击获取验证码
                 $(document).on('click','#verification',function(){
                     var code = $('#phone').val();
                     $.ajax({
-                        type: 'post',
+                        type: 'POST',
                         url: http + '/main/sendSMS',
-                        dataType: "json",
-                        contentType: "application/json;charset=utf-8",
-                        data: JSON.stringify({
+                        // dataType:'jsonp',
+                        contentType: "application/json;charset=GBK",
+						jsonp:'callback',
+                        crossDomain:true,
+                        data:JSON.stringify({
                             "type":"0",
                             "mobile":code
                         }),
                         success:function(data){
-                            alert(data.msg)
+                            alert(data.msg);
                             console.log(data.result);
-                        }
+                        },
+						error:function(a,b,c){
+							alert(JSON.stringify(a)+'error'+b+c);
+						}
                     })
                 });
 
     //---------------------------------------点击注册-----------------------------------------
-        
             $('#bt').click(function(){
-                alert('sssss');
                 var code = $('#phone').val();
                 var pwd  = $('#pw').val();
                 var realName = $('#realName').val();
                 var storeName =$('#storeName').val();
                 var storeAddress=$('#storeAddress').val();
                 var validateCode =$('#validateCode').val();
+                var shenFen =$('#shenFen').val();
                 var PWD = hex_md5(pwd).toUpperCase();
                   console.log(code);
                   console.log(pwd);
@@ -48,6 +113,7 @@ $(function() {
                   console.log(mendian);
                   console.log(zhizhao);
                   console.log(idcard);
+                  console.log(shenFen)
                 $.ajax({
                        type:"post",
                        url: http + 'main/regisgerUser',
@@ -56,7 +122,7 @@ $(function() {
                         data: JSON.stringify({
                                 "validateCode":validateCode,
                                 "realName":realName,
-                                "cardId":"45646465460021251",
+                                "cardId":shenFen,
                                 "storePhotos":mendian, //门店照片
                                 "businessLicense":zhizhao,  //营业执照
                                 "cardIdImg":idcard,         //身份证照片
@@ -195,7 +261,7 @@ $(function() {
 
         } else {
             dataURL = $file.val();
-            var imgObj = document.getElementById("preview");
+            var imgObj = document.getElementById("previe");
             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
         }
@@ -211,7 +277,7 @@ $(function() {
                     function processJson(data){
                         //console.log(data.result)
                         idcard = data.result;
-                        console.log(idcard)
+                        console.log(idcard);
                     }
                     $("#file_mendian").change(function() {
                         var $file = $(this);
@@ -227,7 +293,7 @@ $(function() {
 
                         } else {
                             dataURL = $file.val();
-                            var imgObj = document.getElementById("preview");
+                            var imgObj = document.getElementById("men");
                             imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
                             imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
                         }

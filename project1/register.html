@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=7;IE=EDGE">
+
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/Getclose.css"/>
 		<link rel="stylesheet" type="text/css"  href="css/universally.css" />
@@ -29,22 +31,27 @@
 						
 							<div class="text_box" style="margin-top: 32px;">
 								<label for="phone">手机号</label>
-								<input type="text" id="phone" class="user" placeholder="1555">
+								<input type="text" id="phone" class="user" placeholder="请输入手机号">
+								
 							</div>
 							<div class="text_box marginTop12">
 								<label >验证码</label>
 								<input type="text" placeholder="请输入验证码"  class="pw" id="validateCode">
+								<button id="verification" type="submit" >获取验证码</button>
 							</div>
 							<div class="text_box">
 								<label>密码</label>
-								<input type="text" placeholder="新密码" id="pw">
-								<button id="verification">获取验证码</button>
+								<input type="password" placeholder="请输入6位以上数字密码" id="pw">
+								
 							</div>
 							<div class="text_box">
 								<label >姓名</label>
 								<input type="text" placeholder="联系人姓名" id="realName">
 							</div>
-						
+							<div class='text_box'>
+								<label>身份证号</label>
+								<input type='text' placeholder="请输入身份证号码" id='shenFen' />
+							</div>
 						   <div class="text_box">
 								<label >车商名称</label>
 								<input type="text" placeholder="" id="storeName" >
@@ -54,11 +61,11 @@
 								<label>门店地址</label>
 								<input type="text" placeholder="" id="storeAddress" >
 							</div>
-
+							
 
 							<div class="uploading">
 								<span>门店照片</span>
-								<span><a href="#">点击上传</a></span>
+								
 								<div class="File">
 
 									<form action="" method="post" enctype="multipart/form-data" name="myform" id="postFormone">
@@ -66,7 +73,7 @@
 										<input type="file" name="filename" value="" id="file_mendian">
 										<div class="image_container">
 											<img id="men" width="500" height="250" style="border: none">
-											<input type="submit"  value="提交">
+											<input type="submit"  value="上传">
 										</div>
 									</form>
 								</div>
@@ -76,28 +83,28 @@
 
 							<div class="uploading">
 								<span>营业执照</span>
-								<span><a href="#">点击上传</a></span>
+								
 								<div class="File">
 									<form action="" method="post" enctype="multipart/form-data" name="myform" id="postForm">
 										<input type="file" name="filename" value="" id="file_upload">
 										<div class="image_container">
 											<img id="preview" width="500" height="250" style="border: none">
 										</div>
-										<input type="submit"  value="提交">
+										<input type="submit"  value="上传">
 									</form>
 								</div>
 							</div>
 
 						     <div class="uploading">
 								<span>身份证</span>
-								<span><a href="#">点击上传</a></span>
+								
 								 <div class="File">
 								 <form action="" method="post" enctype="multipart/form-data" name="myform" id="postFormthree">
 
 									 <input type="file" name="filename" value="" id="file_idcard">
 									 <div class="image_container">
 										 <img id="previe" width="500" height="250" style="border: none">
-										 <input type="submit"  value="提交">
+										 <input type="submit"  value="上传">
 									 </div>
 								 </form>
 									 </div>
@@ -115,7 +122,7 @@
 		
 		
 		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
-	    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+	    
 	    <script type="text/javascript" src="js/MD5.js"></script>
         <script type="text/javascript" src="js/jquery-form.js"></script>
 		<script type="text/javascript" src="js/register.js"></script>

@@ -12,6 +12,11 @@ a {
   cursor: pointer;
 }
 
+button{
+	 border: none;
+	 outline: none;
+	 cursor: pointer;
+}
 ul {
   list-style: none;
 }
@@ -20,9 +25,7 @@ dl{
 }
 body {
   font: 12px/1.5 '微软雅黑';
-
 }
-
 
 .sider{
 	position: fixed;
@@ -30,7 +33,7 @@ body {
 	right: 0px;
 	height: 208px;
   display: none;
-
+	z-index:10;
 }
 .right_box{
 	height: 50px;
@@ -55,7 +58,6 @@ body {
 }
 
 .tipBox{
-	
 	display: block;
 	height: 50px;
 	width: 110px;
@@ -69,26 +71,24 @@ body {
 	color: white;
 	text-indent:5px;
 	border-radius:5px;
-
-
 }
 
 
 
 .Searchbar{
 	  width: 100%;
-	  height: 164px;
+	  height: 140px;
 	  background: white!important;
 }
 .Search{
 	   width: 1190px;
-	   height: 164px;
+	   height: 140px;
 	   margin: 0 auto;
 	   background: white;
 }
 
 .SearchL{
-	 height: 164px;
+	 height: 140px;
 	width: 550px;
 	float: left;
 }
@@ -97,6 +97,8 @@ body {
 	  display: block;
 	  float: left;
 	  margin-top: 30px;
+	  height: 80px;
+	  width: 300px;
 	
 
 }
@@ -108,7 +110,7 @@ body {
 	 width: 100px;
 	 border: 1px #E4E4E4 solid;
 	 border-radius: 5px;
-	 margin-top:63px;
+	 margin-top:50px;
 	 font-size: 18px;
 	 color: #5c5c5c;
 	 text-align: center;
@@ -117,14 +119,14 @@ body {
 	 
 }
 .SearchR {
-	   height: 164px;
+	   height: 140px;
 	   width: 600px;
 	   float: right;
 }
 
 
 .SearchR .Sch{
-	margin-top: 63px;
+	margin-top: 50px;
   width: 336px;
   height: 42px;
   background: #fff;
@@ -139,7 +141,6 @@ body {
  	     float: left;
  	     margin: 10px;
  	     margin-left: 14px;
- 	
  }
 
 .SearchR .Sch input{
@@ -168,7 +169,7 @@ body {
 
 .phone{
 	float: right;
-	margin-top:63px;
+	margin-top:50px;
 	width: 220px;
 
 }
@@ -242,6 +243,9 @@ body {
     margin-top: 10px;
 	height: 39px;
 	width: 39px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
 }
 
 .nav .ulR  li a{
@@ -446,8 +450,14 @@ body {
 #city{
 	  border: none;
 	  outline: none;	
+	  appearance:none;  
+  -moz-appearance:none;  
+  -webkit-appearance:none;  
 }
 #xl{
 	 border: none;
 	 outline: none;	
+	   appearance:none;  
+  -moz-appearance:none;  
+  -webkit-appearance:none;  
 }

@@ -559,10 +559,11 @@
 
 
   .else .elseT{
+  	padding-top:50px;
        height: 50px;
        width: 1190px;
        border-bottom:1px solid gainsboro;
-
+	
 
 
  }

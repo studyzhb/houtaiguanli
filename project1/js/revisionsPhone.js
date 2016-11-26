@@ -2,8 +2,7 @@
  * Created by Administrator on 2016/11/15.
  */
 
-          var userNumber = localStorage.getItem('userNumber');
-
+          var http ='http://122.114.48.44:8080/heche/';
              $(document).on('click','#verification',function(){
                  var  mobile = $('#phone').val()
                  $.ajax({
@@ -21,7 +20,6 @@
                      }
                  })
              })
-
 
              $('#tijiao').click(function(){
 
@@ -41,8 +39,6 @@
                          success:function(data){
                              alert(data.msg)
                          }
-
-
                   })
 
              })

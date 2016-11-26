@@ -30,7 +30,7 @@
                 	console.log(data)
                     console.log(data.result.good);
                     goods = data.result.good;
-                    /*var dingJin=null;
+                    var dingJin=null;
 					var ndj = parseInt(dJ1);
 					if(ndj<50){
 						dingJin=3000;
@@ -39,7 +39,7 @@
 					}else{
 						dingJin=5000;
 					}
-					console.log(ndj)*/
+					console.log(ndj)
 					newStr=goods.nowPercent;
                     $('.boxcar').html('');
                     var detailq= '';
@@ -56,42 +56,35 @@
                     detailq +=  goods.goodName
                     detailq +='</li>';
                     detailq += '<li>';
-                    detailq +='<span>'+goods.purchasedDataYear + '/'+ goods.runKilometer+'万公里</span>';
+                    detailq +='<span>'+goods.purchasedDataYear +'年'+ '/'+ goods.runKilometer+'万公里</span>';
                     detailq += '</li>';
                     detailq += '<li><div class="div1"><div class="div2"></div></div><span>' + goods.nowPercent+'%</span></li>';
                     detailq += '<li>' +"合车价" + dJ1 + "万"+ '</li>';
                     detailq +=  '</div>';
                     detailq +='<div class="xuanzhe">';
-                    detailq +='<select class="jiaoyi " id="ct" onchange="yinCard()">';
-                    detailq +='<option class="dingjiao" value="0"><span >￥'+goods.depositMoney+'万</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>定金交易</span></option>';
+                    detailq +='<select class="jiaoyi " id="ct" onchange="yinCard(this)">';
+                    detailq +='<option class="dingjiao" value="0"><span >￥'+dingJin+'</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>定金交易</span></option>';
                     detailq +='<option class="quanjiao" value="1"><span>￥'+dJ1+'万</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>全款交易</span></option>';
                     detailq +='</select>';
                     detailq +='</div>'
                     $('.boxcar').html(detailq);
                     div3Width = parseInt($('.div1').width()*goods.nowPercent/100)
                     $('.div2').css("width", div3Width);
-                    
+                   // cookieUtil.removeCookie('dinJin');
+                    cookieUtil.setCookie('dinJin',dingJin);
                 }
 
             });
         }
            Purchase();
-    		//定金交易全款交易   
-        	//var newStr='';
-            var type=0;
-             //newStr =$('#ct').find('option:selected').val();
-            // console.log(newStr)
-           function yinCard(){
+    		
+            var type=0;            
+           function yinCard(object){
            	
-           	  chText = $('#ct').find('option:selected').val(function(){
-           	  	type=this.value;          	            	  	
-           	  });  
-           	  
-//         	  alert(chText)
-        	//var cc=  window.sessionStorage.setItem('chText',chText);       	  
-               //alert(chText);
-               
-             newStr =$('#ct').find('option:selected').val();
+           	type = object.value;
+
+//         	  	console.log(type);
+
              
            }
            
@@ -105,10 +98,12 @@
 	                    
 //------------------------------------------------显示隐藏点击支付之后的那些页面-----------------------------------------------------------------------
            $('#iscar').click(function(){
+           	var dinJin=cookieUtil.getCookie('dinJin')
+            console.log(dinJin)
            	if(type==0){
-           	  	needpaynum=goods.depositMoney;
+           	  	needpaynum='￥'+dinJin;
            	  }else{
-           	  	needpaynum = dJ1;
+           	  	needpaynum ='￥' +dJ1+'万';
            	  }
            		 muan();
            		 
@@ -148,7 +143,7 @@
             //console.log(chText)
           	$('.fu').html('');
           	var mu ='';          	
-          	 mu +='<b id="yi">'+ needpaynum+'万<b>';
+          	 mu +='<b id="yi">'+ needpaynum+'<b>';
           	$('.fu').html(mu);
           }
        
@@ -190,6 +185,7 @@
           	   cu +='<b>'+ f+'万<b>';
           	   $('.haixu').html(cu);
           	   
+   
        $(document).on('click', '#qdzf', function() {
    	                 var payPwd = $('#Zzx').val();
    	                 var PWD = hex_md5(payPwd).toUpperCase();
@@ -206,15 +202,44 @@
 		                        "userNumber":userNumber,
 								"type":parseInt(type),  //0定金 /1 全款  /2尾款
 								"goodId":parseInt(goodID),  //车辆id
-								"buyCount":10, //购买份数
+								"buyCount":parseInt(sessionStorage.getItem('value')), //购买份数
 								"location":1,      //下单来源 0 APP/1 PC
 								"payStyle":3,      //付款方式：0银联 /1支付宝 /2微信 /3余额
 								"payPwd":PWD//用户支付密码
 		                     }),
 		                     success:function(data){
 		                     	console.log(data)
+		                     	alert(data.msg);
+		                      if(data.msg=="下单成功"){
+		                      window.location.href='personal.html';
+		                      localStorage.setItem('come',true);
+		                     		
+		                     	}
 		                     	
 		                     }
    	
    	          })
       })
+       
+var cookieUtil = {
+				setCookie: function(name,value,iDate){
+					//console.log('1')
+					var date = new Date();
+					date.setDate(date.getDate()+iDate);
+					document.cookie = name + "=" + value + ";expires=" + date;
+				},
+				getCookie: function(name){
+					var str = document.cookie;
+					var arr = str.split("; ");
+					for(var i = 0; i < arr.length; i++){
+						var arr1 = arr[i].split("=");
+						if(arr1[0]==name){
+							return arr1[1];
+						}
+					}
+					return "";
+				},
+				removeCookie:function(name){
+					this.setCookie(name,1,-1);
+				}
+			};

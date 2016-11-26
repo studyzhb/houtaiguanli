@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/11/15.
  */
-                  var http = window.localStorage.getItem('http');
+                 var http ='http://122.114.48.44:8080/heche/';
             //点击获取验证码
                 $(document).on('click','#verification',function(){
                     var code = $('#phone').val();

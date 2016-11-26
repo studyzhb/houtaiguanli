@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script type="text/javascript" src="jquery-1.11.0.js"></script>
+	<style>
+		.show{
+			min-height: 300px;
+			width:100%;
+			height: auto;
+			border:1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+	<form method="" action="">
+		<div class="form-group">
+			<label for="">请求方式</label>
+			<select name="" id="method">
+				<option value="get">get</option>
+				<option value="post">post</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="">data</label>
+			<input type="text" class="form-control" id="data" name="" value="" placeholder="data,json格式">
+			
+		</div>
+		<div>
+			<label for="">url</label>
+			<input type="text" name="" value="" placeholder="url" class="form-control" id="url">
+		</div>
+		<br>
+		<div class="form-group">
+			<input type="button" name="" value="测试数据" class="btn btn-primary form-control" id="show1">
+		</div>
+	</form>
+
+	<div class="show">
+		
+	</div>
+
+	</div>
+	<script>
+	$(function(){
+
+		$('#show1').on('click',function(){
+			console.log($('#url').val(),$('#method').val());
+
+			$.ajax({
+				url:$('#url').val(),
+				data:$('#data').val()||{},
+				type:$('#method').val(),
+				success:function(data){
+					console.log(data);
+					$('.show').html(JSON.stringify(data));
+				},
+				error:function(a){
+					$('.show').html(JS0N.stringify(a));
+				}
+			})
+		});
+		
+	})
+	</script>
+</body>
+</html>

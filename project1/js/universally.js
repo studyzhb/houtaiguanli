@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2016/11/7.
  */
-            var dizhi = 'http://122.114.48.44:8080';
-            var http = window.localStorage.getItem('http');
+            var dizhi = 'http://122.114.48.44:8080/';
+            var http ='http://122.114.48.44:8080/heche/';
 $('.ulR').mouseenter( function () {
 
     $('#username').show().animate({
@@ -23,6 +23,8 @@ $('#qiehuan').on('click','#qiehuan li',function(){
         location.href = "wantcar.html";
     }
 })
+
+
 //----------------------------------------搜索期数跳转到合车列表页-----------------------------------------------------
                      $('#youSearch').click(function(){
                        var periods = $('#mySearch').val();
@@ -74,39 +76,38 @@ $('.sider').on('mouseleave', '.right_box', function () {
     })
 })
 //------------------------------------------------侧边栏的各区域跳转-------------------------------------------------------
-//        $('.tipBox').eq(0).click(function(){
-//        	
-//        	  window.location.href="login.html";
-//        	  alert(1)
-//        
-//        })
-//
-//        $('.tipBox').eq(1).click(function(){
-//        	  window.location.href="personal.html";
-//            sessionStorage.setItem('ifClick',true);
-//              alert(1)
-//        })
-//
-//         $('.tipBox').eq(2).click(function(){
-//        	
-//        	  window.location.href="personal.html";
-//              sessionStorage.setItem('ifClick',true); 
-//                alert(1)
-//        })
-//
-//         $('.tipBox').eq(3).click(function(){
-//        	
-//        	  window.location.href="personal.html";
-//             sessionStorage.setItem('ifClick',true);
-//               alert(1)
-//        })
+        $('.tipBox').eq(0).click(function(){
+
+        	  window.location.href="login.html";
+        	  location.href='login.html';
+         
+        })
+
+        $('.tipBox').eq(1).click(function(){
+        	  window.location.href="personal.html";
+            sessionStorage.setItem('ifC',true);
+              //alert(1)
+        })
+
+         $('.tipBox').eq(2).click(function(){
+
+        	  window.location.href="personal.html";
+              sessionStorage.setItem('ifCl',true);
+                //alert(1)
+        })
+
+         $('.tipBox').eq(3).click(function(){
+
+        	  window.location.href="personal.html";
+             sessionStorage.setItem('ifCli',true);
+               //alert(1)
+        })
 
 
 
 //------------------------------------用户头像----------------------------------------------------
 function user (){
     var headImg = localStorage.getItem('headImg');
-    
     var nickname = localStorage.getItem('nickname');
     //console.log(nickname);
     //console.log(headImg);
@@ -140,6 +141,7 @@ user ();
              
  //城市市区的选择
 				  var userNumber = localStorage.getItem('userNumber');
+                  console.log(userNumber);
 				/*调取市区  */
 				     $(function(){ 
 				     	var shuju=[];
@@ -152,8 +154,8 @@ user ();
 				                   "userNumber":userNumber                  
 				                 }),
 				     		success:function(data){
-				//   			console.log(data)  
-				//   			console.log(data.result[0].name)
+				  			console.log(data);  
+				  			//console.log(data.result[0].name);
 							var str='';
 				   			var mocity=sessionStorage.getItem('mocityName')
 				   			var city = document.getElementById('city');
@@ -172,7 +174,47 @@ user ();
 				     			}     				
 				     		}    	
 				     	})     
-				     })    
-				    maicar(cityName);
-                    tomorrow(cityName);
-                    pastcar(cityName)
+				     })   
+
+
+                    
+                     function gradeChange(obj) {
+                        if(obj){
+                           var cityName=$(obj).val();
+                            sessionStorage.setItem('mocityName',cityName);
+                        }
+                        // console.log(cityName);
+                        // maicar(cityName);
+                        // tomorrow(cityName);
+                        // pastcar(cityName);
+                        location.reload();
+                    } 
+				    // maicar(cityName);
+        //             tomorrow(cityName);
+        //             pastcar(cityName)
+                    
+//
+//          window.onload =function(){
+//	          var cookieUtil = {
+//				setCookie: function(name,value,iDate){
+//					//console.log('1')
+//					var date = new Date();
+//					date.setDate(date.getDate()+iDate);
+//					document.cookie = name + "=" + value + ";expires=" + date;
+//				},
+//				getCookie: function(name){
+//					var str = document.cookie;
+//					var arr = str.split("; ");
+//					for(var i = 0; i < arr.length; i++){
+//						var arr1 = arr[i].split("=");
+//						if(arr1[0]==name){
+//							return arr1[1];
+//						}
+//					}
+//					return "";
+//				},
+//				removeCookie:function(name){
+//					this.setCookie(name,1,-1);
+//				}
+//			}
+//       })
