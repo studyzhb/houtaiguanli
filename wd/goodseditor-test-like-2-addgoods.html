@@ -14,10 +14,11 @@
 	<link rel="stylesheet" type="text/css" href="./css/account.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
-    <link rel="stylesheet" href="./iconfont/iconfont.css">
-    <link rel="stylesheet" href="./css/content-input-list.css">
-    <link rel="stylesheet" href="./css/goods-add-split.css">
-    <link rel="stylesheet" href="./css/seller_center.css">
+  <link rel="stylesheet" href="./iconfont/iconfont.css">
+  <link rel="stylesheet" href="./css/content-input-list.css">
+  <link rel="stylesheet" href="./css/goods-add-split.css">
+  <link rel="stylesheet" href="./css/seller_center.css">
+  <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
@@ -796,204 +797,59 @@
         </dd>
       </dl>
             <dl>
-        <dt>商品描述：</dt>
+        <dt>一品多码：</dt>
         <dd id="ncProductDetails">
-          <div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
-            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" jquery1239647486215="2">
-              <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="http://www.osucn.com/shop/index.php?act=store_goods_add&amp;op=add_step_two&amp;class_id=362&amp;t_id=38#panel-1" jquery1239647486215="8"><i class="icon-desktop"></i> 电脑端</a></li>
-              <li class="selected ui-state-default ui-corner-top"><a href="http://www.osucn.com/shop/index.php?act=store_goods_add&amp;op=add_step_two&amp;class_id=362&amp;t_id=38#panel-2" jquery1239647486215="9"><i class="icon-mobile-phone"></i>手机端</a></li>
-            </ul>
-            <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" jquery1239647486215="4">
-              <script id="container" name="content" type="text/plain" style="height:300px">
-                                              这里写你的初始化内容
-              </script>
-<script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
-  <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script>
-<script>
-  var ue = UE.getEditor('container', {
-        		autoHeight: false,
-                toolbars: [
-                    ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                    
-                ],
-                autoHeightEnabled: true,
-                autoFloatEnabled: true
-            }).setHeight(300);
-
-         var ue1=UE.getEditor('container1', {
-                toolbars: [
-                    ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                   
-                ],
-                autoHeightEnabled: true,
-                autoFloatEnabled: true
-            });
-
-         $('.content-tab-ul-wrap ul li').on('click',function(){
+          <div class="dataTables_wrapper" style="border-bottom:1px solid #666">
+        <table class="dataTable cell-border">
+            <thead>
+                <tr>
+                    <th class="dt-center" colspan="2"><a href="#">一码多品（点击显示列表）</a></th>
+                    <th class="dt-center" colspan="2"><a href="#">一品多码（点击显示列表）</a></th>
+                    <th class="dt-center" >
+                        <a href="#" class="addmore-goods-name">增加</a>
+                        <a href="#" onclick="deleteChecked()">删除</a>
+                    </th>
+                </tr>
                 
-                $(this).find('a').addClass('selected').end().siblings().find('a').removeClass();
-                if($(this).data('info')=='base'){
+                <tr>
+                    <th class="dt-center" width='10%'><input class="checkall" type="checkbox" name="checkList"></th>
+                    <th class="dt-center">商品名称</th>
+                    <th class="dt-center">条形码</th>
+                    <th class="dt-center">国际条形码</th>
+                    <th class="dt-center">备注</th>
+                </tr>            
+            </thead>
+            <tbody id="goodsAddmore">
+                <tr>
+                    <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
+                    <td class="dt-center"><input type="text" name="" value=""></td>
+                    <td class="dt-center"><input type="text" name="" value=""></td>
+                    <td class="dt-center"><input type="text" name="" value=""></td>
+                    <td class="dt-center"><input type="text" name="" value=""></td>
+                </tr>
+                <tr>
+                    <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
+                    <td class="dt-center">万店联盟</td>
+                    <td class="dt-center">万店联盟</td>
+                    <td class="dt-center">万店联盟</td>
+                    <td class="dt-center">万店联盟</td>
+                </tr>
+                
+ 
+            </tbody>
+            <tfoot>
 
-                    $('.base').css('display','block');
-                    $('.detail').css('display','none');
-                }else{
-                    $('.base').css('display','none');
-                    $('.detail').css('display','block');
-                }
-            })
-         // console.log($('.image-content'));
-
-         $('.image-content').on('change',function(e){
-            //console.log(e.target.files);
-            var file=e.target.files[0];
-            var reader=new FileReader();
-            var self=this;
-            reader.onload=function(e){
-                console.log(e.target.result);
-                 $('<img src='+e.target.result+' />').appendTo($(self).parent());
-            }
+            </tfoot>
+        </table>
+        
+    </div>
             
-            reader.readAsDataURL(file);
-           
-         });
-</script>
-                <div class="hr8">
-                <div class="ncsc-upload-btn"> <a href="javascript:void(0);"><span>
-                  <input type="file" hidefocus="true" size="1" class="input-file" name="add_album" id="add_album" multiple="multiple">
-                  </span>
-                  <p><i class="icon-upload-alt" data_type="0" nctype="add_album_i"></i>图片上传</p>
-                  </a> </div>
-                <a class="ncsc-btn mt5" nctype="show_desc" href="http://www.osucn.com/shop/index.php?act=store_album&amp;op=pic_list&amp;item=des"><i class="icon-picture"></i>插入相册图片</a> <a href="javascript:void(0);" nctype="del_desc" class="ncsc-btn mt5" style="display: none;"><i class=" icon-circle-arrow-up"></i>关闭相册</a> </div>
-              <p id="des_demo"></p>
-            </div>
-            <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" jquery1239647486215="5">
-              <div class="ncsc-mobile-editor">
-                <div class="pannel">
-                  <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>20</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>5000</em>字</span></div>
-                  <div class="control-panel" nctype="mobile_pannel">
-                                      </div>
-                  <div class="add-btn">
-                    <ul class="btn-wrap">
-                      <li><a href="javascript:void(0);" nctype="mb_add_img"><i class="icon-picture"></i>
-                        <p>图片</p>
-                        </a></li>
-                      <li><a href="javascript:void(0);" nctype="mb_add_txt"><i class="icon-font"></i>
-                        <p>文字</p>
-                        </a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="explain">
-                  <dl>
-                    <dt>1、基本要求：</dt>
-                    <dd>（1）手机详情总体大小：图片+文字，图片不超过20张，文字不超过5000字；</dd>
-                    <dd>建议：所有图片都是本宝贝相关的图片。</dd>
-                  </dl><dl>
-                    <dt>2、图片大小要求：</dt>
-                    <dd>（1）建议使用宽度480 ~ 620像素、高度小于等于960像素的图片；</dd>
-                    <dd>（2）格式为：JPG\JEPG\GIF\PNG；</dd>
-                    <dd>举例：可以上传一张宽度为480，高度为960像素，格式为JPG的图片。</dd>
-                  </dl><dl>
-                    <dt>3、文字要求：</dt>
-                    <dd>（1）每次插入文字不能超过500个字，标点、特殊字符按照一个字计算；</dd>
-                    <dd>建议：不要添加太多的文字，这样看起来更清晰。</dd>
-                  </dl>
-                </div>
-              </div>
-              <div class="ncsc-mobile-edit-area" nctype="mobile_editor_area">
-                <div nctype="mea_img" class="ncsc-mea-img" style="display: none;"></div>
-                <div class="ncsc-mea-text" nctype="mea_txt" style="display: none;">
-                  <p id="meat_content_count" class="text-tip"></p>
-                  <textarea class="textarea valid" nctype="meat_content"></textarea>
-                  <div class="button"><a class="ncsc-btn ncsc-btn-blue" nctype="meat_submit" href="javascript:void(0);">确认</a><a class="ncsc-btn ml10" nctype="meat_cancel" href="javascript:void(0);">取消</a></div>
-                  <a class="text-close" nctype="meat_cancel" href="javascript:void(0);">X</a>
-                </div>
-              </div>
-              <input name="m_body" autocomplete="off" type="hidden" value="">
-            </div>
-          </div>
         </dd>
       </dl>
-      <dl>
-        <dt>关联版式：</dt>
-        <dd> <span class="mr50">
-          <label>顶部版式</label>
-          <select name="plate_top">
-            <option>请选择</option>
-                      </select>
-          </span> <span class="mr50">
-          <label>底部版式</label>
-          <select name="plate_bottom">
-            <option>请选择</option>
-                      </select>
-          </span> </dd>
-      </dl>
-      <h3 id="demo3">特殊商品</h3>
-      <!-- 只有可发布虚拟商品才会显示 S -->
-            <!-- 只有可发布虚拟商品才会显示 E --> 
-      <!-- F码商品专有项 S -->
-      <dl class="special-02" nctype="virtual_null">
-        <dt>F码商品：</dt>
-        <dd>
-          <ul class="ncsc-form-radio-list">
-            <li>
-              <input type="radio" name="is_fc" id="is_fc_1" value="1">
-              <label for="is_fc_1">是</label>
-            </li>
-            <li>
-              <input type="radio" name="is_fc" id="is_fc_0" value="0" checked="">
-              <label for="is_fc_0">否</label>
-            </li>
-          </ul>
-          <p class="hint vital">*F码商品不能参加抢购、限时折扣和组合销售三种促销活动。也不能预售和推荐搭配。</p>
-        </dd>
-      </dl>
-      <dl class="special-02" nctype="fcode_valid" style="display:none;">
-        <dt>
-                    <i class="required">*</i>
-                    生成F码数量：</dt>
-        <dd>
-          <input type="text" name="g_fccount" id="g_fccount" class="w80 text" value="">
-          <span></span>
-          <p class="hint">请填写100以内的数字。编辑商品时添加F码会不计算原有F码数量继续生成相应数量。</p>
-        </dd>
-      </dl>
-      <dl class="special-02" nctype="fcode_valid" style="display:none;">
-        <dt>
-                    <i class="required">*</i>
-                    F码前缀：</dt>
-        <dd>
-          <input type="text" name="g_fcprefix" id="g_fcprefix" class="w80 text" value="">
-          <span></span>
-          <p class="hint">请填写3~5位的英文字母。建议每次生成的F码使用不同的前缀。</p>
-        </dd>
-      </dl>
-            <!-- F码商品专有项 E --> 
-      <!-- 预售商品 S -->
-      <dl class="special-03" nctype="virtual_null">
-        <dt>预售：</dt>
-        <dd>
-          <ul class="ncsc-form-radio-list">
-            <li>
-              <input type="radio" name="is_presell" id="is_presell_1" value="1">
-              <label for="is_presell_1">是</label>
-            </li>
-            <li>
-              <input type="radio" name="is_presell" id="is_presell_0" value="0" checked="">
-              <label for="is_presell_0">否</label>
-            </li>
-          </ul>
-          <p class="hint vital">*预售商品不能参加抢购、限时折扣和组合销售三种促销活动。也不能推荐搭配。</p>
-        </dd>
-      </dl>
-      <dl class="special-03" nctype="is_presell" style="display:none;">
-        <dt><i class="required">*</i>发货日期：</dt>
-        <dd>
-          <input type="text" name="g_deliverdate" id="g_deliverdate" class="w80 text hasDatepicker" value="" readonly="readonly"><em class="add-on"><i class="icon-calendar"></i></em>
-          <span></span>
-          <p class="hint">商家发货时间。</p>
-        </dd>
-      </dl>
+      
+
+
+      
       <!-- 预售商品 E --> 
       <!-- 商品物流信息 S -->
       <h3 id="demo4">商品物流信息</h3>
@@ -1067,56 +923,7 @@
                 <input name="g_state" value="1" type="radio" checked="checked">
                 立即发布 </label>
             </li>
-            <!--<li>
-              <label>
-                <input name="g_state" value="0" type="radio" nctype="auto">
-                发布时间 </label>
-              <input type="text" class="w80 text hasDatepicker" name="starttime" disabled="disabled" style="background:#E7E7E7 none;" id="starttime" value="2016-11-26" readonly="readonly">
-              <select disabled="disabled" style="background:#E7E7E7 none;" name="starttime_H" id="starttime_H">
-                                <option value="00">00</option>
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                                <option value="07">07</option>
-                                <option value="08">08</option>
-                                <option value="09">09</option>
-                                <option value="10">10</option>
-                                <option value="11" selected="selected">11</option>
-                                <option value="12" selected="selected">12</option>
-                                <option value="13" selected="selected">13</option>
-                                <option value="14" selected="selected">14</option>
-                                <option value="15" selected="selected">15</option>
-                                <option value="16" selected="selected">16</option>
-                                <option value="17" selected="selected">17</option>
-                                <option value="18" selected="selected">18</option>
-                                <option value="19" selected="selected">19</option>
-                                <option value="20" selected="selected">20</option>
-                                <option value="21" selected="selected">21</option>
-                                <option value="22" selected="selected">22</option>
-                                <option value="23" selected="selected">23</option>
-                              </select>
-              时              <select disabled="disabled" style="background:#E7E7E7 none;" name="starttime_i" id="starttime_i">
-                                <option value="05" selected="selected">05</option>
-                                <option value="10" selected="selected">10</option>
-                                <option value="15" selected="selected">15</option>
-                                <option value="20" selected="selected">20</option>
-                                <option value="25" selected="selected">25</option>
-                                <option value="30" selected="selected">30</option>
-                                <option value="35" selected="selected">35</option>
-                                <option value="40" selected="selected">40</option>
-                                <option value="45" selected="selected">45</option>
-                                <option value="50" selected="selected">50</option>
-                                <option value="55" selected="selected">55</option>
-                              </select>
-              分 </li>
-            <li>
-              <label>
-                <input name="g_state" value="0" type="radio">
-                放入仓库 </label>
-            </li>-->
+            
           </ul>
         </dd>
       </dl>
@@ -1190,156 +997,41 @@
 				</div>
 			</div>
 		</div>
-        <!--<script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
-        <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script>-->
 
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-    /*
-        'anchor', //锚点
-        'undo', //撤销
-        'redo', //重做
-        'bold', //加粗
-        'indent', //首行缩进
-        'snapscreen', //截图
-        'italic', //斜体
-        'underline', //下划线
-        'strikethrough', //删除线
-        'subscript', //下标
-        'fontborder', //字符边框
-        'superscript', //上标
-        'formatmatch', //格式刷
-        'source', //源代码
-        'blockquote', //引用
-        'pasteplain', //纯文本粘贴模式
-        'selectall', //全选
-        'print', //打印
-        'preview', //预览
-        'horizontal', //分隔线
-        'removeformat', //清除格式
-        'time', //时间
-        'date', //日期
-        'unlink', //取消链接
-        'insertrow', //前插入行
-        'insertcol', //前插入列
-        'mergeright', //右合并单元格
-        'mergedown', //下合并单元格
-        'deleterow', //删除行
-        'deletecol', //删除列
-        'splittorows', //拆分成行
-        'splittocols', //拆分成列
-        'splittocells', //完全拆分单元格
-        'deletecaption', //删除表格标题
-        'inserttitle', //插入标题
-        'mergecells', //合并多个单元格
-        'deletetable', //删除表格
-        'cleardoc', //清空文档
-        'insertparagraphbeforetable', //"表格前插入行"
-        'insertcode', //代码语言
-        'fontfamily', //字体
-        'fontsize', //字号
-        'paragraph', //段落格式
-        'simpleupload', //单图上传
-        'insertimage', //多图上传
-        'edittable', //表格属性
-        'edittd', //单元格属性
-        'link', //超链接
-        'emotion', //表情
-        'spechars', //特殊字符
-        'searchreplace', //查询替换
-        'map', //Baidu地图
-        'gmap', //Google地图
-        'insertvideo', //视频
-        'help', //帮助
-        'justifyleft', //居左对齐
-        'justifyright', //居右对齐
-        'justifycenter', //居中对齐
-        'justifyjustify', //两端对齐
-        'forecolor', //字体颜色
-        'backcolor', //背景色
-        'insertorderedlist', //有序列表
-        'insertunorderedlist', //无序列表
-        'fullscreen', //全屏
-        'directionalityltr', //从左向右输入
-        'directionalityrtl', //从右向左输入
-        'rowspacingtop', //段前距
-        'rowspacingbottom', //段后距
-        'pagebreak', //分页
-        'insertframe', //插入Iframe
-        'imagenone', //默认
-        'imageleft', //左浮动
-        'imageright', //右浮动
-        'attachment', //附件
-        'imagecenter', //居中
-        'wordimage', //图片转存
-        'lineheight', //行间距
-        'edittip ', //编辑提示
-        'customstyle', //自定义标题
-        'autotypeset', //自动排版
-        'webapp', //百度应用
-        'touppercase', //字母大写
-        'tolowercase', //字母小写
-        'background', //背景
-        'template', //模板
-        'scrawl', //涂鸦
-        'music', //音乐
-        'inserttable', //插入表格
-        'drafts', // 从草稿箱加载
-        'charts', // 图表
-        */
+  <script type="text/template">
+            <tr>
+                <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
+                <td class="dt-center">万店联盟</td>
+                <td class="dt-center">万店联盟</td>
+                <td class="dt-center">万店联盟</td>
+                <td class="dt-center">万店联盟</td>
+            </tr>
+        </script>
 
-        // var ue = UE.getEditor('container',{
-        // 		autoHeight: false,
-        //         toolbars: [
-        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                    
-        //         ],
-        //         autoHeightEnabled: true,
-        //         autoFloatEnabled: true
-        //     }).setHeight(300);
-
-        //  var ue1=UE.getEditor('container1', {
-        //         toolbars: [
-        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                   
-        //         ],
-        //         autoHeightEnabled: true,
-        //         autoFloatEnabled: true
-        //     });
-
-        //  $('.content-tab-ul-wrap ul li').on('click',function(){
-                
-        //         $(this).find('a').addClass('selected').end().siblings().find('a').removeClass();
-        //         if($(this).data('info')=='base'){
-
-        //             $('.base').css('display','block');
-        //             $('.detail').css('display','none');
-        //         }else{
-        //             $('.base').css('display','none');
-        //             $('.detail').css('display','block');
-        //         }
-        //     })
-        //  // console.log($('.image-content'));
-
-        //  $('.image-content').on('change',function(e){
-        //     //console.log(e.target.files);
-        //     var file=e.target.files[0];
-        //     var reader=new FileReader();
-        //     var self=this;
-        //     reader.onload=function(e){
-        //         console.log(e.target.result);
-        //          $('<img src='+e.target.result+' />').appendTo($(self).parent());
-        //     }
-            
-        //     reader.readAsDataURL(file);
-           
-        //  });
-        
-    </script>
-		
-	
 
 </body>
 
+<script>
+    $('.checkall').on('click',function() {
+        $('.ischecked').attr('checked',!!$(this).attr('checked'));
+    });
 
+    $('#goodsAddmore').on('click','.ischecked',function(){
+        var ischecked=true;
+        $('.ischecked').each(function(){
+            if(!$(this).attr('checked')){
+                ischecked=false;
+            }
+        })
+        $('.checkall').attr('checked',ischecked);
+    });
+
+    function deleteChecked(){
+        $('.ischecked').each(function(){
+            if(!!$(this).attr('checked')){
+                $(this).parents('tr').remove();
+            }
+        })
+    }
+</script>
 </html>

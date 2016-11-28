@@ -100,6 +100,7 @@ $(function(){
             $(this).parent(".sidebar-nav").addClass('expand-menu');
 
         } else {
+
             $(this).next().slideUp(200);
             $(this).parent(".sidebar-nav").removeClass('expand-menu');
         }
@@ -150,7 +151,14 @@ $(function(){
         }else{
             $(this).nextAll().css('display','none');
         } 
+    });
+
+    $('#show-content').on('click','li',function(){
+        $(this).parents('.select-items').css('display','none').next().css('display','none');
+        $(this).parents('.select-items').prev('.select-tit').find('span').text($(this).text());  
     })
+
+
 
     $('#show-content').on('click','.click-show-area',function(){
         
@@ -203,7 +211,7 @@ $(function(){
     //添加一品多码
     
     $('.addmore-goods-name').on('click',function(){
-
+        $('.checkall').attr('checked',false);
         var html=$('script[type="text/template"]').html();
         $('#goodsAddmore').append(html);
 

@@ -308,43 +308,34 @@
                                             </li>
                                         </ul>
                                         <!-- 工具分类功能 -->
-                                        <div class="menu-list">
+                                        <div class="menu-list" id="show-content">
                                             <div class="single-select">
                                                 <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>111111111</span><i></i>
+                                                    <a href="#" class="select-tit">
+                                                        <span>一级分类</span><i></i>
                                                     </a>
                                                     <div class="select-items">
-                                                        <ul>
+                                                        <ul id="first-sort">
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                    <i class="arrow"></i>
+                                                </div>
+                                                
+
+                                                <div class="boxwrap">
+                                                    <a href="#" class="select-tit">
+                                                        <span>二级分类</span><i></i>
+                                                    </a>
+                                                    <div class="select-items">
+                                                        <ul id="sub-sort">
                                                             
                                                         </ul>
                                                     </div>
                                                     <i class="arrow"></i>
                                                 </div>
 
-                                                <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>222222</span><i></i>
-                                                    </a>
-                                                    <div class="select-items">
-                                                        <ul>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                    <i class="arrow"></i>
-                                                </div>
-
-                                                <div class="boxwrap">
-                                                    <a href="" class="select-tit">
-                                                        <span>111111111</span><i></i>
-                                                    </a>
-                                                    <div class="select-items">
-                                                        <ul>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                    <i class="arrow"></i>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -651,12 +642,12 @@
                             <div class="page">
                                 <div class="page">
                                     <ul class="offcial-page margin-top margin-big-right">
-                                        <li>共<em class="margin-small-left margin-small-right">1</em>条数据</li>
-                                        <li>每页显示<em class="margin-small-left margin-small-right">15</em>条</li>
+                                        <li>共<em class="margin-small-left margin-small-right" id="detailcount">1</em>条数据</li>
+                                        <li>每页显示<em class="margin-small-left margin-small-right" >10</em>条</li>
                                         <li><a class="next disable">上一页</a></li>
-                                        <li></li>
+                                        <li id="pagewrap"></li>
                                         <li><a class="next disable">下一页</a></li>
-                                        <li><span class="fl">共<em class="margin-small-left margin-small-right">1</em>页</span></li>
+                                        <li><span class="fl">共<em class="margin-small-left margin-small-right" id="detailpage">1</em>页</span></li>
                                     </ul>
                                 </div>
                             </div>

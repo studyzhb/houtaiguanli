@@ -16,7 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
     <link rel="stylesheet" href="./iconfont/iconfont.css">
     <link rel="stylesheet" href="./css/content-input-list.css">
-
+    <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
+    
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
@@ -43,7 +44,7 @@
 					<!--have表示有消息，没有消息去掉have-->
 					</a>
 					</li>
-					<!-- 					<li class="fl topbar-info-item strong">
+					<!--<li class="fl topbar-info-item strong">
 					<div class="dropdown">
 						<a href="#" class="dropdown-toggle topbar-btn">
 						<span class="fl">工单服务</span>
@@ -480,7 +481,7 @@
                                 
                             </tbody>
                         </table>
-                        <!-- <div class="panel">
+                         <!-- <div class="panel">
                             <div class="panel-heading table-title-margin-10" style="text-align:center;">
                                 一品多码
                             </div>
@@ -520,8 +521,8 @@
                                 </div>
                                 </div>
                             </div>
-                        </div> 
-                        <table class="ltable">
+                        </div>  -->
+                        <!-- <table class="ltable">
                             <caption class="table-title-margin-10">一品多码信息</caption>
                             <tr>
                                <th width="10%">菜单</th> 
@@ -579,10 +580,66 @@
                                 <td width="10%" style="border:none"></td>
                             </tr>
                             
-                        </table>-->
+                        </table> 
                         
-                    <!-- </div> -->
-                    <div class="container-fluid">
+                    </div>-->
+                    <!-- 一品多码一码多品 -->
+                        <div class="dataTables_wrapper" style="border-bottom:1px solid #666">
+        <table class="dataTable cell-border">
+            <caption class="table-title-margin-10">一品多码信息</caption>
+            <thead>
+                <tr>
+                    <th class="dt-center" colspan="2"><a href="#">一码多品（点击显示列表）</a></th>
+                    <th class="dt-center" colspan="2"><a href="#">一品多码（点击显示列表）</a></th>
+                    <th class="dt-center" >
+                        <a href="#" class="addmore-goods-name">增加</a>
+                        <a href="#" onclick="deleteChecked()">删除</a>
+                    </th>
+                </tr>
+                
+                <tr>
+                    <th class="dt-center" width='10%'><input class="checkall" type="checkbox" name="checkList"></th>
+                    <th class="dt-center">商品名称</th>
+                    <th class="dt-center">条形码</th>
+                    <th class="dt-center">国际条形码</th>
+                    <th class="dt-center">备注</th>
+                </tr>            
+            </thead>
+            <tbody id="goodsAddmore">
+                <tr>
+                    <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
+                    <td class="dt-center"><input type="text" name="" value="" style="border:1px solid #eee;height:80%;"></td>
+                    <td class="dt-center"><input type="text" name="" value=""></td>
+                    <td class="dt-center"><input type="text" name="" value=""></td>
+                    <td class="dt-center"><input type="text" name="" value=""></td>
+                </tr>
+                <tr>
+                    <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
+                    <td class="dt-center">万店联盟</td>
+                    <td class="dt-center">万店联盟</td>
+                    <td class="dt-center">万店联盟</td>
+                    <td class="dt-center">万店联盟</td>
+                </tr>
+                
+ 
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+        <!-- <div class="dataTables_paginate">
+            <div class="paginate_button"></div>
+            <div class="paginate_button"></div>
+        </div> -->
+    </div>
+
+
+
+
+                    <!-- 分割线-------------------------------------- -->
+                    
+
+                    <!-- <div class="container-fluid">
                     <div class="row " style="font-weight:bold;text-align:center;height:34px;line-height:34px;border:1px solid #eee;">
                         <div class="col-md-2">
                             菜单
@@ -633,7 +690,7 @@
                             
                         </div>
                     </div>
-                     </div>    
+                     </div>  -->   
 
                     <div class="page-footer text-center">
                       <div class="btn-wrap" style="position: static;">
@@ -651,26 +708,39 @@
 
         <script type="text/template">
             <tr>
-                <td>
-                    <input type="text" name="" value="">
-                </td>
-                <td>
-                    <input type="text" name="" value="">
-                </td>
-                <td>
-                    <input type="text" name="" value="">
-                </td>
-                <td>
-                    <input type="text" name="" value="">
-                </td>
+                <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
+                <td class="dt-center">万店联盟</td>
+                <td class="dt-center">万店联盟</td>
+                <td class="dt-center">万店联盟</td>
+                <td class="dt-center">万店联盟</td>
             </tr>
         </script>
        
 
-		
-	
-
 </body>
 
+<script>
+    $('.checkall').on('click',function() {
+        $('.ischecked').attr('checked',!!$(this).attr('checked'));
+    });
+
+    $('#goodsAddmore').on('click','.ischecked',function(){
+        var ischecked=true;
+        $('.ischecked').each(function(){
+            if(!$(this).attr('checked')){
+                ischecked=false;
+            }
+        })
+        $('.checkall').attr('checked',ischecked);
+    });
+
+    function deleteChecked(){
+        $('.ischecked').each(function(){
+            if(!!$(this).attr('checked')){
+                $(this).parents('tr').remove();
+            }
+        })
+    }
+</script>
 
 </html>

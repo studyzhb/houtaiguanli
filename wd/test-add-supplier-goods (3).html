@@ -559,7 +559,7 @@
 
         <script type="text/template" id="updateSingleSupplier">
             <table class="table isremove">
-                
+                            <input type="hidden" name=id value={id} />
                            <tr>
                                     <td class="disabledWrap">
                                         供应商编号
@@ -598,7 +598,6 @@
                                     	</select>
                                     </td>
                                     <td></td>
-                                    
                                 </tr>
                         </table>
              
@@ -704,6 +703,32 @@ var supplierPage={
         	console.log(typeof val)
         	val+=Math.floor(Math.random()*1000);
         	$('#supplierNum').val(val);
+        },
+        page:function(obj){
+            $('#supplier-message-list').html('');
+            $('#detailcount').text(obj.count);
+        var page=obj.count%2==0?obj.count/2:parseInt(obj.count/2)+1;
+        console.log(page,obj.address);
+         $('#detailpage').text(page);
+         $.each(obj.address,function(index,item){
+             $('<a href="javascript:;" class="pro-area">').appendTo($('.provinces-supplier')).html(item);
+         });
+         $('#pagewrap').html('');
+         
+         for(var i=1;i<=page;i++){
+             if(i==1){
+                 $('<a href="#" class="next active">').appendTo($('#pagewrap')).text(i);
+                 continue;
+             }
+             $('<a href="#" class="next">').appendTo($('#pagewrap')).text(i);
+         }
+        console.log(obj.data);
+        var arr=[];
+        var supplierhtml=$('#showSupplierList').html();
+        $.each(obj.data,function(index,item){
+            arr.push(config.formatTemplate(item,supplierhtml));
+        });
+        $('#supplier-message-list').append(arr.join(''));
         }
     }
 	
@@ -752,7 +777,7 @@ var supplierPage={
     });
     
     config.ajax('get',config.ajaxAddress.addSupplier,function(data){
-    	//console.log(data,typeof data);
+    	// console.log(data,typeof data);
     	$.each(data.run, function(index,item) {
     		$('<option value='+item.id+'>').appendTo($('#run_method')).html(item.run);
     	});
@@ -768,12 +793,13 @@ var supplierPage={
         supplierPage.area.provinces=$(this).text();
         //请求数据获取市级区域
         config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
+            console.log(obj);
             $('.city-area').css('display','block').html('');
             $.each(obj.address,function(index,item){
                 $('<a href="javascript:;">').appendTo($('.city-area')).html(item);
             });
-           
-        },{'add':'city','provices':$(this).text()});
+           supplierPage.page(obj);
+        },{'add':'city','provinces':$(this).text()});
     });
 
     $('.city-area').on('click','a',function(){
@@ -781,12 +807,13 @@ var supplierPage={
         $(this).addClass('active-p').siblings().removeClass('active-p');
         //请求数据获取市级区域
         config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
+            console.log(obj);
              $('.country-area').css('display','block').html('');
             $.each(obj.address,function(index,item){
                 $('<a href="javascript:;">').appendTo($('.country-area')).html(item);
             });
-           
-        },{'add':'county','city':$(this).text(),'provices':supplierPage.area.provinces});
+           supplierPage.page(obj);
+        },{'add':'county','city':$(this).text(),'provinces':supplierPage.area.provinces});
     });
 
     $('.country-area').on('click','a',function(){
@@ -808,28 +835,8 @@ var supplierPage={
    
    
    config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
-        $('#detailcount').text(obj.count);
-        var page=obj.count%2==0?obj.count/2:obj.count/2+1;
-         $('#detailpage').text(page);
-         $.each(obj.address,function(index,item){
-             $('<a href="javascript:;" class="pro-area">').appendTo($('.provinces-supplier')).html(item);
-         });
-         $('#pagewrap').html('');
-         
-         for(var i=1;i<=page;i++){
-             if(i==1){
-                 $('<a href="#" class="next active">').appendTo($('#pagewrap')).text(i);
-                 continue;
-             }
-             $('<a href="#" class="next">').appendTo($('#pagewrap')).text(i);
-         }
-        console.log(obj.data);
-        var arr=[];
-        var supplierhtml=$('#showSupplierList').html();
-        $.each(obj.data,function(index,item){
-            arr.push(config.formatTemplate(item,supplierhtml));
-        });
-        $('#supplier-message-list').append(arr.join(''));
+        console.log(obj)
+        supplierPage.page(obj);
     },{'add':'provinces'});
 
 /*
@@ -846,6 +853,7 @@ var supplierPage={
         var supplierId=$(this).data('info');
         config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
             var singleWiillSupplierHtml=$('#updateSingleSupplier').html();
+            console.log(obj.data);
             $.each(obj.data,function(index,item){
                 
                 if(item.id==supplierId){
@@ -924,3 +932,4 @@ var supplierPage={
     
 </script>
 </html>
+

@@ -193,7 +193,8 @@ textarea.input {
   cursor: pointer; }
   .single-select .boxwrap {
     display: inline-block;
-    vertical-align: middle; }
+    vertical-align: middle;
+    position: relative; }
   .single-select .arrow {
     display: none;
     position: absolute;

@@ -77,7 +77,8 @@ html, body {
 
 section {
   width: 7.5rem;
-  height: 100%;
+  min-height: 7.5rem;
+  height: auto;
   overflow: auto;
   background-color: #f0f0f0; }
   section .main {
