@@ -117,11 +117,10 @@ section {
       section .main .shop-mess .show-content-list {
         width: 100%; }
         section .main .shop-mess .show-content-list li {
-          padding-left: 0.47rem;
-          line-height: 0.7rem;
+          padding: 0 0.47rem;
+          line-height: 1rem;
           color: #989898;
           position: relative;
-          height: 0.7rem;
           border-bottom: 1px solid #e3e3e3; }
           section .main .shop-mess .show-content-list li i {
             display: block;
@@ -135,6 +134,11 @@ section {
               height: 100%;
               position: absolute; }
         section .main .shop-mess .show-content-list li.title {
-          color: #3f3f3f; }
+          color: #3f3f3f;
+          text-align: center;
+          padding-left: 0; }
 
-/*# sourceMappingURL=shopdetail.css.map */
+h3.title {
+  color: #3f3f3f; }
+
+/*# sourceMappingURL=about.css.map */

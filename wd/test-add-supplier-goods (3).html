@@ -448,7 +448,7 @@
                                 <div class="page">
                                     <ul class="offcial-page margin-top margin-big-right">
                                         <li>共<em class="margin-small-left margin-small-right" id="detailcount">1</em>条数据</li>
-                                        <li>每页显示<em class="margin-small-left margin-small-right">2</em>条</li>
+                                        <li>每页显示<em class="margin-small-left margin-small-right" id="pagecount">2</em>条</li>
                                         <li><a class="next disable">上一页</a></li>
                                         <li id="pagewrap"><a href="#" class="next active">1</a></li>
                                         <li><a class="next disable">下一页</a></li>
@@ -657,13 +657,17 @@
 <script>
 var supplierPage={
         selectIndex:1,
+        isupdate:true,
 		area_p:config.area_num.root,
-        area:{},
+        area:{
+            provinces:'',
+            city:'',
+            county:''
+        },
         addProvince:function(){
             //创建省份类select
             $('#province-list').html('<option>--省--</option>');
             $.each(this.area_p.province,function(index,item){
-				
                 $('<option>').appendTo($('#province-list')).html(item['-Name']);
             });
         },
@@ -707,18 +711,27 @@ var supplierPage={
         page:function(obj){
             $('#supplier-message-list').html('');
             $('#detailcount').text(obj.count);
-        var page=obj.count%2==0?obj.count/2:parseInt(obj.count/2)+1;
+        var page=obj.count%config.pSort.pagecount==0?obj.count/config.pSort.pagecount:parseInt(obj.count/config.pSort.pagecount)+1;
         console.log(page,obj.address);
          $('#detailpage').text(page);
-         $.each(obj.address,function(index,item){
-             $('<a href="javascript:;" class="pro-area">').appendTo($('.provinces-supplier')).html(item);
-         });
+         $('#pagecount').text(config.pSort.pagecount);
+         if(supplierPage.isupdate){
+            $.each(obj.address,function(index,item){
+                $('<a href="javascript:;" class="pro-area">').appendTo($('.provinces-supplier')).html(item);
+            });
+            supplierPage.isupdate=false;
+         }
+         
          $('#pagewrap').html('');
          
          for(var i=1;i<=page;i++){
              if(i==1){
                  $('<a href="#" class="next active">').appendTo($('#pagewrap')).text(i);
                  continue;
+             }
+             if(i>3){
+                $('#pagewrap').append('...');
+                break;
              }
              $('<a href="#" class="next">').appendTo($('#pagewrap')).text(i);
          }
@@ -736,8 +749,7 @@ var supplierPage={
 	
 	$('#province-list').on('change',function(){
         supplierPage.addCity($(this).val());
-        
-        
+ 
     });
     
     /**
@@ -775,7 +787,7 @@ var supplierPage={
     	}
   		
     });
-    
+    //添加供应商，首先获取下拉选项数据
     config.ajax('get',config.ajaxAddress.addSupplier,function(data){
     	// console.log(data,typeof data);
     	$.each(data.run, function(index,item) {
@@ -803,7 +815,7 @@ var supplierPage={
     });
 
     $('.city-area').on('click','a',function(){
-       
+       supplierPage.area.city=$(this).text();
         $(this).addClass('active-p').siblings().removeClass('active-p');
         //请求数据获取市级区域
         config.ajax('get',config.ajaxAddress.showSupplierList,function(obj){
@@ -817,6 +829,7 @@ var supplierPage={
     });
 
     $('.country-area').on('click','a',function(){
+        supplierPage.area.county=$(this).text();
         $('.bar').css('display','block');
         $(this).addClass('active-p').siblings().removeClass('active-p');
         //$('.selectedRightSection').before($('span'))
@@ -894,7 +907,7 @@ var supplierPage={
                 arr.push(config.formatTemplate(item,supplierhtml));
             });
             $('#supplier-message-list').append(arr.join(''));
-        },{'p':supplierPage.selectIndex});
+        },{'p':supplierPage.selectIndex,'provinces':supplierPage.area.provinces,'city':supplierPage.area.city,'county':supplierPage.area.county});
     }
 
     function addSupplierMessage(){

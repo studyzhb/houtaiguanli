@@ -22,6 +22,7 @@
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
 	<script type="text/javascript" src="./js/haidao.validate.js"></script>
+    <script src="./js/jquery-form.js"></script>
 	<script type="text/javascript" src="./js/config.js"></script>
 	<script src="./js/index.js"></script>
 </head>
@@ -334,7 +335,8 @@
                                 
                             </tbody>
                         </table> -->
-
+                        <form method="POST" id="singleWillAddInfo" action="http://192.168.1.112/project_2/public/index.php/admin/Good/addGoods">
+                            
                         <table class="table">
                             <caption class="table-title-margin-10">商品基本信息</caption>
                             <tbody>
@@ -342,7 +344,7 @@
                                     <td class="col-ms-2">
                                         <div>
                                             <span>商品编码</span>
-                                            <input type="text" class="table-input-border"/>
+                                            <input type="text" class="table-input-border" name="coding" />
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
@@ -356,7 +358,9 @@
                                     <td class="col-ms-2">
                                         <div>
                                             <span>计价方式</span>
-                                            <input type="text" class="table-input-border"/>
+                                            <select name="" id="goods-method">
+                                                <option value="">------</option>
+                                            </select>
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
@@ -370,13 +374,30 @@
                                     
                                     <td>助记码<input type="text"  class="table-input-border" /></td>
                                     <td>主供应商
-                                        <input type="text"  class="table-input-border" />
+                                        <select name="" id="main-supplier">
+                                            <option value="">------</option>
+                                        </select>
                                     </td> 
                                 
                                     <td>零售单位<input type="text" class="table-input-border"/></td>
-                                    <td>规格<input type="text" class="table-input-border"/></td>
-                                    <td>分类<input type="text" class="table-input-border"/></td>
-                                    <td>品牌<input type="text" class="table-input-border"/></td>
+                                    <td>规格
+                                        <select name="" id="gg">
+                                            <option value="">------</option>
+                                        </select>
+                                    </td>
+                                    <td>分类
+                                        <select name="" id="catagory1">
+                                            <option value="">一级分类</option>
+                                        </select>
+                                        <select name="" id="catagory2">
+                                            <option value="">二级分类</option>
+                                        </select>
+                                    </td>
+                                    <td>品牌
+                                        <select name="" id="add-goods-brand">
+                                            <option value="">------</option>
+                                        </select>
+                                    </td>
                                     
                                 </tr>
 
@@ -481,6 +502,7 @@
                                 
                             </tbody>
                         </table>
+                        </form>
                          <!-- <div class="panel">
                             <div class="panel-heading table-title-margin-10" style="text-align:center;">
                                 一品多码
@@ -584,6 +606,7 @@
                         
                     </div>-->
                     <!-- 一品多码一码多品 -->
+                    <form method="POST" id="mutitypeGoods" action="http://192.168.1.112/project_2/public/index.php/admin/Good/addCodesPro">
                         <div class="dataTables_wrapper" style="border-bottom:1px solid #666">
         <table class="dataTable cell-border">
             <caption class="table-title-margin-10">一品多码信息</caption>
@@ -592,7 +615,7 @@
                     <th class="dt-center" colspan="2"><a href="#">一码多品（点击显示列表）</a></th>
                     <th class="dt-center" colspan="2"><a href="#">一品多码（点击显示列表）</a></th>
                     <th class="dt-center" >
-                        <a href="#" class="addmore-goods-name">增加</a>
+                        <a href="#" class="addmore-goods-name" id="addmore-goods-name">增加</a>
                         <a href="#" onclick="deleteChecked()">删除</a>
                     </th>
                 </tr>
@@ -607,11 +630,11 @@
             </thead>
             <tbody id="goodsAddmore">
                 <tr>
-                    <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
-                    <td class="dt-center"><input type="text" name="" value="" style="border:1px solid #eee;height:80%;"></td>
-                    <td class="dt-center"><input type="text" name="" value=""></td>
-                    <td class="dt-center"><input type="text" name="" value=""></td>
-                    <td class="dt-center"><input type="text" name="" value=""></td>
+                    <td class="dt-center"><input class="ischecked" type="checkbox"></td>
+                    <td class="dt-center"><input type="text" name="name" value="" style="border:1px solid #eee;height:80%;"></td>
+                    <td class="dt-center"><input type="text" name="name" value=""></td>
+                    <td class="dt-center"><input type="text" name="name" value=""></td>
+                    <td class="dt-center"><input type="text" name="name" value=""></td>
                 </tr>
                 <tr>
                     <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
@@ -632,7 +655,7 @@
             <div class="paginate_button"></div>
         </div> -->
     </div>
-
+</form>
 
 
 
@@ -694,12 +717,12 @@
 
                     <div class="page-footer text-center">
                       <div class="btn-wrap" style="position: static;">
-                        <input type="submit" name="btnSubmit" value="提交保存" id="btnSubmit" class="button" style="border-radius:0">
-                        <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);" style="border-radius:0">
+                        <input type="button" value="提交保存" id="btnSubmit" class="button" style="border-radius:0">
+                        <input type="button" value="提交保存" id="btnSubmit1" class="button" style="border-radius:0">
+                        <!-- <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);" style="border-radius:0"> -->
                       </div>
                     </div>
 
-                       
                     </div>
 
 				</div>
@@ -708,18 +731,51 @@
 
         <script type="text/template">
             <tr>
-                <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
-                <td class="dt-center">万店联盟</td>
-                <td class="dt-center">万店联盟</td>
-                <td class="dt-center">万店联盟</td>
-                <td class="dt-center">万店联盟</td>
+                <td class="dt-center"><input class="ischecked" type="checkbox"></td>
+                <td class="dt-center"><input class="ischecked" type="text" name="decode"></td>
+                <td class="dt-center"><input class="ischecked" type="text" name="decode"></td>
+                <td class="dt-center"><input class="ischecked" type="text" name="decode"></td>
+                <td class="dt-center"><input class="ischecked" type="text" name="decode"></td>
             </tr>
         </script>
        
-
+<div class="add-alert-area"></div>
 </body>
 
 <script>
+    var goodsHouse={
+        goodsType:{
+            cata1:[],
+            cata2:{
+
+            }
+        },
+        goodsId:''
+    }
+
+    //添加商品信息，先获取需要选择的数据
+    config.ajax('get',config.ajaxAddress.addgoodsInfo,function(data){
+        console.log(data);
+        //brand品牌 method计价方式 supplier:主供应商 gg:规格 types:商品分类
+        $.each(data.brand,function(index,item){
+            $('<option>').appendTo($('#add-goods-brand')).html(item.brand).attr('value',item.id);
+        });
+        $.each(data.method,function(index,item){
+            $('<option>').appendTo($('#goods-method')).html(item.method).attr('value',item.id);
+        });
+        $.each(data.gg,function(index,item){
+            $('<option>').appendTo($('#gg')).html(item.gg).attr('value',item.id);
+        });
+        $.each(data.supplier,function(index,item){
+            $('<option>').appendTo($('#main-supplier')).html(item.name).attr('value',item.id);
+        });
+        $.each(data.types,function(index,item){
+            // item.
+            console.log(item);
+        });
+
+    });
+
     $('.checkall').on('click',function() {
         $('.ischecked').attr('checked',!!$(this).attr('checked'));
     });
@@ -741,6 +797,31 @@
             }
         })
     }
+
+    var options = {
+        success: function (data) {
+           console.log(data);
+           if(data.code==200){
+                goodsHouse.goodsId=data.goodsId;
+                $('<input type="hidden" value='+data.goodsId+'>').appendTo($('#mutitypeGoods'));
+                $('.add-alert-area').hide();
+               //location.reload();
+           }else{
+               alert('添加失败，请重新添加');
+           }
+        }
+    };
+   
+    $('#btnSubmit').on('click',function(){
+         // $('.add-alert-area').css('z-index','9999').show();
+        $('#singleWillAddInfo').ajaxSubmit(options);
+    })
+
+    $('#btnSubmit1').on('click',function(){
+         // $('.add-alert-area').css('z-index','9999').show();
+        $('#mutitypeGoods').ajaxSubmit(options);
+    })
+    
 </script>
 
 </html>

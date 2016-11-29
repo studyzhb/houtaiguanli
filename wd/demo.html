@@ -5,18 +5,25 @@
 	<title>标题</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-
+    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./js/config.js"></script>
 </head>
 <body>
-	<!-- 加载编辑器的容器 -->
-    <script id="container" name="content" type="text/plain">
-        这里写你的初始化内容
-    </script>
+	<!-- 加载编辑器的容器 
+     <script id="container" name="content" type="text/plain">
+         这里写你的初始化内容
+     </script>
 	<script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
-	<script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script>
+	<script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script>-->
 
 	<!-- 实例化编辑器 -->
     <script type="text/javascript">
+
+    config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
+        console.log(data);
+    },{'pagecount':10});
+
+
     /*
         'anchor', //锚点
         'undo', //撤销
@@ -110,14 +117,14 @@
         'charts', // 图表
         */
 
-        var ue = UE.getEditor('container', {
-                toolbars: [
-                    ['fullscreen', 'source', 'undo', 'redo', 'bold'],
-                    ['lineheight','insertorderedlist','date','time']
-                ],
-                autoHeightEnabled: true,
-                autoFloatEnabled: true
-            });
+        // var ue = UE.getEditor('container', {
+        //         toolbars: [
+        //             ['fullscreen', 'source', 'undo', 'redo', 'bold'],
+        //             ['lineheight','insertorderedlist','date','time']
+        //         ],
+        //         autoHeightEnabled: true,
+        //         autoFloatEnabled: true
+        //     });
         
     </script>
 </body>
