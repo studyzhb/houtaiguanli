@@ -208,15 +208,7 @@ $(function(){
 
 
 
-    //添加一品多码
     
-    $('.addmore-goods-name').on('click',function(){
-        $('.checkall').attr('checked',false);
-        var html=$('script[type="text/template"]').html();
-        $('#goodsAddmore').append(html);
-
-        console.log($('#goodsAddmore'));
-    })
 
 
     //打印

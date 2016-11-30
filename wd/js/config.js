@@ -9,17 +9,31 @@ Dsy.prototype.Exists = function (id) {
     return true;
 }
 var config={
+  //表单提交
+  formSubmit:function(formId,fun){
+    $(formId).ajaxSubmit({
+      success:function(data){
+        if(!!fun){
+          fun(data);
+        }  
+      }
+    });
+  },
 	ajaxAddress:{
     //物品信息列表http://192.168.1.18/wp/public/index.php/admin/good/show
-		goodsInfo:'http://192.168.1.112/project_2/public/index.php/admin/Good/show',
+		goodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/show',
     //添加物品信息
-    addgoodsInfo:'http://192.168.1.112/project_2/public/index.php/admin/Good/addGoods',
+    addgoodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/addGoods',
       //添加供货商地址
-		addSupplier:'http://192.168.1.18/wp/public/index.php/admin/supplier/add',
+		addSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/supplier/add',
       //更新单个供货商信息地址http://192.168.1.18/wp/public/index.php/admin/supplier/update
 		updateSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/update',
       //显示供货商列表信息http://192.168.1.18/wp/public/index.php/admin/supplier/show
-    showSupplierList:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/lst'
+    showSupplierList:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/lst',
+    //商品分类
+    showgoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/add',
+    //商品品牌
+    showgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/brand'
 	},
   pSort:{
     pagecount:1

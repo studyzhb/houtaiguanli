@@ -14,12 +14,12 @@
 	<link rel="stylesheet" type="text/css" href="./css/account.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
-    <link rel="stylesheet" href="./iconfont/iconfont.css">
-    <link rel="stylesheet" href="./css/content-input-list.css">
-    <link rel="stylesheet" href="./css/goods-add-split.css">
-  <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="./js/jquery-form.js"></script>
-
+  <link rel="stylesheet" href="./iconfont/iconfont.css">
+  <link rel="stylesheet" href="./css/content-input-list.css">
+  <link rel="stylesheet" href="./css/goods-add-split.css">
+  <link rel="stylesheet" href="./css/seller_center.css">
+  <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
+	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
 	<script type="text/javascript" src="./js/haidao.validate.js"></script>
@@ -280,212 +280,79 @@
                           <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
                           <a href="#" class="home"><i></i><span>首页</span></a>
                           <i class="arrow"></i>
-                          <a href="#"><span data-title="商品管理">内容管理</span></a>
+                          <a href="#"><span data-title="通知消息">内容管理</span></a>
                           <i class="arrow"></i>
-                          <span data-title="商品信息编辑">编辑内容</span>
+                          <span data-title="发送通知">编辑内容</span>
                         </div>
                         <div class="line10"></div>
                     <!--/导航栏-->
                     
                     <!--内容-->
                    <div class="main-content">
-                       <ul class="add-goods-step" style="text-align:center;">
-                           <li class="current">
-                               <i class="icon"></i>
-                               <!-- <h6>商品类别</h6> -->
-                               <h2>添加商品分类</h2>
-                           </li>
-                           
-                           
-                       </ul>
+                       
 
-                       <div class="wrapper_search">
-                           <!--主要内容区-->
-                           <div class="wd_sort">
-                               <!--等待加载动图-->
-                               <div class="wd-data-loading" style="display:none;">
-                                   <div class="data-loading">
-                                       加载中
-                                   </div>
-                               </div>
-                               <!-- <div class="sort-selector">
-                                   <div class="sort-title">
-                                       您常用的商品分类:
-                                       <div class="text">
-                                           <div>请选择</div>
-                                           <div class="selectList">
-                                               <ul>
-                                                   <li>
-                                                       <span>xx>xx>xx</span>
-                                                       <a href="#">X</a>
-                                                   </li>
-                                                   <!--没有常用时显示
-                                                   <li class="">
-                                                       <span>您还没添加过商品</span>
-                                                   </li>
-                                               </ul>
-                                           </div>
-                                       </div>
-                                       <i></i>
-                                   </div>
-                               </div> -->
-                               <div class="wd-sort-block">
-                                   <div class="sort-list">
-                                       <div class="wd-category-list">
-                                           <div class="category-list">
-                                                <div class="btn btn-primary" id="one-level" style="position:absolute;top:0;right:30px;">添加</div>
-                                               <ul id="one-sort" style="height:100%;overflow:auto;">
-                                                <li style="text-align:left;"><a style="display:inline-block;" href="#">服饰鞋帽</a><a style="display:inline-block;" href="#"><img style="height:10px;width:10px;" src="./img/iconfont-xiugaioryijian.png" alt=""></a></li>
-                                                   <!-- <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li> -->
-                                               </ul>
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <div class="sort-list">
-                                       <div class="wd-category-list">
-                                           <div class="category-list">
-                                              <div class="btn btn-primary" id="sec-level" style="position:absolute;top:0;right:30px;">添加</div>
-                                               <ul id="sec-sort" style="height:100%;overflow:auto;">
-                                                   <!-- <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li> -->
-                                               </ul>
-                                           </div>
-                                       </div>
-                                   </div>
-                                   
-                               </div>
-                               
-                           </div>
-                           <!--显示步骤区
-                           <div class="show_intro">
-                               <dl class="hover_tips_cont">
-                                    <dt id="commodityspan"><span style="color:#F00;">请选择商品类别</span></dt>
-                                    <dt id="commoditydt" style="display: none;" class="current_sort">您当前选择的商品类别是：</dt>
-                                    <dd id="commoditydd">
-                                        家居家装<i></i>服饰鞋帽
-                                    </dd>
-                                </dl>
-                           </div>-->
-                           <!--引导区-->
-                           <!-- <div class="wd_confirm">
-                               <div class="bottom text-center">
-                                   <input type="text" style="display:inline-block;" class="submit" value="保存分类">
-                               </div>
-                           </div> -->
-                       </div>
+                      <div class="item-publish">
+  <form method="post" id="goods_form" action="">
+    <input type="hidden" name="form_submit" value="ok">
+    <input type="hidden" name="commonid" value="">
+    <input type="hidden" name="type_id" value="38">
+    
+    <div class="ncsc-form-goods">
+      
+      <h3 id="demo2">系统消息</h3>
+      <dl style="overflow: visible;">
+        <dt>消息标题：</dt>
+        <dd>
+          <input type="text" name="" value="">
+          
+        </dd>
+      </dl>
+            <dl>
+        <dt>消息内容区：</dt>
+        <dd id="ncProductDetails">
+          <textarea name="" id="" cols="10" rows="30">
+            
+          </textarea>
+            
+        </dd>
+      </dl>
+
+      
+    </div>
+    <div class="bottom tc hr32">
+      <label class="submit-border">
+        <input type="button" class="submit" value="发送消息">
+      </label>
+    </div>
+  </form>
+</div>
+                      
+
+                       
 
                    </div>
 
+                                   
+  
+                        
+
+                        
+
+                        
+
+                       
                     </div>
 
 				</div>
 			</div>
 		</div>
-        
-		
 
+  
 
-
-
-
-    <!-- 新增信息区 -->
-        <div class="add-con-area" style="width:50%;">
-            <div class="text-right">
-                <div class="btn btn-default" id="closeConArea">X</div>
-            </div>
-            <div style="padding:0 10px;">
-              <form method="POST" id="sort-mess-editor" action="http://192.168.1.150/shop/shop/public/index.php/admin/Category/add" enctype="multipart/form-data">
-                <div class="tab-content" style="display: block;">
-
-                      <dl>
-                        <dt>类别名称</dt>
-                        <dd>
-                          <input name="type" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
-                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
-                        </dd>
-                      </dl>
-                                            <dl>
-                        <dt>备注</dt>
-                        <dd>
-                          <input name="" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
-                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
-                        </dd>
-                      </dl>
-                      
-                      
-                      <dl>
-                        <dt>类别图片</dt>
-                        <dd>
-
-                          <div style="width:10%;height:40px;border:1px solid #eee;position:relative;text-align:center;line-height:40px;font-size:20px;">+
-                            <input type="file" style="position:absolute;width:100%;height:100%;opacity:0;left:0;top:0;" accept="">
-                          </div>
-                        </dd>
-                      </dl>
-
-                      
-                    </div>
-                </form>
-            </div>
-            <div class="text-center" style="margin-top:20px;">
-                <div class="btn btn-primary" id="add-sort-mess">添加</div>
-            </div>
-        </div>      
-        <div class="add-alert-area">
-            
-        </div>
-	
 
 </body>
+
 <script>
-  var goodsCatagory={
-      sort:{
-        oneSort:''
-      }
-    }
-  $('#one-level').on('click',function(){
-    $('input[type=hidden]').remove();
-    $('.add-con-area').show();
-    $('.add-alert-area').show();
-  });
-  $('#sec-level').on('click',function(){
-    $('<input type="hidden" name="id" >').appendTo($('#sort-mess-editor')).attr('value',goodsCatagory.sort.oneSort);
-    $('.add-con-area').show();
-    $('.add-alert-area').show();
-  });
-  
-  $(function(){
-      config.ajax('get',config.ajaxAddress.showgoodsSort,function(data){
-        console.log(data);
-        $.each(data,function(index,item){
-          var $li=$('<li style="text-align:left;">').appendTo($('#one-sort')).attr('type-id',item.id).html('<a href="#" style="display:inline-block;">'+item.type+'</a><a style="display:inline-block;" href="#"><img style="height:10px;width:10px;" src="./img/iconfont-xiugaioryijian.png" alt=""></a>');
-          $li.on('click',function(){
-            console.log($(this).attr('type-id'));
-            goodsCatagory.sort.oneSort=$(this).attr('type-id');
-            config.ajax('get',config.ajaxAddress.showgoodsSort,function(subdata){
-              $('#sec-sort').html('');
-              $.each(subdata,function(i,ites){
-                $('<li style="text-align:left;">').appendTo($('#sec-sort')).attr('type-id',ites.id).html('<a href="#" style="display:inline-block;" >'+ites.type+'</a><a style="display:inline-block;" href="#"><img style="height:10px;width:10px;" src="./img/iconfont-xiugaioryijian.png" alt=""></a>');
-              })
-            },{id:$(this).attr('type-id')});
-          })
-        })
-      })
-  })
-
-$('#add-sort-mess').on('click',function(){
-      config.formSubmit('#sort-mess-editor',function(data){
-          console.log(data);
-          // $('.add-con-area').hide();
-          // $('.add-alert-area').hide();
-      })
-  });
-
+    
 </script>
-
 </html>

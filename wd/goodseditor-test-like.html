@@ -345,11 +345,11 @@
                                    <div class="sort-list">
                                        <div class="wd-category-list">
                                            <div class="category-list">
-                                               <ul>
+                                               <ul id="one-sort"> 
+                                                   <!-- <li><a href="#">服饰鞋帽</a></li>
                                                    <li><a href="#">服饰鞋帽</a></li>
                                                    <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
+                                                   <li><a href="#">服饰鞋帽</a></li> -->
                                                </ul>
                                            </div>
                                        </div>
@@ -357,7 +357,7 @@
                                    <div class="sort-list">
                                        <div class="wd-category-list">
                                            <div class="category-list">
-                                               <ul>
+                                               <ul id="sec-sort">
                                                    <li><a href="#">服饰鞋帽</a></li>
                                                    <li><a href="#">服饰鞋帽</a></li>
                                                    <li><a href="#">服饰鞋帽</a></li>
@@ -366,18 +366,7 @@
                                            </div>
                                        </div>
                                    </div>
-                                   <div class="sort-list">
-                                       <div class="wd-category-list">
-                                           <div class="category-list">
-                                               <ul>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                                   <li><a href="#">服饰鞋帽</a></li>
-                                               </ul>
-                                           </div>
-                                       </div>
-                                   </div>
+                                   
                                </div>
                                
                            </div>
@@ -394,183 +383,52 @@
                            <!--引导区-->
                            <div class="wd_confirm">
                                <div class="bottom text-center">
-                                   <input type="text" style="display:inline-block;" class="submit" value="下一步，填写商品信息">
+                                   <!-- <input type="text" style="display:inline-block;" class="submit" value="下一步，填写商品信息"> -->
+                                   <button id="next-goto-goodseditor" class="btn btn-primary">下一步，填写商品信息</button>
                                </div>
                            </div>
                        </div>
 
                    </div>
-
-                    
-
-                   
-                    <!--/内容-->
-
-                   
-                    <!--/工具栏-->
-						
-                    <!--</form>-->
-                        
-
-                        
-
-                        
-
-                       
-                    </div>
+     
+                </div>
 
 				</div>
 			</div>
 		</div>
-        <!--<script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
-        <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script>-->
-
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
-    /*
-        'anchor', //锚点
-        'undo', //撤销
-        'redo', //重做
-        'bold', //加粗
-        'indent', //首行缩进
-        'snapscreen', //截图
-        'italic', //斜体
-        'underline', //下划线
-        'strikethrough', //删除线
-        'subscript', //下标
-        'fontborder', //字符边框
-        'superscript', //上标
-        'formatmatch', //格式刷
-        'source', //源代码
-        'blockquote', //引用
-        'pasteplain', //纯文本粘贴模式
-        'selectall', //全选
-        'print', //打印
-        'preview', //预览
-        'horizontal', //分隔线
-        'removeformat', //清除格式
-        'time', //时间
-        'date', //日期
-        'unlink', //取消链接
-        'insertrow', //前插入行
-        'insertcol', //前插入列
-        'mergeright', //右合并单元格
-        'mergedown', //下合并单元格
-        'deleterow', //删除行
-        'deletecol', //删除列
-        'splittorows', //拆分成行
-        'splittocols', //拆分成列
-        'splittocells', //完全拆分单元格
-        'deletecaption', //删除表格标题
-        'inserttitle', //插入标题
-        'mergecells', //合并多个单元格
-        'deletetable', //删除表格
-        'cleardoc', //清空文档
-        'insertparagraphbeforetable', //"表格前插入行"
-        'insertcode', //代码语言
-        'fontfamily', //字体
-        'fontsize', //字号
-        'paragraph', //段落格式
-        'simpleupload', //单图上传
-        'insertimage', //多图上传
-        'edittable', //表格属性
-        'edittd', //单元格属性
-        'link', //超链接
-        'emotion', //表情
-        'spechars', //特殊字符
-        'searchreplace', //查询替换
-        'map', //Baidu地图
-        'gmap', //Google地图
-        'insertvideo', //视频
-        'help', //帮助
-        'justifyleft', //居左对齐
-        'justifyright', //居右对齐
-        'justifycenter', //居中对齐
-        'justifyjustify', //两端对齐
-        'forecolor', //字体颜色
-        'backcolor', //背景色
-        'insertorderedlist', //有序列表
-        'insertunorderedlist', //无序列表
-        'fullscreen', //全屏
-        'directionalityltr', //从左向右输入
-        'directionalityrtl', //从右向左输入
-        'rowspacingtop', //段前距
-        'rowspacingbottom', //段后距
-        'pagebreak', //分页
-        'insertframe', //插入Iframe
-        'imagenone', //默认
-        'imageleft', //左浮动
-        'imageright', //右浮动
-        'attachment', //附件
-        'imagecenter', //居中
-        'wordimage', //图片转存
-        'lineheight', //行间距
-        'edittip ', //编辑提示
-        'customstyle', //自定义标题
-        'autotypeset', //自动排版
-        'webapp', //百度应用
-        'touppercase', //字母大写
-        'tolowercase', //字母小写
-        'background', //背景
-        'template', //模板
-        'scrawl', //涂鸦
-        'music', //音乐
-        'inserttable', //插入表格
-        'drafts', // 从草稿箱加载
-        'charts', // 图表
-        */
+      var goodsCatagory={
+        sort:{
+          oneSort:''
+       }
+      } 
 
-        // var ue = UE.getEditor('container',{
-        // 		autoHeight: false,
-        //         toolbars: [
-        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                    
-        //         ],
-        //         autoHeightEnabled: true,
-        //         autoFloatEnabled: true
-        //     }).setHeight(300);
 
-        //  var ue1=UE.getEditor('container1', {
-        //         toolbars: [
-        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                   
-        //         ],
-        //         autoHeightEnabled: true,
-        //         autoFloatEnabled: true
-        //     });
+      $(function(){
+      config.ajax('get',config.ajaxAddress.showgoodsSort,function(data){
+        console.log(data);
+        $.each(data,function(index,item){
+          var $li=$('<li style="text-align:left;">').appendTo($('#one-sort')).attr('type-id',item.id).html('<a href="#" style="display:inline-block;">'+item.type+'</a><a style="display:inline-block;" href="#"><img style="height:10px;width:10px;" src="./img/iconfont-xiugaioryijian.png" alt=""></a>');
+          $li.on('click',function(){
+            console.log($(this).attr('type-id'));
+            goodsCatagory.sort.oneSort=$(this).attr('type-id');
+            config.ajax('get',config.ajaxAddress.showgoodsSort,function(subdata){
+              $('#sec-sort').html('');
+              $.each(subdata,function(i,ites){
+                $('<li style="text-align:left;">').appendTo($('#sec-sort')).attr('type-id',ites.id).html('<a href="#" style="display:inline-block;" >'+ites.type+'</a><a style="display:inline-block;" href="#"><img style="height:10px;width:10px;" src="./img/iconfont-xiugaioryijian.png" alt=""></a>');
+              })
+            },{id:$(this).attr('type-id')});
+          })
+        })
+      })
+  })  
 
-        //  $('.content-tab-ul-wrap ul li').on('click',function(){
-                
-        //         $(this).find('a').addClass('selected').end().siblings().find('a').removeClass();
-        //         if($(this).data('info')=='base'){
 
-        //             $('.base').css('display','block');
-        //             $('.detail').css('display','none');
-        //         }else{
-        //             $('.base').css('display','none');
-        //             $('.detail').css('display','block');
-        //         }
-        //     })
-        //  // console.log($('.image-content'));
-
-        //  $('.image-content').on('change',function(e){
-        //     //console.log(e.target.files);
-        //     var file=e.target.files[0];
-        //     var reader=new FileReader();
-        //     var self=this;
-        //     reader.onload=function(e){
-        //         console.log(e.target.result);
-        //          $('<img src='+e.target.result+' />').appendTo($(self).parent());
-        //     }
-            
-        //     reader.readAsDataURL(file);
-           
-        //  });
-        
+        $('#next-goto-goodseditor').on('click',function(){
+          location.href="goodseditor-test-like-2-addgoods.html";
+        })
     </script>
-		
-	
-
 </body>
 
 

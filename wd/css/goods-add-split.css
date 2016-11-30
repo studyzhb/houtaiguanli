@@ -172,11 +172,11 @@
     border: solid 1px #E6E6E6;
     width: 40%; }
     .wd-sort-block .sort-list .wd-category-list {
-      height: 264px;
+      height: 374px;
       padding: 8px 4px 8px 8px;
       margin: 0; }
       .wd-sort-block .sort-list .wd-category-list .category-list {
-        height: 264px;
+        height: 374px;
         overflow: hidden;
         position: relative;
         z-index: 1; }

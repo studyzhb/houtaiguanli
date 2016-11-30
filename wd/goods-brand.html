@@ -15,7 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
 	<link rel="stylesheet" href="./css/content-input-list.css">
-	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="./js/jquery-form.js"></script>
+    
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
 	<script type="text/javascript" src="./js/haidao.validate.js"></script>
@@ -288,7 +290,79 @@
                         </div>
                         <div class="line10"></div>
 						<div id="show-content">
-											
+							<div class="toolbar-wrap">
+                            <div class="toolbar list clearfix">
+                                <div class="box-wrap">
+                                    <div class="l-list">
+                                        <ul class="icon-list clearfix">
+                                            <li>
+                                                <a href="#" class="add button" onclick="showuserinfo()">
+                                                    <i></i>
+                                                    <span>新增</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        
+                                        
+                                    </div>
+
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                          
+                        <div class="list-content show">
+                            <div class="offcial-table tr-border margin-big-top clearfix" id="admin-storage-userlist">
+                                <div class="tr-th clearfix">
+                                    <div class="th w20">
+                                        品牌名称
+                                    </div>
+                                    <div class="th w25">
+                                        类别
+                                    </div>
+                                    <div class="th w25">
+                                        备注
+                                    </div>
+                                    <div class="th w30">
+                                        操作
+                                    </div>
+                                </div>
+                                <div class="tr clearfix border-bottom-none">
+                                    <div class="td w20">
+                                        万店联盟
+                                    </div>
+                                    <div class="td w25">
+                                        洗发水
+                                    </div>
+                                    <div class="td w25">
+                                        区域一
+                                    </div>
+                                    
+                                    <div class="td w30">
+                                        <a href="#" class="" onclick="showuserinfo()">编辑</a>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="show-page padding-big-right">
+                            <div class="page">
+                                <div class="page">
+                                    <ul class="offcial-page margin-top margin-big-right">
+                                        <li>共<em class="margin-small-left margin-small-right">1</em>条数据</li>
+                                        <li>每页显示<em class="margin-small-left margin-small-right">15</em>条</li>
+                                        <li><a class="next disable">上一页</a></li>
+                                        <li></li>
+                                        <li><a class="next disable">下一页</a></li>
+                                        <li><span class="fl">共<em class="margin-small-left margin-small-right">1</em>页</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>				
 						</div>
 						
 					</div>
@@ -396,6 +470,29 @@
         </script>
 
 
+        <!-- 填充品牌列表模板 -->
+        <script type="text/template" id="brand-list">
+            <div class="tr clearfix border-bottom-none">
+                <div class="td w20">
+                    {brand}
+                </div>
+                <div class="td w25">
+                    {brand}
+                </div>
+                <div class="td w25">
+                    区域一
+                </div>
+                
+                <div class="td w30">
+                    <a href="#" brand-id={id} brand-name={brand} onclick="showuserinfo(this)" >编辑</a>
+                    
+                </div>
+                
+            </div>
+        </script>
+
+
+
 		<script type="text/template" id="add-userlist-html">
 			<form method="post" action="" id="form1">
 
@@ -468,129 +565,58 @@
 
                     </form>
 		</script>
-			<div class="add-con-area">
-				<div class="text-right">
-					<div class="btn btn-default" id="closeConArea">X</div>
-				</div>
-				<form role="form" class="space-4">
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">姓名</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">登录名</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">密码</label>
-					<div class="col-sm-6">
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">性别</label>
-					<div class="radio-inline col-sm-6">
-						<div class="col-sm-2">
-							<input type="radio" name="sex">男
-						</div>	
-						<div class="col-sm-2">
-							<input type="radio" name="sex">女
-						</div>	
-						
-						
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">年龄</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">生日</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">籍贯</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">联系地址</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">联系电话</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">组织机构</label>
-					<div class="col-sm-3">
-						<select class="form-control">  
-						    <option value="">----</option>  
-						    <option value="1">总经办</option>  
-						    <option value="2">技术部</option>  
-						    <option value="3">采购部</option>  
-						    
-						</select>
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">角色</label>
-					<div class="col-sm-3">
-						<select class="form-control">  
-						    <option value="">----</option>  
-						    <option value="1">总经办</option>  
-						    <option value="2">技术部</option>  
-						    <option value="3">采购部</option>  
-						</select>
-					</div>
-				</div>
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">职位</label>
-					<div class="col-sm-6">
-						<input type="text" name="" value="" class="form-control">
-					</div>
-				</div>
-				
-
-				<div class="form-group clearfix">
-					<label for="" class="col-sm-2 control-label">备注</label>
-					<div class="col-sm-6">
-						<textarea class="form-control" rows="3">
-							
-						</textarea>
-					</div>
-				</div>
-				<div class="form-group clearfix text-center">
-					<button id="fat-btn" class="btn btn-primary" 
-    type="button">点击保存
-					</button>
-				</div>
-			</form>
-
-
-		</div>		
-		<div class="add-alert-area">
 			
-		</div>
+
+        <!-- 新增信息区 -->
+        <div class="add-con-area" style="width:50%;">
+            <div class="text-right">
+                <div class="btn btn-default" id="closeConArea">X</div>
+            </div>
+            <div style="padding:0 10px;">
+              <form method="POST" id="brand-editor" action="http://192.168.1.150/shop/shop/public/index.php/admin/Good/brand" enctype="multipart/form-data">
+                <div class="tab-content" style="display: block;">
+                      <dl>
+                        <dt>品牌名称</dt>
+                        <dd>
+                          <input name="txtTitle" type="text" id="brand-name" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
+                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
+                        </dd>
+                      </dl>
+                        <dl>
+                        <dt>备注</dt>
+                        <dd>
+                          <input name="txtTitle" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
+                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
+                        </dd>
+                      </dl>
+                      
+                      
+                      <dl>
+                        <dt>品牌图片</dt>
+                        <dd>
+
+                          <div style="width:10%;height:40px;border:1px solid #eee;position:relative;text-align:center;line-height:40px;font-size:20px;">+
+                            <input type="file" style="position:absolute;width:100%;height:100%;opacity:0;left:0;top:0;" accept="">
+                          </div>
+                        </dd>
+                      </dl>
+
+                      
+                    </div>
+                </form>
+            </div>
+            <div class="text-center" style="margin-top:20px;">
+                <div class="btn btn-primary" id="add-brand-mess">添加</div>
+            </div>
+        </div>      
+        <div class="add-alert-area">
+            
+        </div>
+    
+
+        
+
+
 
 		<script>
 			// $(".sidebar-title").live('click', function() {
@@ -603,14 +629,38 @@
 			// 	}
 			// });
 
-			$('#show-content').append($('#userlist-html').html());
-			$('.page-title').text('商品品牌');
-			function showuserinfo(){
-				$('#show-content').html('');
-				var add_usercon=$('#add-userlist-html').html();
-				$('#show-content').append(add_usercon);
-				$('.page-title').text('增加品牌');
+			// $('#show-content').append($('#userlist-html').html());
+			// $('.page-title').text('商品品牌');
+			function showuserinfo(obj){
+                if(obj){
+                    $('<input type="hidden" name="id" >').appendTo($('#brand-editor')).attr('value',$(obj).attr('brand-id'));
+                    
+                    $('#brand-name').attr('value',$(obj).attr('brand-name'));
+                }else{
+                    $('input[type=hidden]').remove();
+                }
+				$('.add-con-area').show();
+                $('.add-alert-area').show();
 			}
+
+            
+
+            config.ajax('get',config.ajaxAddress.showgoodsbrand,function(data){
+                console.log(data);
+                var arr=[];
+                var templateCon=$('#brand-list').html();
+                $.each(data,function(index,item){
+                    arr.push(config.formatTemplate(item,templateCon))
+                })
+                $('#admin-storage-userlist').append(arr.join(''));
+            })
+
+            $('#add-brand-mess').on('click',function(){
+                config.formSubmit('#brand-editor',function(data){
+                    console.log(data);
+                })
+            });
+
 		</script>
 
 </body>
