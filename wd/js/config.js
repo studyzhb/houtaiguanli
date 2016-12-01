@@ -13,6 +13,7 @@ var config={
   formSubmit:function(formId,fun){
     $(formId).ajaxSubmit({
       success:function(data){
+        console.log(data);
         if(!!fun){
           fun(data);
         }  
@@ -87,13 +88,13 @@ var config={
 	
 		//fun(test);
     },
-    uploadImage:function(docObj,imgObjPreview) {
-        // var docObj=document.getElementById("doc");
-        // var imgObjPreview=document.getElementById("preview");
+    uploadImage:function(inputId,imgId) {
+        var docObj=document.getElementById(inputId);
+        var imgObjPreview=document.getElementById(imgId);
                 if(docObj.files &&docObj.files[0]){
                         //火狐下，直接设img属性
                         imgObjPreview.style.display = 'block';
-                        imgObjPreview.style.width = '300px';
+                        imgObjPreview.style.width = '200px';
                         imgObjPreview.style.height = '120px';                    
                         //imgObjPreview.src = docObj.files[0].getAsDataURL();
 

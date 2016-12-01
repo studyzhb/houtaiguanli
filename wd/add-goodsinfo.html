@@ -351,7 +351,7 @@
                                     <td class="col-ms-2">
                                         <div>
                                             <span>国际条码</span>
-                                            <input type="text" class="table-input-border" name="barcode" />
+                                            <input type="text" class="table-input-border barcode" name="barcode" />
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
@@ -367,7 +367,7 @@
                                     <td class="col-ms-2">显示标志
                                         <input type="text" class="table-input-border"/>    
                                     </td>  
-                                    <td>商品全称<input type="text" class="table-input-border" name="name" /></td>                  
+                                    <td>商品全称<input type="text" class="table-input-border goods-fullname" name="name" /></td>                  
                                     <td>商品简称<input type="text" class="table-input-border" name="jname"/></td>                  
                                 </tr>
                                 <tr>
@@ -622,8 +622,8 @@
                 
                 <tr>
                     <!-- <th class="dt-center" width='10%'><input class="checkall" type="checkbox" name="checkList"></th> -->
-                    <th class="dt-center">商品名称</th>
-                    <th class="dt-center">条形码</th>
+                    <th class="dt-center editorInput">商品多码</th>
+                    <th class="dt-center">商品全称</th>
                     <th class="dt-center">国际条形码</th>
                     <th class="dt-center">备注</th>
                     <th class="dt-center">操作</th>
@@ -737,20 +737,20 @@
         <script type="text/template" id="duoma">
             <tr>  
                 <td class="dt-center"><input class="ischecked" type="text" name="decode[]" placeholder="duoma"></td>
+                <td class="dt-center">{fullname}</td>
+                <td class="dt-center">{barcode}</td>
                 <td class="dt-center">一品多码</td>
-                <td class="dt-center">一品多码</td>
-                <td class="dt-center">一品多码</td>
-                <td class="dt-center"><a href="#">删除</a></td>
+                <td class="dt-center"><a href="#" onclick="deleteChecked(this)">删除</a></td>
             </tr>
         </script>
         <script type="text/template" id="duopin">
             <tr>
                 
                 <td class="dt-center"><input class="ischecked" type="text" name="goods[]"></td>
+                <td class="dt-center">{fullname}</td>
+                <td class="dt-center">{barcode}</td>
                 <td class="dt-center">一码多品</td>
-                <td class="dt-center">一品多码</td>
-                <td class="dt-center">一品多码</td>
-                <td class="dt-center"><a href="#">删除</a></td>
+                <td class="dt-center"><a href="#" onclick="deleteChecked(this)">删除</a></td>
             </tr>
         </script>
        
@@ -763,9 +763,7 @@
         goodsContent:'duoma',
         goodsType:{
             cata1:[],
-            cata2:{
-
-            }
+            cata2:{}
         },
         goodsData:{
             goodsName:'',
@@ -776,7 +774,7 @@
 
     //添加商品信息，先获取需要选择的数据
     config.ajax('get',config.ajaxAddress.addgoodsInfo,function(data){
-        console.log(data);
+        // console.log(data);
         //brand品牌 method计价方式 supplier:主供应商 gg:规格 types:商品分类
         $.each(data.brand,function(index,item){
             $('<option>').appendTo($('#add-goods-brand')).html(item.brand).attr('value',item.id);
@@ -792,10 +790,32 @@
         });
         $.each(data.types,function(index,item){
             // item.
-            console.log(item);
+            
+            goodsHouse.goodsType.cata1.push(item.type);
+            goodsHouse.goodsType.cata2[index]=[];
+            if(item.child){
+                $.each(item.child,function(i,ites){
+
+                    // console.log(index,goodsHouse.goodsType.cata2[index]);
+
+                    (goodsHouse.goodsType.cata2[index]).push({id:ites.id,val:ites.type});
+                });
+            }
+            
+
+            $('<option>').appendTo($('#catagory1')).html(item.type).attr('value',index);
         });
 
     });
+
+    $('#catagory1').on('change',function(){
+        console.log($(this).val());
+        var sub=goodsHouse.goodsType.cata2[$(this).val()];
+        $('#catagory2').html('');
+        $.each(sub,function(index,item){
+            $('<option>').appendTo($('#catagory2')).html(item.val).attr('value',item.id);
+        });
+    })
 
     $('.checkall').on('click',function() {
         $('.ischecked').attr('checked',!!$(this).attr('checked'));
@@ -811,18 +831,15 @@
         $('.checkall').attr('checked',ischecked);
     });
 
-    function deleteChecked(){
-        $('.ischecked').each(function(){
-            if(!!$(this).attr('checked')){
-                $(this).parents('tr').remove();
-            }
-        })
+    function deleteChecked(obj){
+        console.log(obj);
     }
 
     var options = {
         success: function (data) {
            console.log(data);
-           if(data.code==200){
+           if(data==200){
+                alert('添加成功');
                 // goodsHouse.goodsId=data.goodsId;
                 // $('<input type="hidden" value='+data.goodsId+'>').appendTo($('#mutitypeGoods'));
                 // $('.add-alert-area').hide();
@@ -847,14 +864,16 @@
     
     $('#addmore-goods-name').on('click',function(){
         $(this).css('color','#f00');
+        $('.editorInput').text('商品多品');
         $('#addmore-goods-coding').css('color','#666');
         goodsHouse.appendPar='mutigoods';
         goodsHouse.goodsContent='duopin';
         $('#'+goodsHouse.appendPar).show();
         $('#muticoding').hide();
     })
-
+    $('#addmore-goods-coding').css('color','#f00');
     $('#addmore-goods-coding').on('click',function(){
+        $('.editorInput').text('商品多码');
         $(this).css('color','#f00');
         $('#addmore-goods-name').css('color','#666');
         goodsHouse.appendPar='muticoding';
@@ -869,7 +888,8 @@
         
         var html=$('#'+goodsHouse.goodsContent).html();
         $('#'+goodsHouse.appendPar).append(config.formatTemplate({
-
+            barcode:$('.barcode').val(),
+            fullname:$('.goods-fullname').val()
         },html));
  
     })

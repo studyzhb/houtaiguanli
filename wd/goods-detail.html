@@ -16,13 +16,21 @@
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
     <link rel="stylesheet" href="./iconfont/iconfont.css">
     <link rel="stylesheet" href="./css/content-input-list.css">
+    <link rel="stylesheet" href="./css/goods-add-split.css">
+    <link rel="stylesheet" href="./css/seller_center.css">
 
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+    <script src="./js/jquery-form.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
 	<script type="text/javascript" src="./js/haidao.validate.js"></script>
 	<script type="text/javascript" src="./js/config.js"></script>
 	<script src="./js/index.js"></script>
+    <style>
+        .tab-content dl dd {
+            margin-left: 0; 
+            }
+    </style>
 </head>
 <body>
 		<div class="view-topbar">
@@ -372,7 +380,7 @@
 
 
                     <div class="tab-content detail" style="display: none;">
-                        <div class="container-fluid">
+                        <!-- <div class="container-fluid">
                             
 
                             <div class="table-title-margin-10">
@@ -411,46 +419,142 @@
                     </div>
                     
                 </div>
-                        </div>
+                        </div> -->
 
-                    <div class="panel panel-default table-title-margin-10">
-                        <div class="panel-heading">
-                            电脑端显示
-                        </div>
-                        <div class="panel-body">
-                            
-                                <!-- 加载编辑器的容器 -->
-                                <div class="row">
-                                    <div class="col-ms-12">
-                                        <script id="container" name="content" type="text/plain" style="height:300px">
-                                            这里写你的初始化内容
-                                        </script>
-                                    </div>
+                <div class="ncsc-form-goods">
+
+                    <h3 id="demo1">图片上传</h3>
+                        <dl>
+                            <dt>
+                                图片上传(5张)
+                            </dt>
+                            <dd>
+                                <form method="post" id="imageupload" action="http://192.168.1.150/shop/shop/public/index.php/admin/Img/upload" enctype="multipart/form-data">
+                                <input type="hidden" name="id" value="3">
+                                <input type="hidden" name="dbName" value="good">
+                               <div class="detail-image-col-2">
+                            +<img src="" id="showImg1" />
+                                    <input type="file" name="file" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image1" />
+                                </div> 
+                                <!-- <div class="detail-image-col-2">
+                            +<img src="" id="showImg2" />
+                                    <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image2"/>
                                 </div>
-                            
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            手机端显示
-                        </div>
-                        <div class="panel-body">
-                            <!-- 加载编辑器的容器 -->
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        
-                                    </div>
-                                    <div class="col-md-4">
-                                        <script id="container1" name="content" type="text/plain" style="min-height:300px">
-                                            这里写你的初始化内容
-                                        </script>
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                    </div>
+                                <div class="detail-image-col-2">
+                            +<img src="" id="showImg3" />
+                                    <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image3" />
                                 </div>
-                        </div>
-                    </div>
+                                <div class="detail-image-col-2">
+                            +<img src="" id="showImg4" />
+                                    <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image4" />
+                                </div>
+                                <div class="detail-image-col-2">
+                            +<img src="" id="showImg5" />
+                                    <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image5" />
+                                </div> -->
+                                    <input type="submit" name="" value="提交">
+                                </form>
+                            </dd>
+                        </dl>
+                    
+
+                    <h3 id="demo2">商品详情描述</h3>
+
+                        
+
+                        <dl>
+        <dt>商品描述：</dt>
+        <dd id="ncProductDetails">
+          <div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" jquery1239647486215="2">
+              <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#" ><i class="icon-desktop"></i> 电脑端</a></li>
+              <li class="selected ui-state-default ui-corner-top"><a href="#"><i class="icon-mobile-phone"></i>手机端</a></li>
+            </ul>
+            <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" jquery1239647486215="4">
+              <script id="container" name="content" type="text/plain" style="height:300px">
+                                              这里写你的初始化内容
+              </script>
+<!--<script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
+  <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script>
+
+                 <div class="hr8">
+                <div class="ncsc-upload-btn"> <a href="javascript:void(0);"><span>
+                  <input type="file" hidefocus="true" size="1" class="input-file" name="add_album" id="add_album" multiple="multiple">
+                  </span>
+                  <p><i class="icon-upload-alt" data_type="0" nctype="add_album_i"></i>图片上传</p>
+                  </a> </div>
+                <a class="ncsc-btn mt5" nctype="show_desc" href="http://www.osucn.com/shop/index.php?act=store_album&amp;op=pic_list&amp;item=des"><i class="icon-picture"></i>插入相册图片</a> <a href="javascript:void(0);" nctype="del_desc" class="ncsc-btn mt5" style="display: none;"><i class=" icon-circle-arrow-up"></i>关闭相册</a> </div>
+              <p id="des_demo"></p> -->
+            </div>
+            <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" jquery1239647486215="5">
+              <div class="ncsc-mobile-editor">
+                <div class="pannel">
+                  <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>20</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>5000</em>字</span></div>
+                  <div class="control-panel" nctype="mobile_pannel">
+                                      </div>
+                  <div class="add-btn">
+                    <ul class="btn-wrap">
+                      <li><a href="javascript:void(0);" nctype="mb_add_img"><i class="icon-picture"></i>
+                        <p>图片</p>
+                        </a></li>
+                      <li><a href="javascript:void(0);" nctype="mb_add_txt"><i class="icon-font"></i>
+                        <p>文字</p>
+                        </a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="explain">
+                  <dl>
+                    <dt>1、基本要求：</dt>
+                    <dd>（1）手机详情总体大小：图片+文字，图片不超过20张，文字不超过5000字；</dd>
+                    <dd>建议：所有图片都是本宝贝相关的图片。</dd>
+                  </dl><dl>
+                    <dt>2、图片大小要求：</dt>
+                    <dd>（1）建议使用宽度480 ~ 620像素、高度小于等于960像素的图片；</dd>
+                    <dd>（2）格式为：JPG\JEPG\GIF\PNG；</dd>
+                    <dd>举例：可以上传一张宽度为480，高度为960像素，格式为JPG的图片。</dd>
+                  </dl><dl>
+                    <dt>3、文字要求：</dt>
+                    <dd>（1）每次插入文字不能超过500个字，标点、特殊字符按照一个字计算；</dd>
+                    <dd>建议：不要添加太多的文字，这样看起来更清晰。</dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="ncsc-mobile-edit-area" nctype="mobile_editor_area">
+                <div nctype="mea_img" class="ncsc-mea-img" style="display: none;"></div>
+                <div class="ncsc-mea-text" nctype="mea_txt" style="display: none;">
+                  <p id="meat_content_count" class="text-tip"></p>
+                  <textarea class="textarea valid" nctype="meat_content"></textarea>
+                  <div class="button"><a class="ncsc-btn ncsc-btn-blue" nctype="meat_submit" href="javascript:void(0);">确认</a><a class="ncsc-btn ml10" nctype="meat_cancel" href="javascript:void(0);">取消</a></div>
+                  <a class="text-close" nctype="meat_cancel" href="javascript:void(0);">X</a>
+                </div>
+              </div>
+              <input name="m_body" autocomplete="off" type="hidden" value="">
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <!-- <dl>
+        <dt>关联版式：</dt>
+        <dd> <span class="mr50">
+          <label>顶部版式</label>
+          <select name="plate_top">
+            <option>请选择</option>
+                      </select>
+          </span> <span class="mr50">
+          <label>底部版式</label>
+          <select name="plate_bottom">
+            <option>请选择</option>
+                      </select>
+          </span> </dd>
+      </dl> -->
+
+                </div>
+                        
+
+
+
+                    
                       
                     </div>
 
@@ -483,26 +587,20 @@
                     <div class="page-footer">
                       <div class="btn-wrap" style="position: static;">
                         <input type="submit" name="btnSubmit" value="提交保存" id="btnSubmit" class="button">
-                        <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);">
+                        <!-- <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);"> -->
                       </div>
                     </div>
                     <!--/工具栏-->
 						
                     </form>
-                        
 
-                        
-
-                        
-
-                       
                     </div>
 
 				</div>
 			</div>
 		</div>
-        <script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
-    <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script>
+     <!-- <script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
+    // <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script> -->
 
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
@@ -599,24 +697,65 @@
         'charts', // 图表
         */
 
-        var ue = UE.getEditor('container', {
-        		autoHeight: false,
-                toolbars: [
-                    ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
+        // var ue = UE.getEditor('container', {
+        // 		autoHeight: false,
+        //         toolbars: [
+        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
                     
-                ],
-                autoHeightEnabled: true,
-                autoFloatEnabled: true
-            }).setHeight(300);
+        //         ],
+        //         autoHeightEnabled: true,
+        //         autoFloatEnabled: true
+        //     }).setHeight(300);
 
-         var ue1=UE.getEditor('container1', {
-                toolbars: [
-                    ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
+        //  var ue1=UE.getEditor('container1', {
+        //         toolbars: [
+        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
                    
-                ],
-                autoHeightEnabled: true,
-                autoFloatEnabled: true
-            });
+        //         ],
+        //         autoHeightEnabled: true,
+        //         autoFloatEnabled: true
+        //     });
+
+
+        // var ue = UE.getEditor('container', {
+        //         autoHeight: false,
+        //         toolbars: [
+        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
+                    
+        //         ],
+        //         autoHeightEnabled: true,
+        //         autoFloatEnabled: true
+        //     }).setHeight(300);
+
+        //  var ue1=UE.getEditor('container1', {
+        //         toolbars: [
+        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
+                   
+        //         ],
+        //         autoHeightEnabled: true,
+        //         autoFloatEnabled: true
+        //     });
+
+         // $('.content-tab-ul-wrap ul li').on('click',function(){
+                
+         //        $(this).find('a').addClass('selected').end().siblings().find('a').removeClass();
+         //        if($(this).data('info')=='base'){
+
+         //            $('.base').css('display','block');
+         //            $('.detail').css('display','none');
+         //        }else{
+         //            $('.base').css('display','none');
+         //            $('.detail').css('display','block');
+         //        }
+         //    })
+         // console.log($('.image-content'));
+
+
+
+
+
+
+
 
          $('.content-tab-ul-wrap ul li').on('click',function(){
                 
@@ -638,14 +777,41 @@
             var reader=new FileReader();
             var self=this;
             reader.onload=function(e){
-                console.log(e.target.result);
-                 $('<img src='+e.target.result+' />').appendTo($(self).parent());
+                //console.log(e.target.result);
+                 $('<img src='+e.target.result+' style="width:100%;height:100%;" />').appendTo($(self).parent());
             }
             
             reader.readAsDataURL(file);
            
          });
+
+         var options = {
+        success: function (data) {
+           console.log(data);
+           if(data==200){
+                alert('添加成功');
+                // goodsHouse.goodsId=data.goodsId;
+                // $('<input type="hidden" value='+data.goodsId+'>').appendTo($('#mutitypeGoods'));
+                // $('.add-alert-area').hide();
+               //location.reload();
+           }else{
+               alert('添加失败，请重新添加');
+           }
+        }
+    };
         
+        $('#btnSubmit').on('click',function(){
+            console.log('image');
+            // config.formSubmit('#formSubmit',function(data){
+            //     console.log(data);
+            // })
+            console.log($('.image-content').val());
+            $('#imageupload').ajaxSubmit(options);
+
+
+        });
+        
+
     </script>
 		
 	

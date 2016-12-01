@@ -48,6 +48,7 @@
 	width:70%;
 	height:51%;
 	position:absolute;
+    border-radius:2%;
 	left:0;
 	right:0;
 	top:0;
@@ -117,7 +118,8 @@
 }
 
 .detail-image-col-2{
-    width:80%;
+    width:18%;
+    display:inline-block;
     min-height:115px;
     text-align:center;
     line-height:115px;

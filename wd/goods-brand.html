@@ -15,14 +15,19 @@
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
 	<link rel="stylesheet" href="./css/content-input-list.css">
+    <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
     <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="./js/jquery-form.js"></script>
-    
+    <script src="./js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
 	<script type="text/javascript" src="./js/select.js"></script>
 	<script type="text/javascript" src="./js/haidao.validate.js"></script>
 	<script type="text/javascript" src="./js/config.js"></script>
-	
+	<style>
+        .next{
+            float:none;
+        }
+    </style>
 </head>
 <body>
 		<div class="view-topbar">
@@ -313,7 +318,7 @@
                         
 
                           
-                        <div class="list-content show">
+                        <!-- <div class="list-content show">
                             <div class="offcial-table tr-border margin-big-top clearfix" id="admin-storage-userlist">
                                 <div class="tr-th clearfix">
                                     <div class="th w20">
@@ -362,7 +367,46 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>				
+                        </div> -->
+
+
+                        <div class="dataTables_wrapper">
+                            <table class="dataTable cell-border" id="demo2">
+                                <thead>
+                                    <tr>
+                                        <th class="dt-center">品牌名称</th>
+                                        <th class="dt-center">类别</th>
+                                        <th class="dt-center">备注</th>
+                                        <th class="dt-center">操作</th>
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody id="admin-storage-userlist">
+                                    <tr>
+                                        
+                                        <td class="dt-center">万店联盟</td>
+                                        <td class="dt-center">万店联盟</td>
+                                        <td class="dt-center">万店联盟</td>
+                                        <td class="dt-center">万店联盟</td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td class="dt-center">万店联盟</td>
+                                        <td class="dt-center">万店联盟</td>
+                                        <td class="dt-center">万店联盟</td>
+                                        <td class="dt-center">万店联盟</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+                            <div class="dataTables_paginate">
+                                <div class="paginate_button"></div>
+                                <div class="paginate_button"></div>
+                            </div>
+                        </div>
+
 						</div>
 						
 					</div>
@@ -395,9 +439,7 @@
                                 </div>
                             </div>
                         </div>
-                        
-
-                          
+ 
                         <div class="list-content show">
                             <div class="offcial-table tr-border margin-big-top clearfix" id="admin-storage-userlist">
                                 <div class="tr-th clearfix">
@@ -468,11 +510,8 @@
                             </div>
                         </div>
         </script>
-
-
-        <!-- 填充品牌列表模板 -->
-        <script type="text/template" id="brand-list">
-            <div class="tr clearfix border-bottom-none">
+        
+        <!-- <div class="tr clearfix border-bottom-none">
                 <div class="td w20">
                     {brand}
                 </div>
@@ -488,7 +527,17 @@
                     
                 </div>
                 
-            </div>
+            </div> -->
+
+        <!-- 填充品牌列表模板 -->
+        <script type="text/template" id="brand-list">
+            
+            <tr>                      
+                <td class="dt-center">{brand}</td>
+                <td class="dt-center">{brand}</td>
+                <td class="dt-center">万店联盟</td>
+                <td class="dt-center"><a href="#" brand-id={id} brand-name={brand} onclick="showuserinfo(this)" >编辑</a></td>
+            </tr>
         </script>
 
 
@@ -600,8 +649,7 @@
                           </div>
                         </dd>
                       </dl>
-
-                      
+ 
                     </div>
                 </form>
             </div>
@@ -660,6 +708,42 @@
                     console.log(data);
                 })
             });
+
+
+            $('#demo2').DataTable( {
+                    "bFilter": true,//列筛选，就是搜索功能
+                    "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_ 条记录",
+                    "sZeroRecords": "抱歉， 没有找到",
+                    "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+                    "sInfoEmpty": "没有数据",
+                    "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                    "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+                    },
+                    "scrollY": "100px",
+                    "columnDefs": [
+                       {
+                           orderable: false,
+     
+                           targets: 0 },
+                       {
+                           orderable: false,
+     
+                           targets: 1 }
+                   ],//第一列与第二列禁止排序
+                    "lengthMenu": [
+                       [8, 6, 8, -1],
+                       [4, 6, 8, "All"]
+                   ],//每页显示条数设置
+                    "aLengthMenu": [[10, 15, 50, -1], [10, 15, 50, "All"]],
+                    "sZeroRecords": "没有检索到数据",
+                    "sProcessing": "<img src='./loading.gif' />"
+                    }
+                });
 
 		</script>
 
