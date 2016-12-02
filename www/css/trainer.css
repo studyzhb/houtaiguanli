@@ -1,0 +1,138 @@
+
+
+
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0;}
+body{font:12px "微软雅黑","Arial Narrow",HELVETICA;background:#fff;}
+a{color:#172c45;text-decoration:none}
+a:hover{color:#cd0200;text-decoration:none} 
+em{font-style:normal}
+li{list-style:none}
+img{border:0;vertical-align:middle;display:block;} 
+h1,h2,h3,h4,h5,h6{font-weight:normal;}
+.clear:after{content:".";clear:both;display:block;height:0;overflow:hidden;visibility:hidden;}
+
+/* 以上是初始化网页 */
+
+
+
+body,html{
+	width:100%;
+	
+}
+#trainer-details{
+	padding-bottom: 30px;
+	background: #f0f;
+}
+.trainer-content{
+	min-height: 537px;
+	height:auto!important;
+	height:537px;
+}
+
+.cont-title{
+	padding:22px 30px 0 30px;
+	font-size: 26px;
+	color: #ba7671;
+	line-height: 42px;
+	height:42px;
+}
+.title-line{
+	display: inline-block;
+	margin-right:10px;
+}
+.content-one{
+	min-height: 42px;
+	height:auto!important;
+	height:42px;
+	line-height: 42px;
+	font-size: 28px;
+	color: #363636;
+	padding:0 30px;
+}
+
+.img-place{
+	min-height:226px;
+	height:auto!important;
+	height:226px;
+	margin:0 30px;
+	overflow: hidden;
+	padding:23px 0;
+
+}
+/* 一张图片是样式 */
+.img-show1{
+	width:690px;
+	min-height:226px;
+	height:auto!important;
+	height:226px;
+}
+.img1{
+	width:100%;
+	height:400px;
+}
+/* 两张图片时样式 */
+.img-show2{
+	width:706px;
+	min-height:226px;
+	height:auto!important;
+	height:226px;
+}
+.img2{
+	width:341px;
+	height:340px;
+	margin-right:8px;
+	float: left;
+}
+/* 三张图片样式 */
+.img-show3{
+	width:708px;
+	min-height:226px;
+	height:auto!important;
+	height:226px;
+}
+.img3{
+	width:229px;
+	height:226px;
+	margin-right:6px;
+	float: left;
+}
+/* 四张图样式 */
+.img-show4{
+	width:708px;
+	min-height:226px;
+	height:auto!important;
+	height:226px;
+}
+.img4{
+	width:342px;
+	height:226px;
+	margin:0 6px 6px 0;
+	float: left;
+}
+/* 五张图片以上 */
+.img-show5{
+	width:708px;
+	min-height:226px;
+	height:auto!important;
+	height:226px;
+}
+.img5{
+	width:229px;
+	height:226px;
+	margin:0 6px 6px 0;
+	float: left;
+}
+.content-two{
+	min-height: 42px;
+	height:auto!important;
+	height:42px;
+	line-height: 42px;
+	font-size: 28px;
+	color: #363636;
+	padding:0 30px;
+}
+
+
+
+
+

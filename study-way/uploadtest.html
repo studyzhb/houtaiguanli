@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<script type="text/javascript" src="jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="jquery-form.js"></script>
+</head>
+<body>
+	
+	<form method="post" id="demo1" action="http://192.168.1.150/shop/shop/public/index.php/admin/Img/upload?id=2&dbName=good" enctype="multipart/form-data">
+		<input type="file" name="file" value="" />
+		<input type="button" class="btn" name="" value="提交">
+	</form>
+
+
+	<script>
+	$('.btn').on('click',function(){
+		$('#demo1').ajaxSubmit({
+			success:function(data){
+				console.log(data);
+			}
+		})
+	})
+	</script>
+</body>
+</html>

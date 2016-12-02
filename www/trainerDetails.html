@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+	  
+	<title>导师详情</title>
+	<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/trainer.css">
+
+</head>
+<body>
+	<!-- 导师详情页 -->
+	<div id="trainer-details">
+		<!-- 导师内容部分 -->
+		<div class="trainer-content">
+			<h2 class="cont-title"><img class="title-line" src="img/icon_label@2x.png"/>导师简介</h2>
+			
+			<!-- 图片区域 -->
+			<div class="img-place">
+				<div class="img-show1">
+					<img class="img1" src="img/image_loading_400.png">
+				</div>
+			</div>
+			<p class="content-one">导师详情</p>
+		</div>
+	</div>
+<script type="text/javascript">
+	function bodyScale(){
+		var devicewidth=document.documentElement.clientWidth;
+			var scale=devicewidth/750;
+			document.body.style.zoom=scale;
+		}
+		window.onload=window.onresize=function(){
+			bodyScale();
+	}
+
+</script>
+
+
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/rem.js"></script>
+<script type="text/javascript" src="js/Zepto.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+<script type="text/javascript" src="js/trainerDetails.js"></script>
+</html>

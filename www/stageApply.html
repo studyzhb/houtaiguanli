@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+	<title>驿站申请</title>
+	<link rel="stylesheet" type="text/css" href="css/stage.css">
+</head>
+
+<body>
+
+<!-- 驿站申请页面 -->
+<div id="stage-apply">
+  <div class="apply-out">
+    <ul class="apply-infor">
+     
+    </ul>
+  </div>
+	<!-- 弹出层 -->
+  <div class="popup">
+    
+  </div>
+  <div class="industry-place">
+    <h2 class="industry-title">所属行业</h2>
+     <ul class="industry-list">
+      <li class="color-one">综合<img class="img-show" src="img/check@3x.png"></li>
+      <li>茶馆<img src="img/check@3x.png"></li>
+      <li>工作室<img  src="img/check@3x.png"></li>
+      <li>其他<img src="img/check@3x.png"></li>
+    </ul>
+  </div>
+  <div class="upload-img">
+    <h2>驿站首图</h2>
+    <div class="img-place-upload">
+      <div id="container" class="select">
+         <a id="selectfiles" href="javascript:void(0);" class='btn'>选择文件</a> 
+        
+      </div>
+      <div id="img-preview">
+        <img class="img-preview" id="img" src="img/apply_defult_rectangle@3x.png">
+      </div>
+      <p class="img-tag">图片大小不超过5M,图片尺寸不小于690x240像素</p>
+    </div>
+  </div>
+  <div class="infor-tag">
+    <h2>*备注:</h2>
+    <p>1.打*的为必填项,未打*号的为选填项</p>
+    <p>2.若申请不成功,请联系侍女夏沫(微信号为807718)</p>
+    <div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
+  </div>
+  <div class="two-bnt">
+    <button class="cancel-bnt">取消申请</button>
+    <a id="postfiles" href="javascript:void(0);" class="true-bnt">提交申请</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+/*function preview(file) {//预览图片得到图片base64    
+  var prevDiv = document.getElementById('img-preview');
+  console.log(file)   
+  if (file.files && file.files[0]) { 
+    var reader = new FileReader();     
+    reader.onload = function(evt){       
+      prevDiv.innerHTML = '<img class="img-preview" src="' + evt.target.result +'" />';
+      console.log(evt.target.result)
+    }      
+    reader.readAsDataURL(file.files[0]);    
+  }else{      
+    prevDiv.innerHTML = '<div class="img-preview" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+      console.log(file.value)
+  }  
+}*/
+
+
+  function bodyScale(){
+    var devicewidth=document.documentElement.clientWidth;
+      var scale=devicewidth/750;
+      document.body.style.zoom=scale;
+    }
+    window.onload=window.onresize=function(){
+      bodyScale();
+
+  }
+
+</script>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+
+
+<!-- 上传 -->
+<script type="text/javascript" src="lib/crypto1/crypto/crypto.js"></script>
+<script type="text/javascript" src="lib/crypto1/hmac/hmac.js"></script>
+ <script type="text/javascript" src="lib/crypto1/sha1/sha1.js"></script> 
+<script type="text/javascript" src="lib/base64.js"></script>
+<script type="text/javascript" src="lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="js/upload.js"></script>
+</html>
+
+
+
+<script type="text/javascript" src="js/stageApply.js"></script>

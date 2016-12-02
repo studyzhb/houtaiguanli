@@ -400,7 +400,8 @@
     <script type="text/javascript">
       var goodsCatagory={
         sort:{
-          oneSort:''
+          oneSort:'',
+          secSort:''
        }
       } 
 
@@ -412,11 +413,17 @@
           var $li=$('<li style="text-align:left;">').appendTo($('#one-sort')).attr('type-id',item.id).html('<a href="#" style="display:inline-block;">'+item.type+'</a><a style="display:inline-block;" href="#"><img style="height:10px;width:10px;" src="./img/iconfont-xiugaioryijian.png" alt=""></a>');
           $li.on('click',function(){
             console.log($(this).attr('type-id'));
+            $(this).text();
             goodsCatagory.sort.oneSort=$(this).attr('type-id');
             config.ajax('get',config.ajaxAddress.showgoodsSort,function(subdata){
+              console.log(subdata);
               $('#sec-sort').html('');
               $.each(subdata,function(i,ites){
-                $('<li style="text-align:left;">').appendTo($('#sec-sort')).attr('type-id',ites.id).html('<a href="#" style="display:inline-block;" >'+ites.type+'</a><a style="display:inline-block;" href="#"><img style="height:10px;width:10px;" src="./img/iconfont-xiugaioryijian.png" alt=""></a>');
+                var $li1=$('<li style="text-align:left;">').appendTo($('#sec-sort')).attr('type-id',ites.id).html('<a href="#" style="display:inline-block;" >'+ites.type+'</a><a style="display:inline-block;" href="#"><img style="height:10px;width:10px;" src="./img/iconfont-xiugaioryijian.png" alt=""></a>');
+                $li1.on('click',function(){
+                  $(this).text();
+                  goodsCatagory.sort.secSort=$(this).attr('type-id');
+                })
               })
             },{id:$(this).attr('type-id')});
           })
@@ -424,10 +431,10 @@
       })
   })  
 
-
-        $('#next-goto-goodseditor').on('click',function(){
-          location.href="goodseditor-test-like-2-addgoods.html";
-        })
+    $('#next-goto-goodseditor').on('click',function(){
+      // var obj=goodsCatagory.sort
+      location.href="goodseditor-test-like-2-addgoods.html?";
+    })
     </script>
 </body>
 

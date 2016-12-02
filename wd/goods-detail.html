@@ -29,7 +29,15 @@
     <style>
         .tab-content dl dd {
             margin-left: 0; 
-            }
+        }
+        .detail-image-col-2 .image-content{
+            position:absolute;
+            width:100%;
+            height:100%;
+            opacity:0;
+            left:0;
+            top:0;
+        }
     </style>
 </head>
 <body>
@@ -287,7 +295,7 @@
                     <!-- 主要内容区 -->
                     <div class="main-body padding-top-20">
                         
-                        <form method="post" action="" id="form1" enctype="multipart/form-data">
+                        
 
                         <!--导航栏-->
                         <div class="location">
@@ -317,8 +325,8 @@
                     </div>
 
                     <div class="tab-content base" style="display: block;">
-                        <div>
-                            <div class="row">
+                        <div class="item-publish">
+                            <div class="ncsc-form-goods" id="editorwrapper">
                                 
                             </div>
                         </div>
@@ -373,8 +381,7 @@
                           <span class="Validform_checktip">不选择默认当前发布时间</span>
                         </dd>
                       </dl>
-                      
-                      
+
                     </div>
 
 
@@ -429,35 +436,44 @@
                                 图片上传(5张)
                             </dt>
                             <dd>
-                                <form method="post" id="imageupload" action="http://192.168.1.150/shop/shop/public/index.php/admin/Img/upload" enctype="multipart/form-data">
-                                <input type="hidden" name="id" value="3">
-                                <input type="hidden" name="dbName" value="good">
+                                
+
+
+                                <form method="post" id="imageupload" action="http://192.168.1.150/shop/shop/public/index.php/admin/Img/upload?id=2&dbName=good" enctype="multipart/form-data">
+                                <!-- <input type="hidden" name="id" value="3">
+                                <input type="hidden" name="dbName" value="good"> -->
                                <div class="detail-image-col-2">
-                            +<img src="" id="showImg1" />
-                                    <input type="file" name="file" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image1" />
+                                    <img src="" id="showImg1" width="100%" height="250" />    
+                                    <input type="file" name="file" class="image-content" id="image1" />
                                 </div> 
                                 <!-- <div class="detail-image-col-2">
-                            +<img src="" id="showImg2" />
+                                    <img src="" id="showImg2" width="100%" height="250" /> 
                                     <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image2"/>
                                 </div>
                                 <div class="detail-image-col-2">
-                            +<img src="" id="showImg3" />
+                                    <img src="" id="showImg3" width="100%" height="250" /> 
                                     <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image3" />
                                 </div>
                                 <div class="detail-image-col-2">
-                            +<img src="" id="showImg4" />
+                                    <img src="" id="showImg4" width="100%" height="250" /> 
                                     <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image4" />
                                 </div>
                                 <div class="detail-image-col-2">
-                            +<img src="" id="showImg5" />
+                                    <img src="" id="showImg5" width="100%" height="250" /> 
                                     <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image5" />
-                                </div> -->
-                                    <input type="submit" name="" value="提交">
+                                </div>  -->
+                                    <input type="button" name="" id="shangchuan" value="shangchuan">
                                 </form>
+                                <!-- <form action="" method="post" enctype="multipart/form-data" id="postFormone">
+
+                                    <input type="file" name="filename" value="" id="file_mendian">
+                                    <div class="image_container">
+                                        <img id="men" width="500" height="250" style="border: none">
+                                        <input type="submit"  value="上传">
+                                    </div>
+                                </form> -->
                             </dd>
                         </dl>
-                    
-
                     <h3 id="demo2">商品详情描述</h3>
 
                         
@@ -558,30 +574,6 @@
                       
                     </div>
 
-                    <div class="tab-content" style="display: none;">
-                      <dl>
-                        <dt>SEO标题</dt>
-                        <dd>
-                          <input name="txtSeoTitle" type="text" maxlength="255" id="txtSeoTitle" class="input normal" datatype="*0-100" sucmsg=" ">
-                          <span class="Validform_checktip">255个字符以内</span>
-                        </dd>
-                      </dl>
-                      <dl>
-                        <dt>SEO关健字</dt>
-                        <dd>
-                          <textarea name="txtSeoKeywords" rows="2" cols="20" id="txtSeoKeywords" class="input" datatype="*0-255" sucmsg=" "></textarea>
-                          <span class="Validform_checktip">以“,”逗号区分开，255个字符以内</span>
-                        </dd>
-                      </dl>
-                      <dl>
-                        <dt>SEO描述</dt>
-                        <dd>
-                          <textarea name="txtSeoDescription" rows="2" cols="20" id="txtSeoDescription" class="input" datatype="*0-255" sucmsg=" "></textarea>
-                          <span class="Validform_checktip">255个字符以内</span>
-                        </dd>
-                      </dl>
-                    </div>
-                    <!--/内容-->
 
                     <!--工具栏-->
                     <div class="page-footer">
@@ -771,50 +763,285 @@
             })
          // console.log($('.image-content'));
 
-         $('.image-content').on('change',function(e){
-            //console.log(e.target.files);
-            var file=e.target.files[0];
-            var reader=new FileReader();
-            var self=this;
-            reader.onload=function(e){
-                //console.log(e.target.result);
-                 $('<img src='+e.target.result+' style="width:100%;height:100%;" />').appendTo($(self).parent());
-            }
+         // $('.image-content').on('change',function(e){
+         //    //console.log(e.target.files);
+         //    var file=e.target.files[0];
+         //    var reader=new FileReader();
+         //    var self=this;
+         //    reader.onload=function(e){
+         //        //console.log(e.target.result);
+         //         $('<img src='+e.target.result+' style="width:100%;height:100%;" />').appendTo($(self).parent());
+         //    }
             
-            reader.readAsDataURL(file);
+         //    reader.readAsDataURL(file);
            
-         });
+         // });
 
          var options = {
-        success: function (data) {
-           console.log(data);
-           if(data==200){
-                alert('添加成功');
-                // goodsHouse.goodsId=data.goodsId;
-                // $('<input type="hidden" value='+data.goodsId+'>').appendTo($('#mutitypeGoods'));
-                // $('.add-alert-area').hide();
-               //location.reload();
-           }else{
-               alert('添加失败，请重新添加');
-           }
-        }
+            success: function (data) {
+                console.log(data);
+                   if(data.code==200){
+                        alert('添加成功');
+                        // goodsHouse.goodsId=data.goodsId;
+                        // $('<input type="hidden" value='+data.goodsId+'>').appendTo($('#mutitypeGoods'));
+                        // $('.add-alert-area').hide();
+                       //location.reload();
+                   }else{
+                       alert('添加失败，请重新添加');
+                   }
+            }
     };
         
-        $('#btnSubmit').on('click',function(){
+        $('#shangchuan').on('click',function(){
             console.log('image');
             // config.formSubmit('#formSubmit',function(data){
             //     console.log(data);
             // })
-            console.log($('.image-content').val());
+            // console.log($('.image-content').val());
             $('#imageupload').ajaxSubmit(options);
-
-
         });
         
+        // $('#imageupload').ajaxForm({
+        //     url:'http://192.168.1.150/shop/shop/public/index.php/admin/Img/upload?id=2&dbName=good',
+        //     dataType: 'json',
+        //     data: $('#imageupload').serialize(),
+        //     success:function(data){
+        //         console.log(data);
+        //     }
+        // });
+
+        //获取上传图片 
+
+        $("#image1").change(function() {
+                var $file = $(this);
+                var fileObj = $file[0];
+                //console.log(fileObj.files[0])
+                var windowURL = window.URL || window.webkitURL;
+                var dataURL;
+                var $img = $("#showImg1");
+
+                if (fileObj && fileObj.files && fileObj.files[0]) {
+                    dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                    $img.attr('src', dataURL);
+
+                } else {
+                    dataURL = $file.val();
+                    var imgObj = document.getElementById("showImg3");
+                    imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                    imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+                }
+
+        })
+        $("#image2").change(function() {
+                var $file = $(this);
+                var fileObj = $file[0];
+                //console.log(fileObj.files[0])
+                var windowURL = window.URL || window.webkitURL;
+                var dataURL;
+                var $img = $("#showImg2");
+
+                if (fileObj && fileObj.files && fileObj.files[0]) {
+                    dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                    $img.attr('src', dataURL);
+
+                } else {
+                    dataURL = $file.val();
+                    var imgObj = document.getElementById("showImg3");
+                    imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                    imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+                }
+
+        })
+        $("#image3").change(function() {
+                var $file = $(this);
+                var fileObj = $file[0];
+                //console.log(fileObj.files[0])
+                var windowURL = window.URL || window.webkitURL;
+                var dataURL;
+                var $img = $("#showImg3");
+
+                if (fileObj && fileObj.files && fileObj.files[0]) {
+                    dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                    $img.attr('src', dataURL);
+
+                } else {
+                    dataURL = $file.val();
+                    var imgObj = document.getElementById("showImg3");
+                    imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                    imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+                }
+
+        })
+        $("#image4").change(function() {
+                var $file = $(this);
+                var fileObj = $file[0];
+                //console.log(fileObj.files[0])
+                var windowURL = window.URL || window.webkitURL;
+                var dataURL;
+                var $img = $("#showImg4");
+
+                if (fileObj && fileObj.files && fileObj.files[0]) {
+                    dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                    $img.attr('src', dataURL);
+
+                } else {
+                    dataURL = $file.val();
+                    var imgObj = document.getElementById("showImg3");
+                    imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                    imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+                }
+
+        })
+        $("#image5").change(function() {
+                var $file = $(this);
+                var fileObj = $file[0];
+                //console.log(fileObj.files[0])
+                var windowURL = window.URL || window.webkitURL;
+                var dataURL;
+                var $img = $("#showImg5");
+
+                if (fileObj && fileObj.files && fileObj.files[0]) {
+                    dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                    $img.attr('src', dataURL);
+
+                } else {
+                    dataURL = $file.val();
+                    var imgObj = document.getElementById("showImg5");
+                    imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                    imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+                }
+
+        })
+
+
+
+
 
     </script>
 		
 	
+
+
+
+
+    <!-- 商品信息模板 -->
+    <script type="text/template" id="editorContent">
+      <h3 id="demo1">商品基本信息</h3>
+      <dl>
+        <dt>商品分类：</dt>
+        <dd id="gcategory">  <a class="ncsc-btn" href="#">编辑</a>
+          <input type="hidden" name="" value="362" class="text">
+          <input type="hidden" name="good_type_id" value="2" class="text">
+        </dd>
+      </dl>
+      <dl>
+        <dt><i class="required">*</i>商品名称：</dt>
+        <dd>
+          <input name="name" type="text" class="text w400 goods-fullname" value="{name}" placeholder="商品全称">
+          <input type="text" name="jname" value="{jname}" placeholder="商品简称">
+          <span></span>
+          <p class="hint">商品标题名称长度至少3个字符，最长50个汉字</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>商品条形码：</dt>
+        <dd>
+          <input type="text" name="coding" placeholder="条形码" value="{coding}" />
+          <input type="text" name="barcode" class="barcode" placeholder="国际条形码" value="{barcode}" />
+          <span></span>
+          <p class="hint">商品条形码</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt nc_type="no_spec"><i class="required">*</i>成本价：</dt>
+        <dd nc_type="no_spec">
+          <input name="buyprice" value="{buyprice}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <p class="hint">价格必须是0.01~9999999之间的数字，且不能高于市场价。<br>
+            此价格为商品实际销售价格，如果商品存在规格，该价格显示最低价格。</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt><i class="required">*</i>零售价：</dt>
+        <dd>
+          <input name="retails" value="{retails}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <p class="hint">价格必须是0.01~9999999之间的数字，此价格仅为市场参考售价，请根据该实际情况认真填写。</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>批发价：</dt>
+        <dd>
+          <input name="wholesale" value="{wholesale}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <p class="hint">价格必须是0.00~9999999之间的数字，此价格为商户对所销售的商品实际成本价格进行备注记录，非必填选项，不会在前台销售页面中显示。</p>
+        </dd>
+      </dl>
+      
+      <dl>
+        <dt><i class="required">*</i>商品扩展信息：</dt>
+        <dd>
+          <table class="table">
+        <caption></caption>
+        
+        <tbody>
+          <tr>
+            <td class="col-ms-3">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌<select name="good_brand_id" id="add-goods-brand">
+              
+            </select></td>
+            <td class="col-ms-3">规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格<select name="gg_id" id="gg">
+              
+            </select></td>
+            
+            <td class="col-ms-3">计价方式<select name="method_id" id="goods-method">
+              
+            </select></td>
+
+            
+            <td class="col-ms-3">主供应商<select name="supplier_id" id="main-supplier">
+              
+            </select></td>
+          </tr>
+          <tr>
+            <td>原产地<input type="text" name="home" value="{home}" /></td>
+            <td>生产厂家<input type="text" name="fac" value="{fac}" /></td>
+            <td>零售单位<input type="text" name="eachsale" value="{eachsale}" /></td>
+            <td></td>
+            
+          </tr>
+          <tr>
+            
+            <td>毛利率<input type="text" name="gross" /></td>
+            <td>进项税率<input type="text" name="incomerat" /></td>
+            <td>销售税率<input type="text" name="salesrate" /></td>
+            <td>加盟价<input type="text" name="oiningprice" /></td>
+            
+
+          </tr>
+          <tr>
+            <td>会员价<input type="text" name="vipprice" value=""></td>
+            <td>会员价一<input type="text" name="vippriveo" value=""></td>
+            <td>会员价二<input type="text" name="vippricet" value=""></td>
+            <td>最低售价<input type="text" name="inimumprice" value=""></td>
+          </tr>
+          
+        </tbody>
+      </table>
+        </dd>
+      </dl>
+      
+      
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

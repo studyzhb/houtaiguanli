@@ -25,6 +25,8 @@ var config={
 		goodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/show',
     //添加物品信息
     addgoodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/addGoods',
+    //商品编辑
+    goodsEditor:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/edit',
       //添加供货商地址
 		addSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/supplier/add',
       //更新单个供货商信息地址http://192.168.1.18/wp/public/index.php/admin/supplier/update
