@@ -751,7 +751,7 @@ td.trigger i:hover { color: #27A9E3;}
 #ncProductDetails .ui-widget-header { background: #f0f0ee none; border-color: #CCC;}
 #ncProductDetails .ui-tabs .ui-tabs-nav li a i { font-size: 14px; vertical-align: middle; margin-right: 4px;}
 #ncProductDetails .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #999;}
-#ncProductDetails .ui-state-default, .ui-widget-content .ui-state-default { border-color: #CCC;}
+#ncProductDetails .ui-state-default, .ui-widget-content .ui-state-default { border-color: #CCC;display: inline-block;}
 #ncProductDetails .ui-state-hover a, .ui-state-hover a:hover { color: #555; }
 #ncProductDetails .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #333;}
 #ncProductDetails .ui-tabs .ui-tabs-panel { padding: 8px 0;}

@@ -10,8 +10,10 @@ Dsy.prototype.Exists = function (id) {
 }
 var config={
   //表单提交
-  formSubmit:function(formId,fun){
+  formSubmit:function(formId,urlhttp,fun){
+    
     $(formId).ajaxSubmit({
+      url:urlhttp,
       success:function(data){
         console.log(data);
         if(!!fun){
@@ -25,13 +27,15 @@ var config={
 		goodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/show',
     //添加物品信息
     addgoodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/addGoods',
-    //商品编辑
+    //商品基本信息编辑更改
     goodsEditor:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/edit',
-      //添加供货商地址
+    //商品详情页添加
+    goodsDetail:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/detail',
+    //添加供货商地址
 		addSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/supplier/add',
-      //更新单个供货商信息地址http://192.168.1.18/wp/public/index.php/admin/supplier/update
+    //更新单个供货商信息地址http://192.168.1.18/wp/public/index.php/admin/supplier/update
 		updateSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/update',
-      //显示供货商列表信息http://192.168.1.18/wp/public/index.php/admin/supplier/show
+    //显示供货商列表信息http://192.168.1.18/wp/public/index.php/admin/supplier/show
     showSupplierList:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/lst',
     //商品分类
     showgoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/add',

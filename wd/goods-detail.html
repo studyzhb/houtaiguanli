@@ -330,57 +330,9 @@
                                 
                             </div>
                         </div>
-                      <dl>
-                        <dt>所属类别</dt>
-                        <dd>
-                          <div class="rule-single-select single-select"><div class="boxwrap"><a class="select-tit" href="javascript:;"><span>请选择类别...</span><i></i></a><div class="select-items" style="display: none;"><ul><li class="selected">请选择类别...</li><li>公司介绍</li></ul></div><i class="arrow" style="display: none;"></i></div>
-                            <select name="ddlCategoryId" id="ddlCategoryId" datatype="*" sucmsg=" " nullmsg="请选择！" class="Validform_error" style="display: none;">
-                        <option value="">请选择类别...</option>
-                        <option value="25">公司介绍</option>
-
-                    </select>
-                          </div>
-                        <span class="Validform_checktip Validform_wrong">请选择！</span></dd>
-                      </dl>
-                      <dl>
-                        <dt>显示状态</dt>
-                        <dd>
-                          <div class="rule-multi-radio multi-radio"><div class="boxwrap"><a href="javascript:;" class="">正常</a><a href="javascript:;" class="">待审核</a><a href="javascript:;" class="selected">不显示</a></div>
-                            <span id="rblStatus" style="display: none;"><input id="rblStatus_0" type="radio" name="rblStatus" value="0" checked="checked"><label for="rblStatus_0">正常</label><input id="rblStatus_1" type="radio" name="rblStatus" value="1"><label for="rblStatus_1">待审核</label><input id="rblStatus_2" type="radio" name="rblStatus" value="2"><label for="rblStatus_2">不显示</label></span>
-                          </div>
-                        </dd>
-                      </dl>
-                      <dl>
-                        <dt>推荐类型</dt>
-                        <dd>
-                          <div class="rule-multi-checkbox multi-checkbox"><div class="boxwrap"><a href="javascript:;" class="">允许评论</a><a href="javascript:;" class="">置顶</a><a href="javascript:;" class="">推荐</a><a href="javascript:;" class="">热门</a><a href="javascript:;" class="">热销</a></div>
-                            <span id="cblItem" style="display: none;"><input id="cblItem_0" type="checkbox" name="cblItem$0" value="1"><label for="cblItem_0">允许评论</label><input id="cblItem_1" type="checkbox" name="cblItem$1" value="1"><label for="cblItem_1">置顶</label><input id="cblItem_2" type="checkbox" name="cblItem$2" value="1"><label for="cblItem_2">推荐</label><input id="cblItem_3" type="checkbox" name="cblItem$3" value="1"><label for="cblItem_3">热门</label><input id="cblItem_4" type="checkbox" name="cblItem$4" value="1"><label for="cblItem_4">幻灯片</label></span>
-                          </div>
-                        </dd>
-                      </dl>
-                      <dl>
-                        <dt>内容标题</dt>
-                        <dd>
-                          <input name="txtTitle" type="text" id="txtTitle" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
-                          <span class="Validform_checktip Validform_wrong">请填写信息！</span>
-                        </dd>
-                      </dl>
                       
-                      <dl>
-                        <dt>Tags标签</dt>
-                        <dd>
-                          <input name="txtTags" type="text" id="txtTags" class="input normal" datatype="*0-500" sucmsg=" ">
-                          <span class="Validform_checktip">多个可用英文逗号分隔开，如：a,b</span>
-                        </dd>
-                      </dl>
-
-                      <dl>
-                        <dt>发布时间</dt>
-                        <dd>
-                          <div class="date-input"><i></i><input name="txtAddTime" type="text" id="txtAddTime" class="input rule-date-input" onfocus="WdatePicker({dateFmt:&#39;yyyy-MM-dd HH:mm:ss&#39;})" datatype="/^\s*$|^\d{4}\-\d{1,2}\-\d{1,2}\s{1}(\d{1,2}:){2}\d{1,2}$/" errormsg="请选择正确的日期" sucmsg=" "></div>
-                          <span class="Validform_checktip">不选择默认当前发布时间</span>
-                        </dd>
-                      </dl>
+                        
+                      
 
                     </div>
 
@@ -444,7 +396,7 @@
                                 <input type="hidden" name="dbName" value="good"> -->
                                <div class="detail-image-col-2">
                                     <img src="" id="showImg1" width="100%" height="250" />    
-                                    <input type="file" name="file" class="image-content" id="image1" />
+                                    <input type="file" name="file" multiple="multiple" class="image-content" id="image1" />
                                 </div> 
                                 <!-- <div class="detail-image-col-2">
                                     <img src="" id="showImg2" width="100%" height="250" /> 
@@ -483,8 +435,8 @@
         <dd id="ncProductDetails">
           <div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
             <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" jquery1239647486215="2">
-              <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#" ><i class="icon-desktop"></i> 电脑端</a></li>
-              <li class="selected ui-state-default ui-corner-top"><a href="#"><i class="icon-mobile-phone"></i>手机端</a></li>
+              <li class="ui-state-default ui-corner-top ui-tabs-selected"><a href="#" ><i class="icon-desktop"></i> 电脑端</a></li>
+              <li class="selected ui-state-default ui-corner-top ui-state-active"><a href="#"><i class="icon-mobile-phone"></i>手机端</a></li>
             </ul>
             <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" jquery1239647486215="4">
               <script id="container" name="content" type="text/plain" style="height:300px">
@@ -591,7 +543,117 @@
 				</div>
 			</div>
 		</div>
-     <!-- <script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
+     
+		
+	
+
+
+
+
+    <!-- 商品信息模板 -->
+    <script type="text/template" id="editorContent">
+      <h3 id="demo1">商品基本信息</h3>
+      <dl>
+        <dt>商品分类：</dt>
+        <dd id="gcategory">  
+          
+        </dd>
+      </dl>
+      <dl>
+        <dt><i class="required">*</i>商品名称：</dt>
+        <dd>
+
+          <!--<input name="name" type="text" class="text w400 goods-fullname" value="{name}" placeholder="商品全称">
+          <input type="text" name="jname" value="{jname}" placeholder="商品简称">-->
+          <span>{name}</span>
+          <span>{jname}</span>
+          <p class="hint">商品标题名称长度至少3个字符，最长50个汉字</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>商品条形码：</dt>
+        <dd>
+          <!--<input type="text" name="coding" placeholder="条形码" value="{coding}" />
+          <input type="text" name="barcode" class="barcode" placeholder="国际条形码" value="{barcode}" />-->
+          <span></span>
+          <p class="hint">{barcode}</p>
+        </dd>
+      </dl>
+      <!--
+      <dl>
+        <dt nc_type="no_spec"><i class="required">*</i>成本价：</dt>
+        <dd nc_type="no_spec">
+          <input name="buyprice" value="{buyprice}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <p class="hint">价格必须是0.01~9999999之间的数字，且不能高于市场价。<br>
+            此价格为商品实际销售价格，如果商品存在规格，该价格显示最低价格。</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt><i class="required">*</i>零售价：</dt>
+        <dd>
+          <input name="retails" value="{retails}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <p class="hint">价格必须是0.01~9999999之间的数字，此价格仅为市场参考售价，请根据该实际情况认真填写。</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>批发价：</dt>
+        <dd>
+          <input name="wholesale" value="{wholesale}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <p class="hint">价格必须是0.00~9999999之间的数字，此价格为商户对所销售的商品实际成本价格进行备注记录，非必填选项，不会在前台销售页面中显示。</p>
+        </dd>
+      </dl>-->
+      
+      <dl>
+        <dt><i class="required">*</i>商品扩展信息：</dt>
+        <dd>
+          <table class="table">
+        <caption></caption>
+        
+        <tbody>
+          <tr>
+            <td class="col-ms-3">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌<select name="good_brand_id" id="add-goods-brand">
+              
+            </select></td>
+            <td class="col-ms-3">规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格<select name="gg_id" id="gg">
+              
+            </select></td>
+            
+            <td class="col-ms-3">计价方式<span style="margin-left:5px;">test1</span></td>
+
+            
+            <td class="col-ms-3">主供应商<span style="margin-left:5px;">test1</span></td>
+          </tr>
+          <tr>
+            <td>原产地<input type="text" name="home" value="{home}" /></td>
+            <td>生产厂家<input type="text" name="fac" value="{fac}" /></td>
+            <td>零售单位<input type="text" name="eachsale" value="{eachsale}" /></td>
+            <td></td>
+            
+          </tr>
+          <!--<tr>
+            
+            <td>毛利率<input type="text" name="gross" /></td>
+            <td>进项税率<input type="text" name="incomerat" /></td>
+            <td>销售税率<input type="text" name="salesrate" /></td>
+            <td>加盟价<input type="text" name="oiningprice" /></td>
+            
+
+          </tr>
+          <tr>
+            <td>会员价<input type="text" name="vipprice" value=""></td>
+            <td>会员价一<input type="text" name="vippriveo" value=""></td>
+            <td>会员价二<input type="text" name="vippricet" value=""></td>
+            <td>最低售价<input type="text" name="inimumprice" value=""></td>
+          </tr>-->
+          
+        </tbody>
+      </table>
+        </dd>
+      </dl>
+      
+      
+      </script>
+    <!-- <script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
     // <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script> -->
 
     <!-- 实例化编辑器 -->
@@ -690,7 +752,7 @@
         */
 
         // var ue = UE.getEditor('container', {
-        // 		autoHeight: false,
+        //      autoHeight: false,
         //         toolbars: [
         //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
                     
@@ -915,127 +977,28 @@
 
 
 
+        var goodsHouse={
+            goodsType:{
+                cata1:'',
+                cata2:''
+            },
+            goodsData:{
+                goodsName:'',
+                goodsCode:''
+            },
+            goodsId:''
+        }
+
+        var getCon=window.location.href.split('?')[1]||'';
+        goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
+        config.ajax('get',config.ajaxAddress.goodsDetail,function(data){
+              console.log(data);
+              var tempHtml=$('#editorContent').html();
+              $('#editorwrapper').append(config.formatTemplate(data.good[0],tempHtml));        
+            },{id:'2'});
 
 
     </script>
-		
-	
-
-
-
-
-    <!-- 商品信息模板 -->
-    <script type="text/template" id="editorContent">
-      <h3 id="demo1">商品基本信息</h3>
-      <dl>
-        <dt>商品分类：</dt>
-        <dd id="gcategory">  <a class="ncsc-btn" href="#">编辑</a>
-          <input type="hidden" name="" value="362" class="text">
-          <input type="hidden" name="good_type_id" value="2" class="text">
-        </dd>
-      </dl>
-      <dl>
-        <dt><i class="required">*</i>商品名称：</dt>
-        <dd>
-          <input name="name" type="text" class="text w400 goods-fullname" value="{name}" placeholder="商品全称">
-          <input type="text" name="jname" value="{jname}" placeholder="商品简称">
-          <span></span>
-          <p class="hint">商品标题名称长度至少3个字符，最长50个汉字</p>
-        </dd>
-      </dl>
-      <dl>
-        <dt>商品条形码：</dt>
-        <dd>
-          <input type="text" name="coding" placeholder="条形码" value="{coding}" />
-          <input type="text" name="barcode" class="barcode" placeholder="国际条形码" value="{barcode}" />
-          <span></span>
-          <p class="hint">商品条形码</p>
-        </dd>
-      </dl>
-      <dl>
-        <dt nc_type="no_spec"><i class="required">*</i>成本价：</dt>
-        <dd nc_type="no_spec">
-          <input name="buyprice" value="{buyprice}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
-          <p class="hint">价格必须是0.01~9999999之间的数字，且不能高于市场价。<br>
-            此价格为商品实际销售价格，如果商品存在规格，该价格显示最低价格。</p>
-        </dd>
-      </dl>
-      <dl>
-        <dt><i class="required">*</i>零售价：</dt>
-        <dd>
-          <input name="retails" value="{retails}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
-          <p class="hint">价格必须是0.01~9999999之间的数字，此价格仅为市场参考售价，请根据该实际情况认真填写。</p>
-        </dd>
-      </dl>
-      <dl>
-        <dt>批发价：</dt>
-        <dd>
-          <input name="wholesale" value="{wholesale}" type="text" class="text w60"><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
-          <p class="hint">价格必须是0.00~9999999之间的数字，此价格为商户对所销售的商品实际成本价格进行备注记录，非必填选项，不会在前台销售页面中显示。</p>
-        </dd>
-      </dl>
-      
-      <dl>
-        <dt><i class="required">*</i>商品扩展信息：</dt>
-        <dd>
-          <table class="table">
-        <caption></caption>
-        
-        <tbody>
-          <tr>
-            <td class="col-ms-3">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌<select name="good_brand_id" id="add-goods-brand">
-              
-            </select></td>
-            <td class="col-ms-3">规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格<select name="gg_id" id="gg">
-              
-            </select></td>
-            
-            <td class="col-ms-3">计价方式<select name="method_id" id="goods-method">
-              
-            </select></td>
-
-            
-            <td class="col-ms-3">主供应商<select name="supplier_id" id="main-supplier">
-              
-            </select></td>
-          </tr>
-          <tr>
-            <td>原产地<input type="text" name="home" value="{home}" /></td>
-            <td>生产厂家<input type="text" name="fac" value="{fac}" /></td>
-            <td>零售单位<input type="text" name="eachsale" value="{eachsale}" /></td>
-            <td></td>
-            
-          </tr>
-          <tr>
-            
-            <td>毛利率<input type="text" name="gross" /></td>
-            <td>进项税率<input type="text" name="incomerat" /></td>
-            <td>销售税率<input type="text" name="salesrate" /></td>
-            <td>加盟价<input type="text" name="oiningprice" /></td>
-            
-
-          </tr>
-          <tr>
-            <td>会员价<input type="text" name="vipprice" value=""></td>
-            <td>会员价一<input type="text" name="vippriveo" value=""></td>
-            <td>会员价二<input type="text" name="vippricet" value=""></td>
-            <td>最低售价<input type="text" name="inimumprice" value=""></td>
-          </tr>
-          
-        </tbody>
-      </table>
-        </dd>
-      </dl>
-      
-      
-      </script>
-
-
-
-
-
-
-
 
 
 

@@ -622,12 +622,12 @@
                 <div class="btn btn-default" id="closeConArea">X</div>
             </div>
             <div style="padding:0 10px;">
-              <form method="POST" id="brand-editor" action="http://192.168.1.150/shop/shop/public/index.php/admin/Good/brand" enctype="multipart/form-data">
+              <form method="POST" id="brand-editor" action="" enctype="multipart/form-data">
                 <div class="tab-content" style="display: block;">
                       <dl>
                         <dt>品牌名称</dt>
                         <dd>
-                          <input name="txtTitle" type="text" id="brand-name" class="input normal Validform_error" datatype="*2-100" sucmsg=" " nullmsg="请填写信息！">
+                          <input type="text" id="brand-name" class="input normal Validform_error" datatype="*2-100" sucmsg=" " name="brand" nullmsg="请填写信息！">
                           <span class="Validform_checktip Validform_wrong">请填写信息！</span>
                         </dd>
                       </dl>
@@ -681,6 +681,7 @@
 			// $('.page-title').text('商品品牌');
 			function showuserinfo(obj){
                 if(obj){
+                    $('input[type=hidden]').remove();
                     $('<input type="hidden" name="id" >').appendTo($('#brand-editor')).attr('value',$(obj).attr('brand-id'));
                     
                     $('#brand-name').attr('value',$(obj).attr('brand-name'));
@@ -690,8 +691,6 @@
 				$('.add-con-area').show();
                 $('.add-alert-area').show();
 			}
-
-            
 
             config.ajax('get',config.ajaxAddress.showgoodsbrand,function(data){
                 console.log(data);
@@ -704,7 +703,7 @@
             })
 
             $('#add-brand-mess').on('click',function(){
-                config.formSubmit('#brand-editor',function(data){
+                config.formSubmit('#brand-editor',config.ajaxAddress.showgoodsbrand,function(data){
                     console.log(data);
                 })
             });
