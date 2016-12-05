@@ -647,7 +647,9 @@
     // });
 
     function deleteChecked(obj){
-        console.log(obj);
+        console.log($(obj).parents('tr'));
+        $(obj).parents('tr').remove();
+
     }
 
 

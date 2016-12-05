@@ -178,7 +178,7 @@ a:hover, a:active, a:focus {
   text-align: center;
   line-height: 115px;
   font-size: 50px;
-  /*border: 1px solid #000;*/
+  border: 1px solid #000;
   position: relative;
   background: url("../img/shangchuang.png") no-repeat -175px center; }
   .detail-image-col-2 input {
@@ -188,6 +188,27 @@ a:hover, a:active, a:focus {
     height: 100%;
     left: 0;
     top: 0; }
+
+.detail-banner-split {
+  position: relative;
+  width: 300px;
+  height: 180px; }
+  .detail-banner-split div.left-block {
+    position: absolute;
+    width: 60px;
+    height: 100%;
+    background: #000;
+    left: 0;
+    top: 0;
+    opacity: 0.4; }
+  .detail-banner-split div.right-block {
+    position: absolute;
+    width: 60px;
+    height: 100%;
+    background: #000;
+    right: 0;
+    top: 0;
+    opacity: 0.4; }
 
 .main-body {
   padding: 10px 15px;
