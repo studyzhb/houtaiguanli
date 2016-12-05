@@ -1,0 +1,522 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>万店联盟后台管理系统</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="icon" type="image/png" href="img/favicon.png">
+  	<link rel="apple-touch-icon-precomposed" href="img/app-icon72x72@2x.png">
+  	<link rel="stylesheet" type="text/css" href="./css/identify.css">
+	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/account.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/content-input-list.css">
+	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
+	<script type="text/javascript" src="./js/select.js"></script>
+	<script type="text/javascript" src="./js/haidao.validate.js"></script>
+	<script type="text/javascript" src="./js/config.js"></script>
+	
+</head>
+<body>
+		<div class="view-topbar">
+			<div class="topbar-console">
+				<div class="tobar-head fl">
+					<a href="#" class="topbar-logo fl">
+					<span><img src="./img/logo.png" width="20" height="20"></span>
+					</a>
+					<a href="#" class="topbar-home-link topbar-btn text-center fl"><span>管理控制台</span></a>
+				</div>
+			</div>
+			<div class="topbar-info">
+				<ul class="fr">
+					<li class="fl dropdown topbar-notice topbar-btn">
+					<a href="#" class="dropdown-toggle">
+					<span class="icon-notice"></span>
+					<span class="topbar-num have">0</span>
+					<!--have表示有消息，没有消息去掉have-->
+					</a>
+					</li>
+					<!-- 					<li class="fl topbar-info-item strong">
+					<div class="dropdown">
+						<a href="#" class="dropdown-toggle topbar-btn">
+						<span class="fl">工单服务</span>
+						<span class="icon-arrow-down"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">我的工单</a></li>
+							<li><a href="#">提交工单</a></li>
+						</ul>
+					</div>
+					</li>
+					 -->
+                     
+					<li class="fl topbar-info-item">
+					<div class="dropdown">
+						<a href="#" class="topbar-btn">
+						<span class="fl text-normal">帮助与文档</span>
+						<span class="icon-arrow-down"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">暂不使用1</a></li>
+							<li><a href="#">暂不使用2</a></li>
+						</ul>
+					</div>
+					</li>
+					<li class="fl topbar-info-item">
+					<div class="dropdown">
+						<a href="#" class="topbar-btn">
+						<span class="fl text-normal">xxxx</span>
+						<span class="icon-arrow-down"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">退出</a></li>
+						</ul>
+					</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="view-body">
+			<div class="view-sidebar">
+				<div class="sidebar-content">
+                    <div class="sidebar-nav">
+                        <div class="sidebar-title">
+                            <a href="#">
+                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
+                                <span class="text-normal">组织机构</span>
+                            </a>
+                        </div>
+                        <ul class="sidebar-trans">
+                            <li>
+                                <a href="admin-storage-organ.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_author.png" width="16" height="16"></b>
+                                    <span class="text-normal">组织机构列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="admin-storage-user.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_message.png" width="16" height="16"></b>
+                                    <span class="text-normal">员工管理</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="admin-author.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_market.png" width="16" height="16" /></b>
+                                    <span class="text-normal">权限管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <div class="sidebar-title">
+                            <a href="#">
+                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
+                                <span class="text-normal">供应商档案</span>
+                            </a>
+                        </div>
+                        <ul class="sidebar-trans">
+                            <li>
+                                <a href="supplier-area.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
+                                    <span class="text-normal">供应商区域</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="supplier-goods.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
+                                    <span class="text-normal">供应商资料</span>
+                                </a>
+                            </li>
+                            <li data-selected="selected">
+                                <a href="add-supplier-goods.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
+                                    <span class="text-normal">添加供货商信息</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
+                                    <span class="text-normal">004</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <b class="sidebar-icon"><img src="./img/icon_order.png" width="16" height="16"></b>
+                                    <span class="text-normal">005</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 功能菜单 -->
+                    <div class="sidebar-nav">
+                        <div class="sidebar-title">
+                            <a href="#">
+                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
+                                <span class="text-normal">物品信息</span>
+                            </a>
+                        </div>
+                        <ul class="sidebar-trans">
+                            <li>
+                                <a href="goodsInfo.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
+                                    <span class="text-normal">物品资料</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="add-goodsinfo.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
+                                    <span class="text-normal">添加商品信息</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="goods-brand.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
+                                    <span class="text-normal">品牌信息</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="goods-detail.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
+                                    <span class="text-normal">商品信息编辑</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <b class="sidebar-icon"><img src="./img/icon_order.png" width="16" height="16"></b>
+                                    <span class="text-normal">005</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 分割线 -->
+                    
+                    <div class="sidebar-nav">
+                        <div class="sidebar-title">
+                            <a href="#">
+                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
+                                <span class="text-normal">仓储系统</span>
+                            </a>
+                        </div>
+                        <ul class="sidebar-trans">
+                            <li>
+                                <a href="storehouse-inventory.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
+                                    <span class="text-normal">商品库存</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="storehouse-input.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
+                                    <span class="text-normal">商品入库</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="storehouse-output.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
+                                    <span class="text-normal">商品出库</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
+                                    <span class="text-normal">004</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <b class="sidebar-icon"><img src="./img/icon_order.png" width="16" height="16"></b>
+                                    <span class="text-normal">005</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <div class="sidebar-title">
+                            <a href="#">
+                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
+                                <span class="text-normal">采购管理</span>
+                            </a>
+                        </div>
+                        <ul class="sidebar-trans">
+                            <li>
+                                <a href="purchaselist.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
+                                    <span class="text-normal">采购单列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="add-purchaselist.html">
+                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
+                                    <span class="text-normal">新增采购单</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+				</div>
+			</div>
+			<div class="view-product">
+				<div class="authority">
+					<!-- <div class="authority-head">
+						<div class="manage-head">
+							<h6 class="layout padding-left manage-head-con">添加供货商信息
+							<span class="fr text-small text-normal padding-top">发布时间：</span>
+							<span class="fr margin-large-right padding-top text-small text-normal">最新版本：<em class="text-main">2.4.0.160708</em></span>
+							</h6>
+						</div>
+					</div> -->
+					
+                    <!-- 主要内容区 -->
+                    <div class="container-fluid padding-top-20 padding-left-20">
+                        <!--导航栏-->
+                        <div class="location">
+                          <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
+                          <a href="#" class="home"><i></i><span>首页</span></a>
+                          <i class="arrow"></i>
+                          <a href="#"><span data-title="供货商管理">内容管理</span></a>
+                          <i class="arrow"></i>
+                          <span data-title="添加供货商">编辑内容</span>
+                        </div>
+                        <div class="line10"></div>
+                        <!-- <div class="panel panel-default">
+                            <div class="panel-heading">
+                                基本信息
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        供应商编号:
+                                        <input type="text" disabled class="table-input-disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+
+                        <form method="POST" action="http://192.168.1.18/wp/public/index.php/admin/supplier/add">
+                        <table class="table">
+                            <caption class="table-title-margin-10">基本信息</caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        供应商编号
+                                        <input type="text" name="coding" disabled class="table-input-disabled" id="supplierNum" />
+                                    </td>
+                                    <td>
+                                        供应商
+                                        <input type="text" name="name" class="table-input-border"/>
+                                    </td>
+                                    <td>助记码
+                                        <input type="text" name="z_name" class="table-input-border" />
+                                    </td>
+                                    <td style="overflow: visible;" id="areaid" data-idnum = "">
+                                        地址
+                                        <select name="provinces" id="province-list">
+                                        	<option value="">--省--</option>
+                                        </select>
+                                        <select name="city" id="city-list">
+                                        	<option value="">--市--</option>
+                                        </select>
+                                        <select name="country" id="contry-list">
+                                        	<option value="">--县--</option>
+                                        </select>
+                                    </td>
+                                     <td>
+                                        	
+                                    </td>            
+                                </tr>
+                                <tr>
+                                    <td>邮政编码<input type="text" name="postcode" class="table-input-border"/></td>
+                                    <td>传真<input type="text" name="fax" class="table-input-border"/></td>
+                                    <td>联系人<input type="text" name="contact" class="table-input-border"/></td>
+                                    <td>电话<input type="text" name="ptel" class="table-input-border"/></td>
+                                    <td>手机号码<input type="text" name="tel" class="table-input-border"/></td> 
+                                </tr>
+                                <tr>
+                                    <td>email<input type="text" name="email" class="table-input-border"/></td>
+                                    <td>经营方式
+                                    	<select name="run_id" id="run_method">
+                                    		<option value="">--经营方式--</option>
+                                    	</select>
+                                    </td>
+                                    <td>结算方式
+                                    	<select name="statements_id" id="statements_method">
+                                    		<option value="">--结算方式--</option>
+                                    	</select>
+                                    </td>
+                                    <td>khh<input type="text" name="khh" class="table-input-border"/></td>
+                                    <td>khr<input type="text" name="khr" class="table-input-border"/></td>
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td>zh<input type="text" name="zh" class="table-input-border"/></td>
+                                    <td>syw<input type="text" name="syw" class="table-input-border"/></td>
+                                    <td>status
+                                    	<select name="status">
+                                    		<option value="0">禁用</option>
+                                    		<option value="1" selected>启用</option>
+                                    	</select>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                            <input type="submit" value="保存信息" class="btn btn-defalut">
+                        </form>
+                        
+                    </div>
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// $(".sidebar-title").on('click', function() {
+			// 	if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			// 		$(this).next().slideDown(200);
+			// 		$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+			// 	} else {
+			// 		$(this).next().slideUp(200);
+			// 		$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			// 	}
+			// });
+		</script>
+	
+</body>
+
+<script src="./js/index.js"></script>
+<script type="text/javascript">
+	var supplierPage={
+		area_p:config.area_num.root,
+        addProvince:function(){
+            //创建省份类select
+            $('#province-list').html('<option>--省--</option>');
+            $.each(this.area_p.province,function(index,item){
+				
+                $('<option>').appendTo($('#province-list')).html(item['-Name']);
+            });
+        },
+        addCity:function(parVal){
+            $('#city-list').html('<option>--市--</option>');
+            
+            $.each(this.area_p.province,function(index,item){
+                if(item['-Name']==parVal){
+                    $.each(item.city,function(i,cityO){
+                    	console.log(cityO);
+                        $('<option>').appendTo($('#city-list')).html(cityO['-Name']);
+                    })
+                }
+            });
+        },
+        addCountry:function(parP,parC){
+            $('#contry-list').html('<option>--县--</option>');
+            $.each(this.area_p.province,function(index,item){
+                if(item['-Name']==parP){
+                    $.each(item.city,function(i,cityO){
+                        if(cityO['-Name']==parC){
+                            $.each(cityO.district,function(a,contryO){
+                            	//console.log(contryO['-Id']);
+                               var ss=$('<option id='+contryO['-Id']+'>').appendTo($('#contry-list')).html(contryO['-Name']);
+                               
+                            })
+                        }
+                    })
+                }
+            });
+        },
+        selectResu:function(){
+             
+            
+        },
+        createSupplierNum:function(val){
+        	console.log(typeof val)
+        	val+=Math.floor(Math.random()*1000);
+        	$('#supplierNum').val(val);
+        }
+    }
+	
+	supplierPage.addProvince();
+	
+	$('#province-list').on('change',function(){
+        supplierPage.addCity($(this).val());
+        
+        
+    });
+    
+
+    $('#city-list').on('change',function(){
+        supplierPage.addCountry($('#province-list').val(),$(this).val());
+    });
+    
+    $('#contry-list').on('change',function(){
+	var self=this;
+    	if($(this).val()!='--县--'){
+    		$(this).find('option').each(function(i,item){
+    			if($(this).val()==$(self).val()){
+//  				console.log($(this)[0].id);
+    				supplierPage.createSupplierNum($(this)[0].id);
+    			}
+    			
+    		});
+    		//$('#areaid').data('idnum',$(this).attr('value'));
+    		//supplierPage.createSupplierNum($(this).attr('value'));
+    		
+    	}else{
+    		alert('请重新选择');
+    	}
+  		
+    });
+    
+    config.ajax('get',config.ajaxAddress.addSupplier,function(data){
+    	//console.log(data,typeof data);
+    	$.each(data.run, function(index,item) {
+    		$('<option value='+item.id+'>').appendTo($('#run_method')).html(item.run);
+    	});
+    	$.each(data.statements, function(index,item) {
+    		$('<option value='+item.id+'>').appendTo($('#statements_method')).html(item.statements);
+    	});
+	
+    })
+	
+</script>
+</html>

@@ -23,6 +23,10 @@ var config={
     });
   },
 	ajaxAddress:{
+    //商品验证
+    goodsValidate:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/checkDecode',
+    //
+    supplierNumValidate:'localhost/shop/shop/public/index.php/admin/Supplier/checkCoding',
     //物品信息列表http://192.168.1.18/wp/public/index.php/admin/good/show
 		goodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/show',
     //添加物品信息
@@ -31,6 +35,7 @@ var config={
     goodsEditor:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/edit',
     //商品详情页添加
     goodsDetail:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/detail',
+    goodsaddDetail:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/addDetail',
     //添加供货商地址
 		addSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/supplier/add',
     //更新单个供货商信息地址http://192.168.1.18/wp/public/index.php/admin/supplier/update

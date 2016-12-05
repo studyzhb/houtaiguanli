@@ -332,10 +332,6 @@
                                 
                             </div>
                         </div>
-                      
-                        
-                      
-
                     </div>
 
 
@@ -343,7 +339,6 @@
                     <div class="tab-content detail" style="display: none;">
                         <!-- <div class="container-fluid">
                             
-
                             <div class="table-title-margin-10">
                                 <h3>图片上传</h3>
                             </div>
@@ -380,7 +375,7 @@
                     </div>
                     
                 </div>
-                        </div> -->
+            </div> -->
 
                 <div class="ncsc-form-goods">
 
@@ -390,16 +385,49 @@
                                 图片上传(5张)
                             </dt>
                             <dd>
-                                
-
-
-                                <form method="post" id="imageupload" action="http://192.168.1.150/shop/shop/public/index.php/admin/Img/upload?id=2&dbName=good" enctype="multipart/form-data">
+                                <h3><a href="#" onclick="upImage('image-suolve')">点击上传(请上传少于5张,多余不保存)</a></h3>
+                                <div class="image-suolve">
+                                    <!-- <div class="detail-image-col-2">
+                                        <img src="./img/test1.png" width="100%" height="270" />    
+                                    </div>
+                                    <div class="detail-image-col-2">
+                                        <img src="./img/test1.png" width="100%" height="270" />    
+                                    </div>
+                                    <div class="detail-image-col-2">
+                                        <img src="./img/test1.png" width="100%" height="270" />    
+                                    
+                                    </div>
+                                    <div class="detail-image-col-2">
+                                        <img src="./img/test1.png" width="100%" height="270" />    
+                                    
+                                    </div>
+                                    <div class="detail-image-col-2">
+                                        <img src="./img/test1.png" width="100%" height="270" />    
+                                    
+                                    </div> -->
+                                </div>
+                                <!-- <form method="post" id="imageupload" action="http://192.168.1.150/shop/shop/public/index.php/admin/Img/upload?id=2&dbName=good" enctype="multipart/form-data"> -->
                                 <!-- <input type="hidden" name="id" value="3">
                                 <input type="hidden" name="dbName" value="good"> -->
-                               <div class="detail-image-col-2">
+                               <!-- <div class="detail-image-col-2">
                                     <img src="" id="showImg1" width="100%" height="250" />    
-                                    <input type="file" name="file" class="image-content" id="image1" />
-                                </div> 
+                                </div>
+                                <div class="detail-image-col-2">
+                                    <img src="" id="showImg2" width="100%" height="250" />    
+                                    
+                                </div>
+                                <div class="detail-image-col-2">
+                                    <img src="" id="showImg1" width="100%" height="250" />    
+                                    
+                                </div>
+                                <div class="detail-image-col-2">
+                                    <img src="" id="showImg1" width="100%" height="250" />    
+                                    
+                                </div>
+                                <div class="detail-image-col-2">
+                                    <img src="" id="showImg1" width="100%" height="250" />    
+                                    
+                                </div>  -->
                                 <!-- <div class="detail-image-col-2">
                                     <img src="" id="showImg2" width="100%" height="250" /> 
                                     <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image2"/>
@@ -416,8 +444,8 @@
                                     <img src="" id="showImg5" width="100%" height="250" /> 
                                     <input type="file" name="" value="+" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" class="image-content" id="image5" />
                                 </div>  -->
-                                    <input type="button" name="" id="shangchuan" value="shangchuan">
-                                </form>
+                                    
+                            
                                 <!-- <form action="" method="post" enctype="multipart/form-data" id="postFormone">
 
                                     <input type="file" name="filename" value="" id="file_mendian">
@@ -430,22 +458,22 @@
                         </dl>
                     <h3 id="demo2">商品详情描述</h3>
 
-                        
-
-                        <dl>
+                    <dl>
         <dt>商品描述：</dt>
         <dd id="ncProductDetails">
           <div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
-            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" jquery1239647486215="2">
-              <li class="ui-state-default ui-corner-top ui-tabs-selected"><a href="#" ><i class="icon-desktop"></i> 电脑端</a></li>
-              <li class="selected ui-state-default ui-corner-top ui-state-active"><a href="#"><i class="icon-mobile-phone"></i>手机端</a></li>
+            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+              <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active" data-info="dn"><a href="#" ><i class="icon-desktop"></i> 电脑端</a></li>
+              <li class="selected ui-state-default ui-corner-top" data-info="sj"><a href="#"><i class="icon-mobile-phone"></i>手机端</a></li>
             </ul>
-            <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" jquery1239647486215="4">
-              <!--<script id="container" name="content" type="text/plain" style="height:300px">
-                                              这里写你的初始化内容
-              </script>-->
-<script src="http://192.168.1.150/shop/shop/public/utf8-php/ueditor.config.js"></script>
-  <script src="http://192.168.1.150/shop/shop/public/utf8-php/ueditor.all.js"></script>
+
+            <form action="" method="post" id="detailContent">
+                
+            
+            <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" >
+              <script id="container" name="content" type="text/plain" style="height:300px">
+                                              
+              </script>
 
                  <!--<div class="hr8">
                 <div class="ncsc-upload-btn"> <a href="javascript:void(0);"><span>
@@ -456,16 +484,16 @@
                 <a class="ncsc-btn mt5" nctype="show_desc" href="http://www.osucn.com/shop/index.php?act=store_album&amp;op=pic_list&amp;item=des"><i class="icon-picture"></i>插入相册图片</a> <a href="javascript:void(0);" nctype="del_desc" class="ncsc-btn mt5" style="display: none;"><i class=" icon-circle-arrow-up"></i>关闭相册</a> </div>
               <p id="des_demo"></p> -->
             </div>
-            <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" jquery1239647486215="5">
+            <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" style="display:none;">
               <div class="ncsc-mobile-editor">
                 <div class="pannel">
                   <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>00</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>20</em>字</span></div>
                   <div class="control-panel" nctype="mobile_pannel">
-                        <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+                        <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;"></script>
                     </div>
                   <div class="add-btn">
                     <ul class="btn-wrap">
-                      <li><a href="javascript:void(0);" onclick="upImage()" nctype="mb_add_img"><i class="icon-picture"></i>
+                      <li><a href="javascript:void(0);" onclick="upImage('img-content')" nctype="mb_add_img"><i class="icon-picture"></i>
                         <p>图片</p>
                         </a></li>
                       <li><a href="javascript:void(0);" onclick="addGoodsText()" nctype="mb_add_txt"><i class="icon-font"></i>
@@ -476,7 +504,11 @@
                     <section>
                         <div class="main" id="content1">
                             <div class="img-content" >
-                                <div class="img-single">
+                                
+                            </div>
+                        </div>
+                    </section>
+                        <!-- <div class="img-single">
                                     <img src="./img/test1.png" alt="">
                                 </div>
                                 <h3 class="h3-title">
@@ -487,12 +519,7 @@
                                 </div>
                                 <div class="img-single">
                                     <img src="./img/test1.png" alt="">
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </section>
-
+                                </div> -->
                 </div>
                 <div class="explain">
                   <dl>
@@ -511,17 +538,13 @@
                   </dl>
                 </div>
               </div>
-              <div class="ncsc-mobile-edit-area" nctype="mobile_editor_area">
-                <div nctype="mea_img" class="ncsc-mea-img" style="display:none;"></div>
-                <div class="ncsc-mea-text" nctype="mea_txt" style="display:none;">
-                  <p id="meat_content_count" class="text-tip"></p>
-                  <textarea class="textarea valid" nctype="meat_content"></textarea>
-                  <div class="button"><a class="ncsc-btn ncsc-btn-blue" nctype="meat_submit" href="javascript:void(0);">确认</a><a class="ncsc-btn ml10" nctype="meat_cancel" href="javascript:void(0);">取消</a></div>
-                  <a class="text-close" nctype="meat_cancel" href="javascript:void(0);">X</a>
-                </div>
-              </div>
-              <input name="m_body" autocomplete="off" type="hidden" value="">
+
             </div>
+            <input type="hidden" name="apptext" value="" id="appHtml" />
+            <input type="hidden" name="spic" value="" id="slImg" />
+            <input type="hidden" name="id" value="" id="goodsId" />
+    
+            </form>
           </div>
         </dd>
       </dl>
@@ -543,9 +566,6 @@
                 </div>
                         
 
-
-
-                    
                       
                     </div>
 
@@ -567,8 +587,27 @@
 			</div>
 		</div>
      
-		
-	
+        
+        <!-- 手机端添加文本信息 -->
+        <!-- 新增信息区 -->
+        <div class="add-con-area" style="width:20%;height:200px;">
+            <div class="text-right">
+                <div class="btn btn-default" id="closeConArea">X</div>
+            </div>
+            <div style="padding:0 10px;">
+                <div>
+                   
+                    <textarea name="" id="text-image-detail" cols="50" rows="10"></textarea>
+                </div>
+                <div class="text-left" style="margin-top:20px;">
+                    <button class="btn btn-primary" id="confirmsavetext">确定</button>
+                </div>
+            </div>
+
+        </div>      
+        <div class="add-alert-area">
+            
+        </div>
 
 
 
@@ -676,11 +715,46 @@
       
       
       </script>
+
+    <script type="text/template" id="image-suolve">
+         <div class="detail-image-col-2">
+            <img src="{imgsrc}" width="100%" height="270" />    
+        </div>
+    </script>
+
+    <script type="text/template" id="img-content">
+         <div class="img-single">
+            <img src="{imgsrc}" width="100%" />
+        </div>
+    </script>
+    <script type="text/template" id="img-text">
+         <h3 class="h3-title">
+            {text}
+        </h3>
+    </script>
+
+
+
     <!-- <script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
     // <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script> -->
-
+    <script src="http://localhost/shop/shop/public/utf8-php/ueditor.config.js"></script>
+    <script src="http://localhost/shop/shop/public/utf8-php/ueditor.all.js"></script>
+    <script type="text/javascript" src="./js/goodsdetail.js"></script>
     <!-- 实例化编辑器 -->
-    <script type="text/javascript">
+    <script>
+
+
+    $('.ui-tabs-nav').on('click','li',function(){
+        $(this).addClass('ui-state-active').siblings().removeClass('ui-state-active');
+        if($(this).data('info')=='dn'){
+            $('#panel-1').show();
+            $('#panel-2').hide();
+        }else{
+            $('#panel-1').hide();
+            $('#panel-2').show();
+        }
+    });
+
     /*
         'anchor', //锚点
         'undo', //撤销
@@ -774,45 +848,14 @@
         'charts', // 图表
         */
 
-        // var ue = UE.getEditor('container', {
-        //      autoHeight: false,
-        //         toolbars: [
-        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                    
-        //         ],
-        //         autoHeightEnabled: true,
-        //         autoFloatEnabled: true
-        //     }).setHeight(300);
+        var ue = UE.getEditor('container',{
+            toolbars: [
+                   ['undo', 'bold','underline','simpleupload','insertimage','cleardoc','imagecenter']
+                ],
+                autoHeightEnabled: true
+        });
 
-        //  var ue1=UE.getEditor('container1', {
-        //         toolbars: [
-        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                   
-        //         ],
-        //         autoHeightEnabled: true,
-        //         autoFloatEnabled: true
-        //     });
-
-
-        // var ue = UE.getEditor('container', {
-        //         autoHeight: false,
-        //         toolbars: [
-        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                    
-        //         ],
-        //         autoHeightEnabled: true,
-        //         autoFloatEnabled: true
-        //     }).setHeight(300);
-
-        //  var ue1=UE.getEditor('container1', {
-        //         toolbars: [
-        //             ['fullscreen', 'source', 'undo', 'redo', 'bold','lineheight','insertorderedlist','date','time']
-                   
-        //         ],
-        //         autoHeightEnabled: true,
-        //         autoFloatEnabled: true
-        //     });
-
+        
          // $('.content-tab-ul-wrap ul li').on('click',function(){
                 
          //        $(this).find('a').addClass('selected').end().siblings().find('a').removeClass();
@@ -838,54 +881,23 @@
                 $('.detail').css('display','block');
             }
         });
-         // console.log($('.image-content'));
-
-         // $('.image-content').on('change',function(e){
-         //    //console.log(e.target.files);
-         //    var file=e.target.files[0];
-         //    var reader=new FileReader();
-         //    var self=this;
-         //    reader.onload=function(e){
-         //        //console.log(e.target.result);
-         //         $('<img src='+e.target.result+' style="width:100%;height:100%;" />').appendTo($(self).parent());
-         //    }
-            
-         //    reader.readAsDataURL(file);
-           
-         // });
+         
 
          var options = {
             success: function (data) {
                 console.log(data);
-                   if(data.code==200){
-                        alert('添加成功');
-                        // goodsHouse.goodsId=data.goodsId;
-                        // $('<input type="hidden" value='+data.goodsId+'>').appendTo($('#mutitypeGoods'));
-                        // $('.add-alert-area').hide();
-                       //location.reload();
-                   }else{
-                       alert('添加失败，请重新添加');
-                   }
+               if(data.code==200){
+                    alert('添加成功');
+                    // goodsHouse.goodsId=data.goodsId;
+                    // $('<input type="hidden" value='+data.goodsId+'>').appendTo($('#mutitypeGoods'));
+                    // $('.add-alert-area').hide();
+                   //location.reload();
+               }else{
+                   alert('添加失败，请重新添加');
+               }
             }
     };
         
-        $('#shangchuan').on('click',function(){
-            console.log('image');
-            // config.formSubmit('#formSubmit',function(data){
-            //     console.log(data);
-            // })
-            // console.log($('.image-content').val());
-            $('#imageupload').ajaxSubmit(options);
-        });
-        
-        // $('#imageupload').ajaxForm({
-        //     url:'http://192.168.1.150/shop/shop/public/index.php/admin/Img/upload?id=2&dbName=good',
-        //     dataType: 'json',
-        //     data: $('#imageupload').serialize(),
-        //     success:function(data){
-        //         console.log(data);
-        //     }
-        // });
 
         //获取上传图片 
 
@@ -1002,16 +1014,16 @@
                 goodsName:'',
                 goodsCode:''
             },
-            goodsId:''
+            goodsId:'2'
         }
 
         var getCon=window.location.href.split('?')[1]||'';
-        goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
+        goodsHouse.goodsId=getCon?getCon.split('=')[1]:'1';
         config.ajax('get',config.ajaxAddress.goodsDetail,function(data){
               console.log(data);
               var tempHtml=$('#editorContent').html();
               $('#editorwrapper').append(config.formatTemplate(data.good[0],tempHtml));        
-            },{id:'2'});
+        },{id:'2'});
 
 
 
@@ -1022,16 +1034,34 @@
         }
 
         function addGoodsText(){
-            console.log('text');
+            $('.add-con-area').show();
+            $('.add-alert-area').show();
+            // $('<h3>').appendTo($('#content1'));
         }
 
+        $('#confirmsavetext').on('click',function(){
+            $('.img-content').append(config.formatTemplate({text:$('#text-image-detail').val()},$('#img-text').html()));
+        })
+
+        $('#btnSubmit').on('click',function(){
+
+            $('#appHtml').val($('.img-content').html());
+            
+            $('#slImg').val(ImageWrapper.suolveImg.join(''));
+            console.log(goodsHouse.goodsId);
+            $('#goodsId').val(goodsHouse.goodsId);
+            console.log(config.ajaxAddress.goodsaddDetail);
+            config.formSubmit('#detailContent',config.ajaxAddress.goodsaddDetail,function(data){
+                console.log(data);
+            })
+        });
 
     </script>
     
-    <script type="text/javascript" src="./js/goodsdetail.js"></script>
+    
     
 
-
+    
 
 
 </body>

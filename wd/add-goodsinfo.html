@@ -344,14 +344,14 @@
                                     <td class="col-ms-2">
                                         <div>
                                             <span>商品编码</span>
-                                            <input type="text" class="table-input-border" name="coding" />
+                                            <input type="text" id="goodsNumValidate" class="table-input-border" name="coding" />
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
                                     <td class="col-ms-2">
                                         <div>
                                             <span>国际条码</span>
-                                            <input type="text" class="table-input-border barcode" name="barcode" />
+                                            <input type="text" id="goodsCodeValidate" class="table-input-border barcode" name="barcode" />
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
@@ -379,8 +379,8 @@
                                         </select>
                                     </td> 
                                 
-                                    <td>零售单位<input name="eachsale" type="text" class="table-input-border"/></td>
-                                    <td>规格
+                                    <td>规格<input name="eachsale" type="text" class="table-input-border"/></td>
+                                    <td>零售单位
                                         <select name="gg_id" id="gg">
                                             <option value="">------</option>
                                         </select>
@@ -893,7 +893,19 @@
         },html));
  
     })
+
+    //验证 
+    $('#goodsNumValidate').on('blur',function(){
+        var numVal=$(this).val();
+        config.ajax('post',config.ajaxAddress.goodsValidate,function(data){
+            console.log(data);
+        },{decode:numVal});
+    });
+
+    $('#goodsCodeValidate').on('blur',function(){
+        // config.ajax();
+    });
     
 </script>
-
+<script src=""></script>
 </html>
