@@ -470,8 +470,20 @@
         },
         createSupplierNum:function(val){
         	console.log(typeof val)
-        	val+=Math.floor(Math.random()*1000);
-        	$('#supplierNum').val(val);
+            var tempVal=val;
+        	val+=Math.floor(Math.random()*(9001)+1000);
+            var me=this;
+            config.ajax('post',config.ajaxAddress.supplierNum,function(data){
+                if(data.code==200){
+                    $('#supplierNum').val(val);
+                    return;
+
+                    
+                }else{
+                    me.createSupplierNum(tempVal);
+                }
+            },{id:val});
+        	
         }
     }
 	
