@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./css/content-input-list.css">
     <link rel="stylesheet" href="./css/goods-add-split.css">
     <link rel="stylesheet" href="./css/seller_center.css">
+    <link rel="stylesheet" href="./css/goodsdetail.css">
 
 	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
     <script src="./js/jquery-form.js"></script>
@@ -26,6 +27,7 @@
 	<script type="text/javascript" src="./js/haidao.validate.js"></script>
 	<script type="text/javascript" src="./js/config.js"></script>
 	<script src="./js/index.js"></script>
+    <script src="./js/rem.js"></script>
     <style>
         .tab-content dl dd {
             margin-left: 0; 
@@ -396,7 +398,7 @@
                                 <input type="hidden" name="dbName" value="good"> -->
                                <div class="detail-image-col-2">
                                     <img src="" id="showImg1" width="100%" height="250" />    
-                                    <input type="file" name="file" multiple="multiple" class="image-content" id="image1" />
+                                    <input type="file" name="file" class="image-content" id="image1" />
                                 </div> 
                                 <!-- <div class="detail-image-col-2">
                                     <img src="" id="showImg2" width="100%" height="250" /> 
@@ -439,13 +441,13 @@
               <li class="selected ui-state-default ui-corner-top ui-state-active"><a href="#"><i class="icon-mobile-phone"></i>手机端</a></li>
             </ul>
             <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" jquery1239647486215="4">
-              <script id="container" name="content" type="text/plain" style="height:300px">
+              <!--<script id="container" name="content" type="text/plain" style="height:300px">
                                               这里写你的初始化内容
-              </script>
-<!--<script src="http://localhost/01/wp/public/utf8-php/ueditor.config.js"></script>
-  <script src="http://localhost/01/wp/public/utf8-php/ueditor.all.js"></script>
+              </script>-->
+<script src="http://192.168.1.150/shop/shop/public/utf8-php/ueditor.config.js"></script>
+  <script src="http://192.168.1.150/shop/shop/public/utf8-php/ueditor.all.js"></script>
 
-                 <div class="hr8">
+                 <!--<div class="hr8">
                 <div class="ncsc-upload-btn"> <a href="javascript:void(0);"><span>
                   <input type="file" hidefocus="true" size="1" class="input-file" name="add_album" id="add_album" multiple="multiple">
                   </span>
@@ -457,19 +459,40 @@
             <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" jquery1239647486215="5">
               <div class="ncsc-mobile-editor">
                 <div class="pannel">
-                  <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>20</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>5000</em>字</span></div>
+                  <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>00</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>20</em>字</span></div>
                   <div class="control-panel" nctype="mobile_pannel">
-                                      </div>
+                        <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+                    </div>
                   <div class="add-btn">
                     <ul class="btn-wrap">
-                      <li><a href="javascript:void(0);" nctype="mb_add_img"><i class="icon-picture"></i>
+                      <li><a href="javascript:void(0);" onclick="upImage()" nctype="mb_add_img"><i class="icon-picture"></i>
                         <p>图片</p>
                         </a></li>
-                      <li><a href="javascript:void(0);" nctype="mb_add_txt"><i class="icon-font"></i>
+                      <li><a href="javascript:void(0);" onclick="addGoodsText()" nctype="mb_add_txt"><i class="icon-font"></i>
                         <p>文字</p>
                         </a></li>
                     </ul>
                   </div>
+                    <section>
+                        <div class="main" id="content1">
+                            <div class="img-content" >
+                                <div class="img-single">
+                                    <img src="./img/test1.png" alt="">
+                                </div>
+                                <h3 class="h3-title">
+                                    商品详情商品详情商品详情商品详情
+                                </h3>
+                                <div class="img-single">
+                                    <img src="./img/test1.png" alt="">
+                                </div>
+                                <div class="img-single">
+                                    <img src="./img/test1.png" alt="">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
                 <div class="explain">
                   <dl>
@@ -489,8 +512,8 @@
                 </div>
               </div>
               <div class="ncsc-mobile-edit-area" nctype="mobile_editor_area">
-                <div nctype="mea_img" class="ncsc-mea-img" style="display: none;"></div>
-                <div class="ncsc-mea-text" nctype="mea_txt" style="display: none;">
+                <div nctype="mea_img" class="ncsc-mea-img" style="display:none;"></div>
+                <div class="ncsc-mea-text" nctype="mea_txt" style="display:none;">
                   <p id="meat_content_count" class="text-tip"></p>
                   <textarea class="textarea valid" nctype="meat_content"></textarea>
                   <div class="button"><a class="ncsc-btn ncsc-btn-blue" nctype="meat_submit" href="javascript:void(0);">确认</a><a class="ncsc-btn ml10" nctype="meat_cancel" href="javascript:void(0);">取消</a></div>
@@ -805,24 +828,16 @@
          // console.log($('.image-content'));
 
 
-
-
-
-
-
-
          $('.content-tab-ul-wrap ul li').on('click',function(){
-                
-                $(this).find('a').addClass('selected').end().siblings().find('a').removeClass();
-                if($(this).data('info')=='base'){
-
-                    $('.base').css('display','block');
-                    $('.detail').css('display','none');
-                }else{
-                    $('.base').css('display','none');
-                    $('.detail').css('display','block');
-                }
-            })
+            $(this).find('a').addClass('selected').end().siblings().find('a').removeClass();
+            if($(this).data('info')=='base'){
+                $('.base').css('display','block');
+                $('.detail').css('display','none');
+            }else{
+                $('.base').css('display','none');
+                $('.detail').css('display','block');
+            }
+        });
          // console.log($('.image-content'));
 
          // $('.image-content').on('change',function(e){
@@ -893,7 +908,8 @@
                     imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
                 }
 
-        })
+        });
+
         $("#image2").change(function() {
                 var $file = $(this);
                 var fileObj = $file[0];
@@ -998,10 +1014,22 @@
             },{id:'2'});
 
 
+
+        // 手机端编辑器
+
+        function addGoodsImage(){
+            console.log('image');
+        }
+
+        function addGoodsText(){
+            console.log('text');
+        }
+
+
     </script>
-
-
-
+    
+    <script type="text/javascript" src="./js/goodsdetail.js"></script>
+    
 
 
 
