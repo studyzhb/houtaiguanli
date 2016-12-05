@@ -718,7 +718,7 @@ td.trigger i:hover { color: #27A9E3;}
 .category_list ul li { clear: both;}
 .category_list ul li a { font-size: 12px; line-height: 20px; color: #666; display: block; height: 20px; padding: 4px 8px; margin: 1px; overflow:hidden; }
 .category_list ul li a i { font-size: 12px; display: none;}
-.category_list ul li a.classDivClick { color: #3A87AD; background-color: #D9EDF7; display: block; margin: 0; border: solid 1px #BCE8F1;}
+.category_list ul li a.classDivClick{ color: #3A87AD; background-color: #D9EDF7; display: block; margin: 0; border: solid 1px #BCE8F1;}
 .category_list ul li a.classDivClick i { font-size: 14px; display: block; margin-left: 6px; float: right;}
 .category_list ul li a:hover {text-decoration: none;}
 .category_list ul .hight_light { color:#f50;}
@@ -753,7 +753,7 @@ td.trigger i:hover { color: #27A9E3;}
 #ncProductDetails .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #999;}
 #ncProductDetails .ui-state-default, .ui-widget-content .ui-state-default { border-color: #CCC;display: inline-block;}
 #ncProductDetails .ui-state-hover a, .ui-state-hover a:hover { color: #555; }
-#ncProductDetails .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #333;}
+#ncProductDetails .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #333;background:#2a94de;}
 #ncProductDetails .ui-tabs .ui-tabs-panel { padding: 8px 0;}
 
 /* 手机端商品介绍 */

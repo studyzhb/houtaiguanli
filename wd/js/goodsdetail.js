@@ -24,18 +24,53 @@ var ImageWrapper={
           ImageWrapper.imgArr.push({imgsrc:item.src});
         });
         if(ImageWrapper.temp=="image-suolve"){
-          ImageWrapper.suolveImg=ImageWrapper.imgArr;
+
+        	$.each(ImageWrapper.imgArr,function(index,item){
+              if(ImageWrapper.suolveImg.length<3){
+        		    ImageWrapper.suolveImg.push(item.imgsrc);
+              }
+        	})
+//          ImageWrapper.suolveImg=ImageWrapper.imgArr;
         }else{
-          ImageWrapper.detailImg=ImageWrapper.imgArr;
+        	$.each(ImageWrapper.imgArr,function(index,item){
+        		ImageWrapper.detailImg.push(item.imgsrc);
+        	})
+//          ImageWrapper.detailImg=ImageWrapper.imgArr;
         }
 
+
         $.each(ImageWrapper.imgArr,function(index,item){
-            $('.'+ImageWrapper.temp).append(config.formatTemplate(item,$('#'+ImageWrapper.temp).html()));
+
+            if(ImageWrapper.temp!="image-suolve"){
+              $('.'+ImageWrapper.temp).append(config.formatTemplate(item,$('#'+ImageWrapper.temp).html()));
+            }
+            
         });
+        $('.image-suolve').html('');
+         $.each(ImageWrapper.suolveImg,function(index,item){
+            
+            console.log(item);
+            // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
+            //   $('#imageadd').show();
+            // }else{
+            //    $('#imageadd').hide();
+            // }
+            $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
+
+        });
+
+       if(ImageWrapper.suolveImg.length<3){
+        $('<div class="detail-image-col-2 imageadd">').appendTo($('.image-suolve'));
+
+       }
+
+
         // console.log(ImageWrapper.imgArr);
         // $()
           // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
     });
+
+
      
     /* 文件上传监听
      * 需要在ueditor.all.min.js文件中找到
@@ -66,7 +101,9 @@ var ImageWrapper={
 
 
 
-
+      $('.image-suolve').on('click','.imageadd',function(){
+          upImage('image-suolve');
+        })
 
 
 

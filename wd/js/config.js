@@ -23,10 +23,12 @@ var config={
     });
   },
 	ajaxAddress:{
-    //商品验证
-    goodsValidate:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/checkDecode',
-    //
-    supplierNumValidate:'localhost/shop/shop/public/index.php/admin/Supplier/checkCoding',
+    //验证供应商编号
+    supplierNum:'http://192.168.1.150/shop/shop/public/index.php/admin/supplier/checkCoding',
+    //验证商品的国际条形码barcode
+    goodsI18Num:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/checkBarcode',
+    //验证商品的一品多码decode
+    goodsNum:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/checkDecode',
     //物品信息列表http://192.168.1.18/wp/public/index.php/admin/good/show
 		goodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/show',
     //添加物品信息

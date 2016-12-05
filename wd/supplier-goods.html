@@ -182,9 +182,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="goods-detail.html">
+                                <a href="addgoodsCatagory.html">
                                     <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
-                                    <span class="text-normal">商品信息编辑</span>
+                                    <span class="text-normal">商品分类</span>
                                 </a>
                             </li>
                             <li>
@@ -572,8 +572,8 @@
                                     <td>助记码
                                         <input type="text" name="z_name" class="table-input-border" value="{z_name}" />
                                     </td>
-                                    <td>zh<input type="text" name="zh" class="table-input-border" value="{zh}"/></td>
-                                    <td>syw<input type="text" name="syw" class="table-input-border" value="{syw}"/></td>
+                                    <td>账号<input type="text" name="zh" class="table-input-border" value="{zh}"/></td>
+                                    <td>税务号<input type="text" name="syw" class="table-input-border" value="{syw}"/></td>
                                     
                                     
                                 </tr>
@@ -588,10 +588,10 @@
 
                                 <tr>
                                      <td>email<input type="text" name="email" class="table-input-border" value="{email}"/></td>
-                                    <td>khh<input type="text" name="khh" class="table-input-border" value="{khh}"/></td>
-                                    <td>khr<input type="text" name="khr" class="table-input-border" value="{khr}"/></td>
+                                    <td>开户行<input type="text" name="khh" class="table-input-border" value="{khh}"/></td>
+                                    <td>开户人<input type="text" name="khr" class="table-input-border" value="{khr}"/></td>
                                     
-                                    <td>status
+                                    <td>状态
                                     	<select name="status">
                                     		<option value="0">禁用</option>
                                     		<option value="1" selected>启用</option>
@@ -618,8 +618,8 @@
                             <td>助记码
                                 <input type="text" name="z_name" class="table-input-border" />
                             </td>
-                            <td>zh<input type="text" name="zh" class="table-input-border"/></td>
-                            <td>syw<input type="text" name="syw" class="table-input-border"/></td>
+                            <td>账号<input type="text" name="zh" class="table-input-border"/></td>
+                            <td>税务号<input type="text" name="syw" class="table-input-border"/></td>
                            
                         </tr>
                         <tr>
@@ -633,10 +633,10 @@
 
                         <tr>
                                 <td>email<input type="text" name="email" class="table-input-border"/></td>
-                            <td>khh<input type="text" name="khh" class="table-input-border"/></td>
-                            <td>khr<input type="text" name="khr" class="table-input-border"/></td>
+                            <td>开户行<input type="text" name="khh" class="table-input-border"/></td>
+                            <td>开户人<input type="text" name="khr" class="table-input-border"/></td>
                             
-                            <td>status
+                            <td>状态
                                 <select name="status">
                                     <option value="0">禁用</option>
                                     <option value="1" selected>启用</option>
@@ -706,7 +706,7 @@ var supplierPage={
         },
         createSupplierNum:function(val){
         	console.log(typeof val)
-        	val+=Math.floor(Math.random()*(999)+10000);
+        	val+=Math.floor(Math.random()*1000);
         	$('#supplierNum').val(val);
         },
         page:function(obj){

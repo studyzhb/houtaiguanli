@@ -185,9 +185,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="goods-detail.html">
+                                <a href="addgoodsCatagory.html">
                                     <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
-                                    <span class="text-normal">商品信息编辑</span>
+                                    <span class="text-normal">商品分类</span>
                                 </a>
                             </li>
                             <li>
@@ -344,14 +344,14 @@
                                     <td class="col-ms-2">
                                         <div>
                                             <span>商品编码</span>
-                                            <input type="text" id="goodsNumValidate" class="table-input-border" name="coding" />
+                                            <input type="text" class="table-input-border checkNumValidate" id="goods-code" name="coding" />
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
                                     <td class="col-ms-2">
                                         <div>
                                             <span>国际条码</span>
-                                            <input type="text" id="goodsCodeValidate" class="table-input-border barcode" name="barcode" />
+                                            <input type="text" class="table-input-border barcode checkNumValidate" id="goods-barcode" name="barcode" />
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
@@ -379,8 +379,8 @@
                                         </select>
                                     </td> 
                                 
-                                    <td>规格<input name="eachsale" type="text" class="table-input-border"/></td>
-                                    <td>零售单位
+                                    <td>零售单位<input name="eachsale" type="text" class="table-input-border"/></td>
+                                    <td>规格
                                         <select name="gg_id" id="gg">
                                             <option value="">------</option>
                                         </select>
@@ -428,33 +428,33 @@
                                     <td class="col-ms-3">
                                         <div>
                                             <span>毛利率</span>
-                                            <input type="text" name="gross" class="table-input-border"/>
+                                            <input type="text" name="gross" class="table-input-border checkNumValidate"/>
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
                                     <td class="col-ms-3">
                                         <div>
                                             <span>进项税率</span>
-                                            <input type="text" name="incomerat" class="table-input-border"/>
+                                            <input type="text" name="incomerat" class="table-input-border checkNumValidate"/>
                                             <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
                                         </div>
                                     </td>
                                     <td class="col-ms-3">销售税率
-                                        <input type="text" name="salesrate" class="table-input-border"/>    
+                                        <input type="text" name="salesrate" class="table-input-border checkNumValidate"/>    
                                     </td>  
-                                    <td>零售价<input type="text" name="retails" class="table-input-border" /></td>
-                                    <td>批发价<input type="text" name="wholesale"  class="table-input-border" /></td>                  
+                                    <td>零售价<input type="text" name="retails" class="table-input-border checkNumValidate" /></td>
+                                    <td>批发价<input type="text" name="wholesale"  class="table-input-border checkNumValidate" /></td>                  
                                 </tr>
                                 <tr>
                                     
-                                    <td>加盟价<input type="text" name="oiningprice" class="table-input-border" /></td>
+                                    <td>加盟价<input type="text" name="oiningprice" class="table-input-border checkNumValidate" /></td>
                                     <td>会员价
-                                        <input type="text" name="vipprice"  class="table-input-border" />
+                                        <input type="text" name="vipprice"  class="table-input-border checkNumValidate" />
                                     </td> 
                                     
-                                    <td>会员价一<input name="vippriceo" type="text" class="table-input-border"/></td>
-                                    <td>会员价二<input name="vippricet" type="text" class="table-input-border"/></td>
-                                    <td>最低售价<input name="inimumprice" type="text" class="table-input-border"/></td>
+                                    <td>会员价一<input name="vippriceo" type="text" class="table-input-border checkNumValidate"/></td>
+                                    <td>会员价二<input name="vippricet" type="text" class="table-input-border checkNumValidate"/></td>
+                                    <td>最低售价<input name="inimumprice" type="text" class="table-input-border checkNumValidate"/></td>
                                     <td></td>
                                 </tr>
                                 
@@ -893,19 +893,7 @@
         },html));
  
     })
-
-    //验证 
-    $('#goodsNumValidate').on('blur',function(){
-        var numVal=$(this).val();
-        config.ajax('post',config.ajaxAddress.goodsValidate,function(data){
-            console.log(data);
-        },{decode:numVal});
-    });
-
-    $('#goodsCodeValidate').on('blur',function(){
-        // config.ajax();
-    });
     
 </script>
-<script src=""></script>
+<script src="./js/add-goodsinfo.js"></script>
 </html>
