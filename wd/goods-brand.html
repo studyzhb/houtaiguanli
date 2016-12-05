@@ -697,19 +697,11 @@
                 var arr=[];
                 var templateCon=$('#brand-list').html();
                 $.each(data,function(index,item){
-                    arr.push(config.formatTemplate(item,templateCon))
+                    arr.push(config.formatTemplate(item,templateCon));
                 })
                 $('#admin-storage-userlist').append(arr.join(''));
-            })
 
-            $('#add-brand-mess').on('click',function(){
-                config.formSubmit('#brand-editor',config.ajaxAddress.showgoodsbrand,function(data){
-                    console.log(data);
-                })
-            });
-
-
-            $('#demo2').DataTable( {
+                $('#demo2').DataTable( {
                     "bFilter": true,//列筛选，就是搜索功能
                     "oLanguage": {
                     "sLengthMenu": "每页显示 _MENU_ 条记录",
@@ -743,6 +735,18 @@
                     "sProcessing": "<img src='./loading.gif' />"
                     }
                 });
+                
+                
+            })
+
+            $('#add-brand-mess').on('click',function(){
+                config.formSubmit('#brand-editor',config.ajaxAddress.showgoodsbrand,function(data){
+                    console.log(data);
+                })
+            });
+
+
+            
 
 		</script>
 

@@ -174,7 +174,7 @@ a:hover, a:active, a:focus {
 .detail-image-col-2 {
   width: 18%;
   display: inline-block;
-  min-height: 270px;
+  height: 180px;
   text-align: center;
   line-height: 115px;
   font-size: 50px;
@@ -193,22 +193,24 @@ a:hover, a:active, a:focus {
   position: relative;
   width: 300px;
   height: 180px; }
-  .detail-banner-split div.left-block {
-    position: absolute;
-    width: 60px;
-    height: 100%;
-    background: #000;
-    left: 0;
-    top: 0;
-    opacity: 0.4; }
-  .detail-banner-split div.right-block {
-    position: absolute;
-    width: 60px;
-    height: 100%;
-    background: #000;
-    right: 0;
-    top: 0;
-    opacity: 0.4; }
+
+div.left-block {
+  position: absolute;
+  width: 60px;
+  height: 100%;
+  background: #000;
+  left: 0;
+  top: 0;
+  opacity: 0.4; }
+
+div.right-block {
+  position: absolute;
+  width: 60px;
+  height: 100%;
+  background: #000;
+  right: 0;
+  top: 0;
+  opacity: 0.4; }
 
 .main-body {
   padding: 10px 15px;

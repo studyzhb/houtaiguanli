@@ -40,6 +40,19 @@
             left:0;
             top:0;
         }
+        div.moving{
+                border: 1px dashed gray;
+                background: white;
+        }
+        div.draging{
+            width: 300px;
+            height: 180px;
+            position: absolute;
+            background: goldenrod;
+            box-shadow: 0 0 4px 2px #555;
+            border-radius: 5px; 
+            z-index: 500;
+        }
     </style>
 </head>
 <body>
@@ -182,7 +195,7 @@
                             </a>
                         </div>
                         <ul class="sidebar-trans">
-                            <li>
+                            <li data-selected="selected">
                                 <a href="goodsInfo.html">
                                     <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
                                     <span class="text-normal">物品资料</span>
@@ -387,13 +400,13 @@
                             </dt>
                             <dd>
                                 <h3><a href="#">点击上传(请上传少于3张,多余不保存)</a></h3>
-                                <div class="image-suolve">
+                                <div class="image-suolve" style="position:relative;">
                                      <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
                                     </div>
                                     <div class="detail-image-col-2 detail-banner-split">
                                         <div class="left-block"></div>
                                         <div class="right-block"></div>
-                                        <img src="./img/test1.png" width="100%" height="270" />    
+                                        <img src="./img/test1.png" width="100%" height="180" />    
                                     </div>
                                     <!--<div class="detail-image-col-2">
                                         <img src="./img/test1.png" width="100%" height="270" />    
@@ -704,7 +717,9 @@
       </script>
 
     <script type="text/template" id="image-suolve">
-         <div class="detail-image-col-2" data-imgsrc="{imgsrc}">
+         <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
+            <div class="left-block"></div>
+            <div class="right-block"></div>
             <img src="{imgsrc}" width="100%" height="100%" />    
         </div>
     </script>

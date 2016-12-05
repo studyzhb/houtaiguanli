@@ -108,24 +108,25 @@ var ImageWrapper={
 
 
       // 拖拽
-      $("#box div").mousedown(function(e){
+      $(".image-suolve").on('mousedown','.detail-banner-split',function(e){
+        console.log('dianji');
         var that = this;
         var disX=e.offsetX, disY=e.offsetY;
         var $clone = $("<div>");
         $clone.addClass("draging").css("left",$(this).position().left).css("top",$(this).position().top).html($(this).html());
         $(this).addClass("moving").html("");
         $clone.appendTo($(this).parent());
-        $("#box").on("mousemove",function(e){
+        $(".image-suolve").on("mousemove",function(e){
           //悬浮层跟随鼠标移动
           $clone.css("left",e.clientX-$(this).offset().left-disX).css("top",e.clientY-$(this).offset().top-disY);
         });
         $clone.mouseup(function(){
           //取消拖拽事件
-          $("#box").off("mousemove");
+          $(".image-suolve").off("mousemove");
           //判断最小距离，进行交换
           var swapIndex = $(that).index();
           var minDistance = 1000;
-          $("#box div:not(:last)").each(function(){
+          $(".image-suolve .detail-banner-split").each(function(){
             var dis = Math.sqrt(Math.pow($clone.position().left-$(this).position().left, 2) +
               Math.pow($clone.position().top-$(this).position().top, 2));
             
@@ -143,7 +144,7 @@ var ImageWrapper={
             })
           } else {
             //交换位置元素
-            var $swapEle = $("#box div").eq(swapIndex);
+            var $swapEle = $(".image-suolve .detail-banner-split").eq(swapIndex);
             //生成第二个需要运动的复制元素
             var $clone2 = $("<div>");
             //将复制元素的位置设定在交换元素上

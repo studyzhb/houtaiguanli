@@ -293,12 +293,50 @@
                        
 
                       <div class="item-publish">
-  <form method="post" id="singleWillAddInfo" action="http://192.168.1.150/shop/shop/public/index.php/admin/Good/edit">
-    
+  <form method="post" id="singleWillAddInfo" action="">
+    <input type="hidden" name="id" class="goodsId-editor">
     <div class="ncsc-form-goods" id="editorwrapper">
     <div id="goodsbasemess"></div>
     <div id="mutigoodswrapper"></div>
-    <script type="text/template" id="editorContent">
+    
+      </div>
+
+      </form>
+    </div>
+    <div class="bottom tc hr32">
+      <label class="submit-border">
+        <input type="button" id="btnSubmit" class="submit" value="保存信息">
+      </label>
+    </div>
+</div>                   
+</div>   
+</div>
+				</div>
+			</div>
+		</div>
+
+        <script type="text/template" id="duoma">
+            <tr>  
+                <td class="dt-center"><input value="{decode}" class="ischecked" type="text" name="decode[]" placeholder="duoma"></td>
+                <td class="dt-center">{fullname}</td>
+                <td class="dt-center">{barcode}</td>
+                <td class="dt-center">一品多码</td>
+                <td class="dt-center"><a href="#" onclick="deleteChecked(this)">删除</a></td>
+            </tr>
+        </script>
+        <script type="text/template" id="duopin">
+            <tr>
+              <td class="dt-center"><input value="{name}" class="ischecked" type="text" name="goods[]"></td>
+              <td class="dt-center">{fullname}</td>
+              <td class="dt-center">{barcode}</td>
+              <td class="dt-center">一码多品</td>
+              <td class="dt-center"><a href="#" onclick="deleteChecked(this)">删除</a></td>
+            </tr>
+        </script>
+      <div class="add-alert-area"></div>
+
+
+        <script type="text/template" id="editorContent">
       <h3 id="demo1">商品基本信息</h3>
       <!--<dl>
         <dt>商品分类：</dt>
@@ -307,9 +345,11 @@
           <input type="hidden" name="good_type_id" value="2" class="text">
         </dd>
       </dl>-->
+
       <dl>
         <dt><i class="required">*</i>商品名称：</dt>
         <dd>
+         
           <input name="name" type="text" class="text w400 goods-fullname" value="{name}" placeholder="商品全称">
           <input type="text" name="jname" value="{jname}" placeholder="商品简称">
           <span></span>
@@ -452,41 +492,9 @@
       
       
       </script>
-      </div>
 
-      </form>
-    </div>
-    <div class="bottom tc hr32">
-      <label class="submit-border">
-        <input type="button" id="btnSubmit" class="submit" value="保存信息">
-      </label>
-    </div>
-</div>                   
-</div>   
-</div>
-				</div>
-			</div>
-		</div>
 
-        <script type="text/template" id="duoma">
-            <tr>  
-                <td class="dt-center"><input value="{decode}" class="ischecked" type="text" name="decode[]" placeholder="duoma"></td>
-                <td class="dt-center">{fullname}</td>
-                <td class="dt-center">{barcode}</td>
-                <td class="dt-center">一品多码</td>
-                <td class="dt-center"><a href="#" onclick="deleteChecked(this)">删除</a></td>
-            </tr>
-        </script>
-        <script type="text/template" id="duopin">
-            <tr>
-              <td class="dt-center"><input value="{name}" class="ischecked" type="text" name="goods[]"></td>
-              <td class="dt-center">{fullname}</td>
-              <td class="dt-center">{barcode}</td>
-              <td class="dt-center">一码多品</td>
-              <td class="dt-center"><a href="#" onclick="deleteChecked(this)">删除</a></td>
-            </tr>
-        </script>
-      <div class="add-alert-area"></div>
+
 
 
       <script type="text/template" id="mutigoods-content">
@@ -547,8 +555,9 @@
 
     var getCon=window.location.href.split('?')[1]||'';
     goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
+    goodsHouse.goodsId=parseInt(goodsHouse.goodsId);
     console.log(goodsHouse.goodsId);
-
+    $('.goodsId-editor').val(goodsHouse.goodsId);
     //加载编辑模板
     
 
@@ -647,9 +656,8 @@
     // });
 
     function deleteChecked(obj){
-        console.log($(obj).parents('tr'));
+        console.log(obj);
         $(obj).parents('tr').remove();
-
     }
 
 
@@ -672,8 +680,18 @@
     $('#btnSubmit').on('click',function(){
          // $('.add-alert-area').css('z-index','9999').show();
          // singleWillAddInfo
-         console.log('tijiao');
-        $('#singleWillAddInfo').ajaxSubmit(options);
+         // console.log('tijiao');
+        // $('#singleWillAddInfo').ajaxSubmit(options);
+
+        config.formSubmit('#singleWillAddInfo',config.ajaxAddress.goodsEditor,function(data){
+            if(data.code==200){
+               alert('添加成功');
+               open('goodsInfo.html',"_self");
+               
+           }else{
+               alert('添加失败，请重新添加');
+           }
+        });
     })
 
    $('#editorwrapper').on('click','#addmore-goods-name',function(){
