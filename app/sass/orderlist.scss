@@ -1,0 +1,168 @@
+@import 'reset';
+html,body{
+	width:100%;
+	height:100%;
+    
+}
+body{
+    display:-webkit-box;
+	display:box;
+	-ms-box-orient:vertical;
+	-moz-box-orient:vertical;
+	-webkit-box-orient:vertical;
+	overflow:hidden;
+}
+header{
+    width:750px;
+    height: 82px;
+    padding-bottom: 10px;
+    line-height: 72px;
+    position:relative;
+
+    img{
+        width:16px;
+        height:27px;
+        position: absolute;
+        left:40px;
+        top:25px;
+    }
+    
+    h2{
+
+        font-size: 32px;
+        height:72px;
+         text-align: center;
+         color:#42ae78;
+    }
+    
+   
+}
+
+section{
+    width:750px;
+    -moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1;
+    overflow: auto;
+    color:#666;
+    background: #f0f0f0;
+    padding-top:14px;
+    
+    .wrapper{
+        background:#e3e3e3;
+        margin-bottom: 12px;
+    }
+
+    h3{
+        height:74px;
+        line-height: 74px;
+        font-size: 26px;
+        padding-left:40px;
+        margin-bottom: 3px;
+       background: #fff;
+            img{
+                width:34px;
+                height:38px;
+                vertical-align: middle;
+            }
+        
+        span{
+            margin-left:18px;
+        }
+    }
+    ul.user-mess{
+        
+        background: #fff;
+        margin-bottom:3px;
+        li{
+            //height:60px;
+            position:relative;
+            font-size: 26px;
+            line-height: 60px;
+            padding:0 102px 0 44px;
+            img{
+                width:35px;
+                height:35px;
+                position:absolute;
+                right:30px;
+                bottom:15px;
+            }
+        }
+    }
+
+    .remark{
+        height:80px;
+        font-size:26px;
+        line-height:80px;
+        background: #fff;
+        padding-left:92px;
+        position:relative;
+        .leftline{
+            position: absolute;
+            left: 0;
+            top:50%;
+        }
+        .leftIcon{
+            position:absolute;
+            left:38px;
+            top:20px;
+        }
+        .padding-right{
+            padding-right:40px;
+            text-align: right;
+            span{
+                color:#ff0000;
+            }
+        }
+    }
+
+    ul.orderlist{
+        padding:16px 40px 0 22px;
+        background: #fff;
+        li{
+            height:166px;
+            dt{
+                float: left;
+                margin-right:34px;
+            }
+            dd{
+                width:502px;
+                float:left;
+                font-size: 24px;
+                height:166px;
+                line-height: 156px;
+                position:relative;
+                p{
+                    em{
+                        float:right;
+                    }
+                    b{
+                        position: absolute;
+                        right:0;
+                        bottom:-30px;
+                        font-weight: normal;
+                        i{
+                            font-style: normal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ul.detailPrice{
+        padding:11px 42px 11px 22px;
+        background: #fff;
+        margin-bottom:3px;
+        li{
+            height:52px;
+            line-height: 52px;
+            font-size: 26px;
+            span{
+                float: right;
+            }
+        }
+    }
+
+
+}

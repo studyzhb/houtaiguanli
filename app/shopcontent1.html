@@ -9,8 +9,8 @@
 	
 	<script src="./js/zepto.js"></script>
 	<script src="./js/swiper-3.3.1.min.js"></script>
-	<script src="./js/rem.js"></script>
-	<link rel="stylesheet" href="./css/shopContent.css" />
+	
+	<link rel="stylesheet" href="./css/shopContent1.css" />
 </head>
 <body>
 	
@@ -23,7 +23,7 @@
 							<img src="./img/test1.png" alt="">
 						</div>
 						<div class="swiper-slide aa bb2" >
-							<img src="./img/test1.png" alt="">
+							<img src="./img/test2.png" alt="">
 						</div>
 						<div class="swiper-slide aa bb4">
 							<img src="./img/test1.png" alt="">
@@ -72,13 +72,23 @@
 	
 </body>
 <script>
+	function bodyScale(){
 		
+		var devicewidth=document.documentElement.clientWidth;
+			var scale=devicewidth/750;
+			document.body.style.zoom=scale;
+		}
 		var mySwiper = new Swiper('.swiper-container',{
-				autoplay: 1000,
 				direction:'horizontal',
+				autoplay: 1000,
 				pagination:'.swiper-pagination',
 				loop:true
-			})        
+			})
+		window.onload=window.onresize=function(){
+			bodyScale();
+			
+		}
+		        
 		
 </script>
 </html>

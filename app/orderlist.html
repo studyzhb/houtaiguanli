@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="./css/orderlist.css" />
+    <script src="./js/zepto.js"></script>
+    <script src="./js/touch.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="./img/back.png" alt="">
+        <h2>订单详情</h2>
+    </header>
+    <section>
+        <div class="wrapper">
+            <h3>
+                <img src="./img/title-icon.png" alt="">
+                <span>收货人信息</span>
+            </h3>
+            <ul class="user-mess">
+                <li>收货人：<span>张三</span></li>
+                <li>电话：<span>181123456</span><img src="./img/phone.png" alt=""></li>
+                <li>收货地址：<span>张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三</span><img src="./img/weizhi.png" alt=""></li>
+            </ul>
+            <div class="remark">
+                <img class="leftline" src="./img/left-line.png" alt="">
+                <img class="leftIcon" src="./img/bianqian.png" alt="">
+                <p>附赠一张卡片，上面写嫁给我。</p>
+            </div>
+        </div>
+        
+        <div class="wrapper">
+            <h3>
+                <img src="./img/title-icon.png" alt="">
+                <span>共<em>两</em>件商品</span>
+            </h3>
+            <ul class="orderlist">
+                <li>
+                    <dt>
+                        <img src="./img/ttttest.png" alt="">
+                    </dt>
+                    <dd>
+                        <p>
+                            <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
+                            <b>x <i>1</i></b>
+                        </p>
+                    </dd>
+                </li>
+                <li>
+                    <dt>
+                        <img src="./img/ttttest.png" alt="">
+                    </dt>
+                    <dd>
+                        <p>
+                            <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
+                            <b>x <i>1</i></b>
+                        </p>
+                    </dd>
+                </li>
+                <li>
+                    <dt>
+                        <img src="./img/ttttest.png" alt="">
+                    </dt>
+                    <dd>
+                        <p>
+                            <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
+                            <b>x <i>1</i></b>
+                        </p>
+                    </dd>
+                </li>
+            </ul>
+            <ul class="detailPrice">
+                <li>
+                    <em>总价：</em><span>￥60</span>
+                </li>
+                <li>
+                    <em>优惠：</em><span>￥60</span>
+                </li>
+                <li>
+                    <em>配送费：</em><span>￥60</span>
+                </li>
+            </ul>
+            <div class="remark">
+                <p class="padding-right">实付金额：<span>￥3294036</span></p>
+            </div>
+        </div>
+
+        <div class="wrapper">
+             <h3>
+                <img src="./img/title-icon.png" alt="">
+                <span>订单详情</span>
+            </h3>
+            <ul class="user-mess">
+                <li>订单编号：<span>181123456789</span></li>
+                <li>支付方式：<span>暂无</span></li>
+                <li>下单时间：<span>2016-12-07 09:49</span></li>
+            </ul>
+        </div>
+    </section>
+
+    
+</body>
+<script>
+   function bodyScale(){
+    
+    var devicewidth=document.documentElement.clientWidth;
+        var scale=devicewidth/750;
+        document.body.style.zoom=scale;
+    }
+
+    window.onload=window.onresize=function(){
+        bodyScale();
+    }
+</script>
+</html>
