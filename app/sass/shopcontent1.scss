@@ -18,7 +18,7 @@ section{
 	.banner-wrapper{
 		height:586px;
 		width:750px;
-		background: #f00;
+		//background: #f00;
 		
 		overflow:hidden;
 		.banner-box{
@@ -28,14 +28,14 @@ section{
 		.goods-intro{
 			//width:100%;
 			height:144px;
-			background: #00f;
+			background: #fff;
 			padding-left:42px;
 			.topIconContent{
 				height:54px;
 				width:100%;
 				position:relative;
 				margin-bottom:10px;
-				background: #666;
+				//background: #666;
 				.pricewrapper{
 					width:130px;
 					height:100%;
@@ -81,7 +81,7 @@ section{
 				font-size:28px;
 				width:100%;
 				line-height: 80px;
-				background: #0f0;
+				//background: #0f0;
 			}
 		}
 	}
@@ -128,17 +128,17 @@ section{
 .aa{
 	width:750px;
 	height:586px;
-	background: #f00;
+	//background: #f00;
 }
 .bb{
 	width:750px;
 	height:586px;
-	background: #00f;
+	//background: #00f;
 }
 .cc{
 	width:750px;
 	height:586px;
-	background: #0f0;
+	//background: #0f0;
 }
 
 .box{width:750px;
@@ -153,11 +153,7 @@ section{
 	height:100%;}
 		.aa img{width:750px;
 	height:100%;}
-		.bb1{background: red;}
-		.bb2{background: yellow;}
-		.bb3{background: pink;}
-		.bb4{background: blue;}
-
+		
 
 
 

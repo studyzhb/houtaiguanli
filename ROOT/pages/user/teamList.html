@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>用户组管理</title>
+		<link href="../../css/base/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../../css/base/style.css" rel="stylesheet" type="text/css">
+	    <script src="../../js/base/jquery.min.js"></script>
+	    <script src="../../js/base/base.js"></script>
+	</head>
+	<body>
+
+    <div class="table-box">
+        <table class="table table-hover table-bordered" id="table-center">
+		   <tr>
+		     <th>
+		     	群组代码:<input type="text" name="teamCode" id="teamCode">
+		     	群组名称:<input type="text" name="teamName" id="teamName">
+		     </th>
+		     <th><button onclick="doList(null);">查询</button></th>  
+		   </tr> 
+	  </table>
+	    <table class="table table-hover table-bordered" id="table-center">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>群组代码</th>
+					<th>群组名称</th>
+					<th>状态</th>
+					<th>创建时间</th>					
+					<th>创建人</th>
+					<th>是否停用</th>				
+					<th>更新时间</th>
+					<th>更新人编号</th>
+				</tr>
+			</thead>
+			<tbody id="teamList">
+			</tbody>
+	    </table>
+	   
+   	</div>
+	<div class="page"  id="page"> 
+	 </div>
+
+		<script src="../../js/base/laypage/laypage.js"></script>
+		<script src="../../js/user/teamList.js"></script>
+	</body>
+</html>

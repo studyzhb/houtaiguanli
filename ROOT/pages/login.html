@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登陆</title>
+		<link rel="stylesheet" href="../css/user/login.css"/> 
+	</head>
+	<body>
+		<div class="up clearfix">
+			<div class="up_con mid">
+				<div class="logo_con">
+					<div class="logo fl"></div>
+					<div class="vertical_line fl"></div>
+					<div class="title fl"><span>工时系统</span></div>
+				</div>
+				<div class="line1"></div>
+				<div class="line2"></div>
+				<div class="decoration de1"></div>
+				<div class="decoration de2"></div>
+				<div class="decoration de3"></div>
+				<div class="background"></div>
+				<div class="login_out">
+					<div class="login_box">
+					 
+						<div class="welcome"><span>欢迎登录</span></div>
+						<div class="user_name">
+							<input class="user_input" type="text" placeholder="用户名"/>
+						</div>
+						<div class="password">
+							<input class="password_input" type="password" placeholder="密码"/>
+						</div>
+						<!--<div class="keep_login">
+							<div class="radio"></div>
+							<span>保持登陆</span>
+						</div>-->
+						<button class="login_button">登录</button>
+						<!--<div class="tips"><span>无法登录工时系统:</span><span class="forget_password">忘记密码</span></div>-->
+					</div>
+				</div>
+			</div>
+			<div class="something mid"><span>© 2016 物产电商 版权所有 </span></div>
+		</div>
+		<!--<script>
+			var raio=$('.radio');
+			console.log(raio);
+			var i=0;
+			raio.click(function(){
+				console.log(i);
+				if(i%2!==0){
+					$(this).css({
+						'background-position':'0 -20px'
+					})
+				}else{
+					$(this).css({
+						'background-position':'0 0'
+					})
+				}i++;
+			})
+		</script>-->
+		<script src="../js/base/jquery.min.js"></script>
+		<script src="../js/base/jquery.form.js"></script>
+		<script src="../js/user/login.js"></script>
+	</body>
+</html>

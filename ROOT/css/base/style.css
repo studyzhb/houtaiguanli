@@ -1,0 +1,254 @@
+﻿* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body,html {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.divscroll {
+    overflow: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*左部个人信息*/
+.per-list {
+	width: 318px;
+	float: left;
+	background: #31405d;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.logo {
+	width: 278px;
+	height: 76px;
+	background: #1b2238;
+	padding: 10px 0 0 40px;
+}
+
+.user {
+	height: 137px;
+	background: #3f4e6b;
+	padding-top: 23px;
+}
+
+.user div {
+	width: 74px;
+	height: 74px;
+	margin: 0 auto;
+	background: url(../../images/icons.png) no-repeat;
+}
+
+.user p {
+	margin-top: 22px;
+	height: 16px;
+	text-align: center;
+}
+
+.user span {
+	font: 16px/16px "微软雅黑";
+	color: #d8dadf;
+}
+
+.my-list,.my-list ul {
+	margin: 0;
+	padding: 0;
+}
+
+.my-list {
+	border-top: 1px solid #272e3c;
+}
+
+.my-list li {
+	height: 58px;
+	background: #31405d;
+	border-bottom: 1px solid #272e3c;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.my-list li a {
+	font: 18px/58px "微软雅黑";
+	color: #d5d7dc;
+	text-decoration: none;
+}
+
+.my-list li span {
+	position: absolute;
+	display: block;
+	width: 25px;
+	height: 26px;
+	left: 49px;
+	top: 16px;
+}
+
+.project span {
+	background: url(../../images/icons.png) 0 -85px no-repeat;
+}
+
+.plan span {
+	background: url(../../images/icons.png) 0 -118px no-repeat;
+}
+
+.person span {
+	background: url(../../images/icons.png) 0 -152px no-repeat;
+}
+
+.report span {
+	background: url(../../images/icons.png) 0 -181px no-repeat;
+}
+
+.manage span {
+	background: url(../../images/icons.png) 0 -214px no-repeat;
+}
+
+.my-list ul li {
+	width: 202px;
+	padding-left: 116px;
+	height: 58px;
+	border-top: 1px solid #272e3c;
+	border-bottom: 0;
+	background: #2a3853;
+	font: 18px/58px "微软雅黑";
+	color: #d5d7dc;
+	text-decoration: none;
+	text-align: left;
+}
+
+/*右部内容样式*/
+.right {
+	width: 100%;
+	padding-left: 318px;
+	box-sizing: border-box;
+}
+
+.header {
+	height: 86px;
+	background: #48baff;
+}
+
+.top-menu {
+	width: 330px;
+	height: 86px;
+	float: right;
+}
+
+.top-menu div {
+	width: 110px;
+	height: 86px;
+	float: left;
+	cursor: pointer;
+}
+
+.top-menu div i {
+	display: block;
+	width: 32px;
+	height: 28px;
+	margin: 0 auto;
+	margin-top: 16px;
+}
+
+.change-pwd i {
+	background: url(../../images/icons.png) 0 -276px no-repeat;
+}
+
+.f-page i {
+	background: url(../../images/icons.png) -2px -317px no-repeat;
+}
+
+.quit i {
+	background: url(../../images/icons.png) -2px -355px no-repeat;
+}
+
+.top-menu div span {
+	display: block;
+	height: 44px;
+	font: 14px/44px "微软雅黑";
+	text-align: center;
+	color: #FFF;
+}
+
+.right {
+	height: 100%;
+}
+
+.content section {
+	padding: 10px 0 0 0;
+	box-sizing: border-box;
+}
+
+.process {
+	width: 95%;
+	height: 286px;
+	border: 1px solid #e5e5e5;
+}
+
+.title {
+	height: 35px;
+	border-bottom: 1px solid #e5e5e5;
+	margin: 0;
+	padding: 0;
+	padding-left: 18px;
+	font: 16px/35px "微软雅黑";
+	color: #FFF;
+	background: #1aa3f5;
+}
+
+.project-list {
+	width: 95%;
+	min-height: 330px;
+	height: auto !important;
+	height: 330px;
+	margin-top: 24px;
+}
+
+.project-list .pro-table {
+	width: 100%;
+	border: 1px solid #dddddd;
+}
+
+.unclose {
+	margin-top: 24px;
+}
+
+.pro-table .table {
+	margin: 0;
+}
+
+.project-list .title {
+	padding-left: 18px;
+	height: 29px;
+	border-bottom: 1px solid #e5e5e5;
+	font: 16px/29px "微软雅黑";
+	color: #000;
+	background: #e8e8e8;
+}
+
+#mainFrame {
+	width: 100%;
+	min-height: 560px;
+	overflow: auto; 
+}
+
+
+.table-box{
+	width: 95%;
+	margin: 0 auto;
+	overflow: auto;
+}
+#table-center th{
+	text-align: center;
+	white-space: nowrap;
+}
+#table-center td{
+	text-align: center;
+	white-space: nowrap;
+}

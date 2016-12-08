@@ -1,0 +1,48 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>系统权限</title>
+		<link href="../../css/base/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../../css/base/style.css" rel="stylesheet" type="text/css">
+	    <script src="../../js/base/jquery.min.js"></script>
+	    <script src="../../js/base/base.js"></script>
+	</head>
+	<body>
+	<div class="table-box">
+			<table class="table table-hover table-bordered" id="table-center">
+			   	<tr>
+				    <th>
+				     	权限ID:<input type="text" name="permitID" id="permitID">
+				     	模块ID:<input type="text" name="moduleID" id="moduleID">
+				     	权限名称:<input type="text" name="permitName" id="permitName">
+				    </th>
+			    <th><button onclick="doList(null);">查询</button></th>  
+			    </tr> 
+			</table>
+		    <table class="table table-hover table-bordered" id="table-center">
+				<thead>
+					<tr>
+						<th>编号</th>
+						<th>权限ID</th>
+						<th>模块ID</th>			
+						<th>权限名称</th>
+						<th>权限URL</th>
+						<th>是否停用</th>
+						<th>创建时间</th>					
+						<th>创建人</th>			
+						<th>更新时间</th>
+						<th>更新人编号</th>								
+					</tr>
+				</thead>
+				<tbody id="permitList">
+				</tbody>
+		    </table>
+		  </div>
+	    <div class="page"  id="page"> 
+	   	</div>
+
+		<script src="../../js/base/laypage/laypage.js"></script>
+		<script src="../../js/basic/permitList.js"></script>
+	</body>
+</html>

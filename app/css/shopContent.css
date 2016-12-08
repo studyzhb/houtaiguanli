@@ -88,21 +88,19 @@ section {
   section .banner-wrapper {
     height: 5.86rem;
     width: 7.5rem;
-    background: #f00;
     overflow: hidden; }
     section .banner-wrapper .banner-box {
       width: 100%;
       height: 4.3rem; }
     section .banner-wrapper .goods-intro {
       height: 1.44rem;
-      background: #00f;
+      background: #fff;
       padding-left: 0.42rem; }
       section .banner-wrapper .goods-intro .topIconContent {
         height: 0.54rem;
         width: 100%;
         position: relative;
-        margin-bottom: 0.1rem;
-        background: #666; }
+        margin-bottom: 0.1rem; }
         section .banner-wrapper .goods-intro .topIconContent .pricewrapper {
           width: 1.3rem;
           height: 100%; }
@@ -138,8 +136,7 @@ section {
         height: 0.8rem;
         font-size: 0.28rem;
         width: 100%;
-        line-height: 0.8rem;
-        background: #0f0; }
+        line-height: 0.8rem; }
   section .main {
     margin-top: 0.12rem;
     padding: 0.03rem 0.2rem 0;
@@ -170,18 +167,15 @@ section {
 
 .aa {
   width: 7.5rem;
-  height: 5.86rem;
-  background: #f00; }
+  height: 5.86rem; }
 
 .bb {
   width: 7.5rem;
-  height: 5.86rem;
-  background: #00f; }
+  height: 5.86rem; }
 
 .cc {
   width: 7.5rem;
-  height: 5.86rem;
-  background: #0f0; }
+  height: 5.86rem; }
 
 .box {
   width: 7.5rem;
@@ -201,17 +195,5 @@ section {
 .aa img {
   width: 7.5rem;
   height: 100%; }
-
-.bb1 {
-  background: red; }
-
-.bb2 {
-  background: yellow; }
-
-.bb3 {
-  background: pink; }
-
-.bb4 {
-  background: blue; }
 
 /*# sourceMappingURL=shopcontent.css.map */

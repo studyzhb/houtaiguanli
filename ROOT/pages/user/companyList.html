@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>公司管理</title>
+	<link href="../../css/base/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="../../css/base/style.css" rel="stylesheet" type="text/css">
+    <script src="../../js/base/jquery.min.js"></script>
+    <script src="../../js/base/base.js"></script>
+</head>
+<body>
+<div class="table-box">
+     <table class="table table-hover table-bordered" id="table-center">
+	   <tr>
+	     <th>
+	     	公司ID:<input type="text" name="companyId" id="companyId">
+	     	公司名称:<input type="text" name="companyName" id="companyName">
+	     </th>
+	     <th><button onclick="doList(null);">查询</button></th>  
+	   </tr> 
+	  </table>
+   <table class="table table-hover table-bordered" id="table-center">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>公司ID</th>
+				<th>公司代码</th>
+				<th>公司名称</th>
+				<th>创始人</th>
+				<th>创建时间</th>					
+				<th>状态</th>
+				<th>是否停用</th>				
+				<th>更新时间</th>
+				<th>更新人编号</th>
+			</tr>
+		</thead>
+		<tbody id="companyList">
+		</tbody>
+    </table>
+   	
+</div> 
+<div class="page"  id="page"> 
+   	</div>
+   	<script src="../../js/base/laypage/laypage.js"></script>
+   	<script src="../../js/user/companyList.js"></script>
+</body>
+</html>
