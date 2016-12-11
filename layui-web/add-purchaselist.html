@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
 	<script src="./layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+  	<script type="text/javascript" src="./js/jquery-form.js"></script>
     <script src="./js/config.js"></script>
     <script src="./js/filter.js"></script>
     <script type="text/javascript" src="./js/add-purchaselist.js"></script>
@@ -77,9 +78,8 @@
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-show">
 
-            
-
-            <form class="layui-form layui-form-pane"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+            <form class="layui-form layui-form-pane" id="orderlist-submit" action="" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <input type="hidden" id="goods" name="goods" value="">
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
               <legend>单据信息</legend>
                 <div class="layui-form-item"> 
@@ -95,8 +95,8 @@
                 <div class="layui-input-inline">
                   <input type="text" name="" value="" class="layui-input" >
                 </div>
-                <button class="layui-btn layui-input-inline layui-btn-small" id="goods-coding" style="width:48px;height:38px;">搜索
-                </button>
+                <div class="layui-btn layui-input-inline layui-btn-small" id="goods-coding" style="width:48px;height:38px;">搜索
+                </div>
                   
                 <label class="layui-form-label">商品条形码</label>
                 <div class="layui-input-inline">
@@ -120,16 +120,10 @@
                 <div class="layui-form-item">
                 <label class="layui-form-label">单据编号</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="" readonly placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input id="ordernum" type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input">
                 </div>
-                  <label class="layui-form-label">单据编号</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" readonly placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-                <label class="layui-form-label">创建时间</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" readonly placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
+                  
+                
                 </div>
               </fieldset>
               
@@ -151,24 +145,12 @@
                       <th>商品品牌</th>
                       <th>商品数量</th>
                       <th>商品单价</th>
-                      <th>创建时间</th>
                       <th>操作</th>
                     </tr> 
                   </thead>
-                  <tbody>
+                  <tbody id="goods-orderlist">
                     
-                    <tr>
-                      <td>1</td>
-                      <td>0</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                        <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
-                        <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
-                      </td>
-                    </tr>
+                    
                     
                   </tbody>
               </table>
@@ -192,8 +174,8 @@
 
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                  <div class="layui-btn" id="confirm-save">确认订单</div>
+                  <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
                 </div>
               </div>
               <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
@@ -211,6 +193,42 @@
     </div> 
   <ul id="biuuu_city_list"></ul>
 
+
+<!-- 显示商品列表 -->
+<div id="goods-list" style="padding:10px;display:none;">
+  <table class="layui-table" >
+  <colgroup>
+    <col width="100">
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col width="100">
+  </colgroup>
+  <thead>
+    <tr>
+      <th><input type="checkbox" class="checkall" name="" value=""></th>
+      <th>商品编号</th>
+      <th>商品名称</th>
+      <th>规格</th>
+      <th>供应商名称</th>
+      <th>品牌</th>
+      <th>数量</th>
+    </tr> 
+  </thead>
+  <tbody id="searchedlist">
+    
+    
+  </tbody>
+  
+</table>
+<div class="layui-form-item">
+  <div class="layui-input-block">
+    <div class="layui-btn" id="confirmorder">确认订单</div>
+  </div>
+</div>
+</div>
 
 
  
@@ -392,7 +410,34 @@
   </li>
 </script>
 	
+<script id="searchedcontent" type="text/html">
 
+    <tr>
+      <td><input type="checkbox" class="ischecked"  name="" value="{{d.selectedindex}}"></td>
+      <td>{{d.coding}}</td>
+      <td>{{d.barcode}}</td>
+      <td>{{d.fac}}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+  
+</script>
+
+<script id="goodsContent" type="text/html">
+  <tr>
+    <td>{{d.coding}}</td>
+    <td>{{d.name}}</td>
+    <td>{{d.brand}}</td>
+    <td>1</td>
+    <td>10.00</td>
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small">编辑</div>
+      <div class="layui-btn layui-btn-small layui-btn-danger deleteGoods" id="{{d.selectedindex}}">删除</div>
+    </td>
+  </tr>
+</script>
 
 </div>
 

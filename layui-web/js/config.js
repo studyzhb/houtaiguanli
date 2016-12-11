@@ -52,6 +52,7 @@ var config={
     searchOrder:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/getInfo',
     // 添加订单
     addOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/add',
+    getOrderList:'',
     //获取权限列表
     getAuthorlist:'http://192.168.1.150/shop/shop/public/index.php/admin/Index/index'
 	},

@@ -1,11 +1,12 @@
 
 var layer;
 var $;
+var laytpl;
 config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		console.log(data);
 		layui.use(['form','laypage','layer','laytpl'],function(){
 				$=layui.jquery;
-		    	var laytpl = layui.laytpl;
+		    	laytpl = layui.laytpl;
 		    	layer = layui.layer;
 		    	var tempHtml=slider.innerHTML;
 		    	//获取权限列表	
