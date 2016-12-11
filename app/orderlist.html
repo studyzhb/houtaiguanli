@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/orderlist.css" />
     <script src="./js/zepto.js"></script>
     <script src="./js/touch.min.js"></script>
+    
 </head>
 <body>
     <header>
@@ -30,7 +31,19 @@
                 <p>附赠一张卡片，上面写嫁给我。</p>
             </div>
         </div>
-        
+        <div class="wrapper">
+            <div class="remark">
+                
+                <img class="left-ps-icon" src="./img/peisong.png" alt="">
+                <p>订单跟踪（配送费：5元）</p>
+            </div>
+            <div class="ps-bg" data-info="4">
+                <div class="fugai"></div>
+                
+            </div>
+            
+            
+        </div>
         <div class="wrapper">
             <h3>
                 <img src="./img/title-icon.png" alt="">
@@ -39,7 +52,18 @@
             <ul class="orderlist">
                 <li>
                     <dt>
-                        <img src="./img/ttttest.png" alt="">
+                        <img src="./img/ttttest.png" width="100%" height="100%" alt="">
+                    </dt>
+                    <dd>
+                        <p class="clearfix">
+                            <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
+                            <b>x <i>1</i></b>
+                        </p>
+                    </dd>
+                </li>
+                <li>
+                    <dt>
+                        <img src="./img/ttttest.png" width="100%" height="100%" alt="">
                     </dt>
                     <dd>
                         <p>
@@ -50,21 +74,10 @@
                 </li>
                 <li>
                     <dt>
-                        <img src="./img/ttttest.png" alt="">
+                        <img src="./img/ttttest.png" width="100%" height="100%" alt="">
                     </dt>
                     <dd>
-                        <p>
-                            <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
-                            <b>x <i>1</i></b>
-                        </p>
-                    </dd>
-                </li>
-                <li>
-                    <dt>
-                        <img src="./img/ttttest.png" alt="">
-                    </dt>
-                    <dd>
-                        <p>
+                        <p class="clearfix">
                             <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
                             <b>x <i>1</i></b>
                         </p>
@@ -100,7 +113,42 @@
         </div>
     </section>
 
-    
+    <script type="text/template" id="info">
+        <div class="remark">
+            <p>{status}</p>
+            <p class="time">2016-11-28 07：16:05</p>
+            </div>
+           
+                
+    </script>
+
+    <script type="text/template" id="completed">
+        <div class="remark lastDiv" style="background:#42ae78;">
+                <p class="">配送完成</p>
+            </div>
+    </script>
+<!--
+     <div class="remark">
+            
+                <p class="">卖家已付款</p>
+                    <p class="time">2016-11-28 07：16:05</p>
+            </div>
+            <div class="remark">
+            
+                <p class="">买家已付款</p>
+                    <p class="time">2016-11-28 07：16:05</p>
+            </div>
+            <div class="remark">
+            
+                <p class="">打印小票，开始配送</p>
+                    <p class="time">2016-11-28 07：16:05</p>
+            </div>
+                <div class="remark">
+            
+                <p class="">配送中</p>
+                    <p class="time">2016-11-28 07：16:05</p>
+            </div>-->
+
 </body>
 <script>
    function bodyScale(){
@@ -110,8 +158,49 @@
         document.body.style.zoom=scale;
     }
 
+    function formatTemplate(dta, tmpl) {  
+        var b;
+        var format = { 
+            price: function(x) {  
+                // console.log(typeof x,this.discount);
+                return (x*b).toFixed(2); 
+            },
+            discount:function(a){
+                b=a==0?1:a*0.1;
+                return b;
+            }
+        };  
+        return tmpl.replace(/{(\w+)}/g, function(m1, m2) {  
+            if (!m2)  
+                return "";  
+            return (format && format[m2]) ? format[m2](dta[m2]) : dta[m2];  
+        });  
+    }
     window.onload=window.onresize=function(){
         bodyScale();
+        var arr=[{status:'卖家已下单'},{status:'卖家已付款'},{status:'卖家已付款'},{status:'打印小票，开始配送'},{status:'配送中'},{status:'配送完成'}];
+        var infoHtml=$('#info').html();
+       var outputIndex=$('.ps-bg').data('info');
+        var arrInfo=[];
+        // $('.ps-bg').html('');
+        if($('.ps-bg').data('info')!=''){
+            $.each(arr,function(index,item){
+                if(index<=Number($('.ps-bg').data('info'))&&index<4){
+                    arrInfo.push(formatTemplate(item,infoHtml));
+                }
+            });
+            if(outputIndex==4){
+                arrInfo.push($('#completed').html());
+            }
+
+        }else{
+            arrInfo.push(formatTemplate({status:'暂无配送消息'},infoHtml));
+        }
+        
+        $('.ps-bg').append(arrInfo.join(''));
     }
+
+
+
 </script>
 </html>

@@ -8,7 +8,10 @@
 	<link rel="stylesheet" href="../layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
 	<script src="../layui/layui.js"></script>
-  	<script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/filter.js"></script>
+  	
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -23,40 +26,9 @@
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       
-        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-  <li class="layui-nav-item layui-nav-itemed">
-    <a href="javascript:;">组织机构</a>
-    <dl class="layui-nav-child">
-      <dd><a href="admin-origin.html">组织机构列表</a></dd>
-      <!-- <dd><a href="admin-user.html">用户列表</a></dd> -->
-      
-    </dl>
-  </li>
-  <li class="layui-nav-item">
-    <a href="javascript:;">用户管理</a>
-    <dl class="layui-nav-child">
-      <dd><a href="#">移动模块</a></dd>
-      <dd><a href="#">后台模版</a></dd>
-      <dd><a href="#">电商平台</a></dd>
-    </dl>
-  </li>
-  <li class="layui-nav-item">
-    <a href="javascript:;">解决方案</a>
-    <dl class="layui-nav-child">
-      <dd><a href="">移动模块</a></dd>
-      <dd><a href="">后台模版</a></dd>
-      <dd><a href="">电商平台</a></dd>
-    </dl>
-  </li>
-  <li class="layui-nav-item">
-    <a href="javascript:;">解决方案</a>
-    <dl class="layui-nav-child">
-      <dd><a href="">移动模块</a></dd>
-      <dd><a href="">后台模版</a></dd>
-      <dd><a href="">电商平台</a></dd>
-    </dl>
-  </li>
+  
 </ul>
 
     </div>
@@ -123,7 +95,7 @@
               <th>操作</th>
             </tr> 
           </thead>
-          <tbody>
+          <tbody id="all-author-list">
             
             <tr>
               <td>1</td>
@@ -131,8 +103,8 @@
               <td></td>
               <td>
                 
-                <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
-                <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
+                <div class="layui-btn layui-btn-warm layui-btn-small">编辑</div>
+                <div class="layui-btn layui-btn-small layui-btn-danger">删除</div>
               </td>
             </tr>
             
@@ -315,12 +287,22 @@
 </div>
 
 <!-- ========================================================= -->
-
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      <dd>
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
 	
 <script>
-	layui.use(['element','form','laypage','layer','laytpl'],function(){
-		var element = layui.element();
-	})
+	
 </script>
 
 </div>

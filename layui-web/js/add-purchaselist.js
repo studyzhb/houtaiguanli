@@ -35,7 +35,19 @@ $(function(){
     });
 
 
-	
+	//获取供应商列表
+	config.ajax('get',config.ajaxAddress.addOrderList,function(data){
+		console.log(data);
+		$.each(data.supplier,function(index,item){
+			$('<option>').appendTo($('.supplierList')).html(item.name).attr('value',item.id);
+		});
+		$.each(data.stock,function(index,item){
+			$('<option>').appendTo($('.stockList')).html(item.name).attr('value',item.id);
+		});
+		layui.use('form',function(){
+			
+		});
+	});
 
 	$('#goods-coding').on('click',function(){
 	
@@ -113,9 +125,10 @@ $('#confirm-save').on('click',function(){
 		layer.open({type: 3});
 		var arr=[];
 		$.each(orderlist.selectedList,function(index,item){
-			arr.push({'id':item.id,'unm':1});
+			arr.push({'good_id':item.id,'unm':1});
 		})
-		$('#goods').val(arr.join(''));
+		$('#goods').val(JSON.stringify(arr));
+		console.log($('#goods').val());
 		config.formSubmit('#orderlist-submit',config.ajaxAddress.addOrderList,function(data){
 			console.log(data);
 		});

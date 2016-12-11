@@ -54,7 +54,9 @@ var config={
     addOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/add',
     getOrderList:'',
     //获取权限列表
+    getAuthorRole:'http://192.168.1.150/shop/shop/public/index.php/admin/Role/add',
     getAuthorlist:'http://192.168.1.150/shop/shop/public/index.php/admin/Index/index'
+
 	},
   pSort:{
     pagecount:10

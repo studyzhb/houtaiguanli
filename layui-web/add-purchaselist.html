@@ -78,7 +78,7 @@
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-show">
 
-            <form class="layui-form layui-form-pane" id="orderlist-submit" action="" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+            <form class="layui-form layui-form-pane" id="orderlist-submit" action="" method="POST" style="height:auto;overflow:auto;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
               <input type="hidden" id="goods" name="goods" value="">
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
               <legend>单据信息</legend>
@@ -86,9 +86,8 @@
                 
                 <label class="layui-form-label">供货商</label>
                 <div class="layui-input-inline">
-                  <select name="origin" lay-filter="origin">
-                    <option value="0">一级机构</option>
-                    <option value="1">万店联盟</option>
+                  <select class="supplierList">
+                    
                   </select>
                 </div>
                 <label class="layui-form-label">商品编号</label>
@@ -122,7 +121,12 @@
                 <div class="layui-input-inline">
                   <input id="ordernum" type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input">
                 </div>
-                  
+                  <label class="layui-form-label">仓库列表</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
                 
                 </div>
               </fieldset>
@@ -164,7 +168,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">备注信息</label>
                 <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                  <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>
               </div>
               <!-- ================================================== -->

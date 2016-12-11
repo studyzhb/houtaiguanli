@@ -4,7 +4,7 @@ var $;
 var laytpl;
 config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		console.log(data);
-		layui.use(['form','laypage','layer','laytpl'],function(){
+		layui.use(['laypage','layer','laytpl'],function(){
 				$=layui.jquery;
 		    	laytpl = layui.laytpl;
 		    	layer = layui.layer;

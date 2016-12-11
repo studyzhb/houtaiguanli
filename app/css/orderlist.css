@@ -112,7 +112,8 @@ section {
   padding-top: 14px; }
   section .wrapper {
     background: #e3e3e3;
-    margin-bottom: 12px; }
+    margin-bottom: 12px;
+    position: relative; }
   section h3 {
     height: 74px;
     line-height: 74px;
@@ -140,6 +141,30 @@ section {
         position: absolute;
         right: 30px;
         bottom: 15px; }
+  section .ps-bg {
+    background: #fff url(../img/psline.png) no-repeat 43px 29px;
+    padding: 0 0 10px 92px;
+    position: relative; }
+    section .ps-bg .remark {
+      padding-left: 0;
+      margin-bottom: 24px;
+      position: relative; }
+      section .ps-bg .remark .time {
+        position: absolute;
+        font-size: 20px;
+        left: 1px;
+        bottom: -35px; }
+    section .ps-bg .fugai {
+      height: 59px;
+      width: 5px;
+      background: #fff;
+      position: absolute;
+      left: 52px;
+      bottom: -4px; }
+    section .ps-bg .remark.lastDiv {
+      width: 750px;
+      margin-left: -92px;
+      text-align: center; }
   section .remark {
     height: 80px;
     font-size: 26px;
@@ -155,6 +180,10 @@ section {
       position: absolute;
       left: 38px;
       top: 20px; }
+    section .remark .left-ps-icon {
+      position: absolute;
+      left: 38px;
+      top: 30px; }
     section .remark .padding-right {
       padding-right: 40px;
       text-align: right; }
@@ -169,21 +198,28 @@ section {
         float: left;
         margin-right: 34px; }
       section ul.orderlist li dd {
-        width: 502px;
+        width: 490px;
         float: left;
         font-size: 24px;
         height: 166px;
         line-height: 156px;
         position: relative; }
-        section ul.orderlist li dd p em {
-          float: right; }
-        section ul.orderlist li dd p b {
-          position: absolute;
-          right: 0;
-          bottom: -30px;
-          font-weight: normal; }
-          section ul.orderlist li dd p b i {
-            font-style: normal; }
+        section ul.orderlist li dd p {
+          width: 100%; }
+          section ul.orderlist li dd p span {
+            width: 80%;
+            float: left;
+            line-height: 48px; }
+          section ul.orderlist li dd p em {
+            float: right;
+            line-height: 50px; }
+          section ul.orderlist li dd p b {
+            position: absolute;
+            right: 0;
+            bottom: -30px;
+            font-weight: normal; }
+            section ul.orderlist li dd p b i {
+              font-style: normal; }
   section ul.detailPrice {
     padding: 11px 42px 11px 22px;
     background: #fff;
