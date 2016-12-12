@@ -22,7 +22,7 @@ $(function(){
 	});
 
 	$('.commit-author').on('click',function(){
-		config.formSubmit('#authorForm',config.ajaxAddress.getAuthorRole,function(data){
+		config.formSubmit('#authorForm',config.ajaxAddress.addUserRole,function(data){
 			console.log(data);
 		});
 	});

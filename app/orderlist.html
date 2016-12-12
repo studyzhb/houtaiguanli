@@ -37,7 +37,7 @@
                 <img class="left-ps-icon" src="./img/peisong.png" alt="">
                 <p>订单跟踪（配送费：5元）</p>
             </div>
-            <div class="ps-bg" data-info="4">
+            <div class="ps-bg" data-info="10">
                 <div class="fugai"></div>
                 
             </div>
@@ -116,7 +116,7 @@
     <script type="text/template" id="info">
         <div class="remark">
             <p>{status}</p>
-            <p class="time">2016-11-28 07：16:05</p>
+            <p class="time">{time}</p>
             </div>
            
                 
@@ -127,6 +127,12 @@
                 <p class="">配送完成</p>
             </div>
     </script>
+    <script type="text/template" id="backGoods">
+        <div class="remark lastDiv" style="background:#42ae78;">
+                
+        </div>
+    </script>
+
 <!--
      <div class="remark">
             
@@ -179,13 +185,16 @@
     window.onload=window.onresize=function(){
         bodyScale();
         var arr=[{status:'卖家已下单'},{status:'卖家已付款'},{status:'卖家已付款'},{status:'打印小票，开始配送'},{status:'配送中'},{status:'配送完成'}];
+        var tArr=[];
         var infoHtml=$('#info').html();
        var outputIndex=$('.ps-bg').data('info');
         var arrInfo=[];
         // $('.ps-bg').html('');
-        if($('.ps-bg').data('info')!=''){
+        if(outputIndex!==''&&outputIndex!=10){
             $.each(arr,function(index,item){
+
                 if(index<=Number($('.ps-bg').data('info'))&&index<4){
+                    item.time=new Date().toLocaleString();
                     arrInfo.push(formatTemplate(item,infoHtml));
                 }
             });
@@ -193,14 +202,22 @@
                 arrInfo.push($('#completed').html());
             }
 
+        }else if(outputIndex==10){
+            $.each(arr,function(index,item){
+
+                if(index<2){
+                    item.time=new Date().toLocaleString();
+                    arrInfo.push(formatTemplate(item,infoHtml));
+                }
+            });
+            
         }else{
-            arrInfo.push(formatTemplate({status:'暂无配送消息'},infoHtml));
+            var da=new Date();
+            arrInfo.push(formatTemplate({status:'暂无配送消息',time:da.toLocaleString()},infoHtml));
         }
         
         $('.ps-bg').append(arrInfo.join(''));
     }
-
-
 
 </script>
 </html>

@@ -108,29 +108,117 @@
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              
-              <div class="layui-form-item">
-                <label class="layui-form-label">上级机构</label>
-                <div class="layui-input-block">
-                  <select name="origin" lay-filter="origin">
-                    <option value="0">一级机构</option>
-                    <option value="1">万店联盟</option>
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+              <legend>商品基本信息</legend>
+                <div class="layui-form-item"> 
+                
+                
+                <label class="layui-form-label">商品名称</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+                </div>
+                <label class="layui-form-label">商品编号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+                </div>
+                
+                  
+                <label class="layui-form-label">商品条形码</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+
+                </div>
+                <label class="layui-form-label">供货商</label>
+                <div class="layui-input-inline">
+                  <select class="supplierList">
+                    
                   </select>
                 </div>
               </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">组织名称</label>
-                <div class="layui-input-block">
-                  <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+
+                <div class="layui-form-item">
+                <label class="layui-form-label">规格</label>
+                <div class="layui-input-inline">
+                  <input id="ordernum" type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input">
                 </div>
-              </div>
+                <label class="layui-form-label">零售单位</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                <label class="layui-form-label">分类</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                  <label class="layui-form-label">计价方式</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                
+                </div>
+              </fieldset>
               
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">请填写描述</label>
-                <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+              <legend>商品价格信息</legend>
+                <div class="layui-form-item"> 
+                
+                
+                <label class="layui-form-label">进货价</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+                </div>
+                <label class="layui-form-label">毛利率</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+                </div>
+                
+                  
+                <label class="layui-form-label">进项税率</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+
+                </div>
+                <label class="layui-form-label">供货商</label>
+                <div class="layui-input-inline">
+                  <select class="supplierList">
+                    
+                  </select>
                 </div>
               </div>
+
+                <div class="layui-form-item">
+                <label class="layui-form-label">规格</label>
+                <div class="layui-input-inline">
+                  <input id="ordernum" type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input">
+                </div>
+                <label class="layui-form-label">零售单位</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                <label class="layui-form-label">分类</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                  <label class="layui-form-label">计价方式</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                
+                </div>
+              </fieldset>
+                
+              
               <!-- ================================================== -->
 
               <!-- ================================================== -->
@@ -147,7 +235,6 @@
             </form>
           </div>
         </div>
-
 
      </div>
 

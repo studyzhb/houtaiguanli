@@ -24,7 +24,7 @@ var config={
   },
 	ajaxAddress:{
     //验证供应商编号
-    supplierNum:'/shop/shop/public/index.php/admin/Supplier/checkCoding',
+    supplierNum:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/checkCoding',
     //验证商品的国际条形码barcode
     goodsI18Num:'/shop/shop/public/index.php/admin/Good/checkBarcode',
     //验证商品的一品多码decode
@@ -39,24 +39,36 @@ var config={
     goodsDetail:'/shop/shop/public/index.php/admin/Good/detail',
     goodsaddDetail:'/shop/shop/public/index.php/admin/Good/addDetail',
     //添加供货商地址
-	addSupplier:'/shop/shop/public/index.php/admin/supplier/add',
+	addSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/supplier/add',
     //更新单个供货商信息地址http://192.168.1.18/wp/public/index.php/admin/supplier/update
-	updateSupplier:'/shop/shop/public/index.php/admin/Supplier/update',
+	updateSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/update',
     //显示供货商列表信息http://192.168.1.18/wp/public/index.php/admin/supplier/show
-    showSupplierList:'/shop/shop/public/index.php/admin/Supplier/lst',
-    //商品分类
-    showgoodsSort:'/shop/shop/public/index.php/admin/Category/add',
+    showSupplierList:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/lst',
+    //商品分类添加
+    addGoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/add',
+    //商品分类展示
+    showGoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/lst',
     //商品品牌
-    showgoodsbrand:'/shop/shop/public/index.php/admin/Good/brand',
+    showgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/brand',
     //搜索商品
     searchOrder:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/getInfo',
     // 添加订单
     addOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/add',
-    getOrderList:'',
+    //获取采购单列表
+    getOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/lst',
     //获取权限列表
     getAuthorRole:'http://192.168.1.150/shop/shop/public/index.php/admin/Role/add',
-    getAuthorlist:'http://192.168.1.150/shop/shop/public/index.php/admin/Index/index'
-
+    getAuthorlist:'http://192.168.1.150/shop/shop/public/index.php/admin/Index/index',
+    //角色列表展示
+    getUserRoleList:'http://192.168.1.150/shop/shop/public/index.php/admin/Role/lst',
+    //角色信息修改
+    editorUserRole:'http://192.168.1.150/shop/shop/public/index.php/admin/Role/edit',
+    //添加角色
+    addUserRole:'http://192.168.1.150/shop/shop/public/index.php/admin/Role/add',
+    //显示员工列表
+    showUserInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Admin/lst',
+    //添加员工
+    addUserInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Admin/add'
 	},
   pSort:{
     pagecount:10

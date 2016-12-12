@@ -1,5 +1,8 @@
 $(function(){
-
+var laytpl;
+	layui.use('laytpl',function(){
+		laytpl = layui.laytpl;
+	});
 $('#purchaselist').on('click','.lookorderInfo',function(){
 	layer.open({
 		type:1,
@@ -12,6 +15,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 
 config.ajax('get',config.ajaxAddress.getOrderList,function(data){
 	var tempHtml=supplierList.innerHTML;
+	
 	$('#purchaselist').html('');
 	$.each(data,function(index,item){
 		item.selectedindex=index;

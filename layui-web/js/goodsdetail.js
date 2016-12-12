@@ -171,3 +171,42 @@ var ImageWrapper={
 
 
 
+$('#confirmsavetext').on('click',function(){
+            $('.img-content').append(config.formatTemplate({text:$('#text-image-detail').val()},$('#img-text').html()));
+            $('.add-con-area').hide();
+            $('.add-alert-area').hide();
+        })
+
+        $('#btnSubmit').on('click',function(){
+
+            $('#appHtml').val($('.img-content').html());
+            var arr=[];
+            $('.detail-banner-split').each(function(){
+                arr.push($(this).data('imgsrc'));
+            })
+            // console.log($('.detail-banner-split').data('imgsrc'));
+            $('#slImg').val(arr.join(''));
+            // console.log(arr);
+            $('.add-alert-area').show();
+            //console.log(goodsHouse.goodsId);
+            $('#goodsId').val(goodsHouse.goodsId);
+            // console.log(config.ajaxAddress.goodsaddDetail);
+            config.formSubmit('#detailContent',config.ajaxAddress.goodsaddDetail,function(data){
+               if(data.code==200){
+                 alert('添加成功');
+                 location.href="goodsInfo.html";
+               }
+            })
+        });
+
+
+$('.content-tab-ul-wrap ul li').on('click',function(){
+            $(this).find('a').addClass('selected').end().siblings().find('a').removeClass();
+            if($(this).data('info')=='base'){
+                $('.base').css('display','block');
+                $('.detail').css('display','none');
+            }else{
+                $('.base').css('display','none');
+                $('.detail').css('display','block');
+            }
+        });

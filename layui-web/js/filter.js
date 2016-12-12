@@ -30,3 +30,18 @@ config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		
 		
 	});
+
+
+$('.show-content').on('click','.select-tit',function(){
+	console.log('111');
+        if($(this).next().css('display')=='none'){
+            $(this).nextAll().css('display','block');
+        }else{
+            $(this).nextAll().css('display','none');
+        } 
+    });
+
+    $('.show-content').on('click','li',function(){
+        $(this).parents('.select-items').css('display','none').next().css('display','none');
+        $(this).parents('.select-items').prev('.select-tit').find('span').text($(this).text());  
+    })

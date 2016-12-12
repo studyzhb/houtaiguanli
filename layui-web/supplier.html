@@ -9,8 +9,7 @@
   	<link rel="stylesheet" href="./css/alertcon.css" />
 	<script src="./layui/layui.js"></script>
   	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
-<script type="text/javascript" src="./js/config.js"></script>
-<script type="text/javascript" src="./js/filter.js"></script>
+
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -123,7 +122,7 @@
               <td></td>
               <td></td>
               <td>
-                <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
+                <button class="layui-btn layui-btn-warm layui-btn-small editorSingleSupplier">编辑</button>
                 <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>-->
               </td>
             </tr>
@@ -131,6 +130,9 @@
           </tbody>
       </table>
      
+            
+
+
 
           </div>
         </div>
@@ -149,7 +151,7 @@
 
   <!-- =======================弹出窗========================= -->
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
-  <div class="alert-main-con">
+  <div class="alert-main-con show-content">
       <form method="" action="">
         <fieldset>
           <legend>
@@ -158,98 +160,242 @@
           <ul class="mess-content">
             <li>
               <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
+                <label>地址</label>
+                <div class="single-select">
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span>请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="province-list">
+                                  <li>1111</li>
+                                  <li>1111</li>
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+                      
+
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span class="subclass">请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="city-list">
+                                  
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span class="subclass">请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="contry-list">
+                                  
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+                      
+                  </div>
+              </div>
+              
+              <div class="input-wrapper">
+                <label>结算方式</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="sub-sort">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
               </div>
               <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
+                <label>经营方式</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="sub-sort">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
               </div>
             </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
+            
           </ul>
         </fieldset> 
         <fieldset>
           <legend>
-            价格信息
+            填写信息
           </legend>
           <ul class="mess-content">
             <li>
               <div class="input-wrapper">
                 <label>供应商编号</label>
+                <input type="text" readonly id="supplierNum" class="w160" name="coding" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商名称</label>
                 <input type="text" class="w160" name="" value="">
               </div>
               <div class="input-wrapper">
-                <label>供应商编号</label>
+                <label>账号</label>
                 <input type="text" class="w160" name="" value="">
               </div>
               <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
+                <label>税务号</label>
                 <input type="text" class="w160" name="" value="">
               </div>
             </li>
             <li>
               <div class="input-wrapper">
-                <label>供应商编号</label>
+                <label>邮政编码</label>
                 <input type="text" class="w160" name="" value="">
               </div>
               <div class="input-wrapper">
-                <input type="checkbox" />
-                <label>允许采购订货</label>
+                <label>传真</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>联系人</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>电话</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <input type="checkbox" checked />
+                <label>是否启用</label>
               </div>
             </li>
           </ul>
         </fieldset> 
-       
+        
+        
+
+      </form>
+    </div>
+</div>
+
+
+
+<!-- ===================================编辑  -->
+<div class="alertCon-wrapper" id="editorSupplier" style="margin:10px auto;display:none;">
+  <div class="alert-main-con show-content">
+      <form method="" action="">
+        <fieldset>
+          <legend>
+            基本信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>地址</label>
+                <input type="text" readonly class="w160" name="address" value="">
+              </div>
+              
+              <div class="input-wrapper">
+                <label>结算方式</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="sub-sort">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="input-wrapper">
+                <label>经营方式</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="sub-sort">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+            </li>
+            
+          </ul>
+        </fieldset> 
+        <fieldset>
+          <legend>
+            填写信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" readonly class="w160" name="coding" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商名称</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>账号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>税务号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>邮政编码</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>传真</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>联系人</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>电话</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <input type="checkbox" checked />
+                <label>是否启用</label>
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
         
         
 
@@ -273,16 +419,16 @@
   </li>
 </script>
 
-<script id="supplier-list" type="text/html">
+<script id="supplierList" type="text/html">
   <tr>
-    <td>1</td>
-    <td>万店联盟</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>{{d.coding}}</td>
+    <td>{{d.name}}</td>
+    <td>{{d.address}}</td>
+    <td>{{d.contact}}</td>
+    <td>{{d.ptel}}</td>
+    <td>{{d.tel}}</td>
     <td>
-      <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
+      <div class="layui-btn layui-btn-warm layui-btn-small editorSingleSupplier" data-id="{{d.id}}">编辑</div>
       <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
     </td>
   </tr>
@@ -290,6 +436,13 @@
 
 
 </div>
+<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/filter.js"></script>
 <script src="./js/supplier.js"></script>
+<script>
+  layui.use('form', function(){
+
+  });
+</script>
 </body>
 </html>

@@ -11,6 +11,7 @@
   	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
     <script src="./js/config.js"></script>
     <script src="./js/filter.js"></script>
+
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -433,6 +434,12 @@
 </script>
 	
 <script>
+  function addGoodsText(){
+            $('.add-con-area').show();
+            $('.add-alert-area').show();
+            // $('<h3>').appendTo($('#content1'));
+    }
+
 	$(".image-suolve").on('mousedown','.detail-banner-split',function(e){
             console.log('dianji');
             var that = this;
@@ -497,4 +504,16 @@
 </div>
 
 </body>
+<script src="http://192.168.1.150/shop/shop/public/utf8-php/ueditor.config.js"></script>
+<script src="http://192.168.1.150/shop/shop/public/utf8-php/ueditor.all.js"></script>
+<script>
+  var ue = UE.getEditor('container',{
+            toolbars: [
+                   ['undo', 'bold','underline','simpleupload','insertimage','cleardoc','imagecenter']
+                ],
+                autoHeightEnabled: true
+        });
+
+</script>
+<script type="text/javascript" src="./js/goodsdetail.js"></script>
 </html>
