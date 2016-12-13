@@ -217,7 +217,7 @@
          mapObj.on('click',function(e){
             markerS.setPosition(e.lnglat);
             geocoder.getAddress(e.lnglat,function(status,result){
-
+                console.log(result.regeocode.formattedAddress);
             })
         })
     });
