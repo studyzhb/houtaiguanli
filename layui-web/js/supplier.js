@@ -113,7 +113,7 @@ $(function(){
 	//添加供应商信息
 	$('.addSupplier').on('click',function(){
 		layer.open({
-			type: 1,
+			 type: 1,
 		      content: $('#alertDemo'), //这里content是一个DOM
 		      shade:[0.8,'#000'],
 		      area:'900px',
@@ -122,7 +122,10 @@ $(function(){
 	});
 	//编辑供应商信息
 	$('#supplier-wrapper').on('click','.editorSingleSupplier',function(){
+        console.log($(this).data('id'));
+        //请求TODO
 
+        
 		layer.open({
 			type: 1,
 	      content: $('#editorSupplier'), //这里content是一个DOM

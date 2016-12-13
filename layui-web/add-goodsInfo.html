@@ -99,7 +99,7 @@
        <ul class="layui-tab-title">
           
           <li>
-            <a href="#">商品信息</a>
+            <a href="goodsInfo">商品信息</a>
           </li>
           <li class="layui-this">
             添加商品信息
@@ -111,21 +111,23 @@
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
               <legend>商品基本信息</legend>
                 <div class="layui-form-item"> 
-                
-                
                 <label class="layui-form-label">商品名称</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" >
+                  <input type="text" id="fullname-jname" name="" value="" class="layui-input" >
                 </div>
                 <label class="layui-form-label">商品编号</label>
                 <div class="layui-input-inline">
                   <input type="text" name="" value="" class="layui-input" >
                 </div>
-                
-                  
+
                 <label class="layui-form-label">商品条形码</label>
                 <div class="layui-input-inline">
                   <input type="text" name="" value="" class="layui-input" >
+
+                </div>
+                <label class="layui-form-label">助记码</label>
+                <div class="layui-input-inline">
+                  <input type="text" id="zname-show" name="" value="" class="layui-input" >
 
                 </div>
                 <label class="layui-form-label">供货商</label>
@@ -426,13 +428,12 @@
     </dl>
   </li>
 </script>
-	
+<script src="./js/PinYin.js"></script>
 <script>
-	// layui.use(['element','form','laypage','layer','laytpl'],function(){
-	// 	var element = layui.element();
- //    var laytpl = layui.laytpl;
-
-	// })
+	$('#fullname-jname').on('blur',function(){
+        var con=codefans_net_CC2PY($(this).val());
+        $('#zname-show').val(con);
+    });
 </script>
 
 </div>

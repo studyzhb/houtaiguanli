@@ -143,10 +143,17 @@ html,body{
           background: #abc9ff; }
       .alertCon-wrapper .alert-main-con .col-3-table .middle-item {
         width: 746px;
-        height: 128px;
+        /*height: 128px;*/
+        min-height: 128px;
         float: left;
         border: 1px solid #000;
         position: relative; }
+        .middle-item input{
+          width:80%;
+          height:80%;
+          outline: 0;
+          border:0;
+        }
         .alertCon-wrapper .alert-main-con .col-3-table .middle-item .button {
           width: 54px;
           height: 20px;
@@ -421,6 +428,20 @@ input.w380 {
     top:0;
 }
 
+
+.button{
+    background: #16a0d3;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Microsoft Yahei";
+    font-size: 12px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 1px 0 0;
+    padding: 0 20px;
+}
 
 /* 商品发布页面相关样式
 ------------------------------------------- */

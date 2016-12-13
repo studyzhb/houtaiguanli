@@ -120,7 +120,12 @@ $('#ordernum').val(new Date().getTime());
 //保存数据库
 $('#confirm-save').on('click',function(){
 	if(orderlist.selectedList.length<=0){
-		alert('请选择商品');
+		if(layer){
+		layer.msg('请选择商品');
+			
+		}else{
+			alert('请选择商品');
+		}
 	}else{
 		layer.open({type: 3});
 		var arr=[];

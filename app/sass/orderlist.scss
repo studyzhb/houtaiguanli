@@ -128,17 +128,23 @@ section{
         padding-left:92px;
         position:relative;
         .leftline{
+            width:22px;
+            height:2px;
             position: absolute;
             left: 0;
             top:50%;
         }
         .leftIcon{
+            width:35px;
+            height:34px;
             position:absolute;
             left:38px;
             top:20px;
         }
         .left-ps-icon{
              position:absolute;
+             width:36px;
+             height:27px;
             left:38px;
             top:30px;
         }
@@ -156,9 +162,16 @@ section{
         background: #fff;
         li{
             height:166px;
+            width:750px;
             dt{
                 float: left;
                 margin-right:34px;
+                width:150px;
+                height:150px;
+                img{
+                    width:100%;
+                    height:100%;
+                }
             }
             dd{
                 width:490px;

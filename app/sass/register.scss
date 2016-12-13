@@ -1,0 +1,98 @@
+@import 'reset';
+html,body{
+	width:100%;
+	height:100%;
+    
+}
+
+section{
+    width:750px;
+    height:100%;
+    overflow:hidden;
+    background: #f0f0f0;
+    .main{
+        border-top:1px solid #e3e3e3;
+         display:-webkit-box;
+        display:box;
+        -ms-box-orient:vertical;
+        -moz-box-orient:vertical;
+        -webkit-box-orient:vertical;
+        height: 100%;
+        overflow:hidden;
+        .bannner-wrap{
+            width:100%;
+            height:258px;
+            background: #fff;
+            margin-top:13px;
+        }
+        .register-con{
+            width:750px;
+            -moz-box-flex:1;
+            -webkit-box-flex:1;
+            box-flex:1;
+            overflow: auto;
+            margin-top:13px;
+            ul{
+                li{
+                    height:84px;
+                    border-bottom:2px solid #e3e3e3;
+                    font-size:20px;
+                    line-height:84px;
+                    padding-left:110px;
+                    color:#666;
+                    background: #fff;
+                    position:relative;
+                    .lefticon{
+                         width:36px;
+                        height:36px;
+                        
+                         position:absolute;
+                        top:30px;
+                        left:32px;
+                    }
+                    input{
+                        border:none;
+                        outline: 0;
+                        margin-left:10px;
+                    }
+                    
+                    .yzwraper{
+                        width:102px;
+                        height:40px;
+                        border:2px solid #979797;
+                        background: #d8d8d8;
+                        position:absolute;
+                        top:22px;
+                        right:74px;
+                    }
+                    .img{
+                        width:29px;
+                        height:30px;
+                        background: url(../img/update.png) no-repeat;
+                         position:absolute;
+                        top:30px;
+                        right:20px;
+                    }
+
+                }
+            }
+            .submit{
+                        width:568px;
+                        height:80px;
+                        background: #f8c121;
+                        border-radius:20px;
+                        text-align: center;
+                        margin: 66px 0 0 92px;
+                        color:#fff;
+                        font-size:30px;
+                        line-height: 80px;
+                    }
+            p.role{
+                width:672px;
+                font-size:26px;
+                line-height: 40px;
+
+            }
+        }
+    }
+}

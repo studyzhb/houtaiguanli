@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="./css/register.css" />
+    <script src="./js/zepto.js"></script>
+    <script src="./js/touch.min.js"></script>
+</head>
+<body>
+    <section>
+        <div class="main">
+            <div class="bannner-wrap">
+
+            </div>
+            <div class="register-con">
+                <ul>
+                    <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>请输入验证码</label><input type="text" placeholder="验证码"><div class="yzwraper"></div><div class="img"></div></li>
+                    <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>请输入手机号</label><input type="text" placeholder=""></li>
+                    <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>请输入短信验证码</label><input type="text" placeholder=""></li>
+                    <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>密码6-20位</label><input type="text" placeholder=""></li>
+                </ul>
+                <div class="submit">
+                    立即注册
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+</body>
+<script>
+	function bodyScale(){
+    	var devicewidth=document.documentElement.clientWidth;
+        var scale=devicewidth/750;
+        document.body.style.zoom=scale;
+    }
+
+	window.onload=window.onresize=function(){
+		bodyScale();
+        console.log($.ajax({
+            type:'post',
+            url:'',
+            data:{
+
+            },
+            success:function(data){
+
+            },
+            error:function(){
+
+            }
+        }))
+	}
+</script>
+</html>

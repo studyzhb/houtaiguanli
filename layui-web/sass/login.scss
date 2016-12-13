@@ -1,0 +1,83 @@
+@import 'reset';
+html,body{
+	width:100%;
+	height:100%;
+	background:#00b5d0;
+}
+
+.login-wrapper{
+	width:434px;
+	height:350px;
+	background:#fff;
+	position:absolute;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+	-webkit-box-shadow:0 0 10px rgba(0, 0, 0, .5);  
+  	-moz-box-shadow:0 0 10px rgba(0, 0, 0, .5);  
+  	box-shadow:0 0 10px rgba(0, 0, 0, .5);
+	h5{
+		width:100%;
+		height:52px;
+		background:#e7e7e7;
+		border-bottom:2px solid #dadada; 
+		line-height:52px;
+		text-align:center;
+		font-size:16px;
+		color:#8b8b8b;
+	}
+	.login-content{
+		padding:28px 0 0 66px;
+	}
+	li{
+		width:302px;
+		height:42px;
+		border-radius:10px;
+		border:1px solid #ccc;
+		margin-bottom:22px;
+		position:relative;
+		label{
+			display:inline-block;
+			float:left;
+			width:40px;
+			height:100%;
+			border-right:1px solid #ccc;
+			position:relative;
+			margin-right:20px;
+			img{
+				width:17px;
+				height:19px;
+				position:absolute;
+				left:10px;
+				top:10px;
+			}
+		}
+		input{
+			height:80%;
+			width:60%;
+			border:none;
+			float:left;
+			outline:0;
+		}
+		img.yanzheng{
+			
+		}
+	}
+
+	li.yz{
+		width:200px;
+	}
+
+	.submit{
+	width:130px;
+	height:40px;
+	background:#00b5d0;
+	font-size:16px;
+	line-height:40px;
+	text-align:center;
+	margin-left:73px;
+	cursor:pointer;
+	}
+}

@@ -93,7 +93,7 @@
             <th>操作</th>
           </tr> 
         </thead>
-        <tbody>
+        <tbody id="menulist-wraper">
           <tr>
             <td>0</td>
             <td>0</td>
@@ -307,6 +307,33 @@
 
 <!-- ========================================================= -->
 
+
+<script id="menulistContent" type="text/html">
+
+  <tr>
+      <td>{{d.id}}</td>
+      <td>0</td>
+      <td>{{d.name}}</td>
+      <td></td>
+      <td>
+        <button class="layui-btn layui-btn-warm layui-btn-small" onclick="editorMenu(this)">编辑</button>
+        <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
+      </td>
+    </tr>
+    {{#  layui.each(d.children,function(index, item){ }}
+      <tr>
+          <td>{{item.id}}</td>
+          <td>0</td>
+          <td>| ---- {{item.name}}</td>
+          <td></td>
+          <td>
+            <button class="layui-btn layui-btn-warm layui-btn-small" onclick="editorMenu(this)">编辑</button>
+            <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
+          </td>
+        </tr>
+    {{#  }); }}
+          
+</script>
 	
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
@@ -325,4 +352,5 @@
 </div>
 
 </body>
+<script type="text/javascript" src="./js/admin-origin.js"></script>
 </html>

@@ -12,9 +12,9 @@ config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		    	//获取权限列表	
 
 		    	$.each(data,function(index,item){
-					console.log(item.children);
+					// console.log(item.children);
 					laytpl(tempHtml).render(item,function(html){
-					console.log(html);
+					// console.log(html);
 					
 					$('#sliderPage').append(html);
 
@@ -31,9 +31,8 @@ config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		
 	});
 
-
 $('.show-content').on('click','.select-tit',function(){
-	console.log('111');
+
         if($(this).next().css('display')=='none'){
             $(this).nextAll().css('display','block');
         }else{
