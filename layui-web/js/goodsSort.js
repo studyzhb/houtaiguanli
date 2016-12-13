@@ -16,4 +16,13 @@ $(function(){
 			});
 		});
 	});
+
+	//编辑分类
+	$('#all-sort-list').on('click','.editor-brand',function(){
+		console.log($(this).data('id'));
+		var bname=escape($(this).data('name'));
+		location.href='editor-sort.html?id='+$(this).data('id')+'?brandname='+bname;
+	});
+
+
 });

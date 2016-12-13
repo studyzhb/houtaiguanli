@@ -295,8 +295,8 @@
     <td>{{d.type}}</td>
     <td></td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small">编辑</div>
-      <div class="layui-btn layui-btn-small layui-btn-danger">删除</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small editor-brand" data-id="{{d.id}}" data-name="{{d.type}}" >编辑</div>
+      
     </td>
   </tr>
   {{#  layui.each(d.children,function(index, item){ }}
@@ -306,8 +306,8 @@
         <td></td>
         <td>
           
-          <div class="layui-btn layui-btn-warm layui-btn-small">编辑</div>
-          <div class="layui-btn layui-btn-small layui-btn-danger">删除</div>
+          <div class="layui-btn layui-btn-warm layui-btn-small editor-brand" data-id="{{item.id}}" data-name="{{item.type}}">编辑</div>
+          
         </td>
       </tr>
     {{#  }); }}

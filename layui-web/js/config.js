@@ -52,8 +52,14 @@ var config={
     addGoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/add',
     //商品分类展示
     showGoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/lst',
+    //商品分类修改
+    editGoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/edit',
     //商品品牌
-    showgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/brand',
+    showgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Brand/lst',
+    //商品品牌
+    addgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Brand/add',
+    //商品品牌
+    editgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Brand/edit',
     //搜索商品
     searchOrder:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/getInfo',
     // 添加订单
@@ -86,6 +92,12 @@ var config={
     editAdminOrigin:'http://192.168.1.150/shop/shop/public/index.php/admin/Dept/edit',
     //删除
     editAdminOrigin:'http://192.168.1.150/shop/shop/public/index.php/admin/Dept/delete',
+    //店铺列表
+    shopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/lst',
+    //店铺添加
+    addshopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/add',
+    //店铺修改
+    editshopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/edit'
 	},
   pSort:{
     pagecount:10

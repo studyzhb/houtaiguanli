@@ -4,10 +4,18 @@ $(function(){
 	config.ajax('get',config.ajaxAddress.addAdminOrigin,function(data){
 		console.log(data);
 		$('.parCom').html('<option value="0">一级机构</option>');
-		$.each(data,function(index,item){
+		$.each(data.area,function(index,item){
 			$('<option>').appendTo($('.parCom')).html(item.name).attr('value',item.id);
 			$.each(item.children,function(i,its){
 				$('<option>').appendTo($('.parCom')).html(' ---- '+its.name);
+			});
+			
+		});
+		$('.con_type').html('');
+		$.each(data.code,function(index,item){
+			$('<option>').appendTo($('.con_type')).html(item.name).attr('value',item.id);
+			$.each(item.children,function(i,its){
+				$('<option>').appendTo($('.con_type')).html(' ---- '+its.name);
 			});
 			
 		});
@@ -19,7 +27,7 @@ $(function(){
 
 	//提交菜单
 	$('.commitMenu').on('click',function(){
-		config.formSubmit('.menuForm',config.ajaxAddress.addMenulist,function(data){
+		config.formSubmit('.menuForm',config.ajaxAddress.addAdminOrigin,function(data){
 			console.log(data);
 		});
 	});

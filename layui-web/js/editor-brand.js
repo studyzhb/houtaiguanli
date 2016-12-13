@@ -13,9 +13,13 @@ $(function(){
 	$('.brandId').val(brandId[1].split('=')[1]);
 	$('.brandName').val(unescape(brandId[2].split('=')[1]));
 	
-	// $('.commit-author').on('click',function(){
-	// 	config.formSubmit('#authorForm',config.ajaxAddress.getAuthorRole,function(data){
-	// 		console.log(data);
-	// 	});
-	// });
+	$('.commit-author').on('click',function(){
+		config.formSubmit('#authorForm',config.ajaxAddress.editgoodsbrand,function(data){
+			if(data.code==200){
+				open('goodsbrand.html',"_self");
+			}else{
+				layer.msg('网络错误，请稍后重试');
+			}
+		});
+	});
 });

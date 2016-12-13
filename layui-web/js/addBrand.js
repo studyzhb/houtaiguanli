@@ -1,5 +1,14 @@
 $(function(){
-	layui.use('form',function(){
-			
+	$('.commit-author').on('click',function(){
+		layer.open({type:3});
+		config.formSubmit('#authorForm',config.ajaxAddress.addgoodsbrand,function(data){
+			console.log(data);
+			if(data.code==200){
+				open('goodsbrand.html','_self');
+			}else{
+				layer.msg('网络错误，请稍后重试');
+				open('goodsbrand.html','_self');
+			}
 		});
+	});
 });

@@ -7,10 +7,9 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
-	 <script src="./layui/layui.js"></script>
-    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+	<script src="./layui/layui.js"></script>
+  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="./js/jquery-form.js"></script>
-  	
     
 </head>
 <body>
@@ -19,7 +18,7 @@
   <div class="layui-header header header-demo">
     <div class="layui-main">
       <a class="logo" href="#">
-        <img src="../img/logo.png" alt="万店联盟">
+        <img src="./img/logo.png" alt="万店联盟">
       </a>
     </div>
   </div>
@@ -27,27 +26,13 @@
     <div class="layui-side-scroll">
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
-<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
           
         </ul>
 
     </div>
   </div>
 	
-	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-	    <ul class="layui-tab-title site-demo-title">
-	      <li class="layui-this">预览</li>
-	      <li>查看代码</li>
-	      <li>帮助</li>
-	    </ul>
-    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
-	      <div class="layui-tab-item layui-show">
-	        <div class="layui-main">
-
-	        </div>
-		</div>
-		</div>
-	</div> -->
+	
 	<!-- ============================主要内容区================================ -->
   
   
@@ -58,35 +43,78 @@
 
 
 	<div class="lay-main">
-	  <!-- <span class="layui-breadcrumb">
-		  <a href="#">首页</a>
-		  <a href="#">组织机构</a>
-		  <a href="#">组织机构管理</a>
-		  <a><cite>正文</cite></a>
-		</span>
-     -->
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
-          <li>
-            <a href="goodsSort.html">分类信息</a>
+          <li >
+            <a href="admin-user.html">用户管理</a>
           </li>
           <li class="layui-this">
-            编辑分类信息
+            添加用户
           </li>
         </ul>
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
-            <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <input type="hidden" class="brandId" name="id" value="">
+            <form class="layui-form layui-form-pane" id="adminInfo" action="" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
               <div class="layui-form-item">
-                <label class="layui-form-label">类别名称</label>
-                <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input brandName">
+                <label class="layui-form-label">工号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="job_num" readonly placeholder="自动生成" autocomplete="off" class="layui-input userCard">
                 </div>
               </div>
-              <div id="authorList">
-                
+              <div class="layui-form-item">
+                <label class="layui-form-label">身份证号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="carded" placeholder="请输入" autocomplete="off" class="layui-input idCard">
+                </div>
               </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">角色</label>
+                <div class="layui-input-inline">
+                  <select name="role_id" class="rolelist">
+                    
+                  </select>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">部门</label>
+                <div class="layui-input-inline">
+                  <select name="dept_id" class="deptlist" >
+                    
+                  </select>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">家庭地址</label>
+                <div class="layui-input-inline">
+                  <input type="text" readonly name="address" placeholder="自动生成" autocomplete="off" class="layui-input addressInfo">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">出生日期</label>
+                <div class="layui-input-inline">
+                  <input type="text" readonly name="birthday" placeholder="自动生成" autocomplete="off" class="layui-input birthdayInfo">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-inline">
+                  <input type="text" readonly name="sex" placeholder="自动生成" autocomplete="off" class="layui-input sexInfo">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                  <input type="radio" name="status" title="启用">
+                  <input type="radio" name="status" title="停用">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">test</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" />
+                </div>
+              </div>
+              
               
               
               <div class="layui-form-item layui-form-text">
@@ -95,21 +123,18 @@
                   <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
                 </div>
               </div>
-              <!-- ================================================== -->
-
-              <!-- ================================================== -->
-
-
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <div class="layui-btn commit-author" >立即提交</div>
-                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                  <div class="layui-btn addUserInfo">添加用户</div>
+                  
                 </div>
               </div>
               <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
             </form>
           </div>
         </div>
+
+
      </div>
 
 
@@ -118,6 +143,12 @@
     
     </div> 
   <ul id="biuuu_city_list"></ul>
+
+
+
+  <script >
+
+  </script>
 
   <!-- =======================弹出窗========================= -->
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
@@ -281,8 +312,6 @@
 </div>
 
 <!-- ========================================================= -->
-
-
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
     <a href="javascript:;">{{d.name}}</a>
@@ -296,24 +325,14 @@
     </dl>
   </li>
 </script>
-<script id="authorContent" type="text/html">
-  <div class="layui-form-item">
-      <label class="layui-form-label">{{d.name}}</label>
+	
 
-      <div class="layui-input-block">
-        {{#  layui.each(d.children,function(index, item){ }}
-            <input type="checkbox" name="pri_id[]" title="{{item.name}}" value='{{item.id}}'/>
-      {{#  }); }}
-        
-        
-      </div>
-    </div>
-</script>
 
 </div>
 
 </body>
-<script type="text/javascript" src="./js/config.js"></script>
-<script type="text/javascript" src="./js/filter.js"></script>
-<script type="text/javascript" src="./js/editor-sort.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/filter.js"></script>
+<script src="./js/getInfoByUserCard.js"></script>
+<script src="./js/add-admin-user.js"></script>
 </html>
