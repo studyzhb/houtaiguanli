@@ -41,8 +41,13 @@ $(function(){
 		$.each(data.supplier,function(index,item){
 			$('<option>').appendTo($('.supplierList')).html(item.name).attr('value',item.id);
 		});
-		$.each(data.stock,function(index,item){
+		$.each(data.dept_id,function(index,item){
+
 			$('<option>').appendTo($('.stockList')).html(item.name).attr('value',item.id);
+		});
+		$.each(data.gg,function(index,item){
+			
+			$('<option>').appendTo($('.ggList')).html(item.gg).attr('value',item.id);
 		});
 		layui.use('form',function(){
 			
@@ -82,6 +87,23 @@ $('#goods-barcode').on('click',function(){
 	
 	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
 		console.log(data);
+		orderlist.goodslist=data;
+		$('#searchedlist').html('');
+		var tempHtml=searchedcontent.innerHTML;
+		$.each(data,function(index,item){
+			item.selectedindex=index;
+			laytpl(tempHtml).render(item,function(html){
+				$('#searchedlist').append(html);
+			});
+		});
+
+		layer.open({
+	      type: 1,
+	      content: $('#goods-list'), //这里content是一个DOM
+	      shade:[0.8,'#000'],
+	      area:'900px',
+	      maxmin: true
+	    })
 	},{'barcode':val});
 });
 // console.log(goodsName);
@@ -90,7 +112,23 @@ $('#goodsName').on('click',function(){
 	var val=$(this).prev().find('input').val();
 	
 	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
-		console.log(data);
+		orderlist.goodslist=data;
+		$('#searchedlist').html('');
+		var tempHtml=searchedcontent.innerHTML;
+		$.each(data,function(index,item){
+			item.selectedindex=index;
+			laytpl(tempHtml).render(item,function(html){
+				$('#searchedlist').append(html);
+			});
+		});
+
+		layer.open({
+	      type: 1,
+	      content: $('#goods-list'), //这里content是一个DOM
+	      shade:[0.8,'#000'],
+	      area:'900px',
+	      maxmin: true
+	    })
 	},{'name':val});
 	layer.open({
       type: 1,
@@ -136,6 +174,18 @@ $('#confirm-save').on('click',function(){
 		console.log($('#goods').val());
 		config.formSubmit('#orderlist-submit',config.ajaxAddress.addOrderList,function(data){
 			console.log(data);
+			 if(data.code==200){
+                layer.msg('添加成功');
+                setTimeout(function(){
+                    open('purchaselist.html','_self');
+                },500)
+                
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                setTimeout(function(){
+                    open('purchaselist.html','_self');
+                },500)
+            }
 		});
 	}
 	console.log('save-111');

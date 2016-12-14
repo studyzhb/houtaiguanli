@@ -23,7 +23,7 @@ config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 				})
 				layui.use('element',function(){
 					var element = layui.element();
-
+					element.init();
 				});
 		 })
 		

@@ -112,13 +112,24 @@ $(function(){
 
 	//添加供应商信息
 	$('.addSupplier').on('click',function(){
-		layer.open({
-			 type: 1,
-		      content: $('#alertDemo'), //这里content是一个DOM
-		      shade:[0.8,'#000'],
-		      area:'900px',
-		      maxmin: true
-		})
+        config.ajax('get',config.ajaxAddress.addSupplier,function(data){
+            $.each(data.run,function(index,item){
+                console.log(item);
+                $('<li>').appendTo($('#run_type')).html(item.run).attr('id',item.id);
+            });
+            $.each(data.statements,function(index,item){
+                console.log(item);
+                $('<li>').appendTo($('#method_type')).html(item.statements).attr('id',item.id);
+            });
+            layer.open({
+             type: 1,
+              content: $('#alertDemo'), //这里content是一个DOM
+              shade:[0.8,'#000'],
+              area:'900px',
+              maxmin: true
+            })
+        })
+		
 	});
 	//编辑供应商信息
 	$('#supplier-wrapper').on('click','.editorSingleSupplier',function(){
@@ -150,5 +161,34 @@ $(function(){
 			});
 		});
 	});
+
+
+    $('#editorinfo').on('click',function(){
+       config.formSubmit('.editorForm',config.ajaxAddress.updateSupplier,function(data){
+        console.log(data);
+       })
+    });
+
+     $('#addInfo').on('click',function(){
+        layer.open({type:3});
+        config.formSubmit('.editorForm',config.ajaxAddress.addSupplier,function(data){
+            console.log(data);
+            if(data.code==200){
+                layer.msg('添加成功');
+                setTimeout(function(){
+                    open('supplier.html',"_self");
+                },500);
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                setTimeout(function(){
+                    open('supplier.html',"_self");
+                },500);
+            }
+       })
+    });
+
+
+    
+
 
 });

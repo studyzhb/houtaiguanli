@@ -67,10 +67,10 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            组织机构
+            店铺用户列表
           </li>
           <li>
-            <a href="add-admin-origin.html">添加组织机构</a>
+            <a href="add-shop-origin.html">添加店铺用户</a>
           </li>
         </ul>
         <div class="layui-content">
@@ -87,9 +87,8 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>排序</th>
-            <th>菜单名称</th>
-            <th>状态</th>
+            <th>店铺名称</th>
+            <th>地址</th>
             <th>操作</th>
           </tr> 
         </thead>
@@ -98,35 +97,14 @@
             <td>0</td>
             <td>0</td>
             <td>万店联盟</td>
-            <td></td>
             <td>
               <button class="layui-btn layui-btn-small">添加子菜单</button>
               <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
              
             </td>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>0</td>
-            <td>| ---- 系统配置</td>
-            <td></td>
-            <td>
-              <button class="layui-btn layui-btn-small">添加子菜单</button>
-              <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
-              <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>0</td>
-            <td>| ---- ---- 更新配置</td>
-            <td></td>
-            <td>
-              <button class="layui-btn layui-btn-small">添加子菜单</button>
-              <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
-              <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
-            </td>
-          </tr>
+         
+         
         </tbody>
       </table>
      
@@ -142,7 +120,7 @@
 
     
     </div> 
-  <ul id="biuuu_city_list"></ul>
+ 
 
   <!-- =======================弹出窗========================= -->
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
@@ -311,27 +289,15 @@
 <script id="menulistContent" type="text/html">
 
   <tr>
-      <td>{{d.id}}</td>
-      <td>0</td>
-      <td>{{d.name}}</td>
-      <td></td>
-      <td>
-        <button class="layui-btn layui-btn-warm layui-btn-small" data-id='{{d.id}}' onclick="editorMenu(this)">编辑</button>
-        
-      </td>
-    </tr>
-    {{#  layui.each(d.children,function(index, item){ }}
-      <tr>
-          <td>{{item.id}}</td>
-          <td>0</td>
-          <td>| ---- {{item.name}}</td>
-          <td></td>
-          <td>
-            <button class="layui-btn layui-btn-warm layui-btn-small" data-id='{{item.id}}' onclick="editorMenu(this)">编辑</button>
-            
-          </td>
-        </tr>
-    {{#  }); }}
+    <td>{{d.coding}}</td>
+    <td>{{d.name}}</td>
+    <td>{{d.street}}</td>
+    <td>
+      
+      <div class="layui-btn layui-btn-warm layui-btn-small">编辑</div>
+     
+    </td>
+  </tr>
           
 </script>
 	
@@ -352,7 +318,7 @@
 </div>
 
 </body>
-<script type="text/javascript" src="./js/admin-origin.js"></script>
+<script type="text/javascript" src="./js/shop.js"></script>
 <script>
   function editorMenu(obj){
     console.log($(obj).data('id'));

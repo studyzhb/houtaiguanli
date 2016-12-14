@@ -4,6 +4,17 @@ var ImageWrapper={
   suolveImg:[],
   detailImg:[]
 }
+var goodsHouse={
+            goodsType:{
+                cata1:'',
+                cata2:''
+            },
+            goodsData:{
+                goodsName:'',
+                goodsCode:''
+            },
+            goodsId:'2'
+        }
 
 //实例化编辑器
       var o_ueditorupload = UE.getEditor('j_ueditorupload',
@@ -169,7 +180,8 @@ var ImageWrapper={
 //      });
 
 
-
+var getCon=window.location.href.split('?')[1]||'';
+        goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
 
 $('#confirmsavetext').on('click',function(){
             $('.img-content').append(config.formatTemplate({text:$('#text-image-detail').val()},$('#img-text').html()));
@@ -178,7 +190,7 @@ $('#confirmsavetext').on('click',function(){
         })
 
         $('#btnSubmit').on('click',function(){
-
+            console.log('1111');
             $('#appHtml').val($('.img-content').html());
             var arr=[];
             $('.detail-banner-split').each(function(){
@@ -192,6 +204,7 @@ $('#confirmsavetext').on('click',function(){
             $('#goodsId').val(goodsHouse.goodsId);
             // console.log(config.ajaxAddress.goodsaddDetail);
             config.formSubmit('#detailContent',config.ajaxAddress.goodsaddDetail,function(data){
+              console.log(data);
                if(data.code==200){
                  alert('添加成功');
                  location.href="goodsInfo.html";

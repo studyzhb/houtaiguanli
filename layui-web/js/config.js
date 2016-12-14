@@ -34,7 +34,7 @@ var config={
     //验证商品的一品多码decode
     goodsNum:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/checkDecode',
     //物品信息列表http://192.168.1.18/wp/public/index.php/admin/good/show
-		goodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/show',
+	goodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/show',
     //添加物品信息
     addgoodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/addGoods',
     //商品基本信息编辑更改
@@ -66,6 +66,8 @@ var config={
     addOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/add',
     //获取采购单列表
     getOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/lst',
+    //编辑采购单列表
+    editOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/edit',
     //增加菜单
     addMenulist:'http://192.168.1.150/shop/shop/public/index.php/admin/Privilege/add',
     //修改菜单
@@ -94,10 +96,16 @@ var config={
     editAdminOrigin:'http://192.168.1.150/shop/shop/public/index.php/admin/Dept/delete',
     //店铺列表
     shopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/lst',
+    //店铺区域绑定
+    getShopStock:'http://localhost/shop/shop/public/index.php/admin/Shop/getIngo',
     //店铺添加
     addshopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/add',
     //店铺修改
-    editshopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/edit'
+    editshopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/edit',
+    showshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bLst',
+     addshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bAdd',
+      editshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bEdit'
+
 	},
   pSort:{
     pagecount:10

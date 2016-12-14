@@ -67,10 +67,10 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            用户管理
+            店铺用户管理
           </li>
           <li>
-            <a href="add-admin-user.html">添加用户</a>
+            <a href="add-shop-user.html">添加店铺用户</a>
           </li>
         </ul>
 
@@ -102,10 +102,9 @@
           <thead>
             <tr>
               <th>ID</th>
+              <th>编号</th>
               <th>用户名</th>
-              <th>手机</th>
-              <th>邮箱</th>
-              <th>状态</th>
+              
               
               <th>操作</th>
             </tr> 
@@ -145,18 +144,13 @@
 <script id="menulistContent" type="text/html">
    <tr>
               <td>{{d.id}}</td>
-              <td>{{d.job_num}}</td>
-              <td>{{d.jtel}}</td>
-              <td>{{d.email}}</td>
-              {{# if(d.status) { }}
-                <td>禁用</td>
-              {{# }else{ }}
-                <td>启用</td>
-              {{# } }}
+              <td>{{d.coding}}</td>
+              <td>{{d.loginname}}</td>
+              
               
               <td>
                 
-                <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}" onclick="editorUser(this)">编辑</div>
+                <!--<div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}" onclick="editorUser(this)">编辑</div>-->
                 
               </td>
             </tr>
@@ -336,13 +330,11 @@
     </dl>
   </li>
 </script>
-	
-
 
 </div>
 
 </body>
-<script src="./js/admin-user.js"></script>
+<script src="./js/shop-user.js"></script>
 <script>
   function editorUser(obj){
     conosle.log($(obj).data('id'));

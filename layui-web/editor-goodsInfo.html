@@ -8,10 +8,38 @@
 	<link rel="stylesheet" href="./layui/css/layui.css" />
     <link rel="stylesheet" href="./css/alertcon.css" />
 	   <script src="./layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+  	<script type="text/javascript" src="./js/jquery-form.js"></script>
     <script src="./js/config.js"></script>
     <script src="./js/filter.js"></script>
-
+  
+    <style>
+      .tab-content dl dd {
+            margin-left: 0; 
+        }
+        .detail-image-col-2 .image-content{
+            position:absolute;
+            width:100%;
+            height:100%;
+            opacity:0;
+            left:0;
+            top:0;
+        }
+        
+        div.moving{
+                border: 1px dashed gray;
+                background: white;
+        }
+        div.draging{
+            width: 300px;
+            height: 180px;
+            position: absolute;
+            background: goldenrod;
+            box-shadow: 0 0 4px 2px #555;
+            border-radius: 5px; 
+            z-index: 500;
+        }
+    </style>
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -100,7 +128,7 @@
        <ul class="layui-tab-title">
           
           <li>
-            <a href="#">商品信息</a>
+            <a href="editorgoodsInfo.html">商品信息</a>
           </li>
           <li class="layui-this">
             添加商品详情信息
@@ -108,7 +136,7 @@
         </ul>
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
-            <form class="layui-form layui-form-pane"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+            <form class="layui-form layui-form-pane" id="detailContent" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
               <table class="layui-table">
                 
                 <thead>
@@ -118,16 +146,7 @@
                       <div class="image-suolve">
                            <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
                           </div>
-                          <div class="detail-image-col-2 detail-banner-split">
-                            <div class="left-block"></div>
-                            <div class="right-block"></div>
-                            <img src="./img/test1.png" width="300p" height="180" />    
-                        </div>
-                        <div class="detail-image-col-2 detail-banner-split">
-                            <div class="left-block"></div>
-                            <div class="right-block"></div>
-                            <img src="./img/test1.png" width="300" height="180" />    
-                        </div>
+                          
                           
                       </div>
                     </th>
@@ -138,13 +157,13 @@
                   <tr>
                     <td>商品描述</td>
                     <td>
-                      <ul class="layui-tab-title">
+                      <ul class="layui-tab-title goodseditor">
           
-                        <li>
-                          <a href="#">商品信息</a>
+                        <li class="comp">
+                          <a href="#">电脑端</a>
                         </li>
-                        <li class="layui-this">
-                          添加商品详情信息
+                        <li class="layui-this tel">
+                          手机端
                         </li>
                       </ul>
                     </td>
@@ -163,7 +182,7 @@
 
                  
             </div>
-            <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" style="display:block;">
+            <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" style="display:none;">
               <div class="ncsc-mobile-editor">
                 <div class="pannel">
                  <!--  <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>00</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>20</em>字</span></div> -->
@@ -218,9 +237,10 @@
                   </tr>
                 </tbody>
               </table>
-              
+              <div class="layui-btn" id="btnSubmit">提交</div>
               <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
             </form>
+            
           </div>
         </div>
 
@@ -258,165 +278,7 @@
   </script>
 
   <!-- =======================弹出窗========================= -->
-<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
-  <div class="alert-main-con">
-      <form method="" action="">
-        <fieldset>
-          <legend>
-            基本信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-          </ul>
-        </fieldset> 
-        <fieldset>
-          <legend>
-            价格信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <input type="checkbox" />
-                <label>允许采购订货</label>
-              </div>
-            </li>
-          </ul>
-        </fieldset> 
-        <div class="col-3-table clearfix">
-          <ul class="left-list">
-            <li class="active">一品多码</li>
-            <li>商品价格</li>
-            
-          </ul>
-          <div class="middle-item">
-            <ul class="title-tr-th w80 clearfix">
-              <li class="w20">商品编码</li>
-              <li class="w60">商品条码</li>
-              <li class="w20"></li>
-            </ul>
 
-            <div class="button">增加</div>
-            <div class="button button-next">增加</div>
-          </div>
-        </div>
-        <div class="search-bottom">
-          <div class="single-select">
-            快速查找：
-                      <div class="boxwrap">
-                          <a href="#" class="select-tit">
-                              <span>请选择</span><i></i>
-                          </a>
-                          <div class="select-items">
-                              <ul id="first-sort">
-                                  
-                              </ul>
-                          </div>
-                          <i class="arrow"></i>
-                      </div>
-                      
-
-                      <div class="boxwrap">
-                          <a href="#" class="select-tit">
-                              <span class="subclass">请选择</span><i></i>
-                          </a>
-                          <div class="select-items">
-                              <ul id="sub-sort">
-                                  
-                              </ul>
-                          </div>
-                          <i class="arrow"></i>
-                      </div>
-
-                      
-                  </div>
-
-                  <div class="r-list" style="vertical-align:top;">
-                        <input type="text" class="keyword" name="" value="">
-                        <a href="" class="btn-search">查询</a>
-                    </div>
-        </div>
-        
-
-      </form>
-    </div>
-</div>
 
 <!-- ========================================================= -->
 <script id="slider" type="text/html">
@@ -435,11 +297,21 @@
 	
 <script>
   function addGoodsText(){
-            $('.add-con-area').show();
-            $('.add-alert-area').show();
-            // $('<h3>').appendTo($('#content1'));
-    }
+      $('.add-con-area').show();
+      $('.add-alert-area').show();
+     // $('<h3>').appendTo($('#content1'));
+  }
 
+
+  $('.comp').on('click',function(){
+    $('#panel-1').show();
+    $('#panel-2').hide();
+  })
+  $('.tel').on('click',function(){
+      $('#panel-2').show();
+    $('#panel-1').hide();
+  })
+/*
 	$(".image-suolve").on('mousedown','.detail-banner-split',function(e){
             console.log('dianji');
             var that = this;
@@ -498,14 +370,14 @@
                 });
               }
             });
-          });
+          });*/
 </script>
 
 </div>
 
 </body>
-<script src="http://192.168.1.150/shop/shop/public/utf8-php/ueditor.config.js"></script>
-<script src="http://192.168.1.150/shop/shop/public/utf8-php/ueditor.all.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.config.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.all.js"></script>
 <script>
   var ue = UE.getEditor('container',{
             toolbars: [

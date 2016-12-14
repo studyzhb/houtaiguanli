@@ -510,7 +510,65 @@
 <div class="alertCon-wrapper" id="addgoodsInfo" style="margin:10px auto;display:none;">
   <div class="alert-main-con show-content">
       <form method="POST" action="" id="singleWillAddInfo">
-        <fieldset>
+        
+        
+       <!--  <div class="button" id="btnSubmit" style="margin:10px 0 0 305px;">
+          提交
+        </div> -->
+
+      </form>
+    </div>
+</div>
+<!-- ========================================================= -->
+<script type="text/template" id="duoma">
+    <ul class="title-tr-th w80 clearfix">
+      <li class="w20"><input class="ischecked" type="text" name="decode[]" placeholder="多码"></li>
+      <li class="w30">{fullname}</li>
+      <li class="w20">{barcode}</li>
+      <li class="w20"><a href="#" onclick="deleteChecked(this)">删除</a></li>
+    </ul>
+</script>
+<script type="text/template" id="duopin">
+  <ul class="title-tr-th w80 clearfix">
+    <li class="w20"><input class="ischecked" type="text" name="goods[]" placeholder="多品"></li>
+    <li class="w30">{fullname}</li>
+    <li class="w20">{barcode}</li>
+    <li class="w20"><a href="#" onclick="deleteChecked(this)">删除</a></li>
+  </ul>
+</script>
+<script src="./js/config.js"></script>
+<script src="./js/filter.js"></script>
+<script id="supplierList" type="text/html">
+  <tr>
+    <td>{{d.name}}</td>
+    <td>{{d.zname}}</td>
+    <td>{{d.coding}}</td>
+    <td>{{d.barcode}}</td>
+    <td>{{d.fac}}</td>
+    <td>{{d.brandname}}</td>
+    <td>{{d.buyprice}}</td>
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">查看</div>
+      
+    </td>
+  </tr>
+</script>
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      <dd>
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+
+<script type="text/template" id="goodsContent">
+  <fieldset>
           <legend>
             基本信息
           </legend>
@@ -518,7 +576,7 @@
             <li>
               <div class="input-wrapper">
                 <label>商品全称</label>
-                <input type="text" class="w160 goods-fullname" name="name" value="">
+                <input type="text" class="w160 goods-fullname" id="fullname-jname" name="name" value="">
               </div>
               <div class="input-wrapper">
                 <label>国际条形码</label>
@@ -538,7 +596,7 @@
               </div>
               <div class="input-wrapper">
                 <label>助记码</label>
-                <input type="text" class="w160" name="zname" value="">
+                <input type="text" id="zname-show" class="w160" name="zname" value="">
               </div>
             </li>
             <li>
@@ -558,11 +616,11 @@
                   </div>
                 </div>
               </div>
-              <input type="hidden" name="method_id" value="">
-              <input type="hidden" name="supplier_id" value="">
-              <input type="hidden" name="gg_id" value="">
-              <input type="hidden" name="good_type_id" value="">
-              <input type="hidden" name="good_brand_id" value="">
+              <input type="hidden" class="method_id" name="method_id" value="">
+              <input type="hidden" class="supplier_id" name="supplier_id" value="">
+              <input type="hidden" class="gg_id" name="gg_id" value="">
+              <input type="hidden" class="good_type_id" name="good_type_id" value="">
+              <input type="hidden" class="good_brand_id" name="good_brand_id" value="">
               <div class="input-wrapper">
                 <label>零售单位</label>
                 <div class="single-select">
@@ -587,7 +645,7 @@
                           <span class="subclass">请选择</span><i></i>
                       </a>
                       <div class="select-items">
-                          <ul id="">
+                          <ul id="sort_goods">
                               
                           </ul>
                       </div>
@@ -640,47 +698,47 @@
             <li>
               <div class="input-wrapper">
                 <label>进货价</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="buyprice" value="">
               </div>
               <div class="input-wrapper">
                 <label>零售价</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="retails" value="">
               </div>
               <div class="input-wrapper">
                 <label>批发价</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="wholesale" value="">
               </div>
               <div class="input-wrapper">
                 <label>毛利率</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="gross" value="">
               </div>
               <div class="input-wrapper">
                 <label>进项税率</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="incomerat" value="">
               </div>
               <div class="input-wrapper">
                 <label>销售税率</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="salesrate" value="">
               </div>
               <div class="input-wrapper">
                 <label>加盟价</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="oiningprice" value="">
               </div>
               <div class="input-wrapper">
                 <label>会员价</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="vipprice" value="">
               </div>
               <div class="input-wrapper">
                 <label>会员价一</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="vippricet" value="">
               </div>
               <div class="input-wrapper">
                 <label>会员价二</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="vippriceo" value="">
               </div>
               <div class="input-wrapper">
                 <label>最低售价</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="inimumprice" value="">
               </div>
             </li>
             
@@ -716,63 +774,16 @@
             
           </div>
         </div>
-        
-        <div class="button" id="btnSubmit" style="margin:10px 0 0 305px;">
-          提交
-        </div>
-
-      </form>
-    </div>
-</div>
-<!-- ========================================================= -->
-<script type="text/template" id="duoma">
-    <ul class="title-tr-th w80 clearfix">
-      <li class="w20"><input class="ischecked" type="text" name="decode[]" placeholder="多码"></li>
-      <li class="w30">{fullname}</li>
-      <li class="w20">{barcode}</li>
-      <li class="w20"><a href="#" onclick="deleteChecked(this)">删除</a></li>
-    </ul>
-</script>
-<script type="text/template" id="duopin">
-  <ul class="title-tr-th w80 clearfix">
-    <li class="w20"><input class="ischecked" type="text" name="goods[]" placeholder="多品"></li>
-    <li class="w30">{fullname}</li>
-    <li class="w20">{barcode}</li>
-    <li class="w20"><a href="#" onclick="deleteChecked(this)">删除</a></li>
-  </ul>
-</script>
-<script src="./js/config.js"></script>
-<script src="./js/filter.js"></script>
-<script id="supplierList" type="text/html">
-  <tr>
-    <td>{{d.name}}</td>
-    <td>{{d.zname}}</td>
-    <td>{{d.coding}}</td>
-    <td>{{d.barcode}}</td>
-    <td>{{d.fac}}</td>
-    <td>{{d.brandname}}</td>
-    <td>{{d.buyprice}}</td>
-    <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo">查看</div>
-      
-    </td>
-  </tr>
-</script>
-<script id="slider" type="text/html">
-  <li class="layui-nav-item layui-nav-itemed">
-    <a href="javascript:;">{{d.name}}</a>
-    <dl class="layui-nav-child">
-    {{#  layui.each(d.children,function(index, item){ }}
-      <dd>
-        <a href="{{item.path}}">{{item.name}}</a>
-      </dd>
-    {{#  }); }}
-      
-    </dl>
-  </li>
 </script>
 
 </div>
 <script src="./js/addgoodsInfo.js"></script>
+<script src="./js/PinYin.js"></script>
+<script>
+  $('#fullname-jname').on('blur',function(){
+        var con=codefans_net_CC2PY($(this).val());
+        $('#zname-show').val(con);
+    });
+</script>
 </body>
 </html>

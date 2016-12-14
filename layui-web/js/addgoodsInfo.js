@@ -17,13 +17,22 @@ var goodsHouse={
 
     //添加商品信息
     $('#btnSubmit').on('click',function(){
-         $('.add-alert-area').css('z-index','9999').show();
          
+         layer.open({type:3});
         //$('#singleWillAddInfo').ajaxSubmit(options);
         config.formSubmit('#singleWillAddInfo',config.ajaxAddress.addgoodsInfo,function(data){
+            console.log(data);
             if(data.code==200){
-                alert('添加成功');
-                open('goodsInfo.html','_self');
+                layer.msg('添加成功');
+                setTimeout(function(){
+                    open('addgoodsInfo.html','_self');
+                },500)
+                
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                setTimeout(function(){
+                    open('addgoodsInfo.html','_self');
+                },500)
             }
         });
         
@@ -34,32 +43,48 @@ var goodsHouse={
         // console.log(data);
         //brand品牌 method计价方式 supplier:主供应商 gg:规格 types:商品分类
         $.each(data.brand,function(index,item){
-            $('<li>').appendTo($('#add-goods-brand')).html(item.brand).attr('value',item.id);
+            var $li=$('<li>').appendTo($('#add-goods-brand')).html(item.brand).attr('value',item.id);
+            $li.on('click',function(){
+                $('.good_brand_id').val($(this).attr('value'));
+            })
         });
         $.each(data.method,function(index,item){
-            $('<li>').appendTo($('#goods-method')).html(item.method).attr('value',item.id);
+            var $li=$('<li>').appendTo($('#goods-method')).html(item.method).attr('value',item.id);
+            $li.on('click',function(){
+                $('.method_id').val($(this).attr('value'));
+            })
         });
         $.each(data.gg,function(index,item){
-            $('<li>').appendTo($('#gg')).html(item.gg).attr('value',item.id);
+            var $li=$('<li>').appendTo($('#gg')).html(item.gg).attr('value',item.id);
+            $li.on('click',function(){
+                $('.gg_id').val($(this).attr('value'));
+            })
         });
         $.each(data.supplier,function(index,item){
-            $('<li>').appendTo($('#main-supplier')).html(item.name).attr('value',item.id);
+            var $li=$('<li>').appendTo($('#main-supplier')).html(item.name).attr('value',item.id);
+            $li.on('click',function(){
+                $('.supplier_id').val($(this).attr('value'));
+            })
         });
         $.each(data.types,function(index,item){
             // item.
-            
+             $('<li>').appendTo($('#sort_goods')).html(item.type);
+            console.log(item);
             goodsHouse.goodsType.cata1.push(item.type);
             goodsHouse.goodsType.cata2[index]=[];
             if(item.child){
                 $.each(item.child,function(i,ites){
 
                     // console.log(index,goodsHouse.goodsType.cata2[index]);
-
-                    (goodsHouse.goodsType.cata2[index]).push({id:ites.id,val:ites.type});
+                    console.log(ites)
+                    var $li=$('<li>').appendTo($('#sort_goods')).html('--'+ites.type).attr('value',ites.id);
+                    $li.on('click',function(){
+                        $('.good_type_id').val($(this).attr('value'));
+                    })
                 });
             }
             
-            $('<option>').appendTo($('#catagory1')).html(item.type).attr('value',index);
+           
         });
 
     });
@@ -87,9 +112,9 @@ var goodsHouse={
     //添加一品多码
     
     $('.addmoregoods').on('click',function(){
-        console.log('add');
+        console.log($('.barcode').attr('value'),$('.goods-fullname').val());
         var html=$('#'+goodsHouse.goodsContent).html();
-        console.log();
+        
         $('.'+goodsHouse.appendPar).append(config.formatTemplate({
             barcode:$('.barcode').val(),
             fullname:$('.goods-fullname').val()
@@ -103,10 +128,16 @@ var goodsHouse={
 	});
 	layui.use('form',function(){
 			
-		});
+	});
 $('#purchaselist').on('click','.lookorderInfo',function(){
 	$('.mutigoods').html('');
 	$('.muticoding').html('');
+    console.log($(this).data('id'));
+    var htm=$('#goodsContent').html();
+    config.ajax('get',config.ajaxAddress.goodsEditor,function(data){
+        $('#singleWillAddInfo').append(config.formatTemplate(data.good[0],htm));
+    },{id:$(this).data('id')});
+
 	layer.open({
 		type:1,
 		content: $('#editorgoodsInfo'), //这里content是一个DOM

@@ -4,7 +4,8 @@ $(function(){
 		laytpl = layui.laytpl;
 
 	});
-	config.ajax('get',config.ajaxAddress.showUserInfo,function(data){
+	config.ajax('get',config.ajaxAddress.showshopUser,function(data){
+		console.log(data);
 		var tempHtml=menulistContent.innerHTML;
 		$('#adminUserList').html('');
 		$.each(data,function(index,item){

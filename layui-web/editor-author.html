@@ -7,12 +7,12 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
-	<script src="./layui/layui.js"></script>
+	 <script src="./layui/layui.js"></script>
     <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
-  	<script type="text/javascript" src="./js/jquery-form.js"></script>
-    <script src="./js/config.js"></script>
-    <script src="./js/filter.js"></script>
-    <script type="text/javascript" src="./js/add-purchaselist.js"></script>
+    <script type="text/javascript" src="./js/jquery-form.js"></script>
+  	<script type="text/javascript" src="./js/config.js"></script>
+    <script type="text/javascript" src="./js/filter.js"></script>
+    <script type="text/javascript" src="./js/editor-author.js"></script>
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -29,7 +29,7 @@
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-  
+ 
 </ul>
 
     </div>
@@ -66,114 +66,34 @@
 		  <a><cite>正文</cite></a>
 		</span>
      -->
-     <div class="layui-tab-brief" lay-filter="demoTitle">
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
-          <li >
-            <a href="purchaselist.html">采购单列表</a>
+          <li>
+            <a href="authorlist.html">权限组</a>
           </li>
           <li class="layui-this">
-            添加采购单
+            编辑角色
           </li>
         </ul>
         <div class="layui-content" style="padding-top:20px;">
-          <div class="layui-show">
-
-            <form class="layui-form layui-form-pane" id="orderlist-submit" action="" method="POST" style="height:auto;overflow:auto;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <input type="hidden" id="goods" name="goods" value="">
-              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
-              <legend>单据信息</legend>
-                <div class="layui-form-item"> 
-                
-                <label class="layui-form-label">供货商</label>
-                <div class="layui-input-inline">
-                  <select class="supplierList" name="supplier">
-                    
-                  </select>
-                </div>
-                <label class="layui-form-label">商品编号</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" >
-                </div>
-                <div class="layui-btn layui-input-inline layui-btn-small" id="goods-coding" style="width:48px;height:38px;">搜索
-                </div>
-                  
-                <label class="layui-form-label">商品条形码</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" >
-
-                </div>
-                <div class="layui-btn layui-input-inline layui-btn-small" id="goods-barcode" style="width:48px;height:38px;" >
-                  搜索
-                </div>
-                <label class="layui-form-label">商品名称</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" >
-
-                </div>
-                <div class="layui-btn layui-input-inline layui-btn-small" lay-filter="goodsName" id="goodsName" style="width:48px;height:38px;">
-                  搜索
-                </div>
-                
-              </div>
-
-                <div class="layui-form-item">
-                <label class="layui-form-label">单据编号</label>
-                <div class="layui-input-inline">
-                  <input id="ordernum" type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input">
-                </div>
-                  <label class="layui-form-label">仓库列表</label>
-                <div class="layui-input-inline">
-                  <select class="stockList" name="dept_id">
-                    
-                  </select>
-                </div>
-                <label class="layui-form-label">采购单位</label>
-                <div class="layui-input-inline">
-                  <select class="ggList" name="gg">
-                    
-                  </select>
-                </div>
-                </div>
-              </fieldset>
-              
-              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
-                <legend>订单信息</legend>
-                <table class="layui-table">
-                  <colgroup>
-                    <!-- <col width="100">
-                    <col width="100">
-                    <col>
-                    <col width="100">
-                    <col width="300"> -->
-
-                  </colgroup>
-                  <thead>
-                    <tr>
-                      <th>商品编号</th>
-                      <th>商品名称</th>
-                      <th>商品品牌</th>
-                      <th>商品数量</th>
-                      <th>商品单价</th>
-                      <th>操作</th>
-                    </tr> 
-                  </thead>
-                  <tbody id="goods-orderlist">
-                    
-                    
-                    
-                  </tbody>
-              </table>
-              </fieldset>
-
-              
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <input type="hidden" name="id" value="" id="role-id" />
               <div class="layui-form-item">
+                <label class="layui-form-label">角色名称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="name" value="" readonly autocomplete="off" class="layui-input role-name">
+                </div>
+              </div>
+              <div id="authorList">
                 
               </div>
+              
               
               <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">备注信息</label>
+                <label class="layui-form-label">请填写描述</label>
                 <div class="layui-input-block">
-                  <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
+                  <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
                 </div>
               </div>
               <!-- ================================================== -->
@@ -183,7 +103,7 @@
 
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <div class="layui-btn" id="confirm-save">确认订单</div>
+                  <div class="layui-btn commit-author" >立即提交</div>
                   <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
                 </div>
               </div>
@@ -191,8 +111,6 @@
             </form>
           </div>
         </div>
-
-
      </div>
 
 
@@ -201,47 +119,6 @@
     
     </div> 
   <ul id="biuuu_city_list"></ul>
-
-
-<!-- 显示商品列表 -->
-<div id="goods-list" style="padding:10px;display:none;">
-  <table class="layui-table" >
-  <colgroup>
-    <col width="100">
-    <col>
-    <col>
-    <col>
-    <col>
-    <col>
-    <col width="100">
-  </colgroup>
-  <thead>
-    <tr>
-      <th><input type="checkbox" class="checkall" name="" value=""></th>
-      <th>商品编号</th>
-      <th>商品名称</th>
-      <th>规格</th>
-      <th>供应商名称</th>
-      <th>品牌</th>
-      <th>数量</th>
-    </tr> 
-  </thead>
-  <tbody id="searchedlist">
-    
-    
-  </tbody>
-  
-</table>
-<div class="layui-form-item">
-  <div class="layui-input-block">
-    <div class="layui-btn" id="confirmorder">确认订单</div>
-  </div>
-</div>
-</div>
-
-
- 
-
 
   <!-- =======================弹出窗========================= -->
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
@@ -405,12 +282,13 @@
 </div>
 
 <!-- ========================================================= -->
+
+
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
     <a href="javascript:;">{{d.name}}</a>
     <dl class="layui-nav-child">
     {{#  layui.each(d.children,function(index, item){ }}
-      
       <dd>
         <a href="{{item.path}}">{{item.name}}</a>
       </dd>
@@ -419,34 +297,23 @@
     </dl>
   </li>
 </script>
-	
-<script id="searchedcontent" type="text/html">
+<script id="authorContent" type="text/html">
+  <div class="layui-form-item">
+      <label class="layui-form-label">{{d.name}}</label>
 
-    <tr>
-      <td><input type="checkbox" class="ischecked"  name="" value="{{d.selectedindex}}"></td>
-      <td>{{d.coding}}</td>
-      <td>{{d.barcode}}</td>
-      <td>{{d.fac}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+      <div class="layui-input-block">
+        {{#  layui.each(d.children,function(index, item){ }}
 
-  
-</script>
-
-<script id="goodsContent" type="text/html">
-  <tr>
-    <td>{{d.coding}}</td>
-    <td>{{d.name}}</td>
-    <td>{{d.brand}}</td>
-    <td>1</td>
-    <td>10.00</td>
-    <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small">编辑</div>
-      <div class="layui-btn layui-btn-small layui-btn-danger deleteGoods" id="{{d.selectedindex}}">删除</div>
-    </td>
-  </tr>
+            {{#  if(item.statue){ }}
+              <input type="checkbox" checked name="pri_id[]" title="{{item.name}}" value='{{item.id}}'/>
+              {{# }else{ }} 
+              <input type="checkbox" name="pri_id[]" title="{{item.name}}" value='{{item.id}}'/>
+              {{# } }}
+      {{#  }); }}
+        
+        
+      </div>
+    </div>
 </script>
 
 </div>

@@ -319,7 +319,7 @@
     <td>{{d.brandname}}</td>
     <td>{{d.buyprice}}</td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo">查看</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small" onclick="editorSingleInfo(this)" data-id="{{d.id}}" >编辑</div>
       <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
     </td>
   </tr>
@@ -341,4 +341,9 @@
 </div>
 <script src="./js/goodsInfo.js"></script>
 </body>
+<script>
+  function editorSingleInfo(obj){
+    location.href='editor-goodsInfo.html?id='+$(obj).data('id');
+  }
+</script>
 </html>

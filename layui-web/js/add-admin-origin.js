@@ -28,7 +28,13 @@ $(function(){
 	//提交菜单
 	$('.commitMenu').on('click',function(){
 		config.formSubmit('.menuForm',config.ajaxAddress.addAdminOrigin,function(data){
-			console.log(data);
+			layer.open({type:3});
+			if(data.code==200){
+				open('admin-origin.html',"_self");
+			}else{
+				layer.msg('网络错误，请稍后重试');
+				open('admin-origin.html',"_self");
+			}
 		});
 	});
 });

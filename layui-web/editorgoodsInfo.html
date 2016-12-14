@@ -1,20 +1,18 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>标题</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./layui/css/layui.css" />
-  	<link rel="stylesheet" href="./css/alertcon.css" />
-	<script src="./layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
-    <script src="./js/config.js"></script>
-<script src="./js/filter.js"></script>
+  <meta charset="utf-8">
+  <title>标题</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="./layui/css/layui.css" />
+    <link rel="stylesheet" href="./css/alertcon.css" />
+  <script src="./layui/layui.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
 </head>
 <body>
-	<!-- 框架结构	 -->
-	<div class="layui-layout layui-layout-admin">
+  <!-- 框架结构  -->
+  <div class="layui-layout layui-layout-admin">
   <div class="layui-header header header-demo">
     <div class="layui-main">
       <a class="logo" href="#">
@@ -27,27 +25,27 @@
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-  
-</ul>
+        
+        </ul>
 
     </div>
   </div>
-	
-	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-	    <ul class="layui-tab-title site-demo-title">
-	      <li class="layui-this">预览</li>
-	      <li>查看代码</li>
-	      <li>帮助</li>
-	    </ul>
-    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
-	      <div class="layui-tab-item layui-show">
-	        <div class="layui-main">
+  
+  <!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+      <ul class="layui-tab-title site-demo-title">
+        <li class="layui-this">预览</li>
+        <li>查看代码</li>
+        <li>帮助</li>
+      </ul>
+      <div class="layui-body layui-tab-content site-demo site-demo-body">    
+        <div class="layui-tab-item layui-show">
+          <div class="layui-main">
 
-	        </div>
-		</div>
-		</div>
-	</div> -->
-	<!-- ============================主要内容区================================ -->
+          </div>
+    </div>
+    </div>
+  </div> -->
+  <!-- ============================主要内容区================================ -->
   
 
         
@@ -56,26 +54,37 @@
 
 
 
-	<div class="lay-main">
-	  <!-- <span class="layui-breadcrumb">
-		  <a href="#">首页</a>
-		  <a href="#">组织机构</a>
-		  <a href="#">组织机构管理</a>
-		  <a><cite>正文</cite></a>
-		</span>
+  <div class="lay-main">
+    <!-- <span class="layui-breadcrumb">
+      <a href="#">首页</a>
+      <a href="#">组织机构</a>
+      <a href="#">组织机构管理</a>
+      <a><cite>正文</cite></a>
+    </span>
      -->
-     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle" style="min-height:600px;">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            库存列表
+            商品信息
           </li>
-          
         </ul>
 
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
-            <form class="layui-form layui-form-pane" action="" style="display:inline-block;">
+
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
               
+              <label class="layui-form-label">分类</label>
+                <div class="layui-input-inline">
+                  <select name="city" lay-verify="required">
+                    <option value=""></option>
+                    <option value="0">北京</option>
+                    <option value="1">上海</option>
+                    <option value="2">广州</option>
+                    <option value="3">深圳</option>
+                    <option value="4">杭州</option>
+                  </select>
+                </div>
               <div class="layui-inline">
                 <label class="layui-form-label">关键词</label>
                 <div class="layui-input-inline">
@@ -98,31 +107,19 @@
           </colgroup>
           <thead>
             <tr>
-              <th>采购单号</th>
-              <th>订货有效期</th>
-              <th>币种</th>
-              <th>订货总金额</th>
-              <th>审核状态</th>
-              <th>操作员</th>
-              <th>业务员</th>
+              <th>商品全称</th>
+              <th>助记码</th>
+              <th>商品编码</th>
+              <th>商品条形码</th>
+              <th>主供应商</th>
+              <th>品牌</th>
+              <th>规格</th>
               <th>操作</th>
             </tr> 
           </thead>
           <tbody id="purchaselist">
             
-            <tr>
-              <td>1</td>
-              <td>万店联盟</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
-                <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>-->
-              </td>
-            </tr>
+            
             
           </tbody>
       </table>
@@ -130,7 +127,11 @@
 
           </div>
         </div>
-
+      
+      <div style="height:55px;padding-right:10px;">
+        <div id="page" style="float:right;"></div>
+      </div>
+      
 
      </div>
 
@@ -139,7 +140,7 @@
 
     
     </div> 
-  <ul id="biuuu_city_list"></ul>
+  
 
   
 
@@ -305,6 +306,24 @@
 </div>
 
 <!-- ========================================================= -->
+
+<script src="./js/config.js"></script>
+<script src="./js/filter.js"></script>
+<script id="supplierList" type="text/html">
+  <tr>
+    <td>{{d.name}}</td>
+    <td>{{d.zname}}</td>
+    <td>{{d.coding}}</td>
+    <td>{{d.barcode}}</td>
+    <td>{{d.fac}}</td>
+    <td>{{d.brandname}}</td>
+    <td>{{d.buyprice}}</td>
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small" onclick="editorSingleInfo(this)" data-id="{{d.id}}" >编辑</div>
+      <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
+    </td>
+  </tr>
+</script>
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
     <a href="javascript:;">{{d.name}}</a>
@@ -319,25 +338,12 @@
   </li>
 </script>
 
-<script id="supplierList" type="text/html">
-  <tr>
-    <td>1</td>
-    <td>万店联盟</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo">编辑</div>
-      <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
-    </td>
-  </tr>
-</script>
-
-
 </div>
-
+<script src="./js/goodsInfo.js"></script>
 </body>
-<script src="./js/storehouse.js"></script>
+<script>
+  function editorSingleInfo(obj){
+    location.href='editor-goodsInfo.html?id='+$(obj).data('id');
+  }
+</script>
 </html>
