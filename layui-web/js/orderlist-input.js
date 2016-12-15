@@ -4,10 +4,10 @@ $(function(){
 		selectedindex:'',
 		zongjia:''
 	}
-	var laytpl;
+var laytpl;
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
-		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
+		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
 		var tempHtml=supplierList.innerHTML;
 		console.log(data);
 		$('#purchaselist').html('');
@@ -21,11 +21,11 @@ $(function(){
 	});
 	});
 $('#purchaselist').on('click','.lookorderInfo',function(){
-	config.ajax('get',config.ajaxAddress.editOrderList,function(data){
+	config.ajax('get',config.ajaxAddress.editInput,function(data){
 		console.log(data);
 		var tempHtml=singleOrderList.innerHTML;
 		$('#singleOrderWrapper').html('');
-		$.each(data.lst,function(index,item){
+		$.each(data.data,function(index,item){
 			purchasePage.zongjia=item.dposit;
 			item.singlePrice=item.price*item.unm;
 			item.selectedindex=index;
@@ -78,18 +78,25 @@ $('.saveGoodsNum').on('click',function(){
 	layer.close(index);
 });
 
-$('#confirmorder').on('click',function(){
-	var arr=[];
-	$.each(purchasePage.arrOrder,function(index,item){
-		arr.push({id:item.id,buyer_id:item.buyer_id,unm:item.unm,dposit:purchasePage.zongjia})
-	});
-	console.log(arr);
-	$('#goods').val(arr.join(''));
+$('.confirmorder').on('click',function(){
+	
 	config.formSubmit('#purchaselistForm',config.ajaxAddress.editOrderList,function(data){
 		console.log(data);
+		if(data.code==200){
+                layer.msg('提交成功');
+                setTimeout(function(){
+                    open('orderlistInput.html','_self');
+                },500)
+                
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                setTimeout(function(){
+                    open('orderlistInput.html','_self');
+                },500)
+            }
 	});
 
-
+	
 
 });
 

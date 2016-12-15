@@ -68,11 +68,9 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            采购单列表
+            商品入库
           </li>
-          <li>
-            <a href="add-purchaselist.html">添加采购单</a>
-          </li>
+          
         </ul>
 
         <div class="layui-content">
@@ -144,8 +142,9 @@
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
   <div class="alert-main-con">
       <form method="POST" action="" id="purchaselistForm">
-        <input type="hidden" id="goods" name="goods" value="">
         
+        <input type="hidden" name="id" value="" class="orderlistId">
+        <input type="hidden" name="enter" value="" class="orderToF">
         <table class="layui-table">
           <colgroup>
             <!-- <col width="100">
@@ -165,8 +164,6 @@
               <th>单价</th>
               <th>数量</th>
               <th>总价</th>
-              <th>操作</th>
-              
             </tr> 
           </thead>
           <tbody id="singleOrderWrapper">
@@ -179,7 +176,8 @@
         
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <div class="layui-btn" id="confirmorder">确认审核</div>
+          <div class="layui-btn confirmorder" data-id="true">确认审核</div>
+          <div class="layui-btn confirmorder" data-id="false">入库信息不正确</div>
         </div>
       </div>
       </form>
@@ -215,15 +213,13 @@
     <td>RMB</td>
     <td>{{d.name}}</td>
     <td>{{d.dposit}}</td>
-    {{#  if(d.status){ }}
-  <td>已审核</td>
-{{#  }else{ }}
-     <td>等待审核</td>
-    {{# } }}
+    
+     <td>{{d.status}}审</td>
+    
     <td>{{d.uadmin}}</td>
     <td>{{d.admin}}</td>
     <td>
-      {{#  if(d.status){ }}
+      {{#  if(d.status=='2'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">完成</div>
       {{#  }else{ }}
         <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">审核</div>
@@ -242,11 +238,11 @@
     <td>{{d.price}}</td>
     <td>{{d.unm}}</td>
     <td>{{d.singlePrice}}</td>
-    <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" data-id="{{d.selectedindex}}">编辑</div>
-    </td>
+    
   </tr>
 </script>
+
+
 
 
 <script id="slider" type="text/html">
@@ -254,9 +250,15 @@
     <a href="javascript:;">{{d.name}}</a>
     <dl class="layui-nav-child">
     {{#  layui.each(d.children,function(index, item){ }}
-      <dd>
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
         <a href="{{item.path}}">{{item.name}}</a>
       </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
     {{#  }); }}
       
     </dl>
@@ -264,6 +266,6 @@
 </script>
 
 </div>
-<script src="./js/purchaselist.js"></script>
+<script src="./js/orderlist-input.js"></script>
 </body>
 </html>

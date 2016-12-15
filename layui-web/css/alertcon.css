@@ -612,3 +612,12 @@ input.w380 {
 .ncsc-goodspic-list ul li .show-default:hover a.del { color: #27A9E3; display: block;}
 .ncsc-goodspic-list ul li .show-default.selected:hover a.del { color: #28B779;}
 .ncsc-goodspic-list ul li .show-default:hover a.del:hover { text-decoration: none;}
+
+.header{
+  background:#189ACA;
+}
+.header .logo{
+  position:absolute;
+  left:10px;
+  top:10px;
+}

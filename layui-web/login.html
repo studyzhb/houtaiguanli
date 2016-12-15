@@ -18,7 +18,7 @@
 		<div class="login-content">
 			<form method="POST" action="" id="loginForm">
 				<ul>
-					<li><label><img src="./img/login1.png" alt=""></label><input type="text" name="job_num" value="" placeholder="请输入管理员名称"></li>
+					<li><label><img src="./img/login1.png" alt=""></label><input type="text" class="username" name="job_num" value="" placeholder="请输入管理员名称"></li>
 					<li><label><img src="./img/login1.png" alt=""></label><input type="text" name="password" value="" placeholder="请输入管理员密码"></li>
 					<li class="yz"><label><img src="./img/login1.png" alt=""></label><input type="text"  name="" value="" placeholder="请输入验证码"><img class="yanzheng" src="" alt=""></li>
 					
@@ -41,6 +41,7 @@
 	$('.submit').on('click',function(){
 		config.formSubmit('#loginForm',config.ajaxAddress.loginAdd,function(data){
 			if(data=='验证通过'){
+				cookieUtil.setExpiresDate('username',$('.username').val(),7);
 				open('index.html','_self');
 			}else{
 				alert(data);

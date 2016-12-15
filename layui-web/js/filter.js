@@ -2,8 +2,36 @@
 var layer;
 var $;
 var laytpl;
+var user=cookieUtil.getCookie('username');
+$(function(){
+	$('.quit').on('click',function(){
+	console.log('111');
+	config.ajax('get',config.ajaxAddress.quit,function(data){
+		if(data.code==200){
+            layer.msg('退出成功');
+            cookieUtil.removeCookie('username');
+            setTimeout(function(){
+                open('login.html','_self');
+            },500)
+            
+        }else{
+            layer.msg('网络错误，请稍后重试');
+            setTimeout(function(){
+                open('login.html','_self');
+            },500)
+        }
+	})
+	});
+
+
+
 config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		console.log(data);
+		if(!!user){
+			$('.username').text(cookieUtil.getCookie('username'));
+		}else{
+			open('login.html','_self');
+		}
 		layui.use(['laypage','layer','laytpl'],function(){
 				$=layui.jquery;
 		    	laytpl = layui.laytpl;
@@ -13,12 +41,14 @@ config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 
 		    	$.each(data,function(index,item){
 					// console.log(item.children);
+					item.thisselc=location.href;
+					item.shai=item.thisselc;
+					
 					laytpl(tempHtml).render(item,function(html){
 					// console.log(html);
 					
 					$('#sliderPage').append(html);
 
-					
 					})
 				})
 				layui.use('element',function(){
@@ -44,3 +74,9 @@ $('.show-content').on('click','.select-tit',function(){
         $(this).parents('.select-items').css('display','none').next().css('display','none');
         $(this).parents('.select-items').prev('.select-tit').find('span').text($(this).text());  
     })
+
+
+
+
+
+});

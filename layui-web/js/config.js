@@ -25,6 +25,8 @@ var config={
 	ajaxAddress:{
     //登录
     loginAdd:"http://192.168.1.150/shop/shop/public/index.php/admin/Login/login",
+    //退出登录
+    quit:'http://192.168.1.150/shop/shop/public/index.php/admin/Login/out',
     //获取验证码
     getValiCode:'http://192.168.1.150/shop/shop/public/index.php/admin/Login/getCode',
     //验证供应商编号
@@ -68,6 +70,8 @@ var config={
     getOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/lst',
     //编辑采购单列表
     editOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/edit',
+    //编辑采购单列表
+    checkOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/check',
     //增加菜单
     addMenulist:'http://192.168.1.150/shop/shop/public/index.php/admin/Privilege/add',
     //修改菜单
@@ -104,7 +108,10 @@ var config={
     editshopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/edit',
     showshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bLst',
      addshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bAdd',
-      editshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bEdit'
+      editshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bEdit',
+      goodsInput:'http://192.168.1.150/shop/shop/public/index.php/admin/Store/storeInput',
+      //修改入库
+      editInput:'http://192.168.1.150/shop/shop/public/index.php/admin/Store/check'
 
 	},
   pSort:{

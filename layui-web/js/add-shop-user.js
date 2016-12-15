@@ -14,12 +14,9 @@ $(function(){
 
 		$('.userCard').val(addUser.maxNum-0+1);
 		$.each(data.shop,function(index,item){
-			$('<option>').appendTo($('.deptlist')).attr('value',item.id).html(item.name);
+			$('<option>').appendTo($('.deptlist')).attr('value',item.coding).html(item.name);
 		});
-		$.each(data.role,function(index,item){
-			$('<option>').appendTo($('.rolelist')).attr('value',item.id).html(item.name);
-			
-		});
+		
 		layui.use('form',function(){
 			
 		});

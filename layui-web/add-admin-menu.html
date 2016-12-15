@@ -17,10 +17,12 @@
 	<!-- 框架结构	 -->
 	<div class="layui-layout layui-layout-admin">
   <div class="layui-header header header-demo">
-    <div class="layui-main">
-      <a class="logo" href="#">
+    <a class="logo" href="#">
         <img src="./img/logo.png" alt="万店联盟">
-      </a>
+    </a>
+    <div class="user-action" style="position:absolute;right:15px;top:25px;">
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
     </div>
   </div>
   <div class="layui-side layui-bg-black">
@@ -298,9 +300,15 @@
     <a href="javascript:;">{{d.name}}</a>
     <dl class="layui-nav-child">
     {{#  layui.each(d.children,function(index, item){ }}
-      <dd>
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
         <a href="{{item.path}}">{{item.name}}</a>
       </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
     {{#  }); }}
       
     </dl>
