@@ -1,19 +1,20 @@
 $(function(){
 	var laytpl;
 	layui.use('laytpl',function(){
-		laytpl = layui.laytpl;		
+		laytpl = layui.laytpl;	
+		config.ajax('get',config.ajaxAddress.showgoodsbrand,function(data){
+		// console.log(data);
+			var tempHtml=sortContent.innerHTML;
+			$('#all-sort-list').html('');
+			$.each(data,function(index,item){
+				laytpl(tempHtml).render(item,function(html){
+					$('#all-sort-list').append(html);
+				});
+			});
+		});	
 	});
 
-	config.ajax('get',config.ajaxAddress.showgoodsbrand,function(data){
-		// console.log(data);
-		var tempHtml=sortContent.innerHTML;
-		$('#all-sort-list').html('');
-		$.each(data,function(index,item){
-			laytpl(tempHtml).render(item,function(html){
-				$('#all-sort-list').append(html);
-			});
-		});
-	});
+	
 
 
 	//编辑品牌

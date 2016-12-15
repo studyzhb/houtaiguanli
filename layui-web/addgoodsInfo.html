@@ -74,8 +74,8 @@
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
 
             <div class="layui-form layui-form-pane" style="display:inline-block;">
-              
-              <label class="layui-form-label">分类</label>
+              <div style="display:none;">
+                <label class="layui-form-label">分类</label>
                 <div class="layui-input-inline">
                   <select name="city" lay-verify="required">
                     <option value=""></option>
@@ -86,6 +86,8 @@
                     <option value="4">杭州</option>
                   </select>
                 </div>
+              </div>
+              
               <div class="layui-inline">
                 <label class="layui-form-label">关键词</label>
                 <div class="layui-input-inline">
@@ -511,10 +513,215 @@
   <div class="alert-main-con show-content">
       <form method="POST" action="" id="singleWillAddInfo">
         
-        
-       <!--  <div class="button" id="btnSubmit" style="margin:10px 0 0 305px;">
+        <fieldset>
+          <legend>
+            基本信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>商品全称</label>
+                <input type="text" class="w160 goods-fullname" id="fullname-jname" name="name" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>国际条形码</label>
+                <input type="text" class="w160 barcode" name="barcode" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>规格</label>
+                <input type="text" class="w160" name="eachsale" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>原产地</label>
+                <input type="text" class="w160" name="home" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>生产厂家</label>
+                <input type="text" class="w160" name="fac" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>助记码</label>
+                <input type="text" id="zname-show" class="w160" name="zname" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>计价方式</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="goods-method">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" class="method_id" name="method_id" value="">
+              <input type="hidden" class="supplier_id" name="supplier_id" value="">
+              <input type="hidden" class="gg_id" name="gg_id" value="">
+              <input type="hidden" class="good_type_id" name="good_type_id" value="">
+              <input type="hidden" class="good_brand_id" name="good_brand_id" value="">
+              <div class="input-wrapper">
+                <label>零售单位</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="gg">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="input-wrapper">
+                <label>分类</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="sort_goods">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="input-wrapper">
+                <label>品牌</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="add-goods-brand">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="input-wrapper">
+                <label>供应商</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul id="main-supplier">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+             
+            </li>
+            
+          </ul>
+        </fieldset> 
+        <fieldset>
+          <legend>
+            价格信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>进货价</label>
+                <input type="text" class="w160" name="buyprice" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>零售价</label>
+                <input type="text" class="w160" name="retails" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>批发价</label>
+                <input type="text" class="w160" name="wholesale" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>毛利率</label>
+                <input type="text" class="w160" name="gross" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>进项税率</label>
+                <input type="text" class="w160" name="incomerat" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>销售税率</label>
+                <input type="text" class="w160" name="salesrate" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>加盟价</label>
+                <input type="text" class="w160" name="oiningprice" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>会员价</label>
+                <input type="text" class="w160" name="vipprice" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>会员价一</label>
+                <input type="text" class="w160" name="vippricet" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>会员价二</label>
+                <input type="text" class="w160" name="vippriceo" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>最低售价</label>
+                <input type="text" class="w160" name="inimumprice" value="">
+              </div>
+            </li>
+            
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <input type="checkbox" />
+                <label>允许采购订货</label>
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
+        <div class="col-3-table clearfix">
+          <ul class="left-list">
+            <li class="active addmore-goods-coding">一品多码</li>
+            <li class="addmore-goods-name">一码多品</li>
+            
+          </ul>
+          <div class="middle-item">
+            <ul class="title-tr-th w80 clearfix">
+              <li class="w20 editorInput"></li>
+              <li class="w30">商品名称</li>
+              <li class="w20">商品条码</li>
+              <li class="w20">操作</li>
+            </ul>
+            <div class="muticoding"></div>
+            <div class="mutigoods"></div>
+            
+            <div class="button addmoregoods">增加</div>
+            
+          </div>
+        </div>
+        <div class="button" id="btnSubmit" style="margin:10px 0 0 305px;">
           提交
-        </div> -->
+        </div>
 
       </form>
     </div>
@@ -547,10 +754,11 @@
     <td>{{d.fac}}</td>
     <td>{{d.brandname}}</td>
     <td>{{d.buyprice}}</td>
-    <td>
+    <td></td>
+    <!--<td>
       <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">查看</div>
       
-    </td>
+    </td>-->
   </tr>
 </script>
 <script id="slider" type="text/html">

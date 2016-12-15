@@ -20,7 +20,6 @@
 				<ul>
 					<li><label><img src="./img/login1.png" alt=""></label><input type="text" name="job_num" value="" placeholder="请输入管理员名称"></li>
 					<li><label><img src="./img/login1.png" alt=""></label><input type="text" name="password" value="" placeholder="请输入管理员密码"></li>
-					
 					<li class="yz"><label><img src="./img/login1.png" alt=""></label><input type="text"  name="" value="" placeholder="请输入验证码"><img class="yanzheng" src="" alt=""></li>
 					
 				</ul>
@@ -35,9 +34,9 @@
 
 </body>
 <script>
-	config.ajax('get',config.ajaxAddress.getValiCode,function(data){
-		console.log(data);
-	});
+	// config.ajax('get',config.ajaxAddress.getValiCode,function(data){
+	// 	console.log(data);
+	// });
 
 	$('.submit').on('click',function(){
 		config.formSubmit('#loginForm',config.ajaxAddress.loginAdd,function(data){

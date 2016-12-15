@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
 	<script src="./layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+  	<script type="text/javascript" src="./js/jquery-form.js"></script>
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -139,7 +140,8 @@
   <!-- =======================弹出窗========================= -->
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
   <div class="alert-main-con">
-      <form method="" action="">
+      <form method="POST" action="" id="purchaselistForm">
+        <input type="hidden" class="ruku1" name="status" value="">
         <table class="layui-table">
           <colgroup>
             <!-- <col width="100">
@@ -159,7 +161,7 @@
               <th>单价</th>
               <th>数量</th>
               <th>总价</th>
-              <th>操作</th>
+              
             </tr> 
           </thead>
           <tbody id="singleOrderWrapper">
@@ -167,9 +169,14 @@
             
             
           </tbody>
+
       </table>
         
-
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <div class="layui-btn" id="confirmorder">确认审核</div>
+        </div>
+      </div>
       </form>
     </div>
 </div>
@@ -188,8 +195,8 @@
     <td>{{d.uadmin}}</td>
     <td>{{d.admin}}</td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">查看</div>
-      <div class="layui-btn layui-btn-small layui-btn-danger">审核</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">审核</div>
+      
     </td>
   </tr>
 </script>
@@ -197,17 +204,17 @@
   <tr>
     <td>{{d.buyer_id}}</td>
     <td>{{d.barcode}}</td>
-    <td>RMB</td>
-    <td>{{}}</td>
-    <td>暂无审核</td>
-    <td>{{d.uadmin}}</td>
-    <td>{{d.admin}}</td>
-    <td>{{d.admin}}</td>
-    <td>{{d.admin}}</td>
-    <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">查看</div>
-      <div class="layui-btn layui-btn-small layui-btn-danger">审核</div>
-    </td>
+    <td>{{d.goods}}</td>
+    <td>{{d.gg}}</td>
+    <td>{{d.supplier}}</td>
+    <td>{{d.name}}</td>
+    <td>{{d.price}}</td>
+    <td>{{d.unm}}</td>
+    <td>{{# d.price*d.unm }}</td>
+  <!--<td>
+      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}"></div>
+      
+    </td>-->
   </tr>
 </script>
 

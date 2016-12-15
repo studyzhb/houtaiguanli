@@ -138,18 +138,19 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
         $('#singleWillAddInfo').append(config.formatTemplate(data.good[0],htm));
     },{id:$(this).data('id')});
 
-	layer.open({
-		type:1,
-		content: $('#editorgoodsInfo'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'900px',
-      maxmin: true
-	})
+	// layer.open({
+	// 	type:1,
+	// 	content: $('#editorgoodsInfo'), //这里content是一个DOM
+ //      shade:[0.8,'#000'],
+ //      area:'900px',
+ //      maxmin: true
+	// })
 });
 
 $('.addgoods').on('click',function(){
 	$('.mutigoods').html('');
 	$('.muticoding').html('');
+    // $('#singleWillAddInfo').append($('#goodsContent').html());
 	layer.open({
 		type:1,
 		content: $('#addgoodsInfo'), //这里content是一个DOM

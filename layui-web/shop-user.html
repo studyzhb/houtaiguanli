@@ -101,12 +101,12 @@
           </colgroup>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>编号</th>
-              <th>用户名</th>
+              <th>账号</th>
+              <th>名字</th>
+              <th>店铺</th>
               
               
-              <th>操作</th>
+              <th>电话</th>
             </tr> 
           </thead>
           <tbody id="adminUserList">
@@ -143,16 +143,17 @@
   <ul id="biuuu_city_list"></ul>
 <script id="menulistContent" type="text/html">
    <tr>
-              <td>{{d.id}}</td>
               <td>{{d.coding}}</td>
-              <td>{{d.loginname}}</td>
+              <td>{{d.name}}</td>
+              <td>{{d.shopName}}</td>
+              <td>{{d.tel}}</td>
               
               
-              <td>
+              <!--<td>
                 
-                <!--<div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}" onclick="editorUser(this)">编辑</div>-->
+                <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}" onclick="editorUser(this)">编辑</div>
                 
-              </td>
+              </td>-->
             </tr>
 </script>
   <!-- =======================弹出窗========================= -->

@@ -4,16 +4,16 @@ $(function(){
 		maxNum:''
 	}
 	//config.ajaxAddress.addshopUser
-	config.ajax('get','http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bAdd',function(data){
+	config.ajax('get',config.ajaxAddress.addshopUser,function(data){
 		console.log(data);
 		if(data.coding.length<=0){
-			addUser.maxNum=80000;
+			addUser.maxNum=90000;
 		}else{
-			addUser.maxNum=data.jobNum[0]['job_num'];
+			addUser.maxNum=data.coding[0]['tel'];
 		}
 
 		$('.userCard').val(addUser.maxNum-0+1);
-		$.each(data.dept,function(index,item){
+		$.each(data.shop,function(index,item){
 			$('<option>').appendTo($('.deptlist')).attr('value',item.id).html(item.name);
 		});
 		$.each(data.role,function(index,item){
@@ -46,6 +46,18 @@ $(function(){
 	$('.addUserInfo').on('click',function(){
 		config.formSubmit('#adminInfo',config.ajaxAddress.addshopUser,function(data){
 			console.log(data);
+			if(data.code==200){
+                layer.msg('添加成功');
+                setTimeout(function(){
+                    open('shop-user.html','_self');
+                },500)
+                
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                setTimeout(function(){
+                    open('shop-user.html','_self');
+                },500)
+            }
 		});
 	})
 
