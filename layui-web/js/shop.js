@@ -18,6 +18,11 @@ $(function(){
 		})
 	
 	});
+
+	$('#menulist-wraper').on('click','.editorShopInfo',function(){
+		open('edit-shop.html?id='+$(this).data('id'),'_self');
+	});
+
 	$('#all-author-list').on('click','.editor-role',function(){
 		
 	});

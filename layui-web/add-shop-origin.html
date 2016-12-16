@@ -114,6 +114,18 @@
                 </div>
               </div>
               <div class="layui-form-item">
+                <label class="layui-form-label">开户行</label>
+                <div class="layui-input-block">
+                  <input type="text" name="chequ" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">银行卡号</label>
+                <div class="layui-input-block">
+                  <input type="text" name="account" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-block">
                   <input type="text" name="details" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
@@ -131,13 +143,14 @@
                   <input type="text" name="fixedline" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
-               <!--<div class="layui-form-item layui-form-text">
+              <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+               <!-- <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">身份证照片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <img class="sfz imageadd" src="" alt="" width="100%" height="400">
                 </div>
                 <input type="hidden" name="cardpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
-              </div> -->
+                             </div> -->
               <div class="layui-form-item">
                 <label class="layui-form-label">营业时间</label>
                 <div class="layui-input-inline">
@@ -256,13 +269,13 @@
 
 
 <script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>
-<!-- <script src="/shop/shop/public/utf8-php/ueditor.config.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.config.js"></script>
 <script src="/shop/shop/public/utf8-php/ueditor.all.js"></script>
-<script src="/shop/shop/public/utf8-php/ueditor.all.min.js"></script> -->
+<script src="/shop/shop/public/utf8-php/ueditor.all.min.js"></script>
 <script src="./js/add-shop-origin.js"></script>
 <script type="text/javascript">
 
-        /*var ImageWrapper={
+        var ImageWrapper={
   temp:'',
   imgArr:[],
   suolveImg:[],
@@ -303,7 +316,7 @@ var goodsHouse={
         // $()
           // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
     });
-*/
+
 
      
     /* 文件上传监听
@@ -311,34 +324,34 @@ var goodsHouse={
      * d.execCommand("insertHtml",l)
      * 之后插入d.fireEvent('afterUpfile',b)
      */
-       /* o_ueditorupload.addListener('afterUpfile', function (t, arg)
+        o_ueditorupload.addListener('afterUpfile', function (t, arg)
         {
           alert('这是文件地址：'+arg[0].url);
         });
-      });*/
+      });
        
       //弹出图片上传的对话框
-      /*function upImage(str)
+      function upImage(str)
       {
         ImageWrapper.temp=str;
         // console.log(str);
 
         var myImage = o_ueditorupload.getDialog("insertimage");
         myImage.open();
-      }*/
+      }
       //弹出文件上传的对话框
       /*function upFiles()
       {
         //var myFiles = o_ueditorupload.getDialog("attachment");
         //myFiles.open();
-      } 
+      } */
 
 
 
       $('.imageadd').on('click',function(){
           console.log(UE);
           upImage('image-suolve');
-        })*/
+        })
 
 
 
@@ -624,8 +637,9 @@ var goodsHouse={
         });
 
 
-
-        $('.shop-coding').val(new Date().getTime());
+        
+        
+        
 
 
 

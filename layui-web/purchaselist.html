@@ -148,11 +148,16 @@
         
         <table class="layui-table">
           <colgroup>
-            <!-- <col width="100">
-            <col width="100">
             <col>
-            <col width="100">
-            <col width="300"> -->
+            <col>
+            <col>
+            <col width="50">
+            <col>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col width="150">
           </colgroup>
           <thead>
             <tr>
@@ -197,7 +202,7 @@
 
     <div class="layui-form-item">
       <div class="layui-input-block">
-        <div class="layui-btn saveGoodsNum">确定</button>
+        <div class="layui-btn saveGoodsNum">确定</div>
         
       </div>
     </div>
@@ -212,7 +217,7 @@
   <tr>
     <td>{{d.oddnum}}</td>
     <td>{{d.expiry}}</td>
-    <td>RMB</td>
+    <td>{{d.deptName}}</td>
     <td>{{d.name}}</td>
     <td>{{d.dposit}}</td>
     {{#  if(d.status){ }}
@@ -238,12 +243,13 @@
     <td>{{d.goods}}</td>
     <td>{{d.gg}}</td>
     <td>{{d.supplier}}</td>
-    <td>{{d.name}}</td>
+    <td>{{d.DeptName}}</td>
     <td>{{d.price}}</td>
-    <td>{{d.unm}}</td>
+    <td>{{d.number}}</td>
     <td>{{d.singlePrice}}</td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" data-id="{{d.selectedindex}}">编辑</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" data-id="{{d.selectedindex}}" data-goodId="{{d.id}}">编辑</div>
+      <div class="layui-btn layui-btn-warn layui-btn-small deleteSingGood" data-id="{{d.selectedindex}}" data-goodId="{{d.id}}">删除</div>
     </td>
   </tr>
 </script>

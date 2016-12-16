@@ -1,12 +1,13 @@
 $(function(){
 	// console.log(laytpl);
 	var laytpl;
-	layui.use('laytpl',function(){
-		laytpl = layui.laytpl;
-	});
 	var authorId=location.href.split('?')[1].split('=')[1];
 	$('#role-id').val(authorId);
-	config.ajax('get',config.ajaxAddress.editorUserRole,function(data){
+	
+	layui.use('laytpl',function(){
+		laytpl = layui.laytpl;
+
+		config.ajax('get',config.ajaxAddress.editorUserRole,function(data){
 		console.log(data);
 		//authorList authorContent
 		$('.role-name').val(data.roleInfo[0].name);
@@ -25,6 +26,12 @@ $(function(){
 
 		});
 	},{id:authorId});
+
+
+
+
+	});
+	
 
 	$('.commit-author').on('click',function(){
 		layer.open({

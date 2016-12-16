@@ -8,12 +8,20 @@ $(function(){
 			$('#goods-orderlist').html('');
 			$.each(orderlist.selectedList,function(index,item){
 				item.selectedindex=index;
-				console.log(item);
+				// console.log(item);
 				laytpl(tempHtml).render(item,function(html){
 					$('#goods-orderlist').append(html);
 				});
 			});
 		}
+	}
+
+
+	var purchasePage={
+		arrOrder:[],
+		selectedindex:'',
+		zongjia:'',
+		del:''
 	}
 	//复选框选中
 	$('.checkall').on('click',function() {
@@ -113,6 +121,7 @@ $('#goodsName').on('click',function(){
 	
 	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
 		orderlist.goodslist=data;
+		
 		$('#searchedlist').html('');
 		var tempHtml=searchedcontent.innerHTML;
 		$.each(data,function(index,item){
@@ -141,12 +150,15 @@ $('#goodsName').on('click',function(){
 
 //选择之后添加到展示列表
 $('#confirmorder').on('click',function(){
-	console.log('goods confirm');
+	// console.log('goods confirm');
 	$('.ischecked').each(function(){
         if(this.checked){
-           orderlist.selectedList.push(orderlist.goodslist[this.value]);
+           orderlist.selectedList.push(orderlist.goodslist[this.value-0]);
         }
      });
+	$.each(orderlist.goodslist,function(index,item){
+			item.number=1;
+		});
 	console.log(orderlist.selectedList);
 	orderlist.updateOrderList();
 	layer.closeAll();
@@ -168,12 +180,12 @@ $('#confirm-save').on('click',function(){
 		layer.open({type: 3});
 		var arr=[];
 		$.each(orderlist.selectedList,function(index,item){
-			arr.push({'good_id':item.id,'unm':1});
+			arr.push({'good_id':item.id,'unm':item.number});
 		})
 		$('#goods').val(JSON.stringify(arr));
-		console.log($('#goods').val());
+		// console.log($('#goods').val());
 		config.formSubmit('#orderlist-submit',config.ajaxAddress.addOrderList,function(data){
-			console.log(data);
+			// console.log(data);
 			 if(data.code==200){
                 layer.msg('添加成功');
                 setTimeout(function(){
@@ -197,6 +209,51 @@ $('#goods-orderlist').on('click','.deleteGoods',function(){
 	orderlist.selectedList.splice($(this).attr('id'),1);
 	orderlist.updateOrderList();
 })
+var tanchuindex;
+$('#goods-orderlist').on('click','.editorSingGood',function(){
+	console.log($(this).attr('id'));
+	// orderlist.selectedList.splice($(this).attr('id'),1);
+	purchasePage.selectedindex=$(this).attr('id');
+	tanchuindex=layer.open({
+		type:1,
+		content: $('#goodsNum'), //这里content是一个DOM
+      shade:[0.8,'#000'],
+      area:'400px',
+      maxmin: false
+	})
+
+	// orderlist.updateOrderList();
+})
+
+$('.saveGoodsNum').on('click',function(){
+	
+	var num=$('.singleNum').val();
+	var ind=purchasePage.selectedindex-0;
+	// console.log(num);
+	orderlist.selectedList[ind].number=num;
+	// purchasePage.arrOrder[ind].singlePrice=(num*purchasePage.arrOrder[ind].price).toFixed(2);
+	// purchasePage.zongjia+=purchasePage.arrOrder[ind].singlePrice-0;
+	// var tempHtml=singleOrderList.innerHTML;
+	if(num==0){
+		purchasePage.del+=orderlist.selectedList[ind].id;
+		
+		layer.confirm('确定删除?', {icon: 3, title:'提示'}, function(i){
+  			//do something
+  			
+  			orderlist.selectedList.splice(ind,1);
+  			orderlist.updateOrderList();
+  			
+		  layer.close(i);
+		});
+	}else{
+		orderlist.updateOrderList();
+	}
+	
+	layer.close(tanchuindex);
+});
+
+
+
 
 })
 

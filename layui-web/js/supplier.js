@@ -3,12 +3,15 @@ $(function(){
 	var supplierPage={
         selectIndex:1,
         count:'',
+        pagecount:'',
         isupdate:true,
 		area_p:config.area_num.root,
         area:{
             provinces:'',
             city:'',
-            county:''
+            county:'',
+            state_type:'',
+            run:''
         },
         addProvince:function(){
             //创建省份类select
@@ -87,7 +90,7 @@ $(function(){
             $('#supplier-message-list').html('');
             $('#detailcount').text(obj.count);
         var page=obj.count%config.pSort.pagecount==0?obj.count/config.pSort.pagecount:parseInt(obj.count/config.pSort.pagecount)+1;
-        console.log(page,obj.address);
+        // console.log(page,obj.address);
          $('#detailpage').text(page);
          $('#pagecount').text(config.pSort.pagecount);
          if(supplierPage.isupdate){
@@ -98,7 +101,7 @@ $(function(){
          }
          
          $('#pagewrap').find('a').text(supplierPage.selectIndex);
-        console.log(obj.data);
+        // console.log(obj.data);
         var arr=[];
         var supplierhtml=$('#showSupplierList').html();
         $.each(obj.data,function(index,item){
@@ -112,14 +115,22 @@ $(function(){
 
 	//添加供应商信息
 	$('.addSupplier').on('click',function(){
+
+        $('#supplierNum').val('');
         config.ajax('get',config.ajaxAddress.addSupplier,function(data){
             $.each(data.run,function(index,item){
-                console.log(item);
-                $('<li>').appendTo($('#run_type')).html(item.run).attr('id',item.id);
+                // console.log(item);
+                var $li=$('<li>').appendTo($('#run_type')).html(item.run).attr('id',item.id);
+                $li.on('click',function(){
+                     supplierPage.area.run=$(this).attr('id');
+                });
             });
             $.each(data.statements,function(index,item){
                 console.log(item);
-                $('<li>').appendTo($('#method_type')).html(item.statements).attr('id',item.id);
+                var $li=$('<li>').appendTo($('#method_type')).html(item.statements).attr('id',item.id);
+                $li.on('click',function(){
+                    supplierPage.area.state_type=$(this).attr('id');
+                });
             });
             layer.open({
              type: 1,
@@ -149,8 +160,11 @@ $(function(){
 	var laytpl;
 	layui.use('laytpl',function(){
 		laytpl=layui.laytpl;
+
+
+
 	});
-	config.ajax('get',config.ajaxAddress.showSupplierList,function(data){
+	/*config.ajax('get',config.ajaxAddress.showSupplierList,function(data){
 		console.log(data);
 		var tempHtml=supplierList.innerHTML;
 		$('#supplier-wrapper').html('');
@@ -160,18 +174,43 @@ $(function(){
 				$('#supplier-wrapper').append(html);
 			});
 		});
-	});
+	});*/
+var fistLoad=true;
+updatePageNum(0);
+function updatePageNum(p1){
+    config.ajax('get',config.ajaxAddress.showSupplierList,function(data){
+        console.log(data);
+        supplierPage.pagecount=data.count;
+        var tempHtml=supplierList.innerHTML;
+        $('#supplier-wrapper').html('');
+        if(fistLoad){
 
+                updatePage();
+            }
+        $.each(data.data,function(index,item){
+
+            laytpl(tempHtml).render(item,function(html){
+                $('#supplier-wrapper').append(html);
+            });
+        });
+    },{p:p1});
+        
+    }
 
     $('#editorinfo').on('click',function(){
        config.formSubmit('.editorForm',config.ajaxAddress.updateSupplier,function(data){
-        console.log(data);
+        // console.log(data);
        })
     });
 
      $('#addInfo').on('click',function(){
         layer.open({type:3});
-        config.formSubmit('.editorForm',config.ajaxAddress.addSupplier,function(data){
+        $('.ppro').val(supplierPage.area.provinces);
+        $('.ppcity').val(supplierPage.area.city);
+        $('.ppcounty').val(supplierPage.area.county);
+        $('.ppstate').val(supplierPage.area.state_type);
+        $('.pprun').val(supplierPage.area.run);
+        config.formSubmit('.addForm',config.ajaxAddress.addSupplier,function(data){
             console.log(data);
             if(data.code==200){
                 layer.msg('添加成功');
@@ -188,7 +227,23 @@ $(function(){
     });
 
 
-    
+    function updatePage(){
+    layui.use(['laypage', 'layer'],function(){
+        var laypage=layui.laypage;
+        var layer = layui.layer;
+        laypage({
+            cont: 'page'
+            ,pages: supplierPage.pagecount //总页数
+            ,groups: 5 //连续显示分页数
+            ,jump:function(data){
+                //得到页数data.curr
+                updatePageNum(data.curr);
+            }
+          });
+    });
+
+    fistLoad=false;
+}
 
 
 });

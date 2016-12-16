@@ -1,4 +1,5 @@
 $(function(){
+	var fistLoad=true;
 var goodsInfo={
 	pageCount:''
 }
@@ -20,7 +21,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 	})
 });
 
-config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
+/*config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
 	var tempHtml=supplierList.innerHTML;
 	$('#purchaselist').html('');
 	goodsInfo.pageCount=data.count;
@@ -32,8 +33,28 @@ config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
 			$('#purchaselist').append(html);
 		});
 	});
-});
+});*/
 
+ function updatePageNum(p1){
+        config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
+            var tempHtml=supplierList.innerHTML;
+            $('#purchaselist').html('');
+            goodsInfo.pageCount=data.count;
+            if(fistLoad){
+
+                updatePage();
+            }
+            $.each(data.data,function(index,item){
+                item.selectedindex=index;
+                console.log(item);
+                laytpl(tempHtml).render(item,function(html){
+                    $('#purchaselist').append(html);
+                });
+            });
+        },{p:p1});
+    }
+
+updatePageNum(0);
 function updatePage(){
 	layui.use(['laypage', 'layer'],function(){
 		var laypage=layui.laypage;
@@ -44,10 +65,11 @@ function updatePage(){
 		    ,groups: 5 //连续显示分页数
 		    ,jump:function(data){
 		    	//得到页数data.curr
-		    	
+		    	updatePageNum(data.curr);
 		    }
 		  });
 	});
+	fistLoad=false;
 }
 	
 

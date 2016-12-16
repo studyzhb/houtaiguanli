@@ -526,6 +526,10 @@
                 <input type="text" class="w160 goods-fullname" id="fullname-jname" name="name" value="">
               </div>
               <div class="input-wrapper">
+                <label>商品编码</label>
+                <input type="text" readonly class="w160 goodsBm" name="coding" value="" >
+              </div>
+              <div class="input-wrapper">
                 <label>国际条形码</label>
                 <input type="text" class="w160 barcode" name="barcode" value="">
               </div>
@@ -994,6 +998,9 @@
         var con=codefans_net_CC2PY($(this).val());
         $('#zname-show').val(con);
     });
+  var da=new Date().getTime()+'';
+
+  $('.goodsBm').val(da.substring(5));
 </script>
 </body>
 </html>

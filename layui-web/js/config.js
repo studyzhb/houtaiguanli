@@ -25,6 +25,8 @@ var config={
 	ajaxAddress:{
     //登录
     loginAdd:"http://192.168.1.150/shop/shop/public/index.php/admin/Login/login",
+    //访问前权限验证
+    validateAuthor:'http://192.168.1.150/shop/shop/public/index.php/admin/Index/check',
     //退出登录
     quit:'http://192.168.1.150/shop/shop/public/index.php/admin/Login/out',
     //获取验证码
@@ -112,7 +114,6 @@ var config={
       goodsInput:'http://192.168.1.150/shop/shop/public/index.php/admin/Store/storeInput',
       //修改入库
       editInput:'http://192.168.1.150/shop/shop/public/index.php/admin/Store/check'
-
 	},
   pSort:{
     pagecount:10

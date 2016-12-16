@@ -26,7 +26,6 @@
   </div>
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
-      
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
   
@@ -76,8 +75,6 @@
           <col width="100">
           <col>
           <col width="300">
-          
-
         </colgroup>
         <thead>
           <tr>
@@ -287,10 +284,8 @@
     <td>{{d.coding}}</td>
     <td>{{d.name}}</td>
     <td>{{d.street}}</td>
-    <td>
-      
-      <div class="layui-btn layui-btn-warm layui-btn-small">编辑</div>
-     
+    <td> 
+      <div class="layui-btn layui-btn-warm layui-btn-small editorShopInfo" data-id="{{d.id}}" >编辑</div>
     </td>
   </tr>
           

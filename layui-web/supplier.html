@@ -139,7 +139,9 @@
 
           </div>
         </div>
-
+      <div style="height:55px;padding-right:10px;">
+        <div id="page" style="float:right;"></div>
+      </div>
 
      </div>
 
@@ -156,6 +158,11 @@
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
   <div class="alert-main-con show-content">
       <form method="POST" class="addForm" action="">
+        <input type="hidden" class="ppro" name="provinces" value="">
+        <input type="hidden" class="ppcity" name="city" value="">
+        <input type="hidden" class="ppcounty" name="county" value="">
+        <input type="hidden" class="ppstate" name="statements_id" value="">
+        <input type="hidden" class="pprun" name="run_id" value="">
         <fieldset>
           <legend>
             基本信息
@@ -253,40 +260,34 @@
               </div>
               <div class="input-wrapper">
                 <label>供应商名称</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="name" value="">
               </div>
-              <div class="input-wrapper">
-                <label>账号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
+              
               <div class="input-wrapper">
                 <label>税务号</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="syw" value="">
               </div>
             </li>
             <li>
               <div class="input-wrapper">
                 <label>邮政编码</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="postcode" value="">
               </div>
               <div class="input-wrapper">
                 <label>传真</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="fax" value="">
               </div>
               <div class="input-wrapper">
                 <label>联系人</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="contact" value="">
               </div>
             </li>
             <li>
               <div class="input-wrapper">
                 <label>电话</label>
-                <input type="text" class="w160" name="" value="">
+                <input type="text" class="w160" name="ptel" value="">
               </div>
-              <div class="input-wrapper">
-                <input type="checkbox" checked />
-                <label>是否启用</label>
-              </div>
+              
             </li>
           </ul>
         </fieldset> 

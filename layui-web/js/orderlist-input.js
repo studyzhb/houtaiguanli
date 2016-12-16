@@ -29,6 +29,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 			purchasePage.zongjia=item.dposit;
 			item.singlePrice=item.price*item.unm;
 			item.selectedindex=index;
+			purchasePage.buyerid=item.id;
 			purchasePage.arrOrder.push(item);
 			laytpl(tempHtml).render(item,function(html){
 				$('#singleOrderWrapper').append(html);
@@ -79,11 +80,12 @@ $('.saveGoodsNum').on('click',function(){
 });
 
 $('.confirmorder').on('click',function(){
-	
-	config.formSubmit('#purchaselistForm',config.ajaxAddress.editOrderList,function(data){
+	$('.orderlistId').val(purchasePage.buyerid);
+	$('.orderToF').val($(this).data('id'));
+	config.formSubmit('#purchaselistForm',config.ajaxAddress.goodsInput,function(data){
 		console.log(data);
 		if(data.code==200){
-                layer.msg('提交成功');
+                layer.msg('操作成功');
                 setTimeout(function(){
                     open('orderlistInput.html','_self');
                 },500)

@@ -10,8 +10,7 @@
 	<script src="./layui/layui.js"></script>
     <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
   	<script type="text/javascript" src="./js/jquery-form.js"></script>
-    
-    
+
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -83,10 +82,28 @@
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">地址</label>
+                <div class="layui-input-inline">
+                  <select name="provinces" lay-filter="pro" class="provinceswrap">
+                    <option value="">111</option>
+                  </select>
+                </div>
+                <div class="layui-input-inline">
+                  <select name="city" lay-filter="city" class="cityswrap">
+                    <option value="">市</option>
+                  </select>
+                </div>
+                <div class="layui-input-inline">
+                  <select name="county" class="counwrap">
+                    <option value="">县</option>
+                  </select>
+                </div>
+              </div>
+              <!-- <div class="layui-form-item">
+                <label class="layui-form-label">地址</label>
                 <div class="layui-input-block">
                   <input type="text" name="address" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
-              </div>
+              </div> -->
               <div class="layui-form-item">
                 <label class="layui-form-label">经纬度</label>
                 <div class="layui-input-inline">

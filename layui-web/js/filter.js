@@ -4,8 +4,15 @@ var $;
 var laytpl;
 var user=cookieUtil.getCookie('username');
 $(function(){
+
+	$('.layui-tab-title').on('click',function(){
+		if($(this).has('a')){
+			location.href=$(this).find('a').attr('href');
+		}
+	})
+
 	$('.quit').on('click',function(){
-	console.log('111');
+	
 	config.ajax('get',config.ajaxAddress.quit,function(data){
 		if(data.code==200){
             layer.msg('退出成功');
@@ -23,10 +30,21 @@ $(function(){
 	})
 	});
 
-
+	// config.ajax('get',config.ajaxAddress.validateAuthor,function(data){
+	// 	console.log(data);
+	// 	if(data.code==200){
+           
+            
+ //        }else{
+ //            layer.msg('请检查权限');
+ //            setTimeout(function(){
+ //                open('login.html','_self');
+ //            },500)
+ //        }
+	// });
 
 config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
-		console.log(data);
+		// console.log(data);
 		if(!!user){
 			$('.username').text(cookieUtil.getCookie('username'));
 		}else{

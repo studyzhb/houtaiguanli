@@ -15,7 +15,10 @@ $(function(){
 
 		$('.userCard').val(addUser.maxNum-0+1);
 		$.each(data.dept,function(index,item){
-			$('<option>').appendTo($('.deptlist')).attr('value',item.id).html(item.name);
+			$('<option>').appendTo($('.deptlist')).html(item.name);
+			$.each(item.z,function(i,ites){
+				$('<option>').appendTo($('.deptlist')).attr('value',ites.id).html('----'+ites.name);
+			})
 		});
 		$.each(data.role,function(index,item){
 			$('<option>').appendTo($('.rolelist')).attr('value',item.id).html(item.name);
@@ -47,6 +50,18 @@ $(function(){
 	$('.addUserInfo').on('click',function(){
 		config.formSubmit('#adminInfo',config.ajaxAddress.addUserInfo,function(data){
 			console.log(data);
+			if(data.code==200){
+                layer.msg('添加成功');
+                setTimeout(function(){
+                    open('admin-user.html','_self');
+                },1000);
+                
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                setTimeout(function(){
+                    open('admin-user.html','_self');
+                },1000);
+            }
 		});
 	})
 

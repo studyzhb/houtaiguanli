@@ -58,6 +58,8 @@ var addShopPage={
         },
 	}
 
+
+
 	config.ajax('get',config.ajaxAddress.addshopList,function(data){
 		console.log(data);
 		$('.parCom').html('<option value="0">一级机构</option>');
@@ -158,7 +160,17 @@ var addShopPage={
 		});
 	});
 
+	var shopNum;
+	config.ajax('get',config.ajaxAddress.addshopList,function(data){
+		console.log(data);
 
+		if(data.coding){
+			shopNum=data.coding-0+1;
+		}else{
+			shopNum=800001;
+		}
+		$('.shop-coding').val(shopNum);
+	});
 
 
 

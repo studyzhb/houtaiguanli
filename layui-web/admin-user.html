@@ -148,12 +148,12 @@
    <tr>
               <td>{{d.id}}</td>
               <td>{{d.job_num}}</td>
-              <td>{{d.jtel}}</td>
+              <td>{{d.tel}}</td>
               <td>{{d.email}}</td>
               {{# if(d.status) { }}
-                <td>禁用</td>
-              {{# }else{ }}
                 <td>启用</td>
+              {{# }else{ }}
+                <td>禁用</td>
               {{# } }}
               
               <td>
@@ -347,7 +347,7 @@
 <script src="./js/admin-user.js"></script>
 <script>
   function editorUser(obj){
-    conosle.log($(obj).data('id'));
+    console.log($(obj).data('id'));
   }
 </script>
 </html>

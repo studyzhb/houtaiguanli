@@ -442,16 +442,29 @@
     <td>{{d.coding}}</td>
     <td>{{d.name}}</td>
     <td>{{d.brand}}</td>
-    <td>1</td>
-    <td>10.00</td>
+    <td>{{d.number}}</td>
+    <td>{{d.buyprice}}</td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small">编辑</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" id="{{d.selectedindex}}">编辑</div>
       <div class="layui-btn layui-btn-small layui-btn-danger deleteGoods" id="{{d.selectedindex}}">删除</div>
     </td>
   </tr>
 </script>
 
 </div>
-
+<div id="goodsNum" class="layui-form" style="display:none">
+    <div class="layui-form-item">
+      <label class="layui-form-label">更改数量</label>
+      <div class="layui-input-inline">
+        <input type="text" placeholder="请输入数量" autocomplete="off" class="layui-input singleNum" />
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <div class="layui-btn saveGoodsNum">确定</div>
+        
+      </div>
+    </div>
+  </div>
 </body>
 </html>
