@@ -109,74 +109,10 @@
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane" id="adminInfo" action="" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <div class="layui-form-item">
-                <label class="layui-form-label">工号</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="job_num" readonly placeholder="自动生成" autocomplete="off" class="layui-input userCard">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">身份证号</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="carded" placeholder="请输入" autocomplete="off" class="layui-input idCard">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">角色</label>
-                <div class="layui-input-inline">
-                  <select name="role_id" class="rolelist">
-                    
-                  </select>
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">部门</label>
-                <div class="layui-input-inline">
-                  <select name="dept_id" class="deptlist" >
-                    
-                  </select>
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">家庭地址</label>
-                <div class="layui-input-inline">
-                  <input type="text" readonly name="address" placeholder="自动生成" autocomplete="off" class="layui-input addressInfo">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">出生日期</label>
-                <div class="layui-input-inline">
-                  <input type="text" readonly name="birthday" placeholder="自动生成" autocomplete="off" class="layui-input birthdayInfo">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">性别</label>
-                <div class="layui-input-inline">
-                  <input type="text" readonly name="sex" placeholder="自动生成" autocomplete="off" class="layui-input sexInfo">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">状态</label>
-                <div class="layui-input-block">
-                  <input type="radio" name="status" title="启用">
-                  <input type="radio" name="status" title="停用">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">test</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" />
-                </div>
-              </div>
+              <div class="edituserwrap"></div>
               
-              
-              
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">请填写描述</label>
-                <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
-                </div>
-              </div>
+
+
               <div class="layui-form-item">
                 <div class="layui-input-block">
                   <div class="layui-btn addUserInfo">添加用户</div>
@@ -380,6 +316,116 @@
   </li>
 </script>
 	
+  <script type="text/html" id="editusercontent">
+    <div class="layui-form-item">
+                <label class="layui-form-label">工号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="job_num" value="{{d.job_num}}" readonly placeholder="自动生成" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="password" value="{{d.password}}" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">身份证号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="carded" value="{{d.carded}}" readonly placeholder="请输入" autocomplete="off" class="layui-input idCard">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">角色</label>
+                <div class="layui-input-inline">
+                  <select name="role_id" class="rolelist">
+                    {{#  layui.each(d.role,function(index, item){ }}
+                      {{# if(item.status){ }}
+                      <option value="{{item.id}}" selected>
+                        {{item.name}}
+                      </option>
+                      {{# }else{ }}
+                        <option value="{{item.id}}">
+                        {{item.name}}
+                      </option>
+                      {{# } }}
+                    {{#  }); }}
+                  </select>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">部门</label>
+                <div class="layui-input-inline">
+                  <select name="dept_id" class="deptlist" >
+                    {{#  layui.each(d.dept,function(index, item){ }}
+                      <option>
+                        {{item.name}}
+                      </option>
+                      
+                        {{#  layui.each(item.children,function(ind, ites){ }}
+                            {{# if(ites.status){ }}
+                              <option value="{{ites.id}}" selected>
+                                ----{{ites.name}}
+                              </option>
+                              {{# }else{ }}
+                                <option value="{{ites.id}}">
+                                ----{{ites.name}}
+                              </option>
+                              {{# } }}
+                          
+                        {{#  }); }}
+                     
+                       
+                    {{#  }); }}
+                  </select>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">家庭地址</label>
+                <div class="layui-input-inline">
+                  <input type="text" readonly value="{{d.address}}" name="address" placeholder="自动生成" autocomplete="off" class="layui-input addressInfo">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">出生日期</label>
+                <div class="layui-input-inline">
+                  <input type="text" readonly name="birthday" value="{{d.birthday}}" placeholder="自动生成" autocomplete="off" class="layui-input birthdayInfo">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-inline">
+                  {{# if(d.sex){ }}
+                    <input type="text" readonly name="sex" value="男" placeholder="自动生成" autocomplete="off" class="layui-input sexInfo">
+                  {{# }else{ }}
+                    <input type="text" readonly name="sex" value="女" placeholder="自动生成" autocomplete="off" class="layui-input sexInfo">
+                  {{# } }}
+                  
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                  {{# if(d.status){ }}
+                    <input type="radio" checked name="status" title="启用">
+                    <input type="radio" name="status" title="停用">
+                  {{# }else{ }}
+                    <input type="radio" name="status" title="启用">
+                    <input type="radio" checked name="status" title="停用">
+                  {{# } }}
+                  
+                </div>
+              </div>
+
+              
+              
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">请填写描述</label>
+                <div class="layui-input-block">
+                  <textarea placeholder="请输入内容" name="note" class="layui-textarea">{{d.note}}</textarea>
+                </div>
+              </div>
+  </script>
 
 
 </div>
@@ -388,5 +434,5 @@
 <script src="./js/config.js"></script>
 <script src="./js/filter.js"></script>
 <script src="./js/getInfoByUserCard.js"></script>
-<script src="./js/add-admin-user.js"></script>
+<script src="./js/edit-admin-user.js"></script>
 </html>

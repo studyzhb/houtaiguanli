@@ -8,12 +8,48 @@ Dsy.prototype.Exists = function (id) {
     if (typeof(this.Items[id]) == "undefined") return false;
     return true;
 }
+/**
+ * cookie
+ */
+var cookieUtil={
+    //天数
+    setCookie:function(user,name){
+        document.cookie=user+"="+name;
+    },
+    setExpiresDate:function(user,name,value){
+        var da=new Date();
+        var expiresDay=da.getDate()+value;
+        da.setDate(expiresDay);
+        document.cookie=user+"="+name+";expires="+da+";path=/";
+    },
+    getCookie:function(name) {
+        if(document.cookie.length>0){
+            var start=document.cookie.indexOf(name+"=");
+            if(start!=-1){
+                start=document.cookie.indexOf(name+"=")+name.length+1;
+            }else{
+                return '';
+            }
+            var end=document.cookie.indexOf(';',start)!=-1?document.cookie.indexOf(';',start):document.cookie.length;
+            return document.cookie.substring(start,end);
+        }
+        return "";
+    },
+    removeCookie:function(name){
+        this.setExpiresDate(name,1,-1);
+    }
+};
+
+
 var config={
   //表单提交
   formSubmit:function(formId,urlhttp,fun){
-    
+    var tok=cookieUtil.getCookie('token');
     $(formId).ajaxSubmit({
       url:urlhttp,
+      data:{
+        token:tok
+      },
       success:function(data){
         console.log(data);
         if(!!fun){
@@ -24,96 +60,100 @@ var config={
   },
 	ajaxAddress:{
     //登录
-    loginAdd:"http://192.168.1.150/shop/shop/public/index.php/admin/Login/login",
+    loginAdd:"/shop/shop/public/index.php/admin/Login/login",
     //访问前权限验证
-    validateAuthor:'http://192.168.1.150/shop/shop/public/index.php/admin/Index/check',
+    validateAuthor:'/shop/shop/public/index.php/admin/Index/check',
     //退出登录
-    quit:'http://192.168.1.150/shop/shop/public/index.php/admin/Login/out',
+    quit:'/shop/shop/public/index.php/admin/Login/out',
     //获取验证码
-    getValiCode:'http://192.168.1.150/shop/shop/public/index.php/admin/Login/getCode',
+    getValiCode:'/shop/shop/public/index.php/admin/Login/getCode',
+    //推送
+    postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号
-    supplierNum:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/checkCoding',
+    supplierNum:'/shop/shop/public/index.php/admin/Supplier/checkCoding',
     //验证商品的国际条形码barcode
-    goodsI18Num:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/checkBarcode',
+    goodsI18Num:'/shop/shop/public/index.php/admin/Good/checkBarcode',
     //验证商品的一品多码decode
-    goodsNum:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/checkDecode',
+    goodsNum:'/shop/shop/public/index.php/admin/Good/checkDecode',
     //物品信息列表http://192.168.1.18/wp/public/index.php/admin/good/show
-	goodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/show',
+	goodsInfo:'/shop/shop/public/index.php/admin/Good/show',
     //添加物品信息
-    addgoodsInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/addGoods',
+    addgoodsInfo:'/shop/shop/public/index.php/admin/Good/addGoods',
     //商品基本信息编辑更改
-    goodsEditor:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/edit',
+    goodsEditor:'/shop/shop/public/index.php/admin/Good/edit',
     //商品详情页添加
-    goodsDetail:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/detail',
-    goodsaddDetail:'http://192.168.1.150/shop/shop/public/index.php/admin/Good/addDetail',
+    goodsDetail:'/shop/shop/public/index.php/admin/Good/detail',
+    goodsaddDetail:'/shop/shop/public/index.php/admin/Good/addDetail',
     //添加供货商地址
-	addSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/supplier/add',
+	addSupplier:'/shop/shop/public/index.php/admin/supplier/add',
     //更新单个供货商信息地址http://192.168.1.18/wp/public/index.php/admin/supplier/update
-	updateSupplier:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/update',
+	updateSupplier:'/shop/shop/public/index.php/admin/Supplier/edit',
     //显示供货商列表信息http://192.168.1.18/wp/public/index.php/admin/supplier/show
-    showSupplierList:'http://192.168.1.150/shop/shop/public/index.php/admin/Supplier/lst',
+    showSupplierList:'/shop/shop/public/index.php/admin/Supplier/lst',
     //商品分类添加
-    addGoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/add',
+    addGoodsSort:'/shop/shop/public/index.php/admin/Category/add',
     //商品分类展示
-    showGoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/lst',
+    showGoodsSort:'/shop/shop/public/index.php/admin/Category/lst',
     //商品分类修改
-    editGoodsSort:'http://192.168.1.150/shop/shop/public/index.php/admin/Category/edit',
+    editGoodsSort:'/shop/shop/public/index.php/admin/Category/edit',
     //商品品牌
-    showgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Brand/lst',
+    showgoodsbrand:'/shop/shop/public/index.php/admin/Brand/lst',
     //商品品牌
-    addgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Brand/add',
+    addgoodsbrand:'/shop/shop/public/index.php/admin/Brand/add',
     //商品品牌
-    editgoodsbrand:'http://192.168.1.150/shop/shop/public/index.php/admin/Brand/edit',
+    editgoodsbrand:'/shop/shop/public/index.php/admin/Brand/edit',
     //搜索商品
-    searchOrder:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/getInfo',
+    searchOrder:'/shop/shop/public/index.php/admin/purchase/getInfo',
     // 添加订单
-    addOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/add',
+    addOrderList:'/shop/shop/public/index.php/admin/purchase/add',
     //获取采购单列表
-    getOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/lst',
+    getOrderList:'/shop/shop/public/index.php/admin/purchase/lst',
     //编辑采购单列表
-    editOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/edit',
+    editOrderList:'/shop/shop/public/index.php/admin/purchase/edit',
     //编辑采购单列表
-    checkOrderList:'http://192.168.1.150/shop/shop/public/index.php/admin/purchase/check',
+    checkOrderList:'/shop/shop/public/index.php/admin/purchase/check',
     //增加菜单
-    addMenulist:'http://192.168.1.150/shop/shop/public/index.php/admin/Privilege/add',
+    addMenulist:'/shop/shop/public/index.php/admin/Privilege/add',
     //修改菜单
-    editMenulist:'http://192.168.1.150/shop/shop/public/index.php/admin/Privilege/edit',
+    editMenulist:'/shop/shop/public/index.php/admin/Privilege/edit',
     //删除菜单
-    deleteMenulist:'http://192.168.1.150/shop/shop/public/index.php/admin/Privilege/delete',
+    deleteMenulist:'/shop/shop/public/index.php/admin/Privilege/delete',
     //通过工号获取所拥有的权限列表
-    getAuthorlist:'http://192.168.1.150/shop/shop/public/index.php/admin/Index/index',
+    getAuthorlist:'/shop/shop/public/index.php/admin/Index/index',
     //角色列表展示
-    getUserRoleList:'http://192.168.1.150/shop/shop/public/index.php/admin/Role/lst',
+    getUserRoleList:'/shop/shop/public/index.php/admin/Role/lst',
     //角色信息修改
-    editorUserRole:'http://192.168.1.150/shop/shop/public/index.php/admin/Role/edit',
+    editorUserRole:'/shop/shop/public/index.php/admin/Role/edit',
     //添加角色
-    addUserRole:'http://192.168.1.150/shop/shop/public/index.php/admin/Role/add',
+    addUserRole:'/shop/shop/public/index.php/admin/Role/add',
     //显示员工列表
-    showUserInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Admin/lst',
+    showUserInfo:'/shop/shop/public/index.php/admin/Admin/lst',
     //添加员工
-    addUserInfo:'http://192.168.1.150/shop/shop/public/index.php/admin/Admin/add',
+    addUserInfo:'/shop/shop/public/index.php/admin/Admin/add',
+    //员工编辑
+    editUserInfo:'/shop/shop/public/index.php/admin/Admin/edit',
     //组织机构
-    showAdminOrigin:'http://192.168.1.150/shop/shop/public/index.php/admin/Dept/lst',
+    showAdminOrigin:'/shop/shop/public/index.php/admin/Dept/lst',
     //添加组织机构
-    addAdminOrigin:'http://192.168.1.150/shop/shop/public/index.php/admin/Dept/add',
+    addAdminOrigin:'/shop/shop/public/index.php/admin/Dept/add',
     //修改
-    editAdminOrigin:'http://192.168.1.150/shop/shop/public/index.php/admin/Dept/edit',
+    editAdminOrigin:'/shop/shop/public/index.php/admin/Dept/edit',
     //删除
-    editAdminOrigin:'http://192.168.1.150/shop/shop/public/index.php/admin/Dept/delete',
+    editAdminOrigin:'/shop/shop/public/index.php/admin/Dept/delete',
     //店铺列表
-    shopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/lst',
+    shopList:'/shop/shop/public/index.php/admin/Shop/lst',
     //店铺区域绑定
-    getShopStock:'http://localhost/shop/shop/public/index.php/admin/Shop/getIngo',
+    getShopStock:'/shop/shop/public/index.php/admin/Shop/getInfo',
     //店铺添加
-    addshopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/add',
+    addshopList:'/shop/shop/public/index.php/admin/Shop/add',
     //店铺修改
-    editshopList:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/edit',
-    showshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bLst',
-     addshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bAdd',
-      editshopUser:'http://192.168.1.150/shop/shop/public/index.php/admin/Shop/bEdit',
-      goodsInput:'http://192.168.1.150/shop/shop/public/index.php/admin/Store/storeInput',
+    editshopList:'/shop/shop/public/index.php/admin/Shop/edit',
+    showshopUser:'/shop/shop/public/index.php/admin/Shop/bLst',
+     addshopUser:'/shop/shop/public/index.php/admin/Shop/bAdd',
+      editshopUser:'/shop/shop/public/index.php/admin/Shop/bEdit',
+      goodsInput:'/shop/shop/public/index.php/admin/Store/storeInput',
       //修改入库
-      editInput:'http://192.168.1.150/shop/shop/public/index.php/admin/Store/check'
+      editInput:'/shop/shop/public/index.php/admin/Store/check'
 	},
   pSort:{
     pagecount:10
@@ -146,6 +186,9 @@ var config={
      */
     ajax:function(method,url,fun,data){
     	// console.log(url);
+        data=data||{};
+        data.token=cookieUtil.getCookie('token');
+
     	$.ajax({
     		type:method,
 		   	url:url,
@@ -153,6 +196,7 @@ var config={
 		   	success: function(msg){
 		   		//console.log(msg);
            //alert(msg);
+           console.log(msg);
 		   		if(fun){
 		   			fun(msg);
 		   		} 	
@@ -160,8 +204,8 @@ var config={
        error:function(e){
          console.log(JSON.stringify(e));
         
-        }
-    	})
+            }
+        })
 		
 		// var test='{"data":[{"id": 2,"coding": "234561","name": "可口可乐","barcode": "1215456131311","jname": "可口可乐","typename": "饮用水","eachsale": "瓶","brandname": "拉芳","suppliername": "供货商七"}]}'
 	
@@ -12198,34 +12242,3 @@ var config={
 
 
 
-/**
- * cookie
- */
-var cookieUtil={
-	//天数
-	setCookie:function(user,name){
-		document.cookie=user+"="+name;
-	},
-	setExpiresDate:function(user,name,value){
-		var da=new Date();
-		var expiresDay=da.getDate()+value;
-		da.setDate(expiresDay);
-		document.cookie=user+"="+name+";expires="+da+";path=/";
-	},
-	getCookie:function(name) {
-		if(document.cookie.length>0){
-			var start=document.cookie.indexOf(name+"=");
-			if(start!=-1){
-				start=document.cookie.indexOf(name+"=")+name.length+1;
-			}else{
-				return '';
-			}
-			var end=document.cookie.indexOf(';',start)!=-1?document.cookie.indexOf(';',start):document.cookie.length;
-			return document.cookie.substring(start,end);
-		}
-		return "";
-	},
-	removeCookie:function(name){
-		this.setExpiresDate(name,1,-1);
-	}
-};

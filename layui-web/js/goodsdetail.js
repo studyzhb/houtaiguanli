@@ -112,9 +112,9 @@ var goodsHouse={
 
 
 
-      $('.image-suolve').on('click','.imageadd',function(){
+      $('.image-suolve').on('click','#imageadd',function(){
           upImage('image-suolve');
-        })
+        });
 
 
 
@@ -181,10 +181,10 @@ var goodsHouse={
 
 
 var getCon=window.location.href.split('?')[1]||'';
-        goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
+goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
 
-  $('#confirmsavetext').on('click',function(){
-
+    $('#confirmsavetext').on('click',function(){
+            layer.closeAll();
             $('.img-content').append(config.formatTemplate({text:$('.singleNum').val()},$('#img-text').html()));
             
         })
@@ -214,28 +214,38 @@ var getCon=window.location.href.split('?')[1]||'';
 
 
         config.ajax('get',config.ajaxAddress.goodsDetail+'/id/'+goodsHouse.goodsId,function(data){
-          console.log(data.info);
+          console.log(goodsHouse.goodsId,data.info.spic);
 
           // $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
           // $('.image-suolve').html('');
-          var arr=eval(data.info.spic);
-          $.each(arr,function(index,item){
-            $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
-          });
-          if(data.info.spic.length<3){
-            $('<div class="detail-image-col-2 imageadd">').appendTo($('.image-suolve'));
-           }
 
-           
-            if(data.info.apptext){
-              $('.img-content').html(data.info.apptext);
+          if(data.info){
+            var arr=eval(data.info.spic)?eval(data.info.spic):'';
+            if(arr instanceof Array){
+              $.each(arr,function(index,item){
+                $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
+              });
             }
-          
+            
+            console.log(arr.length);
+            if(arr.length<3){
+              $('<div class="detail-image-col-2" id="imageadd" >').appendTo($('.image-suolve'));
+             }else{
+              console.log(arr.length,'else');
+              $('#imageadd').remove();
+             }
 
+             
+              if(data.info.apptext){
+                $('.img-content').html(data.info.apptext);
+              }
+            
+
+            if(data.info.text){
+                $('#container').html(data.info.text);
+             }
+          }
           
-          if(data.info.text){
-              $('#container').html(data.info.text);
-           }
            var ue = UE.getEditor('container',{
             toolbars: [
                    ['undo', 'bold','underline','simpleupload','insertimage','cleardoc','imagecenter']

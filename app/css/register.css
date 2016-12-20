@@ -90,10 +90,13 @@ section {
     height: 100%;
     overflow: hidden; }
     section .main .bannner-wrap {
-      width: 100%;
+      width: 750px;
       height: 258px;
-      background: #fff;
-      margin-top: 13px; }
+      background-color: #fff;
+      margin-top: 13px;
+      background-size: 750px 258px;
+      background-repeat: no-repeat;
+      background-image: url(../img/zhucebg.png); }
     section .main .register-con {
       width: 750px;
       -moz-box-flex: 1;
@@ -141,12 +144,13 @@ section {
         background: #f8c121;
         border-radius: 20px;
         text-align: center;
-        margin: 66px 0 0 92px;
+        margin: 66px 0 80px 92px;
         color: #fff;
         font-size: 30px;
         line-height: 80px; }
       section .main .register-con p.role {
-        width: 672px;
+        width: 632px;
+        padding-left: 40px;
         font-size: 26px;
         line-height: 40px; }
 

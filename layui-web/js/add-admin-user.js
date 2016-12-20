@@ -8,11 +8,8 @@ $(function(){
 		if(data.jobNum.length<=0){
 			addUser.maxNum=80000;
 		}else{
-			addUser.maxNum=data.jobNum[0]['job_num'];
+			addUser.maxNum=data.jobNum[0]['job_num']!=0?data.jobNum[0]['job_num']:80000;
 		}
-		
-		
-
 		$('.userCard').val(addUser.maxNum-0+1);
 		$.each(data.dept,function(index,item){
 			$('<option>').appendTo($('.deptlist')).html(item.name);
@@ -31,19 +28,26 @@ $(function(){
 
 	$('.idCard').on('blur',function(){
 		console.log($(this).val());
-		if(CheckIdCard($(this).val())=='验证通过!'){
-			var area=getarea($(this).val());
-			var bir=GetBirthday($(this).val());
-			var sex=Getsex($(this).val());
+		// console.log($(this));
+		if($(this).ValidateIdCard()){
+			var area=getIcardaddress($(this).val().substr(0, 6));
+
+
+			var bir=$(this).IdCardBirthday();
+			var sex=$(this).IdCardSex()?'男':'女';
+			var age=$(this).IdCardAge(bir);
 			$('.addressInfo').val(area);
 			$('.birthdayInfo').val(bir);
 			$('.sexInfo').val(sex);
+			$('.ageInfo').val(age);
+
+			console.log(area);
 		}else{
 			// layer.open({
 			// 	type:1,
 			// 	content:CheckIdCard($(this).val())
 			// })
-			layer.msg(CheckIdCard($(this).val()));
+			layer.msg('身份证信息不正确');
 		}
 	});
 

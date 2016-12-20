@@ -4,7 +4,7 @@ $(function(){
 		laytpl = layui.laytpl;
 		config.ajax('get',config.ajaxAddress.getUserRoleList,function(data){
 		var tempHtml=userRole.innerHTML;
-		//console.log(tempHtml);
+		console.log(data);
 			$('#all-author-list').html('');
 			$.each(data.data,function(index,item){
 				console.log(item);

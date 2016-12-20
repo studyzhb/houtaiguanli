@@ -120,14 +120,14 @@ $(function(){
         config.ajax('get',config.ajaxAddress.addSupplier,function(data){
             $.each(data.run,function(index,item){
                 // console.log(item);
-                var $li=$('<li>').appendTo($('#run_type')).html(item.run).attr('id',item.id);
+                var $li=$('<li>').appendTo($('.run_type')).html(item.run).attr('id',item.id);
                 $li.on('click',function(){
                      supplierPage.area.run=$(this).attr('id');
                 });
             });
             $.each(data.statements,function(index,item){
                 console.log(item);
-                var $li=$('<li>').appendTo($('#method_type')).html(item.statements).attr('id',item.id);
+                var $li=$('<li>').appendTo($('.method_type')).html(item.statements).attr('id',item.id);
                 $li.on('click',function(){
                     supplierPage.area.state_type=$(this).attr('id');
                 });
@@ -146,15 +146,35 @@ $(function(){
 	$('#supplier-wrapper').on('click','.editorSingleSupplier',function(){
         console.log($(this).data('id'));
         //请求TODO
-
+        var tehtml=$('#editcontent').html();
+        $('.editorInfo').html('');
+        config.ajax('get',config.ajaxAddress.updateSupplier,function(data){
+            console.log(data);
+            $('.editorInfo').append(config.formatTemplate(data.data,tehtml));
+            $.each(data.run,function(index,item){
+                // console.log(item);
+                var $li=$('<li>').appendTo($('.run_type')).html(item.run).attr('id',item.id);
+                $li.on('click',function(){
+                     supplierPage.area.run=$(this).attr('id');
+                });
+            });
+            $.each(data.method,function(index,item){
+                console.log(item);
+                var $li=$('<li>').appendTo($('.method_type')).html(item.method).attr('id',item.id);
+                $li.on('click',function(){
+                    supplierPage.area.state_type=$(this).attr('id');
+                });
+            });
+            layer.open({
+                type: 1,
+              content: $('#editorSupplier'), //这里content是一个DOM
+              shade:[0.8,'#000'],
+              area:'900px',
+              maxmin: true
+            })
+        },{id:$(this).data('id')});
         
-		layer.open({
-			type: 1,
-	      content: $('#editorSupplier'), //这里content是一个DOM
-	      shade:[0.8,'#000'],
-	      area:'900px',
-	      maxmin: true
-		})
+		
 	});
 
 	var laytpl;
@@ -198,8 +218,25 @@ function updatePageNum(p1){
     }
 
     $('#editorinfo').on('click',function(){
+        $('.ppro').val(supplierPage.area.provinces);
+        $('.ppcity').val(supplierPage.area.city);
+        $('.ppcounty').val(supplierPage.area.county);
+        $('.ppstate').val(supplierPage.area.state_type);
+        $('.pprun').val(supplierPage.area.run);
        config.formSubmit('.editorForm',config.ajaxAddress.updateSupplier,function(data){
-        // console.log(data);
+        console.log(data);
+        if(data.code==200){
+                layer.msg('添加成功');
+                setTimeout(function(){
+                    open('supplier.html','_self');
+                },500)
+                
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                setTimeout(function(){
+                    open('supplier.html','_self');
+                },500)
+            }
        })
     });
 

@@ -619,5 +619,130 @@ input.w380 {
 .header .logo{
   position:absolute;
   left:10px;
-  top:10px;
+  top:17px;
 }
+
+.area-container {
+  border: solid 1px #e1e1e1;
+  margin: 0 auto;
+  clear: both;
+  font-size: 12px;
+  padding: 0 15px 10px;
+  color: gray;
+  position: relative;
+  z-index: 8;
+  margin-bottom: 19px; }
+
+.relative-show {
+  height: auto; }
+
+.relative {
+  position: relative;
+  line-height: 28px;
+  z-index: 200;
+  margin-top: 10px; }
+
+.secitem {
+  clear: both;
+  zoom: 1; }
+  .secitem dt {
+    /* float: left; */
+    margin-right: 1em; }
+  .secitem dd {
+    overflow: inherit;
+    display: block;
+    zoom: 1; }
+  .secitem a {
+    margin-right: 1.5em;
+    font-size:16px;
+    cursor: pointer; }
+
+.subwayline {
+  float: left;
+  margin-right: 5px; }
+
+.subarea {
+  clear: both;
+  overflow: hidden;
+  margin: 3px 0;
+  position: relative;
+  zoom: 1; }
+  .subarea .checkbox {
+    position: absolute;
+    left: 14px;
+    top: 4px; }
+
+a.par {
+  background: url() no-repeat right -554px #fff;
+  border: 1px solid #ffbc89;
+  padding: 0 22px 0 5px;
+  color: gray !important;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: inline-block; }
+
+.wordindex {
+  font-weight: 700;
+  margin-right: 10px;
+  color: #EB6100;
+  /* float: left; */
+  display: inline-block; }
+
+.selectedRightSection {
+  float: right;
+  position: absolute;
+  z-index: 999;
+  right: 0;
+  bottom: 0; }
+
+.bar {
+  height: auto;
+  min-height: 40px; }
+
+.barcon {
+  background: #f9f9f9;
+  padding: 25px 15px;
+  zoom: 1;
+  position: relative; }
+
+a.active-p {
+  color: #0f0; }
+
+.icon-menu-control {
+  background: url(../img/skin_icons.png) no-repeat -56px 0; }
+
+.sidebar-title {
+  border-bottom: 1px solid #eee; }
+
+.sidebar-trans {
+  display: none; }
+
+.ltable tr th {
+  font-weight: bold; }
+
+.table-menu {
+  height: 68px;
+  /*background-color: #f00;*/ }
+  .table-menu table td {
+    height: 34px;
+    text-align: center;
+    line-height: 34px; }
+
+.next.active {
+  background: #09c; }
+
+.disabledWrap {
+  position: relative; }
+  .disabledWrap:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    background: #fff;
+    opacity: 0;
+    left: 0;
+    top: 0; }
+
+

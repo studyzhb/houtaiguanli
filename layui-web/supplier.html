@@ -220,7 +220,7 @@
                           <span class="subclass">请选择</span><i></i>
                       </a>
                       <div class="select-items">
-                          <ul id="method_type">
+                          <ul class="method_type">
                               
                           </ul>
                       </div>
@@ -236,7 +236,7 @@
                           <span class="subclass">请选择</span><i></i>
                       </a>
                       <div class="select-items">
-                          <ul id="run_type">
+                          <ul class="run_type">
                               
                           </ul>
                       </div>
@@ -287,7 +287,10 @@
                 <label>电话</label>
                 <input type="text" class="w160" name="ptel" value="">
               </div>
-              
+              <div class="input-wrapper">
+                <input type="checkbox" name="status" value="1" />
+                <label>状态</label>
+              </div>
             </li>
           </ul>
         </fieldset> 
@@ -300,108 +303,11 @@
     </div>
 </div>
 
-
-
 <!-- ===================================编辑  -->
 <div class="alertCon-wrapper" id="editorSupplier" style="margin:10px auto;display:none;">
   <div class="alert-main-con show-content">
       <form method="POST" action="" class="editorForm">
-        <fieldset>
-          <legend>
-            基本信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>地址</label>
-                <input type="text" readonly class="w160" name="address" value="">
-              </div>
-              
-              <div class="input-wrapper">
-                <label>结算方式</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul id="sub-sort">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-wrapper">
-                <label>经营方式</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul id="sub-sort">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>
-            </li>
-            
-          </ul>
-        </fieldset> 
-        <fieldset>
-          <legend>
-            填写信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" readonly class="w160" name="coding" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商名称</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>账号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>税务号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>邮政编码</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>传真</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>联系人</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>电话</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <input type="checkbox" checked />
-                <label>是否启用</label>
-              </div>
-            </li>
-          </ul>
-        </fieldset> 
+        <div class="editorInfo"></div>
         
         <div class="button" id="editorinfo" style="margin:10px 0 0 305px;">
           提交
@@ -436,10 +342,113 @@
     <td>{{d.ptel}}</td>
     <td>{{d.tel}}</td>
     <td>
-      <!--<div class="layui-btn layui-btn-warm layui-btn-small editorSingleSupplier" data-id="{{d.id}}">编辑</div>
-       <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
+      <div class="layui-btn layui-btn-warm layui-btn-small editorSingleSupplier" data-id="{{d.id}}">编辑</div>
+       <!--<button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
     </td>
   </tr>
+</script>
+
+<script type="text/template" id="editcontent" >
+<input type="hidden" name="id" value="{id}">
+<input type="hidden" class="ppro" name="provinces" value="{provinces}">
+<input type="hidden" class="ppcity" name="city" value="{city}">
+<input type="hidden" class="ppcounty" name="county" value="{county}">
+<input type="hidden" class="ppstate" name="statements_id" value="{statements_id}">
+<input type="hidden" class="pprun" name="run_id" value="{run_id}">
+  <fieldset>
+          <legend>
+            基本信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>地址</label>
+                <input type="text" readonly class="w160" name="address" value="{address}">
+              </div>
+              
+              <div class="input-wrapper">
+                <label>结算方式</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          
+                          <ul class="method_type">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="input-wrapper">
+                <label>经营方式</label>
+                <div class="single-select">
+                  <div class="boxwrap">
+                      <a href="#" class="select-tit">
+                          <span class="subclass">请选择</span><i></i>
+                      </a>
+                      <div class="select-items">
+                          <ul class="run_type">
+                              
+                          </ul>
+                      </div>
+                      <i class="arrow"></i>
+                  </div>
+                </div>
+              </div>
+            </li>
+            
+          </ul>
+        </fieldset> 
+        <fieldset>
+          <legend>
+            填写信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" readonly id="supplierNum" class="w160" name="coding" value="{coding}">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商名称</label>
+                <input type="text" class="w160" name="name" value="{name}">
+              </div>
+              
+              <div class="input-wrapper">
+                <label>税务号</label>
+                <input type="text" class="w160" name="syw" value="{syw}">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>邮政编码</label>
+                <input type="text" class="w160" name="postcode" value="{postcode}">
+              </div>
+              <div class="input-wrapper">
+                <label>传真</label>
+                <input type="text" class="w160" name="fax" value="{fax}">
+              </div>
+              <div class="input-wrapper">
+                <label>联系人</label>
+                <input type="text" class="w160" name="contact" value="{contact}">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>电话</label>
+                <input type="text" class="w160" name="ptel" value="{ptel}">
+              </div>
+              <div class="input-wrapper">
+                <input type="checkbox" name="status" value="1" />
+                <label>状态</label>
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
 </script>
 
 

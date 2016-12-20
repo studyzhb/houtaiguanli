@@ -29,7 +29,6 @@ var addShopPage={
                     $.each(item.city,function(i,cityO){
                     	// console.log(cityO);
                     	$('<option>').appendTo($('.cityswrap')).html(cityO['-Name']).attr('value',cityO['-Name']);
-                       
                     })
                 }
             });
@@ -82,15 +81,24 @@ var addShopPage={
 		layui.use('form',function(){
 			form = layui.form();
 			form.on('select(city)', function(data){
-			  console.log(addShopPage.area.pro);
+			  //console.log(addShopPage.area.pro);
 			  addShopPage.addCountry(addShopPage.area.pro,data.value);
 			  form.render();
 			});
 
 			form.on('select(pro)', function(data){
-			  console.log(data);
+			  //console.log(data);
 			  addShopPage.area.pro=data.value;
 				addShopPage.addCity(data.value);
+				console.log(data.value);
+				config.ajax('get',config.ajaxAddress.getShopStock,function(data){
+		            console.log(data);
+		            $('.provinceswrap1').html('');
+		            $.each(data,function(index,item){
+		            	$('<option>').appendTo($('.provinceswrap1')).html(item.name).attr('value',item.id);
+		            });
+		            form.render();
+		          },{province:data.value});
 				form.render();
 			});
 		});
@@ -167,7 +175,7 @@ var addShopPage={
 		if(data.coding){
 			shopNum=data.coding-0+1;
 		}else{
-			shopNum=800001;
+			shopNum=80001;
 		}
 		$('.shop-coding').val(shopNum);
 	});

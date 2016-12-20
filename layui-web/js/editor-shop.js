@@ -60,11 +60,45 @@ var addShopPage={
 	}
 
 	config.ajax('get',config.ajaxAddress.editshopList,function(data){
-		console.log(data[0]);
+		console.log(data);
 		//config.formatTemplate(data[0],tmphtml)
 		var tmphtml=$('.editShopCon').html();
 		$('#editorwrap').append(config.formatTemplate(data[0],tmphtml));
-		
+		$("#date").jeDate({
+		    isinitVal:true,
+		    festival:true,
+		    ishmsVal:false,
+		    minDate: '2016-06-16 23:59:59',
+		    maxDate: $.nowDate(0),
+		    format:"hh:mm:ss",
+		    zIndex:3000,
+		    choosefun:function(elem, val) {
+
+		    },     
+		    //选中日期后的回调, elem当前输入框ID, val当前选择的值
+			clearfun:function(elem, val) {},      
+			//清除日期后的回调, elem当前输入框ID, val当前选择的值
+			okfun:function(elem, val) {
+				console.log(val);
+				addShopPage.worktime.start=val;
+			},        
+			//点击确定后的回调, elem当前输入框ID, val当前选择的值
+			success:function(elem) {},            
+			//层弹出后的成功回调方法, elem当前输入框ID
+		});
+		$("#date01").jeDate({
+		    isinitVal:true,
+		    festival:true,
+		    ishmsVal:false,
+		    minDate: '2016-06-16 23:59:59',
+		    maxDate: $.nowDate(0),
+		    format:"hh:mm:ss",
+		    zIndex:3000,
+		    okfun:function(elem, val) {
+				console.log(val);
+				addShopPage.worktime.end=val;
+			}
+		})
 		
 		$('.parCom').html('<option value="0">一级机构</option>');
 		$.each(data.area,function(index,item){
@@ -108,46 +142,12 @@ var addShopPage={
 
 
 
-	$("#date").jeDate({
-	    isinitVal:true,
-	    festival:true,
-	    ishmsVal:false,
-	    minDate: '2016-06-16 23:59:59',
-	    maxDate: $.nowDate(0),
-	    format:"hh:mm:ss",
-	    zIndex:3000,
-	    choosefun:function(elem, val) {
-
-	    },     
-	    //选中日期后的回调, elem当前输入框ID, val当前选择的值
-		clearfun:function(elem, val) {},      
-		//清除日期后的回调, elem当前输入框ID, val当前选择的值
-		okfun:function(elem, val) {
-			console.log(val);
-			addShopPage.worktime.start=val;
-		},        
-		//点击确定后的回调, elem当前输入框ID, val当前选择的值
-		success:function(elem) {},            
-		//层弹出后的成功回调方法, elem当前输入框ID
-	});
-	$("#date01").jeDate({
-	    isinitVal:true,
-	    festival:true,
-	    ishmsVal:false,
-	    minDate: '2016-06-16 23:59:59',
-	    maxDate: $.nowDate(0),
-	    format:"hh:mm:ss",
-	    zIndex:3000,
-	    okfun:function(elem, val) {
-			console.log(val);
-			addShopPage.worktime.end=val;
-		}
-	})
+	
 	//提交菜单
 	$('.commitMenu').on('click',function(){
 		$('.worktimesae').val(addShopPage.worktime.start+'-'+addShopPage.worktime.end);
 		layer.open({type:3});
-		config.formSubmit('.menuForm',config.ajaxAddress.addshopList,function(data){
+		config.formSubmit('.menuForm',config.ajaxAddress.editshopList,function(data){
 			console.log(data);
 			if(data.code==200){
                 layer.msg('添加成功');

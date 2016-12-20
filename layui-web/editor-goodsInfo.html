@@ -146,8 +146,8 @@
                     <th>上传图片</th>
                     <th>
                       <div class="image-suolve">
-                           <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
-                          </div>
+                           <!-- <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
+                                                     </div> -->
                           
                           
                       </div>
@@ -160,11 +160,11 @@
                     <td>商品描述</td>
                     <td>
                       <ul class="layui-tab-title goodseditor">
-          
-                        <li class="comp">
+           
+                        <li class="layui-this comp">
                           <a href="#">电脑端</a>
                         </li>
-                        <li class="layui-this tel">
+                        <li class="tel">
                           手机端
                         </li>
                       </ul>
@@ -284,7 +284,7 @@
     </div>
 </script>
 <script type="text/template" id="img-text">
-     <h3 class="h3-title">
+     <h3 class="h3-title" style="text-align:center;">
         {text}
     </h3>
 </script>
@@ -316,6 +316,14 @@
       $('.add-con-area').show();
       $('.add-alert-area').show();
      // $('<h3>').appendTo($('#content1'));
+
+     layer.open({
+            type:1,
+            content: $('#goodsNum'), //这里content是一个DOM
+          shade:[0.8,'#000'],
+          area:'500px',
+          maxmin: true
+        })
   }
 
 

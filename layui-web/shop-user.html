@@ -85,7 +85,6 @@
                 <div class="layui-input-inline">
                   <input type="text" class="layui-input" name="" value="">
                 </div>
-                
 
               </div>
               <button class="layui-btn">
@@ -103,12 +102,14 @@
           </colgroup>
           <thead>
             <tr>
+              <th>ID</th>
               <th>账号</th>
-              <th>名字</th>
               <th>店铺</th>
-              
-              
+             
               <th>电话</th>
+              <th>
+                操作
+              </th>
             </tr> 
           </thead>
           <tbody id="adminUserList">
@@ -118,10 +119,7 @@
               <td>0</td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
               <td>
-                
                 <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
                 <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
               </td>
@@ -145,17 +143,17 @@
   <ul id="biuuu_city_list"></ul>
 <script id="menulistContent" type="text/html">
    <tr>
-              <td>{{d.coding}}</td>
-              <td>{{d.name}}</td>
+              <td>{{d.id}}</td>
+              <td>{{d.loginname}}</td>
               <td>{{d.shopName}}</td>
               <td>{{d.tel}}</td>
               
               
-              <!--<td>
+              <td>
                 
                 <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}" onclick="editorUser(this)">编辑</div>
                 
-              </td>-->
+              </td>
             </tr>
 </script>
   <!-- =======================弹出窗========================= -->
@@ -340,7 +338,8 @@
 <script src="./js/shop-user.js"></script>
 <script>
   function editorUser(obj){
-    conosle.log($(obj).data('id'));
+    console.log($(obj).data('id'));
+    open('edit-shop-user.html?id='+$(obj).data('id'),'_self');
   }
 </script>
 </html>

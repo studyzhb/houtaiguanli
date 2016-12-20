@@ -4,7 +4,7 @@ var $;
 var laytpl;
 var user=cookieUtil.getCookie('username');
 $(function(){
-
+	
 	$('.layui-tab-title').on('click',function(){
 		if($(this).has('a')){
 			location.href=$(this).find('a').attr('href');
@@ -44,7 +44,7 @@ $(function(){
 	// });
 
 config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
-		// console.log(data);
+		console.log(data);
 		if(!!user){
 			$('.username').text(cookieUtil.getCookie('username'));
 		}else{

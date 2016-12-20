@@ -1,0 +1,102 @@
+@import 'reset';
+html,body{
+    width:100%;
+    height: 100%;
+    overflow:hidden;
+}
+section{
+    width:9.5rem;
+    height:100%;
+    overflow:hidden;
+    position: relative;
+    .main{
+        
+        padding:3.72rem 0.22rem 0 0.4rem;
+        position:relative;
+
+        .img-title{
+            width:7.9rem;
+            height:2.08rem;
+             position:absolute;
+            left:0.85rem;
+            top:0.64rem;
+        }
+        .img-bg{
+            width:9.5rem;
+            height:5.86rem;
+            position:absolute;
+            left:0.1rem;
+            top:6.52rem;
+        }
+
+        
+
+        p{
+            font-size: 0.3rem;
+            line-height: 0.54rem;
+            color:#666;
+            
+        }
+
+        h4.title{
+            font-size:0.3rem;
+            line-height: 0.54rem;
+            text-align: center;
+            color:#666;
+        }
+
+    }
+
+    .down{
+            width:8.52rem;
+            height:0.6rem;
+            bottom:1.62rem;
+            left:0.84rem;
+            position:absolute;
+
+            a{
+
+                font-size:0.34rem;
+                line-height: 0.6rem;
+                display: inline-block;
+                width: 3.06rem;
+                height:0.6rem;
+                position: relative;
+                //vertical-align: top;
+            }
+
+            a.marginR{
+                margin-right:1.8rem;
+                padding-left:1.22rem;
+                width: 1.84rem;
+               // background: url(../img/android.png) no-repeat;
+            }
+
+            a.apple{
+                
+               padding-left:0.82rem;
+               width:2.24rem;
+
+            }
+            
+
+            .img-an{
+                width:0.52rem;
+                height:0.63rem;
+                //vertical-align: middle;
+                position:absolute;
+                left:0.39rem;
+                top:0;
+            }
+            .img-app{
+                width:0.52rem;
+                height:0.59rem;
+                 position:absolute;
+                 left:0;
+                top:0;
+                //vertical-align: middle;
+            }
+        }
+
+
+}

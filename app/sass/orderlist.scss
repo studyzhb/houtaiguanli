@@ -149,7 +149,7 @@ section{
             top:30px;
         }
         .padding-right{
-            padding-right:40px;
+            padding-right:74px;
             text-align: right;
             span{
                 color:#ff0000;
@@ -162,7 +162,7 @@ section{
         background: #fff;
         li{
             height:166px;
-            width:750px;
+            width:680px;
             dt{
                 float: left;
                 margin-right:34px;
@@ -174,7 +174,8 @@ section{
                 }
             }
             dd{
-                width:490px;
+                //test
+                width:459px;
                 float:left;
                 font-size: 24px;
                 height:166px;
@@ -213,8 +214,10 @@ section{
         margin-bottom:3px;
         li{
             height:52px;
+            width:650px;
             line-height: 52px;
             font-size: 26px;
+
             span{
                 float: right;
             }

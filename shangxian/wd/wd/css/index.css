@@ -173,16 +173,13 @@ a:hover, a:active, a:focus {
 
 .detail-image-col-2 {
   display: inline-block;
-  width: 18%;
-  height: 180px;
-  /*
-  min-height: 270px;*/
+  min-height: 270px;
   text-align: center;
   line-height: 115px;
   font-size: 50px;
   border: 1px solid #000;
   position: relative;
-  background: url("../img/shangchuang.png") no-repeat -175px center; }
+  background: url("../img/shangchuang.png") no-repeat -152px center; }
   .detail-image-col-2 input {
     opacity: 0;
     position: absolute;

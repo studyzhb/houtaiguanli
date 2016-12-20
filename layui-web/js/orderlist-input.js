@@ -82,8 +82,9 @@ $('.saveGoodsNum').on('click',function(){
 $('.confirmorder').on('click',function(){
 	$('.orderlistId').val(purchasePage.buyerid);
 	$('.orderToF').val($(this).data('id'));
+	console.log($(this).data('id'));
 	config.formSubmit('#purchaselistForm',config.ajaxAddress.goodsInput,function(data){
-		console.log(data);
+		// console.log(data);
 		if(data.code==200){
                 layer.msg('操作成功');
                 setTimeout(function(){

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="./css/commitSuccess.css" />
+    
+    <script>
+        (function(doc,win){
+			var docEl = doc.documentElement,resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function(){
+				var clientWidth = docEl.clientWidth;
+				if(!clientWidth) return;
+				if(clientWidth>=950){
+					docEl.style.fontSize = '100px';
+				}
+				else{
+					docEl.style.fontSize = 100 * (clientWidth / 950) + 'px';
+				}
+			};
+			if (!doc.addEventListener) return;
+	        win.addEventListener(resizeEvt, recalc, false);
+	        doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document,window);
+    </script>
+</head>
+<body>
+    
+    <section>
+       <div class="main">
+           <img class="img-bg" src="./img/commit.png" />
+           <img class="img-title" src="./img/commit01.png" alt="" />
+           <h4 class="title">温馨提示</h4>
+           <p>
+               在您提交成功的同时，我们已为您成功注册e+便利账号，赶紧去i吧。
+           </p>
+
+
+           
+       </div>
+       <div class="down">
+               <a class="marginR">
+                   <img class="img-an" src="./img/android.png" alt="">
+                   安卓版下载
+               </a>
+               <a class="apple">
+                    <img class="img-app" src="./img/apple.png" alt="">
+                   苹果版下载
+               </a>
+           </div>
+    </section>
+
+
+
+
+
+</body>
+<script>
+   
+
+</script>
+</html>
