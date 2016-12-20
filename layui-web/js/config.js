@@ -139,7 +139,7 @@ var config={
     //修改
     editAdminOrigin:'/shop/shop/public/index.php/admin/Dept/edit',
     //删除
-    editAdminOrigin:'/shop/shop/public/index.php/admin/Dept/delete',
+    deleteAdminOrigin:'/shop/shop/public/index.php/admin/Dept/delete',
     //店铺列表
     shopList:'/shop/shop/public/index.php/admin/Shop/lst',
     //店铺区域绑定

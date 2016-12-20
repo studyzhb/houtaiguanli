@@ -101,6 +101,7 @@
             <td>| ---- ---- 更新配置</td>
             <td></td>
             <td>
+              <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
               <!--<button class="layui-btn layui-btn-small">添加子菜单</button>
               <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
               <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>-->
@@ -295,9 +296,8 @@
       <td>{{d.name}}</td>
       <td></td>
       <td>
-        <!--<button class="layui-btn layui-btn-small">添加子菜单</button>
-              <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
-              <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>-->
+        <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}" onclick="editorMenu(this)">编辑</div>
+        
         
       </td>
     </tr>
@@ -308,9 +308,9 @@
           <td>| ---- {{item.name}}</td>
           <td></td>
           <td>
-            <!--<button class="layui-btn layui-btn-small">添加子菜单</button>
-              <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
-              <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>-->
+            
+              <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}" onclick="editorMenu(this)">编辑</div>
+              
             
           </td>
         </tr>
@@ -339,6 +339,7 @@
 <script>
   function editorMenu(obj){
     console.log($(obj).data('id'));
+    open('edit-admin-origin.html?id='+$(obj).data('id'),'_self');
   }
 </script>
 </html>

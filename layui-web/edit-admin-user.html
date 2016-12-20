@@ -111,8 +111,6 @@
             <form class="layui-form layui-form-pane" id="adminInfo" action="" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
               <div class="edituserwrap"></div>
               
-
-
               <div class="layui-form-item">
                 <div class="layui-input-block">
                   <div class="layui-btn addUserInfo">添加用户</div>
@@ -317,6 +315,7 @@
 </script>
 	
   <script type="text/html" id="editusercontent">
+    <input type="hidden" name="id" value="{{d.id}}">
     <div class="layui-form-item">
                 <label class="layui-form-label">工号</label>
                 <div class="layui-input-inline">
@@ -326,7 +325,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="password" value="{{d.password}}" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                  <input type="text" name="password" value="" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
