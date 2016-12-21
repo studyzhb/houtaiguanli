@@ -159,10 +159,29 @@ $('#confirmorder').on('click',function(){
 	$.each(orderlist.goodslist,function(index,item){
 			item.number=1;
 		});
+	deleteRepeat();
 	console.log(orderlist.selectedList);
 	orderlist.updateOrderList();
 	layer.closeAll();
 });
+//删除重复的ID
+function deleteRepeat(){
+	var obj={};
+	var arr=[];
+	$.each(orderlist.selectedList,function(index,item){
+		if(!obj[item.id]){
+			arr.push(item);
+			obj[item.id]=1;
+		}
+	});
+	console.log(arr);
+	
+	orderlist.selectedList=arr;
+
+}
+
+
+
 
 //单据编号
 $('#ordernum').val(new Date().getTime());

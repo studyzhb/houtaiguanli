@@ -92,33 +92,9 @@
                     
                   </select>
                 </div>
-                <label class="layui-form-label">商品编号</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" >
-                </div>
-                <div class="layui-btn layui-input-inline layui-btn-small" id="goods-coding" style="width:48px;height:38px;">搜索
-                </div>
-                  
-                <label class="layui-form-label">商品条形码</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" >
-
-                </div>
-                <div class="layui-btn layui-input-inline layui-btn-small" id="goods-barcode" style="width:48px;height:38px;" >
-                  搜索
-                </div>
-                <label class="layui-form-label">商品名称</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" >
-
-                </div>
-                <div class="layui-btn layui-input-inline layui-btn-small" lay-filter="goodsName" id="goodsName" style="width:48px;height:38px;">
-                  搜索
-                </div>
                 
-              </div>
-
-                <div class="layui-form-item">
+                
+  
                 <label class="layui-form-label">单据编号</label>
                 <div class="layui-input-inline">
                   <input id="ordernum" type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input">
@@ -140,6 +116,38 @@
               
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
                 <legend>订单信息</legend>
+
+                <div class="layui-form-item"> 
+                
+                  <label class="layui-form-label">商品编号</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" id="goods-coding" style="width:48px;height:38px;">搜索
+                  </div>
+                    
+                  <label class="layui-form-label">商品条形码</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" id="goods-barcode" style="width:48px;height:38px;" >
+                    搜索
+                  </div>
+                  <label class="layui-form-label">商品名称</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" lay-filter="goodsName" id="goodsName" style="width:48px;height:38px;">
+                    搜索
+                  </div>
+
+                
+                
+              </div>
+                
+
                 <table class="layui-table">
                   <colgroup>
                     <!-- <col width="100">
@@ -221,11 +229,12 @@
     <tr>
       <th><input type="checkbox" class="checkall" name="" value=""></th>
       <th>商品编号</th>
+      <th>商品条形码</th>
       <th>商品名称</th>
       <th>规格</th>
       <th>供应商名称</th>
       <th>品牌</th>
-      <th>数量</th>
+      <th>单价</th>
     </tr> 
   </thead>
   <tbody id="searchedlist">
@@ -428,10 +437,12 @@
       <td><input type="checkbox" class="ischecked"  name="" value="{{d.selectedindex}}"></td>
       <td>{{d.coding}}</td>
       <td>{{d.barcode}}</td>
+      <td>{{d.name}}</td>
+      <td>{{d.gg}}</td>
       <td>{{d.fac}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{d.brand}}</td>
+      <td>{{d.buyprice}}</td>
+
     </tr>
 
   

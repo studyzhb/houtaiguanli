@@ -24,7 +24,7 @@ $(function(){
 	$('.commit-author').on('click',function(){
 		config.formSubmit('#authorForm',config.ajaxAddress.addUserRole,function(data){
 			console.log(data);
-			if(data.code==200){
+			/*if(data.code==200){
                 layer.msg('添加成功');
                 setTimeout(function(){
                     open('authorlist.html','_self');
@@ -35,7 +35,7 @@ $(function(){
                 setTimeout(function(){
                     open('authorlist.html','_self');
                 },500)
-            }
+            }*/
 		});
 	});
 	

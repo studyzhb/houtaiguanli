@@ -5,7 +5,7 @@ $(function(){
 	layui.use('laytpl',function(){
         laytpl = layui.laytpl;
         config.ajax('get',config.ajaxAddress.editUserInfo,function(data){
-		
+		console.log(data);
 			var edithtml=$('#editusercontent').html();
 			// $('.edituserwrap').append(config.formatTemplate(data.data,edithtml));
 			var obj=data.data;

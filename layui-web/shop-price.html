@@ -147,7 +147,7 @@
  
 
   <!-- =======================弹出窗========================= -->
-<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
+<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;font-size:14px;">
   <div class="alert-main-con">
       <form class="layui-form layui-form-pane" id="adminInfo" action="" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
             <div class="shop-price-wrapper"></div>
@@ -165,66 +165,55 @@
 
 
 
-<script type="text/template" id="shop-price-content">
+<script type="text/html" id="shopPriceContent">
+<input type="hidden" name="shop_id" value="{{d.id}}">
   <div class="layui-form-item">
-                <label class="layui-form-label">账号</label>
+                <label class="layui-form-label">店铺编号</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="loginname" readonly placeholder="自动生成" autocomplete="off" class="layui-input userCard">
+                  <input type="text" name="" readonly value="{{d.coding}}" placeholder="自动生成" autocomplete="off" class="layui-input userCard">
                 </div>
               </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">手机号</label>
+                <label class="layui-form-label">店铺名称</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="tel" placeholder="手机号" autocomplete="off" class="layui-input">
+                  <input type="text" name="" readonly value="{{d.name}}" placeholder="" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">密码</label>
+                <label class="layui-form-label">店铺地址</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                  <input type="text" name="" readonly value="{{d.details}}" placeholder="" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">身份证号</label>
+                <label class="layui-form-label">余额</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="carded" placeholder="请输入" autocomplete="off" class="layui-input idCard">
-                </div>
-              </div>
-              
-              <div class="layui-form-item">
-                <label class="layui-form-label">部门</label>
-                <div class="layui-input-inline">
-                  <select name="shop_id" class="deptlist" >
-                    
-                  </select>
+                  <input type="text" name="carded" value="{{d.balance}}" readonly placeholder="请输入" autocomplete="off" class="layui-input idCard">
                 </div>
               </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">家庭地址</label>
-                <div class="layui-input-inline">
-                  <input type="text" readonly name="address" placeholder="自动生成" autocomplete="off" class="layui-input addressInfo">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">出生日期</label>
-                <div class="layui-input-inline">
-                  <input type="text" readonly name="birthday" placeholder="自动生成" autocomplete="off" class="layui-input birthdayInfo">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">性别</label>
-                <div class="layui-input-inline">
-                  <input type="text" readonly name="sex" placeholder="自动生成" autocomplete="off" class="layui-input sexInfo">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">状态</label>
-                <div class="layui-input-block">
-                  <input type="radio" name="status" title="启用">
-                  <input type="radio" name="status" title="停用">
-                </div>
-              </div>
+                <label class="layui-form-label">状态</label>                                                                                                           
 
+                <div class="layui-input-inline">
+                  {{# if(d.status==1){ }}
+
+                    <input type="text" name="" value="启用" readonly placeholder="请输入" autocomplete="off" class="layui-input idCard">
+
+                  {{# }else{ }}
+
+                    <input type="text" name="" value="停用" readonly placeholder="请输入" autocomplete="off" class="layui-input idCard">
+                  {{# } }}
+
+                  
+                  
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">充值金额</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="total" placeholder="请输入充值金额" autocomplete="off" class="layui-input idCard">
+                </div>
+              </div>
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">请填写描述</label>
                 <div class="layui-input-block">
@@ -273,6 +262,6 @@
     console.log($(obj).data('id'));
   }
 
-  layui.use('form');
+  
 </script>
 </html>

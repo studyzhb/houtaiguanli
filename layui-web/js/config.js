@@ -153,7 +153,10 @@ var config={
       editshopUser:'/shop/shop/public/index.php/admin/Shop/bEdit',
       goodsInput:'/shop/shop/public/index.php/admin/Store/storeInput',
       //修改入库
-      editInput:'/shop/shop/public/index.php/admin/Store/check'
+      editInput:'/shop/shop/public/index.php/admin/Store/check',
+      //店铺充值
+      shopprice:'/shop/shop/public/index.php/admin/Shop/addMoney'
+
 	},
   pSort:{
     pagecount:10

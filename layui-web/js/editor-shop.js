@@ -64,12 +64,13 @@ var addShopPage={
 		//config.formatTemplate(data[0],tmphtml)
 		var tmphtml=$('.editShopCon').html();
 		$('#editorwrap').append(config.formatTemplate(data[0],tmphtml));
+		// addShopPage.addProvince();
 		$("#date").jeDate({
 		    isinitVal:true,
 		    festival:true,
 		    ishmsVal:false,
 		    minDate: '2016-06-16 23:59:59',
-		    maxDate: $.nowDate(0),
+		    maxDate: '2016-06-16 09:59:59',
 		    format:"hh:mm:ss",
 		    zIndex:3000,
 		    choosefun:function(elem, val) {
@@ -116,7 +117,7 @@ var addShopPage={
 			});
 			
 		});
-		addShopPage.addProvince();
+		
 		layui.use('form',function(){
 			form = layui.form();
 			form.on('select(city)', function(data){

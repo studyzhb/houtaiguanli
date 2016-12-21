@@ -248,7 +248,7 @@ goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
           
            var ue = UE.getEditor('container',{
             toolbars: [
-                   ['undo', 'bold','underline','simpleupload','insertimage','cleardoc','imagecenter']
+                   ['source','undo', 'bold','underline','simpleupload','insertimage','cleardoc','imagecenter','justifyleft','justifycenter','justifyright']
                 ],
                 autoHeightEnabled: true
         });

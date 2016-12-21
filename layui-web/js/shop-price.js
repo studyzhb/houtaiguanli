@@ -20,6 +20,24 @@ $(function(){
 
 	$('#menulist-wraper').on('click','.editorShopInfo',function(){
 		// layer.open();
+		console.log($(this).data('id'));
+		config.ajax('get',config.ajaxAddress.shopprice,function(data){
+			console.log(data);
+			var tempHtml=shopPriceContent.innerHTML;
+			//console.log(tempHtml);
+			
+			$('.shop-price-wrapper').html('');
+			$.each(data,function(index,item){
+				console.log(item);
+				laytpl(tempHtml).render(item,function(html){
+					$('.shop-price-wrapper').append(html);
+				});
+			});
+
+		},{id:$(this).data('id')});
+		layui.use('form',function(){
+
+		});
 		layer.open({
 	        type:1,
 	        content: $('#alertDemo'), //这里content是一个DOM
@@ -29,8 +47,11 @@ $(function(){
 	    })
 	});
 
-	$('#all-author-list').on('click','.editor-role',function(){
-		
+	$('.addUserInfo').on('click',function(){
+		console.log('chongzhi ');
+		config.formSubmit('#adminInfo',config.ajaxAddress.shopprice,function(data){
+			console.log(data);
+		});
 	});
 
 });

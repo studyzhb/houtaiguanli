@@ -147,25 +147,27 @@
                   <input type="text" name="coding" value="{coding}" readonly placeholder="请输入" class="layui-input shop-coding">
                 </div>
               </div>
-              <!--<div class="layui-form-item">
+              <div class="layui-form-item">
                 <label class="layui-form-label">店铺地址</label>
               
                 <div class="layui-input-inline">
                   <select name="provinces" lay-filter="pro" class="provinceswrap">
-                    <option value="">111</option>
+                    <option value="{provinces}">{provinces}</option>
                   </select>
                 </div>
                 <div class="layui-input-inline">
                   <select name="city" lay-filter="city" class="cityswrap">
                     <option value="">市</option>
+                    <option value="{city}">{city}</option>
                   </select>
                 </div>
                 <div class="layui-input-inline">
                   <select name="county" class="counwrap">
                     <option value="">县</option>
+                    <option value="{county}">{county}</option>
                   </select>
                 </div>
-              </div>-->
+              </div>
                <div class="layui-form-item">
                 <label class="layui-form-label">联系人</label>
                 <div class="layui-input-block">
@@ -220,37 +222,15 @@
                 </div>
               </div>
                <div class="layui-form-item">
-                <label class="layui-form-label">区域</label>
-                <div class="layui-input-block">
-                  <select name="street" class="provinceswrap">
-              
-                    <option value="北京市">北京市</option>
-                    <option value="天津市">天津市</option>
-                    <option value="上海市">上海市</option>
-                    <option value="河南省">河南省</option>
-                    <option value="江苏省">江苏省</option>
-                    <option value="浙江省">浙江省</option>
-                    <option value="江西省">江西省</option>
-                    <option value="湖北省">湖北省</option>
-                    <option value="广西壮族">广西壮族</option>
-                    <option value="甘肃省">甘肃省</option>
-                    <option value="山西省">山西省</option>
-                    <option value="内蒙古">内蒙古</option>
-                    <option value="陕西省">陕西省</option>
-                    <option value="吉林省">吉林省</option>
-                    <option value="福建省">福建省</option>
-                    <option value="贵州省">贵州省</option>
-                    <option value="广东省">广东省</option>
-                    <option value="青海省">青海省</option>
-                    <option value="西藏">西藏</option>
-                    <option value="四川省">四川省</option>
-                    <option value="宁夏回族">宁夏回族</option>
-                    <option value="澳门特别行政区">澳门特别行政区</option>
-                    <option value="海南省">海南省</option>
-                    <option value="台湾省">台湾省</option>
-                    <option value="香港特别行政区">香港特别行政区</option>
+                <label class="layui-form-label">仓库</label>
+
+                <div class="layui-input-inline">
+                  <select name="dept_id">
+                    <option value="{DeptId}">{DeptName}</option>
                   </select>
                 </div>
+                
+                
               </div>
 </script>
 

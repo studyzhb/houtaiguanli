@@ -5,11 +5,11 @@ var laytpl;
 var user=cookieUtil.getCookie('username');
 $(function(){
 	
-	$('.layui-tab-title').on('click',function(){
+	/*$('.layui-tab-title').on('click',function(){
 		if($(this).has('a')){
 			location.href=$(this).find('a').attr('href');
 		}
-	})
+	})*/
 
 	$('.quit').on('click',function(){
 	
