@@ -352,13 +352,14 @@
                 <label>进货价</label>
                 <input type="text" class="w160 buyprice" name="buyprice" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
-              <div class="input-wrapper">
-                <label>零售价</label>
-                <input type="text" class="w160 retails" name="retails" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
+              
               <div class="input-wrapper">
                 <label>批发价</label>
                 <input type="text" class="w160 wholesale" name="wholesale" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+              </div>
+              <div class="input-wrapper">
+                <label>零售价</label>
+                <input type="text" class="w160 retails" name="retails" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>毛利率</label>
@@ -650,13 +651,14 @@
                 <label>进货价</label>
                 <input type="text" class="w160 buyprice" name="buyprice" value="{buyprice}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
-              <div class="input-wrapper">
-                <label>零售价</label>
-                <input type="text" class="w160 retails" name="retails" value="{retails}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
+              
               <div class="input-wrapper">
                 <label>批发价</label>
                 <input type="text" class="w160 wholesale" name="wholesale" value="{wholesale}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+              </div>
+              <div class="input-wrapper">
+                <label>零售价</label>
+                <input type="text" class="w160 retails" name="retails" value="{retails}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>毛利率</label>
@@ -769,6 +771,9 @@
   var da=new Date().getTime()+'';
 
   $('.goodsBm').val(da.substring(5));
+  $('.barcode').on('blur',function(){
+    config.ajax('get',);
+  });
 </script>
 </body>
 </html>

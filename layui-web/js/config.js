@@ -45,6 +45,7 @@ var config={
   //表单提交
   formSubmit:function(formId,urlhttp,fun){
     var tok=cookieUtil.getCookie('token');
+    
     $(formId).ajaxSubmit({
       url:urlhttp,
       data:{

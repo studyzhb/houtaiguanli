@@ -128,56 +128,69 @@
   </li>
 </script>
 
-<script type="text/template" class="editShopCon" >
+<script type="text/html" class="editShopCon" >
+  <input type="hidden" name="id" value="{{d.id}}">
   <div class="layui-form-item">
                 <label class="layui-form-label">账号</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="loginname" readonly placeholder="自动生成" autocomplete="off" class="layui-input userCard">
+                  <input type="text" name="loginname" value="{{d.loginname}}" readonly placeholder="自动生成" autocomplete="off" class="layui-input userCard">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">手机号</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="tel" placeholder="手机号" autocomplete="off" class="layui-input">
+                  <input type="text" name="tel" value="{{d.tel}}" placeholder="手机号" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                  <input type="text" name="password" value="" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">身份证号</label>
                 <div class="layui-input-inline">
-                  <input type="text" readonly name="carded" placeholder="请输入" value="" autocomplete="off" class="layui-input idCard">
+                  <input type="text" readonly name="carded" value="{{d.carded}}" placeholder="请输入" autocomplete="off" class="layui-input idCard">
                 </div>
               </div>
               
               <div class="layui-form-item">
-                <label class="layui-form-label">部门</label>
+                <label class="layui-form-label">店铺</label>
                 <div class="layui-input-inline">
-                  <input type="text" readonly placeholder="" autocomplete="off" class="layui-input">
-                  <input type="hidden" name="shop_id" placeholder="" autocomplete="off" class="layui-input" value="">
+                  <select name="shop_id" class="deptlist" >
+                    {{#  layui.each(d.shop,function(index, item){ }}
+                      {{# if(item.status){ }}
+                        <option selected value="{{item.id}}">
+                          {{item.name}}
+                        </option>
+                      {{# }else{ }}
+                          <option value="{{item.id}}">
+                            {{item.name}}
+                          </option>
+                      {{# } }}
+                      
+                    {{#  }); }}
+                  </select>
                 </div>
                 
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">家庭地址</label>
                 <div class="layui-input-inline">
-                  <input type="text" readonly name="address" placeholder="自动生成" autocomplete="off" class="layui-input addressInfo">
+                  <input type="text" readonly name="address" value="{{d.address}}" placeholder="自动生成" autocomplete="off" class="layui-input addressInfo">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">出生日期</label>
                 <div class="layui-input-inline">
-                  <input type="text" readonly name="birthday" placeholder="自动生成" autocomplete="off" class="layui-input birthdayInfo">
+                  <input type="text" readonly name="birthday" value="{{d.birthday}}" placeholder="自动生成" autocomplete="off" class="layui-input birthdayInfo">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">性别</label>
                 <div class="layui-input-inline">
-                  <input type="text" readonly name="sex" placeholder="自动生成" autocomplete="off" class="layui-input sexInfo">
+                  <input type="text" readonly name="sex" value="{{d.sex}}" placeholder="自动生成" autocomplete="off" class="layui-input sexInfo">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -191,7 +204,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">请填写描述</label>
                 <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
+                  <textarea placeholder="请输入内容" name="note" class="layui-textarea">{{d.note}}</textarea>
                 </div>
               </div>
               

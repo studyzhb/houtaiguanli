@@ -2,7 +2,7 @@ $(function(){
 	
 	var href=location.href.split('?')?location.href.split('?')[1]:'';
 	var userId=href.split('=')[1];
-
+	console.log(userId);
 	var form;
 var addShopPage={
 		area_p:config.area_num.root,
@@ -11,13 +11,19 @@ var addShopPage={
 			start:'',
 			end:''
 		},
-		addProvince:function(){
+		addProvince:function(str){
             //创建省份类select
             $('#province-list').html('');
             var me=this;
             $('.provinceswrap').html('');
             $.each(this.area_p.province,function(index,item){
-                $('<option>').appendTo($('.provinceswrap')).html(item['-Name']).attr('value',item['-Name']);
+                
+                if(item['-Name']==str){
+            		$('<option selected>').appendTo($('.provinceswrap')).html(item['-Name']).attr({'value':item['-Name']});
+            	}else{
+
+                	$('<option>').appendTo($('.provinceswrap')).html(item['-Name']).attr('value',item['-Name']);
+            	}
                 
             });
         },
@@ -73,6 +79,7 @@ var addShopPage={
 			// $('.edituserwrap').append(config.formatTemplate(data.data,edithtml));
 			var obj=data.data;
 			obj.dept=data.dept;
+			obj.deptType=data.deptType;
 			laytpl(edithtml).render(obj,function(html){
                 $('.edituserwrap').append(html);
             });
@@ -86,7 +93,7 @@ var addShopPage={
 				$('<option>').appendTo($('.rolelist')).attr('value',item.id).html(item.name);
 				
 			});*/
-        	addShopPage.addProvince();
+        	addShopPage.addProvince(data.data.provinces);
 			layui.use('form',function(){
 			form = layui.form();
 			form.on('select(city)', function(data){

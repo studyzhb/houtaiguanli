@@ -24,19 +24,23 @@ $(function(){
 
 	$('.idCard').on('blur',function(){
 		console.log($(this).val());
-		if(CheckIdCard($(this).val())=='验证通过!'){
-			var area=getarea($(this).val());
-			var bir=GetBirthday($(this).val());
-			var sex=Getsex($(this).val());
+		if($(this).ValidateIdCard()){
+			var area=getIcardaddress($(this).val().substr(0, 6));
+			var bir=$(this).IdCardBirthday();
+			var sex=$(this).IdCardSex()?'男':'女';
+			var age=$(this).IdCardAge(bir);
 			$('.addressInfo').val(area);
 			$('.birthdayInfo').val(bir);
 			$('.sexInfo').val(sex);
+			$('.ageInfo').val(age);
+
+			console.log(area);
 		}else{
 			// layer.open({
 			// 	type:1,
 			// 	content:CheckIdCard($(this).val())
 			// })
-			layer.msg(CheckIdCard($(this).val()));
+			layer.msg('身份证信息不正确');
 		}
 	});
 

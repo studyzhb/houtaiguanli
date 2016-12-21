@@ -128,7 +128,6 @@
      -->
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
-          
           <li>
             <a href="editorgoodsInfo.html">商品信息</a>
           </li>
@@ -138,17 +137,25 @@
         </ul>
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
+
             <form class="layui-form layui-form-pane" id="detailContent" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <table class="layui-table">
-                
+              <table class="layui-table" style="width:90%;">
+                <!-- <colgroup>
+                  <col width="150">
+                  
+                  <col>
+                </colgroup> -->
                 <thead>
+                  <tr>
+                    <th>商品名称</th>
+                    <th class="fullname"></th>
+                  </tr>
                   <tr>
                     <th>上传图片</th>
                     <th>
-                      <div class="image-suolve">
+                      <div class="image-suolve" style="position:relative;height:200px;">
                            <!-- <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
                                                      </div> -->
-                          
                           
                       </div>
                     </th>
@@ -175,10 +182,9 @@
                     <td></td>
                     <td>
                       <form action="" method="post" id="detailContent">
-                
-            
+
             <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" >
-              <script id="container" name="content" type="text/plain" style="height:300px">
+              <script id="container" name="content" type="text/plain" style="height:300px;overflow:auto;">
                                             
               </script>
       
@@ -332,7 +338,7 @@
       $('#panel-2').show();
     $('#panel-1').hide();
   })
-/*
+
 	$(".image-suolve").on('mousedown','.detail-banner-split',function(e){
             console.log('dianji');
             var that = this;
@@ -391,7 +397,9 @@
                 });
               }
             });
-          });*/
+
+        return false;
+          });
 </script>
 
 </div>

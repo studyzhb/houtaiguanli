@@ -8,9 +8,9 @@
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
 	<script src="./layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
-    <script type="text/javascript" src="./js/config.js"></script>
-    <script type="text/javascript" src="./js/filter.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+  	<script type="text/javascript" src="./js/jquery-form.js"></script>
+    
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -150,6 +150,7 @@
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;font-size:14px;">
   <div class="alert-main-con">
       <form class="layui-form layui-form-pane" id="adminInfo" action="" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+            <input type="hidden" name="order" id="order-time" value="">
             <div class="shop-price-wrapper"></div>
               
               <div class="layui-form-item">
@@ -188,7 +189,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">余额</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="carded" value="{{d.balance}}" readonly placeholder="请输入" autocomplete="off" class="layui-input idCard">
+                  <input type="text" name="" value="{{d.balance}}" readonly placeholder="请输入" autocomplete="off" class="layui-input idCard">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -214,12 +215,7 @@
                   <input type="text" name="total" placeholder="请输入充值金额" autocomplete="off" class="layui-input idCard">
                 </div>
               </div>
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">请填写描述</label>
-                <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
-                </div>
-              </div>
+              
 </script>
 
 
@@ -256,6 +252,8 @@
 </div>
 
 </body>
+<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/filter.js"></script>
 <script type="text/javascript" src="./js/shop-price.js"></script>
 <script>
   function editorMenu(obj){

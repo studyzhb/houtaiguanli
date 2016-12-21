@@ -417,8 +417,7 @@ input.w380 {
     font-size:50px;
     border:1px solid #000;
     position:relative;
-    background:url('../img/shangchuang.png') no-repeat -129px center;
-    
+    background:url('../img/shangchuang.png') no-repeat -129px center;  
 }
 
 .detail-image-col-2 input{

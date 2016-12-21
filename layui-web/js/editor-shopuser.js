@@ -10,13 +10,18 @@ var addShopPage={
 			start:'',
 			end:''
 		},
-		addProvince:function(){
+		addProvince:function(str){
             //创建省份类select
             $('#province-list').html('');
             var me=this;
             $('.provinceswrap').html('');
             $.each(this.area_p.province,function(index,item){
-                $('<option>').appendTo($('.provinceswrap')).html(item['-Name']).attr('value',item['-Name']);
+            	if(item['-Name']==str){
+            		$('<option selected>').appendTo($('.provinceswrap')).html(item['-Name']).attr({'value':item['-Name']});
+            	}else{
+
+                	$('<option>').appendTo($('.provinceswrap')).html(item['-Name']).attr('value',item['-Name']);
+            	}
                 
             });
         },
@@ -58,15 +63,19 @@ var addShopPage={
             // layui.use('form',function(){});
         },
 	}
+	layui.use('laytpl',function(){
+        laytpl = layui.laytpl;
 
-	config.ajax('get',config.ajaxAddress.editshopUser,function(data){
+        config.ajax('get',config.ajaxAddress.editshopUser,function(data){
 		console.log(data);
 		//config.formatTemplate(data[0],tmphtml)
-		
-		
 		var tmphtml=$('.editShopCon').html();
-		$('#editorwrap').append(config.formatTemplate(data[0],tmphtml));
-		
+		var obj=data.data;
+		obj.shop=data.shop;
+		$('#editorwrap').html('');
+		laytpl(tmphtml).render(obj,function(html){
+                $('#editorwrap').append(html);
+           });
 		
 		$('.parCom').html('<option value="0">一级机构</option>');
 		$.each(data.area,function(index,item){
@@ -101,6 +110,9 @@ var addShopPage={
 			});
 		});
 	},{id:shopId});
+
+    });
+	
 
 	
 
@@ -154,13 +166,13 @@ var addShopPage={
 			if(data.code==200){
                 layer.msg('添加成功');
                 setTimeout(function(){
-                    open('shop.html','_self');
+                    open('shop-user.html','_self');
                 },500)
                 
             }else{
                 layer.msg('网络错误，请稍后重试');
                 setTimeout(function(){
-                    open('shop.html','_self');
+                    open('shop-user.html','_self');
                 },500)
             }
 		});

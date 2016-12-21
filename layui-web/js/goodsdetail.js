@@ -181,8 +181,9 @@ var goodsHouse={
 
 
 var getCon=window.location.href.split('?')[1]||'';
+var fname=window.location.href.split('?')[2]||'';
 goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
-
+$('.fullname').text(fname);
     $('#confirmsavetext').on('click',function(){
             layer.closeAll();
             $('.img-content').append(config.formatTemplate({text:$('.singleNum').val()},$('#img-text').html()));
@@ -207,7 +208,10 @@ goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
               console.log(data);
                if(data.code==200){
                  alert('添加成功');
-                 location.href="goodsInfo.html";
+                 location.href="editorgoodsInfo.html";
+               }else{
+                 alert('添加失败');
+                 location.href="editorgoodsInfo.html"; 
                }
             })
         });
@@ -250,8 +254,10 @@ goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
             toolbars: [
                    ['source','undo', 'bold','underline','simpleupload','insertimage','cleardoc','imagecenter','justifyleft','justifycenter','justifyright']
                 ],
-                autoHeightEnabled: true
-        });
+                autoHeight: false,
+                autoHeightEnabled: false
+
+        }).setHeight(300);
 
         });
 

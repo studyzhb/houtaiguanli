@@ -7,6 +7,10 @@ var goodsInfo={
 var laytpl;
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
+
+
+		updatePageNum(0);
+		
 	});
 	layui.use('form',function(){
 			
@@ -54,7 +58,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
         },{p:p1});
     }
 
-updatePageNum(0);
+
 function updatePage(){
 	layui.use(['laypage', 'layer'],function(){
 		var laypage=layui.laypage;
