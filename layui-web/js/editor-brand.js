@@ -12,7 +12,9 @@ $(function(){
 	console.log(brandId);
 	$('.brandId').val(brandId[1].split('=')[1]);
 	$('.brandName').val(unescape(brandId[2].split('=')[1]));
-	
+	config.ajax('get',config.ajaxAddress.editgoodsbrand,function(data){
+		console.log(data);
+	},{id:brandId[1].split('=')[1]});
 	$('.commit-author').on('click',function(){
 		config.formSubmit('#authorForm',config.ajaxAddress.editgoodsbrand,function(data){
 			if(data.code==200){

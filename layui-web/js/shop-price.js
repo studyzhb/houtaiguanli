@@ -47,6 +47,10 @@ $(function(){
 	    })
 	});
 
+	$('#menulist-wraper').on('click','.lookShopInfo',function(){
+		open('shopprice-his.html?id='+$(this).data('id'),'_self');
+	});
+
 	$('.addUserInfo').on('click',function(){
 		
 		$('#order-time').val(new Date().getTime());

@@ -212,7 +212,7 @@
               </div>
               <div class="input-wrapper">
                 <label>国际条形码</label>
-                <input type="text" class="w160 barcode" name="barcode" value="">
+                <input type="text" class="w160 barcode" id="goods-barcode" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" name="barcode" value="">
               </div>
               <div class="input-wrapper">
                 <label>规格</label>
@@ -771,9 +771,18 @@
   var da=new Date().getTime()+'';
 
   $('.goodsBm').val(da.substring(5));
-  $('.barcode').on('blur',function(){
-    config.ajax('get',);
-  });
+  
+
+  $('#goods-barcode').on('blur',function(){
+  config.ajax('post',config.ajaxAddress.goodsI18Num,function(data){
+    console.log(data);
+    if(data.code==400){
+      alert('条形码重复,请更改');
+    }else{
+      console.log('chengg')
+    }
+  },{barcode:$(this).val()});
+})
 </script>
 </body>
 </html>

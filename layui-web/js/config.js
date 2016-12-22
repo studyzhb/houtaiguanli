@@ -156,7 +156,9 @@ var config={
       //修改入库
       editInput:'/shop/shop/public/index.php/admin/Store/check',
       //店铺充值
-      shopprice:'/shop/shop/public/index.php/admin/Shop/addMoney'
+      shopprice:'/shop/shop/public/index.php/admin/Shop/addMoney',
+      //店铺流水信息
+      shophis:'/shop/shop/public/index.php/admin/Shop/llst'
 
 	},
   pSort:{

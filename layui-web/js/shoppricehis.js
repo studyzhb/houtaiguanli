@@ -3,24 +3,34 @@ $(function(){
 	var addUser={
 		maxNum:''
 	}
+	var shopid=location.href.split('?')[1].split('=')[1]||'';
 	//config.ajaxAddress.addshopUser
-	config.ajax('get',config.ajaxAddress.addshopUser,function(data){
-		console.log(data);
-		if(data.coding.length<=0){
-			addUser.maxNum=90000;
-		}else{
-			addUser.maxNum=data.coding[0]['loginname'];
-		}
 
-		$('.userCard').val(addUser.maxNum-0+1);
-		$.each(data.shop,function(index,item){
-			$('<option>').appendTo($('.deptlist')).attr('value',item.coding).html(item.name);
-		});
+	layui.use('laytpl',function(){
+		laytpl = layui.laytpl;
+		config.ajax('post',config.ajaxAddress.shophis,function(data){
+		console.log(data);
+			var tempHtml=shophis.innerHTML;
+			//console.log(tempHtml);
+			
+			$('#purchaselist').html('');
+			$.each(data.data,function(index,item){
+				console.log(item);
+				laytpl(tempHtml).render(item,function(html){
+					$('#purchaselist').append(html);
+				});
+			});
 		
 		layui.use('form',function(){
 			
 		});
-	})
+	},{id:shopid});
+
+
+	});
+
+
+	
 
 	$('.idCard').on('blur',function(){
 		console.log($(this).val());
