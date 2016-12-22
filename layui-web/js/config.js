@@ -204,7 +204,7 @@ var config={
 		   	success: function(msg){
 	
            // console.log(msg);
-                if(msg.code&&msg.code==400){
+                if(msg.code&&msg.code==401){
                     open('login.html','_self');
                 }else{
                    if(fun){

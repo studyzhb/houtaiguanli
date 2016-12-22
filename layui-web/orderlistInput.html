@@ -98,6 +98,9 @@
               <li class="shenhe">
                 已入库
               </li>
+              <li class="jujue">
+                已拒绝
+              </li>
             </ul>
             </div>
           <table class="layui-table">
@@ -220,14 +223,22 @@
     <td>RMB</td>
     <td>{{d.name}}</td>
     <td>{{d.dposit}}</td>
-    
-     <td>{{d.status}}审</td>
+    {{#  if(d.status=='1'){ }}
+  <td>等待入库</td>
+  {{# }else if(d.status=='10'){ }}
+    <td>已拒绝</td>
+{{#  }else{ }}
+     <td>已入库</td>
+    {{# } }}
+     
     
     <td>{{d.uadmin}}</td>
     <td>{{d.admin}}</td>
     <td>
       {{#  if(d.status=='2'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">完成</div>
+      {{# }else if(d.status=='10'){ }}
+      <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">已拒绝</div>
       {{#  }else{ }}
         <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">审核</div>
       {{# } }}

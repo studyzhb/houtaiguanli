@@ -18,14 +18,21 @@ var laytpl;
 		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
 
 			updateorderlist(data,laytpl);
-		},{status:0});
+		},{status:1});
 	});
 
 	$('.shenhe').on('click',function(){
 		console.log('shenhe');
 		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
 			updateorderlist(data,laytpl);
-		},{status:1});
+		},{status:2});
+	});
+
+	$('.jujue').on('click',function(){
+		console.log('jujue');
+		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
+			updateorderlist(data,laytpl);
+		},{status:10});
 	});
 
 

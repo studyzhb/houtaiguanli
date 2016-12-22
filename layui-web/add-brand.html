@@ -171,6 +171,11 @@
 $('.brandcheck').on('blur',function(){
   config.ajax('get',config.ajaxAddress.checkrepeatbrand,function(data){
     console.log(data);
+    if(data.code==200){
+      
+    }else{
+      alert('品牌重复');
+    }
   },{brand:$(this).val()});
 })
 

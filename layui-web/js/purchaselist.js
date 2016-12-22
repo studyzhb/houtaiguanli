@@ -28,6 +28,13 @@ $(function(){
 		},{status:1});
 	});
 
+	$('.jujue').on('click',function(){
+		console.log('jujue');
+		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
+			updateList(data,laytpl);
+		},{status:10});
+	});
+
 	function updateList(data,laytpl){
 		var tempHtml=supplierList.innerHTML;
 		console.log(data);
