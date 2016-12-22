@@ -71,7 +71,7 @@ var goodsHouse={
         });
 
        if(ImageWrapper.suolveImg.length<3){
-        $('<div class="detail-image-col-2 imageadd">').appendTo($('.image-suolve'));
+        $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
 
        }
 
@@ -226,6 +226,7 @@ $('.fullname').text(fname);
           if(data.info){
             var arr=eval(data.info.spic)?eval(data.info.spic):'';
             if(arr instanceof Array){
+              ImageWrapper.suolveImg=arr;
               $.each(arr,function(index,item){
                 $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
               });

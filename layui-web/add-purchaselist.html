@@ -105,12 +105,7 @@
                     
                   </select>
                 </div>
-                <label class="layui-form-label">采购单位</label>
-                <div class="layui-input-inline">
-                  <select class="ggList" name="gg">
-                    
-                  </select>
-                </div>
+                
                 </div>
               </fieldset>
               
@@ -221,7 +216,7 @@
     <col>
     <col>
     <col>
-    <col>
+    <col width="100">
     <col>
     <col width="100">
   </colgroup>
@@ -231,7 +226,7 @@
       <th>商品编号</th>
       <th>商品条形码</th>
       <th>商品名称</th>
-      <th>规格</th>
+      <th>零售单位</th>
       <th>供应商名称</th>
       <th>品牌</th>
       <th>单价</th>
@@ -453,7 +448,7 @@
     <td>{{d.coding}}</td>
     <td>{{d.name}}</td>
     <td>{{d.brand}}</td>
-    <td>{{d.number}}</td>
+    <td style="position:relative;" data-value="{{d.selectedindex}}" class="dbclickchange">{{d.number}}</td>
     <td>{{d.buyprice}}</td>
     <td>
       <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" id="{{d.selectedindex}}">编辑</div>

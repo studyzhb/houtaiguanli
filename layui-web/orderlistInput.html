@@ -89,6 +89,17 @@
                    搜索
                 </button>
             </form>
+
+            <div style="margin-top:20px;">
+              <ul class="layui-tab-title">
+              <li class="layui-this nshenhe">
+                未入库
+              </li>
+              <li class="shenhe">
+                已入库
+              </li>
+            </ul>
+            </div>
           <table class="layui-table">
           <colgroup>
             <col>
@@ -156,7 +167,7 @@
               <th>采购单号</th>
               <th>商品条码</th>
               <th>名字</th>
-              <th>规格</th>
+              <th>零售单位</th>
               <th>供应商</th>
               <th>仓库</th>
               <th>单价</th>
@@ -227,10 +238,10 @@
   <tr>
     <td>{{d.buyer_id}}</td>
     <td>{{d.barcode}}</td>
-    <td>{{d.goods}}</td>
-    <td>{{d.gg}}</td>
-    <td>{{d.supplier}}</td>
     <td>{{d.name}}</td>
+    <td>{{d.gg}}</td>
+    <td>{{d.supplierName}}</td>
+    <td>{{d.deptName}}</td>
     <td>{{d.price}}</td>
     <td>{{d.unm}}</td>
     <td>{{d.singlePrice}}</td>

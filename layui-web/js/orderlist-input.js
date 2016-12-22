@@ -8,7 +8,29 @@ var laytpl;
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
 		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
-		var tempHtml=supplierList.innerHTML;
+			updateorderlist(data,laytpl);
+		});
+	});
+
+
+	$('.nshenhe').on('click',function(){
+		console.log('nshenhe');
+		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
+
+			updateorderlist(data,laytpl);
+		},{status:0});
+	});
+
+	$('.shenhe').on('click',function(){
+		console.log('shenhe');
+		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
+			updateorderlist(data,laytpl);
+		},{status:1});
+	});
+
+
+function updateorderlist(data,laytpl){
+	var tempHtml=supplierList.innerHTML;
 		console.log(data);
 		$('#purchaselist').html('');
 		$.each(data,function(index,item){
@@ -18,8 +40,8 @@ var laytpl;
 				$('#purchaselist').append(html);
 			});
 		});
-	});
-	});
+}
+
 $('#purchaselist').on('click','.lookorderInfo',function(){
 	config.ajax('get',config.ajaxAddress.editInput,function(data){
 		console.log(data);

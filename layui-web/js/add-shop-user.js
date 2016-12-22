@@ -32,6 +32,7 @@ $(function(){
 			$('.addressInfo').val(area);
 			$('.birthdayInfo').val(bir);
 			$('.sexInfo').val(sex);
+			$('.sexInfoId').val($(this).IdCardSex());
 			$('.ageInfo').val(age);
 
 			console.log(area);

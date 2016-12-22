@@ -101,6 +101,8 @@ var config={
     showgoodsbrand:'/shop/shop/public/index.php/admin/Brand/lst',
     //商品品牌
     addgoodsbrand:'/shop/shop/public/index.php/admin/Brand/add',
+    //添加商品品牌时，判断是否重复
+    checkrepeatbrand:'/shop/shop/public/index.php/admin/Brand/check',
     //商品品牌
     editgoodsbrand:'/shop/shop/public/index.php/admin/Brand/edit',
     //搜索商品
@@ -194,18 +196,21 @@ var config={
     	// console.log(url);
         data=data||{};
         data.token=cookieUtil.getCookie('token');
-
+        url+="?v="+new Date().getTime();
     	$.ajax({
     		type:method,
 		   	url:url,
 		   	data:data||{date:new Date().getTime()},
 		   	success: function(msg){
-		   		//console.log(msg);
-           //alert(msg);
-           console.log(msg);
-		   		if(fun){
-		   			fun(msg);
-		   		} 	
+	
+           // console.log(msg);
+                if(msg.code&&msg.code==400){
+                    open('login.html','_self');
+                }else{
+                   if(fun){
+                    fun(msg);
+                    } 
+                }   		 	
 		   },
        error:function(e){
          console.log(JSON.stringify(e));

@@ -10,13 +10,18 @@ var addShopPage={
 			start:'',
 			end:''
 		},
-		addProvince:function(){
+		addProvince:function(str){
             //创建省份类select
             $('#province-list').html('');
             var me=this;
             $('.provinceswrap').html('');
             $.each(this.area_p.province,function(index,item){
-                $('<option>').appendTo($('.provinceswrap')).html(item['-Name']).attr('value',item['-Name']);
+            	if(item['-Name']==str){
+            		$('<option selected>').appendTo($('.provinceswrap')).html(item['-Name']).attr({'value':item['-Name']});
+            	}else{
+
+                	$('<option>').appendTo($('.provinceswrap')).html(item['-Name']).attr('value',item['-Name']);
+            	}
                 
             });
         },
@@ -64,7 +69,7 @@ var addShopPage={
 		//config.formatTemplate(data[0],tmphtml)
 		var tmphtml=$('.editShopCon').html();
 		$('#editorwrap').append(config.formatTemplate(data[0],tmphtml));
-		// addShopPage.addProvince();
+		addShopPage.addProvince(data[0].provinces);
 		$("#date").jeDate({
 		    isinitVal:true,
 		    festival:true,

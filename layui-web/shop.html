@@ -84,6 +84,8 @@
             <th>ID</th>
             <th>店铺名称</th>
             <th>地址</th>
+            <th>联系人</th>
+            <th>电话</th>
             <th>操作</th>
           </tr> 
         </thead>
@@ -286,7 +288,9 @@
   <tr>
     <td>{{d.coding}}</td>
     <td>{{d.name}}</td>
-    <td>{{d.street}}</td>
+    <td>{{d.details}}</td>
+    <td>{{d.linkname}}</td>
+    <td>{{d.tel}}</td>
     <td> 
       <div class="layui-btn layui-btn-warm layui-btn-small editorShopInfo" data-id="{{d.id}}" >编辑</div>
     </td>

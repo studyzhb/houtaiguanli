@@ -9,6 +9,26 @@ $(function(){
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
+			updateList(data,laytpl);
+		},{status:0});
+	});
+
+	$('.nshenhe').on('click',function(){
+		console.log('nshenhe');
+		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
+
+			updateList(data,laytpl);
+		},{status:0});
+	});
+
+	$('.shenhe').on('click',function(){
+		console.log('shenhe');
+		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
+			updateList(data,laytpl);
+		},{status:1});
+	});
+
+	function updateList(data,laytpl){
 		var tempHtml=supplierList.innerHTML;
 		console.log(data);
 		$('#purchaselist').html('');
@@ -19,8 +39,10 @@ $(function(){
 				$('#purchaselist').append(html);
 			});
 		});
-	});
-	});
+	}
+
+
+
 $('#purchaselist').on('click','.lookorderInfo',function(){
 	config.ajax('get',config.ajaxAddress.editOrderList,function(data){
 		console.log(data);

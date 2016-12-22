@@ -84,7 +84,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">品牌名称</label>
                 <div class="layui-input-block">
-                  <input type="text" name="brand" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="brand" placeholder="请输入" autocomplete="off" class="layui-input brandcheck">
                 </div>
               </div>
               <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
@@ -168,6 +168,13 @@
 <script src="/shop/shop/public/utf8-php/ueditor.all.js"></script>
 <script src="/shop/shop/public/utf8-php/ueditor.all.min.js"></script>
 <script>
+$('.brandcheck').on('blur',function(){
+  config.ajax('get',config.ajaxAddress.checkrepeatbrand,function(data){
+    console.log(data);
+  },{brand:$(this).val()});
+})
+
+// ======================
   var ImageWrapper={
   temp:'',
   imgArr:[],

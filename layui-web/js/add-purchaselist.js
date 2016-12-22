@@ -16,6 +16,22 @@ $(function(){
 		}
 	}
 
+	$('#goods-orderlist').on('dblclick','.dbclickchange',function(){
+		console.log('dbclick');
+
+		var $input=$('<input type="text" placeholder="请输入" autocomplete="off" class="layui-input" style="position:absolute;left:0;top:0;">').appendTo($(this));
+
+		$input.on('blur',function(){
+			
+			
+			var ind=$(this).parent().data('value')-0;
+			// console.log(ind);
+			orderlist.selectedList[ind].number=$(this).val();
+			$(this).parent().text(this.value);
+			$(this).remove();
+		});
+		return false;
+	});
 
 	var purchasePage={
 		arrOrder:[],
@@ -50,7 +66,6 @@ $(function(){
 			$('<option>').appendTo($('.supplierList')).html(item.name).attr('value',item.id);
 		});
 		$.each(data.dept_id,function(index,item){
-
 			$('<option>').appendTo($('.stockList')).html(item.name).attr('value',item.id);
 		});
 		$.each(data.gg,function(index,item){
