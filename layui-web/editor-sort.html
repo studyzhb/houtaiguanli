@@ -165,7 +165,7 @@
     <div class="layui-input-block" style="padding-left:20px;">
       <img class="sfzc imageaddc" src="{pic}" alt="" width="50" height="50">
       
-      <input type="hidden" name="bpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinputc">
+      <input type="hidden" name="pic" placeholder="请输入" autocomplete="off" class="layui-input sfzinputc">
       
     </div>
   </div>
@@ -173,7 +173,11 @@
 </body>
 <script type="text/javascript" src="./js/config.js"></script>
 <script type="text/javascript" src="./js/filter.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.config.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.all.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.all.min.js"></script>
 <script type="text/javascript" src="./js/editor-sort.js"></script>
+
 <script>
   var ImageWrapper={
   temp:'',
@@ -240,16 +244,5 @@
         //myFiles.open();
       } */
 
-      $('#authorList').on('click','.imageaddc',function(){
-          
-          ImageWrapper.btap=false;
-          upImage('image-suolve');
-        })
-
-      $('#authorList').on('click','.imageadd',function(){
-          
-          ImageWrapper.btap=true;
-          upImage('image-suolve');
-        })
 </script>
 </html>

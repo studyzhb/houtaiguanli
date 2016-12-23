@@ -17,7 +17,7 @@ $(function(){
 	$('.brandName').val(unescape(brandId[2].split('=')[1]));
 	var tml=$('.editSortPic').html();
 	config.ajax('get',config.ajaxAddress.editGoodsSort,function(data){
-		console.log(data,tml);
+		console.log(data);
 		$('#authorList').append(config.formatTemplate(data.data,tml));
 	},{id:bid});
 	$('.commit-author').on('click',function(){
@@ -29,4 +29,16 @@ $(function(){
 			}
 		});
 	});
+
+      $('#authorList').on('click','.imageaddc',function(){
+          
+          ImageWrapper.btap=false;
+          upImage('image-suolve');
+        })
+
+      $('#authorList').on('click','.imageadd',function(){
+          
+          ImageWrapper.btap=true;
+          upImage('image-suolve');
+        })
 });
