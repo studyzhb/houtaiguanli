@@ -195,7 +195,7 @@
 <!-- ===================确认入库======================= -->
 <div class="alertCon-wrapper" id="inputConfirmInto" style="margin:10px auto;display:none;padding:0 20px;">
   <div class="alert-main-con">
-      <form method="POST" action="" id="">
+      <form method="POST" action="" id="confirmInto">
         
         <input type="hidden" name="id" value="" class="orderlistId">
         <input type="hidden" name="enter" value="" class="orderToF">
@@ -232,7 +232,7 @@
       <div class="layui-form-item">
         <div class="layui-input-block">
           <div class="layui-btn confirmorder" data-id="true">确认入库</div>
-          <div class="layui-btn confirmorder" data-id="true">拒绝</div>
+          <div class="layui-btn confirmorder" data-id="false">拒绝</div>
         </div>
       </div>
       </form>
@@ -298,7 +298,7 @@
     <td>{{d.deptName}}</td>
     <td>{{d.price}}</td>
     <td>{{d.unm}}</td>
-    <td><input type="text" name="" value="" class="inputChangeNum" data-id="{{d.selectedindex}}"></td>
+    <td><input type="text" name="" value="" class="inputChangeNum" data-id="{{d.selectedindex}}" data-sprice="{{d.price}}"></td>
     <td>{{d.singlePrice}}</td>
     <td class="confirmdetails"></td>
   </tr>
@@ -314,9 +314,9 @@
     <td>{{d.deptName}}</td>
     <td>{{d.price}}</td>
     <td>{{d.unm}}</td>
-    <td>{{d.cheknum}}</td>
+    <td>{{d.checknum}}</td>
     <td>{{d.singlePrice}}</td>
-    <td class="confirmdetails">{{d.details}}</td>
+    <td class="confirmdetails">{{d.checkprice}}</td>
   </tr>
 </script>
 

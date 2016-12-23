@@ -121,15 +121,18 @@ $('#purchaselist').on('click','.confirmInputStore',function(){
 
 $('#singleOrderWrapper').on('blur','.inputChangeNum',function(data){
 	console.log($(this).val());
+	var sprice=$(this).data('sprice')-0;
 	var ind=$(this).data('id')-0;
 	//审核数量
 	orderConfirm.arrbefor[ind].checkNum=$(this).val();
-
+	// console.log($(this).siblings('.confirmdetails'));
+	$(this).parent().siblings('.confirmdetails').text(sprice*$(this).val());
 });
 
 //核对数量提交
 $('.checkConfirm').on('click',function(){
 	// console.log(orderConfirm.arrbefor);
+	orderConfirm.arrafter=[];
 	$.each(orderConfirm.arrbefor,function(index,item){
 		orderConfirm.arrafter.push({id:item.id,good_id:item.good_id,unm:item.checkNum,buyerDetId:item.buyerDetId});
 	});
@@ -176,7 +179,7 @@ $('.confirmorder').on('click',function(){
 	$('.orderlistId').val(purchasePage.buyerid);
 	$('.orderToF').val($(this).data('id'));
 	console.log($(this).data('id'));
-	config.formSubmit('#purchaselistForm',config.ajaxAddress.goodsInput,function(data){
+	config.formSubmit('#confirmInto',config.ajaxAddress.goodsInput,function(data){
 		console.log(data);
 		if(data.code==200){
                 layer.msg('操作成功');

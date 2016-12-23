@@ -65,12 +65,12 @@ var addShopPage={
 	}
 	layui.use('laytpl',function(){
         laytpl = layui.laytpl;
-
+        console.log(shopId);
         config.ajax('get',config.ajaxAddress.editshopUser,function(data){
 		console.log(data);
 		//config.formatTemplate(data[0],tmphtml)
 		var tmphtml=$('.editShopCon').html();
-		var obj=data.data;
+		var obj=data.data||{};
 		obj.shop=data.shop;
 		$('#editorwrap').html('');
 		laytpl(tmphtml).render(obj,function(html){
