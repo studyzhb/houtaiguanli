@@ -1,0 +1,27 @@
+@import 'reset';
+html,body{
+	width:100%;
+	height:100%;
+}
+
+section{
+    width:750px;
+    height:100%;
+    overflow:hidden;
+    position:relative;
+    background-color:#f0f0f0;
+    background-image: url(../img/wait01.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 166px 201px; 
+
+    p{
+        font-size:28px;
+        line-height: 48px;
+        position:absolute;
+        text-align: center;
+       color:#8b8b8b;
+        left:29%;
+        top:60%;
+    }
+}

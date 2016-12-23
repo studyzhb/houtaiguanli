@@ -15,8 +15,10 @@ $(function(){
 	var bid=brandId[1].split('=')[1];
 	$('.brandId').val(brandId[1].split('=')[1]);
 	$('.brandName').val(unescape(brandId[2].split('=')[1]));
+	var tml=$('.editSortPic').html();
 	config.ajax('get',config.ajaxAddress.editGoodsSort,function(data){
-		console.log(data);
+		console.log(data,tml);
+		$('#authorList').append(config.formatTemplate(data.data,tml));
 	},{id:bid});
 	$('.commit-author').on('click',function(){
 		config.formSubmit('#authorForm',config.ajaxAddress.editGoodsSort,function(data){

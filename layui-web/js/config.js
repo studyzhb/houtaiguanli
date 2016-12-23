@@ -155,6 +155,8 @@ var config={
      addshopUser:'/shop/shop/public/index.php/admin/Shop/bAdd',
       editshopUser:'/shop/shop/public/index.php/admin/Shop/bEdit',
       goodsInput:'/shop/shop/public/index.php/admin/Store/storeInput',
+      //核实数量
+      changeInput:'/shop/shop/public/index.php/admin/Store/editInput',
       //修改入库
       editInput:'/shop/shop/public/index.php/admin/Store/check',
       //店铺充值

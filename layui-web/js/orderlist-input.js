@@ -4,6 +4,16 @@ $(function(){
 		selectedindex:'',
 		zongjia:''
 	}
+
+	/**
+		确认采购单
+	*/
+
+	var orderConfirm={
+		arrbefor:[],
+		arrafter:[]
+	}
+
 var laytpl;
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
@@ -50,11 +60,12 @@ function updateorderlist(data,laytpl){
 }
 
 
-
+//打开确认审核数量界面
 
 $('#purchaselist').on('click','.lookorderInfo',function(){
 	config.ajax('get',config.ajaxAddress.editInput,function(data){
-		console.log(data);
+		console.log(data.data);
+		orderConfirm.arrbefor=[];
 		var tempHtml=singleOrderList.innerHTML;
 		$('#singleOrderWrapper').html('');
 		$.each(data.data,function(index,item){
@@ -63,6 +74,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 			item.selectedindex=index;
 			purchasePage.buyerid=item.id;
 			purchasePage.arrOrder.push(item);
+			orderConfirm.arrbefor.push(item);
 			laytpl(tempHtml).render(item,function(html){
 				$('#singleOrderWrapper').append(html);
 			});
@@ -73,10 +85,60 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 		type:1,
 		content: $('#alertDemo'), //这里content是一个DOM
       shade:[0.8,'#000'],
-      area:'900px',
+      area:'1200px',
       maxmin: true
 	})
 });
+
+//打开确认入库界面
+$('#purchaselist').on('click','.confirmInputStore',function(){
+	config.ajax('get',config.ajaxAddress.editInput,function(data){
+		console.log(data.data);
+		orderConfirm.arrbefor=[];
+		var tempHtml=orderListInput.innerHTML;
+		$('#singleOrderWrapper1').html('');
+		$.each(data.data,function(index,item){
+			purchasePage.zongjia=item.dposit;
+			item.singlePrice=item.price*item.unm;
+			item.selectedindex=index;
+			purchasePage.buyerid=item.id;
+			purchasePage.arrOrder.push(item);
+			
+			laytpl(tempHtml).render(item,function(html){
+				$('#singleOrderWrapper1').append(html);
+			});
+		});
+
+	},{id:$(this).data('id')});
+	layer.open({
+		type:1,
+		content: $('#inputConfirmInto'), //这里content是一个DOM
+      shade:[0.8,'#000'],
+      area:'1200px',
+      maxmin: true
+	})
+});
+
+$('#singleOrderWrapper').on('blur','.inputChangeNum',function(data){
+	console.log($(this).val());
+	var ind=$(this).data('id')-0;
+	//审核数量
+	orderConfirm.arrbefor[ind].checkNum=$(this).val();
+
+});
+
+//核对数量提交
+$('.checkConfirm').on('click',function(){
+	// console.log(orderConfirm.arrbefor);
+	$.each(orderConfirm.arrbefor,function(index,item){
+		orderConfirm.arrafter.push({id:item.id,good_id:item.good_id,unm:item.checkNum,buyerDetId:item.buyerDetId});
+	});
+	console.log(orderConfirm.arrafter);
+	config.ajax('post',config.ajaxAddress.changeInput,function(data){
+		console.log(data);
+	},{goods:JSON.stringify(orderConfirm.arrafter)});
+});
+
 var index;
 $('#singleOrderWrapper').on('click','.editorSingGood',function(){
 	purchasePage.selectedindex=$(this).data('id');
@@ -107,7 +169,6 @@ $('.saveGoodsNum').on('click',function(){
 			$('#singleOrderWrapper').append(html);
 		});
 	});
-	
 	layer.close(index);
 });
 
@@ -116,7 +177,7 @@ $('.confirmorder').on('click',function(){
 	$('.orderToF').val($(this).data('id'));
 	console.log($(this).data('id'));
 	config.formSubmit('#purchaselistForm',config.ajaxAddress.goodsInput,function(data){
-		// console.log(data);
+		console.log(data);
 		if(data.code==200){
                 layer.msg('操作成功');
                 setTimeout(function(){

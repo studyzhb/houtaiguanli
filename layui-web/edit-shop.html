@@ -152,19 +152,19 @@
               
                 <div class="layui-input-inline">
                   <select name="provinces" lay-filter="pro" class="provinceswrap">
-                    <option value="{{d.provinces}}">{{d.provinces}}</option>
+                    <option selected value="{{d.provinces}}">{{d.provinces}}</option>
                   </select>
                 </div>
                 <div class="layui-input-inline">
                   <select name="city" lay-filter="city" class="cityswrap">
                     <!--<option value="">市</option>-->
-                    <option value="{{d.city}}">{{d.city}}</option>
+                    <option selected value="{{d.city}}">{{d.city}}</option>
                   </select>
                 </div>
                 <div class="layui-input-inline">
                   <select name="county" class="counwrap">
                     <!--<option value="">县</option>-->
-                    <option value="{{d.county}}">{{d.county}}</option>
+                    <option value="{{d.county}}" selected>{{d.county}}</option>
                   </select>
                 </div>
               </div>
@@ -250,7 +250,7 @@
 
                 <div class="layui-input-inline">
                   <select name="dept_id" class="provinceswrap1">
-                    <option value="{{d.DeptId}}">{{d.DeptName}}</option>
+                    <option value="{{d.DeptId}}" selected >{{d.DeptName}}</option>
                   </select>
                 </div>
                 
