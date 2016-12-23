@@ -7,8 +7,8 @@ var addShopPage={
 		area_p:config.area_num.root,
 		area:{pro:''},
 		worktime:{
-			start:'',
-			end:''
+			start:'09:00:00',
+			end:'21:00:00'
 		},
 		addProvince:function(str){
             //创建省份类select
@@ -64,12 +64,31 @@ var addShopPage={
         },
 	}
 
-	config.ajax('get',config.ajaxAddress.editshopList,function(data){
-		console.log(data);
+	layui.use('laytpl',function(){
+		var laytpl = layui.laytpl;
+		config.ajax('get',config.ajaxAddress.editshopList,function(data){
+			console.log(data[0]);
 		//config.formatTemplate(data[0],tmphtml)
 		var tmphtml=$('.editShopCon').html();
-		$('#editorwrap').append(config.formatTemplate(data[0],tmphtml));
+		var atime=data[0].worktime.split('-')?data[0].worktime.split('-'):[];
+		addShopPage.worktime.start=atime[0];
+		addShopPage.worktime.end=atime[1];
+		var obj=data[0];
+		if(obj.pic){
+			var parPic=JSON.parse(obj.pic)?JSON.parse(obj.pic):[];
+			obj.pic=parPic;
+			ImageWrapper.suolveImg=obj.pic;
+
+		}else{
+			obj.pic=[];
+		}
+		$('#editorwrap').html('');
+		// $('#editorwrap').append(config.formatTemplate(data[0],tmphtml));
+		laytpl(tmphtml).render(obj,function(html){
+                $('#editorwrap').append(html);
+        });
 		addShopPage.addProvince(data[0].provinces);
+		$('.shopinput').val(JSON.stringify(ImageWrapper.suolveImg));
 		$("#date").jeDate({
 		    isinitVal:true,
 		    festival:true,
@@ -135,10 +154,22 @@ var addShopPage={
 			  console.log(data);
 			  addShopPage.area.pro=data.value;
 				addShopPage.addCity(data.value);
+				config.ajax('get',config.ajaxAddress.getShopStock,function(data){
+		            console.log(data);
+		            $('.provinceswrap1').html('');
+		            $.each(data,function(index,item){
+		            	$('<option>').appendTo($('.provinceswrap1')).html(item.name).attr('value',item.id);
+		            });
+		            form.render();
+		          },{province:data.value});
+
 				form.render();
 			});
 		});
-	},{id:shopId});
+		},{id:shopId});
+	});
+
+	
 
 	
 

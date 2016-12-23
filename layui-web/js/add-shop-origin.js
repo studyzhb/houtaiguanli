@@ -5,8 +5,8 @@ var addShopPage={
 		area_p:config.area_num.root,
 		area:{pro:''},
 		worktime:{
-			start:'',
-			end:''
+			start:'09:00:00',
+			end:'21:00:00'
 		},
 		addProvince:function(){
             //创建省份类select
@@ -25,7 +25,7 @@ var addShopPage={
              $('.cityswrap').html('');
             $.each(this.area_p.province,function(index,item){
                 if(item['-Name']==parVal){
-                	console.log('111 css');
+                	// console.log('111 css');
                     $.each(item.city,function(i,cityO){
                     	// console.log(cityO);
                     	$('<option>').appendTo($('.cityswrap')).html(cityO['-Name']).attr('value',cityO['-Name']);
@@ -74,8 +74,7 @@ var addShopPage={
 			$('<option>').appendTo($('.con_type')).html(item.name).attr('value',item.id);
 			$.each(item.children,function(i,its){
 				$('<option>').appendTo($('.con_type')).html(' ---- '+its.name);
-			});
-			
+			});	
 		});
 		addShopPage.addProvince();
 		layui.use('form',function(){

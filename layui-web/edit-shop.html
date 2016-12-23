@@ -138,13 +138,13 @@
   <div class="layui-form-item">
                 <label class="layui-form-label">店铺名称</label>
                 <div class="layui-input-block">
-                  <input type="text" name="name" value="{name}"  autocomplete="off" class="layui-input">
+                  <input type="text" name="name" value="{{d.name}}"  autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺编号</label>
                 <div class="layui-input-block">
-                  <input type="text" name="coding" value="{coding}" readonly placeholder="请输入" class="layui-input shop-coding">
+                  <input type="text" name="coding" value="{{d.coding}}" readonly placeholder="请输入" class="layui-input shop-coding">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -152,44 +152,44 @@
               
                 <div class="layui-input-inline">
                   <select name="provinces" lay-filter="pro" class="provinceswrap">
-                    <option value="{provinces}">{provinces}</option>
+                    <option value="{{d.provinces}}">{{d.provinces}}</option>
                   </select>
                 </div>
                 <div class="layui-input-inline">
                   <select name="city" lay-filter="city" class="cityswrap">
                     <!--<option value="">市</option>-->
-                    <option value="{city}">{city}</option>
+                    <option value="{{d.city}}">{{d.city}}</option>
                   </select>
                 </div>
                 <div class="layui-input-inline">
                   <select name="county" class="counwrap">
                     <!--<option value="">县</option>-->
-                    <option value="{county}">{county}</option>
+                    <option value="{{d.county}}">{{d.county}}</option>
                   </select>
                 </div>
               </div>
                <div class="layui-form-item">
                 <label class="layui-form-label">联系人</label>
                 <div class="layui-input-block">
-                  <input type="text" name="linkname" value='{linkname}' placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="linkname" value='{{d.linkname}}' placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-block">
-                  <input type="text" name="details" value="{details}" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
+                  <input type="text" name="details" value="{{d.details}}" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺电话</label>
                 <div class="layui-input-block">
-                  <input type="text" name="tel" value="{tel}" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="tel" value="{{d.tel}}" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">固话</label>
                 <div class="layui-input-block">
-                  <input type="text" name="fixedline" value="{fixedline}" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="fixedline" value="{{d.fixedline}}" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               
@@ -200,6 +200,30 @@
                 </div>
                 <input type="hidden" name="cardpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
                              </div> -->
+
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">店铺图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                      {{#  layui.each(d.pic,function(index, item){ }}
+                        <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{{item}}">
+                          <div class="left-block"></div>
+                          <div class="right-block"></div>
+                          <img src="{{item}}" width="100%" height="100%" />    
+                        </div>  
+                      {{#  }); }}
+
+                      {{#  if(d.pic.length<5){ }}
+                        <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
+                      </div>
+                      {{#  }; }}
+                      
+    
+                  </div>
+                </div>
+                <input type="hidden" name="pic" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+              </div>
+
               <div class="layui-form-item">
                 <label class="layui-form-label">营业时间</label>
                 <div class="layui-input-inline">
@@ -215,25 +239,31 @@
               <div class="layui-form-item" style="display:none">
                 <label class="layui-form-label">经纬度</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="longitude" id="lngX" placeholder="经度" autocomplete="off" class="layui-input">
+                  <input type="text" name="longitude" id="lngX" value="{{d.longitude}}" placeholder="经度" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
-                  <input type="text" name="latitude" id="latY" placeholder="纬度" autocomplete="off" class="layui-input">
+                  <input type="text" name="latitude" id="latY" value="{{d.latitude}}" placeholder="纬度" autocomplete="off" class="layui-input">
                 </div>
               </div>
                <div class="layui-form-item">
                 <label class="layui-form-label">仓库</label>
 
                 <div class="layui-input-inline">
-                  <select name="dept_id">
-                    <option value="{DeptId}">{DeptName}</option>
+                  <select name="dept_id" class="provinceswrap1">
+                    <option value="{{d.DeptId}}">{{d.DeptName}}</option>
                   </select>
                 </div>
                 
                 
               </div>
 </script>
-
+<script type="text/template" id="image-suolve">
+     <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
+        <div class="left-block"></div>
+        <div class="right-block"></div>
+        <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
 <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
 </div>
 <script type="text/javascript" src="./js/config.js"></script>
@@ -244,7 +274,7 @@
 <script src="/shop/shop/public/utf8-php/ueditor.config.js"></script>
 <script src="/shop/shop/public/utf8-php/ueditor.all.js"></script>
 <script src="/shop/shop/public/utf8-php/ueditor.all.min.js"></script>
-<script src="./js/editor-shop.js"></script>
+
 <script type="text/javascript">
 
         var ImageWrapper={
@@ -279,14 +309,36 @@ var goodsHouse={
     //监听图片上传
     o_ueditorupload.addListener('beforeInsertImage', function (t,arg)
     {
-        ImageWrapper.imgArr.length=0;
-        $('.sfz').attr('src',arg[0].src);
-        $('.sfzinput').val(arg[0].src);
-        
+        $.each(arg,function(index,item){
+          // console.log(item.src);
+          ImageWrapper.suolveImg.push(item.src);
+          ImageWrapper.imgArr.push(item.src);
+        });
 
         // console.log(ImageWrapper.imgArr);
         // $()
           // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
+
+          $('.image-suolve').html('');
+         $.each(ImageWrapper.suolveImg,function(index,item){
+            
+            console.log(item);
+            // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
+            //   $('#imageadd').show();
+            // }else{
+            //    $('#imageadd').hide();
+            // }
+            if(index<=4){
+
+              $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
+            }
+
+        });
+         if(ImageWrapper.suolveImg.length<5){
+          $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
+
+         }
+         $('.shopinput').val(JSON.stringify(ImageWrapper.suolveImg));
     });
 
 
@@ -618,6 +670,6 @@ var goodsHouse={
 
 
 </script>
-
+<script src="./js/editor-shop.js"></script>
 </body>
 </html>

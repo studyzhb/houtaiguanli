@@ -9,7 +9,7 @@ var laytpl;
 		laytpl = layui.laytpl;
 		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
 			updateorderlist(data,laytpl);
-		});
+		},{status:1});
 	});
 
 
@@ -48,6 +48,9 @@ function updateorderlist(data,laytpl){
 			});
 		});
 }
+
+
+
 
 $('#purchaselist').on('click','.lookorderInfo',function(){
 	config.ajax('get',config.ajaxAddress.editInput,function(data){

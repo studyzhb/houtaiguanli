@@ -160,7 +160,9 @@ var config={
       //店铺充值
       shopprice:'/shop/shop/public/index.php/admin/Shop/addMoney',
       //店铺流水信息
-      shophis:'/shop/shop/public/index.php/admin/Shop/llst'
+      shophis:'/shop/shop/public/index.php/admin/Shop/llst',
+      //身份证查重
+      idcardcheck:'/shop/shop/public/index.php/admin/Shop/bCheck'
 
 	},
   pSort:{

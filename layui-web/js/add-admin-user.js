@@ -1,7 +1,8 @@
 $(function(){
 	
 	var addUser={
-		maxNum:''
+		maxNum:'',
+		// idCardIsCommit:
 	}
 	var form;
 	config.ajax('get',config.ajaxAddress.addUserInfo,function(data){
@@ -96,6 +97,11 @@ $(function(){
 			// })
 			layer.msg('身份证信息不正确');
 		}
+
+		config.ajax('get',config.ajaxAddress.idcardcheck,function(data){
+			console.log(data);
+		},{carded:$(this).val()});
+
 	});
 
 

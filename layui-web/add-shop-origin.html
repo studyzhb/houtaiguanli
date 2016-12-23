@@ -12,7 +12,33 @@
   	<script type="text/javascript" src="./js/jquery-form.js"></script>
     <script type="text/javascript" src="jedate/jquery.jedate.js"></script>
 <link type="text/css" rel="stylesheet" href="jedate/skin/jedate.css">
-    
+    <style>
+      .tab-content dl dd {
+            margin-left: 0; 
+        }
+        .detail-image-col-2 .image-content{
+            position:absolute;
+            width:100%;
+            height:100%;
+            opacity:0;
+            left:0;
+            top:0;
+        }
+        
+        div.moving{
+                border: 1px dashed gray;
+                background: white;
+        }
+        div.draging{
+            width: 300px;
+            height: 180px;
+            position: absolute;
+            background: goldenrod;
+            box-shadow: 0 0 4px 2px #555;
+            border-radius: 5px; 
+            z-index: 500;
+        }
+    </style>
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -151,6 +177,19 @@
                 </div>
                 <input type="hidden" name="cardpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
                              </div> -->
+
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">店铺图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
+                                                     </div>
+                          
+                  </div>
+                </div>
+                <input type="hidden" name="pic" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                             </div>
+
               <div class="layui-form-item">
                 <label class="layui-form-label">营业时间</label>
                 <div class="layui-input-inline">
@@ -241,6 +280,15 @@
 
 
 </div>
+
+<script type="text/template" id="image-suolve">
+     <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
+        <div class="left-block"></div>
+        <div class="right-block"></div>
+        <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
+
 <script type="text/javascript" src="./js/config.js"></script>
 <script type="text/javascript" src="./js/filter.js"></script>
 
@@ -284,14 +332,38 @@ var goodsHouse={
     //监听图片上传
     o_ueditorupload.addListener('beforeInsertImage', function (t,arg)
     {
-        ImageWrapper.imgArr.length=0;
-        $('.sfz').attr('src',arg[0].src);
-        $('.sfzinput').val(arg[0].src);
         
+        
+        $.each(arg,function(index,item){
+          // console.log(item.src);
+          ImageWrapper.suolveImg.push({imgsrc:item.src});
+          ImageWrapper.imgArr.push(item.src);
+        });
 
         // console.log(ImageWrapper.imgArr);
         // $()
           // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
+
+          $('.image-suolve').html('');
+         $.each(ImageWrapper.suolveImg,function(index,item){
+            
+            console.log(item);
+            // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
+            //   $('#imageadd').show();
+            // }else{
+            //    $('#imageadd').hide();
+            // }
+            if(index<=4){
+
+              $('.image-suolve').append(config.formatTemplate(item,$('#image-suolve').html()));
+            }
+
+        });
+         if(ImageWrapper.suolveImg.length<5){
+          $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
+
+         }
+         $('.shopinput').val(JSON.stringify(ImageWrapper.imgArr));
     });
 
 
@@ -325,10 +397,12 @@ var goodsHouse={
 
 
 
-      $('.imageadd').on('click',function(){
+      $('.image-suolve').on('click','.imageadd',function(){
           console.log(UE);
           upImage('image-suolve');
         })
+
+      
 
 
 
