@@ -138,9 +138,15 @@
     <a href="javascript:;">{{d.name}}</a>
     <dl class="layui-nav-child">
     {{#  layui.each(d.children,function(index, item){ }}
-      <dd>
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
         <a href="{{item.path}}">{{item.name}}</a>
       </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
     {{#  }); }}
       
     </dl>

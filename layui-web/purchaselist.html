@@ -237,7 +237,7 @@
     {{#  if(d.status=='1'){ }}
   <td>已审核</td>
   {{# }else if(d.status=='10'){ }}
-    <td>被拒绝</td>
+    <td>被拒绝:{{d.note}}</td>
 {{#  }else{ }}
      <td>等待审核</td>
     {{# } }}
@@ -276,9 +276,15 @@
     <a href="javascript:;">{{d.name}}</a>
     <dl class="layui-nav-child">
     {{#  layui.each(d.children,function(index, item){ }}
-      <dd>
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
         <a href="{{item.path}}">{{item.name}}</a>
       </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
     {{#  }); }}
       
     </dl>

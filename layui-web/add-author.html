@@ -290,14 +290,22 @@
     <a href="javascript:;">{{d.name}}</a>
     <dl class="layui-nav-child">
     {{#  layui.each(d.children,function(index, item){ }}
-      <dd>
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
         <a href="{{item.path}}">{{item.name}}</a>
       </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
     {{#  }); }}
       
     </dl>
   </li>
 </script>
+
+
 <script id="authorContent" type="text/html">
   <div class="layui-form-item">
       <label class="layui-form-label">{{d.name}}</label>

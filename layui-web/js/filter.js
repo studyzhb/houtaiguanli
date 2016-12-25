@@ -3,6 +3,7 @@ var layer;
 var $;
 var laytpl;
 var user=cookieUtil.getCookie('username');
+var cookAuthor=cookieUtil.getCookie('authorlist');
 $(function(){
 	
 	/*$('.layui-tab-title').on('click',function(){
@@ -17,15 +18,17 @@ $(function(){
 		if(data.code==200){
             layer.msg('退出成功');
             cookieUtil.removeCookie('username');
+            cookieUtil.removeCookie('authorlist');
+            cookieUtil.removeCookie('token');
             setTimeout(function(){
                 open('login.html','_self');
-            },500)
+            },500);
             
         }else{
             layer.msg('网络错误，请稍后重试');
             setTimeout(function(){
                 open('login.html','_self');
-            },500)
+            },500);
         }
 	})
 	});
@@ -43,14 +46,68 @@ $(function(){
  //        }
 	// });
 
-config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
+// 对菜单列表进行归类
+
+var netPath=location.href;
+var reg=/(\/[a-zA-Z0-9-_]+)/g;
+var getArr=netPath.match(reg);
+var switchVal=getArr[getArr.length-1].substring(1);
+switch(switchVal){
+	case 'add-brand':
+		netPath+='/goodsbrand.html';
+		break;
+	case 'editor-brand':
+		netPath+='/goodsbrand.html';
+		break;
+	case 'add-sort':
+		netPath+='/goodsSort.html';
+		break;
+	case 'editor-sort':
+		netPath+='/goodsSort.html';
+		break;
+	case 'editor-goodsInfo':
+		netPath+='/editorgoodsInfo.html';
+		break;
+	case 'add-admin-menu':
+		netPath+='/admin-menulist.html';
+		break;
+	case 'editor-author':
+		netPath+='/authorlist.html';
+		break;
+	case 'add-author':
+		netPath+='/authorlist.html';
+		break;
+	case 'add-shop-origin':
+		netPath+='/shop.html';
+		break;
+	case 'shopprice-his':
+		netPath+='/shop-price.html';
+		break;
+}
+if(!cookAuthor){
+	config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		console.log(data);
 		if(!!user){
 			$('.username').text(cookieUtil.getCookie('username'));
 		}else{
 			open('login.html','_self');
 		}
-		layui.use(['laypage','layer','laytpl'],function(){
+		cookieUtil.setExpiresDate('authorlist',JSON.stringify(data));
+		updateList(data);
+		
+	});
+}else{
+	if(!!user){
+			$('.username').text(cookieUtil.getCookie('username'));
+		}else{
+			open('login.html','_self');
+		}
+	updateList(JSON.parse(cookAuthor));
+}
+
+function updateList(data)
+{
+	layui.use(['laypage','layer','laytpl'],function(){
 				$=layui.jquery;
 		    	laytpl = layui.laytpl;
 		    	layer = layui.layer;
@@ -59,7 +116,7 @@ config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 
 		    	$.each(data,function(index,item){
 					// console.log(item.children);
-					item.thisselc=location.href;
+					item.thisselc=netPath;
 					item.shai=item.thisselc;
 					
 					laytpl(tempHtml).render(item,function(html){
@@ -73,12 +130,8 @@ config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 					var element = layui.element();
 					element.init();
 				});
-		 })
-		
-		
-		
-	});
-
+		 });
+}
 $('.show-content').on('click','.select-tit',function(){
 
         if($(this).next().css('display')=='none'){
@@ -92,9 +145,5 @@ $('.show-content').on('click','.select-tit',function(){
         $(this).parents('.select-items').css('display','none').next().css('display','none');
         $(this).parents('.select-items').prev('.select-tit').find('span').text($(this).text());  
     })
-
-
-
-
 
 });

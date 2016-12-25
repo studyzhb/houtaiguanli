@@ -199,6 +199,7 @@
         
         <input type="hidden" name="id" value="" class="orderlistId">
         <input type="hidden" name="enter" value="" class="orderToF">
+        <input type="hidden" name="note" value="" class="orderRefuseIntro">
         <table class="layui-table">
           <colgroup>
             <!-- <col width="100">
@@ -241,15 +242,15 @@
 <!-- ========================================================= -->
 <div id="goodsNum" class="layui-form" style="display:none">
     <div class="layui-form-item">
-      <label class="layui-form-label">更改数量</label>
+      <label class="layui-form-label">拒绝理由</label>
       <div class="layui-input-inline">
-        <input type="text" placeholder="请输入数量" autocomplete="off" class="layui-input singleNum">
+        <input type="text" placeholder="请输入内容" autocomplete="off" class="layui-input singleNum">
       </div>
     </div>
 
     <div class="layui-form-item">
       <div class="layui-input-block">
-        <div class="layui-btn saveGoodsNum">确定</button>
+        <div class="layui-btn saveGoodsNum">确定提交</button>
       </div>
     </div>
   </div>
@@ -279,7 +280,7 @@
       {{#  if(d.status=='2'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">完成</div>
       {{# }else if(d.status=='10'){ }}
-      <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">已拒绝</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">拒绝理由：{{d.note}}</div>
       {{#  }else{ }}
         <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">确认订单</div>
         <div class="layui-btn layui-btn-normal layui-btn-small confirmInputStore" data-id="{{d.id}}">确认入库</div>

@@ -148,37 +148,44 @@ $('#singleOrderWrapper').on('click','.editorSingGood',function(){
 	var nnn=$(this).data('id')-0;
 	purchasePage.zongjia-=purchasePage.arrOrder[nnn].singlePrice-0;
 	
-	index=layer.open({
-		type:1,
-		content: $('#goodsNum'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'400px',
-      maxmin: false
-	})
+	
 	
 });
 
 $('.saveGoodsNum').on('click',function(){
-	$('#singleOrderWrapper').html('');
 	
 	var num=$('.singleNum').val();
-	var ind=purchasePage.selectedindex-0;
-	purchasePage.arrOrder[ind].unm=num;
-	purchasePage.arrOrder[ind].singlePrice=num*purchasePage.arrOrder[ind].price;
-	purchasePage.zongjia+=purchasePage.arrOrder[ind].singlePrice-0;
-	var tempHtml=singleOrderList.innerHTML;
-	$.each(purchasePage.arrOrder,function(index,item){
-		laytpl(tempHtml).render(item,function(html){
-			$('#singleOrderWrapper').append(html);
-		});
-	});
+	$('.orderRefuseIntro').val(num);
 	layer.close(index);
+	confirmIntoStock();
 });
 
 $('.confirmorder').on('click',function(){
 	$('.orderlistId').val(purchasePage.buyerid);
 	$('.orderToF').val($(this).data('id'));
-	console.log($(this).data('id'));
+	$('.orderRefuseIntro').val('');
+	if(!$(this).data('id')){
+		console.log(!$(this).data('id'));
+		index=layer.open({
+			type:1,
+			content: $('#goodsNum'), //这里content是一个DOM
+	      shade:[0.8,'#000'],
+	      area:'400px',
+	      maxmin: false
+		});
+	}else{
+		confirmIntoStock();
+	}
+	
+	
+
+	
+
+});
+
+
+//确认入库或拒绝入库
+function confirmIntoStock(){
 	config.formSubmit('#confirmInto',config.ajaxAddress.goodsInput,function(data){
 		console.log(data);
 		if(data.code==200){
@@ -194,10 +201,7 @@ $('.confirmorder').on('click',function(){
                 },500)
             }
 	});
-
-	
-
-});
+}
 
 
 
