@@ -46,14 +46,14 @@ $(function(){
 			});
 
 			//监听提交
-		  form.on('submit(demo1)', function(data){
+		  form.on('submit(demo1)', function(data1){
 		    /*layer.alert(JSON.stringify(data.field), {
 		      title: '最终的提交信息'
 		    })*/
 
 		  	config.formSubmit('#adminInfo',config.ajaxAddress.addUserInfo,function(data){
 			console.log(data);
-				/*if(data.code==200){
+				if(data.code==200){
 	                layer.msg('添加成功');
 	                setTimeout(function(){
 	                    open('admin-user.html','_self');
@@ -64,7 +64,7 @@ $(function(){
 	                setTimeout(function(){
 	                    open('admin-user.html','_self');
 	                },1000);
-	            }*/
+	            }
 			});
 
 		    return false;
@@ -131,7 +131,7 @@ $(function(){
 	*/
 
 
-	$('.addUserInfo').on('click',function(){
+	/*$('.addUserInfo').on('click',function(){
 		form.verify({
 		  username: function(value){
 		    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
@@ -152,6 +152,6 @@ $(function(){
 		});
 
 		
-	})
+	})*/
 
 });

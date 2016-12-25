@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>标题</title>
+	<title>采购单</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
@@ -155,7 +155,7 @@
   
 
   <!-- =======================弹出窗========================= -->
-<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
+<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;padding:0 20px;">
   <div class="alert-main-con">
       <form method="POST" action="" id="purchaselistForm">
         <input type="hidden" id="goods" name="goods" value="">
@@ -193,12 +193,73 @@
             
             
           </tbody>
-
+          <tfoot>
+            <tr>
+              <td colspan="11">合计：<span class="dposit"></span></td>
+            </tr>
+          </tfoot>
       </table>
         
       <div class="layui-form-item">
         <div class="layui-input-block">
           <div class="layui-btn" id="confirmorder">确认审核</div>
+        </div>
+      </div>
+      </form>
+    </div>
+</div>
+
+
+
+<div class="alertCon-wrapper" id="printDemo" style="margin:10px auto;display:none;padding:0 20px;">
+  <div class="alert-main-con">
+      <form method="POST" action="" id="purchaselistForm">
+        <input type="hidden" id="goods" name="goods" value="">
+        <div id="printcontent">
+          <table class="layui-table">
+          <colgroup>
+            <col>
+            <col>
+            <col>
+            <col width="50">
+            <col>
+            <col>
+            <col>
+            <col>
+            <col>
+            <col width="150">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>采购单号</th>
+              <th>商品条码</th>
+              <th>名字</th>
+              <th>规格</th>
+              <th>供应商</th>
+              <th>仓库</th>
+              <th>单价</th>
+              <th>数量</th>
+              <th>总价</th>
+              
+            </tr> 
+          </thead>
+          <tbody id="printOrderWrapper">
+            
+            
+            
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="9">合计：<span class="printdposit"></span></td>
+            </tr>
+          </tfoot>
+      </table>
+        </div>
+        
+        
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <div class="layui-btn" id="confirmorder" onclick="printPage()">打印采购单</div>
         </div>
       </div>
       </form>
@@ -245,7 +306,7 @@
     <td>{{d.admin}}</td>
     <td>
       {{#  if(d.status=='1'){ }}
-      <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">完成</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small printOrderlist" data-id="{{d.id}}">打印采购单</div>
       {{#  }else{ }}
         <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">审核</div>
       {{# } }}
@@ -267,6 +328,20 @@
       <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" data-id="{{d.selectedindex}}" data-goodId="{{d.id}}">编辑</div>
       <div class="layui-btn layui-btn-warn layui-btn-small deleteSingGood" data-id="{{d.selectedindex}}" data-goodId="{{d.id}}">删除</div>
     </td>
+  </tr>
+</script>
+
+<script id="printOrderList" type="text/html">
+  <tr>
+    <td>{{d.buyer_id}}</td>
+    <td>{{d.barcode}}</td>
+    <td>{{d.goods}}</td>
+    <td>{{d.gg}}</td>
+    <td>{{d.supplier}}</td>
+    <td>{{d.DeptName}}</td>
+    <td>{{d.price}}</td>
+    <td>{{d.number}}</td>
+    <td>{{d.singlePrice}}</td>
   </tr>
 </script>
 
@@ -294,4 +369,11 @@
 </div>
 <script src="./js/purchaselist.js"></script>
 </body>
+<script>
+  function printPage(){
+    console.log($('#printcontent').html());
+    document.body.innerHTML=document.getElementById('printcontent').innerHTML;
+    window.print();
+  }
+</script>
 </html>
