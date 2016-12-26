@@ -92,8 +92,9 @@
           <thead>
             <tr>
               <th>店铺编号</th>
+              <th>店铺名称</th>
               <th>单号</th>
-              <th>商品金额</th>
+              <th>店铺操作前余额</th>
               <th>操作金额</th>
               <th>余额</th>
               <th>操作时间</th>
@@ -153,7 +154,8 @@
 
 <script type="text/html" id="shophis" >
   <tr>
-    <td>{{d.shop_id}}</td>
+    <td>{{d.coding}}</td>
+    <td>{{d.name}}</td>
     <td>{{d.order}}</td>
     <td>{{d.balance}}</td>
     <td>{{d.total}}</td>

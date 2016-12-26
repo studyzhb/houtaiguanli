@@ -34,6 +34,11 @@ var goodsHouse={
           // console.log(item.src);
           ImageWrapper.imgArr.push({imgsrc:item.src});
         });
+
+        /*for(var i=arg.length-1;i>=0;i--){
+          ImageWrapper.imgArr.push({imgsrc:item.src});
+        }*/
+
         if(ImageWrapper.temp=="image-suolve"){
 
         	$.each(ImageWrapper.imgArr,function(index,item){
@@ -43,6 +48,7 @@ var goodsHouse={
         	})
 //          ImageWrapper.suolveImg=ImageWrapper.imgArr;
         }else{
+          // ImageWrapper.imgArr.reverse();
         	$.each(ImageWrapper.imgArr,function(index,item){
         		ImageWrapper.detailImg.push(item.imgsrc);
         	})
@@ -183,7 +189,8 @@ var goodsHouse={
 var getCon=window.location.href.split('?')[1]||'';
 var fname=window.location.href.split('?')[2]||'';
 goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
-$('.fullname').text(fname);
+
+$('.fullname').text(unescape(fname));
     $('#confirmsavetext').on('click',function(){
             layer.closeAll();
             $('.img-content').append(config.formatTemplate({text:$('.singleNum').val()},$('#img-text').html()));

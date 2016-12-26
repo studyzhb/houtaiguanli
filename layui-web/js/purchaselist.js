@@ -3,7 +3,7 @@ $(function(){
 		arrOrder:[],
 		selectedindex:'',
 		zongjia:'',
-		del:''
+		del:[]
 	}
 	var laytpl;
 	layui.use('laytpl',function(){
@@ -57,7 +57,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 		$('#singleOrderWrapper').html('');
 		$.each(data.lst,function(index,item){
 			purchasePage.zongjia=item.dposit;
-			item.singlePrice=item.price*item.number;
+			item.singlePrice=item.price*item.unm;
 			item.selectedindex=index;
 			purchasePage.arrOrder.push(item);
 			laytpl(tempHtml).render(item,function(html){
@@ -83,7 +83,7 @@ $('#purchaselist').on('click','.printOrderlist',function(){
 		$('#printOrderWrapper').html('');
 		var dposit=0;
 		$.each(data.lst,function(index,item){
-			item.singlePrice=item.price*item.number;
+			item.singlePrice=item.price*item.unm;
 			item.selectedindex=index;
 			dposit=item.dposit;
 			laytpl(tempHtml).render(item,function(html){
@@ -124,13 +124,15 @@ $('#singleOrderWrapper').on('click','.deleteSingGood',function(){
 	var nnn=$(this).data('id')-0;
 	var ind=purchasePage.selectedindex-0;
 	purchasePage.zongjia-=purchasePage.arrOrder[nnn].singlePrice-0;
-	purchasePage.del+=purchasePage.arrOrder[ind].id;
+	
 	var tempHtml=singleOrderList.innerHTML;
 	layer.confirm('确定删除?', {icon: 3, title:'提示'}, function(i){
   			//do something
+  			purchasePage.del.push(purchasePage.arrOrder[ind].id);
   			purchasePage.arrOrder.splice(ind,1);
   			$('#singleOrderWrapper').html('');
   			$.each(purchasePage.arrOrder,function(index,item){
+  				item.selectedindex=index;
 				laytpl(tempHtml).render(item,function(html){
 					$('#singleOrderWrapper').append(html);
 				});
@@ -144,36 +146,40 @@ $('#singleOrderWrapper').on('click','.deleteSingGood',function(){
 $('.saveGoodsNum').on('click',function(){
 	
 	
-	var num=$('.singleNum').val();
 	var ind=purchasePage.selectedindex-0;
+	var num=$('.singleNum').val();
 	console.log(num);
 	purchasePage.arrOrder[ind].unm=num;
 	purchasePage.arrOrder[ind].singlePrice=(num*purchasePage.arrOrder[ind].price).toFixed(2);
 	purchasePage.zongjia+=purchasePage.arrOrder[ind].singlePrice-0;
 	var tempHtml=singleOrderList.innerHTML;
 	if(num==0){
-		purchasePage.del+=purchasePage.arrOrder[ind].id;
+		
 		console.log(purchasePage.del);
 		layer.confirm('确定删除?', {icon: 3, title:'提示'}, function(i){
   			//do something
+  			purchasePage.del.push(purchasePage.arrOrder[ind].id);
   			purchasePage.arrOrder.splice(ind,1);
   			$('#singleOrderWrapper').html('');
   			$.each(purchasePage.arrOrder,function(index,item){
+  				item.selectedindex=index;
 				laytpl(tempHtml).render(item,function(html){
 					$('#singleOrderWrapper').append(html);
 				});
 			});
-			$('.dposit').text(purchasePage.zongjia+'元');
+			$('.dposit').text(Number(purchasePage.zongjia).toFixed(2)+'元');
 		  layer.close(i);
 		});
 	}else{
 		$('#singleOrderWrapper').html('');
 		$.each(purchasePage.arrOrder,function(index,item){
+			item.selectedindex=index;
 			laytpl(tempHtml).render(item,function(html){
+
 				$('#singleOrderWrapper').append(html);
 			});
 		});
-		$('.dposit').text(purchasePage.zongjia+'元');
+		$('.dposit').text(Number(purchasePage.zongjia).toFixed(2)+'元');
 	}
 	
 	layer.close(index);
@@ -183,14 +189,17 @@ $('#confirmorder').on('click',function(){
 	var arr=[];
 	$.each(purchasePage.arrOrder,function(index,item){
 		// console.log(item);
-		arr.push({id:item.id,price:item.price,buyerDetId:item.buyerDetId,del:purchasePage.del,buyer_id:item.buyer_id,unm:item.number,dposit:purchasePage.zongjia});
+		//商品ID修改 buyerDetId更改为good_id del:purchasePage.del,
+		arr.push({id:item.id,price:item.price,good_id:item.good_id,buyer_id:item.buyer_id,unm:item.unm,dposit:purchasePage.zongjia});
 	});
-	// console.log(arr);
+
+	console.log(arr);
 	$('#goods').val(JSON.stringify(arr));
+	$('#deleGoods').val(JSON.stringify(purchasePage.del));
 	// console.log($('#goods').val());
 	config.formSubmit('#purchaselistForm',config.ajaxAddress.editOrderList,function(data){
 		console.log(data);
-		if(data.code==200){
+		/*if(data.code==200){
                 layer.msg('提交成功');
                 setTimeout(function(){
                     open('purchaselist.html','_self');
@@ -201,11 +210,8 @@ $('#confirmorder').on('click',function(){
                 setTimeout(function(){
                     open('purchaselist.html','_self');
                 },500)
-            }
+            }*/
 	});
-
-
-
 });
 
 

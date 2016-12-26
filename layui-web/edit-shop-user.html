@@ -151,7 +151,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="tel" value="{{d.name}}" placeholder="手机号" autocomplete="off" class="layui-input">
+                  <input type="text" name="name" value="{{d.name}}" placeholder="手机号" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -208,8 +208,15 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">状态</label>
                 <div class="layui-input-block">
-                  <input type="radio" name="status" title="启用">
-                  <input type="radio" name="status" title="停用">
+                  {{# if(d.status){ }}
+                    <input type="radio" name="status" selected value="1" title="启用">
+                    <input type="radio" name="status" value="0" title="停用">
+                  {{# }else{ }}
+                    <input type="radio" name="status" value="1" title="启用">
+                    <input type="radio" name="status" selected value="0" title="停用">
+                  {{# } }}
+                  
+                  
                 </div>
               </div>
 

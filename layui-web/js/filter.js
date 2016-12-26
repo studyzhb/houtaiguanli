@@ -4,6 +4,7 @@ var $;
 var laytpl;
 var user=cookieUtil.getCookie('username');
 var cookAuthor=cookieUtil.getCookie('authorlist');
+var localAuthor=
 $(function(){
 	
 	/*$('.layui-tab-title').on('click',function(){
@@ -84,7 +85,7 @@ switch(switchVal){
 		netPath+='/shop-price.html';
 		break;
 }
-if(!cookAuthor){
+// if(!cookAuthor){
 	config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		console.log(data);
 		if(!!user){
@@ -96,14 +97,14 @@ if(!cookAuthor){
 		updateList(data);
 		
 	});
-}else{
-	if(!!user){
-			$('.username').text(cookieUtil.getCookie('username'));
-		}else{
-			open('login.html','_self');
-		}
-	updateList(JSON.parse(cookAuthor));
-}
+// }else{
+// 	if(!!user){
+// 			$('.username').text(cookieUtil.getCookie('username'));
+// 		}else{
+// 			open('login.html','_self');
+// 		}
+// 	updateList(JSON.parse(cookAuthor));
+// }
 
 function updateList(data)
 {

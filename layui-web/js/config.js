@@ -164,7 +164,17 @@ var config={
       //店铺流水信息
       shophis:'/shop/shop/public/index.php/admin/Shop/llst',
       //身份证查重
-      idcardcheck:'/shop/shop/public/index.php/admin/Shop/bCheck'
+      idcardcheck:'/shop/shop/public/index.php/admin/Shop/bCheck',
+      //出库单列表
+      outputList:'/shop/shop/public/index.php/admin/Store/lst',
+      //单个单号的出库商品详情信息
+      outputSingleDetail:'/shop/shop/public/index.php/admin/Store/chakan',
+      //状态改变
+    outputSingleStatus:'/shop/shop/public/index.php/admin/Store/status',
+      //配送
+      sendingStorelist:'/shop/shop/public/index.php/admin/Store/peisong',
+      //拒绝
+      refuseStorelist:'/shop/shop/public/index.php/admin/Store/jujue'
 
 	},
   pSort:{

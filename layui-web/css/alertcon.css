@@ -618,7 +618,7 @@ input.w380 {
 .header .logo{
   position:absolute;
   left:10px;
-  top:17px;
+  /*top:17px;*/
 }
 
 .area-container {
