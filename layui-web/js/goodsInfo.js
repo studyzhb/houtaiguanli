@@ -1,7 +1,8 @@
 $(function(){
 	var fistLoad=true;
 var goodsInfo={
-	pageCount:''
+	pageCount:'',
+	status:'0'
 }
 
 var laytpl;
@@ -9,7 +10,7 @@ var laytpl;
 		laytpl = layui.laytpl;
 
 
-		updatePageNum(0);
+		updatePageNum(0,goodsInfo.status);
 		
 	});
 	layui.use('form',function(){
@@ -25,6 +26,19 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 	})
 });
 
+$('.unedit').on('click',function(){
+	fistLoad=true;
+	goodsInfo.status=0;
+	updatePageNum(0,goodsInfo.status);
+});
+
+$('.edited').on('click',function(){
+	fistLoad=true;
+	goodsInfo.status=1;
+	updatePageNum(0,goodsInfo.status);
+});
+
+
 /*config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
 	var tempHtml=supplierList.innerHTML;
 	$('#purchaselist').html('');
@@ -39,7 +53,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 	});
 });*/
 
- function updatePageNum(p1){
+ function updatePageNum(p1,sta){
         config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
             var tempHtml=supplierList.innerHTML;
             $('#purchaselist').html('');
@@ -55,11 +69,12 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
                     $('#purchaselist').append(html);
                 });
             });
-        },{p:p1});
+        },{p:p1,status:sta});
     }
 
 
 function updatePage(){
+	fistLoad=false;
 	layui.use(['laypage', 'layer'],function(){
 		var laypage=layui.laypage;
 		var layer = layui.layer;
@@ -69,11 +84,11 @@ function updatePage(){
 		    ,groups: 5 //连续显示分页数
 		    ,jump:function(data){
 		    	//得到页数data.curr
-		    	updatePageNum(data.curr);
+		    	updatePageNum(data.curr,goodsInfo.status);
 		    }
 		  });
 	});
-	fistLoad=false;
+	
 }
 	
 

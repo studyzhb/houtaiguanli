@@ -65,14 +65,13 @@ var goodsHouse={
         });
         $('.image-suolve').html('');
          $.each(ImageWrapper.suolveImg,function(index,item){
-            
             console.log(item);
             // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
             //   $('#imageadd').show();
             // }else{
             //    $('#imageadd').hide();
             // }
-            $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
+            $('.image-suolve').append(config.formatTemplate({imgsrc:item,selectIndex:index},$('#image-suolve').html()));
 
         });
 
@@ -115,8 +114,6 @@ var goodsHouse={
         var myFiles = o_ueditorupload.getDialog("attachment");
         myFiles.open();
       } 
-
-
 
       $('.image-suolve').on('click','#imageadd',function(){
           upImage('image-suolve');
@@ -233,9 +230,11 @@ $('.fullname').text(unescape(fname));
           if(data.info){
             var arr=eval(data.info.spic)?eval(data.info.spic):'';
             if(arr instanceof Array){
+              $('.image-suolve').html('');
               ImageWrapper.suolveImg=arr;
               $.each(arr,function(index,item){
-                $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
+                
+                $('.image-suolve').append(config.formatTemplate({imgsrc:item,selectIndex:index},$('#image-suolve').html()));
               });
             }
             
@@ -280,6 +279,56 @@ $('.fullname').text(unescape(fname));
             }
         });
 
+
+//鼠标滑过显示删除
+$('.image-suolve').on('mouseover','.detail-banner-split',function(){
+$(this).find('.deleteAvata').show();
+
+});
+$('.image-suolve').on('mouseout','.detail-banner-split',function(){
+$(this).find('.deleteAvata').hide();
+
+});
+
+//手机端页面显示删除
+$('.img-content').on('mouseover','.img-single',function(){
+  console.log('wu11',$(this).children('.deleteAvata'));
+  if(!$(this).children('.deleteAvata').length){
+    console.log('wu');
+    $('<div class="deleteAvata" >').appendTo($(this));
+  }
+  $(this).find('.deleteAvata').show();
+});
+$('.img-content').on('mouseout','.img-single',function(){
+  $(this).find('.deleteAvata').hide();
+});
+$('.img-content').on('mousedown','.deleteAvata',function(){
+  $(this).parents('.img-single').remove();
+  return false;
+});
+
+
+
+
+$('.image-suolve').on('mousedown','.deleteAvata',function(){
+  
+  return false;
+});
+
+$('.image-suolve').on('click','.deleteAvata',function(){
+  var n=$(this).data('index');
+  ImageWrapper.suolveImg.splice(n,1);
+  $('.image-suolve').html('');
+  $.each(ImageWrapper.suolveImg,function(index,item){
+    
+    $('.image-suolve').append(config.formatTemplate({imgsrc:item,selectIndex:index},$('#image-suolve').html()));
+  });
+  if(ImageWrapper.suolveImg.length<3){
+      $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
+
+     }
+  return false;
+});
 
 /*index=layer.open({
     type:1,

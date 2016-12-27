@@ -44,6 +44,10 @@ $(function(){
 		      title: '最终的提交信息'
 		    })*/
 		  	// console.log(data1);
+		  	var pwd=$('.passwordAddMD5').val();
+		  	pwd=hex_md5(pwd).toUpperCase();
+		  	$('.passwordAddMD5').val(pwd);
+		  	console.log(pwd);
 		  	config.formSubmit('#adminInfo',config.ajaxAddress.addshopUser,function(data){
 			// console.log(data);
 				if(data.code==200){

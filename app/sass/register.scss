@@ -6,12 +6,12 @@ html,body{
 }
 
 section{
-    width:750px;
+    width:7.5rem;
     height:100%;
     overflow:hidden;
     background: #f0f0f0;
     .main{
-        border-top:1px solid #e3e3e3;
+        border-top:0.01px solid #e3e3e3;
          display:-webkit-box;
         display:box;
         -ms-box-orient:vertical;
@@ -20,11 +20,11 @@ section{
         height: 100%;
         overflow:hidden;
         .bannner-wrap{
-            width:750px;
-            height:258px;
+            width:7.5rem;
+            height:2.58rem;
             background-color: #fff;
-            margin-top:13px;
-            background-size:750px 258px;
+            margin-top:0.13rem;
+            background-size:7.5rem 2.58rem;
             background-repeat: no-repeat;
             background-image: url(../img/zhucebg.png);
             
@@ -35,67 +35,68 @@ section{
             -webkit-box-flex:1;
             box-flex:1;
             overflow: auto;
-            margin-top:13px;
+            margin-top:0.13rem;
             ul{
                 li{
-                    height:84px;
-                    border-bottom:2px solid #e3e3e3;
-                    font-size:20px;
-                    line-height:84px;
-                    padding-left:110px;
+                    height:0.84rem;
+                    border-bottom:0.02rem solid #e3e3e3;
+                    font-size:0.20rem;
+                    line-height:0.84rem;
+                    padding-left:1.1rem;
                     color:#666;
                     background: #fff;
                     position:relative;
                     .lefticon{
-                         width:36px;
-                        height:36px;
+                         width:0.36rem;
+                        height:0.36rem;
                         
                          position:absolute;
-                        top:30px;
-                        left:32px;
+                        top:0.3rem;
+                        left:0.32rem;
                     }
                     input{
                         border:none;
+                        padding-left:0.2rem;
                         outline: 0;
-                        margin-left:10px;
+                        margin-left:0.1rem;
                     }
                     
                     .yzwraper{
-                        width:102px;
-                        height:40px;
-                        border:2px solid #979797;
+                        width:1.02rem;
+                        height:0.4rem;
+                        border:0.02rem solid #979797;
                         background: #d8d8d8;
                         position:absolute;
-                        top:22px;
-                        right:74px;
+                        top:0.22rem;
+                        right:0.74rem;
                     }
                     .img{
-                        width:29px;
-                        height:30px;
+                        width:0.29rem;
+                        height:0.3rem;
                         background: url(../img/update.png) no-repeat;
                          position:absolute;
-                        top:30px;
-                        right:20px;
+                        top:0.3rem;
+                        right:0.2rem;
                     }
 
                 }
             }
             .submit{
-                        width:568px;
-                        height:80px;
+                        width:5.68rem;
+                        height:0.8rem;
                         background: #f8c121;
-                        border-radius:20px;
+                        border-radius:0.2rem;
                         text-align: center;
-                        margin: 66px 0 80px 92px;
+                        margin: 0.66rem 0 0.8rem 0.92rem;
                         color:#fff;
-                        font-size:30px;
-                        line-height: 80px;
+                        font-size:0.3rem;
+                        line-height: 0.8rem;
                     }
             p.role{
-                width:632px;
-                padding-left:40px;
-                font-size:26px;
-                line-height: 40px;
+                width:6.32rem;
+                padding-left:0.4rem;
+                font-size:0.26rem;
+                line-height: 0.4rem;
 
             }
         }

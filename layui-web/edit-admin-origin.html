@@ -144,18 +144,18 @@
                           {{item.name}}
                         </option>
                         {{# }else{ }}
-                          <option>
+                          <option value="{{item.id}}">
                             {{item.name}}
                           </option>
                          {{# } }}
-                          {{#  layui.each(item.children,function(ind, ites){ }}
+                          
+                       {{#  layui.each(item.children,function(ind, ites){ }}
                               
                                 <option>
                                   ----{{ites.name}}
                                 </option>
 
                           {{#  }); }}
-                       
                          
                       {{#  }); }}
                   </select>

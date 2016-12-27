@@ -5,6 +5,7 @@
     <title>Document</title>
     <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
     <link rel="stylesheet" href="./css/register.css" />
+    <script src="./js/rem.js"></script>
     <script src="./js/zepto.js"></script>
     <script src="./js/touch.min.js"></script>
 </head>
@@ -17,7 +18,7 @@
             <div class="register-con">
                 <ul>
                     <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>请输入验证码</label><input class="code" type="text" placeholder="验证码"><img class="yzwraper" src="./img/android.png" alt="" /><div class="img"></div></li>
-                    <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>请输入手机号</label><input class="telnum" type="text" placeholder=""><div class="yzwraper getCode" style="line-height:40px;width:120px;">获取验证码</div></li>
+                    <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>请输入手机号</label><input class="telnum" type="text" placeholder=""><div class="yzwraper getCode" style="line-height:0.4rem;width:1.2rem;text-align:center;background:#fff;">获取验证码</div></li>
                     <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>请输入短信验证码</label><input class="messnum" type="text" placeholder=""><span>erroe</span></li>
                     <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>密码6-20位</label><input class="passwordnum" type="text" placeholder=""></li>
                     <li><img class="lefticon" src="./img/zhece1.png" alt=""><label>推荐人</label><input type="text" placeholder=""></li>
@@ -49,7 +50,7 @@
     }
 
 	window.onload=window.onresize=function(){
-		bodyScale();
+		
         //
         $('.img').on('tap',function(){
             $.ajax({
@@ -70,13 +71,16 @@
 
         //提交
         $('.submit').on('tap',function(){
+            var pwd=$('.passwordnum').val();
+            pwd=hex_md5(pwd).toUpperCase();
+		  	
             $.ajax({
                 type:'post',
                 url:'',
                 data:{
                     yzcode:$('.messnum').val(),
                     tel:$('.telnum').val(),
-                    password:$('.passwordnum').val()
+                    password:pwd
 
                 },
                 success:function(data){

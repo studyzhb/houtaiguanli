@@ -139,7 +139,7 @@
           <div class="layui-tab-item layui-show">
 
             <form class="layui-form layui-form-pane" id="detailContent" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <table class="layui-table" style="width:90%;">
+              <table class="layui-table" style="width:100%;">
                 <!-- <colgroup>
                   <col width="150">
                   
@@ -147,11 +147,11 @@
                 </colgroup> -->
                 <thead>
                   <tr>
-                    <th>商品名称</th>
+                    <th width="130">商品名称</th>
                     <th class="fullname"></th>
                   </tr>
                   <tr>
-                    <th>上传图片</th>
+                    <th width="130">上传图片</th>
                     <th>
                       <div class="image-suolve" style="position:relative;height:200px;">
                            <!-- <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
@@ -164,7 +164,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>商品描述</td>
+                    <td width="130">商品描述</td>
                     <td>
                       <ul class="layui-tab-title goodseditor">
            
@@ -184,7 +184,7 @@
                       <form action="" method="post" id="detailContent">
 
             <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" >
-              <script id="container" name="content" type="text/plain" style="height:300px;overflow:auto;">
+              <script id="container" name="content" type="text/plain" style="width:90%;height:300px;overflow:auto;">
                                             
               </script>
       
@@ -209,7 +209,7 @@
                   </div>
                     <section>
                         <div class="main" id="content1">
-                            <div class="img-content" >
+                            <div class="img-content" style="height:346px;overflow:auto;">
                                 
                             </div>
                         </div>
@@ -276,6 +276,7 @@
 <script type="text/template" id="image-suolve">
      <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
         <div class="left-block"></div>
+        <div class="deleteAvata" data-index="{selectIndex}">删除</div>
         <div class="right-block"></div>
         <img src="{imgsrc}" width="100%" height="100%" />    
     </div>
@@ -283,6 +284,7 @@
 
 <script type="text/template" id="img-content">
      <div class="img-single">
+     <div class="deleteAvata">删除</div>
         <img src="{imgsrc}" width="100%" />
     </div>
 </script>
@@ -325,7 +327,6 @@
       $('.add-con-area').show();
       $('.add-alert-area').show();
      // $('<h3>').appendTo($('#content1'));
-
      layer.open({
             type:1,
             content: $('#goodsNum'), //这里content是一个DOM
@@ -346,7 +347,7 @@
   })
 
 	$(".image-suolve").on('mousedown','.detail-banner-split',function(e){
-            console.log('dianji');
+            // console.log('dianji');
             var that = this;
             var disX=e.offsetX, disY=e.offsetY;
             var $clone = $("<div>");

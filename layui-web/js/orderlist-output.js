@@ -38,6 +38,13 @@ var laytpl;
 		},{status:3});
 	});
 
+	$('.iswaiting').on('click',function(){
+		
+		config.ajax('get',config.ajaxAddress.outputList,function(data){
+			updateorderlist(data,laytpl);
+		},{status:4});
+	});
+
 	$('.sending').on('click',function(){
 		
 		config.ajax('get',config.ajaxAddress.outputList,function(data){
@@ -138,7 +145,7 @@ $('#purchaselist').on('click','.confirmInputStore',function(){
 });
 //打开打印小票界面
 $('#purchaselist').on('click','.printTrain',function(){
-	$('.confirmorder').text('打印小票,开始配送').attr('data-issended','true');
+	$('.confirmorder').text('打印配货单').attr('data-issended','');
 	$('#statusChange').val('4');
 	$('.refuseBtn').hide();
 	$('#outputSingleId').val($(this).data('id'));
@@ -168,6 +175,40 @@ $('#purchaselist').on('click','.printTrain',function(){
       maxmin: true
 	})
 });
+
+//打开配送
+$('#purchaselist').on('click','.sendingStore',function(){
+	$('.confirmorder').text('配送').attr('data-issended','true');
+	$('#statusChange').val('5');
+	$('.refuseBtn').hide();
+	$('#outputSingleId').val($(this).data('id'));
+	config.ajax('get',config.ajaxAddress.outputSingleDetail,function(data){
+		console.log(data);
+		/*orderConfirm.arrbefor=[];*/
+		var tempHtml=orderListInput.innerHTML;
+		$('#singleOrderWrapper1').html('');
+		$.each(data,function(index,item){
+			/*purchasePage.zongjia=item.dposit;
+			item.singlePrice=item.price*item.unm;
+			item.selectedindex=index;
+			purchasePage.buyerid=item.id;
+			purchasePage.arrOrder.push(item);*/
+			
+			laytpl(tempHtml).render(item,function(html){
+				$('#singleOrderWrapper1').append(html);
+			});
+		});
+
+	},{id:$(this).data('id')});
+	layer.open({
+		type:1,
+		content: $('#inputConfirmInto'), //这里content是一个DOM
+      shade:[0.8,'#000'],
+      area:'1200px',
+      maxmin: true
+	})
+});
+
 
 //配送中
 $('#purchaselist').on('click','.sendingOutput',function(){
@@ -240,10 +281,26 @@ $('.saveGoodsNum').on('click',function(){
 	
 	var num=$('.singleNum').val();
 	$('#refuseContent').val(num);
-	
+	layer.load();
 	config.formSubmit('#confirmInto',config.ajaxAddress.refuseStorelist,function(data){
 			console.log(data+'jujue');
 			//layer.closeAll();
+			if(data.code==200){
+                layer.msg('操作成功');
+                layer.closeAll();
+                setTimeout(function(){
+                	location.reload();
+                    // open('orderlistOutput.html','_self');
+                },500)
+                
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                 layer.closeAll();
+                setTimeout(function(){
+                	location.reload();
+                    // open('orderlistOutput.html','_self');
+                },500)
+            }
 	});
 });
 
@@ -262,9 +319,28 @@ $('.confirmorder').on('click',function(){
 
 	
 	
-	if($(this).data('issended')){
+	if(!!$(this).attr('data-issended')){
+		layer.load();
 		config.formSubmit('#confirmInto',config.ajaxAddress.sendingStorelist,function(data){
 			console.log(data+'kaishipeisong');
+			if(data.code==200){
+                layer.msg('操作成功');
+                
+                setTimeout(function(){
+                    // open('orderlistOutput.html','_self');
+                    layer.closeAll();
+                    location.reload();
+                },500)
+                
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                
+                setTimeout(function(){
+                	layer.closeAll();
+                	location.reload();
+                    // open('orderlistOutput.html','_self');
+                },500)
+            }
 		});
 	}else{
 		confirmIntoStock();
@@ -283,30 +359,33 @@ $('.confirmorder').on('click',function(){
 	}else{
 		confirmIntoStock();
 	}*/
-	
-	
-
-	
 
 });
 
 
 //确认入库或拒绝入库
 function confirmIntoStock(){
+	layer.load();
 	config.formSubmit('#confirmInto',config.ajaxAddress.outputSingleStatus,function(data){
 		console.log(data);
-		/*if(data.code==200){
+		if(data.code==200){
                 layer.msg('操作成功');
+                
                 setTimeout(function(){
-                    open('orderlistOutput.html','_self');
+                	layer.closeAll();
+                	location.reload();
+                    // open('orderlistOutput.html','_self');
                 },500)
                 
             }else{
                 layer.msg('网络错误，请稍后重试');
+                
                 setTimeout(function(){
-                    open('orderlistOutput.html','_self');
+                	layer.closeAll();
+                	location.reload();
+                    // open('orderlistOutput.html','_self');
                 },500)
-            }*/
+            }
 	});
 }
 

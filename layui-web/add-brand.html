@@ -180,7 +180,7 @@ $('.brandcheck').on('blur',function(){
     if(data.code==200){
       
     }else{
-      alert('品牌重复');
+      layer.msg('品牌重复');
     }
   },{brand:$(this).val()});
 })

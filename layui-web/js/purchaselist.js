@@ -137,7 +137,7 @@ $('#singleOrderWrapper').on('click','.deleteSingGood',function(){
 					$('#singleOrderWrapper').append(html);
 				});
 			});
-			$('.dposit').text(purchasePage.zongjia+'元');
+			$('.dposit').text(Number(purchasePage.zongjia).toFixed(2)+'元');
 		  layer.close(i);
 		});
 	

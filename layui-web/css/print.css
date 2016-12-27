@@ -1,0 +1,20 @@
+body{
+      padding:0 20px;
+    }
+    h3.title{
+      text-align: center;
+      height:44px;
+      line-height: 44px;
+      border-bottom:1px solid #000;
+    }
+    .thumbInfo{
+      height:44px;
+      line-height: 44px;
+      text-align: center;
+    }
+    .infoWrap{
+      display: inline-block;
+    }
+    .layui-table td, .layui-table th{
+      border:1px solid #000; 
+    }

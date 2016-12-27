@@ -94,6 +94,9 @@
                 待审核
               </li>
               <li class="shenhe">
+                待打印
+              </li>
+              <li class="iswaiting">
                 待配送
               </li>
               <li class="sending">
@@ -124,7 +127,7 @@
             <tr>
               <th>出库单单号</th>
               <th>店铺名称</th>
-              <th>仓库</th>
+              <th>创建时间</th>
               <th>币种</th>
               <th>总金额</th>
               <th>审核状态</th>
@@ -265,7 +268,7 @@
   <tr>
     <td>{{d.oddnum}}</td>
     <td>{{d.shop}}</td>
-    <td>{{d.dept}}</td>
+    <td>{{d.createtime}}</td>
     <td>RMB</td>
     <td>{{d.zprice}}</td>
     {{#  if(d.status=='2'){ }}
@@ -288,12 +291,14 @@
       <div class="layui-btn layui-btn-warm layui-btn-small confirmInputStore" data-id="{{d.id}}">审核</div>
       {{# }else if(d.status=='3'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small printTrain" data-id="{{d.id}}">打印小票</div>
+      {{# }else if(d.status=='4'){ }}
+      <div class="layui-btn layui-btn-warm layui-btn-small sendingStore" data-id="{{d.id}}">配送</div>
       {{# }else if(d.status=='5'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small sendingOutput" data-id="{{d.id}}">配送中</div>
       {{# }else if(d.status=='10'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">拒绝理由：{{d.note}}</div>
       {{#  }else{ }}
-        <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">查看详情</div>
+        <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">配送</div>
         
       {{# } }}
     </td>

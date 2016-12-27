@@ -385,7 +385,6 @@ input.w380 {
     width:300px;
     height:180px;
     
-    
 }
 .detail-banner-split div.left-block{
       position:absolute;
@@ -395,6 +394,22 @@ input.w380 {
       left:0;
       top:0;
       opacity:0.4;
+  }
+.detail-banner-split div.deleteAvata,div.deleteAvata{
+      position:absolute;
+      width:60px;
+      height:60px;
+      margin-left: -30px;
+      margin-top: -30px;
+      background:#000;
+      color:#fff;
+      font-size:24px;
+      line-height: 60px;
+      left:50%;
+      top:50%;
+      opacity:0.4;
+      display: none;
+      cursor: pointer;
   }
 
 .detail-banner-split div.right-block{
@@ -406,7 +421,9 @@ input.w380 {
     top:0;
     opacity:0.4;
 }
-
+..img-single{
+  position: relative;
+}
 .detail-image-col-2{
     width:300px;
     display:inline-block;
