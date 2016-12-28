@@ -2,7 +2,9 @@ var ImageWrapper={
   temp:'',
   imgArr:[],
   suolveImg:[],
-  detailImg:[]
+  detailImg:[],
+  status:'',
+  page:''
 }
 var goodsHouse={
             goodsType:{
@@ -212,10 +214,10 @@ $('.fullname').text(unescape(fname));
               console.log(data);
                if(data.code==200){
                  alert('添加成功');
-                 location.href="editorgoodsInfo.html";
+                 location.href="editorgoodsInfo.html?status=";
                }else{
                  alert('添加失败');
-                 location.href="editorgoodsInfo.html"; 
+                 location.href="editorgoodsInfo.html?status="; 
                }
             })
         });
@@ -325,8 +327,7 @@ $('.image-suolve').on('click','.deleteAvata',function(){
   });
   if(ImageWrapper.suolveImg.length<3){
       $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
-
-     }
+    }
   return false;
 });
 

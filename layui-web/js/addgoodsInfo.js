@@ -172,7 +172,7 @@ var fistLoad=true;
                     $('#purchaselist').append(html);
                 });
             });
-        },{p:p1});
+        },{p:p1,status:0});
     }
 
 

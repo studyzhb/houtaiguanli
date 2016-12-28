@@ -45,12 +45,13 @@ $(function(){
 		    })*/
 		  	// console.log(data1);
 		  	var pwd=$('.passwordAddMD5').val();
-		  	pwd=hex_md5(pwd).toUpperCase();
+		  	pwd=hex_md5(pwd+'5f843e288bb1cabb834b9d20eea3d8c0');
+		  	// console.log(pwd);
 		  	$('.passwordAddMD5').val(pwd);
 		  	console.log(pwd);
 		  	config.formSubmit('#adminInfo',config.ajaxAddress.addshopUser,function(data){
 			// console.log(data);
-				if(data.code==200){
+				/*if(data.code==200){
 	                layer.msg('添加成功');
 	                setTimeout(function(){
 	                    open('shop-user.html','_self');
@@ -61,7 +62,7 @@ $(function(){
 	                setTimeout(function(){
 	                    open('shop-user.html','_self');
 	                },1000);
-	            }
+	            }*/
 			});
 
 		    return false;
