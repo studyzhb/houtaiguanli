@@ -266,7 +266,8 @@ $('.fullname').text(unescape(fname));
                 autoHeight: false,
                 autoHeightEnabled: false
 
-        }).setHeight(300);
+        }).setHeight(300).focus(true);
+
 
         });
 

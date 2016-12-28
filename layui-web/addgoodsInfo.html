@@ -204,7 +204,7 @@
             <li>
               <div class="input-wrapper">
                 <label>商品全称</label>
-                <input type="text" class="w160 goods-fullname" id="fullname-jname" name="name" value="">
+                <input type="text" class="w160 goods-fullname fullname-jname" id="fullname-jname" name="name" value="">
               </div>
               <div class="input-wrapper">
                 <label>商品编码</label>
@@ -228,7 +228,7 @@
               </div>
               <div class="input-wrapper">
                 <label>助记码</label>
-                <input type="text" id="zname-show" class="w160" name="zname" value="">
+                <input type="text" id="zname-show" class="w160 zname-show" name="zname" value="">
               </div>
               <div class="input-wrapper">
                 <label>计价方式</label>
@@ -249,6 +249,10 @@
               <div class="input-wrapper">
                 <label>供应商</label>
                 <input type="text" class="w160 supplieralert" readonly name="" value="">
+              </div>
+	 <div class="input-wrapper">
+                <label>最小起批量</label>
+                <input type="text" class="w160" name="minsell" value="">
               </div>
             </li>
             <li>
@@ -508,7 +512,7 @@
             <li>
               <div class="input-wrapper">
                 <label>商品全称</label>
-                <input type="text" class="w160 goods-fullname" id="fullname-jname" name="name" value="{name}">
+                <input type="text" class="w160 goods-fullname fullname-jname" name="name" value="{name}">
               </div>
               <div class="input-wrapper">
                 <label>商品编码</label>
@@ -516,7 +520,7 @@
               </div>
               <div class="input-wrapper">
                 <label>国际条形码</label>
-                <input type="text" class="w160 barcode" name="barcode" value="{barcode}">
+                <input type="text" class="w160 barcode" readonly name="barcode" value="{barcode}">
               </div>
               <div class="input-wrapper">
                 <label>规格</label>
@@ -532,7 +536,7 @@
               </div>
               <div class="input-wrapper">
                 <label>助记码</label>
-                <input type="text" id="zname-show" class="w160" name="zname" value="{zname}">
+                <input type="text" readonly class="w160 zname-show" name="zname" value="{zname}">
               </div>
             </li>
             <li>
@@ -555,6 +559,10 @@
               <div class="input-wrapper">
                 <label>供应商</label>
                 <input type="text" class="w160 supplieralert" readonly name="" value="{supplierName}">
+              </div>
+	 <div class="input-wrapper">
+                <label>最小起批量</label>
+                <input type="text" class="w160" name="minsell" value="{minsell}">
               </div>
               <!--<div class="input-wrapper">
                 <label>计价方式</label>
@@ -770,10 +778,18 @@
 <script src="./js/addgoodsInfo.js"></script>
 <script src="./js/PinYin.js"></script>
 <script>
-  $('#fullname-jname').on('blur',function(){
+  $('.fullname-jname').on('blur',function(){
         var con=codefans_net_CC2PY($(this).val());
-        $('#zname-show').val(con.substr(0,10));
+        $('.zname-show').val(con.substr(0,10));
     });
+
+  function addCode(obj){
+    console.log($(this).val());
+    var con=codefans_net_CC2PY($(this).val());
+    $('#zname-show').val(con.substr(0,10));
+  }
+
+
   var da=new Date().getTime()+'';
 
   $('.goodsBm').val(da.substring(5));

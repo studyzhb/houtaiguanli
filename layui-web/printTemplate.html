@@ -17,7 +17,7 @@
   <div><input type="button" value="打印" onclick="Print()" /></div>  
 
   <div id="page2">
-  <div>
+  <div style="page-break-after:always">
     <header>
     <h3 class="title">万店联盟采购单</h3>
   </header>
@@ -80,8 +80,12 @@
   </div>
 
 <script type="text/html" id="printOrderList">
-   <div id="page1">
+   <div class="page">
+   {{# if(d.page==1){ }}
   <div style="page-break-after:always">
+  {{# }else{ }}
+  <div style="">
+  {{# } }}
     <header>
     <h3 class="title">万店联盟采购单</h3>
   </header>
@@ -102,7 +106,7 @@
     <tr>
       <th>序号</th>
       <th>商品条码</th>
-      <th>规格</th>
+      <th>商品名称</th>
       <th>零售单位</th>
       <th>供应商</th>
       <th>单价</th>
@@ -115,7 +119,7 @@
       <tr>
         <td>{{index+1}}</td>
         <td>{{item.barcode}}</td>
-        <td>测试商品</td>
+        <td>{{item.goods}}</td>
         <td>20ml/g</td>
         <td>{{item.supplier}}</td>
         <td>{{item.price}}</td>
@@ -140,7 +144,7 @@
         共10页
       </div>
       <div class="infoWrap">
-        当前第1页
+        当前第{{d.page}}页
       </div>
     </div>
   </footer>
@@ -159,12 +163,35 @@ layui.use('laytpl',function(){
     laytpl = layui.laytpl;
     config.ajax('get',config.ajaxAddress.editOrderList,function(data){
     console.log(data);
+    var arr=[];
+    var page=0;
+
+    $.each(data.lst,function(index,item){
+      if(index%10==0){
+        
+        if(index!=0){
+          page++;
+        }
+        arr[page]={};
+        arr[page].lst=[];
+        arr[page].page=page+1;
+        arr[page].lst.push(item);        
+        // page++;
+      }else{
+        arr[page].lst.push(item); 
+      }
+      
+    });
+    console.log(arr);
     var tempHtml=printOrderList.innerHTML;
     // $('#printOrderWrapper').html('');
     var dposit=0;
-    laytpl(tempHtml).render(data,function(html){
+    $.each(arr,function(index,item){
+      laytpl(tempHtml).render(item,function(html){
         $('body').append(html);
       });
+    })
+    
     $('.printdposit').text(dposit+'元');
   },{id:'188'});
 });
@@ -181,16 +208,20 @@ layui.use('laytpl',function(){
 
         var content = "";  
   
-        var str = document.getElementById('page1').innerHTML;     //获取需要打印的页面元素 ，page1元素设置样式page-break-after:always，意思是从下一行开始分割。  
+       /* var str = document.getElementById('page2').innerHTML;     //获取需要打印的页面元素 ，page1元素设置样式page-break-after:always，意思是从下一行开始分割。  
         content = content + str;  
-        str = document.getElementById('page2').innerHTML;     //获取需要打印的页面元素  
+        str = document.getElementById('page1').innerHTML;     //获取需要打印的页面元素  
         content = content + str;  
           
-        printStr = printStr+content;                                                
+        printStr = printStr+content;   */                                             
         /*var pwin=window.open("Print.htm","print"); //如果是本地测试，需要先新建Print.htm，如果是在域中使用，则不需要  
         pwin.document.write(printStr);  
         pwin.document.close();                   //这句很重要，没有就无法实现    
         pwin.print(); */   
+        console.log($('.page'));
+        $('.page').each(function(index,item){
+          printStr+=$(this).html();
+        });
         document.body.innerHTML=printStr;
         window.print();  
     }  
