@@ -1,5 +1,6 @@
 $(function(){
 var laytpl; 
+var isClick=true;
 var fistLoad=true;
     layui.use('laytpl',function(){
         laytpl = layui.laytpl;
@@ -17,7 +18,7 @@ var fistLoad=true;
     $('.mutigoods').html('');
     $('.muticoding').html('');
     config.ajax('get',config.ajaxAddress.goodsEditor,function(data){
-        console.log(data);
+        // console.log(data);
         
         $('.baseSingleInfo').append(config.formatTemplate(data.good[0],htm));
         $.each(data.good[1],function(index,item){
@@ -60,7 +61,7 @@ var fistLoad=true;
         $.each(data.goodType,function(index,item){
             // item.
              $('<li>').appendTo($('.sort_goods')).html(item.type);
-            console.log(item);
+            // console.log(item);
             goodsHouse.goodsType.cata1.push(item.type);
             goodsHouse.goodsType.cata2[index]=[];
             if(item.child){
@@ -146,9 +147,6 @@ var fistLoad=true;
     });
 
     updatePageNum();
-    
-
-
 
     });
     layui.use('form',function(){
@@ -167,11 +165,12 @@ var fistLoad=true;
             }
             $.each(data.data,function(index,item){
                 item.selectedindex=index;
-                console.log(item);
+                // console.log(item);
                 laytpl(tempHtml).render(item,function(html){
                     $('#purchaselist').append(html);
                 });
             });
+            $('.detailCount').text(data.num);
         },{p:p1,status:0});
     }
 
@@ -217,7 +216,7 @@ var goodsHouse={
     $('.editorgoodsinfo').on('click',function(){
         layer.open({type:3});
         config.formSubmit('#editorSingle',config.ajaxAddress.goodsEditor,function(data){
-            console.log(data);
+            // console.log(data);
             if(data.code==200){
                 layer.msg('添加成功');
                 setTimeout(function(){
@@ -256,7 +255,7 @@ var goodsHouse={
     //添加一品多码
     
     $('.addmoregoods').on('click',function(){
-        console.log($('.barcode').attr('value'),$('.goods-fullname').val());
+        // console.log($('.barcode').attr('value'),$('.goods-fullname').val());
         var html=$('#'+goodsHouse.goodsContent).html();
         
         $('.'+goodsHouse.appendPar).append(config.formatTemplate({
@@ -306,9 +305,11 @@ function updatePage(){
 
 $('.alertCon-wrapper').on('click','.method_typealert',function(){
     var me=this;
+
     $('#province-list').html('');
     $('.sortspec').html('');
     var i;
+
     config.ajax('get',config.ajaxAddress.addgoodsInfo,function(data){
          
         $.each(data.method,function(index,item){
@@ -316,20 +317,31 @@ $('.alertCon-wrapper').on('click','.method_typealert',function(){
             $li.on('click',function(){
                 $(me).val($(this).html());
                 $('.method_id').val($(this).attr('value'));
+                isClick=true;
                 layer.close(i);
             })
         });
        
        
     })
+    if(isClick){
 
-    i=layer.open({
+        i=layer.open({
         type:1,
         content: $('#alertMessage'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'900px',
-      maxmin: true
-    })
+          shade:[0.8,'#000'],
+          area:'900px',
+          maxmin: true,
+          end:function(){
+            // console.log('end');
+            isClick=true;
+          }
+        })
+        isClick=false;
+    }
+    
+    
+    return false;
 });
 
 function updateInfo(){
@@ -343,6 +355,7 @@ $('.alertCon-wrapper').on('click','.retailsalert',function(){
     $('#province-list').html('');
     $('.sortspec').html('');
     var i;
+    
     config.ajax('get',config.ajaxAddress.addgoodsInfo,function(data){
          
         
@@ -351,19 +364,32 @@ $('.alertCon-wrapper').on('click','.retailsalert',function(){
             $li.on('click',function(){
                 $(me).val($(this).html());
                 $('.gg_id').val($(this).attr('value'));
+                isClick=true;
                 layer.close(i);
+
             })
         });
     });
-    i=layer.open({
+    if(isClick){
+        
+        i=layer.open({
         type:1,
         content: $('#alertMessage'), //这里content是一个DOM
       shade:[0.8,'#000'],
       area:'900px',
-      maxmin: true
+      maxmin: true,
+          end:function(){
+            // console.log('end');
+            isClick=true;
+          }
     })
+        isClick=false;
+    }
+    
+    return false;
 });
 $('.alertCon-wrapper').on('click','.sortalert',function(){
+    
     var me=this;
     $('#province-list').html('');
     $('.sortspec').html('');
@@ -387,6 +413,7 @@ $('.alertCon-wrapper').on('click','.sortalert',function(){
                     $li.on('click',function(){
                         $(me).val($(this).html().substring(2));
                         $('.good_type_id').val($(this).attr('value'));
+                        isClick=true;
                         layer.close(ind);
 
                     })
@@ -398,17 +425,29 @@ $('.alertCon-wrapper').on('click','.sortalert',function(){
         });
 
 
-
-        ind=layer.open({
+        if(isClick){
+            
+            ind=layer.open({
         type:1,
         content: $('#alertMessage'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'900px',
-      maxmin: true
+          shade:[0.8,'#000'],
+          area:'900px',
+          maxmin: true,
+          end:function(){
+            // console.log('end');
+            isClick=true;
+          }
+        })
+            isClick=false;
+        }
+        
+        
     })
-    })
+
+return false;
 });
 $('.alertCon-wrapper').on('click','.goodsbrandalert',function(){
+
     var me=this;
     $('#province-list').html('');
     $('.sortspec').html('');
@@ -419,21 +458,33 @@ $('.alertCon-wrapper').on('click','.goodsbrandalert',function(){
             $li.on('click',function(){
                 $(me).val($(this).html());
                 $('.good_brand_id').val($(this).attr('value'));
+                isClick=true;
                 layer.close(i);
             });
         }); 
 
-
-         i=layer.open({
+         if(isClick){
+            
+            i=layer.open({
         type:1,
         content: $('#alertMessage'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'900px',
-      maxmin: true
+          shade:[0.8,'#000'],
+          area:'900px',
+          maxmin: true,
+          end:function(){
+            // console.log('end');
+            isClick=true;
+          }
+        })
+            isClick=false;
+        }
+    
+         
     })
-    })
+    return false;
 });
 $('.alertCon-wrapper').on('click','.supplieralert',function(){
+    
     var me=this;
     $('#province-list').html('');
     $('.sortspec').html('');
@@ -445,19 +496,34 @@ $('.alertCon-wrapper').on('click','.supplieralert',function(){
             $li.on('click',function(){
                 $(me).val($(this).html());
                 $('.supplier_id').val($(this).attr('value'));
+                isClick=true;
                 layer.close(i);
             })
 
         });
-        i=layer.open({
-        type:1,
-        content: $('#alertMessage'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'900px',
-      maxmin: true
-    })
+        if(isClick){
+            
+            i=layer.open({
+                type:1,
+                content: $('#alertMessage'), //这里content是一个DOM
+              shade:[0.8,'#000'],
+              area:'900px',
+              maxmin: true,
+              end:function(){
+                // console.log('end');
+                isClick=true;
+              }
+            })
+            isClick=false;
+        }
+
+        
        
     })
+
+
+
+    return false;
 });
 
 

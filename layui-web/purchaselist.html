@@ -160,6 +160,7 @@
       <form method="POST" action="" id="purchaselistForm">
         <input type="hidden" id="goods" name="goods" value="">
         <input type="hidden" id="deleGoods" name="dele" value="">
+        <input type="hidden" id="orderlistId" name="orderlistId" value="">
         <table class="layui-table">
           <colgroup>
             <col>
@@ -301,7 +302,7 @@
   <td>已审核</td>
   {{# }else if(d.status=='10'){ }}
     <td>被拒绝:{{d.note}}</td>
-{{#  }else{ }}
+{{# }else{ }}
      <td>等待审核</td>
     {{# } }}
     <td>{{d.uadmin}}</td>

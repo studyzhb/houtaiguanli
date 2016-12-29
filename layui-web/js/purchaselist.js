@@ -3,7 +3,8 @@ $(function(){
 		arrOrder:[],
 		selectedindex:'',
 		zongjia:'',
-		del:[]
+		del:[],
+		orderlistId:''
 	}
 	var laytpl;
 	layui.use('laytpl',function(){
@@ -55,6 +56,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 		console.log(data);
 		var tempHtml=singleOrderList.innerHTML;
 		$('#singleOrderWrapper').html('');
+		purchasePage.orderlistId=data.id;
 		$.each(data.lst,function(index,item){
 			purchasePage.zongjia=item.dposit;
 			item.singlePrice=item.price*item.unm;
@@ -196,6 +198,7 @@ $('#confirmorder').on('click',function(){
 	console.log(arr);
 	$('#goods').val(JSON.stringify(arr));
 	$('#deleGoods').val(JSON.stringify(purchasePage.del));
+	$('#orderlistId').val(purchasePage.orderlistId);
 	// console.log($('#goods').val());
 	config.formSubmit('#purchaselistForm',config.ajaxAddress.editOrderList,function(data){
 		console.log(data);

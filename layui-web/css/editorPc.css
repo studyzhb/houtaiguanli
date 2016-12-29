@@ -1,0 +1,98 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3,
+h4, h5, h6, p, blockquote, pre, a, abbr, acronym,
+address, big, cite, code, del, dfn, em, font, img, ins,
+kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+:focus {
+  outline: 0; }
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+th, td {
+  text-align: left;
+  font-weight: normal; }
+
+img, iframe {
+  border: none;
+  text-decoration: none; }
+
+ol, ul {
+  list-style: none; }
+
+input, textarea, select, button {
+  font-size: 100%;
+  font-family: inherit; }
+
+select {
+  margin: inherit; }
+
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #000;
+  background-color: #000;
+  height: 1px; }
+
+html {
+  font: 125%/1 "microsoft yahei","Arial Narrow"; }
+
+a {
+  text-decoration: none; }
+
+a:visited {
+  color: #666; }
+
+a:hover, a:active, a:focus {
+  color: #ff8400;
+  /* text-decoration:underline;*/ }
+
+.clearfix:after {
+  content: ".";
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+  display: block; }
+
+.main {
+  margin-top: 0.12rem;
+  padding: 0.03rem 0.2rem 0;
+  background-color: #fff;
+  width: 100%;
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  overflow: auto; }
+  .main .h3-title {
+    text-align: center;
+    color: #666;
+    height: 0.74rem;
+    font-size: 0.34rem;
+    line-height: 0.74rem; }
+  .main .img-content {
+    font-size: 0;
+    width: 100%; }
+    .main .img-content .img-single {
+      width: 100%;
+      overflow: hidden; }
+      .main .img-content .img-single img {
+        width: 100%; }
+
+/*# sourceMappingURL=editorPc.css.map */

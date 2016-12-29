@@ -7,6 +7,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
     <link rel="stylesheet" href="./css/alertcon.css" />
+    <link rel="stylesheet" href="./css/editorPc.css" />
 	   <script src="./layui/layui.js"></script>
     <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
   	<script type="text/javascript" src="./js/jquery-form.js"></script>
@@ -183,11 +184,32 @@
                     <td>
                       <form action="" method="post" id="detailContent">
 
-            <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" >
+            <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" style="position:relative;" >
+              <div onclick="upImage('img-pc')" style="width:100px;height:36px;text-align:center;line-height:36px;border:1px solid #eee;position:absolute;right:232px;top:2px;cursor:pointer;">图片</div>
+              <textarea id="demo" style="display: none;" name="">
+                
+              </textarea>
               <script id="container" name="content" type="text/plain" style="width:90%;height:300px;overflow:auto;">
                                             
               </script>
-      
+      <!-- <div class="main" id="content1">
+                  <h3 class="h3-title">
+                    商品详情
+                  </h3>
+                
+                  <div class="img-content-pc" >
+                    <div class="img-single">
+                      <img src="./img/blue.jpg" alt="">
+                    </div>
+                    <div class="img-single">
+                      <img src="./img/blue.jpg" alt="">
+                    </div>
+                    <div class="img-single">
+                      <img src="./img/blue.jpg" alt="">
+                    </div>
+                    
+                  </div>
+                </div> -->
                  
             </div>
             <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" style="display:none;">
@@ -238,6 +260,7 @@
             <input type="hidden" name="apptext" value="" id="appHtml" />
             <input type="hidden" name="spic" value="" id="slImg" />
             <input type="hidden" name="id" value="" id="goodsId" />
+            <input type="hidden" name="pcContent" value="" id="pcContent" />
     
             </form>
                     </td>
@@ -284,7 +307,7 @@
 
 <script type="text/template" id="img-content">
      <div class="img-single">
-     <div class="deleteAvata">删除</div>
+     <div class="deleteAvata" style="display:none">删除</div>
         <img src="{imgsrc}" width="100%" />
     </div>
 </script>

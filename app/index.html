@@ -145,9 +145,10 @@ var browser = {
 }
 
 if (browser.versions.mobile) {
+    //'http://a.app.qq.com/o/simple.jsp?pkgname='
       var yingyongBao='http://a.app.qq.com/o/simple.jsp?pkgname=com.xiaodao.client.kanduoduo';
     var appStore='https://itunes.apple.com/cn/app/kan-duo-duo/id1073326937';
-    var apkUrl='http://m.kandd.cn/package/QM-kandd-2.5.0-201611291357.apk';
+    var apkUrl='http://enclosure.wandlm.net/com.wandianlianmeng.yijia.user_1.apk';
     
         $('#btn-normal-download').bind('click',function(){
                 var ua = navigator.userAgent.toLowerCase();
@@ -159,6 +160,7 @@ if (browser.versions.mobile) {
                         }else{
                                 console.log('安卓');
                                 $('.shade').show();
+                                window.location.href = yingyongBao;
                                 document.addEventListener('touchmove', bodyScroll, false);
                         }
                 }else{

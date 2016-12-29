@@ -87,6 +87,8 @@ $('.edited').on('click',function(){
                     $('#purchaselist').append(html);
                 });
             });
+            console.log(data.num);
+            $('.detailCount').text(data.num);
         },{p:p1,status:sta});
     }
 

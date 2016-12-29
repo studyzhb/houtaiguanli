@@ -3,9 +3,14 @@ var ImageWrapper={
   imgArr:[],
   suolveImg:[],
   detailImg:[],
+  pcImgArr:[],
   status:'',
-  page:''
+  page:'',
+  pcStr:''
 }
+var layedit;
+var editorIndex;
+
 var goodsHouse={
             goodsType:{
                 cata1:'',
@@ -47,8 +52,23 @@ var goodsHouse={
               if(ImageWrapper.suolveImg.length<3){
         		    ImageWrapper.suolveImg.push(item.imgsrc);
               }
-        	})
+        	});
 //          ImageWrapper.suolveImg=ImageWrapper.imgArr;
+        }else if(ImageWrapper.temp=="img-pc"){
+          console.log('img-pc');
+          var $imgPcWrap=$('<div class="img-content-pc" >').appendTo($('#demo'));
+          ImageWrapper.pcStr+=layedit.getContent(editorIndex);
+          $.each(ImageWrapper.imgArr,function(index,item){
+              // ImageWrapper.pcImgArr.push(item.imgsrc);
+              ImageWrapper.pcStr+=config.formatTemplate(item,$('#img-content').html());
+          });
+          $imgPcWrap.append(ImageWrapper.pcStr);
+          // layedit.sync(editorIndex);
+          // console.log(layedit.set);
+          $('.layui-layedit iframe').contents().find('body').html(ImageWrapper.pcStr);
+
+
+          console.log($('.layui-layedit iframe').contents());
         }else{
           // ImageWrapper.imgArr.reverse();
         	$.each(ImageWrapper.imgArr,function(index,item){
@@ -60,11 +80,12 @@ var goodsHouse={
 
         $.each(ImageWrapper.imgArr,function(index,item){
 
-            if(ImageWrapper.temp!="image-suolve"){
+            if(ImageWrapper.temp=="img-content"){
               $('.'+ImageWrapper.temp).append(config.formatTemplate(item,$('#'+ImageWrapper.temp).html()));
             }
             
         });
+
         $('.image-suolve').html('');
          $.each(ImageWrapper.suolveImg,function(index,item){
             console.log(item);
@@ -76,6 +97,8 @@ var goodsHouse={
             $('.image-suolve').append(config.formatTemplate({imgsrc:item,selectIndex:index},$('#image-suolve').html()));
 
         });
+
+
 
        if(ImageWrapper.suolveImg.length<3){
         $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
@@ -105,7 +128,7 @@ var goodsHouse={
       function upImage(str)
       {
         ImageWrapper.temp=str;
-        // console.log(str);
+        console.log(str);
 
         var myImage = o_ueditorupload.getDialog("insertimage");
         myImage.open();
@@ -189,6 +212,12 @@ var getCon=window.location.href.split('?')[1]||'';
 var fname=window.location.href.split('?')[2]||'';
 goodsHouse.goodsId=getCon?getCon.split('=')[1]:'';
 
+
+
+
+
+
+
 $('.fullname').text(unescape(fname));
     $('#confirmsavetext').on('click',function(){
             layer.closeAll();
@@ -197,7 +226,7 @@ $('.fullname').text(unescape(fname));
         })
 
         $('#btnSubmit').on('click',function(){
-            console.log('1111');
+            console.log($('.img-content').html());
             $('#appHtml').val($('.img-content').html());
             var arr=[];
             $('.detail-banner-split').each(function(){
@@ -209,16 +238,18 @@ $('.fullname').text(unescape(fname));
             $('.add-alert-area').show();
             //console.log(goodsHouse.goodsId);
             $('#goodsId').val(goodsHouse.goodsId);
+            $('#pcContent').val($('#demo').html());
             // console.log(config.ajaxAddress.goodsaddDetail);
+            console.log($('#demo').html());
             config.formSubmit('#detailContent',config.ajaxAddress.goodsaddDetail,function(data){
               console.log(data);
-               if(data.code==200){
+               /*if(data.code==200){
                  alert('添加成功');
                  location.href="editorgoodsInfo.html?status=";
                }else{
                  alert('添加失败');
                  location.href="editorgoodsInfo.html?status="; 
-               }
+               }*/
             })
         });
 
@@ -255,18 +286,18 @@ $('.fullname').text(unescape(fname));
             
 
             if(data.info.text){
-                $('#container').html(data.info.text);
+                $('#demo').html(data.info.text);
              }
           }
           
-           var ue = UE.getEditor('container',{
+          /* var ue = UE.getEditor('container',{
             toolbars: [
                    ['source','undo', 'bold','underline','simpleupload','insertimage','cleardoc','imagecenter','justifyleft','justifycenter','justifyright']
                 ],
                 autoHeight: false,
                 autoHeightEnabled: false
 
-        }).setHeight(300).focus(true);
+        }).setHeight(300).focus(true);*/
 
 
         });
@@ -319,16 +350,20 @@ $('.image-suolve').on('mousedown','.deleteAvata',function(){
 });
 
 $('.image-suolve').on('click','.deleteAvata',function(){
-  var n=$(this).data('index');
-  ImageWrapper.suolveImg.splice(n,1);
-  $('.image-suolve').html('');
-  $.each(ImageWrapper.suolveImg,function(index,item){
-    
-    $('.image-suolve').append(config.formatTemplate({imgsrc:item,selectIndex:index},$('#image-suolve').html()));
-  });
-  if(ImageWrapper.suolveImg.length<3){
-      $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
-    }
+  layer.confirm('确定删除？',{},function(index){
+    layer.close(index);
+    var n=$(this).data('index');
+    ImageWrapper.suolveImg.splice(n,1);
+    $('.image-suolve').html('');
+    $.each(ImageWrapper.suolveImg,function(index,item){
+      
+      $('.image-suolve').append(config.formatTemplate({imgsrc:item,selectIndex:index},$('#image-suolve').html()));
+    });
+    if(ImageWrapper.suolveImg.length<3){
+        $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
+      }
+  })
+  
   return false;
 });
 
@@ -339,3 +374,19 @@ $('.image-suolve').on('click','.deleteAvata',function(){
       area:'400px',
       maxmin: false
   })*/
+
+
+/**
+富文本编辑器
+
+*/
+
+layui.use('layedit', function(){
+  layedit = layui.layedit;
+  editorIndex=layedit.build('demo',{
+    tool: ['left', 'center', 'right', '|', 'face']
+  }); //建立编辑器
+  console.log(layedit.set);
+});
+
+

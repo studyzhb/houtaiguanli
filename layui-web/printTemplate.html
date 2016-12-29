@@ -16,17 +16,17 @@
 <body>
   <div><input type="button" value="打印" onclick="Print()" /></div>  
 
-  <div id="page2">
+  <!-- <div id="page2">
   <div style="page-break-after:always">
     <header>
     <h3 class="title">万店联盟采购单</h3>
   </header>
   <section>
     <div class="thumbInfo">
-      <div class="infoWrap">
+      <div class="infoWrap fl">
         操作员：测试
       </div>
-      <div class="infoWrap">
+      <div class="infoWrap fr">
         单号：000001
       </div>
     </div>
@@ -64,7 +64,7 @@
       <td colspan="9">合计：<span class="printdposit"></span></td>
     </tr>
   </tfoot>
-</table>
+  </table>
   </section>
   <footer>
     <div class="thumbInfo">
@@ -77,25 +77,23 @@
     </div>
   </footer>
   </div>
-  </div>
+  </div> -->
 
 <script type="text/html" id="printOrderList">
    <div class="page">
-   {{# if(d.page==1){ }}
+   
   <div style="page-break-after:always">
-  {{# }else{ }}
-  <div style="">
-  {{# } }}
+
     <header>
     <h3 class="title">万店联盟采购单</h3>
   </header>
   <section>
     <div class="thumbInfo">
-      <div class="infoWrap">
+      <div class="infoWrap fl">
         操作员：测试
       </div>
-      <div class="infoWrap">
-        单号：000001
+      <div class="infoWrap fr">
+        单号：{{d.orderlistId}}
       </div>
     </div>
     <table class="layui-table">
@@ -107,7 +105,7 @@
       <th>序号</th>
       <th>商品条码</th>
       <th>商品名称</th>
-      <th>零售单位</th>
+      <th>规格</th>
       <th>供应商</th>
       <th>单价</th>
       <th>数量</th>
@@ -117,10 +115,10 @@
   <tbody>
     {{#  layui.each(d.lst,function(index, item){ }}
       <tr>
-        <td>{{index+1}}</td>
+        <td>{{index+(d.page-1)*5+1}}</td>
         <td>{{item.barcode}}</td>
         <td>{{item.goods}}</td>
-        <td>20ml/g</td>
+        <td>{{item.eachsale}}</td>
         <td>{{item.supplier}}</td>
         <td>{{item.price}}</td>
         <td>{{item.unm}}</td>
@@ -141,7 +139,7 @@
   <footer>
     <div class="thumbInfo">
       <div class="infoWrap">
-        共10页
+        共{{d.detailPage}}页
       </div>
       <div class="infoWrap">
         当前第{{d.page}}页
@@ -159,22 +157,27 @@
 
 
 <script language="javascript">  
+var maxNum=5;
 layui.use('laytpl',function(){
     laytpl = layui.laytpl;
     config.ajax('get',config.ajaxAddress.editOrderList,function(data){
     console.log(data);
     var arr=[];
     var page=0;
-
+    var dposit=data.dposit;
+    var detailPage=Math.ceil(data.lst.length/maxNum);
     $.each(data.lst,function(index,item){
-      if(index%10==0){
+      if(index%maxNum==0){
         
         if(index!=0){
           page++;
         }
         arr[page]={};
         arr[page].lst=[];
+        arr[page].orderlistId=data.oddnum;
         arr[page].page=page+1;
+        arr[page].detailPage=detailPage;
+        arr[page].dposit=dposit;
         arr[page].lst.push(item);        
         // page++;
       }else{
@@ -185,7 +188,7 @@ layui.use('laytpl',function(){
     console.log(arr);
     var tempHtml=printOrderList.innerHTML;
     // $('#printOrderWrapper').html('');
-    var dposit=0;
+    
     $.each(arr,function(index,item){
       laytpl(tempHtml).render(item,function(html){
         $('body').append(html);

@@ -113,7 +113,7 @@
               
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <div class="layui-btn addUserInfo">添加用户</div>
+                  <div class="layui-btn addUserInfo">确认更新</div>
                   
                 </div>
               </div>
@@ -418,11 +418,11 @@
                 <label class="layui-form-label">状态</label>
                 <div class="layui-input-block">
                   {{# if(d.status){ }}
-                    <input type="radio" checked name="status" title="启用">
-                    <input type="radio" name="status" title="停用">
+                    <input type="radio" checked name="status" value="1" title="启用">
+                    <input type="radio" name="status" value="0" title="停用">
                   {{# }else{ }}
-                    <input type="radio" name="status" title="启用">
-                    <input type="radio" checked name="status" title="停用">
+                    <input type="radio" name="status" value="1" title="启用">
+                    <input type="radio" checked name="status" value="0" title="停用">
                   {{# } }}
                   
                 </div>

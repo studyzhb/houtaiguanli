@@ -1,5 +1,7 @@
 body{
       padding:0 20px;
+      font-size: 12px;
+
     }
     h3.title{
       text-align: center;
@@ -18,3 +20,23 @@ body{
     .layui-table td, .layui-table th{
       border:1px solid #000; 
     }
+
+    .fl{
+      float:left;
+    }
+    .fr{
+      float: right;
+    }
+
+    .clearfix:after {
+  content: ".";
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+  display: block; }
+
+  .layui-table td, .layui-table th {
+    font-size: 12px;
+    transform:scale(0.9);
+  }
