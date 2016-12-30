@@ -79,7 +79,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 
 //打印采购单
 $('#purchaselist').on('click','.printOrderlist',function(){
-	config.ajax('get',config.ajaxAddress.editOrderList,function(data){
+	/*config.ajax('get',config.ajaxAddress.editOrderList,function(data){
 		console.log(data);
 		var tempHtml=printOrderList.innerHTML;
 		$('#printOrderWrapper').html('');
@@ -101,7 +101,10 @@ $('#purchaselist').on('click','.printOrderlist',function(){
       shade:[0.8,'#000'],
       area:'1000px',
       maxmin: true
-	})
+	})*/
+	
+	open('printTemplate.html?id='+$(this).data('id'),'_self');
+
 });
 
 

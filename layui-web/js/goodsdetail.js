@@ -53,6 +53,23 @@ var goodsHouse={
         		    ImageWrapper.suolveImg.push(item.imgsrc);
               }
         	});
+
+          $('.image-suolve').html('');
+         $.each(ImageWrapper.suolveImg,function(index,item){
+            console.log(item);
+            // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
+            //   $('#imageadd').show();
+            // }else{
+            //    $('#imageadd').hide();
+            // }
+            $('.image-suolve').append(config.formatTemplate({imgsrc:item,selectIndex:index},$('#image-suolve').html()));
+
+        });
+
+         if(ImageWrapper.suolveImg.length<3){
+        $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
+
+       }
 //          ImageWrapper.suolveImg=ImageWrapper.imgArr;
         }else if(ImageWrapper.temp=="img-pc"){
           console.log('img-pc');
@@ -66,6 +83,7 @@ var goodsHouse={
           // layedit.sync(editorIndex);
           // console.log(layedit.set);
           $('.layui-layedit iframe').contents().find('body').html(ImageWrapper.pcStr);
+          layedit.sync(editorIndex);
 
 
           console.log($('.layui-layedit iframe').contents());
@@ -86,24 +104,7 @@ var goodsHouse={
             
         });
 
-        $('.image-suolve').html('');
-         $.each(ImageWrapper.suolveImg,function(index,item){
-            console.log(item);
-            // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
-            //   $('#imageadd').show();
-            // }else{
-            //    $('#imageadd').hide();
-            // }
-            $('.image-suolve').append(config.formatTemplate({imgsrc:item,selectIndex:index},$('#image-suolve').html()));
-
-        });
-
-
-
-       if(ImageWrapper.suolveImg.length<3){
-        $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
-
-       }
+       
 
 
         // console.log(ImageWrapper.imgArr);
@@ -229,12 +230,12 @@ $('.fullname').text(unescape(fname));
             console.log($('.img-content').html());
             $('#appHtml').val($('.img-content').html());
             var arr=[];
-            $('.detail-banner-split').each(function(){
+            $('.detail-banner-split .left-block').each(function(){
                 arr.push($(this).data('imgsrc'));
             })
             // console.log($('.detail-banner-split').data('imgsrc'));
             $('#slImg').val(JSON.stringify(arr));
-            // console.log(arr);
+            console.log(arr);
             $('.add-alert-area').show();
             //console.log(goodsHouse.goodsId);
             $('#goodsId').val(goodsHouse.goodsId);
@@ -243,13 +244,13 @@ $('.fullname').text(unescape(fname));
             console.log($('#demo').html());
             config.formSubmit('#detailContent',config.ajaxAddress.goodsaddDetail,function(data){
               console.log(data);
-               /*if(data.code==200){
+               if(data.code==200){
                  alert('添加成功');
                  location.href="editorgoodsInfo.html?status=";
                }else{
                  alert('添加失败');
                  location.href="editorgoodsInfo.html?status="; 
-               }*/
+               }
             })
         });
 
@@ -384,7 +385,7 @@ $('.image-suolve').on('click','.deleteAvata',function(){
 layui.use('layedit', function(){
   layedit = layui.layedit;
   editorIndex=layedit.build('demo',{
-    tool: ['left', 'center', 'right', '|', 'face']
+    tool: ['left', 'center', 'right']
   }); //建立编辑器
   console.log(layedit.set);
 });

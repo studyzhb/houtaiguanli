@@ -139,6 +139,7 @@
       
       <div style="height:55px;padding-right:10px;">
         <div id="page" style="float:right;"></div>
+        <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
       </div>
       
 
@@ -204,7 +205,7 @@
             <li>
               <div class="input-wrapper">
                 <label>商品全称</label>
-                <input type="text" class="w160 goods-fullname fullname-jname" id="fullname-jname" name="name" value="">
+                <input type="text" class="w160 goods-fullname fullname-jname" onblur="addCode(this.value)" id="fullname-jname" name="name" value="">
               </div>
               <div class="input-wrapper">
                 <label>商品编码</label>
@@ -490,11 +491,11 @@
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}">{{item.name}}</a>
+        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}">{{item.name}}</a>
+          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
         </dd>
       {{# } }}
     {{#  }); }}
@@ -512,7 +513,7 @@
             <li>
               <div class="input-wrapper">
                 <label>商品全称</label>
-                <input type="text" class="w160 goods-fullname fullname-jname" name="name" value="{name}">
+                <input type="text" class="w160 goods-fullname fullname-jname" onblur="addCode(this.value)" name="name" value="{name}">
               </div>
               <div class="input-wrapper">
                 <label>商品编码</label>
@@ -778,15 +779,16 @@
 <script src="./js/addgoodsInfo.js"></script>
 <script src="./js/PinYin.js"></script>
 <script>
-  $('.fullname-jname').on('blur',function(){
+  /*$('.fullname-jname').on('blur',function(){
         var con=codefans_net_CC2PY($(this).val());
+        console.log(con);
         $('.zname-show').val(con.substr(0,10));
-    });
+    });*/
 
   function addCode(obj){
-    console.log($(this).val());
-    var con=codefans_net_CC2PY($(this).val());
-    $('#zname-show').val(con.substr(0,10));
+    console.log(obj);
+    var con=codefans_net_CC2PY(obj);
+    $('.zname-show').val(con.substr(0,10));
   }
 
 

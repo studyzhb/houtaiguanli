@@ -2,6 +2,7 @@
 $(function(){
 	var orderlist={
 		goodslist:[],
+		supplierId:'',
 		selectedList:[],
 		updateOrderList:function(){
 			var tempHtml=goodsContent.innerHTML;
@@ -73,7 +74,12 @@ $(function(){
 			$('<option>').appendTo($('.ggList')).html(item.gg).attr('value',item.id);
 		});
 		layui.use('form',function(){
-			
+			var form = layui.form();
+			form.on('select(supplier)', function(data){
+			  //console.log(addShopPage.area.pro);
+			  console.log(data.value);
+			  orderlist.supplierId=data.value;
+			});
 		});
 	});
 
@@ -101,7 +107,7 @@ $(function(){
 	      maxmin: true
 	    })
 
-	},{'coding':val});
+	},{'coding':val,'supplier_id':orderlist.supplierId});
 	console.log(val);
 });
 $('#goods-barcode').on('click',function(){
@@ -127,7 +133,7 @@ $('#goods-barcode').on('click',function(){
 	      area:'900px',
 	      maxmin: true
 	    })
-	},{'barcode':val});
+	},{'barcode':val,'supplier_id':orderlist.supplierId});
 });
 // console.log(goodsName);
 $('#goodsName').on('click',function(){
@@ -153,14 +159,8 @@ $('#goodsName').on('click',function(){
 	      area:'900px',
 	      maxmin: true
 	    })
-	},{'name':val});
-	layer.open({
-      type: 1,
-      content: $('#goods-list'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'900px',
-      maxmin: true
-    })
+	},{'name':val,'supplier_id':orderlist.supplierId});
+	
 });
 
 //选择之后添加到展示列表

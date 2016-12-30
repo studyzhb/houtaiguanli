@@ -90,7 +90,7 @@
   <section>
     <div class="thumbInfo">
       <div class="infoWrap fl">
-        操作员：测试
+        操作员：<span class="printUser"></span>
       </div>
       <div class="infoWrap fr">
         单号：{{d.orderlistId}}
@@ -98,7 +98,14 @@
     </div>
     <table class="layui-table">
   <colgroup>
-    
+    <col width="" >
+    <col width="100" >
+    <col width="200" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
   </colgroup>
   <thead>
     <tr>
@@ -115,7 +122,7 @@
   <tbody>
     {{#  layui.each(d.lst,function(index, item){ }}
       <tr>
-        <td>{{index+(d.page-1)*5+1}}</td>
+        <td>{{index+(d.page-1)*7+1}}</td>
         <td>{{item.barcode}}</td>
         <td>{{item.goods}}</td>
         <td>{{item.eachsale}}</td>
@@ -157,7 +164,8 @@
 
 
 <script language="javascript">  
-var maxNum=5;
+var maxNum=7;
+var oId=location.href.split('?')[1].split('=')[1];
 layui.use('laytpl',function(){
     laytpl = layui.laytpl;
     config.ajax('get',config.ajaxAddress.editOrderList,function(data){
@@ -196,7 +204,10 @@ layui.use('laytpl',function(){
     })
     
     $('.printdposit').text(dposit+'元');
-  },{id:'188'});
+    var user=cookieUtil.getCookie('username')||'';
+        console.log(user);
+        $('.printUser').text(user);
+  },{id:oId});
 });
 
 
@@ -222,9 +233,11 @@ layui.use('laytpl',function(){
         pwin.document.close();                   //这句很重要，没有就无法实现    
         pwin.print(); */   
         console.log($('.page'));
+
         $('.page').each(function(index,item){
           printStr+=$(this).html();
         });
+
         document.body.innerHTML=printStr;
         window.print();  
     }  

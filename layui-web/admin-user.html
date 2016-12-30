@@ -104,7 +104,8 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>用户名</th>
+              <th>工号</th>
+              <th>姓名</th>
               <th>手机</th>
               <th>邮箱</th>
               <th>状态</th>
@@ -148,6 +149,7 @@
    <tr>
               <td>{{d.id}}</td>
               <td>{{d.job_num}}</td>
+              <td>{{d.name}}</td>
               <td>{{d.tel}}</td>
               <td>{{d.email}}</td>
               {{# if(d.status) { }}
@@ -332,11 +334,11 @@
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}">{{item.name}}</a>
+        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}">{{item.name}}</a>
+          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
         </dd>
       {{# } }}
     {{#  }); }}

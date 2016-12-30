@@ -88,7 +88,7 @@
                 
                 <label class="layui-form-label">供货商</label>
                 <div class="layui-input-inline">
-                  <select class="supplierList" name="supplier">
+                  <select class="supplierList" lay-filter="supplier" name="supplier">
                     
                   </select>
                 </div>
@@ -134,7 +134,7 @@
                     <input type="text" name="" value="" class="layui-input" >
 
                   </div>
-                  <div class="layui-btn layui-input-inline layui-btn-small" lay-filter="goodsName" id="goodsName" style="width:48px;height:38px;">
+                  <div class="layui-btn layui-input-inline layui-btn-small" id="goodsName" style="width:48px;height:38px;">
                     搜索
                   </div>
 
@@ -418,11 +418,11 @@
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}">{{item.name}}</a>
+        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}">{{item.name}}</a>
+          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
         </dd>
       {{# } }}
     {{#  }); }}
