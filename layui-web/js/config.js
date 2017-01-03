@@ -174,7 +174,9 @@ var config={
       //配送
       sendingStorelist:'/shop/shop/public/index.php/admin/Store/peisong',
       //拒绝
-      refuseStorelist:'/shop/shop/public/index.php/admin/Store/jujue'
+      refuseStorelist:'/shop/shop/public/index.php/admin/Store/jujue',
+      //库存
+      storehouse:'/shop/shop/public/index.php/admin/Purchase/storeLst'
 
 	},
   pSort:{

@@ -2,13 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>标题</title>
+	<title>库存列表</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
 	<script src="./layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+  	<script type="text/javascript" src="./js/jquery-form.js"></script>
     <script src="./js/config.js"></script>
 <script src="./js/filter.js"></script>
 </head>
@@ -66,6 +67,17 @@
 		  <a><cite>正文</cite></a>
 		</span>
      -->
+     <form method="post" action="" id="createOrderlist" style="position:fixed;left:200px;bottom:40px;">
+       <input type="hidden" id="goods" name="goods" value="">
+       <input id="ordernum" type="hidden" name="oddnum">
+       <input type="hidden" id="supplierId" name="supplier" value="">
+       <div class="layui-form-item">
+        <div class="layui-input-block">
+          <div class="layui-btn" id="confirm-save" style="display:none;">生成采购单</div>
+          <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+        </div>
+      </div>
+     </form>
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
@@ -78,17 +90,23 @@
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
             <form class="layui-form layui-form-pane" action="" style="display:inline-block;">
               
-              <div class="layui-inline">
-                <label class="layui-form-label">关键词</label>
-                <div class="layui-input-inline">
-                  <input type="text" class="layui-input" name="" value="">
-                </div>
+              <div class="layui-form-item"> 
                 
+                <label class="layui-form-label">供货商</label>
+                <div class="layui-input-inline">
+                  <select class="supplierList" lay-filter="supplier" name="supplier">
+                    
+                  </select>
+                </div>
 
-              </div>
-              <button class="layui-btn">
-                   搜索
-                </button>
+                  <!-- <label class="layui-form-label">仓库列表</label>
+                                  <div class="layui-input-inline">
+                  <select class="stockList" name="dept_id">
+                    
+                  </select>
+                                  </div> -->
+                
+                </div>
             </form>
           <table class="layui-table">
           <colgroup>
@@ -100,31 +118,22 @@
           </colgroup>
           <thead>
             <tr>
-              <th>采购单号</th>
-              <th>订货有效期</th>
-              <th>币种</th>
-              <th>订货总金额</th>
-              <th>审核状态</th>
-              <th>操作员</th>
-              <th>业务员</th>
+              <th>序号</th>
+              <th>商品条形码</th>
+              <th>商品名称</th>
+              <th>品牌</th>
+              <th>规格</th>
+              <th>进货价</th>
+              <th>批发价</th>
+              <th>仓库</th>
+              <th>库存</th>
+              <th>补货数量</th>
               <th>操作</th>
             </tr> 
           </thead>
           <tbody id="purchaselist">
             
-            <tr>
-              <td>1</td>
-              <td>万店联盟</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
-                <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>-->
-              </td>
-            </tr>
+            
             
           </tbody>
       </table>
@@ -328,24 +337,59 @@
 </script>
 
 <script id="supplierList" type="text/html">
-  <tr>
-    <td>1</td>
-    <td>万店联盟</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo">编辑</div>
-      <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
-    </td>
-  </tr>
+  {{#  layui.each(d.lst,function(index, item){ }}
+      <tr>
+        <td>{{index+1}}</td>
+        <td>{{item.barcode}}</td>
+        <td>{{item.goodName}}</td>
+        <td>{{item.brandName}}</td>
+        <td>规格</td>
+        <td>{{item.buyprice}}</td>
+        <td>{{item.wholesale}}</td>
+        <td>{{item.deptName}}</td>
+        <td>{{item.stock}}</td>
+        {{# layui.each(d.addList,function(i,ites){ }}
+          {{# if(ites.goodId==item.goodId){ }}
+            
+            {{# d.temp=true }}
+            <td>{{ites.addNum}}</td>
+          {{# } }}
+        {{# }) }}
+
+        {{# if(d.addList.length==0||!d.temp||(index>=d.addList.length&&!d.temp)){ }}
+          <td>0</td>
+        {{# } }}
+
+        {{# d.temp=false}}
+        
+        
+        <td>
+          <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{item.goodId}}">补充库存</div>
+          <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
+        </td>
+      </tr>
+  {{#  }); }}
+  
 </script>
 
 
 </div>
+<!-- ========================================================= -->
+<div id="goodsNum" class="layui-form" style="display:none">
+    <div class="layui-form-item">
+      <label class="layui-form-label">更改数量</label>
+      <div class="layui-input-inline">
+        <input type="text" placeholder="请输入数量" autocomplete="off" class="layui-input singleNum">
+      </div>
+    </div>
 
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <div class="layui-btn saveGoodsNum">确定</div>
+        
+      </div>
+    </div>
+  </div>
 </body>
 <script src="./js/storehouse.js"></script>
 </html>

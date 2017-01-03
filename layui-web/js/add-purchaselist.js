@@ -4,16 +4,21 @@ $(function(){
 		goodslist:[],
 		supplierId:'',
 		selectedList:[],
+		dposit:0,
 		updateOrderList:function(){
 			var tempHtml=goodsContent.innerHTML;
 			$('#goods-orderlist').html('');
+			orderlist.dposit=0;
 			$.each(orderlist.selectedList,function(index,item){
 				item.selectedindex=index;
-				// console.log(item);
+				console.log(item);
+				
+				orderlist.dposit+=item.number*item.buyprice;
 				laytpl(tempHtml).render(item,function(html){
 					$('#goods-orderlist').append(html);
 				});
 			});
+			$('.printdposit').text(orderlist.dposit.toFixed(2));
 		}
 	}
 
@@ -21,7 +26,22 @@ $(function(){
 		console.log('dbclick');
 
 		var $input=$('<input type="text" placeholder="请输入" autocomplete="off" class="layui-input" style="position:absolute;left:0;top:0;">').appendTo($(this));
+		$input.focus();
+		$input.on('focus',function(){
 
+		});
+		$input.on('keyup',function(e){
+			
+			console.log(e.keyCode);
+			if(e.keyCode==13){
+				var ind=$(this).parent().data('value')-0;
+			// console.log(ind);
+			orderlist.selectedList[ind].number=$(this).val();
+			$(this).parent().text(this.value);
+			$(this).remove();
+			orderlist.updateOrderList();
+			}
+		})
 		$input.on('blur',function(){
 			
 			
@@ -30,6 +50,7 @@ $(function(){
 			orderlist.selectedList[ind].number=$(this).val();
 			$(this).parent().text(this.value);
 			$(this).remove();
+			orderlist.updateOrderList();
 		});
 		return false;
 	});
@@ -219,7 +240,7 @@ $('#confirm-save').on('click',function(){
 		$('#goods').val(JSON.stringify(arr));
 		// console.log($('#goods').val());
 		config.formSubmit('#orderlist-submit',config.ajaxAddress.addOrderList,function(data){
-			// console.log(data);
+			console.log(data);
 			 if(data.code==200){
                 layer.msg('添加成功');
                 setTimeout(function(){
@@ -280,6 +301,7 @@ $('.saveGoodsNum').on('click',function(){
 		  layer.close(i);
 		});
 	}else{
+		
 		orderlist.updateOrderList();
 	}
 	

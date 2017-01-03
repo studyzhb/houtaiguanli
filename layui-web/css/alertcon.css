@@ -394,6 +394,7 @@ input.w380 {
       left:0;
       top:0;
       opacity:0.4;
+      display: none;
   }
 .detail-banner-split div.deleteAvata,div.deleteAvata{
       position:absolute;
@@ -420,21 +421,23 @@ input.w380 {
     right:0;
     top:0;
     opacity:0.4;
+    display: none;
 }
 ..img-single{
   position: relative;
 }
 .detail-image-col-2{
-    width:300px;
+    width:200px;
     display:inline-block;
     /*min-height:270px;*/
-    height: 180px;
+    /*height: 180px;*/
+    height:200px;
     text-align:center;
     line-height:115px;
     font-size:50px;
     border:1px solid #000;
     position:relative;
-    background:url('../img/shangchuang.png') no-repeat -129px center;  
+    background:url('../img/shangchuang.png') no-repeat -169px center;  
 }
 
 .detail-image-col-2 input{

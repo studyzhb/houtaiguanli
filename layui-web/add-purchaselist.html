@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>标题</title>
+	<title>添加采购单</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
@@ -159,6 +159,7 @@
                       <th>商品品牌</th>
                       <th>商品数量</th>
                       <th>商品单价</th>
+                      <th>商品总价</th>
                       <th>操作</th>
                     </tr> 
                   </thead>
@@ -167,6 +168,11 @@
                     
                     
                   </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="7">合计：<span class="printdposit">0</span>元</td> 
+                    </tr>
+                  </tfoot>
               </table>
               </fieldset>
 
@@ -455,6 +461,7 @@
     <td>{{d.brand}}</td>
     <td style="position:relative;" data-value="{{d.selectedindex}}" class="dbclickchange">{{d.number}}</td>
     <td>{{d.buyprice}}</td>
+    <td>{{(d.buyprice*d.number).toFixed(2)}}</td>
     <td>
       <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" id="{{d.selectedindex}}">编辑</div>
       <div class="layui-btn layui-btn-small layui-btn-danger deleteGoods" id="{{d.selectedindex}}">删除</div>
