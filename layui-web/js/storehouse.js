@@ -3,7 +3,8 @@ $(function(){
 var storehouse={
 	orderlist:[],
 	readyIndex:0,
-	supplierId:''
+	supplierId:'',
+	stockId:''
 }
 
 
@@ -36,6 +37,12 @@ function updateStoreContent(){
 			}
 			$('<option>').appendTo($('.supplierList')).html(item.name).attr('value',item.supplierId);
 		});
+		$.each(data.cangku,function(index,item){
+			if(index==0){
+				storehouse.stockId=item.id;
+			}
+			$('<option>').appendTo($('.stockList')).html(item.name).attr('value',item.id);
+		});
 		data.addList=storehouse.orderlist;
 		data.temp=false;
 		if(data.addList.length){
@@ -57,9 +64,15 @@ function updateStoreContent(){
 			  storehouse.supplierId=data.value;
 			  updateStoreContent();
 			});
+			form.on('select(stockList)', function(data){
+			  //console.log(addShopPage.area.pro);
+			  console.log(data.value);
+			  storehouse.stockId=data.value;
+			  updateStoreContent();
+			});
 		});
 
-	},{supplierId:storehouse.supplierId});
+	},{supplierId:storehouse.supplierId,cangkuId:storehouse.stockId});
 }
 
 //补货数量
@@ -106,12 +119,13 @@ $('#confirm-save').on('click',function(){
 	$('#goods').val(JSON.stringify(arr));
 	$('#ordernum').val(new Date().getTime());
 	$('#supplierId').val(storehouse.supplierId);
+	$('#stockId').val(storehouse.stockId);
 	console.log($('#goods').val());
 	console.log($('#ordernum').val());
 	console.log($('#supplierId').val());
 	config.formSubmit('#createOrderlist',config.ajaxAddress.addOrderList,function(data){
 		console.log(data);
-		 /*if(data.code==200){
+		 if(data.code==200){
 		    layer.msg('添加成功');
 		    setTimeout(function(){
 		        open('purchaselist.html','_self');
@@ -122,7 +136,7 @@ $('#confirm-save').on('click',function(){
 		    setTimeout(function(){
 		        open('purchaselist.html','_self');
 		    },500);
-		}*/
+		}
 		});
 });
 

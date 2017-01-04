@@ -299,9 +299,19 @@
     <td>{{d.deptName}}</td>
     <td>{{d.price}}</td>
     <td>{{d.unm}}</td>
-    <td><input type="text" name="" value="" class="inputChangeNum" data-id="{{d.selectedindex}}" data-sprice="{{d.price}}"></td>
+    {{# if(d.checknum){ }}
+      <td><input type="text" name="" value="{{d.checknum}}" class="inputChangeNum" data-id="{{d.selectedindex}}" data-sprice="{{d.price}}"></td>
+    {{# }else{ }}
+      <td><input type="text" name="" value="" class="inputChangeNum" data-id="{{d.selectedindex}}" data-sprice="{{d.price}}"></td>
+    {{# } }}
+    
     <td>{{d.singlePrice}}</td>
-    <td class="confirmdetails"></td>
+    {{# if(d.checknum){ }}
+      <td class="confirmdetails">{{(d.checknum*d.price).toFixed(2)}}</td>
+    {{# }else{ }}
+      <td class="confirmdetails"></td>
+    {{# } }}
+    
   </tr>
 </script>
 
@@ -343,6 +353,6 @@
 </script>
 
 </div>
-<script src="./js/orderlist-input.js"></script>
+<script src="./js/orderlist-input.js?v=1.0"></script>
 </body>
 </html>

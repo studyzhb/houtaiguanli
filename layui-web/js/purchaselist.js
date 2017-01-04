@@ -66,7 +66,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 				$('#singleOrderWrapper').append(html);
 			});
 		});
-
+		$('.dposit').text(data.dposit+'元');
 	},{id:$(this).data('id')});
 	layer.open({
 		type:1,
@@ -76,6 +76,18 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
       maxmin: true
 	})
 });
+
+//导出采购单
+
+$('#purchaselist').on('click','.exceloutput',function(){
+	
+	/*config.ajax('get',config.ajaxAddress.excelOutput,function(data){
+		console.log(data);
+	},{buyer_id:$(this).data('id')});*/
+	
+	open(config.ajaxAddress.excelOutput+'?token='+cookieUtil.getCookie('token')+'&buyer_id='+$(this).data('id'),'_self');
+});
+
 
 //打印采购单
 $('#purchaselist').on('click','.printOrderlist',function(){
@@ -205,7 +217,7 @@ $('#confirmorder').on('click',function(){
 	// console.log($('#goods').val());
 	config.formSubmit('#purchaselistForm',config.ajaxAddress.editOrderList,function(data){
 		console.log(data);
-		/*if(data.code==200){
+		if(data.code==200){
                 layer.msg('提交成功');
                 setTimeout(function(){
                     open('purchaselist.html','_self');
@@ -216,7 +228,7 @@ $('#confirmorder').on('click',function(){
                 setTimeout(function(){
                     open('purchaselist.html','_self');
                 },500)
-            }*/
+            }
 	});
 });
 

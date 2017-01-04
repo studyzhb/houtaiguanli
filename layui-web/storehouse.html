@@ -71,6 +71,7 @@
        <input type="hidden" id="goods" name="goods" value="">
        <input id="ordernum" type="hidden" name="oddnum">
        <input type="hidden" id="supplierId" name="supplier" value="">
+       <input type="hidden" id="stockId" name="dept_id" value="">
        <div class="layui-form-item">
         <div class="layui-input-block">
           <div class="layui-btn" id="confirm-save" style="display:none;">生成采购单</div>
@@ -99,12 +100,12 @@
                   </select>
                 </div>
 
-                  <!-- <label class="layui-form-label">仓库列表</label>
-                                  <div class="layui-input-inline">
-                  <select class="stockList" name="dept_id">
-                    
-                  </select>
-                                  </div> -->
+                <label class="layui-form-label">仓库列表</label>
+                <div class="layui-input-inline">
+                <select class="stockList" name="dept_id" lay-filter="stockList" >
+                  
+                </select>
+                </div>
                 
                 </div>
             </form>

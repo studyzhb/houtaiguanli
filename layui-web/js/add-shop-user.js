@@ -51,7 +51,7 @@ $(function(){
 		  	console.log(pwd);
 		  	config.formSubmit('#adminInfo',config.ajaxAddress.addshopUser,function(data){
 			// console.log(data);
-				/*if(data.code==200){
+				if(data.code==200){
 	                layer.msg('添加成功');
 	                setTimeout(function(){
 	                    open('shop-user.html','_self');
@@ -62,7 +62,7 @@ $(function(){
 	                setTimeout(function(){
 	                    open('shop-user.html','_self');
 	                },1000);
-	            }*/
+	            }
 			});
 
 		    return false;

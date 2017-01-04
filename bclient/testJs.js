@@ -273,6 +273,7 @@ function() {
 			})
 		},
 		init: function() {
+
 			var c = ['<div class="desktop-app" data-id="{{d.apps[app].appid}} " data-title="{{d.apps[app].name}}" data-url="{{d.apps[app].url}}" data-icon="{{d.apps[app].icon}}" data-iconbg="{{d.apps[app].iconbg}}"  data-isicon="{{d.apps[app].isicon}}" data-height="{{d.apps[app].height}}" data-width="{{d.apps[app].width}}" data-fid="{{app}}">', '<i class="layui-icon" style="background-color:{{d.apps[app].iconbg}}">{{d.apps[app].icon}}</i>', '<span class="desktop-title layui-elip">{{d.apps[app].name}}</span>', '</div>'].join(""),
 				desktopTmp = ['{{# layui.each(d.menu, function(index, menuitem){ if(index>=3)return false;}}', '<div class="swiper-slide">', '<div class="desktopContainer"  data-menuid="{{menuitem.menuid}}" data-name="{{menuitem.name}}" >', '{{# layui.each(menuitem.app, function(index, app){}}', c, '{{# });}}', '</div>', '</div>', '{{# }); }} '].join(""),
 				desktopOpeningTmp = ['{{# layui.each(d.menu[3].app, function(index, app){}}', c, '{{# });}}'].join("");
@@ -310,6 +311,7 @@ function() {
 					p.arrange(a.realIndex)
 				}
 			});
+			
 			$(window).resize(function(a) {
 				$(".desktop-container").css("height", $(window).height() - 40);
 				$(".desktopContainer").css("height", $(".desktop-container").height());

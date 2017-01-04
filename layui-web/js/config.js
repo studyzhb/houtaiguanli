@@ -176,7 +176,8 @@ var config={
       //拒绝
       refuseStorelist:'/shop/shop/public/index.php/admin/Store/jujue',
       //库存
-      storehouse:'/shop/shop/public/index.php/admin/Purchase/storeLst'
+      storehouse:'/shop/shop/public/index.php/admin/Purchase/storeLst',
+      excelOutput:'/shop/shop/public/index.php/admin/Excel/excel'
 
 	},
   pSort:{
