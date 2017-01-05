@@ -2,6 +2,9 @@ $(function(){
 var laytpl; 
 var isClick=true;
 var fistLoad=true;
+var goodsInfo={
+    goodName:''
+}
     layui.use('laytpl',function(){
         laytpl = layui.laytpl;
 
@@ -146,7 +149,7 @@ var fistLoad=true;
 
     });
 
-    updatePageNum();
+    updatePageNum(1);
 
     });
     layui.use('form',function(){
@@ -171,7 +174,7 @@ var fistLoad=true;
                 });
             });
             $('.detailCount').text(data.num);
-        },{p:p1,status:0});
+        },{p:p1,status:0,goodName:goodsInfo.goodName});
     }
 
 
@@ -266,6 +269,19 @@ var goodsHouse={
     })
 
 	
+/**
+*商品名称搜索
+*/
+$('.searchByKeywords').on('click',function(){
+    
+    var val=$(this).prev().find('input').val();
+    
+    goodsInfo.goodName=val;
+
+    updatePageNum(1);
+
+});
+
 
 
 $('.addgoods').on('click',function(){

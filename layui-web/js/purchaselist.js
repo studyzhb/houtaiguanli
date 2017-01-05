@@ -77,6 +77,18 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 	})
 });
 
+/**
+采购单添加新商品
+
+*/
+
+$('#purchaselist').on('click','.addorderInfo',function(){
+	console.log('添加新商品');
+	open('edit-purchaselist.html?id='+$(this).data('id'),'_self');
+});
+
+
+
 //导出采购单
 
 $('#purchaselist').on('click','.exceloutput',function(){

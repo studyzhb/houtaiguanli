@@ -115,6 +115,8 @@ var config={
     editOrderList:'/shop/shop/public/index.php/admin/purchase/edit',
     //编辑采购单列表
     checkOrderList:'/shop/shop/public/index.php/admin/purchase/check',
+    //采购单中新增商品
+    addOnlyOrderlist:'/shop/shop/public/index.php/admin/Purchase/purchaseAdd',
     //增加菜单
     addMenulist:'/shop/shop/public/index.php/admin/Privilege/add',
     //修改菜单

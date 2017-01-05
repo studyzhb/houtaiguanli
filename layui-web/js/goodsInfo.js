@@ -3,7 +3,8 @@ var fistLoad=true;
 var goodsInfo={
 	pageCount:'',
 	status:'',
-	page:''
+	page:'',
+	goodName:''
 }
 goodsInfo.status=cookieUtil.getCookie('goodsInfoStatus')?cookieUtil.getCookie('goodsInfoStatus'):'0';
 goodsInfo.page=cookieUtil.getCookie('goodsInfoPage')?cookieUtil.getCookie('goodsInfoPage'):'';
@@ -28,7 +29,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
       maxmin: true
 	})
 });
-console.log(!!goodsInfo.status);
+// console.log(!!goodsInfo.status);
 if(goodsInfo.status=='1'){
 	$('.edited').addClass('layui-this');
 	$('.unedit').removeClass('layui-this');
@@ -54,6 +55,21 @@ $('.edited').on('click',function(){
 });
 
 
+/**
+*商品名称搜索
+*/
+$('.searchByKeywords').on('click',function(){
+    
+    var val=$(this).prev().find('input').val();
+    
+    goodsInfo.goodName=val;
+    console.log(val,fistLoad);
+    // fistLoad=false;
+    updatePageNum(goodsInfo.page,goodsInfo.status,val);
+
+});
+
+
 /*config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
 	var tempHtml=supplierList.innerHTML;
 	$('#purchaselist').html('');
@@ -68,28 +84,30 @@ $('.edited').on('click',function(){
 	});
 });*/
 
- function updatePageNum(p1,sta){
+ function updatePageNum(p1,sta,val){
  		cookieUtil.setExpiresDate('goodsInfoPage',p1,7);
  		cookieUtil.setExpiresDate('goodsInfoStatus',sta,7);
- 		console.log(p1,sta);
+ 		// console.log(p1,sta);
+ 		val=val||'';
         config.ajax('get',config.ajaxAddress.goodsInfo,function(data){
             var tempHtml=supplierList.innerHTML;
             $('#purchaselist').html('');
             goodsInfo.pageCount=data.count;
+            // console.log(fistLoad);
             if(fistLoad){
 
                 updatePage();
             }
             $.each(data.data,function(index,item){
                 item.selectedindex=index;
-                console.log(item);
+                // console.log(item);
                 laytpl(tempHtml).render(item,function(html){
                     $('#purchaselist').append(html);
                 });
             });
-            console.log(data.num);
+            // console.log(data.num);
             $('.detailCount').text(data.num);
-        },{p:p1,status:sta});
+        },{p:p1,status:sta,goodName:goodsInfo.goodName});
     }
 
 
@@ -108,10 +126,10 @@ function updatePage(){
 		    	//得到页数data.curr
 		    	// goodsInfo.page=data.curr;
 		    	// console.log('点击翻页'+data.curr);
-		    	// if(!fistLoad){
+		    	if(!fistLoad){
 		    		updatePageNum(data.curr,goodsInfo.status);
 		    		
-		    	// }
+		    	}
 		    	
 		    	
 		    }

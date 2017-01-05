@@ -2,13 +2,17 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>商品信息</title>
+	<title>添加采购单</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
 	<script src="./layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+  	<script type="text/javascript" src="./js/jquery-form.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/filter.js"></script>
+    <script type="text/javascript" src="./js/edit-purchaselist.js"></script>
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -27,8 +31,8 @@
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-        
-        </ul>
+  
+</ul>
 
     </div>
   </div>
@@ -49,7 +53,7 @@
 	</div> -->
 	<!-- ============================主要内容区================================ -->
   
-
+  
         
 
 
@@ -64,76 +68,138 @@
 		  <a><cite>正文</cite></a>
 		</span>
      -->
-     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle" style="min-height:600px;">
+     <div class="layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
+          <li >
+            <a href="purchaselist.html">采购单列表</a>
+          </li>
           <li class="layui-this">
-            商品信息
+            采购单添加新商品
           </li>
         </ul>
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-show">
 
-        <div class="layui-content">
-          <div class="layui-tab-item layui-show" style="padding-top:20px;">
-
-            <form class="layui-form layui-form-pane" style="display:inline-block;">
-              
-              <label class="layui-form-label">分类</label>
+            <form class="layui-form layui-form-pane" id="orderlist-submit" action="" method="POST" style="height:auto;overflow:auto;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <input type="hidden" id="goods" name="goods" value="">
+              <input type="hidden" name="buyer_id" value="" id="orderlistId" >
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+              <legend>单据信息</legend>
+                <div class="layui-form-item"> 
+                
+                <label class="layui-form-label">供货商</label>
                 <div class="layui-input-inline">
-                  <select name="city" lay-verify="required">
-                    <option value=""></option>
-                    <option value="0">北京</option>
-                    <option value="1">上海</option>
-                    <option value="2">广州</option>
-                    <option value="3">深圳</option>
-                    <option value="4">杭州</option>
-                  </select>
-                </div>
-              <div class="layui-inline">
-                <label class="layui-form-label">关键词</label>
-                <div class="layui-input-inline">
-                  <input type="text" class="layui-input" name="" value="">
+                  <input type="text" name="" readonly placeholder="请输入" value=""  class="layui-input supplierName">
                 </div>
                 
+                
+  
+                <label class="layui-form-label">单据编号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input orderNumber">
+                </div>
+                  <label class="layui-form-label">仓库</label>
+                <div class="layui-input-inline">
+                  <input type="text" readonly placeholder="请输入" value=""  class="layui-input stockName">
+                </div>
+                
+                </div>
+              </fieldset>
+              
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+                <legend>订单信息</legend>
 
+                <div class="layui-form-item"> 
+                
+                  <label class="layui-form-label">商品编号</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" id="goods-coding" style="width:48px;height:38px;">搜索
+                  </div>
+                    
+                  <label class="layui-form-label">商品条形码</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" id="goods-barcode" style="width:48px;height:38px;" >
+                    搜索
+                  </div>
+                  <label class="layui-form-label">商品名称</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" id="goodsName" style="width:48px;height:38px;">
+                    搜索
+                  </div>
+
+                
+                
               </div>
-              <button class="layui-btn searchByKeywords">
-                   搜索
-                </button>
-            </form>
-          <table class="layui-table">
-          <colgroup>
-            <!-- <col width="100">
-            <col width="100">
-            <col>
-            <col width="100">
-            <col width="300"> -->
-          </colgroup>
-          <thead>
-            <tr>
-              <th>商品全称</th>
-              <th>助记码</th>
-              <th>商品编码</th>
-              <th>商品条形码</th>
-              <th>主供应商</th>
-              <th>品牌</th>
-              <th>规格</th>
-              <th>操作</th>
-            </tr> 
-          </thead>
-          <tbody id="purchaselist">
-            
-            
-            
-          </tbody>
-      </table>
-     
+                
 
+                <table class="layui-table">
+                  <colgroup>
+                    <!-- <col width="100">
+                    <col width="100">
+                    <col>
+                    <col width="100">
+                    <col width="300"> -->
+
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>商品编号</th>
+                      <th>商品名称</th>
+                      <th>商品品牌</th>
+                      <th>商品数量</th>
+                      <th>商品单价</th>
+                      <th>商品总价</th>
+                      <th>操作</th>
+                    </tr> 
+                  </thead>
+                  <tbody id="goods-orderlist">
+                    <div id="goods-show">
+                      
+                    </div>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="7">合计：<span class="printdposit">0</span>元</td> 
+                    </tr>
+                  </tfoot>
+              </table>
+              </fieldset>
+
+              
+              <div class="layui-form-item">
+                
+              </div>
+              
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注信息</label>
+                <div class="layui-input-block">
+                  <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+              </div>
+              <!-- ================================================== -->
+
+              <!-- ================================================== -->
+
+
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn" id="confirm-save">确认订单</div>
+                  <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+                </div>
+              </div>
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </form>
           </div>
         </div>
-      
-      <div style="height:55px;padding-right:10px;">
-        <div id="page" style="float:right;"></div>
-      </div>
-      
+
 
      </div>
 
@@ -142,9 +208,49 @@
 
     
     </div> 
-  
+  <ul id="biuuu_city_list"></ul>
 
+
+<!-- 显示商品列表 -->
+<div id="goods-list" style="padding:10px;display:none;">
+  <table class="layui-table" >
+  <colgroup>
+    <col width="100">
+    <col>
+    <col>
+    <col>
+    <col width="100">
+    <col>
+    <col width="100">
+  </colgroup>
+  <thead>
+    <tr>
+      <th><input type="checkbox" class="checkall" name="" value=""></th>
+      <th>商品编号</th>
+      <th>商品条形码</th>
+      <th>商品名称</th>
+      <th>零售单位</th>
+      <th>供应商名称</th>
+      <th>品牌</th>
+      <th>单价</th>
+    </tr> 
+  </thead>
+  <tbody id="searchedlist">
+    
+    
+  </tbody>
   
+</table>
+<div class="layui-form-item">
+  <div class="layui-input-block">
+    <div class="layui-btn" id="confirmorder">确认订单</div>
+  </div>
+</div>
+</div>
+
+
+ 
+
 
   <!-- =======================弹出窗========================= -->
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
@@ -308,24 +414,6 @@
 </div>
 
 <!-- ========================================================= -->
-
-<script src="./js/config.js"></script>
-<script src="./js/filter.js"></script>
-<script id="supplierList" type="text/html">
-  <tr>
-    <td>{{d.name}}</td>
-    <td>{{d.zname}}</td>
-    <td>{{d.coding}}</td>
-    <td>{{d.barcode}}</td>
-    <td>{{d.fac}}</td>
-    <td>{{d.brandname}}</td>
-    <td>{{d.buyprice}}</td>
-    <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small" onclick="editorSingleInfo(this)" data-id="{{d.id}}" >编辑</div>
-      <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
-    </td>
-  </tr>
-</script>
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
     <a href="javascript:;">{{d.name}}</a>
@@ -345,13 +433,67 @@
     </dl>
   </li>
 </script>
+	
+<script id="searchedcontent" type="text/html">
+
+    <tr>
+      <td><input type="checkbox" class="ischecked"  name="" value="{{d.selectedindex}}"></td>
+      <td>{{d.coding}}</td>
+      <td>{{d.barcode}}</td>
+      <td>{{d.name}}</td>
+      <td>{{d.gg}}</td>
+      <td>{{d.fac}}</td>
+      <td>{{d.brand}}</td>
+      <td>{{d.buyprice}}</td>
+
+    </tr>
+
+  
+</script>
+
+<script id="goodsContent" type="text/html">
+  <tr class="updateCon">
+    <td>{{d.coding}}</td>
+    <td>{{d.name}}</td>
+    <td>{{d.brand}}</td>
+    <td style="position:relative;" data-value="{{d.selectedindex}}" class="dbclickchange">{{d.number}}</td>
+    <td>{{d.buyprice}}</td>
+    <td>{{(d.buyprice*d.number).toFixed(2)}}</td>
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" id="{{d.selectedindex}}">编辑</div>
+      <div class="layui-btn layui-btn-small layui-btn-danger deleteGoods" id="{{d.selectedindex}}">删除</div>
+    </td>
+  </tr>
+</script>
+
+<script id="showGoodsContent" type="text/html">
+  <tr>
+    <td>{{d.barcode}}</td>
+    <td>{{d.name}}</td>
+    <td></td>
+    <td data-value="{{d.selectedindex}}" >{{d.unm}}</td>
+    <td>{{d.price}}</td>
+    <td>{{(d.price*d.unm).toFixed(2)}}</td>
+    <td>
+      
+    </td>
+  </tr>
+</script>
 
 </div>
-<script src="./js/goodsInfo.js"></script>
+<div id="goodsNum" class="layui-form" style="display:none">
+    <div class="layui-form-item">
+      <label class="layui-form-label">更改数量</label>
+      <div class="layui-input-inline">
+        <input type="text" placeholder="请输入数量" autocomplete="off" class="layui-input singleNum" />
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <div class="layui-btn saveGoodsNum">确定</div>
+        
+      </div>
+    </div>
+  </div>
 </body>
-<script>
-  function editorSingleInfo(obj){
-    location.href='editor-goodsInfo.html?id='+$(obj).data('id');
-  }
-</script>
 </html>
