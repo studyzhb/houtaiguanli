@@ -57,6 +57,15 @@ $(function(){
 	});
 
 	$('.addUserInfo').on('click',function(){
+		
+	    
+	   
+		/*var pwd=$('.edituserwrap passwordAddMD5').val();
+		if(!!pwd.trim()){
+			pwd=hex_md5(pwd+config.accessKey);
+			$('.edituserwrap passwordAddMD5').val(pwd);
+		}*/
+		
 		config.formSubmit('#adminInfo',config.ajaxAddress.editUserInfo,function(data){
 			console.log(data);
 			if(data.code==200){

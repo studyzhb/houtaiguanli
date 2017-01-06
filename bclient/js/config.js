@@ -59,9 +59,12 @@ var config={
       }
     });
   },
+  accessKey:'5f843e288bb1cabb834b9d20eea3d8c0',
 	ajaxAddress:{
+    publicAddress:'/public/index.php/bapp',
+    imgAddress:'',
     //登录
-    loginAdd:"/shop/shop/public/index.php/admin/Login/login",
+    loginAdd:"/login/index/",
     //访问前权限验证
     validateAuthor:'/shop/shop/public/index.php/admin/Index/check',
     //退出登录

@@ -73,7 +73,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-inline">
-                  <input type="text" lay-verify="pass" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                  <input type="password" lay-verify="pass" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input passwordAddMD5">
                 </div>
                 <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
               </div>
@@ -371,6 +371,14 @@
 </body>
 <script src="./js/config.js"></script>
 <script src="./js/filter.js"></script>
+<script src="./js/MD5.js"></script>
 <script src="./js/validateCard.js"></script>
 <script src="./js/add-admin-user.js"></script>
+<script>
+  /*$('.passwordAddMD5').on('blur',function(){
+    var pwd=$(this).val();
+    pwd=hex_md5(pwd+config.accessKey);
+    $(this).val(pwd);
+  })*/
+</script>
 </html>

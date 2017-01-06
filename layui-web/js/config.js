@@ -59,6 +59,7 @@ var config={
       }
     });
   },
+  accessKey:'5f843e288bb1cabb834b9d20eea3d8c0',
 	ajaxAddress:{
     //登录
     loginAdd:"/shop/shop/public/index.php/admin/Login/login",

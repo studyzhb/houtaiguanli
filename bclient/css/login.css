@@ -74,7 +74,7 @@ a:hover, a:active, a:focus {
 html, body {
   width: 100%;
   height: 100%;
-  background: #00b5d0; }
+  background:url(../themes/desktop/images/desktop_windows7.jpg) center no-repeat;}
 
 .login-wrapper {
   width: 434px;
