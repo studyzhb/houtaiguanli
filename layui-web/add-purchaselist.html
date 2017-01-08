@@ -154,6 +154,7 @@
                   </colgroup>
                   <thead>
                     <tr>
+                      <th>序号</th>
                       <th>商品编号</th>
                       <th>商品名称</th>
                       <th>商品品牌</th>
@@ -170,7 +171,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colspan="7">合计：<span class="printdposit">0</span>元</td> 
+                      <td colspan="8">合计：<span class="printdposit">0</span>元</td> 
                     </tr>
                   </tfoot>
               </table>
@@ -456,6 +457,7 @@
 
 <script id="goodsContent" type="text/html">
   <tr>
+    <td>{{d.selectedindex+1}}</td>
     <td>{{d.coding}}</td>
     <td>{{d.name}}</td>
     <td>{{d.brand}}</td>

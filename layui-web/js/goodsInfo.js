@@ -64,7 +64,7 @@ $('.searchByKeywords').on('click',function(){
     
     goodsInfo.goodName=val;
     console.log(val,fistLoad);
-    // fistLoad=false;
+    fistLoad=true;
     updatePageNum(goodsInfo.page,goodsInfo.status,val);
 
 });

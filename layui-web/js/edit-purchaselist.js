@@ -43,6 +43,8 @@ $(function(){
 		$('.orderNumber').val(baseInfo.oddnum);
 		//供应商
 		$('.supplierName').val(baseInfo.supplierName);
+		orderlist.supplierId=baseInfo.supplierId;
+
 		var tempHtml=showGoodsContent.innerHTML;
 		
 		$.each(data.data,function(index,item){
@@ -147,7 +149,7 @@ $('#goods-barcode').on('click',function(){
 	var val=$(this).prev().find('input').val();
 	
 	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
-		console.log(data);
+		console.log(orderlist.supplierId);
 		orderlist.goodslist=data;
 		$('#searchedlist').html('');
 		var tempHtml=searchedcontent.innerHTML;
@@ -252,18 +254,18 @@ $('#confirm-save').on('click',function(){
 		// console.log($('#goods').val());
 		config.formSubmit('#orderlist-submit',config.ajaxAddress.addOnlyOrderlist,function(data){
 			console.log(data);
-			 // if(data.code==200){
-    //             layer.msg('添加成功');
-    //             setTimeout(function(){
-    //                 open('purchaselist.html','_self');
-    //             },500);
+			 if(data.code==200){
+                layer.msg('添加成功');
+                setTimeout(function(){
+                    open('purchaselist.html','_self');
+                },500);
                 
-    //         }else{
-    //             layer.msg('网络错误，请稍后重试');
-    //             setTimeout(function(){
-    //                 open('purchaselist.html','_self');
-    //             },500);
-    //         }
+            }else{
+                layer.msg('网络错误，请稍后重试');
+                setTimeout(function(){
+                    open('purchaselist.html','_self');
+                },500);
+            }
 		});
 	}
 	console.log('save-111');

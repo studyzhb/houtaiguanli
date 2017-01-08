@@ -20,6 +20,9 @@ function() {
 				title: "系统重要提示"
 			})
 		},
+		ziliao:function(a){
+			
+		},
 		users: function(a) {
 			p.hidemenu();
 			layer.alert("对不起，我还不能满足你", {

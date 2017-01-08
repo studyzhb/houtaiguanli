@@ -174,7 +174,7 @@ var goodsInfo={
                 });
             });
             $('.detailCount').text(data.num);
-        },{p:p1,status:0,goodName:goodsInfo.goodName});
+        },{p:p1,status:10,goodName:goodsInfo.goodName});
     }
 
 
@@ -277,7 +277,7 @@ $('.searchByKeywords').on('click',function(){
     var val=$(this).prev().find('input').val();
     
     goodsInfo.goodName=val;
-
+    fistLoad=true;
     updatePageNum(1);
 
 });

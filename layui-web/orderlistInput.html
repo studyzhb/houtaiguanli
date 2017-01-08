@@ -16,7 +16,7 @@
 	<div class="layui-layout layui-layout-admin">
   <div class="layui-header header header-demo">
     <a class="logo" href="#">
-        <img src="./img/logo.png" alt="万店联盟">
+      <img src="./img/logo.png" alt="万店联盟">
     </a>
     <div class="user-action" style="position:absolute;right:15px;top:25px;">
       <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
@@ -164,6 +164,7 @@
           </colgroup>
           <thead>
             <tr>
+              <th>序号</th>
               <th>采购单号</th>
               <th>商品条码</th>
               <th>名字</th>
@@ -210,6 +211,7 @@
           </colgroup>
           <thead>
             <tr>
+              <th>序号</th>
               <th>采购单号</th>
               <th>商品条码</th>
               <th>名字</th>
@@ -274,8 +276,8 @@
 {{#  }else{ }}
      <td>已入库</td>
     {{# } }}
-    <td>{{d.uadmin}}</td>
-    <td>{{d.admin}}</td>
+    <td>{{d.adminName}}</td>
+    <td>{{d.adminName}}</td>
     <td>
       {{#  if(d.status=='2'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">完成</div>
@@ -291,6 +293,8 @@
 
 <script id="singleOrderList" type="text/html">
   <tr>
+
+    <td>{{d.selectedindex+1}}</td>
     <td>{{d.buyer_id}}</td>
     <td>{{d.barcode}}</td>
     <td>{{d.name}}</td>
@@ -317,6 +321,7 @@
 
 <script id="orderListInput" type="text/html">
   <tr>
+    <td>{{d.selectedindex+1}}</td>
     <td>{{d.buyer_id}}</td>
     <td>{{d.barcode}}</td>
     <td>{{d.name}}</td>

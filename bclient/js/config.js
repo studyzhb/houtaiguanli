@@ -61,7 +61,7 @@ var config={
   },
   accessKey:'5f843e288bb1cabb834b9d20eea3d8c0',
 	ajaxAddress:{
-    publicAddress:'/public/index.php/bapp',
+    publicAddress:'/public/index.php/bweb',
     imgAddress:'',
     //登录
     loginAdd:"/login/index/",
@@ -70,7 +70,7 @@ var config={
     //退出登录
     quit:'/shop/shop/public/index.php/admin/Login/out',
     //获取验证码
-    getValiCode:'/shop/shop/public/index.php/admin/Login/getCode',
+    getValiCode:'/login/verify',
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号

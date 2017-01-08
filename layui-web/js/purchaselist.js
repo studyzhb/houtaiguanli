@@ -4,18 +4,22 @@ $(function(){
 		selectedindex:'',
 		zongjia:'',
 		del:[],
-		orderlistId:''
+		orderlistId:'',
+		pageCount:''
+
 	}
 	var laytpl;
+	var fistLoad=true;
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
+
 			updateList(data,laytpl);
 		},{status:0});
 	});
 
 	$('.nshenhe').on('click',function(){
-		console.log('nshenhe');
+		//console.log('nshenhe');
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
 
 			updateList(data,laytpl);
@@ -23,14 +27,14 @@ $(function(){
 	});
 
 	$('.shenhe').on('click',function(){
-		console.log('shenhe');
+		//console.log('shenhe');
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
 			updateList(data,laytpl);
 		},{status:1});
 	});
 
 	$('.jujue').on('click',function(){
-		console.log('jujue');
+		//console.log('jujue');
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
 			updateList(data,laytpl);
 		},{status:10});
@@ -38,17 +42,40 @@ $(function(){
 
 	function updateList(data,laytpl){
 		var tempHtml=supplierList.innerHTML;
-		console.log(data);
+		//console.log(data);
+		purchasePage.pageCount=data.count;
 		$('#purchaselist').html('');
-		$.each(data,function(index,item){
+		if(fistLoad){
+
+               // updatePage();
+            }
+		$.each(data.lst,function(index,item){
 			item.selectedindex=index;
 			console.log(item);
 			laytpl(tempHtml).render(item,function(html){
 				$('#purchaselist').append(html);
 			});
 		});
+		$('.detailCount').text(data.num);
 	}
 
+	function updatePage(){
+		layui.use(['laypage', 'layer'],function(){
+			var laypage=layui.laypage;
+			var layer = layui.layer;
+			laypage({
+			    cont: 'page'
+			    ,pages: purchasePage.pageCount //总页数
+			    ,groups: 5 //连续显示分页数
+			    ,jump:function(data){
+			    	//得到页数data.curr
+			    	// updatePageNum(data.curr);
+			    }
+			  });
+		});
+
+	    fistLoad=false;
+	}
 
 
 $('#purchaselist').on('click','.lookorderInfo',function(){

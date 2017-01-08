@@ -126,6 +126,7 @@
               <th>币种</th>
               <th>订货总金额</th>
               <th>审核状态</th>
+              <th>供应商名称</th>
               <th>操作员</th>
               <th>业务员</th>
               <th>操作</th>
@@ -140,6 +141,11 @@
      
 
           </div>
+        </div>
+
+        <div style="height:55px;padding-right:10px;">
+          <div id="page" style="float:right;"></div>
+          <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
         </div>
 
 
@@ -305,8 +311,9 @@
 {{# }else{ }}
      <td>等待审核</td>
     {{# } }}
-    <td>{{d.uadmin}}</td>
-    <td>{{d.admin}}</td>
+    <td>{{d.supplierName}}</td>
+    <td>{{d.adminName}}</td>
+    <td>{{d.adminName}}</td>
     <td>
       {{#  if(d.status=='1'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small printOrderlist" data-id="{{d.id}}">打印采购单</div>

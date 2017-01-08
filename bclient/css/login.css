@@ -128,6 +128,13 @@ html, body {
       outline: 0; }
   .login-wrapper li.yz {
     width: 200px; }
+    .login-wrapper li .validateCode{
+      position: absolute;
+      right:-134px;
+      top:0;
+      width: 130px;
+      height:42px;
+    }
   .login-wrapper .submit {
     width: 130px;
     height: 40px;

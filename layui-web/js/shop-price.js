@@ -1,8 +1,57 @@
 $(function(){
 	var laytpl;
-	layui.use('laytpl',function(){
+	var fistLoad=true;
+	var shopUser={
+		pageCount:''
+	}
+	function updatePageNum(p1){
+        config.ajax('get',config.ajaxAddress.shopList,function(data){
+            // console.log(data);
+            var tempHtml=menulistContent.innerHTML;
+            // console.log(tempHtml);
+			$('#menulist-wraper').html('');
+			shopUser.pageCount=data.count;
+            if(fistLoad){
+                updatePage();
+            }
+            
+            $.each(data.data,function(index,item){
+                
+              
+                laytpl(tempHtml).render(item,function(html){
+					$('#menulist-wraper').append(html);
+				});
+            });
+            $('.detailCount').text(data.num);
+        },{p:p1});
+    }
+
+
+
+	function updatePage(){
+		layui.use(['laypage', 'layer'],function(){
+			var laypage=layui.laypage;
+			var layer = layui.layer;
+			laypage({
+			    cont: 'page'
+			    ,pages: shopUser.pageCount //总页数
+			    ,groups: 5 //连续显示分页数
+			    ,jump:function(data){
+			    	//得到页数data.curr
+			    	updatePageNum(data.curr);
+			    }
+			  });
+		});
+
+	    fistLoad=false;
+	}
+	
+
+	layui.use(['laytpl','form'],function(){
 		laytpl = layui.laytpl;
-		config.ajax('get',config.ajaxAddress.shopList,function(data){
+		
+		updatePageNum(1);
+		/*config.ajax('get',config.ajaxAddress.shopList,function(data){
 			console.log(data);
 			var tempHtml=menulistContent.innerHTML;
 			//console.log(tempHtml);
@@ -14,17 +63,16 @@ $(function(){
 						$('#menulist-wraper').append(html);
 					});
 				});
-		})
+		})*/
 	
 	});
 
 	$('#menulist-wraper').on('click','.editorShopInfo',function(){
 		// layer.open();
-		console.log($(this).data('id'));
+		// console.log($(this).data('id'));
 		config.ajax('get',config.ajaxAddress.shopprice,function(data){
-			console.log(data);
+			// console.log(data);
 			var tempHtml=shopPriceContent.innerHTML;
-			//console.log(tempHtml);
 			
 			$('.shop-price-wrapper').html('');
 			$.each(data,function(index,item){
@@ -35,9 +83,7 @@ $(function(){
 			});
 
 		},{id:$(this).data('id')});
-		layui.use('form',function(){
-
-		});
+		
 		layer.open({
 	        type:1,
 	        content: $('#alertDemo'), //这里content是一个DOM
@@ -69,5 +115,9 @@ $(function(){
             }
 		});
 	});
+
+
+
+
 
 });

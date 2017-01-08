@@ -50,7 +50,7 @@ function updateorderlist(data,laytpl){
 	var tempHtml=supplierList.innerHTML;
 		console.log(data);
 		$('#purchaselist').html('');
-		$.each(data,function(index,item){
+		$.each(data.lst,function(index,item){
 			item.selectedindex=index;
 			console.log(item);
 			laytpl(tempHtml).render(item,function(html){
@@ -208,7 +208,8 @@ function confirmIntoStock(){
                 },500)
                 
             }else{
-                layer.msg('网络错误，请稍后重试');
+
+                layer.msg(data.mess);
                 setTimeout(function(){
                     open('orderlistInput.html','_self');
                 },500)

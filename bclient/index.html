@@ -11,6 +11,18 @@
   <link rel="stylesheet" type="text/css" href="themes/layui/css/layui.css">
   <link rel="stylesheet" type="text/css" href="themes/desktop/style/swiper-3.4.0.min.css">
   <link rel="stylesheet" type="text/css" href="themes/desktop/style/desktop.css">
+  <style>
+    .username{
+        position:absolute;
+        bottom: -10px;
+        left:0;
+        display: block;
+        width:200px;
+        line-height:18px;
+        font-size: 12px;
+        color:#fff;
+    }
+  </style>
 </head>
 <body class="desktop-bg">
 	<div class="" id="loading" style="position: absolute; top: 49%; left: 50%; margin-left: -73px; display:block;"><i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">ဂ</i></div>
@@ -36,7 +48,9 @@ isicon:1,height:"",width:""},m406:{appid:"106",icon:"&#xe639;",iconbg:"#e6db74",
         <div id="opening-menu" class="opening-menu">
             <div class="opening-menu-app-list"></div>
             <div class="opening-menu-user">
-                <div class="desktop-opening-icon"></div>
+                <div class="desktop-opening-icon">
+                    <span class="username"></span>
+                </div>
                 <div class="opening-menu-user-list">
                     <a title="系统设置" data-type="setting" class="dock_tool_setting small-click" href="javascript:void(0)">系统设置</a>
                     <a title="主题设置" data-type="theme" class="dock_tool_theme small-click" href="javascript:void(0)">主题设置</a>
@@ -75,10 +89,13 @@ isicon:1,height:"",width:""},m406:{appid:"106",icon:"&#xe639;",iconbg:"#e6db74",
 </body>
 <script src="themes/layui/lay/dest/layui.all.js"></script>
 <script src="themes/desktop/js/swiper.js"></script>
+<script src="./js/jquery-1.12.4.min.js"></script>
 <script src="themes/desktop/js/jquery-ui.min.js"></script>
 <script src="testJs.js"></script>
+<script src="./js/config.js"></script>
 <script>
-
+    var sName=cookieUtil.getCookie('shopname');
+    $('.username').text(sName);
 
 	/*layui.use('layer',function(){
 		var layer = layui.layer;
