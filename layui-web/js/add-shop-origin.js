@@ -138,7 +138,7 @@ var addShopPage={
 	    festival:true,
 	    ishmsVal:false,
 	    minDate: '2016-06-16 23:59:59',
-	    maxDate: $.nowDate(0),
+	    maxDate:$.nowDate(0),
 	    format:"hh:mm:ss",
 	    zIndex:3000,
 	    okfun:function(elem, val) {

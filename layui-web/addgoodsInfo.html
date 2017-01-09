@@ -253,7 +253,7 @@
               </div>
 	 <div class="input-wrapper">
                 <label>最小起批量</label>
-                <input type="text" class="w160" name="minsell" value="">
+                <input type="text" class="w160" name="minsell" value="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)">
               </div>
             </li>
             <li>
@@ -275,7 +275,7 @@
               </div> -->
               <input type="hidden" class="method_id" name="method_id" value="">
               <input type="hidden" class="supplier_id" name="supplier_id" value="">
-              <input type="hidden" class="gg_id" name="gg_id" value="">
+              <input type="hidden" class="gg_id" name="gg_id" value="1">
               <input type="hidden" class="good_type_id" name="good_type_id" value="">
               <input type="hidden" class="good_brand_id" name="good_brand_id" value="">
               <!-- <div class="input-wrapper">
@@ -563,7 +563,7 @@
               </div>
 	 <div class="input-wrapper">
                 <label>最小起批量</label>
-                <input type="text" class="w160" name="minsell" value="{minsell}">
+                <input type="text" class="w160" name="minsell" value="{minsell}" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
               </div>
               <!--<div class="input-wrapper">
                 <label>计价方式</label>

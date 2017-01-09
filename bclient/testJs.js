@@ -21,7 +21,7 @@ function() {
 			})
 		},
 		ziliao:function(a){
-			
+			p.appopen(a);
 		},
 		users: function(a) {
 			p.hidemenu();
@@ -32,7 +32,18 @@ function() {
 		},
 		loginout: function(a) {
 			p.hidemenu();
-			layer.alert("注销登录")
+			layer.alert("注销登录",function(index) {
+				// body...
+				config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.quit,function(data){
+					console.log(data);
+					if(data.code=='200'){
+						cookieUtil.removeCookie('username');
+						cookieUtil.removeCookie('shopname');
+						cookieUtil.removeCookie('is_pay_password');
+					}
+				});
+				// layer.close(index);
+			})
 		},
 		technicalsupport: function(a) {
 			p.hidemenu();

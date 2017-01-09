@@ -117,11 +117,12 @@
           <thead>
             <tr>
               <th>采购单号</th>
-              <th>订货有效期</th>
+              <th>创建时间</th>
               <th>仓库</th>
               <th>币种</th>
               <th>订货总金额</th>
               <th>审核状态</th>
+              <th>供应商名称</th>
               <th>操作员</th>
               <th>业务员</th>
               <th>操作</th>
@@ -265,7 +266,7 @@
 <script id="supplierList" type="text/html">
   <tr>
     <td>{{d.oddnum}}</td>
-    <td>{{d.expiry}}</td>
+    <td>{{d.create_time}}</td>
     <td>{{d.deptName}}</td>
     <td>RMB</td>
     <td>{{d.dposit}}</td>
@@ -276,6 +277,7 @@
 {{#  }else{ }}
      <td>已入库</td>
     {{# } }}
+    <td>{{d.supplierName}}</td>
     <td>{{d.adminName}}</td>
     <td>{{d.adminName}}</td>
     <td>

@@ -68,7 +68,7 @@ var config={
     //访问前权限验证
     validateAuthor:'/shop/shop/public/index.php/admin/Index/check',
     //退出登录
-    quit:'/shop/shop/public/index.php/admin/Login/out',
+    quit:'/login/logout/',
     //获取验证码
     getValiCode:'/login/verify',
     //推送
