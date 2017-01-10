@@ -21,6 +21,7 @@ var laytpl;
 		laytpl = layui.laytpl;
 		
 		purchasePage.status=2;
+		fistLoad=true;
 		updateorderlist(1);
 	});
 
@@ -28,6 +29,7 @@ var laytpl;
 	$('.nshenhe').on('click',function(){
 		
 		purchasePage.status=2;
+		fistLoad=true;
 		updateorderlist(1);
 	});
 
@@ -35,6 +37,7 @@ var laytpl;
 		
 
 		purchasePage.status=3;
+		fistLoad=true;
 		updateorderlist(1);
 	});
 
@@ -42,6 +45,7 @@ var laytpl;
 		
 
 		purchasePage.status=4;
+		fistLoad=true;
 		updateorderlist(1);
 	});
 
@@ -49,18 +53,21 @@ var laytpl;
 		
 
 		purchasePage.status=5;
+		fistLoad=true;
 		updateorderlist(1);
 	});
 	$('.sended').on('click',function(){
 		
 
 		purchasePage.status=6;
+		fistLoad=true;
 		updateorderlist(1);
 	});
 
 	$('.jujue').on('click',function(){
 
 		purchasePage.status=10;
+		fistLoad=true;
 		updateorderlist(1);
 
 	});
@@ -69,17 +76,19 @@ var laytpl;
 function updateorderlist(page){
 	config.ajax('get',config.ajaxAddress.outputList,function(data){
 		var tempHtml=supplierList.innerHTML;
+		purchasePage.pageCount=data.count;
 		if(fistLoad){
             updatePage();
         }
 		$('#purchaselist').html('');
-		$.each(data,function(index,item){
+		$.each(data.data,function(index,item){
 			item.selectedindex=index;
 			console.log(item);
 			laytpl(tempHtml).render(item,function(html){
 				$('#purchaselist').append(html);
 			});
 		});
+		 $('.detailCount').text(data.num);
 	},{status:purchasePage.status,p:page});
 		
 }
@@ -94,7 +103,7 @@ function updatePage(){
 		    ,groups: 5 //连续显示分页数
 		    ,jump:function(data){
 		    	//得到页数data.curr
-		    	updatePageNum(data.curr);
+		    	updateorderlist(data.curr);
 		    }
 		  });
 	});
@@ -112,6 +121,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 		var tempHtml=singleOrderList.innerHTML;
 		$('#singleOrderWrapper').html('');
 		$.each(data.lst,function(index,item){
+			item.selectedindex=index;
 			/*purchasePage.zongjia=item.dposit;
 			item.singlePrice=item.price*item.unm;
 			item.selectedindex=index;
@@ -123,15 +133,17 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 			});
 		});
 
+		layer.open({
+			type:1,
+			title:'出库单号：'+data.oddnum,
+			content: $('#alertDemo'), //这里content是一个DOM
+	      shade:[0.8,'#000'],
+	      area:'1200px',
+	      maxmin: true
+		})
+
 	},{id:$(this).data('id')});
-	layer.open({
-		type:1,
-		title:'',
-		content: $('#alertDemo'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'1200px',
-      maxmin: true
-	})
+	
 });
 
 //打开审核界面
@@ -146,6 +158,7 @@ $('#purchaselist').on('click','.confirmInputStore',function(){
 		var tempHtml=orderListInput.innerHTML;
 		$('#singleOrderWrapper1').html('');
 		$.each(data.lst,function(index,item){
+			item.selectedindex=index;
 			/*purchasePage.zongjia=item.dposit;
 			item.singlePrice=item.price*item.unm;
 			item.selectedindex=index;
@@ -157,14 +170,17 @@ $('#purchaselist').on('click','.confirmInputStore',function(){
 			});
 		});
 
+		layer.open({
+			type:1,
+			title:'出库单号：'+data.oddnum,
+			content: $('#inputConfirmInto'), //这里content是一个DOM
+	      shade:[0.8,'#000'],
+	      area:'1200px',
+	      maxmin: true
+		})
+
 	},{id:$(this).data('id')});
-	layer.open({
-		type:1,
-		content: $('#inputConfirmInto'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'1200px',
-      maxmin: true
-	})
+	
 });
 //打开打印小票界面
 $('#purchaselist').on('click','.printTrain',function(){
@@ -214,6 +230,7 @@ $('#purchaselist').on('click','.sendingStore',function(){
 		var tempHtml=orderListInput.innerHTML;
 		$('#singleOrderWrapper1').html('');
 		$.each(data.lst,function(index,item){
+			item.selectedindex=index;
 			/*purchasePage.zongjia=item.dposit;
 			item.singlePrice=item.price*item.unm;
 			item.selectedindex=index;
@@ -225,14 +242,17 @@ $('#purchaselist').on('click','.sendingStore',function(){
 			});
 		});
 
+		layer.open({
+			type:1,
+			title:'出库单号：'+data.oddnum,
+			content: $('#inputConfirmInto'), //这里content是一个DOM
+	      shade:[0.8,'#000'],
+	      area:'1200px',
+	      maxmin: true
+		})
+
 	},{id:$(this).data('id')});
-	layer.open({
-		type:1,
-		content: $('#inputConfirmInto'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'1200px',
-      maxmin: true
-	})
+
 });
 
 
@@ -248,6 +268,7 @@ $('#purchaselist').on('click','.sendingOutput',function(){
 		var tempHtml=orderListInput.innerHTML;
 		$('#singleOrderWrapper1').html('');
 		$.each(data.lst,function(index,item){
+			item.selectedindex=index;
 			/*purchasePage.zongjia=item.dposit;
 			item.singlePrice=item.price*item.unm;
 			item.selectedindex=index;
@@ -259,14 +280,17 @@ $('#purchaselist').on('click','.sendingOutput',function(){
 			});
 		});
 
+		layer.open({
+			type:1,
+			title:'出库单号：'+data.oddnum,
+			content: $('#inputConfirmInto'), //这里content是一个DOM
+	      shade:[0.8,'#000'],
+	      area:'1200px',
+	      maxmin: true
+		})
+
 	},{id:$(this).data('id')});
-	layer.open({
-		type:1,
-		content: $('#inputConfirmInto'), //这里content是一个DOM
-      shade:[0.8,'#000'],
-      area:'1200px',
-      maxmin: true
-	})
+	
 });
 
 

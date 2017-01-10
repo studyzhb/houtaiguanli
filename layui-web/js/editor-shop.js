@@ -77,6 +77,8 @@ var addShopPage={
 		addShopPage.worktime.start=atime[0];
 		addShopPage.worktime.end=atime[1];
 		var obj=data[0];
+        obj.startTime=atime[0];
+        obj.endTime=atime[1];
 		addShopPage.location.latitude=obj.latitude;
 		addShopPage.location.longitude=obj.longitude;
 		updateMap();
@@ -96,7 +98,7 @@ var addShopPage={
 		addShopPage.addProvince(data[0].provinces);
 		$('.shopinput').val(JSON.stringify(ImageWrapper.suolveImg));
 		$("#date").jeDate({
-		    isinitVal:true,
+		    isinitVal:false,
 		    festival:true,
 		    ishmsVal:false,
 		    minDate: '2016-06-16 23:59:59',
@@ -118,7 +120,7 @@ var addShopPage={
 			//层弹出后的成功回调方法, elem当前输入框ID
 		});
 		$("#date01").jeDate({
-		    isinitVal:true,
+		    isinitVal:false,
 		    festival:true,
 		    ishmsVal:false,
 		    minDate: '2016-06-16 23:59:59',

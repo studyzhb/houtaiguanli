@@ -131,8 +131,7 @@
               <th>币种</th>
               <th>总金额</th>
               <th>审核状态</th>
-              <th>操作员</th>
-              <th>业务员</th>
+
               <th>操作</th>
             </tr> 
           </thead>
@@ -144,6 +143,13 @@
 
           </div>
         </div>
+
+        <div style="height:55px;padding-right:10px;">
+        <div id="page" style="float:right;"></div>
+        <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
+      </div>
+
+
 
 
      </div>
@@ -172,10 +178,10 @@
           </colgroup>
           <thead>
             <tr>
-              <th>出库单单号</th>
+              <th>序号</th>
               
               <th>名字</th>
-              <th>零售单位</th>
+              <th>规格</th>
               <th>最小零售单位</th>
               <th>仓库</th>
               <th>单价</th>
@@ -213,10 +219,10 @@
           </colgroup>
           <thead>
             <tr>
-              <th>出库单单号</th>
+              <th>序号</th>
               
               <th>名字</th>
-              <th>零售单位</th>
+              <th>规格</th>
               <th>最小零售单位</th>
               <th>仓库</th>
               <th>单价</th>
@@ -284,8 +290,8 @@
 {{#  }else{ }}
      <td>配送完成</td>
     {{# } }}
-    <td>{{d.uadmin}}</td>
-    <td>{{d.admin}}</td>
+    <!--<td>{{d.uadmin}}</td>
+    <td>{{d.admin}}</td>-->
     <td>
       {{#  if(d.status=='2'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small confirmInputStore" data-id="{{d.id}}">审核</div>
@@ -307,25 +313,25 @@
 
 <script id="singleOrderList" type="text/html">
   <tr>
-    <td>{{d.good_outgoing_id}}</td>
+    <td>{{d.selectedindex+1}}</td>
     <td>{{d.name}}</td>
     <td>{{d.gg}}</td>
     <td>{{d.employer}}</td>
-    <td>{{d.deptName}}</td>
+    <td>{{d.dept}}</td>
     <td>{{(d.price-0).toFixed(2)}}</td>
     <td>{{d.num}}</td>
     <td>{{(d.zprice-0).toFixed(2)}}</td>
   </tr>
 </script>
-
+<!-- d.good_outgoing_id -->
 <script id="orderListInput" type="text/html">
 
   <tr>
-    <td>{{d.good_outgoing_id}}</td>
+    <td>{{d.selectedindex+1}}</td>
     <td>{{d.name}}</td>
     <td>{{d.gg}}</td>
     <td>{{d.employer}}</td>
-    <td>{{d.deptName}}</td>
+    <td>{{d.dept}}</td>
     <td>{{(d.price-0).toFixed(2)}}</td>
     <td>{{d.num}}</td>
     <td>{{(d.zprice-0).toFixed(2)}}</td>

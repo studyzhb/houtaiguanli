@@ -384,19 +384,19 @@
               </div>
               <div class="input-wrapper">
                 <label>会员价</label>
-                <input type="text" class="w160 vipprice" name="vipprice" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+                <input type="text" class="w160 vipprice" name="vipprice" lay-verify="required"  value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>会员价一</label>
-                <input type="text" class="w160 vippricet" name="vippricet" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+                <input type="text" class="w160 vippricet" name="vippricet" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>会员价二</label>
-                <input type="text" class="w160 vippriceo" name="vippriceo" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+                <input type="text" class="w160 vippriceo" name="vippriceo" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>最低售价</label>
-                <input type="text" class="w160 inimumprice" name="inimumprice" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+                <input type="text" class="w160 inimumprice" name="inimumprice" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
             </li>
             
@@ -423,7 +423,7 @@
             
           </div>
         </div>
-        <div class="button" id="btnSubmit" style="margin:10px 0 0 305px;">
+        <div class="button" id="btnSubmit" lay-submit lay-filter="demo1" style="margin:10px 0 0 305px;">
           提交
         </div>
 
