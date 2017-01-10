@@ -2,9 +2,11 @@ $(function(){
 	var purchasePage={
 		arrOrder:[],
 		selectedindex:'',
-		zongjia:''
+		zongjia:'',
+		status:2,
+		pageCount:''
 	}
-
+	var fistLoad=true;
 	/**
 		确认采购单
 	*/
@@ -20,6 +22,7 @@ var laytpl;
 		config.ajax('get',config.ajaxAddress.outputList,function(data){
 			updateorderlist(data,laytpl);
 		},{status:2});
+
 	});
 
 
@@ -392,6 +395,23 @@ function confirmIntoStock(){
 	});
 }
 
+//分页
+function updatePage(){
+	layui.use(['laypage', 'layer'],function(){
+		var laypage=layui.laypage;
+		var layer = layui.layer;
+		laypage({
+		    cont: 'page'
+		    ,pages: purchasePage.pageCount //总页数
+		    ,groups: 5 //连续显示分页数
+		    ,jump:function(data){
+		    	//得到页数data.curr
+		    	updatePageNum(data.curr);
+		    }
+		  });
+	});
 
+    fistLoad=false;
+}
 
 });

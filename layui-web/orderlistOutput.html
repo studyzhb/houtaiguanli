@@ -270,7 +270,7 @@
     <td>{{d.shop}}</td>
     <td>{{d.createtime}}</td>
     <td>RMB</td>
-    <td>{{d.zprice}}</td>
+    <td>{{(d.zprice-0).toFixed(2)}}</td>
     {{#  if(d.status=='2'){ }}
   <td>等待审核</td>
   {{# }else if(d.status=='10'){ }}
@@ -312,9 +312,9 @@
     <td>{{d.gg}}</td>
     <td>{{d.employer}}</td>
     <td>{{d.deptName}}</td>
-    <td>{{d.price}}</td>
+    <td>{{(d.price-0).toFixed(2)}}</td>
     <td>{{d.num}}</td>
-    <td>{{d.zprice}}</td>
+    <td>{{(d.zprice-0).toFixed(2)}}</td>
   </tr>
 </script>
 
@@ -326,9 +326,9 @@
     <td>{{d.gg}}</td>
     <td>{{d.employer}}</td>
     <td>{{d.deptName}}</td>
-    <td>{{d.price}}</td>
+    <td>{{(d.price-0).toFixed(2)}}</td>
     <td>{{d.num}}</td>
-    <td>{{d.zprice}}</td>
+    <td>{{(d.zprice-0).toFixed(2)}}</td>
   </tr>
 </script>
 

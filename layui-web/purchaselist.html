@@ -303,7 +303,7 @@
     
     <td>{{d.deptName}}</td>
     <td>RMB</td>
-    <td>{{d.dposit}}</td>
+    <td>{{(d.dposit-0).toFixed(2)}}</td>
     {{#  if(d.status=='1'){ }}
   <td>已审核</td>
   {{# }else if(d.status=='10'){ }}
@@ -333,9 +333,9 @@
     <td>{{d.gg}}</td>
     <td>{{d.supplier}}</td>
     <td>{{d.DeptName}}</td>
-    <td>{{d.price}}</td>
+    <td>{{(d.price-0).toFixed(2)}}</td>
     <td>{{d.unm}}</td>
-    <td>{{d.singlePrice}}</td>
+    <td>{{(d.singlePrice-0).toFixed(2)}}</td>
     <td>
       <div class="layui-btn layui-btn-warm layui-btn-small editorSingGood" data-id="{{d.selectedindex}}" data-goodId="{{d.good_id}}">编辑</div>
       <div class="layui-btn layui-btn-warn layui-btn-small deleteSingGood" data-id="{{d.selectedindex}}" data-goodId="{{d.good_id}}">删除</div>
@@ -351,9 +351,9 @@
     <td>{{d.gg}}</td>
     <td>{{d.supplier}}</td>
     <td>{{d.DeptName}}</td>
-    <td>{{d.price}}</td>
+    <td>{{(d.price-0).toFixed(2)}}</td>
     <td>{{d.unm}}</td>
-    <td>{{d.singlePrice}}</td>
+    <td>{{(d.singlePrice-0).toFixed(2)}}</td>
   </tr>
 </script>
 

@@ -32,7 +32,7 @@
     <li class="datep"><input class="datainp wicon" id="date02" type="text" placeholder="YYYY-MM-DD hh:mm" value=""  readonly></li>
     <li class="datep"><input class="datainp wicon" id="date03" type="text" placeholder="YYYY-MM-DD"  readonly></li>
     <li class="datep"><input class="datainp wicon" id="date04" type="text" placeholder="YYYY-MM"  readonly></li>
-    <li class="datep"><input class="datainp wicon" id="date05" type="text" placeholder="hh:mm:ss"  readonly></li>
+    <li class="datep"><input class="datainp wicon" id="date05" type="text" placeholder="hh:mm:ss" value="20:00:00"  readonly></li>
     <li class="datep"><input class="datainp wicon" id="test"  type="text" placeholder="hh:mm" onclick="testShow(this)"  readonly></li>
 </ul>
 </div>
@@ -102,7 +102,7 @@
 // })
 
 $("#date05").jeDate({
-    isinitVal:true,
+    isinitVal:false,
     festival:true,
     ishmsVal:false,
     minDate: '2016-06-16 23:59:59',
