@@ -132,9 +132,9 @@
         <td>{{item.barcode}}</td>
         <td>{{item.name}}</td>
         <td>{{item.gg}}</td>
-        <td>{{item.price}}</td>
+        <td>{{(item.price-0).toFixed(2)}}</td>
         <td>{{item.num}}</td>
-        <td>{{item.price*item.num}}</td>
+        <td>{{(item.price*item.num).toFixed(2)}}</td>
       </tr>  
     {{#  }); }}
     
@@ -172,8 +172,10 @@
 var maxNum=7;
 var oId=location.href.split('?')[1].split('=')[1];
 $('#outputSingleId').val(oId);
-layui.use('laytpl',function(){
+var layer;
+layui.use(['laytpl','layer'],function(){
     laytpl = layui.laytpl;
+    layer = layui.layer;
     config.ajax('get',config.ajaxAddress.outputSingleDetail,function(data){
     console.log(data);
     var arr=[];

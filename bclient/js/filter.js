@@ -1,5 +1,5 @@
 var user=cookieUtil.getCookie('username');
 
-if(!user){
+/*if(!user){
 	open('login.html','_self');
-}
+}*/

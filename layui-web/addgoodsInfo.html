@@ -195,7 +195,7 @@
 <!-- =================================== -->
 <div class="alertCon-wrapper" id="addgoodsInfo" style="margin:10px auto;display:none;">
   <div class="alert-main-con show-content">
-      <form method="POST" action="" id="singleWillAddInfo">
+      <form method="POST" class="layui-form" action="" id="singleWillAddInfo">
         
         <fieldset>
           <legend>
@@ -205,7 +205,7 @@
             <li>
               <div class="input-wrapper">
                 <label>商品全称</label>
-                <input type="text" class="w160 goods-fullname fullname-jname" onblur="addCode(this.value)" id="fullname-jname" name="name" value="">
+                <input type="text" class="w160 goods-fullname fullname-jname" lay-verify="required" onblur="addCode(this.value)" id="fullname-jname" name="name" value="">
               </div>
               <div class="input-wrapper">
                 <label>商品编码</label>
@@ -213,47 +213,47 @@
               </div>
               <div class="input-wrapper">
                 <label>国际条形码</label>
-                <input type="text" class="w160 barcode" id="goods-barcode" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" name="barcode" value="">
+                <input type="text" class="w160 barcode" lay-verify="required" id="goods-barcode" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" name="barcode" value="">
               </div>
               <div class="input-wrapper">
                 <label>规格</label>
-                <input type="text" class="w160" name="eachsale" value="">
+                <input type="text" class="w160" lay-verify="required" name="eachsale" value="">
               </div>
               <div class="input-wrapper">
                 <label>原产地</label>
-                <input type="text" class="w160" name="home" value="">
+                <input type="text" class="w160" lay-verify="required" name="home" value="">
               </div>
               <div class="input-wrapper">
                 <label>生产厂家</label>
-                <input type="text" class="w160" name="fac" value="">
+                <input type="text" class="w160" lay-verify="required" name="fac" value="">
               </div>
               <div class="input-wrapper">
                 <label>助记码</label>
-                <input type="text" id="zname-show" class="w160 zname-show" name="zname" value="">
+                <input type="text" id="zname-show" lay-verify="required" class="w160 zname-show" name="zname" value="">
               </div>
               <div class="input-wrapper">
                 <label>计价方式</label>
-                <input type="text" class="w160 method_typealert" readonly name="" value="" >
+                <input type="text" class="w160 method_typealert" lay-verify="required" readonly name="" value="" >
               </div>
               <div class="input-wrapper">
                 <label>零售单位</label>
-                <input type="text" class="w160 retailsalert" readonly name="" value="">
+                <input type="text" class="w160 retailsalert" lay-verify="required" readonly name="" value="">
               </div>
               <div class="input-wrapper">
                 <label>分类</label>
-                <input type="text" id="zname-show" readonly class="w160 sortalert" name="" value="">
+                <input type="text" id="zname-show" lay-verify="required" readonly class="w160 sortalert" name="" value="">
               </div>
               <div class="input-wrapper">
                 <label>品牌</label>
-                <input type="text" class="w160 goodsbrandalert" readonly name="" value="">
+                <input type="text" class="w160 goodsbrandalert" lay-verify="required" readonly name="" value="">
               </div>
               <div class="input-wrapper">
                 <label>供应商</label>
-                <input type="text" class="w160 supplieralert" readonly name="" value="">
+                <input type="text" class="w160 supplieralert" lay-verify="required" readonly name="" value="">
               </div>
 	 <div class="input-wrapper">
                 <label>最小起批量</label>
-                <input type="text" class="w160" name="minsell" value="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)">
+                <input type="text" class="w160" name="minsell" lay-verify="required" value="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)">
               </div>
             </li>
             <li>
@@ -355,32 +355,32 @@
             <li>
               <div class="input-wrapper">
                 <label>进货价</label>
-                <input type="text" class="w160 buyprice" name="buyprice" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+                <input type="text" class="w160 buyprice" name="buyprice" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               
               <div class="input-wrapper">
                 <label>批发价</label>
-                <input type="text" class="w160 wholesale" name="wholesale" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+                <input type="text" class="w160 wholesale" name="wholesale" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>零售价</label>
-                <input type="text" class="w160 retails" name="retails" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+                <input type="text" class="w160 retails" name="retails" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>毛利率</label>
-                <input type="text" class="w160 gross" name="gross" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
+                <input type="text" class="w160 gross" name="gross" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>进项税率</label>
-                <input type="text" class="w160 incomerat" name="incomerat" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
+                <input type="text" class="w160 incomerat" name="incomerat" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>销售税率</label>
-                <input type="text" class="w160" name="salesrate" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
+                <input type="text" class="w160" name="salesrate" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>加盟价</label>
-                <input type="text" class="w160 oiningprice" name="oiningprice" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
+                <input type="text" class="w160 oiningprice" name="oiningprice" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
               </div>
               <div class="input-wrapper">
                 <label>会员价</label>
