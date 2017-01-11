@@ -1,0 +1,191 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3,
+h4, h5, h6, p, blockquote, pre, a, abbr, acronym,
+address, big, cite, code, del, dfn, em, font, img, ins,
+kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+:focus {
+  outline: 0; }
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+th, td {
+  text-align: left;
+  font-weight: normal; }
+
+img, iframe {
+  border: none;
+  text-decoration: none; }
+
+ol, ul {
+  list-style: none; }
+
+input, textarea, select, button {
+  font-size: 100%;
+  font-family: inherit; }
+
+select {
+  margin: inherit; }
+
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #000;
+  background-color: #000;
+  height: 1px; }
+
+html {
+  font: 125%/1 "microsoft yahei","Arial Narrow"; }
+
+a {
+  text-decoration: none; }
+
+a:visited {
+  color: #666; }
+
+a:hover, a:active, a:focus {
+  color: #ff8400;
+  /* text-decoration:underline;*/ }
+
+.clearfix:after {
+  content: ".";
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+  display: block; }
+
+html, body {
+  width: 100%;
+  height: 100%; }
+
+section {
+  width: 7.5rem;
+  height: 100%;
+  overflow: hidden; }
+  section .registerTitle {
+    font-size: 0.32rem;
+    height: 0.82rem;
+    margin-left: -0.4rem;
+    text-align: center;
+    line-height: 0.82rem;
+    color: #666;
+    border-bottom: 2px solid #e3e3e3; }
+    section .registerTitle span {
+      float: left;
+      line-height: 0.82rem;
+      color: #666;
+      padding-left: 0.4rem;
+      font-size: 0.45rem;
+      width: 0.8rem;
+      text-align: center; }
+  section .main {
+    display: -webkit-box;
+    display: box;
+    -ms-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    height: 100%;
+    overflow: hidden; }
+    section .main .bannner-wrap {
+      position: relative;
+      width: 7.5rem;
+      height: 2.75rem;
+      background-color: #fff;
+      margin-top: 0.13rem;
+      background-size: 1.03rem 1.1rem;
+      background-repeat: no-repeat;
+      background-image: url(../img/logo.png);
+      background-position: 2.26rem 0.84rem; }
+      section .main .bannner-wrap p {
+        position: absolute;
+        font-size: 0.26rem;
+        color: #666;
+        left: 50%;
+        top: 50%; }
+      section .main .bannner-wrap .step {
+        position: absolute;
+        width: 4.86rem;
+        height: 0.35rem;
+        left: 50%;
+        bottom: 0;
+        margin-left: -2.43rem; }
+    section .main .register-con {
+      width: 7.5rem;
+      -moz-box-flex: 1;
+      -webkit-box-flex: 1;
+      box-flex: 1;
+      overflow: auto;
+      margin-top: 0.13rem; }
+      section .main .register-con ul {
+        padding-left: 0.92rem;
+        padding-right: 0.78rem; }
+        section .main .register-con ul li {
+          height: 0.84rem;
+          border-bottom: 0.02rem solid #e3e3e3;
+          font-size: 0.20rem;
+          line-height: 0.84rem;
+          padding-left: 1.1rem;
+          color: #666;
+          background: #fff;
+          position: relative; }
+          section .main .register-con ul li .lefticon {
+            width: 0.36rem;
+            height: 0.36rem;
+            position: absolute;
+            top: 0.3rem;
+            left: 0.32rem; }
+          section .main .register-con ul li input {
+            border: none;
+            padding-left: 0.2rem;
+            outline: 0;
+            margin-left: 0.1rem; }
+          section .main .register-con ul li .yzwraper {
+            width: 1.02rem;
+            height: 0.4rem;
+            border: 0.02rem solid #979797;
+            background: #d8d8d8;
+            position: absolute;
+            top: 0.22rem;
+            right: 0.74rem; }
+          section .main .register-con ul li .img {
+            width: 0.29rem;
+            height: 0.3rem;
+            background: url(../img/update.png) no-repeat;
+            position: absolute;
+            top: 0.3rem;
+            right: 0.2rem; }
+      section .main .register-con .submit, section .main .register-con .next-step {
+        width: 5.68rem;
+        height: 0.8rem;
+        background: #f8c121;
+        border-radius: 0.2rem;
+        text-align: center;
+        margin: 0.66rem 0 0.8rem 0.92rem;
+        color: #fff;
+        font-size: 0.3rem;
+        line-height: 0.8rem; }
+      section .main .register-con p.role {
+        width: 6.32rem;
+        padding-left: 0.4rem;
+        font-size: 0.26rem;
+        line-height: 0.4rem;
+        color: #666; }
+
+/*# sourceMappingURL=share.css.map */

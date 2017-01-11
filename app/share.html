@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="./css/share.css" />
+    <script src="./js/rem.js"></script>
+    <script src="./js/zepto.js"></script>
+    <script src="./js/touch.min.js"></script>
+</head>
+<body>
+
+    <section>
+        <h3 class="registerTitle"><span class="back" style="display:none;">&lt;</span>欢迎注册</h3>
+        <div class="main">
+            <div class="bannner-wrap">
+                <p>借我十年</p>
+                <img class="step" src="./img/step01.png" alt="" style="">
+                <!-- <img class="step" src="" alt="" style=""> -->
+            </div>
+            <div class="register-con">
+                <ul style="display:none;">
+                    <li><img class="lefticon" src="./img/register01.png" alt=""><input class="code" type="text" placeholder="验证码"><img class="yzwraper" src="./img/android.png" alt="" /></li>
+                    <li><img class="lefticon" src="./img/register02.png" alt=""><input class="telnum"  type="text" placeholder="请输入手机号"></li>
+                    <!-- <li><img class="lefticon" src="./img/register03.png" alt=""><label>请输入短信验证码</label><input class="messnum" type="text" placeholder=""><span>erroe</span></li>
+                    <li><img class="lefticon" src="./img/register04.png" alt=""><label>密码6-20位</label><input class="passwordnum" type="text" placeholder=""></li> -->
+                    
+                </ul>
+                <ul style="display:block;">
+                    
+                    <li><img class="lefticon" src="./img/register03.png" alt=""><input class="messnum" type="text" placeholder="请输入短信验证码"></li>
+                    <li><img class="lefticon" src="./img/register04.png" alt=""><input class="passwordnum" type="text" placeholder="密码6-20位"></li>
+                    
+                </ul>
+                <div class="next-step" >
+                    下一步
+                </div>
+                <div class="submit" style="display:none;">
+                    立即注册
+                </div>
+                <p class="role">活动规则：</p>
+                <p class="role">1.活动时间：2015年12月23日起</p>
+                <p class="role">2.成功推荐注册会员每次消费，推荐人都可获得相应的奖励</p>
+                <p class="role">3.所获得的奖励可以直接消费</p>
+                <p class="role">4.e+便利店可以在法律允许的范围内对本次活动进行解释</p>
+                      
+            </div>
+            
+        </div>
+    </section>
+
+
+
+
+
+</body>
+<script>
+    function bodyScale(){
+        var devicewidth=document.documentElement.clientWidth;
+        var scale=devicewidth/750;
+        document.body.style.zoom=scale;
+    }
+  var timer=null;
+  var tnum=60;
+  var isClick=true;
+  var isCommit=true;
+  $('.getCode').text('获取验证码');
+    if(sessionStorage.getItem('access')){
+        
+    }else{
+       var randomNum=new Date().getTime()+''+Math.random()*10000;
+        sessionStorage.setItem('access',randomNum);
+        
+    }
+        var sessionId=sessionStorage.getItem('access'); 
+    window.onload=window.onresize=function(){
+        
+        //
+        $('.yzmget').attr('src','<?php echo url("Recommend/yzm","","",false)?>/access/'+sessionId);
+        $('.yzmget').on('tap',function(){
+            var ran=Math.random();
+            
+            var me=this;
+            var uu='<?php echo url("Recommend/yzm","","",false)?>/access/'+sessionId+'/'+ran;
+            this.src=uu;
+//            $.ajax({
+//                type:'get',
+//                url:'<?php echo url('Regis/yzm','','',false)?>/'+ran,
+//                data:{
+//                    
+//
+//                },
+//                success:function(data){
+//                    console.log(unescape(data));
+//                    me.src=data;
+//                },
+//                error:function(){
+//
+//                }
+//            })
+        })
+
+        $('.next-step').on('tap',function(){
+            
+        });
+
+
+
+        //提交
+        $('.submit').on('tap',function(){
+            // location.href='http://api.wandlm.com/public/index.php/capp/recommend/bindsucc';
+
+            //判断是否获取手机验证码
+            if(!$('#messCode').val().trim()){
+                alert('请输入手机验证码');
+                return;
+            }
+
+            if(isCommit){
+               isCommit=false;
+                 var pwd=$('.passwordnum').val();
+            pwd=hex_md5(pwd+'5f843e288bb1cabb834b9d20eea3d8c0');
+            $.ajax({
+                type:'post',
+                url:'<?php echo url();?>',
+                data:{
+                    telcode:$('.messnum').val(),
+                    tel:$('.telnum').val(),
+                    password:pwd,
+                    id:$('.personId').val(),
+                     code:$('.code').val(),
+                    access:sessionId,
+                     type:'bangding',
+                      status:$('.clienttype').val(),
+                },
+                success:function(data){
+                    console.log(data);
+                    if(data.code=='200'){
+                        // open('bindsucc.html','_self');
+                         alert(data.message);
+                        location.href='http://api.wandlm.com/public/index.php/capp/recommend/bindsucc';
+                    }else{
+                        isCommit=true;
+                        alert(data.message);
+                    }
+                },
+                error:function(){
+                  isCommit=true;
+                  
+                }
+            })
+            }
+           
+        });
+        //获取手机验证码
+        $('.getCode').on('tap',function(){
+            if(!$('.telnum').val().trim()){
+                alert('手机号不能为空');
+                return false;
+            }
+            if(isClick){
+                isClick=false;
+                 $.ajax({
+                    type:'post',
+                    url:'<?php echo url("Recommend/code");?>',
+                    data:{
+                        tel:$('.telnum').val(),
+                        code:$('.code').val(),
+                        type:'bangding',
+                        access:sessionId
+
+                    },
+                    success:function(data){
+                        console.log(data);
+                        clearInterval(timer);
+                        tnum=60;
+                        if(data.code=='200'){
+                            
+                            isClick=false;
+                            timer=setInterval(function(){
+                                if(tnum<0){
+                                    clearInterval(timer);
+                                    $('.getCode').text('获取验证码');
+                                    isClick=true;
+                                }
+                                $('.getCode').text('重新获取验证码'+tnum);
+                                tnum--;
+                            },'1000');
+                        }else if(data.code=='320'){
+                            alert(data.message);
+                            location.href='http://api.wandlm.com/public/index.php/capp/recommend/bindsucc';
+                        }
+                        else{
+                            console.log(data);
+                            alert(data.message);
+                            isClick=true;
+                            $('.getCode').text('获取验证码');
+                        }
+                    },
+                    error:function(){
+
+                    }
+                })
+            }
+           return false;
+        });
+        
+
+
+        
+    }
+</script>
+</html>

@@ -81,6 +81,13 @@ section {
   height: 100%;
   overflow: hidden;
   position: relative; }
+  section .registerTitle {
+    font-size: 0.32rem;
+    height: 0.82rem;
+    text-align: center;
+    line-height: 0.82rem;
+    color: #666;
+    border-bottom: 2px solid #e3e3e3; }
   section .main {
     padding: 3.72rem 0.22rem 0 0.4rem;
     position: relative; }
