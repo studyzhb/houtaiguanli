@@ -1,0 +1,48 @@
+/*空购物车*/
+
+.emptycart{padding:40px 0;}
+.emptycart p{background: url(../img/cart-empty-bg.png) 310px 0 no-repeat;padding: 0 0 0 400px;color: #666;
+height: 60px;font-family: "\5b8b\4f53",Arial;line-height: 26px;}
+.emptycart p a{color: #ff7d01;margin: 0 2px;}
+
+
+.shoppingBox{width:1200px;margin: 30px auto 0;}
+.shoppingBox .carBox{padding-bottom: 20px;overflow: hidden;background: #fff;border:1px solid #ccc;}
+/*购买步骤*/
+.carBox .buy_step{height:30px;overflow: hidden;font-size: 14px;margin:30px 0 20px 30px;}
+.carBox .buy_step1{background: url(../img/shoppingcar/step.png) no-repeat left top;}
+.carBox .buy_step2{background: url(../img/shoppingcar/step.png) no-repeat left -39px;}
+.carBox .buy_step3{background: url(../img/shoppingcar/step.png) no-repeat left -76px;}
+.buy_step span{float:left;width: 255px;height: 28px;font:bold 14px/28px "微软雅黑";text-align: center;color: #343841;}
+.buy_step span.on{color:#fff;}
+/*购物车信息区*/
+.goodslist .goodsTab{width:100%;margin:0 25px;border:1px solid #e2e2e2;border-bottom: none;overflow: hidden;}
+.goodsTab li{padding:10px 0px;border-bottom: 1px solid #e2e2e2;float: left;}
+.goodsTitle li{width:15%;height:30px;line-height: 30px;background: #f0f0f0;text-align: center;}
+.goodsTitle .gTitleMess{width: 40%;}
+
+.goodsTab .goods{overflow: hidden;width: 100%;}
+.goods li{text-align:center;min-height: 52px;height:auto!important;height:52px;line-height: 52px;width:15%;}
+.goods .goodsMess{width:40%;text-align: center;}
+.goodsMess dt{width: 50px;height: 50px;float:left;}
+.goodsMess dt img{width: 50px;height: 50px;cursor: pointer;}
+.goodsMess dd{float: left;line-height: 22px;font-size:12px;}
+.goodsMess dd a{color: #005ea7;}
+.goodsMess dd p{color: #858b9a;}
+
+
+.goods .goodsEdit{cursor: pointer;}
+.goodsnum .wrapGoodsNum{display: inline-block;vertical-align: middle;width:88px;height: 22px;margin:0 auto;}
+.goodsnum .wrapGoodsNum input{width:54px;height:20px;line-height: 20px;text-align: center;color: #888;border-top:1px solid #d6d5d3;border-bottom: 1px solid #d6d5d3;}
+.goodsnum .wrapGoodsNum a{float: left;width: 15px;height:20px;line-height: 99em;overflow: hidden;background: url(../img/shoppingcar/pro-btns.png) no-repeat;border:1px solid #d6d5d3;}
+.goodsnum .wrapGoodsNum .addNum{background-position: 0 -116px;}
+.goodsnum .wrapGoodsNum .reduce{background-position: 0 -92px;}
+
+/*购物车底部结算区*/
+.goodslist .tolnum{padding:20px 35px 20px 25px;overflow: hidden;}
+.tolnum .payPrice{text-align: right;}
+.tolnum .payPrice em{color: #ff7d01;font-size: 20px;font-weight: bold;}
+
+.tolnum .btns{padding:20px 0;}
+.btns .btn_balance{float: right;background: #ff7d01;text-align: center;width:188px;height:40px;font:16px/40px "微软雅黑";color: #fff;}
+.btns .btn_goon{float: left;height:38px;font:14px/38px "微软雅黑";padding:0 15px;background: #f0f0f0;}

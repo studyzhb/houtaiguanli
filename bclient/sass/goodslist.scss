@@ -91,6 +91,15 @@ ul.wd-list{
 				    }
 	    		}
 	    		.shop-mask{
+	    			position:relative;
+	    			div.addOrder{
+	    				position:absolute;
+	    				right:0;
+	    				top:0;
+	    				width:80px;
+	    				height:100%;
+	    				background-color:#F7B824;
+	    			}
 	    			h3.shop-name{
 	    				width: 220px;
 					    font-size: 12px;

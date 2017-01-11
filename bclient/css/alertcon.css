@@ -762,3 +762,9 @@ a.active-p {
     top: 0; }
 
 
+
+.goodsnum .wrapGoodsNum{display: inline-block;vertical-align: middle;width:92px;height: 22px;margin:0 auto;}
+.goodsnum .wrapGoodsNum input{width:54px;height:20px;line-height: 20px;float:left;text-align: center;color: #888;border-top:1px solid #d6d5d3;border-bottom: 1px solid #d6d5d3;}
+.goodsnum .wrapGoodsNum a{float: left;width: 15px;height:20px;line-height: 99em;overflow: hidden;background: url(../img/shoppingcar/pro-btns.png) no-repeat;border:1px solid #d6d5d3;}
+.goodsnum .wrapGoodsNum .addNum{background-position: 0 -116px;}
+.goodsnum .wrapGoodsNum .reduce{background-position: 0 -92px;}

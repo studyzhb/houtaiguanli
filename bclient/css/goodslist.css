@@ -74,21 +74,30 @@ ul.wd-list {
             color: #f03;
             font-size: 18px;
             font-weight: 700; }
-        ul.wd-list li div.inner div.box .shop-mask h3.shop-name {
-          width: 220px;
-          font-size: 12px;
-          font-weight: 400;
-          text-align: left;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          -o-text-overflow: ellipsis;
-          padding-left: 10px;
-          border-top: 2px solid #f8f8f8;
-          line-height: 28px; }
-        ul.wd-list li div.inner div.box .shop-mask h3 a {
-          color: #333;
-          padding-right: 10px;
-          background: url(../img/link.png) right 4px no-repeat; }
+        ul.wd-list li div.inner div.box .shop-mask {
+          position: relative; }
+          ul.wd-list li div.inner div.box .shop-mask div.addOrder {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            background-color: #F7B824; }
+          ul.wd-list li div.inner div.box .shop-mask h3.shop-name {
+            width: 220px;
+            font-size: 12px;
+            font-weight: 400;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            padding-left: 10px;
+            border-top: 2px solid #f8f8f8;
+            line-height: 28px; }
+          ul.wd-list li div.inner div.box .shop-mask h3 a {
+            color: #333;
+            padding-right: 10px;
+            background: url(../img/link.png) right 4px no-repeat; }
 
 /*# sourceMappingURL=goodslist.css.map */

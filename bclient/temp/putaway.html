@@ -80,7 +80,6 @@
                       </div>
                     </div>
                     <div class="shop-mask">
-                      <div class="addOrder"></div>
                       <h3 class="shop-name">
                         <a href="#">万店联盟凤台路店</a>
                       </h3>
@@ -112,7 +111,6 @@
                       </div>
                     </div>
                     <div class="shop-mask">
-                      <div class="addOrder"></div>
                       <h3 class="shop-name">
                         <a href="#">万店联盟凤台路店</a>
                       </h3>
@@ -144,7 +142,6 @@
                       </div>
                     </div>
                     <div class="shop-mask">
-                      <div class="addOrder"></div>
                       <h3 class="shop-name">
                         <a href="#">万店联盟凤台路店</a>
                       </h3>
@@ -325,11 +322,24 @@
 
 <!-- ========================================================= -->
 
-
-
-
-
 </div>
+
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      
+        <dd>
+          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+        </dd>
+
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+
 
 </body>
 <script type="text/javascript" src="../js/goodslist.js"></script>

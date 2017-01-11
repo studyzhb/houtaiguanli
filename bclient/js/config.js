@@ -71,6 +71,8 @@ var config={
     quit:'/login/logout/',
     //获取验证码
     getValiCode:'/login/verify',
+    //获取分类信息
+    getTypeInfo:'/good/type',
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号
