@@ -768,3 +768,12 @@ a.active-p {
 .goodsnum .wrapGoodsNum a{float: left;width: 15px;height:20px;line-height: 99em;overflow: hidden;background: url(../img/shoppingcar/pro-btns.png) no-repeat;border:1px solid #d6d5d3;}
 .goodsnum .wrapGoodsNum .addNum{background-position: 0 -116px;}
 .goodsnum .wrapGoodsNum .reduce{background-position: 0 -92px;}
+
+
+
+
+.bottomBtn{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+}

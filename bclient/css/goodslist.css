@@ -45,7 +45,27 @@ ul.wd-list {
             height: 100%; }
       ul.wd-list li div.inner div.box {
         height: 108px;
-        width: 228px; }
+        width: 228px;
+        position: relative; }
+        ul.wd-list li div.inner div.box div.mutiCode {
+          position: absolute;
+          left: 0;
+          bottom: -108px;
+          height: 100%;
+          width: 100%;
+          background-color: #000;
+          opacity: 0.5; }
+          ul.wd-list li div.inner div.box div.mutiCode dt, ul.wd-list li div.inner div.box div.mutiCode dd {
+            display: inline-block;
+            color: #fff; }
+          ul.wd-list li div.inner div.box div.mutiCode dt {
+            width: 50px;
+            text-align: center; }
+          ul.wd-list li div.inner div.box div.mutiCode dd span {
+            margin: 0 10px;
+            line-height: 18px; }
+          ul.wd-list li div.inner div.box div.mutiCode dd span.sele-this {
+            background-color: #f00; }
         ul.wd-list li div.inner div.box .info {
           position: relative;
           height: 70px;
@@ -79,7 +99,9 @@ ul.wd-list {
             top: 0;
             width: 80px;
             height: 100%;
-            background-color: #F7B824; }
+            background-color: #F7B824;
+            text-align: center;
+            line-height: 30px; }
           ul.wd-list li div.inner div.box .shop-mask h3.shop-name {
             width: 220px;
             font-size: 12px;

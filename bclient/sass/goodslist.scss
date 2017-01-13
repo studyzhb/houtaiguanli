@@ -58,6 +58,34 @@ ul.wd-list{
 	    		//border-left: 1px solid #e6e6e6;
 			    //border-right: 1px solid #e6e6e6;
 			    //border-bottom: 1px solid #e6e6e6;
+			    position:relative;
+			    div.mutiCode{
+			    	position:absolute;
+			    	left:0;
+			    	bottom:-108px;
+			    	height:100%;
+			    	width:100%;
+			    	background-color:#000;
+			    	opacity:0.5;
+			    	dt,dd{
+			    		display:inline-block;
+			    		color:#fff;
+			    	}
+			    	dt{
+			    		width:50px;
+			    		text-align:center;
+			    	}
+			    	dd{
+			    		span{
+			    			margin:0 10px;
+			    			line-height:18px;
+			    		}
+			    		span.sele-this{
+			    			background-color:#f00;
+			    		}
+			    	}
+
+			    }
 	    		.info{
 	    			position: relative;
 				    height: 70px;
@@ -98,6 +126,8 @@ ul.wd-list{
 	    				width:80px;
 	    				height:100%;
 	    				background-color:#F7B824;
+	    				text-align:center;
+	    				line-height:30px;
 	    			}
 	    			h3.shop-name{
 	    				width: 220px;

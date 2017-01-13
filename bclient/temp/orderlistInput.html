@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
   	<script type="text/javascript" src="../js/jquery-form.js"></script>
     <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/filter.js"></script>
 
 </head>
 <body>
@@ -56,12 +57,58 @@
         </ul> -->
         <div class="layui-content" style="height:100%;overflow:hidden;">
               
-          <form id="goodsWraper" class="layui-form" method="POST" action="" style="position:relative;">
+          <form id="goodsWraper" class="layui-form" method="POST" action="" style="position:relative;height:98%;">
             
+            <ul class="wd-list">
+              <li>
+                <div class="inner">
+                  <div class="pic-wrap">
+                    <div class="img-vertical">
+                      <a href="#" class="img-wrap">
+                        <img width="230" src="../img/test.jpg" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="txt red">
+                    
+                  </div>
+                  <div class="box">
+                    <div class="mutiCode" style="bottom:0;z-index:10;">
+                      <dl>
+                        <dt>规格</dt>
+                        <dd>
+                          <span>120g</span>
+                          <span>121g</span>
+                          <span>122g</span>
+                        </dd>
+                      </dl>
+                      <div class="layui-btn" >确定</div>
+                    </div>
+                    <div class="info">
+                      <h3 class="title">
+                        <a href="#">松鼠萌炭烧腰果</a>
+                      </h3>
+                      <div class="price">
+                        抢新价
+                        <em>￥</em>
+                        <span>29.44</span>
+                      </div>
+                    </div>
+                    <div class="shop-mask">
+                      <h3 class="shop-name">
+                        <a href="#">万店联盟凤台路店</a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              
+
+            </ul>
 
 
 
-            <div class="layui-form-item" style="position:absolute;left:30%;bottom:-76px;">
+            <div class="layui-form-item" style="position:absolute;left:30%;bottom:-20px;z-index:11;">
               <div class="layui-input-block">
                 <div class="layui-btn intoShopList" >立即提交</div>
               </div>
@@ -376,6 +423,18 @@
             
           </div>
           <div class="box">
+            <div class="mutiCode">
+              <dl>
+                <dt>规格</dt>
+                <dd>
+                  {{# layui.each(item.pro,function(i,it){ }}
+                    <span>{{it}}</span>
+                  {{# }) }}
+                </dd>
+              </dl>
+              <div class="layui-btn saveIntoMart" data-info="{{item.pro}}" data-id="{{item.goodid}}">确定</div>
+              <input type="hidden" name="goods[]" value="">
+            </div>
             <div class="info">
               <h3 class="title">
                 <a href="#">{{item.goodname}}</a>
@@ -387,8 +446,9 @@
               </div>
             </div>
             <div class="shop-mask">
-              <div class="addOrder"></div>
-              <input type="hidden" name="goods[]" value="">
+
+              <div class="addOrder" data-info="{{item.pro}}" data-id="{{item.goodid}}">进货</div>
+              
               <h3 class="shop-name">
                 <a href="#">万店联盟凤台路店</a>
               </h3>

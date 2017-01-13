@@ -8,6 +8,9 @@ Dsy.prototype.Exists = function (id) {
     if (typeof(this.Items[id]) == "undefined") return false;
     return true;
 }
+
+
+
 /**
  * cookie
  */
@@ -74,6 +77,14 @@ var config={
     //获取分类信息
     getTypeInfo:'/good/index',
     addMart:'/car/add',
+    //显示购物车
+    showShoppingList:'/car/show',
+    //更新购物车
+    updateShoppingList:'/car/update',
+    //删除购物车
+    deleteSingleGoods:'/car/delete',
+    //生成订单
+    createBorderList:'/Border/add',
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号

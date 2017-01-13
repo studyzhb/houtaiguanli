@@ -6,7 +6,7 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="../layui/css/layui.css" />
-  	<link rel="stylesheet" href="../css/alertcon.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css?v=2" />
 	<script src="../layui/layui.js"></script>
     <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
   	<script type="text/javascript" src="../js/jquery-form.js"></script>
@@ -48,6 +48,8 @@
 		  <a><cite>正文</cite></a>
 		</span>
      -->
+     <div class="layui-btn layui-btn-warm bottomBtn" id="payToorder">支付</div>
+     
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle" style="min-height:600px;">
        <ul class="layui-tab-title">
           <li class="layui-this">
@@ -88,43 +90,33 @@
             </div>
           <table class="layui-table">
           <colgroup>
-            <!-- <col width="100">
-            <col width="100">
             <col>
-            <col width="100">
-            <col width="300"> -->
+            <col>
+            <col width="300">
+            <col width="150">
+            <col>
+            <col width="120">
+            <col width="150">
+            <col width="150">
+            <col>
+            <col>
           </colgroup>
           <thead>
             <tr>
+              <th><input type="checkbox" class="isChecked" name="" value=""></th>
               <th>序号</th>
               <th>商品名称</th>
               <th>商品条形码</th>
-              <th>品牌</th>
               <th>规格</th>
-              <th>价格</th>
+              <th>最小销售单位</th>
+              <th>价格（组）</th>
               <th>数量</th>
+              <th>总价</th>
               <th>操作</th>
             </tr> 
           </thead>
           <tbody id="purchaselist">
-            <tr>
-              <td>1</td>
-              <td>小老板海苔</td>
-              <td>123456789</td>
-              <td>万店联盟</td>
-              <td>100g</td>
-              <td>10.00</td>
-              <td class="goodsnum">
-                <div class="wrapGoodsNum">
-                  <a href="#" class="addNum"></a>
-                  <input type="text" value="1"/>
-                  <a href="#" class="reduce"></a>
-                </div>
-              </td>
-              <td>
-                <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">删除</div>
-              </td>
-            </tr>
+            
           </tbody>
       </table>
      
@@ -192,23 +184,53 @@
   </ul>
 </script>
 
-<script src="./js/config.js"></script>
-<script src="./js/filter.js"></script>
-<script id="supplierList" type="text/html">
-  <tr>
-    <td>{{d.name}}</td>
-    <td>{{d.zname}}</td>
-    <td>{{d.coding}}</td>
-    <td>{{d.barcode}}</td>
-    <td>{{d.suppliername}}</td>
-    <td>{{d.brandname}}</td>
-    <td>{{d.eachsale}}</td>
-    <td>{{d.buyprice}}</td>
+<!-- <tr>
+    <td><input type="checkbox" name="" value=""></td>
+    <td>1</td>
+    <td>小老板海苔</td>
+    <td>123456789</td>
+    <td>万店联盟</td>
+    <td>100g</td>
+    <td>10.00</td>
+    <td class="goodsnum">
+      <div class="wrapGoodsNum">
+        <a href="#" class="addNum" data-id=""></a>
+        <input type="text" value="1"/>
+        <a href="#" class="reduce"></a>
+      </div>
+    </td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">编辑</div>
-      
+      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">删除</div>
+    </td>
+  </tr> -->
+
+
+<script id="supplierList" type="text/html">
+
+{{# layui.each(d.goodinfo,function(index,item){ }}
+  <tr>
+    <td><input type="checkbox" data-id="{{item.carid}}" class="tagSelect" name="" value=""></td>
+    <td>{{index+1}}</td>
+    <td>{{item.goodname}}</td>
+    <td>{{item.coding}}</td>
+    <td>{{item.carpro}}</td>
+    <td>{{item.minsell}}</td>
+    <td>{{(item.minsell*item.wholesale).toFixed(2)}}</td>
+    <td class="goodsnum">
+      <div class="wrapGoodsNum">
+        <a href="#" class="addNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}"></a>
+        <input class="inputNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}" type="text" value="{{item.carnum}}"/>
+        <a href="#" class="reduce" data-id="{{item.carid}}" data-pro="{{item.carpro}}"></a>
+      </div>
+    </td>
+    <td>{{(item.minsell*item.wholesale*item.carnum).toFixed(2)}}</td>
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small deleteGoods" data-id="{{item.carid}}" data-pro="{{item.carpro}}">删除</div>
     </td>
   </tr>
+{{# }) }}
+
+  
 </script>
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
@@ -242,60 +264,11 @@
   </div>
 </div>
 
-<div class="area-container padding-left-20" style="border:none;display:none;" id="alertMessage">
-  <div class="relative relative-show" style="border:1px solid #e1e1e1;padding:0 10px;">
-      <dl class="secitem" >
-          <dt class="wordindex" style="margin-right:7px;">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-          </dt>
-          <dd>
-            <div id="province-list">
-              
-            </div>
-          </dd>
-          <div class="sortspec"></div>
-          <!-- <div class="subarea" id="city-list">
-                  <span class="wordindex" style="margin-right:10px;">市&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-              </div>
-              <div class="subarea" id="contry-list">
-                  <span class="wordindex" style="margin-right:7px;">县/区</span>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-              </div> -->
-
-      </dl>
-
-
-  </div>
-
-</div>
 
 
 
-
+<script src="../js/config.js"></script>
+<script src="../js/filter.js"></script>
+<script src="../js/purchaselist.js"></script>
 </body>
 </html>
