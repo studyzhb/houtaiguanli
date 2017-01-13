@@ -72,7 +72,8 @@ var config={
     //获取验证码
     getValiCode:'/login/verify',
     //获取分类信息
-    getTypeInfo:'/good/type',
+    getTypeInfo:'/good/index',
+    addMart:'/car/add',
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号
@@ -223,7 +224,7 @@ var config={
 		   	success: function(msg){
 	
            // console.log(msg);
-                if(msg.code&&msg.code==401){
+                if(msg.code&&msg.code=='401'){
                     open('login.html','_self');
                 }else{
                    if(fun){

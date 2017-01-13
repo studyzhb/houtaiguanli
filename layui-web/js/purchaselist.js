@@ -5,6 +5,8 @@ $(function(){
 		zongjia:'',
 		del:[],
 		orderlistId:'',
+		status:'0',
+		requrl:config.ajaxAddress.getOrderList,
 		pageCount:''
 
 	}
@@ -12,14 +14,20 @@ $(function(){
 	var fistLoad=true;
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
+		purchasePage.requrl=config.ajaxAddress.getOrderList;
+		purchasePage.status=0;
+		fistLoad=true;
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
-
+			console.log(data);
 			updateList(data,laytpl);
 		},{status:0});
 	});
 
 	$('.nshenhe').on('click',function(){
 		//console.log('nshenhe');
+		purchasePage.status=0;
+		fistLoad=true;
+		purchasePage.requrl=config.ajaxAddress.getOrderList;
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
 
 			updateList(data,laytpl);
@@ -28,16 +36,32 @@ $(function(){
 
 	$('.shenhe').on('click',function(){
 		//console.log('shenhe');
+		purchasePage.status=1;
+		fistLoad=true;
+		purchasePage.requrl=config.ajaxAddress.getOrderList;
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
 			updateList(data,laytpl);
 		},{status:1});
 	});
 
+	$('.inputStore').on('click',function(){
+		console.log('ruku');
+		purchasePage.status=2;
+		fistLoad=true;
+		purchasePage.requrl=config.ajaxAddress.showInputStore;
+		config.ajax('get',config.ajaxAddress.showInputStore,function(data){
+			updateList(data,laytpl);
+		},{status:2});
+	});
+
 	$('.jujue').on('click',function(){
 		//console.log('jujue');
+		purchasePage.status=10;
+		fistLoad=true;
+		purchasePage.requrl=config.ajaxAddress.getOrderList;
 		config.ajax('get',config.ajaxAddress.getOrderList,function(data){
 			updateList(data,laytpl);
-		},{status:10});
+		},{status:10,p:1});
 	});
 
 	function updateList(data,laytpl){
@@ -47,7 +71,7 @@ $(function(){
 		$('#purchaselist').html('');
 		if(fistLoad){
 
-               // updatePage();
+               updatePage();
             }
 		$.each(data.lst,function(index,item){
 			item.selectedindex=index;
@@ -70,6 +94,10 @@ $(function(){
 			    ,jump:function(data){
 			    	//得到页数data.curr
 			    	// updatePageNum(data.curr);
+
+			    	config.ajax('get',purchasePage.requrl,function(data){
+						updateList(data,laytpl);
+					},{status:purchasePage.status,p:data.curr});
 			    }
 			  });
 		});

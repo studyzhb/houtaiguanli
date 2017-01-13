@@ -2,9 +2,12 @@ $(function(){
 	var purchasePage={
 		arrOrder:[],
 		selectedindex:'',
-		zongjia:''
+		zongjia:'',
+		status:1,
+		pageCount:''
 	}
 
+	fistLoad=true;
 	/**
 		确认采购单
 	*/
@@ -19,30 +22,34 @@ var laytpl;
 		laytpl = layui.laytpl;
 		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
 			updateorderlist(data,laytpl);
-		},{status:1});
+		},{status:1,p:1});
 	});
 
 
 	$('.nshenhe').on('click',function(){
-		console.log('nshenhe');
+		purchasePage.status=1;
+		fistLoad=true;
 		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
 
 			updateorderlist(data,laytpl);
-		},{status:1});
+		},{status:1,p:1});
 	});
 
 	$('.shenhe').on('click',function(){
-		console.log('shenhe');
+		purchasePage.status=2;
+		fistLoad=true;
 		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
 			updateorderlist(data,laytpl);
-		},{status:2});
+		},{status:2,p:1});
 	});
 
 	$('.jujue').on('click',function(){
-		console.log('jujue');
+		
+		purchasePage.status=10;
+		fistLoad=true;
 		config.ajax('get',config.ajaxAddress.goodsInput,function(data){
 			updateorderlist(data,laytpl);
-		},{status:10});
+		},{status:10,p:1});
 	});
 
 
@@ -50,6 +57,11 @@ function updateorderlist(data,laytpl){
 	var tempHtml=supplierList.innerHTML;
 		console.log(data);
 		$('#purchaselist').html('');
+		purchasePage.pageCount=data.count;
+		$('.detailCount').text(data.num);
+		if(fistLoad){
+            updatePage();
+        }
 		$.each(data.lst,function(index,item){
 			item.selectedindex=index;
 			console.log(item);
@@ -57,8 +69,30 @@ function updateorderlist(data,laytpl){
 				$('#purchaselist').append(html);
 			});
 		});
+
+
 }
 
+//分页
+function updatePage(){
+	layui.use(['laypage', 'layer'],function(){
+		var laypage=layui.laypage;
+		var layer = layui.layer;
+		laypage({
+		    cont: 'page'
+		    ,pages: purchasePage.pageCount //总页数
+		    ,groups: 5 //连续显示分页数
+		    ,jump:function(data){
+		    	//得到页数data.curr
+		    	config.ajax('get',config.ajaxAddress.goodsInput,function(data){
+					updateorderlist(data,laytpl);
+				},{status:purchasePage.status,p:data.curr});
+		    }
+		  });
+	});
+
+    fistLoad=false;
+}
 
 //打开确认审核数量界面
 

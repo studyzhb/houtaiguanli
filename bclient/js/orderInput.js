@@ -21,7 +21,7 @@ $(function(){
 				laytpl(tempHtml).render(item,function(html){
 				// console.log(html);
 				
-				$('#sliderPage').append(html);
+					$('#sliderPage').append(html);
 
 				})
 			})

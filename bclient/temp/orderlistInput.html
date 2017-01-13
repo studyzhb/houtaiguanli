@@ -7,29 +7,29 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="../layui/css/layui.css" />
   <link rel="stylesheet" href="../css/alertcon.css?v=1.0" />
-  <link rel="stylesheet" href="../css/goodslist.css?v=1.0" />
+  <link rel="stylesheet" href="../css/goodslist.css?v=2.0" />
 	<script src="../layui/layui.js"></script>
-  	<script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+  	<script type="text/javascript" src="../js/jquery-form.js"></script>
     <script type="text/javascript" src="../js/config.js"></script>
 
 </head>
 <body>
 	<!-- 框架结构	 -->
 	<div class="layui-layout">
-  
-	
+
 	<div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
-<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> 
           <li class="layui-nav-item layui-nav-itemed">
             <a href="javascript:;">包装食品</a>
             <dl class="layui-nav-child">
               <dd><a href="javascript:;">休闲</a></dd>
               <dd><a href="javascript:;">饼干糕点</a></dd>
             </dl>
-          </li>
+          </li>-->
           
         </ul>
 
@@ -55,104 +55,20 @@
           </li>
         </ul> -->
         <div class="layui-content" style="height:100%;overflow:hidden;">
-            <ul class="wd-list">
-              <li>
-                <div class="inner">
-                  <div class="pic-wrap">
-                    <div class="img-vertical">
-                      <a href="#" class="img-wrap">
-                        <img width="230" src="../img/test.jpg" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="txt red">
-                    
-                  </div>
-                  <div class="box">
-                    <div class="info">
-                      <h3 class="title">
-                        <a href="#">松鼠萌炭烧腰果</a>
-                      </h3>
-                      <div class="price">
-                        抢新价
-                        <em>￥</em>
-                        <span>29.44</span>
-                      </div>
-                    </div>
-                    <div class="shop-mask">
-                      <h3 class="shop-name">
-                        <a href="#">万店联盟凤台路店</a>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="inner">
-                  <div class="pic-wrap">
-                    <div class="img-vertical">
-                      <a href="#" class="img-wrap">
-                        <img width="230" src="../img/test.jpg" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="txt red">
-                    
-                  </div>
-                  <div class="box">
-                    <div class="info">
-                      <h3 class="title">
-                        <a href="#">松鼠萌炭烧腰果</a>
-                      </h3>
-                      <div class="price">
-                        抢新价
-                        <em>￥</em>
-                        <span>29.44</span>
-                      </div>
-                    </div>
-                    <div class="shop-mask">
-                      <h3 class="shop-name">
-                        <a href="#">万店联盟凤台路店</a>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="inner">
-                  <div class="pic-wrap">
-                    <div class="img-vertical">
-                      <a href="#" class="img-wrap">
-                        <img width="230" src="../img/test.jpg" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="txt red">
-                    
-                  </div>
-                  <div class="box">
-                    <div class="info">
-                      <h3 class="title">
-                        <a href="#">松鼠萌炭烧腰果</a>
-                      </h3>
-                      <div class="price">
-                        抢新价
-                        <em>￥</em>
-                        <span>29.44</span>
-                      </div>
-                    </div>
-                    <div class="shop-mask">
-                      <h3 class="shop-name">
-                        <a href="#">万店联盟凤台路店</a>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+              
+          <form id="goodsWraper" class="layui-form" method="POST" action="" style="position:relative;">
+            
+
+
+
+            <div class="layui-form-item" style="position:absolute;left:30%;bottom:-76px;">
+              <div class="layui-input-block">
+                <div class="layui-btn intoShopList" >立即提交</div>
+              </div>
+            </div>
+          </form>
+        
+
         </div>
      </div>
 
@@ -325,13 +241,13 @@
 </div>
 
 <script id="slider" type="text/html">
+  {{#  }}
   <li class="layui-nav-item layui-nav-itemed">
-    <a href="javascript:;">{{d.name}}</a>
+    <a href="javascript:;"><img src="{{d.bpic}}" width="40" height="40" style="vertical-align:middle;"><span style="padding:0 10px;line-height: 45px;display: inline-block;height: 40px;vertical-align: top;">{{d.type}}</span></a>
     <dl class="layui-nav-child">
-    {{#  layui.each(d.children,function(index, item){ }}
-      
+    {{#  layui.each(d.zi,function(index, item){ }}
         <dd>
-          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+          <a href="#" data-id="{{item.id}}"><span style="padding:0 10px">{{item.type}}</span></a>
         </dd>
 
     {{#  }); }}
@@ -340,9 +256,155 @@
   </li>
 </script>
 
+<!--
+<ul class="wd-list">
+              <li>
+                <div class="inner">
+                  <div class="pic-wrap">
+                    <div class="img-vertical">
+                      <a href="#" class="img-wrap">
+                        <img width="230" src="../img/test.jpg" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="txt red">
+                    
+                  </div>
+                  <div class="box">
+                    <div class="info">
+                      <h3 class="title">
+                        <a href="#">松鼠萌炭烧腰果</a>
+                      </h3>
+                      <div class="price">
+                        抢新价
+                        <em>￥</em>
+                        <span>29.44</span>
+                      </div>
+                    </div>
+                    <div class="shop-mask">
+                      <h3 class="shop-name">
+                        <a href="#">万店联盟凤台路店</a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="inner">
+                  <div class="pic-wrap">
+                    <div class="img-vertical">
+                      <a href="#" class="img-wrap">
+                        <img width="230" src="../img/test.jpg" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="txt red">
+                    
+                  </div>
+                  <div class="box">
+                    <div class="info">
+                      <h3 class="title">
+                        <a href="#">松鼠萌炭烧腰果</a>
+                      </h3>
+                      <div class="price">
+                        抢新价
+                        <em>￥</em>
+                        <span>29.44</span>
+                      </div>
+                    </div>
+                    <div class="shop-mask">
+                      <h3 class="shop-name">
+                        <a href="#">万店联盟凤台路店</a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="inner">
+                  <div class="pic-wrap">
+                    <div class="img-vertical">
+                      <a href="#" class="img-wrap">
+                        <img width="230" src="../img/test.jpg" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="txt red">
+                    
+                  </div>
+                  <div class="box">
+                    <div class="info">
+                      <h3 class="title">
+                        <a href="#">松鼠萌炭烧腰果</a>
+                      </h3>
+                      <div class="price">
+                        抢新价
+                        <em>￥</em>
+                        <span>29.44</span>
+                      </div>
+                    </div>
+                    <div class="shop-mask">
+                      <h3 class="shop-name">
+                        <a href="#">万店联盟凤台路店</a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+
+-->
+
+
+
+<script id="goodsContent" type="text/html">
+
+  <ul class="wd-list">
+    {{# layui.each(d.goodinfo,function(index,item){ }}
+      <li>
+        
+        <div class="inner">
+          <div class="pic-wrap">
+            <div class="img-vertical">
+              <a href="#" class="img-wrap">
+                <img width="230" height="230" src="{{item.goodpic}}" alt="">
+              </a>
+            </div>
+          </div>
+          <div class="txt red">
+            
+          </div>
+          <div class="box">
+            <div class="info">
+              <h3 class="title">
+                <a href="#">{{item.goodname}}</a>
+              </h3>
+              <div class="price">
+                抢新价
+                <em>￥</em>
+                <span>{{item.goodprice}}</span>
+              </div>
+            </div>
+            <div class="shop-mask">
+              <div class="addOrder"></div>
+              <input type="hidden" name="goods[]" value="">
+              <h3 class="shop-name">
+                <a href="#">万店联盟凤台路店</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </li>
+    {{# }) }}
+    
+    
+  </ul>
+</script>
+
 
 </body>
-<script type="text/javascript" src="../js/goodslist.js"></script>
+<script type="text/javascript" src="../js/orderlistInput.js?v=2.0"></script>
 <script>
   function editorMenu(obj){
     console.log($(obj).data('id'));

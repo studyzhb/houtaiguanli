@@ -8,7 +8,8 @@ ul.wd-list {
     height: 45%;
     width: 230px;
     overflow: hidden;
-    background: #fff; }
+    background: #fff;
+    border: 1px solid #e6e6e6; }
     ul.wd-list li div.inner {
       width: 100%;
       height: 100%;
@@ -37,7 +38,6 @@ ul.wd-list {
           height: 100%; }
           ul.wd-list li div.inner div.pic-wrap div.img-vertical .img-wrap {
             width: 230px;
-            height: 100%;
             display: block;
             vertical-align: middle; }
           ul.wd-list li div.inner div.pic-wrap div.img-vertical img {
@@ -45,10 +45,7 @@ ul.wd-list {
             height: 100%; }
       ul.wd-list li div.inner div.box {
         height: 108px;
-        width: 228px;
-        border-left: 1px solid #e6e6e6;
-        border-right: 1px solid #e6e6e6;
-        border-bottom: 1px solid #e6e6e6; }
+        width: 228px; }
         ul.wd-list li div.inner div.box .info {
           position: relative;
           height: 70px;

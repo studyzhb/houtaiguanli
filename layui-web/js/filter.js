@@ -87,12 +87,17 @@ switch(switchVal){
 }
 // if(!cookAuthor){
 	config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
-		console.log(data);
+		console.log(data.code,typeof data);
+		if(data.code=='401'){
+			open('login.html','_self');
+			return;
+		}
 		if(!!user){
 			$('.username').text(cookieUtil.getCookie('username'));
 		}else{
 			open('login.html','_self');
 		}
+
 		cookieUtil.setExpiresDate('authorlist',JSON.stringify(data));
 		updateList(data);
 		

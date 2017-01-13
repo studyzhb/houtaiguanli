@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>万店联盟注册页面</title>
     <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
-    <link rel="stylesheet" href="./css/share.css" />
-    <script src="./js/rem.js"></script>
-    <script src="./js/zepto.js"></script>
-    <script src="./js/touch.min.js"></script>
+    <link rel="stylesheet" href="__CSS__/capp/share.css" />
+    <script src="__JS__/capp/rem.js"></script>
+    <script src="__JS__/capp/zepto.js"></script>
+    <script src="__JS__/capp/touch.min.js"></script>
+     <script src="__JS__/capp/md5.js"></script>
 </head>
 <body>
 
@@ -15,19 +16,18 @@
         <h3 class="registerTitle"><span class="back" style="display:none;">&lt;</span>欢迎注册</h3>
         <div class="main">
             <div class="bannner-wrap">
-                <p>借我十年</p>
+                <p><?php echo $info["nickname"]?></p>
                 <img class="step" src="./img/step01.png" alt="" style="">
-                <!-- <img class="step" src="" alt="" style=""> -->
+                <img class="step02" style="display:none;" src="./img/step02.png" alt="" style="">
             </div>
             <div class="register-con">
-                <ul style="display:none;">
+                <ul class="step01" style="display:none;">
                     <li><img class="lefticon" src="./img/register01.png" alt=""><input class="code" type="text" placeholder="验证码"><img class="yzwraper" src="./img/android.png" alt="" /></li>
                     <li><img class="lefticon" src="./img/register02.png" alt=""><input class="telnum"  type="text" placeholder="请输入手机号"></li>
-                    <!-- <li><img class="lefticon" src="./img/register03.png" alt=""><label>请输入短信验证码</label><input class="messnum" type="text" placeholder=""><span>erroe</span></li>
-                    <li><img class="lefticon" src="./img/register04.png" alt=""><label>密码6-20位</label><input class="passwordnum" type="text" placeholder=""></li> -->
-                    
+                    <input type="hidden" class="personId" value='<?php echo $info["id"];?>'/>
+                    <input type="hidden" class="clienttype" value='<?php echo input("type");?>'/>
                 </ul>
-                <ul style="display:block;">
+                <ul class="step02" style="display:block;">
                     
                     <li><img class="lefticon" src="./img/register03.png" alt=""><input class="messnum" type="text" placeholder="请输入短信验证码"></li>
                     <li><img class="lefticon" src="./img/register04.png" alt=""><input class="passwordnum" type="text" placeholder="密码6-20位"></li>
@@ -102,7 +102,61 @@
         })
 
         $('.next-step').on('tap',function(){
-            
+            var me=this;
+            if(!$('.telnum').val().trim()){
+                alert('手机号不能为空');
+                return false;
+            }
+            if(isClick){
+                isClick=false;
+                 $.ajax({
+                    type:'post',
+                    url:'<?php echo url("Recommend/code");?>',
+                    data:{
+                        tel:$('.telnum').val(),
+                        code:$('.code').val(),
+                        type:'bangding',
+                        access:sessionId
+
+                    },
+                    success:function(data){
+                        console.log(data);
+                        clearInterval(timer);
+                        tnum=60;
+                        if(data.code=='200'){
+                            
+                            isClick=false;
+                            $(me).hide();
+                            $('.step01').hide();
+                            $('.step02').show();
+                            $('.submit').show();
+
+                            /*timer=setInterval(function(){
+                                if(tnum<0){
+                                    clearInterval(timer);
+                                    $('.getCode').text('获取验证码');
+                                    isClick=true;
+                                }
+                                $('.getCode').text('重新获取验证码'+tnum);
+                                tnum--;
+                            },'1000');*/
+                        }else if(data.code=='320'){
+                            alert(data.message);
+                            location.href='http://api.wandlm.com/public/index.php/capp/recommend/bindsucc';
+                        }
+                        else{
+                            console.log(data);
+                            alert(data.message);
+                            isClick=true;
+                            $('.getCode').text('获取验证码');
+                        }
+                    },
+                    error:function(){
+
+                    }
+                })
+            }
+           return false;
         });
 
 

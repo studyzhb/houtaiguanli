@@ -110,6 +110,8 @@ var config={
     searchOrder:'/shop/shop/public/index.php/admin/purchase/getInfo',
     // 添加订单
     addOrderList:'/shop/shop/public/index.php/admin/purchase/add',
+    //显示已入库列表
+    showInputStore:'/shop/shop/public/index.php/admin/purchase/inputSuccess',
     //获取采购单列表
     getOrderList:'/shop/shop/public/index.php/admin/purchase/lst',
     //编辑采购单列表
@@ -224,7 +226,7 @@ var config={
 		   	success: function(msg){
 	
            // console.log(msg);
-                if(msg.code&&msg.code==401){
+                if(msg.code&&msg.code=='401'){
                     open('login.html','_self');
                 }else{
                    if(fun){

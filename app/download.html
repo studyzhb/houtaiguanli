@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册成功页面</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="./css/download.css" />
+    <script type="text/javascript" src="__JS__/capp/jquery-1.12.4.min.js"></script>
+    
+    <script>
+        (function(doc,win){
+			var docEl = doc.documentElement,resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function(){
+				var clientWidth = docEl.clientWidth;
+				if(!clientWidth) return;
+				if(clientWidth>=750){
+					docEl.style.fontSize = '100px';
+				}
+				else{
+					docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+				}
+			};
+			if (!doc.addEventListener) return;
+	        win.addEventListener(resizeEvt, recalc, false);
+	        doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document,window);
+    </script>
+</head>
+<body>
+    
+    <section>
+      <h3 class="registerTitle">欢迎注册</h3>
+       <div class="main">
+           <img class="img-bg" src="./img/commit.png" />
+           <h4 class="title">恭喜您注册成功！</h4>
+       </div>
+       <div class="down">
+               <a class="marginR" id="btn-normal-download">
+                   <img class="img-an" src="./img/android.png" alt="">
+                   安卓版下载
+               </a>
+               <a class="apple" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.wandianlianmeng.yijia.user">
+                    <img class="img-app" src="./img/apple.png" alt="">
+                   苹果版下载
+               </a>
+           </div>
+    </section>
+
+
+
+
+
+</body>
+<script>
+    function bodyScale(){
+      var devicewidth=document.documentElement.clientWidth;
+        var scale=devicewidth/750;
+        document.body.style.zoom=scale;
+    }
+  window.onload=window.onresize=function(){
+    bodyScale();
+  
+  function bodyScroll(e){ e.preventDefault() }
+var browser = {
+    versions: function () {
+        var u = navigator.userAgent, app = navigator.appVersion;
+        return {         //移动终端浏览器版本信息
+            trident: u.indexOf('Trident') > -1, //IE内核
+            presto: u.indexOf('Presto') > -1, //opera内核
+            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+            iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+            iPad: u.indexOf('iPad') > -1, //是否iPad
+            webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+        };
+    }(),
+    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+}
+if (browser.versions.mobile) {
+    //'http://a.app.qq.com/o/simple.jsp?pkgname=com.wandianlianmeng.yijia.user http://sj.qq.com/myapp/detail.htm?apkName=com.wandianlianmeng.yijia.user'
+      var yingyongbao='http://a.app.qq.com/o/simple.jsp?pkgname=com.wandianlianmeng.yijia.user';
+    var appStore='https://itunes.apple.com/cn/app/kan-duo-duo/id1073326937';
+    var apkUrl='http://mp.weixin.qq.com/mp/redirect?url=http://enclosure.wandlm.net/com.wandianlianmeng.yijia.user_1.apk';
+    
+        $('#btn-normal-download').bind('click',function(){
+                var ua = navigator.userAgent.toLowerCase();
+                /*if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                        console.log('微信');
+                        if(browser.versions.ios) {
+                                console.log('IOS');
+                                window.location.href = yingyongBao;
+                        }else{
+                                console.log('安卓');
+                                $('.shade').show();
+                                window.location.href = yingyongBao;
+                                document.addEventListener('touchmove', bodyScroll, false);
+                        }
+                }else{
+                        console.log('浏览器');
+                        if(browser.versions.ios) {
+                                console.log('IOS');
+                                window.location.href = appStore;
+                        }else{
+                                console.log('安卓');
+                                window.location.href = apkUrl;
+                        }
+                }*/
+                console.log('apkUrl');
+                window.location.href = yingyongbao;
+        });
+    
+  //  if(browser.versions.android){
+      //console.log('安卓');
+            window.location.href = yingyongbao;
+    //}
+} else {
+       console.log('请在移动端打开');
+       alert('请在移动端打开');
+}
+$('.shade').bind('click',function(){
+    $(this).hide();
+    document.removeEventListener('touchmove', bodyScroll, false);
+})
+}
+</script>
+</html>

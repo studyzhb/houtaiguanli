@@ -100,6 +100,9 @@
               <li class="shenhe">
                 审核通过
               </li>
+              <li class="inputStore">
+                已入库
+              </li>
               <li class="jujue">
                 被拒绝
               </li>
@@ -306,6 +309,8 @@
     <td>{{(d.dposit-0).toFixed(2)}}</td>
     {{#  if(d.status=='1'){ }}
   <td>已审核</td>
+  {{# }else if(d.status=='2'){ }}
+    <td>已入库</td>
   {{# }else if(d.status=='10'){ }}
     <td>被拒绝:{{d.note}}</td>
 {{# }else{ }}
@@ -318,6 +323,8 @@
       {{#  if(d.status=='1'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small printOrderlist" data-id="{{d.id}}">打印采购单</div>
       <div class="layui-btn layui-btn-warm layui-btn-small exceloutput" data-id="{{d.id}}">导出采购单</div>
+      {{#  }else if(d.status=='2'){ }}
+
       {{#  }else{ }}
         <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">审核</div>
         <div class="layui-btn layui-btn-warm layui-btn-small addorderInfo" data-id="{{d.id}}">添加商品</div>

@@ -1,0 +1,114 @@
+@import 'reset';
+html,body{
+    width:100%;
+    height: 100%;
+    overflow:hidden;
+}
+section{
+    width:7.5rem;
+    height:100%;
+    overflow:hidden;
+    position: relative;
+    .registerTitle{
+        font-size:0.32rem;
+        height:0.82rem;
+        text-align:center;
+        line-height:0.82rem;
+        color:#666;
+        border-bottom:2px solid #e3e3e3;
+
+
+    }
+    .main{
+        
+        padding:5.70rem 0.22rem 0 0.4rem;
+        position:relative;
+
+        .img-title{
+            width:7.9rem;
+            height:2.08rem;
+             position:absolute;
+            left:0.85rem;
+            top:0.64rem;
+        }
+        .img-bg{
+            width:6rem;
+            height:2.66rem;
+            position:absolute;
+            left:0.86rem;
+            top:1.58rem;
+        }
+
+        
+
+        p{
+            font-size: 0.3rem;
+            line-height: 0.54rem;
+            color:#666;
+            
+        }
+
+        h4.title{
+            font-size:0.3rem;
+            line-height: 0.54rem;
+            text-align: center;
+            color:#666;
+        }
+
+    }
+
+    .down{
+            width:6rem;
+            height:0.76rem;
+            bottom:1.62rem;
+            left:0.86rem;
+            position:absolute;
+
+            a{
+
+                font-size:0.24rem;
+                line-height: 0.6rem;
+                display: inline-block;
+                width: 3.06rem;
+                height:0.6rem;
+                position: relative;
+                color:#8a8a8a;
+                //vertical-align: top;
+            }
+
+            a.marginR{
+                //margin-right:1.12rem;
+                margin-right:0.3rem;
+                padding-left:0.98rem;
+                width: 1.4rem;
+               // background: url(../img/android.png) no-repeat;
+            }
+
+            a.apple{
+                
+               padding-left:0.80rem;
+               width:1.62rem;
+
+            }
+            
+
+            .img-an{
+                width:0.52rem;
+                height:0.63rem;
+                //vertical-align: middle;
+                position:absolute;
+                left:0;
+                top:0;
+            }
+            .img-app{
+                width:0.52rem;
+                height:0.59rem;
+                 position:absolute;
+                 left:0;
+                top:0;
+                //vertical-align: middle;
+            }
+        }
+
+
+}
