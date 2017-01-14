@@ -85,6 +85,9 @@ var config={
     deleteSingleGoods:'/car/delete',
     //生成订单
     createBorderList:'/Border/add',
+    //平台支付
+    payOrderList:'/pay/pingtai',
+
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号

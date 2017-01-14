@@ -1,6 +1,31 @@
 $(function(){
 	var laytpl;
 	var element;
+	var StoreHouse={
+		data:{
+			detailPrice:0
+		},
+		//更新商品数据
+		updateGoodsInfo:function(data){
+			$('#goodsWraper').find('.wd-list').hide();
+			var tempHtml=goodsContent.innerHTML;
+				
+				laytpl(tempHtml).render(data,function(html){
+					$('#goodsWraper').append(html);
+				});
+		},
+		updateList:function(data,laytpl){
+			var tempHtml=slider.innerHTML;
+			$('#sliderPage').html('');
+			$.each(data.type,function(index,item){
+				item.selectedindex=index;
+				laytpl(tempHtml).render(item,function(html){
+					$('#sliderPage').append(html);
+				});
+			});
+			element.init();
+		}
+	}
 	layui.use(['laytpl','element'],function(){
 		laytpl = layui.laytpl;
 		element= layui.element();
@@ -21,10 +46,12 @@ $(function(){
 
 		},{name:'typeid',value:typeid});			
 	});
-
+	//
 	$('.intoShopList').on('click',function(){
 		config.formSubmit('#goodsWraper',config.ajaxAddress.publicAddress+config.ajaxAddress.addMart,function(data){
+			console.log(data);
 			
+
 		});
 	});
 
@@ -52,32 +79,11 @@ $(function(){
 
 	});
 
-	var StoreHouse={
-		data:{
+	
 
-		},
-		//更新商品数据
-		updateGoodsInfo:function(data){
-			$('#goodsWraper').find('.wd-list').hide();
-			var tempHtml=goodsContent.innerHTML;
-				
-				laytpl(tempHtml).render(data,function(html){
-					$('#goodsWraper').append(html);
-				});
-		},
-		updateList:function(data,laytpl){
-			var tempHtml=slider.innerHTML;
-			$('#sliderPage').html('');
-			$.each(data.type,function(index,item){
-				item.selectedindex=index;
-				laytpl(tempHtml).render(item,function(html){
-					$('#sliderPage').append(html);
-				});
-			});
-			element.init();
-		}
-	}
 
+
+	//弹出支付窗口，输入支付密码
 
 
 

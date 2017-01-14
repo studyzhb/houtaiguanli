@@ -189,6 +189,10 @@ input.w160 {
 
 input.w380 {
   width: 380px !important; }
+input.w60 {
+  width:60px !important; 
+  height:60px !important;
+}
 
 .w10 {
   width: 10%; }
