@@ -87,7 +87,16 @@ var config={
     createBorderList:'/Border/add',
     //平台支付
     payOrderList:'/pay/pingtai',
-
+    //店铺进货单展示
+    borderList:'/Border/index',
+    //是否有新订单
+    isNewOrder:'/corder/isNewCorder',
+    //用户订单
+    userOrderList:'/corder/index',
+    //用户订单详情
+    userOrderDetail:'/corder/ordershow',
+    //打印小票
+    printTrainOrder:'/corder/updateorderstatus',
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号

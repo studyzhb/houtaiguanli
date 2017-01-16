@@ -192,6 +192,7 @@ input.w380 {
 input.w60 {
   width:60px !important; 
   height:60px !important;
+  display: inline-block;
 }
 
 .w10 {

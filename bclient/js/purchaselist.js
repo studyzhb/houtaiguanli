@@ -35,7 +35,10 @@ $(function(){
 		payOrder:function(){
 			config.ajax('post',config.ajaxAddress.publicAddress+config.ajaxAddress.payOrderList,function(data){
 				console.log(data);
-				
+				if(data.code=="200"){
+					layer.msg('支付成功');
+					location.reload();
+				}
 				
 			},{paypassword:this.data.pass,orderid:this.data.coding,total:this.data.total});
 		}
@@ -138,13 +141,15 @@ $(function(){
 			            // console.log('end');
 			          }
 			        })
+				$('.payInput').val('');
+				$('.payInput').eq(0).focus();
 			}else{
 				layer.msg('提交失败，请重新提交');
 			}
 		},{good:JSON.stringify(arr),note:'测试数据，不做处理'});
 	});
 
-	$('.payInput').eq(0).focus();
+	
 
 	$('.payInput:not(.payInput:last)').each(function(){
 			$(this).on('focus',function(){

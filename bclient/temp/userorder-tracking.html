@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>首页</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../layui/css/layui.css" />
+  <link rel="stylesheet" href="../css/alertcon.css?v=1" />
+  <link rel="stylesheet" href="../css/orderlist.css" />
+  <script src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/MD5.js"></script>
+    <script type="text/javascript" src="../js/userorder-tracking.js?v=1.0"></script>
+
+</head>
+<body style="overflow:auto;">
+<noscript>
+对不起，你的浏览器不支持或者禁用了脚本功能。
+</noscript>
+  <!-- 框架结构  -->
+  <div class="layui-layout">
+  
+  
+
+  <!-- ============================主要内容区================================ -->
+
+    <!-- <span class="layui-breadcrumb">
+      <a href="#">首页</a>
+      <a href="#">组织机构</a>
+      <a href="#">组织机构管理</a>
+      <a><cite>正文</cite></a>
+    </span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       
+      <div class="layui-content" style="padding:20px 50px;">
+          <table class="layui-table">
+            <colgroup>
+              
+            </colgroup>
+            <thead>
+              <tr>
+                
+                <th>序号</th>
+                <th>订单号</th>
+                <th>下单时间</th>
+                <th>状态</th>
+                <th>应付金额</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody id="purchaselist">
+              
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="7">合计：<span class="detailPrice">10.00</span></td>
+              </tr>
+            </tfoot>
+        </table>
+      </div>
+
+     </div>
+
+
+
+</div>
+
+  <!-- =======================弹出窗========================= -->
+<div class="alertCon-wrapper" id="alertMessage" style="margin:10px auto;display:none;">
+  <div class="alert-main-con">
+      <section>
+        <div class="wrapper">
+            <h3>
+                <img src="./img/title-icon.png" alt="">
+                <span>收货人信息</span>
+            </h3>
+            <ul class="user-mess">
+                <li>收货人：<span>张三</span></li>
+                <li>电话：<span>181123456</span><img src="./img/phone.png" alt=""></li>
+                <li>收货地址：<span>张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三</span><img src="./img/weizhi.png" alt=""></li>
+            </ul>
+            <div class="remark">
+                <img class="leftline" src="./img/left-line.png" alt="">
+                <img class="leftIcon" src="./img/bianqian.png" alt="">
+                <p>附赠一张卡片，上面写嫁给我。</p>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="remark">
+                
+                <img class="left-ps-icon" src="./img/peisong.png" alt="">
+                <p>订单跟踪（配送费：5元）</p>
+            </div>
+            <div class="ps-bg" data-info="10">
+                <div class="fugai"></div>
+                
+            </div>
+            
+            
+        </div>
+        <div class="wrapper">
+            <h3>
+                <img src="./img/title-icon.png" alt="">
+                <span>共<em>两</em>件商品</span>
+            </h3>
+            <ul class="orderlist">
+                <li>
+                    <dt>
+                        <img src="./img/ttttest.png" width="100%" height="100%" alt="">
+                    </dt>
+                    <dd>
+                        <p class="clearfix">
+                            <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
+                            <b>x <i>1</i></b>
+                        </p>
+                    </dd>
+                </li>
+                <li>
+                    <dt>
+                        <img src="./img/ttttest.png" width="100%" height="100%" alt="">
+                    </dt>
+                    <dd>
+                        <p>
+                            <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
+                            <b>x <i>1</i></b>
+                        </p>
+                    </dd>
+                </li>
+                <li>
+                    <dt>
+                        <img src="./img/ttttest.png" width="100%" height="100%" alt="">
+                    </dt>
+                    <dd>
+                        <p class="clearfix">
+                            <span>SAMYANG 三羊 火鸡面 140g 5袋装</span><em>￥30</em>
+                            <b>x <i>1</i></b>
+                        </p>
+                    </dd>
+                </li>
+            </ul>
+            <ul class="detailPrice">
+                <li>
+                    <em>总价：</em><span>￥60</span>
+                </li>
+                <li>
+                    <em>优惠：</em><span>￥60</span>
+                </li>
+                <li>
+                    <em>配送费：</em><span>￥60</span>
+                </li>
+            </ul>
+            <div class="remark">
+                <p class="padding-right">实付金额：<span>￥3294036</span></p>
+            </div>
+        </div>
+
+        <div class="wrapper">
+             <h3>
+                <img src="./img/title-icon.png" alt="">
+                <span>订单详情</span>
+            </h3>
+            <ul class="user-mess">
+                <li>订单编号：<span>181123456789</span></li>
+                <li>支付方式：<span>暂无</span></li>
+                <li>下单时间：<span>2016-12-07 09:49</span></li>
+            </ul>
+        </div>
+    </section>
+    </div>
+</div>
+
+<!-- ================================================= -->
+<div class="alertCon-wrapper" id="alertMessage1" style="margin:10px auto;display:none;">
+  <div class="alert-main-con">
+      <table class="layui-table">
+            <colgroup>
+              
+            </colgroup>
+            <thead>
+              <tr>
+                <th><input type="checkbox" class="isChecked" name="" value=""></th>
+                <th>序号</th>
+                <th>商品名称</th>
+                <th>商品条形码</th>
+                <th>规格</th>
+                <th>最小销售单位</th>
+                <th>价格（组）</th>
+                <th>数量</th>
+                <th>总价</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody id="purchaselist">
+              
+            </tbody>
+            <tfoot>
+              
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script id="singleOrderlist" type="text/html">
+
+{{# layui.each(d.goodinfo,function(index,item){ }}
+  <tr>
+    <td><input type="checkbox" data-id="{{item.carid}}" class="tagSelect" name="" value=""></td>
+    <td>{{index+1}}</td>
+    <td>{{item.goodname}}</td>
+    <td>{{item.coding}}</td>
+    <td>{{item.carpro}}</td>
+    <td>{{item.minsell}}</td>
+    <td>{{(item.minsell*item.wholesale).toFixed(2)}}</td>
+    <td class="goodsnum">
+      <div class="wrapGoodsNum">
+        <a href="#" class="addNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}"></a>
+        <input class="inputNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}" type="text" value="{{item.carnum}}"/>
+        <a href="#" class="reduce" data-id="{{item.carid}}" data-pro="{{item.carpro}}"></a>
+      </div>
+    </td>
+    <td class="dPrice">{{(item.minsell*item.wholesale*item.carnum).toFixed(2)}}</td>
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small deleteGoods" data-id="{{item.carid}}" data-pro="{{item.carpro}}">删除</div>
+    </td>
+  </tr>
+{{# }) }}
+
+  
+</script>
+
+<script id="supplierList" type="text/html">
+
+{{# layui.each(d.orderifno,function(index,item){ }}
+  <tr>
+    <td>{{index+1}}</td>
+    <td>{{item.coding}}</td>
+    <td>{{new Date(item.createtime*1000).toLocaleString()}}</td>
+    {{# if(item.status=='1'){ }}
+    <td>待付款</td>
+    {{# }else if(item.status=='2'){ }}
+    <td>待配送</td>
+    {{# }else if(item.status=='3'){ }}
+    <td>配送中</td>
+    {{# }else if(item.status=='4'){ }}
+    <td>已完成</td>
+    {{# }else{ }}
+    <td>已退货</td>
+    {{# } }}
+    <td>{{item.total}}</td>
+    {{# if(item.status=='1'){ }}
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small lookinfo" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="1">查看订单</div>
+    </td>
+    {{# }else if(item.status=='2'){ }}
+    <td>
+        <div class="layui-btn layui-btn-warm layui-btn-small printTrain" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="2">打印小票</div>
+    </td>
+    {{# }else if(item.status=='3'){ }}
+    <td>
+        <div class="layui-btn layui-btn-warm layui-btn-small sendingOrder" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="3">配送中</div>
+    </td>
+    {{# }else if(item.status=='4'){ }}
+    <td>
+        <div class="layui-btn layui-btn-warm layui-btn-small finishedOrder" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="4">已完成</div>
+    </td>
+    {{# }else{ }}
+      <td>
+        <div class="layui-btn layui-btn-warm layui-btn-small refuseOrder" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="10">已退货</div>
+    </td>
+    {{# } }}  
+  </tr>
+{{# }) }}
+
+  
+</script>
+</body>
+<script>
+
+  layui.use('element', function(){
+    var element = layui.element();
+  });
+  layui.use('form', function(){
+    var form = layui.form();
+    //各种基于事件的操作，下面会有进一步介绍
+  });
+</script>
+</html>
