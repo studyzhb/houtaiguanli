@@ -36,7 +36,7 @@ $(function(){
 			        type:1,
 			        content: $('#alertMessage'), //这里content是一个DOM
 			          shade:[0.8,'#000'],
-			          area:'750px',
+			          area:'800px',
 			          maxmin: true,
 			          end:function(){
 			            // console.log('end');
@@ -57,12 +57,12 @@ $(function(){
 					$obj.parents('td').next('td.dPrice').text(num*price.toFixed(2));
 					$('.detailPrice').text(orderTracking.data.total);
 				}
-				me.bodyScale();
+				//me.bodyScale();
 				layer.open({
 			        type:1,
 			        content: $('#alertMessage'), //这里content是一个DOM
 			          shade:[0.8,'#000'],
-			          area:'80%',
+			          area:"800px",
 			          maxmin: true,
 			          end:function(){
 			            // console.log('end');
@@ -99,7 +99,7 @@ $(function(){
     
 	    	var devicewidth=$('#alertMessage').width();
 	        var scale=devicewidth/750;
-	        $('.alert-main-con').css('zoom',scale);
+	        $('.alert-main-con').css({'zoom':scale});
 	        console.log(devicewidth,scale);
 	    }
 	}

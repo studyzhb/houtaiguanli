@@ -97,6 +97,12 @@ var config={
     userOrderDetail:'/corder/ordershow',
     //打印小票
     printTrainOrder:'/corder/updateorderstatus',
+    //店铺展示
+    showShopGoods:'/shopgood/index',
+    //上架
+    addPutaway:'/shopgood/updatesale',
+    //修改上架价格
+    editgoodsprice:'/shopgood/updateprice',
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号
@@ -246,7 +252,8 @@ var config={
 		   	data:data||{date:new Date().getTime()},
 		   	success: function(msg){
 	
-           // console.log(msg);
+                console.log(typeof msg);
+                msg=typeof msg==='object'?msg:JSON.parse(msg);
                 if(msg.code&&msg.code=='401'){
                     open('login.html','_self');
                 }else{
