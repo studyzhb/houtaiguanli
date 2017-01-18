@@ -1,0 +1,142 @@
+header {
+  background-color: #fff; }
+  header .wd-title-container {
+    width: 1000px;
+    height: 30px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 30px;
+    border-bottom: 1px solid #d9d9d9; }
+    header .wd-title-container a {
+      color: #6d6d6d; }
+    header .wd-title-container ul.left-logo-name {
+      float: left; }
+      header .wd-title-container ul.left-logo-name a {
+        color: #7ccb99; }
+    header .wd-title-container ul.right-menu-area {
+      float: right; }
+      header .wd-title-container ul.right-menu-area li {
+        float: left; }
+  header .wd-logo-container {
+    width: 984px;
+    height: 73px;
+    margin: 0 auto;
+    padding-top: 15px;
+    padding-left: 16px; }
+    header .wd-logo-container .logoImage {
+      float: left;
+      margin-right: 148px;
+      width: 164px;
+      height: 41px; }
+    header .wd-logo-container .wd-search-area {
+      float: left;
+      margin-right: 98px; }
+      header .wd-logo-container .wd-search-area .logo-search-form {
+        width: 371px;
+        height: 42px;
+        padding: 3px;
+        background: #59bd7d; }
+        header .wd-logo-container .wd-search-area .logo-search-form .search-text {
+          width: 288px;
+          height: 36px;
+          line-height: 36px;
+          font-size: 16px; }
+        header .wd-logo-container .wd-search-area .logo-search-form .search-btn {
+          width: 73px;
+          height: 36px;
+          line-height: 36px;
+          background: none;
+          border: none;
+          outline: none; }
+      header .wd-logo-container .wd-search-area .hotwords a {
+        color: #5a5959;
+        font-size: 12px;
+        margin-right: 16px; }
+    header .wd-logo-container .wd-shoppinglist-small {
+      float: left;
+      width: 133px;
+      height: 30px;
+      padding: 2px 3px 0 48px;
+      margin-top: 10px;
+      background: #f4d585 url(../img/header/carbg.png) no-repeat 12px 4px; }
+      header .wd-logo-container .wd-shoppinglist-small .showshopping-con {
+        width: 132px;
+        height: 28px;
+        font-size: 12px;
+        line-height: 28px;
+        background-color: #fff;
+        color: #616060;
+        text-align: center; }
+        header .wd-logo-container .wd-shoppinglist-small .showshopping-con span {
+          color: #7ccb99; }
+
+.wd-nav-area-bg {
+  background-color: #1e1e1e;
+  height: 40px; }
+  .wd-nav-area-bg ul.wd-nav-area {
+    width: 1000px;
+    height: 40px;
+    margin: 0 auto; }
+    .wd-nav-area-bg ul.wd-nav-area li {
+      font-size: 14px;
+      float: left;
+      line-height: 40px;
+      height: 40px;
+      text-align: center;
+      cursor: pointer; }
+      .wd-nav-area-bg ul.wd-nav-area li a {
+        float: left;
+        padding: 0 21px;
+        color: #eee; }
+    .wd-nav-area-bg ul.wd-nav-area li:hover {
+      background-color: #59bd7d; }
+    .wd-nav-area-bg ul.wd-nav-area li.surprise {
+      margin-top: -6px;
+      border: 1px solid #f8bd80;
+      background: #f8bd80;
+      height: 48px;
+      background-image: radial-gradient(50% 100%, #ffec01 94%, rgba(255, 212, 0, 0.77) 116%); }
+      .wd-nav-area-bg ul.wd-nav-area li.surprise a {
+        color: #e85c07; }
+
+footer {
+  height: 248px;
+  background-color: #ececec; }
+  footer .foot-serve {
+    height: 170px;
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 20px; }
+    footer .foot-serve .foot-serve-top .barcode {
+      width: 560px;
+      height: 88px;
+      float: left;
+      margin-right: 12px; }
+    footer .foot-serve .foot-serve-top ul.serve {
+      width: 92px;
+      height: 88px;
+      background-color: #ececec;
+      border-left: 1px solid #fff;
+      float: left;
+      text-align: center; }
+      footer .foot-serve .foot-serve-top ul.serve li {
+        height: 20px;
+        font-size: 14px;
+        line-height: 20px; }
+      footer .foot-serve .foot-serve-top ul.serve li:hover {
+        background-color: #fff; }
+  footer .foot-about-bg {
+    background: #343434;
+    height: 20px; }
+    footer .foot-about-bg .foot-about {
+      width: 1000px;
+      height: 20px;
+      margin: 0 auto;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center; }
+      footer .foot-about-bg .foot-about a {
+        color: #b2b2b2;
+        padding: 0 17px; }
+
+/*# sourceMappingURL=header.css.map */

@@ -1,0 +1,188 @@
+.banner-wrapper {
+  width: 1000px;
+  height: 420px;
+  padding-top: 5px;
+  margin: 0 auto; }
+  .banner-wrapper .banner-area {
+    width: 780px;
+    height: 420px;
+    display: inline-block;
+    overflow: hidden; }
+    .banner-wrapper .banner-area ul.notice-pic li {
+      float: left;
+      width: 780px;
+      height: 420px; }
+      .banner-wrapper .banner-area ul.notice-pic li img {
+        width: 100%;
+        height: 100%; }
+  .banner-wrapper .right-spec {
+    width: 210px;
+    display: inline-block; }
+    .banner-wrapper .right-spec .compersive-area {
+      width: 210px;
+      height: 258px; }
+    .banner-wrapper .right-spec .down-area {
+      width: 210px;
+      height: 147px;
+      overflow: hidden; }
+      .banner-wrapper .right-spec .down-area img {
+        width: 100%;
+        height: 100%; }
+
+.feature-wrapper {
+  width: 1000px;
+  height: 60px;
+  padding-top: 40px;
+  margin: 0 auto;
+  overflow: hidden; }
+  .feature-wrapper .feature {
+    text-align: center;
+    width: 1200px; }
+    .feature-wrapper .feature .feature-sub-con {
+      display: inline-block;
+      width: 146px;
+      height: 43px;
+      margin-right: 162px; }
+      .feature-wrapper .feature .feature-sub-con dl dt {
+        float: left;
+        width: 42px;
+        height: 43px;
+        margin-right: 8px; }
+      .feature-wrapper .feature .feature-sub-con dl dd {
+        float: left;
+        width: 96px;
+        height: 42px; }
+        .feature-wrapper .feature .feature-sub-con dl dd h4 {
+          font-size: 18px;
+          line-height: 28px;
+          color: #555; }
+        .feature-wrapper .feature .feature-sub-con dl dd p {
+          font-size: 12px;
+          line-height: 14px;
+          color: #5b5b5b; }
+
+.special-title {
+  width: 1000px;
+  margin: 0 auto;
+  height: 62px;
+  font-size: 18px;
+  color: #595959;
+  line-height: 62px; }
+  .special-title h3 {
+    padding-left: 18px;
+    background: url(../img/left-line.png) left center no-repeat; }
+
+.special-con {
+  width: 1000px;
+  height: 180px;
+  margin: 0 auto;
+  overflow: hidden; }
+  .special-con .img-con-wrapper {
+    width: 1100px; }
+    .special-con .img-con-wrapper div.img-wrapper {
+      width: 310px;
+      height: 179px;
+      display: inline-block;
+      margin-right: 25px; }
+
+.allliance-area {
+  width: 1000px;
+  margin: 0 auto; }
+  .allliance-area .sort-liance {
+    height: 29px;
+    padding: 23px 0 0 85px;
+    background: url(../img/food.png) no-repeat 24px 0; }
+    .allliance-area .sort-liance ul {
+      font-size: 14px;
+      color: #535353; }
+      .allliance-area .sort-liance ul a {
+        color: #535353;
+        padding: 0 10px;
+        line-height: 28px; }
+      .allliance-area .sort-liance ul li.left-sort-area {
+        float: left; }
+      .allliance-area .sort-liance ul li.right-sort-area {
+        float: right; }
+  .allliance-area .liance-con-wrapper {
+    padding: 25px 28px;
+    overflow: hidden; }
+    .allliance-area .liance-con-wrapper .liance-con {
+      width: 1100px; }
+      .allliance-area .liance-con-wrapper .liance-con .single-liance-show {
+        margin-right: 22px;
+        margin-bottom: 12px;
+        margin-top: 12px;
+        display: inline-block; }
+        .allliance-area .liance-con-wrapper .liance-con .single-liance-show .single-image-top-area {
+          width: 170px;
+          height: 100px; }
+          .allliance-area .liance-con-wrapper .liance-con .single-liance-show .single-image-top-area img {
+            width: 100%;
+            height: 100%; }
+        .allliance-area .liance-con-wrapper .liance-con .single-liance-show .single-text-bottom-area .text-title {
+          font-size: 14px;
+          line-height: 28px;
+          color: #535353; }
+        .allliance-area .liance-con-wrapper .liance-con .single-liance-show .single-text-bottom-area .price-box {
+          width: 170px; }
+          .allliance-area .liance-con-wrapper .liance-con .single-liance-show .single-text-bottom-area .price-box .single-price {
+            color: #60bf82;
+            float: left; }
+          .allliance-area .liance-con-wrapper .liance-con .single-liance-show .single-text-bottom-area .price-box .sales-count {
+            float: right;
+            color: #aeaeae;
+            font-size: 12px; }
+
+.today-recommend-wrapper {
+  width: 1000px;
+  margin: 0 auto 27px;
+  overflow: hidden; }
+  .today-recommend-wrapper .today-recommend {
+    width: 1200px; }
+    .today-recommend-wrapper .today-recommend .single-recommend-goods {
+      width: 210px;
+      height: 313px;
+      padding: 10px;
+      display: inline-block;
+      border: 1px solid #e0e0e0; }
+      .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-top-area {
+        width: 210px;
+        height: 210px;
+        overflow: hidden; }
+        .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-top-area img {
+          width: 100%;
+          height: 100%; }
+      .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area {
+        width: 210px; }
+        .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-name-box {
+          font-size: 12px;
+          color: #5d5b5b;
+          height: 68px;
+          line-height: 68px; }
+          .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-name-box span {
+            float: left; }
+          .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-name-box em {
+            float: right; }
+            .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-name-box em b {
+              color: #d52036; }
+        .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-price-box {
+          height: 34px;
+          font-size: 14px;
+          color: #59bd7d; }
+          .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-price-box span {
+            font-size: 28px;
+            line-height: 34px; }
+          .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-price-box b {
+            text-decoration: line-through; }
+          .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-price-box i {
+            float: right;
+            width: 64px;
+            height: 23px;
+            background-color: #59bd7d;
+            margin-top: 10px;
+            color: #fff;
+            font-style: normal;
+            line-height: 23px;
+            text-align: center; }
+
+/*# sourceMappingURL=index.css.map */

@@ -22,14 +22,25 @@ $(function(){
 			},{id:carid,num:num,pro:pro});
 		},
 		lookSingleOrder:function(){
+
 			config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.userOrderDetail,function(data){
 				console.log(data);
 				layer.closeAll('loading');
 				if(data.code=='200'){
-					$obj.val(num);
-					orderTracking.data.total+=(num*price).toFixed(2);
-					$obj.parents('td').next('td.dPrice').text(num*price.toFixed(2));
-					$('.detailPrice').text(orderTracking.data.total);
+					
+					var tempHtml=orderlistGoods.innerHTML;
+					var tempHtml1=receiveuserInfo.innerHTML;
+					$('.goodsWrapper').html('');
+					$('.user-mess').html('');
+					
+					laytpl(tempHtml).render(data.orderinfo,function(html){
+						
+						$('.goodsWrapper').append(html);
+					});
+					laytpl(tempHtml1).render(data.orderinfo,function(html){
+						
+						$('.user-mess').append(html);
+					});
 				}
 
 				layer.open({
@@ -52,10 +63,7 @@ $(function(){
 				console.log(data);
 				layer.closeAll('loading');
 				if(data.code=='200'){
-					$obj.val(num);
-					orderTracking.data.total+=(num*price).toFixed(2);
-					$obj.parents('td').next('td.dPrice').text(num*price.toFixed(2));
-					$('.detailPrice').text(orderTracking.data.total);
+					
 				}
 				//me.bodyScale();
 				layer.open({
@@ -141,7 +149,56 @@ $(function(){
 
 	})
 
+	function updateGoods(){
 
+        var arr=[{status:'卖家已下单'},{status:'卖家已付款'},{status:'商家已接单'},{status:'开始配送'},{status:'配送完成'}];
+        
+        var infoHtml=$('#info').html();
+        var data=$('.ps-bg').data('info');
+       var outputIndex=data.num;
+        var arrInfo=[];
+        var tArr=data.data;
+        console.log(tArr);
+        // $('.ps-bg').html('');
+        console.log(outputIndex);
+        if(!!outputIndex&&outputIndex!=10){
+            $.each(arr,function(index,item){
+                
+                if(index<outputIndex&&index<4){
+                    console.log(outputIndex,index);
+                    var da=new Date();
+                    da.setTime(tArr[index]*1000);
+                    item.time=da.toLocaleString();
+
+                    arrInfo.push(formatTemplate(item,infoHtml));
+                }
+            });
+            if(outputIndex==4){
+                //arrInfo.push($('#completed').html());
+            }
+
+        }else if(outputIndex==10){
+            $.each(arr,function(index,item){
+
+                if(index<2){
+                    var da=new Date();
+                    da.setTime(tArr[index]*1000);
+                    item.time=da.toLocaleString();
+                    
+                    arrInfo.push(formatTemplate(item,infoHtml));
+                }
+            });
+            var da=new Date();
+            da.setTime(tArr[5]*1000);
+            arrInfo.push(formatTemplate({status:'退货完成',time:da.toLocaleString()},infoHtml));
+            
+        }else{
+            var da=new Date();
+            arrInfo.push(formatTemplate({status:'暂无配送消息',time:da.toLocaleString()},infoHtml));
+        }
+//        console.log(arrInfo);
+        $('.ps-bg').append(arrInfo.join(''));
+    }
 
 	
 })

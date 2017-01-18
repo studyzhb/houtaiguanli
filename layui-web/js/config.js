@@ -226,6 +226,7 @@ var config={
 		   	success: function(msg){
 	
            // console.log(msg);
+                msg=typeof msg==='object'?msg:JSON.parse(msg);
                 if(msg.code&&msg.code=='401'){
                     open('login.html','_self');
                 }else{

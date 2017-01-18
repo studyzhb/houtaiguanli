@@ -1,0 +1,142 @@
+extends header
+block content
+    link(href='../css/index.css',rel='stylesheet')
+    .banner-wrapper
+        .banner-area
+            ul.notice-pic.clearfix
+                li
+                    img(src='../img/test1.jpg')
+        .right-spec
+            .compersive-area
+            .down-area
+                img(src='../img/download.jpg')
+    
+    .feature-wrapper
+        .feature
+            block feature
+                .feature-sub-con
+                    dl
+                        dt 
+                            img(src="../img/feature.png")
+                        dd
+                            h4 天天低价
+                            p 人工审核震撼低价
+            block feature
+            block feature
+
+
+    .special-title
+        h3
+            span 年货节 SPRING FESTIVAL
+    .special-con
+        .img-con-wrapper
+            div.img-wrapper
+                img(src='../img/img01.png') 
+            div.img-wrapper
+                img(src='../img/img01.png')
+            div.img-wrapper
+                img(src='../img/img01.png') 
+    .special-title
+        h3
+            span 巧手主妇 HOUSEWIFE
+    .special-con
+        .img-con-wrapper
+            div.img-wrapper
+                img(src='../img/img01.png') 
+            div.img-wrapper
+                img(src='../img/img01.png')
+            div.img-wrapper
+                img(src='../img/img01.png')  
+    .special-title
+        h3
+            span 异业联盟 ALLLIANCE
+    .allliance-area
+        .sort-liance
+            ul
+                li.left-sort-area
+                    a 美食
+                li.right-sort-area
+                    a 美食 
+                    ||
+                    a 代金券
+                    ||
+                    a 美食 
+                    ||
+                    a 代金券
+                    ||
+                    a 美食 
+                    ||
+                    a 代金券
+        .liance-con-wrapper
+            .liance-con
+                block singleImage
+                    .single-liance-show
+                        .single-image-top-area
+                            img(src='../img/test2.png')
+                        .single-text-bottom-area
+                            .text-title [紫荆山] 双人牛排套餐
+                            .price-box
+                                span.single-price ￥98
+                                em.sales-count 已售出123份
+                block singleImage
+                block singleImage
+                block singleImage
+                block singleImage
+                block singleImage
+                block singleImage
+        
+        .special-title
+            h3
+                span 便利店及时送 CONWENIENTSTORE
+        
+
+        .special-title
+            h3
+                span 今日推荐 CONWENIENTSTORE
+            
+        .today-recommend-wrapper
+            .today-recommend
+                block recommend
+                    .single-recommend-goods
+                        .single-recommend-top-area
+                            img(src='../img/test3.png')
+                        .single-recommend-bottom-area
+                            .recommend-name-box
+                                span 便捷旅行防水洗漱包
+                                em 已售<b>27295</b>件
+                            .recommend-price-box ￥
+                                span 9.0 
+                                b 19.0 
+                                em (4.75折)
+                block recommend
+                block recommend
+                block recommend
+
+        
+        .special-title
+            h3
+                span 每日超值特卖 CONWENIENTSTORE
+         .today-recommend-wrapper
+            .today-recommend
+                block every-fav
+                    .single-recommend-goods
+                        .single-recommend-top-area
+                            img(src='../img/test3.png')
+                        .single-recommend-bottom-area
+                            .recommend-name-box
+                                span 简易多层组装鞋架
+                                em 已售<b>27295</b>件
+                            .recommend-price-box ￥
+                                span 9.0  
+                                em (￥21.3)
+                                i 立即购买
+
+                
+                    
+
+
+    
+
+
+
+

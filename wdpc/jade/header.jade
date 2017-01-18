@@ -1,0 +1,73 @@
+doctype html
+html
+    head
+        link(href='../css/reset.css',rel='stylesheet')
+        link(href='../css/header.css',rel='stylesheet')
+    body
+        header
+            .wd-title-container
+                ul.left-logo-name
+                    li.wd-common-name
+                        a 万店联盟
+                ul.right-menu-area
+                    li.wd-login-reg
+                        span
+                            a 登录
+                        span
+                            a 注册
+                    li.wd-mye
+                        a 我的e+
+                    li.wd-myphone
+                        a 我的手机e+
+                    li.wd-focus-e
+                        a 关注e+
+                    li.wd-serve-cus
+                        a 客服服务
+
+            .wd-logo-container
+                .logoImage
+                    a
+                        img(src='../img/header/logo.png')
+                .wd-search-area
+                    form.logo-search-form
+                        input(class='search-text',type='text',placeholder='万店联盟搜索')
+                        input(class='search-btn',type='button',value='搜索')
+                    .hotwords
+                        a 奶糖
+                        a 红枣
+                .wd-shoppinglist-small
+                    .showshopping-con 去购物车结算
+                        span (0)
+
+        .wd-nav-area-bg
+            ul.wd-nav-area
+                - var navlist=['分类','首页有惊喜','美食馆','休闲娱乐','旅游出行','住宿','生活服务','购物'];
+                each item,index in navlist
+                    if index==1
+                        li.surprise
+                            a #{item}
+                    else 
+                        li
+                            a #{item}
+        block content 
+
+        footer
+            .foot-serve
+                .foot-serve-top.clearfix
+                    .barcode
+                    - var serCon1=['购物指南','购物流程','购物指南']; 
+                    ul.serve
+                        each item in serCon1
+                            li #{item}
+                    ul.serve
+                        each item in serCon1
+                            li #{item}
+                    ul.serve
+                        each item in serCon1
+                            li #{item}
+                .foot-serve-bottom
+            .foot-about-bg
+                .foot-about   
+                    - var footInfo=['©2017 e+.RIGHT','ICP备案号：00000','增值电信'];
+                    each item in footInfo
+                        a #{item}         

@@ -34,6 +34,10 @@ $(function(){
 			StoreHouse.updateList(data,laytpl);
 			StoreHouse.updateGoodsInfo(data);
 
+			$.each(data.goodinfo,function(index,item){
+				// item.pro.length>1?
+			});
+
 		},{name:'typeid',value:3});
 	});
 
@@ -50,13 +54,19 @@ $(function(){
 	$('.intoShopList').on('click',function(){
 		config.formSubmit('#goodsWraper',config.ajaxAddress.publicAddress+config.ajaxAddress.addMart,function(data){
 			console.log(data);
-			
+			if(data.code=='200'){
+				layer.msg('添加成功');
+				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+				parent.layer.close(index);
+			}else{
 
+			}
 		});
 	});
 
 	//点击添加至进货单
 	$('#goodsWraper').on('click','.addOrder',function(){
+
 		$(this).parent('.shop-mask').siblings('.mutiCode').animate({
 			bottom:0,
 			zIndex:10
