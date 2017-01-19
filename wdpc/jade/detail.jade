@@ -1,0 +1,87 @@
+extends header
+block content
+    link(href="../css/detail.css",rel="stylesheet")
+    .goods-detail-title-wrapper
+        .goods-detail-title
+            a 首页
+            |>
+            a 今日推荐
+            |>
+            a 新科苹果数据线
+    .goods-detail-content.clearfix
+        .left-small-piclist
+            .sview-area
+                div
+                    img(src="http://enclosure.wandlm.net/web_pic/2017/01/09/1483941252101.png")
+                    .selecArea
+                .show-select-area
+            .show-goods-smalllist
+                span.top-icon
+                .goods-smalllist-box
+                    ul.goods-smalllist.clearfix
+                        li 
+                            img(src="http://enclosure.wandlm.net/web_pic/2017/01/09/1483941252101.png")
+                        li 
+                            img(src="http://enclosure.wandlm.net/web_pic/2017/01/09/1483941252101.png")
+                        li 
+                            img(src="http://enclosure.wandlm.net/web_pic/2017/01/09/1483941252101.png")
+                        li 
+                            img(src="http://enclosure.wandlm.net/web_pic/2017/01/09/1483941252101.png")
+                span.bottom-icon
+            .view-video(style='display:none')
+        .right-detail-box
+            .goods-name
+                h1 泰国小老板海苔卷
+                    span 泰国小老板海苔卷
+            .summary
+                ul
+                    li.price
+                        p 特卖价：￥9.8 58.0 （1.71折）      
+                        p 活动：
+                            img
+                            span 该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，
+                    li.clearfix
+                        dl
+                            dt 规格：
+                            dd 
+                                a 金色
+                                a 灰色
+                                a 金色
+                                a 灰色
+                    li.clearfix
+                        dl 
+                            dt 数量：
+                            dd
+            .choose-btns.clearfix
+                a.buynow.buy-btn 立即购买
+                a.addCar.buy-btn 加入购物车 
+    //-商品详情页
+    .goods-detail-image-area.clearfix
+        .left-image-area-search
+            .top-shop-name-area
+                .shop-lng-lon 商家一号店
+                .shop-btn-box
+                    span 进店逛逛
+                    em 收藏店铺
+            .bottom-search-area
+                .search-title 本店搜索
+                form.form-search
+                    .form-group
+                        label 关键字
+                        input
+                    .form-group
+                        label 价格
+                        input.input-price 
+                        |-
+                        input.input-price
+                    .form-group
+                        button
+        .right-image-area
+            ul.tabbar-goods-detail
+                li.selec-this 产品详情
+                li 评论专区
+                li 商家详情
+            .show-goods-content
+                .image-content-share
+                    .single-image-con
+                        img(src='../img/test2.jpg')                            

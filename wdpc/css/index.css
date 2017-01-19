@@ -29,6 +29,29 @@
         width: 100%;
         height: 100%; }
 
+.shop-banner-wrapper {
+  padding: 42px 0 15px 85px; }
+  .shop-banner-wrapper .shop-banner {
+    position: relative;
+    width: 826px;
+    height: 227px;
+    overflow: hidden; }
+    .shop-banner-wrapper .shop-banner ul.shop-con {
+      width: 1000px; }
+      .shop-banner-wrapper .shop-banner ul.shop-con li {
+        width: 368px;
+        height: 227px;
+        margin-right: 90px;
+        float: left; }
+    .shop-banner-wrapper .shop-banner .pre-step {
+      position: absolute;
+      left: -48px;
+      top: 50%; }
+    .shop-banner-wrapper .shop-banner .next-step {
+      position: absolute;
+      right: -48px;
+      top: 50%; }
+
 .feature-wrapper {
   width: 1000px;
   height: 60px;
@@ -171,7 +194,19 @@
           color: #59bd7d; }
           .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-price-box span {
             font-size: 28px;
-            line-height: 34px; }
+            line-height: 34px;
+            position: relative; }
+          .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-price-box b.favor-wrapper {
+            width: 65px;
+            height: 21px;
+            position: absolute;
+            top: 1px;
+            right: -59px;
+            background: url(../img/favor.png) no-repeat;
+            text-decoration: none;
+            text-align: center;
+            font-size: 12px;
+            line-height: 16px; }
           .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-price-box b {
             text-decoration: line-through; }
           .today-recommend-wrapper .today-recommend .single-recommend-goods .single-recommend-bottom-area .recommend-price-box i {

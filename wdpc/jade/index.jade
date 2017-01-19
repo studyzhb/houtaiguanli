@@ -1,6 +1,7 @@
 extends header
 block content
     link(href='../css/index.css',rel='stylesheet')
+    script(src='../js/index.js')
     .banner-wrapper
         .banner-area
             ul.notice-pic.clearfix
@@ -88,7 +89,15 @@ block content
         .special-title
             h3
                 span 便利店及时送 CONWENIENTSTORE
-        
+        .shop-banner-wrapper
+            .shop-banner
+                img.pre-step(src='../img/next.png')
+                img.next-step(src='../img/pre.png')
+                ul.shop-con.clearfix
+                    li
+                        img(src='../img/shop/shoptest.png')
+                    li
+                        img(src='../img/shop/shoptest.png')
 
         .special-title
             h3
@@ -128,6 +137,7 @@ block content
                                 em 已售<b>27295</b>件
                             .recommend-price-box ￥
                                 span 9.0  
+                                    b.favor-wrapper 立省13元
                                 em (￥21.3)
                                 i 立即购买
 

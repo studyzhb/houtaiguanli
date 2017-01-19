@@ -40,6 +40,38 @@
     }
 }
 
+.shop-banner-wrapper{
+    padding:42px 0 15px 85px;
+    .shop-banner{
+        position:relative;
+        width:826px;
+        height:227px;
+        overflow: hidden;
+        
+        ul.shop-con{
+            width: 1000px;
+            li{
+                width:368px;
+                height:227px;
+                margin-right:90px;
+                float:left;
+            }
+        }
+
+        .pre-step{
+            position: absolute;
+            left:-48px;
+            top:50%;
+        }
+        .next-step{
+            position:absolute;
+            right:-48px;
+            top:50%;
+        }
+    }
+    
+}
+
 .feature-wrapper{
     width: 1000px;
     height:60px;
@@ -226,6 +258,19 @@
                     span{
                         font-size:28px;
                         line-height: 34px;
+                        position:relative;
+                    }
+                    b.favor-wrapper{
+                        width:65px;
+                        height:21px;
+                        position: absolute;
+                        top:1px;
+                        right:-59px;
+                        background: url(../img/favor.png) no-repeat;
+                        text-decoration: none;
+                        text-align: center;
+                        font-size: 12px;
+                        line-height: 16px;
                     }
                     b{
                         text-decoration: line-through;
