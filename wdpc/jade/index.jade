@@ -2,6 +2,8 @@ extends header
 block content
     link(href='../css/index.css',rel='stylesheet')
     script(src='../js/index.js')
+    - var arrfood = [{img:'../img/food/dingdinghong1.jpg',title:'金水区鼎鼎红',price:'32.20'},{img:'../img/food/bainianlaoma2.jpg',title:'百年老妈(万达店)',price:'14.72'},{img:'../img/food/huadu1.jpg',title:'华都酒店(前进路店)',price:'79.00'},{img:'../img/food/bage1.jpg',title:'八哥酸辣粉',price:'7.90'},{img:'../img/food/shuxiangjiayan3.jpg',title:'蜀香家宴酒楼',price:'89.90'}];
+
     .banner-wrapper
         .banner-area
             ul.notice-pic.clearfix
@@ -70,76 +72,82 @@ block content
                     a 代金券
         .liance-con-wrapper
             .liance-con
-                block singleImage
+                each item in arrfood
                     .single-liance-show
                         .single-image-top-area
-                            img(src='../img/test2.png')
+                            img(src='#{item.img}')
                         .single-text-bottom-area
-                            .text-title [紫荆山] 双人牛排套餐
+                            .text-title #{item.title}
                             .price-box
-                                span.single-price ￥98
+                                span.single-price ￥#{item.price}
                                 em.sales-count 已售出123份
-                block singleImage
-                block singleImage
-                block singleImage
-                block singleImage
-                block singleImage
-                block singleImage
-        
-        .special-title
-            h3
-                span 便利店及时送 CONWENIENTSTORE
-        .shop-banner-wrapper
-            .shop-banner
-                img.pre-step(src='../img/next.png')
-                img.next-step(src='../img/pre.png')
-                ul.shop-con.clearfix
-                    li
-                        img(src='../img/shop/shoptest.png')
-                    li
-                        img(src='../img/shop/shoptest.png')
+    
+    .special-title
+        h3
+            span 便利店及时送 CONWENIENTSTORE
+    .shop-banner-wrapper
+        .shop-banner
+            img.pre-step(src='../img/next.png')
+            img.next-step(src='../img/pre.png')
+            ul.shop-con.clearfix
+                li
+                    img(src='../img/shop/shoptest.png')
+                li
+                    img(src='../img/shop/shoptest.png')
 
-        .special-title
-            h3
-                span 今日推荐 CONWENIENTSTORE
-            
-        .today-recommend-wrapper
-            .today-recommend
-                block recommend
-                    .single-recommend-goods
-                        .single-recommend-top-area
-                            img(src='../img/test3.png')
-                        .single-recommend-bottom-area
-                            .recommend-name-box
-                                span 便捷旅行防水洗漱包
-                                em 已售<b>27295</b>件
-                            .recommend-price-box ￥
-                                span 9.0 
-                                b 19.0 
-                                em (4.75折)
-                block recommend
-                block recommend
-                block recommend
+    .special-title
+        h3
+            span 优选商铺 ALLLIANCE
+    .special-con
+        .img-con-wrapper
+            div.img-wrapper
+                img(src='../img/travelImage/shopbreviary.jpg') 
+            div.img-wrapper
+                img(src='../img/life/35.jpg')
+            div.img-wrapper
+                img(src='../img/atay/e1.png')
+
+    .special-title
+        h3
+            span 今日推荐 CONWENIENTSTORE
+        
+    .today-recommend-wrapper
+        .today-recommend
+            block recommend
+                .single-recommend-goods
+                    .single-recommend-top-area
+                        img(src='../img/test3.png')
+                    .single-recommend-bottom-area
+                        .recommend-name-box
+                            span 便捷旅行防水洗漱包
+                            em 已售<b>27295</b>件
+                        .recommend-price-box ￥
+                            span 9.0 
+                            b 19.0 
+                            em (4.75折)
+            block recommend
+            block recommend
+            block recommend
 
         
-        .special-title
-            h3
-                span 每日超值特卖 CONWENIENTSTORE
-         .today-recommend-wrapper
-            .today-recommend
-                block every-fav
-                    .single-recommend-goods
-                        .single-recommend-top-area
-                            img(src='../img/test3.png')
-                        .single-recommend-bottom-area
-                            .recommend-name-box
-                                span 简易多层组装鞋架
-                                em 已售<b>27295</b>件
-                            .recommend-price-box ￥
-                                span 9.0  
-                                    b.favor-wrapper 立省13元
-                                em (￥21.3)
-                                i 立即购买
+    .special-title
+        h3
+            span 每日超值特卖 CONWENIENTSTORE
+     .today-recommend-wrapper
+        .today-recommend
+            block every-fav
+                .single-recommend-goods
+                    .single-recommend-top-area
+                        img(src='../img/test3.png')
+                    .single-recommend-bottom-area
+                        .recommend-name-box
+                            span 简易多层组装鞋架
+                            em 已售<b>27295</b>件
+                        .recommend-price-box ￥
+                            span 9.0  
+                                b.favor-wrapper 立省13元
+                            em (￥21.3)
+                            i 立即购买
 
                 
                     

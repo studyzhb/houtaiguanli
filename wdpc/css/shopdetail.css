@@ -29,14 +29,12 @@
 
 .goods-detail-content {
   width: 1000px;
-  height: 506px;
   margin: 0 auto 20px;
   padding-bottom: 40px;
   overflow: hidden; }
   .goods-detail-content .left-small-piclist {
     float: left;
     width: 396px;
-    height: 506px;
     margin-right: 26px; }
     .goods-detail-content .left-small-piclist .sview-area {
       position: relative;

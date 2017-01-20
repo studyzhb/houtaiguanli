@@ -107,6 +107,9 @@
       height: 179px;
       display: inline-block;
       margin-right: 25px; }
+      .special-con .img-con-wrapper div.img-wrapper img {
+        width: 100%;
+        height: 100%; }
 
 .allliance-area {
   width: 1000px;

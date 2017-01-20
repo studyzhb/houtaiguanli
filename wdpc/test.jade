@@ -1,0 +1,38 @@
+    - var arrshopping = [{img:'../img/shopping/1.png',title:'e+便利店（升龙环球大厦)',price:'24'},{img:'../img/life/13.png',title:'康乐渔具',price:'14.72'},{img:'../img/shopping/21.png',title:'左右间超市（东明路店）',price:'24'},{img:'../img/shopping/28.png',title:'e+便利店（凤台路店）',price:'24'},{img:'../img/life/35.png',title:'e+便利店（大学路丹尼斯店）',price:'24']};
+
+    - var arrenter = [{img:'../img/entertainment/entertainment03.jpg',title:'【麦子乐器（英协路）吉尔11C/个】',price:'580.00'},{img:'../img/entertainment/entertainment01.jpg',title:'【麦子乐器（英协路）吉星DD-380C/个】',price:'198.00'},{img:'../img/entertainment/shop1.jpg',title:'麦子乐器（英协路店）MAN-41/个】',price:'680.00'},{img:'../img/entertainment/entertainment07.jpg',title:'【舒经堂足道（东明路店）中药足浴/次】',price:'58.00'},{img:'../img/entertainment/shop3.jpg',title:'【舒经堂足道（东明路店）玫瑰足浴+手部按摩/次】',price:'78.00'}];
+
+    - var arrserver = [{img:'../img/li../img/food/huafe/5.png',title:'唯艺造型（管城后街店）',price:'24'},{img:'../img/life/11.png',title:'北京中关村皇冠假日酒店',price:'200'},{img:'../img/life/14.png',title:'郑州中原驾校',price:'2700'},{img:'../img/life/22.png',title:'源之林经络减肥美容店',price:'80'},{img:'../img/life/31.png',title:'金水桶',price:'80'}];
+
+    - var arrtravel = [{img:'../img/travelImage/detail-01-01.jpg',title:'郑州方特欢乐世界',price:'155'},{img:'../img/travelImage/detail-02-01.jpg',title:'雁鸣湖凌云温泉',price:'95'},{img:'../img/travelImage/detail-03-01.jpg',title:'郑州新区如意湖景区',price:'48'},{img:'../img/travelImage/detail-04-01.jpg',title:'香堤湾温泉',price:'120'},{img:'../img/travelImage/detail-05-01.jpg',title:'郑国车马坑景区',price:'25'}];
+
+
+
+        .allliance-area
+        .sort-liance
+            ul
+                li.left-sort-area
+                    a 住宿
+                li.right-sort-area
+                    a 住宿 
+                    ||
+                    a 代金券
+                    ||
+                    a 住宿 
+                    ||
+                    a 代金券
+                    ||
+                    a 住宿 
+                    ||
+                    a 代金券
+        .liance-con-wrapper
+            .liance-con
+                each item in arratay
+                    .single-liance-show
+                        .single-image-top-area
+                            img(src='#{item.img}')
+                        .single-text-bottom-area
+                            .text-title #{item.title}
+                            .price-box
+                                span.single-price ￥#{item.price}
+                                em.sales-count 已售出123份 
