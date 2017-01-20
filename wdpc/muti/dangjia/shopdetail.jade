@@ -1,0 +1,112 @@
+extends header
+block content
+    link(href="../css/detail.css",rel="stylesheet")
+    //- 文件命名规则 例shopdetail-food-01 食品类 
+    //-注释下商品名字(-------请填写------)
+    //- 标题
+    - var arrTitle=['郑州景点门票','郑州方特欢乐世界'];
+    //- 缩略图 每个索引图片地址以./img/文件夹名字/
+    - var arrImage=['../img/travelImage/shopbreviary.jpg'];
+    //- 右侧区 mTitle:主标题 tel:电话 address:地址 intro:介绍 分类
+    - var oGoods={title:{mTitle:'郑州方特欢乐世界',tel:'0371-56668929',address:'郑州市郑州新区郑开大道与华强路交汇处',intro:['主题乐园']}}
+    //- 商家信息
+    //- 优惠信息
+    - var salesCon='';
+    //-基本信息
+    - var time='开放时间:平日：9:30~17:30 周末、节假日：9:00~18:00 夜场：16:00-22:00'
+    //-特色
+    - var special='暴风眼 720°旋转急速  极地快车 回旋式过山车'
+    //-商家简介
+    - var shopIntro='郑州方特欢乐世界 一个充满激情和惊喜的乐园,在郑州方特欢乐世界,有刺激的高空飞翔体验项目“飞越极限”、 大型动感太空飞行体验项目“星际航班”、大型恐龙复活灾难体验项目 “恐龙危机”、让人琢磨不透的中国传统神话演绎“聊斋”、色彩斑斓、如梦似幻的 “海螺湾”、神奇的卡通互动项目"嘟比脱口秀"';
+    //- 商品详情图片 图片地址以./img/文件夹名字/
+    - var arrImageDetail=['../img/travelImage/shopdetail.jpg'];
+    .goods-detail-title-wrapper
+        .goods-detail-title
+            a 首页
+            |>
+            a #{arrTitle[0]}
+            |>
+            a #{arrTitle[1]}
+    .goods-detail-content.clearfix
+        .left-small-piclist
+            .sview-area
+                div
+                    img(src="#{arrImage[1]}")
+                    .selecArea
+                .show-select-area
+            .show-goods-smalllist
+                span.top-icon
+                .goods-smalllist-box
+                    ul.goods-smalllist.clearfix
+                        li 
+                            img(src="#{arrImage[0]}")
+                        li 
+                            img(src="#{arrImage[1]}")
+                        li 
+                            img(src="#{arrImage[2]}")
+                        li 
+                            img(src="#{arrImage[3]}")
+                span.bottom-icon
+            .view-video(style='display:none')
+        .right-detail-box
+            .goods-name
+                h1 #{oGoods.title.mTitle}
+                    span #{oGoods.title.subTitle}
+            .summary
+                ul
+                    li.price
+                        p 特卖价：
+                            span.price-box ￥#{arrPrice[0]} 
+                                em #{arrPrice[1]}
+                                    i （#{arrPrice[2]}）     
+                        p 活动：
+                            img
+                            span 该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，
+                    li.clearfix
+                        dl
+                            dt 规格：
+                            dd 
+                                each item in arrStandard
+                                    a #{item}
+                                
+                    li.clearfix
+                        dl 
+                            dt 数量：
+                            dd
+            .choose-btns.clearfix
+                a.buynow.buy-btn 立即购买
+                a.addCar.buy-btn 加入购物车 
+    //-商品详情页
+    .goods-detail-image-area.clearfix
+        .left-image-area-search
+            .top-shop-name-area
+                .shop-lng-lon 商家一号店
+                .shop-btn-box
+                    span 进店逛逛
+                    em 收藏店铺
+            .bottom-search-area
+                .search-title 本店搜索
+                form.form-search
+                    .form-group
+                        label 关键字
+                        .form-item
+                            input
+                    .form-group
+                        label 价格
+                        .form-item
+                            input.input-price 
+                            |-
+                            input.input-price
+                    .form-group
+                        label
+                        button 搜索
+        .right-image-area
+            ul.tabbar-goods-detail
+                li.selec-this 产品详情
+                li 评论专区
+                li 商家详情
+            .show-goods-content
+                .image-content-share
+                    each item in arrImageDetail
+                        .single-image-con
+                            img(src='#{item}')                            

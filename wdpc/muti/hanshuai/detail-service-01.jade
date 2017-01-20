@@ -1,0 +1,110 @@
+extends header
+block content
+    link(href="../css/detail.css",rel="stylesheet")
+    //- 文件命名规则 例detail-food-01 食品类 
+    //-注释下商品名字(-------请填写------)
+    //- 标题
+    - var arrTitle=['生活服务','唯艺造型（管城后街店）'];
+    //- 缩略图 每个索引图片地址以./img/文件夹名字/
+    - var arrImage=['../img/life/1.png','../img/life/2.png','../img/life/3.png','../img/life/4.png'];
+    //- 右侧价格区 mTitle:主标题 subTitle:次标题
+    - var oGoods={title:{mTitle:'唯艺造型（管城后街店）',subTitle:'唯艺造型（管城后街店,你的个人专属,不同的你'}}
+    //- 价格 数组0 折扣后价格 1 原价 2 折扣
+    - var arrPrice=['24','30','0.8折'];
+    //- 商品规格
+    - var arrStandard=['生活服务 ','美容美发'];
+    //- 商品详情图片 图片地址以./img/文件夹名字/
+    - var arrImageDetail=['../img/life/5.png','../img/life/6.png','../img/life/7.png','../img/life/8.png','../img/life/9.png'];
+    - var arrImageShop=[''];
+店铺详情图片
+
+    .goods-detail-title-wrapper
+        .goods-detail-title
+            a 首页
+            |>
+            a #{arrTitle[0]}
+            |>
+            a #{arrTitle[1]}
+    .goods-detail-content.clearfix
+        .left-small-piclist
+            .sview-area
+                div
+                    img(src="#{arrImage[1]}")
+                    .selecArea
+                .show-select-area
+            .show-goods-smalllist
+                span.top-icon
+                .goods-smalllist-box
+                    ul.goods-smalllist.clearfix
+                        li 
+                            img(src="#{arrImage[0]}")
+                        li 
+                            img(src="#{arrImage[1]}")
+                        li 
+                            img(src="#{arrImage[2]}")
+                        li 
+                            img(src="#{arrImage[3]}")
+                span.bottom-icon
+            .view-video(style='display:none')
+        .right-detail-box
+            .goods-name
+                h1 #{oGoods.title.mTitle}
+                    span #{oGoods.title.subTitle}
+            .summary
+                ul
+                    li.price
+                        p 特卖价：
+                            span.price-box ￥#{arrPrice[0]} 
+                                em #{arrPrice[1]}
+                                    i （#{arrPrice[2]}）     
+                        p 活动：
+                            img
+                            span 该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，该商品参与了公益宝贝计划，
+                    li.clearfix
+                        dl
+                            dt 规格：
+                            dd 
+                                each item in arrStandard
+                                    a #{item}
+                                
+                    li.clearfix
+                        dl 
+                            dt 数量：
+                            dd
+            .choose-btns.clearfix
+                a.buynow.buy-btn 立即购买
+                a.addCar.buy-btn 加入购物车 
+    //-商品详情页
+    .goods-detail-image-area.clearfix
+        .left-image-area-search
+            .top-shop-name-area
+                .shop-lng-lon 商家一号店
+                .shop-btn-box
+                    span 进店逛逛
+                    em 收藏店铺
+            .bottom-search-area
+                .search-title 本店搜索
+                form.form-search
+                    .form-group
+                        label 关键字
+                        .form-item
+                            input
+                    .form-group
+                        label 价格
+                        .form-item
+                            input.input-price 
+                            |-
+                            input.input-price
+                    .form-group
+                        label
+                        button 搜索
+        .right-image-area
+            ul.tabbar-goods-detail
+                li.selec-this 产品详情
+                li 评论专区
+                li 商家详情
+            .show-goods-content
+                .image-content-share
+                    each item in arrImageDetail
+                        .single-image-con
+                            img(src='#{item}')                            

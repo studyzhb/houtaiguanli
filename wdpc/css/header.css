@@ -16,7 +16,8 @@ header {
     header .wd-title-container ul.right-menu-area {
       float: right; }
       header .wd-title-container ul.right-menu-area li {
-        float: left; }
+        float: left;
+        margin: 0 10px; }
   header .wd-logo-container {
     width: 984px;
     height: 73px;
@@ -100,7 +101,6 @@ header {
         color: #e85c07; }
 
 footer {
-  height: 248px;
   background-color: #ececec; }
   footer .foot-serve {
     height: 170px;

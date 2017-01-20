@@ -21,6 +21,7 @@ header{
              float: right;
              li{
                  float:left;
+                 margin:0 10px;
              }
          }
      }
@@ -141,7 +142,7 @@ header{
 }
 
 footer{
-    height:248px;
+    //height:248px;
     background-color: #ececec;
     .foot-serve{
         height: 170px;

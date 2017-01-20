@@ -1,10 +1,10 @@
 .goods-detail-title-wrapper {
   height: 44px;
-  text-align: center; }
+  margin: 10px; }
 
 .goods-detail-title {
   width: 1000px;
-  display: inline-block;
+  margin: 0 auto;
   height: 44px;
   overflow: hidden;
   line-height: 44px;
@@ -96,7 +96,6 @@
         font-size: 16px;
         line-height: 24px;
         width: inherit;
-        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; }
         .goods-detail-content .right-detail-box .goods-name h1 span {
@@ -120,12 +119,26 @@
           border-bottom: 1px solid #c0c0c0;
           height: 85px;
           line-height: 85px;
-          font-size: 14px; }
+          font-size: 14px;
+          padding-left: 6px; }
+          .goods-detail-content .right-detail-box .summary ul li.price p .price-box {
+            display: inline-block;
+            color: #59bd7d;
+            line-height: 85px;
+            width: 424px;
+            margin-left: 56px;
+            font-size: 28px; }
+            .goods-detail-content .right-detail-box .summary ul li.price p .price-box em {
+              font-size: 12px; }
+            .goods-detail-content .right-detail-box .summary ul li.price p .price-box i {
+              font-size: 16px;
+              font-style: normal; }
           .goods-detail-content .right-detail-box .summary ul li.price p span {
             display: inline-block;
             vertical-align: middle;
             line-height: 20px;
-            width: 424px; }
+            width: 424px;
+            margin-left: 74px; }
           .goods-detail-content .right-detail-box .summary ul li.price p img {
             display: inline-block;
             width: 1px;
@@ -172,7 +185,7 @@
       .goods-detail-content .right-detail-box .choose-btns .buynow {
         background: #ff7d01; }
       .goods-detail-content .right-detail-box .choose-btns .addCar {
-        background: #f24254; }
+        background: #59bd7d; }
 
 .goods-detail-image-area {
   width: 1000px;
@@ -222,21 +235,41 @@
       .goods-detail-image-area .left-image-area-search .bottom-search-area .search-title {
         height: 30px;
         line-height: 30px;
+        padding-left: 16px;
         background-color: #59bd7d; }
       .goods-detail-image-area .left-image-area-search .bottom-search-area .form-search {
         font-size: 14px; }
         .goods-detail-image-area .left-image-area-search .bottom-search-area .form-search .form-group {
-          margin-top: 18px;
+          margin-top: 16px;
           font-size: 20px;
-          color: #000; }
+          color: #000;
+          height: 24px;
+          width: 100%; }
           .goods-detail-image-area .left-image-area-search .bottom-search-area .form-search .form-group label {
-            font-size: 14px; }
+            display: inline-block;
+            font-size: 14px;
+            width: 48px;
+            padding-right: 6px;
+            text-align: right; }
+          .goods-detail-image-area .left-image-area-search .bottom-search-area .form-search .form-group .form-item {
+            width: 134px;
+            height: 24px;
+            display: inline-block; }
           .goods-detail-image-area .left-image-area-search .bottom-search-area .form-search .form-group input {
-            width: 124px;
-            height: 24px; }
+            width: 120px;
+            height: 22px;
+            border: 1px solid #adadad; }
           .goods-detail-image-area .left-image-area-search .bottom-search-area .form-search .form-group input.input-price {
             width: 52px;
             height: 24px; }
+          .goods-detail-image-area .left-image-area-search .bottom-search-area .form-search .form-group button {
+            width: 62px;
+            height: 24px;
+            border: none;
+            font-size: 14px;
+            color: #fff;
+            line-height: 24px;
+            background-color: #59bd7d; }
   .goods-detail-image-area .right-image-area {
     float: left; }
     .goods-detail-image-area .right-image-area ul.tabbar-goods-detail {
@@ -253,5 +286,15 @@
       .goods-detail-image-area .right-image-area ul.tabbar-goods-detail li.selec-this, .goods-detail-image-area .right-image-area ul.tabbar-goods-detail li:hover {
         background-color: #59bd7d;
         color: #fff; }
+    .goods-detail-image-area .right-image-area .show-goods-content {
+      width: 790px; }
+      .goods-detail-image-area .right-image-area .show-goods-content .image-content-share {
+        font-size: 0;
+        width: 790px; }
+        .goods-detail-image-area .right-image-area .show-goods-content .image-content-share .single-image-con {
+          width: 100%;
+          overflow: hidden; }
+          .goods-detail-image-area .right-image-area .show-goods-content .image-content-share .single-image-con img {
+            width: 100%; }
 
 /*# sourceMappingURL=detail.css.map */
