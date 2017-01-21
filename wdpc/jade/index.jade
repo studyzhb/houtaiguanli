@@ -1,16 +1,59 @@
 extends header
 block content
-    link(href='../css/index.css',rel='stylesheet')
+    link(href='../css/index.css?v=1',rel='stylesheet')
     script(src='../js/index.js')
-    - var arrfood = [{img:'../img/food/dingdinghong1.jpg',title:'金水区鼎鼎红',price:'32.20'},{img:'../img/food/bainianlaoma2.jpg',title:'百年老妈(万达店)',price:'14.72'},{img:'../img/food/huadu1.jpg',title:'华都酒店(前进路店)',price:'79.00'},{img:'../img/food/bage1.jpg',title:'八哥酸辣粉',price:'7.90'},{img:'../img/food/shuxiangjiayan3.jpg',title:'蜀香家宴酒楼',price:'89.90'}];
+    - var arrfood = [{img:'../img/food/dingdinghong1.jpg',title:'金水区鼎鼎红',price:'32.20',url:'detail-food-1.html'},{img:'../img/food/dingdinghong2.jpg',title:'金水区鼎鼎红',price:'32.20',url:'detail-food-2.html'},{img:'../img/food/dingdinghong3.jpg',title:'金水区鼎鼎红',price:'32.20',url:'detail-food-3.html'},{img:'../img/food/dingdinghong4.jpg',title:'金水区鼎鼎红',price:'32.20',url:'detail-food-4.html'},{img:'../img/food/dingdinghong3.jpg',title:'金水区鼎鼎红',price:'32.20',url:'detail-food-5.html'},{img:'../img/food/dingdinghong2.jpg',title:'金水区鼎鼎红',price:'32.20',url:'detail-food-6.html'},{img:'../img/food/bainianlaoma2.jpg',title:'百年老妈(万达店)',price:'14.72',url:'detail-food-7.html'},{img:'../img/food/huadu1.jpg',title:'华都酒店(前进路店)',price:'79.00',url:'detail-food-8.html'},{img:'../img/food/bage1.jpg',title:'八哥酸辣粉',price:'7.90',url:'detail-food-9.html'},{img:'../img/food/shuxiangjiayan3.jpg',title:'龙哥的面',price:'89.90',url:'detail-food-10.html'},{img:'../img/food/shuxiangjiayan4.jpg',title:'莆田人家',price:'89.90',url:'detail-food-11.html'},{img:'../img/food/shuxiangjiayan5.jpg',title:'米知味',price:'89.90',url:'detail-food-12.html'},{img:'../img/food/shuxiangjiayan8.jpg',title:'博爱牛肉丸子汤',price:'89.90',url:'detail-food-13.html'},{img:'../img/food/shuxiangjiayan6.jpg',title:'沙县小吃',price:'89.90',url:'detail-food-14.html'},{img:'../img/food/shuxiangjiayan7.jpg',title:'鸡小呆',price:'89.90',url:'detail-food-15.html'}];
+
+    - var arrshopping = [{img:'../img/shopping/1.jpg',title:'e+便利店（升龙环球大厦)',price:'24',url:'detail-shopping-01.html'},{img:'../img/shopping/13.jpg',title:'康乐渔具',price:'14.72',url:'detail-shopping-02.html'},{img:'../img/shopping/21.jpg',title:'左右间超市（东明路店）',price:'24',url:'detail-shopping-03.html'},{img:'../img/shopping/28.jpg',title:'e+便利店（凤台路店）',price:'24',url:'detail-shopping-04.html'},{img:'../img/shopping/35.jpg',title:'e+便利店（大学路丹尼斯店）',price:'24',url:'detail-shopping-05.html'}];
+
+    - var arrenter = [{img:'../img/entertainment/entertainment03.jpg',title:'【麦子乐器（英协路）吉尔11C/个】',price:'580.00',url:'detail-entertainment-01.html'},{img:'../img/entertainment/entertainment01.jpg',title:'【麦子乐器（英协路）吉星DD-380C/个】',price:'198.00',url:'detail-entertainment-02.html'},{img:'../img/entertainment/shop1.jpg',title:'麦子乐器（英协路店）MAN-41/个】',price:'680.00',url:'detail-entertainment-03.html'},{img:'../img/entertainment/entertainment07.jpg',title:'【舒经堂足道（东明路店）中药足浴/次】',price:'58.00',url:'detail-entertainment-04.html'},{img:'../img/entertainment/shop3.jpg',title:'【舒经堂足道（东明路店）玫瑰足浴+手部按摩/次】',price:'78.00',url:'detail-entertainment-05.html'}];
+
+    - var arrserver = [{img:'../img/life/5.jpg',title:'唯艺造型（管城后街店）',price:'24',url:'detail-service-01.html'},{img:'../img/life/11.jpg',title:'北京中关村皇冠假日酒店',price:'200',url:'detail-service-02.html'},{img:'../img/life/14.jpg',title:'郑州中原驾校',price:'2700',url:'detail-service-03.html'},{img:'../img/life/22.jpg',title:'源之林经络减肥美容店',price:'80',url:'detail-service-04.html'},{img:'../img/life/31.jpg',title:'金水桶',price:'80',url:'detail-service-05.html'}];
+
+    - var arrtravel = [{img:'../img/travelImage/detail-01-01.jpg',title:'郑州方特欢乐世界',price:'155',url:'detail-travel-01.html'},{img:'../img/travelImage/detail-02-01.jpg',title:'雁鸣湖凌云温泉',price:'95',url:'detail-travel-02.html'},{img:'../img/travelImage/detail-03-01.jpg',title:'郑州新区如意湖景区',price:'48',url:'detail-travel-03.html'},{img:'../img/travelImage/detail-04-01.jpg',title:'香堤湾温泉',price:'120',url:'detail-travel-04.html'},{img:'../img/travelImage/detail-05-01.jpg',title:'郑国车马坑景区',price:'25',url:'detail-travel-05.html'},{img:'../img/travelImage/detail-06-01.jpg',title:'洛阳龙门海洋馆',price:'155',url:'detail-travel-06.html'},{img:'../img/travelImage/detail-07-01.jpg',title:'重渡沟风景区',price:'155',url:'detail-travel-07.html'},{img:'../img/travelImage/detail-08-01.jpg',title:'河南栾川老君山',price:'155',url:'detail-travel-08.html'},{img:'../img/travelImage/detail-09-01.jpg',title:'鸡冠洞',price:'155',url:'detail-travel-09.html'},{img:'../img/travelImage/detail-10-01.jpg',title:'郑州中国绿化博览园',price:'155',url:'detail-travel-10.html'},{img:'../img/travelImage/detail-11-01.jpg',title:'世纪欢乐园',price:'155',url:'detail-travel-11.html'},{img:'../img/travelImage/detail-12-01.jpg',title:'碧海蓝天养生温泉',price:'155',url:'detail-travel-12.html'},{img:'../img/travelImage/detail-13-01.jpg',title:'郑州宝龙冠军溜冰场',price:'155',url:'detail-travel-13.html'},{img:'../img/travelImage/detail-14-01.jpg',title:'金鹭鸵鸟游乐园',price:'155',url:'detail-travel-14.html'},{img:'../img/travelImage/detail-15-01.jpg',title:'荆紫仙山',price:'155',url:'detail-travel-15.html'}];
+
+    - var arratay = [{img:'../img/atay/a.jpg',title:'【罗曼蒂克时尚酒店（德化街店）】',price:'218.00',url:'detail-atay-01.html'},{img:'../img/atay/b-1.jpg',title:'【罗曼蒂克时尚酒店（德化街店）】',price:'168.00',url:'detail-atay-02.html'},{img:'../img/atay/c-1.jpg',title:'河南天地粤海酒店',price:'468.00',url:'detail-atay-03.html'},{img:'../img/atay/d-1.jpg',title:'郑州荣泰莱商务酒店',price:'179.00',url:'detail-atay-04.html'},{img:'../img/atay/e-1.jpg',title:'郑州如家快捷酒店（花园路中环百货店）',price:'132.00',url:'detail-atay-05.html'},{img:'../img/atay/dfks01.jpg',title:'【河南永和铂爵国际酒店】',price:'218.00',url:'detail-atay-06.html'},{img:'../img/atay/tdyh01.jpg',title:'【河南天地粤海酒店 】',price:'218.00',url:'detail-atay-07.html'},{img:'../img/atay/dskz01.jpg',title:'【郑州都市客栈 】',price:'218.00',url:'detail-atay-08.html'},{img:'../img/atay/hyss04.jpg',title:'【五月时尚酒店】',price:'218.00',url:'detail-atay-09.html'},{img:'../img/atay/ass01.jpg',title:'【郑州艾时尚商务酒店】',price:'218.00',url:'detail-atay-10.html'},{img:'../img/atay/pag01.jpg',title:'【平安果酒店】',price:'218.00',url:'detail-atay-11.html'},{img:'../img/atay/dfks04.jpg',title:'【郑州东方凯撒假日酒店】',price:'218.00',url:'detail-atay-12.html'},{img:'../img/atay/hyy04.jpg',title:'【郑州华原颐舍酒店EaseHouse】',price:'218.00',url:'detail-atay-13.html'},{img:'../img/atay/wakp01.jpg',title:'【唯爱精品酒店】',price:'218.00',url:'detail-atay-14.html'},{img:'../img/atay/ljd01.jpg',title:'【莱酒店(凤鸣路店)】',price:'218.00',url:'detail-atay-15.html'}];
+    - var arrFloor=[{floor:'1',name:'美食'},{floor:'2',name:'购物'},{floor:'3',name:'休闲娱乐'},{floor:'4',name:'生活服务'},{floor:'5',name:'旅游出行'},{floor:'6',name:'住宿'},'']
+
+    .hidden-area
+        .wait
+    .alert-area
+        .close 
+        .add-goods-box
+            .pro-success
+                img(src='../img/download.png')
+
+    #LoutiNav
+        ul
+            each item,index in arrFloor
+                if index==0
+                    li.hover #{item.floor}
+                        span #{item.name}
+                else if index==arrFloor.length-1
+                    li.last Top
+                else 
+                    li #{item.floor}
+                        span #{item.name}
+
 
     .banner-wrapper
         .banner-area
             ul.notice-pic.clearfix
                 li
-                    img(src='../img/test1.jpg')
+                    img(src='../img/ban01.png')
+                li
+                    img(src='../img/ban02.png')
+                li
+                    img(src='../img/ban03.png')
+                li
+                    img(src='../img/ban01.png')
+                li
+                    img(src='../img/ban02.png')
+                li
+                    img(src='../img/ban03.png')
         .right-spec
             .compersive-area
+                img(src='../img/test11.png',style='width:100%;height:100%;')
             .down-area
                 img(src='../img/download.jpg')
     
@@ -36,52 +79,61 @@ block content
             div.img-wrapper
                 img(src='../img/img01.png') 
             div.img-wrapper
-                img(src='../img/img01.png')
+                img(src='../img/img02.png')
             div.img-wrapper
-                img(src='../img/img01.png') 
+                img(src='../img/img03.png') 
     .special-title
         h3
             span 巧手主妇 HOUSEWIFE
     .special-con
         .img-con-wrapper
             div.img-wrapper
-                img(src='../img/img01.png') 
+                img(src='../img/img04.png') 
             div.img-wrapper
-                img(src='../img/img01.png')
+                img(src='../img/img05.png')
             div.img-wrapper
-                img(src='../img/img01.png')  
+                img(src='../img/img06.png')  
     .special-title
         h3
             span 异业联盟 ALLLIANCE
-    .allliance-area
-        .sort-liance
-            ul
-                li.left-sort-area
-                    a 美食
-                li.right-sort-area
-                    a 美食 
-                    ||
-                    a 代金券
-                    ||
-                    a 美食 
-                    ||
-                    a 代金券
-                    ||
-                    a 美食 
-                    ||
-                    a 代金券
-        .liance-con-wrapper
-            .liance-con
-                each item in arrfood
-                    .single-liance-show
-                        .single-image-top-area
-                            img(src='#{item.img}')
-                        .single-text-bottom-area
-                            .text-title #{item.title}
-                            .price-box
-                                span.single-price ￥#{item.price}
-                                em.sales-count 已售出123份
-    
+    #main
+        mixin writeAllliance(id,name,arrPro)
+            .allliance-area.Louti(id='#{id}')
+                .sort-liance
+                    ul
+                        li.left-sort-area
+                            a #{name}
+                        li.right-sort-area
+                            a #{name} 
+                            ||
+                            a 代金券
+                            ||
+                            a #{name}
+                            ||
+                            a 代金券
+                            ||
+                            a #{name} 
+                            ||
+                            a 代金券
+                .liance-con-wrapper
+                    .liance-con
+                        each item in arrPro
+                            .single-liance-show
+                                .single-image-top-area
+                                    a(href='#{item.url}')
+                                        img(src='#{item.img}')
+                                .single-text-bottom-area
+                                    .text-title 
+                                        a(href='#{item.url}') #{item.title}
+                                    .price-box
+                                        span.single-price ￥#{item.price}
+                                        em.sales-count 已售出123份
+        +writeAllliance('food','美食',arrfood)
+        +writeAllliance('shopping','购物',arrshopping)
+        +writeAllliance('game','休闲娱乐',arrenter)
+        +writeAllliance('life','生活服务',arrserver)
+        +writeAllliance('travel','旅行',arrtravel)
+        +writeAllliance('hotel','住宿',arratay)
     .special-title
         h3
             span 便利店及时送 CONWENIENTSTORE
@@ -101,53 +153,45 @@ block content
     .special-con
         .img-con-wrapper
             div.img-wrapper
-                img(src='../img/travelImage/shopbreviary.jpg') 
+                a(href='')
+                    img(src='../img/travelImage/shopbreviary.jpg') 
             div.img-wrapper
-                img(src='../img/life/35.jpg')
+                a(href='')
+                    img(src='../img/life/35.jpg')
             div.img-wrapper
-                img(src='../img/atay/e1.png')
+                a(href='')
+                    img(src='../img/atay/e1.png')
 
     .special-title
         h3
             span 今日推荐 CONWENIENTSTORE
-        
+    - var arrData=[];
+    script(type='text/template',id='todayFav').
+        <div class="single-recommend-goods">
+          <div class="single-recommend-top-area"><img src="{goodpic}"></div>
+          <div class="single-recommend-bottom-area">
+            <div class="recommend-name-box"><span>{goodname}</span><em>已售<b>27295</b>件</em></div>
+            <div class="recommend-price-box">￥<span>{goodprice} </span><b>19.0 </b><em>(4.75折)</em></div>
+          </div>
+        </div>
+    script(type='text/template',id='todaySpec').
+        <div class="single-recommend-goods">
+          <div class="single-recommend-top-area"><img src="{goodpic}"></div>
+          <div class="single-recommend-bottom-area">
+            <div class="recommend-name-box"><span>{goodname}</span><em>已售<b>27295</b>件</em></div>
+            <div class="recommend-price-box">￥<span>{goodprice}  <b class="favor-wrapper">立省13元</b></span><em>(￥21.3)</em><i>立即购买</i></div>
+          </div>
+        </div>
     .today-recommend-wrapper
-        .today-recommend
-            block recommend
-                .single-recommend-goods
-                    .single-recommend-top-area
-                        img(src='../img/test3.png')
-                    .single-recommend-bottom-area
-                        .recommend-name-box
-                            span 便捷旅行防水洗漱包
-                            em 已售<b>27295</b>件
-                        .recommend-price-box ￥
-                            span 9.0 
-                            b 19.0 
-                            em (4.75折)
-            block recommend
-            block recommend
-            block recommend
+        .today-recommend.today-fav
 
-        
     .special-title
         h3
             span 每日超值特卖 CONWENIENTSTORE
      .today-recommend-wrapper
-        .today-recommend
-            block every-fav
-                .single-recommend-goods
-                    .single-recommend-top-area
-                        img(src='../img/test3.png')
-                    .single-recommend-bottom-area
-                        .recommend-name-box
-                            span 简易多层组装鞋架
-                            em 已售<b>27295</b>件
-                        .recommend-price-box ￥
-                            span 9.0  
-                                b.favor-wrapper 立省13元
-                            em (￥21.3)
-                            i 立即购买
+        .today-recommend.today-spec
+           
+                
 
                 
                     

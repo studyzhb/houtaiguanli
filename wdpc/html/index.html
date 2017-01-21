@@ -4,12 +4,13 @@
     <link href="../css/reset.css" rel="stylesheet">
     <link href="../css/header.css" rel="stylesheet">
     <script src="../lib/js/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="../js/detail.js" type="text/javascript"></script>
   </head>
   <body>
     <header>
       <div class="wd-title-container">
         <ul class="left-logo-name">
-          <li class="wd-common-name"><a>万店联盟</a></li>
+          <li class="wd-common-name"><a href="index.html">万店联盟</a></li>
         </ul>
         <ul class="right-menu-area">
           <li class="wd-login-reg"><span><a>登录</a>|</span><span><a>注册</a></span></li>
@@ -35,26 +36,51 @@
     </header>
     <div class="wd-nav-area-bg">
       <ul class="wd-nav-area">
-        <li><a>分类</a></li>
+        <li><a href="#category">分类</a></li>
         <li class="surprise"><a>首页有惊喜</a></li>
-        <li><a>美食馆</a></li>
-        <li><a>休闲娱乐</a></li>
-        <li><a>旅游出行</a></li>
-        <li><a>住宿</a></li>
-        <li><a>生活服务</a></li>
-        <li><a>购物</a></li>
+        <li><a href="#food">美食馆</a></li>
+        <li><a href="#game">休闲娱乐</a></li>
+        <li><a href="#travel">旅游出行</a></li>
+        <li><a href="#hotel">住宿</a></li>
+        <li><a href="#life">生活服务</a></li>
+        <li><a href="#shopping">购物</a></li>
       </ul>
     </div>
-    <link href="../css/index.css" rel="stylesheet">
+    <link href="../css/index.css?v=1" rel="stylesheet">
     <script src="../js/index.js"></script>
+    <div class="hidden-area">
+      <div class="wait"></div>
+    </div>
+    <div class="alert-area">
+      <div class="close"> </div>
+      <div class="add-goods-box">
+        <div class="pro-success"><img src="../img/download.png"></div>
+      </div>
+    </div>
+    <div id="LoutiNav">
+      <ul>
+        <li class="hover">1<span>美食</span></li>
+        <li>2<span>购物</span></li>
+        <li>3<span>休闲娱乐</span></li>
+        <li>4<span>生活服务</span></li>
+        <li>5<span>旅游出行</span></li>
+        <li>6<span>住宿</span></li>
+        <li class="last">Top</li>
+      </ul>
+    </div>
     <div class="banner-wrapper">
       <div class="banner-area">
         <ul class="notice-pic clearfix">
-          <li><img src="../img/test1.jpg"></li>
+          <li><img src="../img/ban01.png"></li>
+          <li><img src="../img/ban02.png"></li>
+          <li><img src="../img/ban03.png"></li>
+          <li><img src="../img/ban01.png"></li>
+          <li><img src="../img/ban02.png"></li>
+          <li><img src="../img/ban03.png"></li>
         </ul>
       </div>
       <div class="right-spec">
-        <div class="compersive-area"></div>
+        <div class="compersive-area"><img src="../img/test11.png" style="width:100%;height:100%;"></div>
         <div class="down-area"><img src="../img/download.jpg"></div>
       </div>
     </div>
@@ -95,8 +121,8 @@
     <div class="special-con">
       <div class="img-con-wrapper">
         <div class="img-wrapper"><img src="../img/img01.png"></div>
-        <div class="img-wrapper"><img src="../img/img01.png"></div>
-        <div class="img-wrapper"><img src="../img/img01.png"></div>
+        <div class="img-wrapper"><img src="../img/img02.png"></div>
+        <div class="img-wrapper"><img src="../img/img03.png"></div>
       </div>
     </div>
     <div class="special-title">
@@ -104,177 +130,558 @@
     </div>
     <div class="special-con">
       <div class="img-con-wrapper">
-        <div class="img-wrapper"><img src="../img/img01.png"></div>
-        <div class="img-wrapper"><img src="../img/img01.png"></div>
-        <div class="img-wrapper"><img src="../img/img01.png"></div>
+        <div class="img-wrapper"><img src="../img/img04.png"></div>
+        <div class="img-wrapper"><img src="../img/img05.png"></div>
+        <div class="img-wrapper"><img src="../img/img06.png"></div>
       </div>
     </div>
     <div class="special-title">
       <h3><span>异业联盟 ALLLIANCE</span></h3>
     </div>
-    <div class="allliance-area">
-      <div class="sort-liance">
-        <ul>
-          <li class="left-sort-area"><a>美食</a></li>
-          <li class="right-sort-area"><a>美食 </a>|<a>代金券</a>|<a>美食 </a>|<a>代金券</a>|<a>美食 </a>|<a>代金券</a></li>
+    <div id="main">
+            <div id="food" class="allliance-area Louti">
+              <div class="sort-liance">
+                <ul>
+                  <li class="left-sort-area"><a>美食</a></li>
+                  <li class="right-sort-area"><a>美食 </a>|<a>代金券</a>|<a>美食</a>|<a>代金券</a>|<a>美食 </a>|<a>代金券</a></li>
+                </ul>
+              </div>
+              <div class="liance-con-wrapper">
+                <div class="liance-con">
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-1.html"><img src="../img/food/dingdinghong1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-1.html">金水区鼎鼎红</a></div>
+                      <div class="price-box"><span class="single-price">￥32.20</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-2.html"><img src="../img/food/dingdinghong2.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-2.html">金水区鼎鼎红</a></div>
+                      <div class="price-box"><span class="single-price">￥32.20</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-3.html"><img src="../img/food/dingdinghong3.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-3.html">金水区鼎鼎红</a></div>
+                      <div class="price-box"><span class="single-price">￥32.20</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-4.html"><img src="../img/food/dingdinghong4.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-4.html">金水区鼎鼎红</a></div>
+                      <div class="price-box"><span class="single-price">￥32.20</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-5.html"><img src="../img/food/dingdinghong3.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-5.html">金水区鼎鼎红</a></div>
+                      <div class="price-box"><span class="single-price">￥32.20</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-6.html"><img src="../img/food/dingdinghong2.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-6.html">金水区鼎鼎红</a></div>
+                      <div class="price-box"><span class="single-price">￥32.20</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-7.html"><img src="../img/food/bainianlaoma2.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-7.html">百年老妈(万达店)</a></div>
+                      <div class="price-box"><span class="single-price">￥14.72</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-8.html"><img src="../img/food/huadu1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-8.html">华都酒店(前进路店)</a></div>
+                      <div class="price-box"><span class="single-price">￥79.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-9.html"><img src="../img/food/bage1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-9.html">八哥酸辣粉</a></div>
+                      <div class="price-box"><span class="single-price">￥7.90</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-10.html"><img src="../img/food/shuxiangjiayan3.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-10.html">龙哥的面</a></div>
+                      <div class="price-box"><span class="single-price">￥89.90</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-11.html"><img src="../img/food/shuxiangjiayan4.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-11.html">莆田人家</a></div>
+                      <div class="price-box"><span class="single-price">￥89.90</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-12.html"><img src="../img/food/shuxiangjiayan5.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-12.html">米知味</a></div>
+                      <div class="price-box"><span class="single-price">￥89.90</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-13.html"><img src="../img/food/shuxiangjiayan8.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-13.html">博爱牛肉丸子汤</a></div>
+                      <div class="price-box"><span class="single-price">￥89.90</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-14.html"><img src="../img/food/shuxiangjiayan6.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-14.html">沙县小吃</a></div>
+                      <div class="price-box"><span class="single-price">￥89.90</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-food-15.html"><img src="../img/food/shuxiangjiayan7.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-food-15.html">鸡小呆</a></div>
+                      <div class="price-box"><span class="single-price">￥89.90</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="shopping" class="allliance-area Louti">
+              <div class="sort-liance">
+                <ul>
+                  <li class="left-sort-area"><a>购物</a></li>
+                  <li class="right-sort-area"><a>购物 </a>|<a>代金券</a>|<a>购物</a>|<a>代金券</a>|<a>购物 </a>|<a>代金券</a></li>
+                </ul>
+              </div>
+              <div class="liance-con-wrapper">
+                <div class="liance-con">
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-shopping-01.html"><img src="../img/shopping/1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-shopping-01.html">e+便利店（升龙环球大厦)</a></div>
+                      <div class="price-box"><span class="single-price">￥24</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-shopping-02.html"><img src="../img/shopping/13.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-shopping-02.html">康乐渔具</a></div>
+                      <div class="price-box"><span class="single-price">￥14.72</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-shopping-03.html"><img src="../img/shopping/21.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-shopping-03.html">左右间超市（东明路店）</a></div>
+                      <div class="price-box"><span class="single-price">￥24</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-shopping-04.html"><img src="../img/shopping/28.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-shopping-04.html">e+便利店（凤台路店）</a></div>
+                      <div class="price-box"><span class="single-price">￥24</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-shopping-05.html"><img src="../img/shopping/35.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-shopping-05.html">e+便利店（大学路丹尼斯店）</a></div>
+                      <div class="price-box"><span class="single-price">￥24</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="game" class="allliance-area Louti">
+              <div class="sort-liance">
+                <ul>
+                  <li class="left-sort-area"><a>休闲娱乐</a></li>
+                  <li class="right-sort-area"><a>休闲娱乐 </a>|<a>代金券</a>|<a>休闲娱乐</a>|<a>代金券</a>|<a>休闲娱乐 </a>|<a>代金券</a></li>
+                </ul>
+              </div>
+              <div class="liance-con-wrapper">
+                <div class="liance-con">
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-entertainment-01.html"><img src="../img/entertainment/entertainment03.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-entertainment-01.html">【麦子乐器（英协路）吉尔11C/个】</a></div>
+                      <div class="price-box"><span class="single-price">￥580.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-entertainment-02.html"><img src="../img/entertainment/entertainment01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-entertainment-02.html">【麦子乐器（英协路）吉星DD-380C/个】</a></div>
+                      <div class="price-box"><span class="single-price">￥198.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-entertainment-03.html"><img src="../img/entertainment/shop1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-entertainment-03.html">麦子乐器（英协路店）MAN-41/个】</a></div>
+                      <div class="price-box"><span class="single-price">￥680.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-entertainment-04.html"><img src="../img/entertainment/entertainment07.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-entertainment-04.html">【舒经堂足道（东明路店）中药足浴/次】</a></div>
+                      <div class="price-box"><span class="single-price">￥58.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-entertainment-05.html"><img src="../img/entertainment/shop3.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-entertainment-05.html">【舒经堂足道（东明路店）玫瑰足浴+手部按摩/次】</a></div>
+                      <div class="price-box"><span class="single-price">￥78.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="life" class="allliance-area Louti">
+              <div class="sort-liance">
+                <ul>
+                  <li class="left-sort-area"><a>生活服务</a></li>
+                  <li class="right-sort-area"><a>生活服务 </a>|<a>代金券</a>|<a>生活服务</a>|<a>代金券</a>|<a>生活服务 </a>|<a>代金券</a></li>
+                </ul>
+              </div>
+              <div class="liance-con-wrapper">
+                <div class="liance-con">
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-service-01.html"><img src="../img/life/5.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-service-01.html">唯艺造型（管城后街店）</a></div>
+                      <div class="price-box"><span class="single-price">￥24</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-service-02.html"><img src="../img/life/11.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-service-02.html">北京中关村皇冠假日酒店</a></div>
+                      <div class="price-box"><span class="single-price">￥200</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-service-03.html"><img src="../img/life/14.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-service-03.html">郑州中原驾校</a></div>
+                      <div class="price-box"><span class="single-price">￥2700</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-service-04.html"><img src="../img/life/22.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-service-04.html">源之林经络减肥美容店</a></div>
+                      <div class="price-box"><span class="single-price">￥80</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-service-05.html"><img src="../img/life/31.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-service-05.html">金水桶</a></div>
+                      <div class="price-box"><span class="single-price">￥80</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="travel" class="allliance-area Louti">
+              <div class="sort-liance">
+                <ul>
+                  <li class="left-sort-area"><a>旅行</a></li>
+                  <li class="right-sort-area"><a>旅行 </a>|<a>代金券</a>|<a>旅行</a>|<a>代金券</a>|<a>旅行 </a>|<a>代金券</a></li>
+                </ul>
+              </div>
+              <div class="liance-con-wrapper">
+                <div class="liance-con">
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-01.html"><img src="../img/travelImage/detail-01-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-01.html">郑州方特欢乐世界</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-02.html"><img src="../img/travelImage/detail-02-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-02.html">雁鸣湖凌云温泉</a></div>
+                      <div class="price-box"><span class="single-price">￥95</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-03.html"><img src="../img/travelImage/detail-03-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-03.html">郑州新区如意湖景区</a></div>
+                      <div class="price-box"><span class="single-price">￥48</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-04.html"><img src="../img/travelImage/detail-04-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-04.html">香堤湾温泉</a></div>
+                      <div class="price-box"><span class="single-price">￥120</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-05.html"><img src="../img/travelImage/detail-05-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-05.html">郑国车马坑景区</a></div>
+                      <div class="price-box"><span class="single-price">￥25</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-06.html"><img src="../img/travelImage/detail-06-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-06.html">洛阳龙门海洋馆</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-07.html"><img src="../img/travelImage/detail-07-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-07.html">重渡沟风景区</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-08.html"><img src="../img/travelImage/detail-08-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-08.html">河南栾川老君山</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-09.html"><img src="../img/travelImage/detail-09-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-09.html">鸡冠洞</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-10.html"><img src="../img/travelImage/detail-10-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-10.html">郑州中国绿化博览园</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-11.html"><img src="../img/travelImage/detail-11-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-11.html">世纪欢乐园</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-12.html"><img src="../img/travelImage/detail-12-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-12.html">碧海蓝天养生温泉</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-13.html"><img src="../img/travelImage/detail-13-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-13.html">郑州宝龙冠军溜冰场</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-14.html"><img src="../img/travelImage/detail-14-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-14.html">金鹭鸵鸟游乐园</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-travel-15.html"><img src="../img/travelImage/detail-15-01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-travel-15.html">荆紫仙山</a></div>
+                      <div class="price-box"><span class="single-price">￥155</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="hotel" class="allliance-area Louti">
+              <div class="sort-liance">
+                <ul>
+                  <li class="left-sort-area"><a>住宿</a></li>
+                  <li class="right-sort-area"><a>住宿 </a>|<a>代金券</a>|<a>住宿</a>|<a>代金券</a>|<a>住宿 </a>|<a>代金券</a></li>
+                </ul>
+              </div>
+              <div class="liance-con-wrapper">
+                <div class="liance-con">
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-01.html"><img src="../img/atay/a.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-01.html">【罗曼蒂克时尚酒店（德化街店）】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-02.html"><img src="../img/atay/b-1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-02.html">【罗曼蒂克时尚酒店（德化街店）】</a></div>
+                      <div class="price-box"><span class="single-price">￥168.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-03.html"><img src="../img/atay/c-1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-03.html">河南天地粤海酒店</a></div>
+                      <div class="price-box"><span class="single-price">￥468.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-04.html"><img src="../img/atay/d-1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-04.html">郑州荣泰莱商务酒店</a></div>
+                      <div class="price-box"><span class="single-price">￥179.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-05.html"><img src="../img/atay/e-1.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-05.html">郑州如家快捷酒店（花园路中环百货店）</a></div>
+                      <div class="price-box"><span class="single-price">￥132.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-06.html"><img src="../img/atay/dfks01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-06.html">【河南永和铂爵国际酒店】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-07.html"><img src="../img/atay/tdyh01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-07.html">【河南天地粤海酒店 】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-08.html"><img src="../img/atay/dskz01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-08.html">【郑州都市客栈 】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-09.html"><img src="../img/atay/hyss04.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-09.html">【五月时尚酒店】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-10.html"><img src="../img/atay/ass01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-10.html">【郑州艾时尚商务酒店】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-11.html"><img src="../img/atay/pag01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-11.html">【平安果酒店】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-12.html"><img src="../img/atay/dfks04.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-12.html">【郑州东方凯撒假日酒店】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-13.html"><img src="../img/atay/hyy04.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-13.html">【郑州华原颐舍酒店EaseHouse】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-14.html"><img src="../img/atay/wakp01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-14.html">【唯爱精品酒店】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                  <div class="single-liance-show">
+                    <div class="single-image-top-area"><a href="detail-atay-15.html"><img src="../img/atay/ljd01.jpg"></a></div>
+                    <div class="single-text-bottom-area">
+                      <div class="text-title"> <a href="detail-atay-15.html">【莱酒店(凤鸣路店)】</a></div>
+                      <div class="price-box"><span class="single-price">￥218.00</span><em class="sales-count">已售出123份</em></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+    <div class="special-title">
+      <h3><span>便利店及时送 CONWENIENTSTORE</span></h3>
+    </div>
+    <div class="shop-banner-wrapper">
+      <div class="shop-banner"><img src="../img/next.png" class="pre-step"><img src="../img/pre.png" class="next-step">
+        <ul class="shop-con clearfix">
+          <li><img src="../img/shop/shoptest.png"></li>
+          <li><img src="../img/shop/shoptest.png"></li>
         </ul>
-      </div>
-      <div class="liance-con-wrapper">
-        <div class="liance-con">
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/entertainment/entertainment03.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份</em></div>
-            </div>
-          </div>
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/entertainment/entertainment01.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份</em></div>
-            </div>
-          </div>
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/entertainment/entertainment05.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份</em></div>
-            </div>
-          </div>
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/entertainment/entertainment07.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份</em></div>
-            </div>
-          </div>
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/entertainment/entertainment09.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份</em></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-    <div class="allliance-area">
-      <div class="sort-liance">
-        <ul>
-          <li class="left-sort-area"><a>住宿</a></li>
-          <li class="right-sort-area"><a>住宿 </a>|<a>代金券</a>|<a>住宿 </a>|<a>代金券</a>|<a>住宿 </a>|<a>代金券</a></li>
-        </ul>
+    <div class="special-title">
+      <h3><span>优选商铺 ALLLIANCE</span></h3>
+    </div>
+    <div class="special-con">
+      <div class="img-con-wrapper">
+        <div class="img-wrapper"><a href=""><img src="../img/travelImage/shopbreviary.jpg"></a></div>
+        <div class="img-wrapper"><a href=""><img src="../img/life/35.jpg"></a></div>
+        <div class="img-wrapper"><a href=""><img src="../img/atay/e1.png"></a></div>
       </div>
-      <div class="liance-con-wrapper">
-        <div class="liance-con">
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/atay/a.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份                            </em></div>
-            </div>
-          </div>
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/atay/b-1.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份                            </em></div>
-            </div>
-          </div>
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/atay/c-1.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份                            </em></div>
-            </div>
-          </div>
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/atay/d-1.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份                            </em></div>
-            </div>
-          </div>
-          <div class="single-liance-show">
-            <div class="single-image-top-area"><img src="../img/atay/e-1.jpg"></div>
-            <div class="single-text-bottom-area">
-              <div class="text-title">[紫荆山] 双人牛排套餐</div>
-              <div class="price-box"><span class="single-price">￥98</span><em class="sales-count">已售出123份                            </em></div>
-            </div>
-          </div>
+    </div>
+    <div class="special-title">
+      <h3><span>今日推荐 CONWENIENTSTORE</span></h3>
+    </div>
+    <script type="text/template" id="todayFav">
+      <div class="single-recommend-goods">
+        <div class="single-recommend-top-area"><img src="{goodpic}"></div>
+        <div class="single-recommend-bottom-area">
+          <div class="recommend-name-box"><span>{goodname}</span><em>已售<b>27295</b>件</em></div>
+          <div class="recommend-price-box">￥<span>{goodprice} </span><b>19.0 </b><em>(4.75折)</em></div>
         </div>
       </div>
-      <div class="special-title">
-        <h3><span>便利店及时送 CONWENIENTSTORE</span></h3>
-      </div>
-      <div class="shop-banner-wrapper">
-        <div class="shop-banner"><img src="../img/next.png" class="pre-step"><img src="../img/pre.png" class="next-step">
-          <ul class="shop-con clearfix">
-            <li><img src="../img/shop/shoptest.png"></li>
-            <li><img src="../img/shop/shoptest.png"></li>
-          </ul>
+    </script>
+    <script type="text/template" id="todaySpec">
+      <div class="single-recommend-goods">
+        <div class="single-recommend-top-area"><img src="{goodpic}"></div>
+        <div class="single-recommend-bottom-area">
+          <div class="recommend-name-box"><span>{goodname}</span><em>已售<b>27295</b>件</em></div>
+          <div class="recommend-price-box">￥<span>{goodprice}  <b class="favor-wrapper">立省13元</b></span><em>(￥21.3)</em><i>立即购买</i></div>
         </div>
       </div>
-      <div class="special-title">
-        <h3><span>优选商铺 ALLLIANCE</span></h3>
-      </div>
-      <div class="special-con">
-        <div class="img-con-wrapper">
-          <div class="img-wrapper"><img src="../img/travelImage/shopbreviary.jpg"></div>
-          <div class="img-wrapper"><img src="../img/life/35.jpg"></div>
-          <div class="img-wrapper"><img src="../img/atay/e1.png"></div>
-        </div>
-      </div>
-      <div class="special-title">
-        <h3><span>今日推荐 CONWENIENTSTORE</span></h3>
-      </div>
-      <div class="today-recommend-wrapper">
-        <div class="today-recommend">
-          <div class="single-recommend-goods">
-            <div class="single-recommend-top-area"><img src="../img/test3.png"></div>
-            <div class="single-recommend-bottom-area">
-              <div class="recommend-name-box"><span>便捷旅行防水洗漱包</span><em>已售<b>27295</b>件</em></div>
-              <div class="recommend-price-box">￥<span>9.0 </span><b>19.0 </b><em>(4.75折)</em></div>
-            </div>
-          </div>
-          <div class="single-recommend-goods">
-            <div class="single-recommend-top-area"><img src="../img/test3.png"></div>
-            <div class="single-recommend-bottom-area">
-              <div class="recommend-name-box"><span>便捷旅行防水洗漱包</span><em>已售<b>27295</b>件</em></div>
-              <div class="recommend-price-box">￥<span>9.0 </span><b>19.0 </b><em>(4.75折)</em></div>
-            </div>
-          </div>
-          <div class="single-recommend-goods">
-            <div class="single-recommend-top-area"><img src="../img/test3.png"></div>
-            <div class="single-recommend-bottom-area">
-              <div class="recommend-name-box"><span>便捷旅行防水洗漱包</span><em>已售<b>27295</b>件</em></div>
-              <div class="recommend-price-box">￥<span>9.0 </span><b>19.0 </b><em>(4.75折)</em></div>
-            </div>
-          </div>
-          <div class="single-recommend-goods">
-            <div class="single-recommend-top-area"><img src="../img/test3.png"></div>
-            <div class="single-recommend-bottom-area">
-              <div class="recommend-name-box"><span>便捷旅行防水洗漱包</span><em>已售<b>27295</b>件</em></div>
-              <div class="recommend-price-box">￥<span>9.0 </span><b>19.0 </b><em>(4.75折)</em></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="special-title">
-        <h3><span>每日超值特卖 CONWENIENTSTORE</span></h3>
-      </div>
-      <div class="today-recommend-wrapper">
-        <div class="today-recommend">
-          <div class="single-recommend-goods">
-            <div class="single-recommend-top-area"><img src="../img/test3.png"></div>
-            <div class="single-recommend-bottom-area">
-              <div class="recommend-name-box"><span>简易多层组装鞋架</span><em>已售<b>27295</b>件</em></div>
-              <div class="recommend-price-box">￥<span>9.0  <b class="favor-wrapper">立省13元</b></span><em>(￥21.3)</em><i>立即购买</i></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    </script>
+    <div class="today-recommend-wrapper">
+      <div class="today-recommend today-fav"></div>
+    </div>
+    <div class="special-title">
+      <h3><span>每日超值特卖 CONWENIENTSTORE</span></h3>
+    </div>
+    <div class="today-recommend-wrapper">
+      <div class="today-recommend today-spec"></div>
     </div>
     <footer>
       <div style="display:none" class="foot-serve">

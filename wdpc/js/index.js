@@ -1,3 +1,74 @@
+var config={
+  //表单提交
+  formSubmit:function(formId,urlhttp,fun){
+    var tok=cookieUtil.getCookie('token');
+    
+    $(formId).ajaxSubmit({
+      url:urlhttp,
+      data:{
+        token:tok
+      },
+      success:function(data){
+        console.log(data);
+        if(!!fun){
+          fun(data);
+        }  
+      }
+    });
+  },
+  formatTemplate:function(dta, tmpl) {  
+        var b;
+        var format = { 
+            price: function(x) {  
+                // console.log(typeof x,this.discount);
+                return (x*b).toFixed(2); 
+            },
+            discount:function(a){
+                b=a==0?1:a*0.1;
+                return b;
+            }
+        };  
+        return tmpl.replace(/{(\w+)}/g, function(m1, m2) {  
+            if (!m2)  
+                return "";  
+            return (format && format[m2]) ? format[m2](dta[m2]) : dta[m2];  
+        });  
+    },
+    /**
+     * 
+     * @param {String} method 请求方法
+     * @param {String} url 请求地址
+     * @param {Function} fun 回调函数
+     * @param {Object} data 请求参数
+     */
+    ajax:function(method,url,fun,data){
+        // console.log(url);
+        data=data||{};
+        url+="?v="+new Date().getTime();
+        $.ajax({
+            type:method,
+            url:url,
+            data:data||{date:new Date().getTime()},
+            success: function(msg){
+    
+                console.log(typeof msg);
+                msg=typeof msg==='object'?msg:JSON.parse(msg);
+                if(msg.code&&msg.code=='401'){
+                    open('login.html','_self');
+                }else{
+                   if(fun){
+                    fun(msg);
+                    } 
+                }               
+           },
+       error:function(e){
+         console.log(JSON.stringify(e));
+        
+            }
+        })
+    }
+}
+
 $(function(){
 
     var index=0;
@@ -7,14 +78,14 @@ $(function(){
 			var me=this;
 			clearInterval(this.timer);
 			this.timer=setInterval(function(){
-				index==$(".lunboPic_banner li").length-1?index=0:index++;
+				index==$(".notice-pic li").length/2?index=0:index++;
+                index==0?$('.notice-pic').css({left:0}):'';
 				me.showCon();
 			},2000);
 		},
 		showCon:function(){
-			$(".lunboPic_banner li").css({opacity:0});
-			$(".lunboPic_banner li").eq(index).css({opacity:1}).siblings().css({opacity:0});
-			$(".lunboPic_list li").eq(index).css("backgroundPosition","left top").siblings().css("backgroundPosition","-18px top");
+			$(".notice-pic").animate({left:-index*780+'px'},1000);
+			
 		}
 	};
 	oBanner.showPic();
@@ -25,8 +96,34 @@ $(function(){
 		oBanner.showPic();
 	});
 
+    $(".down-area").on("click",'img',function(){
+            $(".hidden-area").show();
+            $(".alert-area").css({width:"80%",height:"80%",left:"20%",top:"20%"}).show().animate({left:"50%",top:"50%",width:"440px",height:"300px",opacity:0.9},500,function(){
+                $(this).css("display","block");
+                $(".hidden-area .wait").hide();
+            });
+            //添加购物车
+            //detailPage.addShoppingCar();
+        });
 
+    config.ajax('get','http://192.168.1.18/index/public/index.php/index/index',function(data){
+        var arr=[],arrS=[];
+        $.each(data,function(index,item){
+            if(index<4){
+
+                arr.push(config.formatTemplate(item,$('#todayFav').html()));
+            }else{
+                arrS.push(config.formatTemplate(item,$('#todaySpec').html()));
+            }
+        })
+        $('.today-spec').html('');
+        $('.today-fav').html('');
+        $('.today-spec').append(arrS.join(''));
+        $('.today-fav').append(arr.join(''));
+
+    })
 })
+
 
 // 深度优先遍历复制, 借助队列
 function deepCopy(obj) {
@@ -85,3 +182,29 @@ function deepCopy(obj) {
 //     b: 2,
 //     c: obj1
 // };
+$(function(){
+    $(document).scroll(function(){
+        for (var i=0;i<$(".Louti").length;i++) {
+            if($(this).scrollTop()<$(".Louti").eq(0).offset().top){
+                $("#LoutiNav").hide();
+            }else if($(this).scrollTop()>=$(".Louti").eq(i).offset().top){
+                $("#LoutiNav").show();
+                $("#LoutiNav li").eq(i).addClass("hover").siblings().removeClass('hover');
+            }
+        }
+
+    });
+    
+    $("#LoutiNav li").click(function(){
+        $(this).addClass("hover").siblings().removeClass('hover');
+        if($(this).is("#LoutiNav  li:last")){
+            console.log('last')
+            $(document).scrollTop(0);
+            $("#LoutiNav").hide();
+        }else{
+            $(document).scrollTop($(".Louti").eq($(this).index()).offset().top);
+        }
+            
+    });
+
+})

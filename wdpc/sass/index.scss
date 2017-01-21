@@ -4,11 +4,17 @@
     padding-top:5px;
     margin:0 auto;
     .banner-area{
+        position:relative;
         width:780px;
         height:420px;
         display: inline-block;
         overflow: hidden;
+
         ul.notice-pic{
+            position:absolute;
+            width:4680px;
+            left:0;
+            top:0;
             li{
                 float:left;
                 width:780px;
@@ -42,6 +48,8 @@
 
 .shop-banner-wrapper{
     padding:42px 0 15px 85px;
+    width:915px;
+    margin:0 auto;
     .shop-banner{
         position:relative;
         width:826px;
@@ -192,10 +200,17 @@
                     }
                 }
                 .single-text-bottom-area{
+                    width: 170px;
                     .text-title{
                         font-size: 14px;
                         line-height: 28px;
                         color:#535353;
+                        overflow:hidden;
+                        text-overflow:ellipsis;
+                        white-space:nowrap;
+                        a{
+                            color: #535353;
+                        }
                     }
                     .price-box{
                         width: 170px;
@@ -220,13 +235,14 @@
     margin:0 auto 27px;
     overflow: hidden;
     .today-recommend{
-        width: 1200px;
+        width: 1100px;
         .single-recommend-goods{
             width:210px;
             height:313px;
             padding:10px;
             display: inline-block;
             border:1px solid #e0e0e0;
+            margin-bottom:20px;
             .single-recommend-top-area{
                 width:210px;
                 height:210px;
@@ -246,7 +262,10 @@
                     line-height: 68px;
                     span{
                         float:left;
-                        
+                        width: 108px;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
                     }
                     em{
                         float:right;
@@ -284,7 +303,7 @@
                     }
                     i{
                         float: right;
-                        width: 64px;
+                        //width: 64px;
                         height: 23px;
                         background-color: #59bd7d;
                         margin-top:10px;
@@ -298,5 +317,57 @@
         }
     }
 }
+
+
+#LoutiNav {
+                width: 32px;
+                position: fixed;
+                top: 150px;
+                left: 50px;
+                border: 1px solid #ddd;
+                display: none;
+            }
+            #LoutiNav ul li {
+                width: 32px;
+                height: 32px;
+                border-bottom: 1px dotted #DDDDDD;
+                list-style: none;
+                font-size: 12px;
+                color: #666;
+                text-align: center;
+                line-height: 32px;
+                position: relative;
+                cursor: pointer;
+            }
+            #LoutiNav ul li span {
+                width: 32px;
+                height: 32px;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            #LoutiNav ul li span {
+                display: none;
+            }
+            #LoutiNav ul li.last {
+                background: #C00;
+                color: #fff;
+                border-bottom: 1px solid #ddd;
+            }
+            #LoutiNav ul li.hover span {
+                background: #c00;
+                color: #fff;
+                display: block;
+            }
+            #LoutiNav ul li.hover span.active {
+                background: #c00;
+                color: #fff;
+                display: block;
+            }
+            #LoutiNav ul li span.active {
+                background: #fff;
+                color: #c00;
+                display: block;
+            }
 
 
