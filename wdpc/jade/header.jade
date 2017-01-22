@@ -4,8 +4,9 @@ html
         link(href='../css/reset.css',rel='stylesheet')
         link(href='../css/header.css',rel='stylesheet')
         script(src='../lib/js/jquery-1.12.4.min.js',type='text/javascript')
+        script(src='../layer/layer.js',type='text/javascript')
         script(src='../js/detail.js',type='text/javascript')
-    body
+    body(style="zoom:1.2;")
         header
             .wd-title-container
                 ul.left-logo-name
@@ -55,8 +56,8 @@ html
         block content 
 
         footer
-            .foot-serve(style="display:none")
-                .foot-serve-top.clearfix
+            .foot-serve
+                .foot-serve-top.clearfix(style="display:none")
                     .barcode
                     - var serCon1=['购物指南','购物流程','购物指南']; 
                     ul.serve
@@ -69,8 +70,9 @@ html
                         each item in serCon1
                             li #{item}
                 .foot-serve-bottom
+                    img(src='../img/footer.png')
             .foot-about-bg
                 .foot-about   
-                    - var footInfo=['©2017 e+.RIGHT','ICP备案号：00000','增值电信'];
+                    - var footInfo=['©2017 e+.RIGHT','ICP备案号：豫ICP备15016705号-4',''];
                     each item in footInfo
                         a #{item}         

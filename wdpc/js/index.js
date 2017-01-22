@@ -97,16 +97,32 @@ $(function(){
 	});
 
     $(".down-area").on("click",'img',function(){
-            $(".hidden-area").show();
-            $(".alert-area").css({width:"80%",height:"80%",left:"20%",top:"20%"}).show().animate({left:"50%",top:"50%",width:"440px",height:"300px",opacity:0.9},500,function(){
-                $(this).css("display","block");
-                $(".hidden-area .wait").hide();
-            });
+            layer.open({
+            type:1,
+            content: $(".alert-area"), //这里content是一个DOM
+          shade:[0.8,'#000'],
+          area:['600px','430px'],
+          maxmin: true,
+          title:'万店联盟网站试运行中'
+        })
             //添加购物车
             //detailPage.addShoppingCar();
         });
 
-    config.ajax('get','http://192.168.1.18/index/public/index.php/index/index',function(data){
+    $(".testDown").on("click",'img',function(){
+            layer.open({
+            type:1,
+            content: $(".alert-area"), //这里content是一个DOM
+          shade:[0.8,'#000'],
+          area:['600px','430px'],
+          maxmin: true,
+          title:'万店联盟网站试运行中'
+        })
+            //添加购物车
+            //detailPage.addShoppingCar();
+        });
+
+    config.ajax('get','/index/public/index.php/index/index',function(data){
         var arr=[],arrS=[];
         $.each(data,function(index,item){
             if(index<4){

@@ -6,9 +6,9 @@ block content
     //- 标题
     - var arrTitle=['今日推荐','新科苹果数据'];
     //- 缩略图 每个索引图片地址以./img/文件夹名字/
-    - var arrImage=[''];
+    - var arrImage=['http://enclosure.wandlm.net/web_pic/2017/01/09/1483941252101.png'];
     //- 右侧区 mTitle:主标题 tel:电话 address:地址 intro:介绍 分类
-    - var oGoods={title:{mTitle:'新科苹果数据线新科苹果数据线新科苹果数据线新科苹果数据线新科苹果数据线',tel:'13333333333',address:'',intro:['']}}
+    - var oGoods={title:{mTitle:'新科苹果数据线新科苹果数据线新科苹果数据线新科苹果数据线新科苹果数据线',tel:'13333333333',address:'河南省郑州市管城区紫荆山路与清真寺街交叉口',intro:['']}}
     //- 商家信息
     //- 优惠信息
     - var salesCon='';
@@ -17,7 +17,7 @@ block content
     //-特色
     - var special=''
     //-商家简介
-    - var shopIntro='';
+    - var shopIntro='火锅，古称“古董羹”，因食物投入沸水时发出的“咕咚”声而得名，它是中国独创的美食，历史悠久，是一种老少皆宜的食物。据考证，战国时期即有火锅，时人以陶罐为锅，到宋代，火锅的吃法在民间已十分常见，南宋林洪的《山家清供》食谱中，便有同友人吃火锅的介绍。元代，火锅流传到蒙古一带，用来煮牛羊肉。到清代，火锅不仅在民间流行，而且成了一道著名的“宫廷菜”，用料是山鸡等野味。';
     //- 商品详情图片 图片地址以./img/文件夹名字/
     - var arrImageDetail=['http://enclosure.wandlm.net/web_pic/2017/01/09/1483941252101.png','http://enclosure.wandlm.net/web_pic/2017/01/09/1483941252101.png'];
     .goods-detail-title-wrapper
@@ -32,22 +32,11 @@ block content
             .left-small-piclist
                 .sview-area
                     div
-                        img(src="")
+                        img(src="#{arrImage[0]}")
                         .selecArea
                     .show-select-area
                 .show-goods-smalllist
-                    span.top-icon
-                    .goods-smalllist-box
-                        ul.goods-smalllist.clearfix
-                            li 
-                                img(src="")
-                            li 
-                                img(src="")
-                            li 
-                                img(src="")
-                            li 
-                                img(src="")
-                    span.bottom-icon
+
                 .view-video(style='display:none')
             .right-detail-box
                 .goods-name
@@ -55,9 +44,9 @@ block content
                         span #{oGoods.title.tel}
                 .summary
                     ul
-                        li.tel 13345612374
-                        li.address 河南省郑州市管城区紫荆山路与清真寺街交叉口
-                        li.spec 川菜 火锅
+                        li.tel #{oGoods.title.tel}
+                        li.address #{oGoods.title.address}
+                        li.spec #{oGoods.title.intro}
 
  
     //-商品详情页
@@ -77,7 +66,7 @@ block content
                 .special-title
                     h3
                         span 商家简介
-                p.text-lh-20 火锅，古称“古董羹”，因食物投入沸水时发出的“咕咚”声而得名，它是中国独创的美食，历史悠久，是一种老少皆宜的食物。据考证，战国时期即有火锅，时人以陶罐为锅，到宋代，火锅的吃法在民间已十分常见，南宋林洪的《山家清供》食谱中，便有同友人吃火锅的介绍。元代，火锅流传到蒙古一带，用来煮牛羊肉。到清代，火锅不仅在民间流行，而且成了一道著名的“宫廷菜”，用料是山鸡等野味。
+                p.text-lh-20 #{shopIntro}
                 .special-title
                     h3
                         span 商家图片

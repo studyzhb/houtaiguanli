@@ -71,7 +71,7 @@
     width: 1200px; }
     .feature-wrapper .feature .feature-sub-con {
       display: inline-block;
-      width: 146px;
+      width: 172px;
       height: 43px;
       margin-right: 162px; }
       .feature-wrapper .feature .feature-sub-con dl dt {
@@ -81,7 +81,7 @@
         margin-right: 8px; }
       .feature-wrapper .feature .feature-sub-con dl dd {
         float: left;
-        width: 96px;
+        width: 122px;
         height: 42px; }
         .feature-wrapper .feature .feature-sub-con dl dd h4 {
           font-size: 18px;
@@ -114,7 +114,11 @@
       width: 310px;
       height: 179px;
       display: inline-block;
-      margin-right: 25px; }
+      margin-right: 25px;
+      text-align: center;
+      line-height: 179px;
+      vertical-align: top;
+      color: #666; }
       .special-con .img-con-wrapper div.img-wrapper img {
         width: 100%;
         height: 100%; }
@@ -125,7 +129,14 @@
   .allliance-area .sort-liance {
     height: 29px;
     padding: 23px 0 0 85px;
-    background: url(../img/food.png) no-repeat 24px 0; }
+    background: url(../img/food.png) no-repeat 24px 0;
+    position: relative; }
+    .allliance-area .sort-liance .iconImage {
+      position: absolute;
+      width: 38px;
+      height: 40px;
+      left: 32px;
+      top: 6px; }
     .allliance-area .sort-liance ul {
       font-size: 14px;
       color: #535353; }
@@ -243,53 +254,61 @@
             text-align: center; }
 
 #LoutiNav {
-  width: 32px;
+  width: 72px;
   position: fixed;
-  top: 150px;
-  left: 50px;
+  top: 44px;
+  left: 100px;
   border: 1px solid #ddd;
   display: none; }
 
 #LoutiNav ul li {
-  width: 32px;
-  height: 32px;
+  width: 72px;
+  height: 102px;
   border-bottom: 1px dotted #DDDDDD;
   list-style: none;
-  font-size: 12px;
+  font-size: 16px;
   color: #666;
   text-align: center;
-  line-height: 32px;
+  line-height: 102px;
   position: relative;
   cursor: pointer; }
 
-#LoutiNav ul li span {
-  width: 32px;
-  height: 32px;
+#LoutiNav ul li img {
   position: absolute;
-  top: 0;
+  width: 42px;
+  height: 46px;
+  left: 14px;
+  top: 5px; }
+
+#LoutiNav ul li span {
+  width: 72px;
+  height: 44px;
+  position: absolute;
+  line-height: 44px;
+  color: #818181;
+  top: 58px;
   left: 0; }
 
-#LoutiNav ul li span {
-  display: none; }
-
 #LoutiNav ul li.last {
-  background: #C00;
-  color: #fff;
+  color: #666;
   border-bottom: 1px solid #ddd; }
 
+#LoutiNav ul li.hover {
+  background: #60bf82; }
+
 #LoutiNav ul li.hover span {
-  background: #c00;
+  background: #60bf82;
   color: #fff;
   display: block; }
 
 #LoutiNav ul li.hover span.active {
-  background: #c00;
+  background: #60bf82;
   color: #fff;
   display: block; }
 
 #LoutiNav ul li span.active {
   background: #fff;
-  color: #c00;
+  color: #60bf82;
   display: block; }
 
 /*# sourceMappingURL=index.css.map */

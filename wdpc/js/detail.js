@@ -142,21 +142,40 @@ $(function(){
 	/*
 	 * 购物车
 	 */
-	$(".buynow").on("click",function(){
-		$(".hidden-area").show();
+	$("body").on("click",'.buynow',function(){
+		/*$(".hidden-area").show();
 		$(".alert-area").css({width:"80%",height:"80%",left:"20%",top:"20%"}).show().animate({left:"50%",top:"50%",width:"440px",height:"300px",opacity:0.9},500,function(){
 			$(this).css("display","block");
 			$(".hidden-area .wait").hide();
-		});
+		});*/
+		layer.msg('网站试运行中,更多商品详情请移步手机端')
+		layer.open({
+			type:1,
+            content: $(".alert-area"), //这里content是一个DOM
+          shade:[0.8,'#000'],
+          area:['600px','430px'],
+          maxmin: true,
+          title:'万店联盟网站试运行中'
+		})
 		//添加购物车
 		//detailPage.addShoppingCar();
 	});
-	$(".addCar").on("click",function(){
-		$(".hidden-area").show();
+	$("body").on("click",'.addCar',function(){
+
+		layer.msg('网站试运行中,更多商品详情请移步手机端')
+		layer.open({
+			type:1,
+            content: $(".alert-area"), //这里content是一个DOM
+          shade:[0.8,'#000'],
+          area:['600px','430px'],
+          maxmin: true,
+          title:'万店联盟网站试运行中'
+		})
+		/*$(".hidden-area").show();
 		$(".alert-area").css({width:"80%",height:"80%",left:"20%",top:"20%"}).show().animate({left:"50%",top:"50%",width:"440px",height:"300px",opacity:0.9},500,function(){
 			$(this).css("display","block");
 			$(".hidden-area .wait").hide();
-		});
+		});*/
 		//添加购物车
 		//detailPage.addShoppingCar();
 	});
