@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>首页</title>
+	<title>标题</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
@@ -13,9 +13,6 @@
     <script type="text/javascript" src="./js/filter.js"></script>
 </head>
 <body>
-<noscript>
-对不起，你的浏览器不支持或者禁用了脚本功能。
-</noscript>
 	<!-- 框架结构	 -->
 	<div class="layui-layout layui-layout-admin">
   <div class="layui-header header header-demo">
@@ -95,11 +92,11 @@
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+        <a href="{{item.path}}">{{item.name}}</a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+          <a href="{{item.path}}">{{item.name}}</a>
         </dd>
       {{# } }}
     {{#  }); }}

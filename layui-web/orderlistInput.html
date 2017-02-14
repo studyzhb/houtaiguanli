@@ -247,6 +247,50 @@
     </div>
 </div>
 <!-- ========================================================= -->
+<div class="alertCon-wrapper" id="lookOnly" style="margin:10px auto;display:none;padding:0 20px;">
+  <div class="alert-main-con">
+      <form method="POST" action="" id="purchaselistForm">
+        <input type="hidden" name="id" value="" class="">
+        <input type="hidden" name="enter" value="" class="">
+        <table class="layui-table">
+          <colgroup>
+            <!-- <col width="100">
+            <col width="100">
+            <col>
+            <col width="100">
+            <col width="300"> -->
+          </colgroup>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>商品条码</th>
+              <th>名字</th>
+              <th>零售单位</th>
+              <th>供应商</th>
+              <th>仓库</th>
+              <th>单价</th>
+              <th>数量</th>
+              <th>核实数量</th>
+              <th>总价</th>
+              <th>核实后总价</th>
+            </tr> 
+          </thead>
+          <tbody id="singleOrderWrapperOnlyread">
+            
+
+          </tbody>
+
+      </table>
+        
+      
+      </form>
+    </div>
+</div>
+
+
+
+
+<!-- ============================== -->
 <div id="goodsNum" class="layui-form" style="display:none">
     <div class="layui-form-item">
       <label class="layui-form-label">拒绝理由</label>
@@ -286,9 +330,11 @@
     <td>{{d.adminName}}</td>
     <td>
       {{#  if(d.status=='2'){ }}
-      <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">完成</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small lookdetail" data-id="{{d.id}}">查看明细</div>
+       <div class="layui-btn layui-btn-warm layui-btn-small exceloutput" data-id="{{d.id}}">导出采购单</div>
       {{# }else if(d.status=='10'){ }}
-      <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}">拒绝理由：{{d.note}}</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small lookdetailfail" data-id="{{d.id}}">拒绝理由：{{d.note}}</div>
+       <div class="layui-btn layui-btn-warm layui-btn-small exceloutput" data-id="{{d.id}}">导出采购单</div>
       {{#  }else{ }}
         <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">确认订单</div>
         <div class="layui-btn layui-btn-normal layui-btn-small confirmInputStore" data-id="{{d.id}}">确认入库</div>
@@ -319,6 +365,28 @@
     {{# }else{ }}
       <td class="confirmdetails"></td>
     {{# } }}
+    
+  </tr>
+</script>
+
+<script id="looksingleOrderList" type="text/html">
+  <tr>
+    <td>{{d.selectedindex+1}}</td>
+    <td>{{d.barcode}}</td>
+    <td>{{d.name}}</td>
+    <td>{{d.gg}}</td>
+    <td>{{d.supplierName}}</td>
+    <td>{{d.deptName}}</td>
+    <td>{{(d.price-0).toFixed(2)}}</td>
+    <td>{{d.unm}}</td>
+    
+      <td>{{d.checknum}}</td>
+    
+    
+    <td>{{(d.singlePrice-0).toFixed(2)}}</td>
+    
+      <td class="confirmdetails">{{(d.checknum*d.price).toFixed(2)}}</td>
+    
     
   </tr>
 </script>

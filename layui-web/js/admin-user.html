@@ -7,12 +7,10 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
-	 <script src="./layui/layui.js"></script>
-    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="./js/jquery-form.js"></script>
-  	<script type="text/javascript" src="./js/config.js"></script>
+	<script src="./layui/layui.js"></script>
+  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="./js/config.js"></script>
     <script type="text/javascript" src="./js/filter.js"></script>
-    <script type="text/javascript" src="./js/editor-author.js"></script>
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -31,7 +29,7 @@
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
- 
+  
 </ul>
 
     </div>
@@ -53,7 +51,7 @@
 	</div> -->
 	<!-- ============================主要内容区================================ -->
   
-  
+
         
 
 
@@ -70,49 +68,74 @@
      -->
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
-          <li>
-            <a href="authorlist.html">权限组</a>
-          </li>
           <li class="layui-this">
-            编辑角色
+            用户管理
+          </li>
+          <li>
+            <a href="add-admin-user.html">添加用户</a>
           </li>
         </ul>
-        <div class="layui-content" style="padding-top:20px;">
-          <div class="layui-tab-item layui-show">
-            <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <input type="hidden" name="id" value="" id="role-id" />
-              <div class="layui-form-item">
-                <label class="layui-form-label">角色名称</label>
-                <div class="layui-input-block">
-                  <input type="text" name="name" value="" readonly autocomplete="off" class="layui-input role-name">
+
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            <form class="layui-form layui-form-pane" action="" style="display:inline-block;">
+              
+              <div class="layui-inline">
+                <label class="layui-form-label">关键词</label>
+                <div class="layui-input-inline">
+                  <input type="text" class="layui-input" name="" value="">
                 </div>
-              </div>
-              <div id="authorList">
                 
-              </div>
-              
-              
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">请填写描述</label>
-                <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
-                </div>
-              </div>
-              <!-- ================================================== -->
 
-              <!-- ================================================== -->
-
-
-              <div class="layui-form-item">
-                <div class="layui-input-block">
-                  <div class="layui-btn commit-author" >立即提交</div>
-                  <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
-                </div>
               </div>
-              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+              <button class="layui-btn">
+                   搜索
+                </button>
             </form>
+          <table class="layui-table">
+          <colgroup>
+            <!-- <col width="100">
+            <col width="100">
+            <col>
+            <col width="100">
+            <col width="300"> -->
+
+          </colgroup>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>用户名</th>
+              <th>手机</th>
+              <th>邮箱</th>
+              <th>状态</th>
+              
+              <th>操作</th>
+            </tr> 
+          </thead>
+          <tbody id="adminUserList">
+            
+            <tr>
+              <td>1</td>
+              <td>0</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                
+                <button class="layui-btn layui-btn-warm layui-btn-small">编辑</button>
+                <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
+              </td>
+            </tr>
+            
+          </tbody>
+      </table>
+     
+
           </div>
         </div>
+
+
      </div>
 
 
@@ -121,7 +144,25 @@
     
     </div> 
   <ul id="biuuu_city_list"></ul>
-
+<script id="menulistContent" type="text/html">
+   <tr>
+              <td>{{d.id}}</td>
+              <td>{{d.job_num}}</td>
+              <td>{{d.tel}}</td>
+              <td>{{d.email}}</td>
+              {{# if(d.status) { }}
+                <td>启用</td>
+              {{# }else{ }}
+                <td>禁用</td>
+              {{# } }}
+              
+              <td>
+                
+                <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{d.id}}" onclick="editorUser(this)">编辑</div>
+                
+              </td>
+            </tr>
+</script>
   <!-- =======================弹出窗========================= -->
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
   <div class="alert-main-con">
@@ -284,47 +325,29 @@
 </div>
 
 <!-- ========================================================= -->
-
-
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
     <a href="javascript:;">{{d.name}}</a>
     <dl class="layui-nav-child">
     {{#  layui.each(d.children,function(index, item){ }}
-      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
-      <dd class="layui-this">
+      <dd>
         <a href="{{item.path}}">{{item.name}}</a>
       </dd>
-      {{# }else{ }}
-        <dd>
-          <a href="{{item.path}}">{{item.name}}</a>
-        </dd>
-      {{# } }}
     {{#  }); }}
       
     </dl>
   </li>
 </script>
-<script id="authorContent" type="text/html">
-  <div class="layui-form-item">
-      <label class="layui-form-label">{{d.name}}</label>
+	
 
-      <div class="layui-input-block">
-        {{#  layui.each(d.children,function(index, item){ }}
-
-            {{#  if(item.status){ }}
-              <input type="checkbox" checked name="pri_id[]" title="{{item.name}}" value='{{item.id}}'/>
-              {{# }else{ }} 
-              <input type="checkbox" name="pri_id[]" title="{{item.name}}" value='{{item.id}}'/>
-              {{# } }}
-      {{#  }); }}
-        
-        
-      </div>
-    </div>
-</script>
 
 </div>
 
 </body>
+<script src="./js/admin-user.js"></script>
+<script>
+  function editorUser(obj){
+    console.log($(obj).data('id'));
+  }
+</script>
 </html>

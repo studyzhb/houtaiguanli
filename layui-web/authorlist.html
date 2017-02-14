@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>角色列表</title>
+	<title>标题</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
@@ -29,8 +29,9 @@
     <div class="layui-side-scroll">
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
-        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-      </ul>
+<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+  
+</ul>
 
     </div>
   </div>
@@ -286,11 +287,11 @@
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+        <a href="{{item.path}}">{{item.name}}</a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+          <a href="{{item.path}}">{{item.name}}</a>
         </dd>
       {{# } }}
     {{#  }); }}

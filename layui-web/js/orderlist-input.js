@@ -161,7 +161,7 @@ $('#singleOrderWrapper').on('blur','.inputChangeNum',function(data){
 	//审核数量
 	orderConfirm.arrbefor[ind].checkNum=$(this).val();
 	// console.log($(this).siblings('.confirmdetails'));
-	$(this).parent().siblings('.confirmdetails').text(sprice*$(this).val());
+	$(this).parent().siblings('.confirmdetails').text((sprice*$(this).val()).toFixed(2));
 });
 
 //核对数量提交
@@ -198,7 +198,16 @@ $('#singleOrderWrapper').on('click','.editorSingGood',function(){
 	purchasePage.zongjia-=purchasePage.arrOrder[nnn].singlePrice-0;
 
 });
+//导出入库单
+$('#purchaselist').on('click','.exceloutput',function(){
+	open(config.ajaxAddress.excelOutput+'?token='+cookieUtil.getCookie('token')+'&buyer_id='+$(this).data('id'),'_self');
 
+});
+//查看
+$('#purchaselist').on('click','.lookdetail',function(){
+	open('printTemplate.html?id='+$(this).data('id'),'_self');
+	
+});
 $('.saveGoodsNum').on('click',function(){
 	
 	var num=$('.singleNum').val();

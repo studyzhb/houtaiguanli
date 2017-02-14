@@ -128,7 +128,11 @@ html, body {
       float: left;
       outline: 0; }
   .login-wrapper li.yz {
-    width: 200px; }
+    width: 200px; 
+   }
+  .login-wrapper li.yanzheng {
+    width: 200px;
+    ; }
   .login-wrapper .submit {
     width: 130px;
     height: 40px;

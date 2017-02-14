@@ -34,7 +34,7 @@ html,body{
 	li{
 		width:302px;
 		height:42px;
-		//border-radius:10px;
+		border-radius:10px;
 		border:1px solid #ccc;
 		margin-bottom:22px;
 		position:relative;
@@ -46,7 +46,6 @@ html,body{
 			border-right:1px solid #ccc;
 			position:relative;
 			margin-right:20px;
-			text-align:center;
 			img{
 				width:17px;
 				height:19px;
@@ -63,10 +62,7 @@ html,body{
 			outline:0;
 		}
 		img.yanzheng{
-			position:absolute;
-			top:0;
-			width:106px;
-			right:-111px;
+			
 		}
 	}
 

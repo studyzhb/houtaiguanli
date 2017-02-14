@@ -125,7 +125,7 @@ $('#confirm-save').on('click',function(){
 	console.log($('#supplierId').val());
 	config.formSubmit('#createOrderlist',config.ajaxAddress.addOrderList,function(data){
 		console.log(data);
-		 if(data.code==200){
+		 /*if(data.code==200){
 		    layer.msg('添加成功');
 		    setTimeout(function(){
 		        open('purchaselist.html','_self');
@@ -136,7 +136,7 @@ $('#confirm-save').on('click',function(){
 		    setTimeout(function(){
 		        open('purchaselist.html','_self');
 		    },500);
-		}
+		}*/
 		});
 });
 

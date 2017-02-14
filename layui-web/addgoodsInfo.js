@@ -153,32 +153,7 @@ var goodsInfo={
 
     });
     layui.use('form',function(){
-        form = layui.form();
-        form.on('submit(demo1)', function(data1){
-        /*layer.alert(JSON.stringify(data.field), {
-          title: '最终的提交信息'
-        })*/
-      
-        layer.open({type:3});
-        //$('#singleWillAddInfo').ajaxSubmit(options);
-        config.formSubmit('#singleWillAddInfo',config.ajaxAddress.addgoodsInfo,function(data){
-            console.log(data);
-            if(data.code==200){
-                layer.msg('添加成功');
-                setTimeout(function(){
-                    open('addgoodsInfo.html','_self');
-                },500)
-                
-            }else{
-                layer.msg('网络错误，请稍后重试');
-                setTimeout(function(){
-                    open('addgoodsInfo.html','_self');
-                },500)
-            }
-        });
-
-        return false;
-      });
+            
     });
 
     function updatePageNum(p1){
@@ -199,7 +174,7 @@ var goodsInfo={
                 });
             });
             $('.detailCount').text(data.num);
-        },{p:p1,status:10,goodName:goodsInfo.goodName});
+        },{p:p1,status:0,goodName:goodsInfo.goodName});
     }
 
 
@@ -219,7 +194,7 @@ var goodsHouse={
     }
 
     //添加商品信息
-    /*$('#btnSubmit').on('click',function(){
+    $('#btnSubmit').on('click',function(){
          
          layer.open({type:3});
         //$('#singleWillAddInfo').ajaxSubmit(options);
@@ -239,7 +214,7 @@ var goodsHouse={
             }
         });
         
-    })*/
+    })
 
     $('.editorgoodsinfo').on('click',function(){
         layer.open({type:3});
@@ -302,7 +277,7 @@ $('.searchByKeywords').on('click',function(){
     var val=$(this).prev().find('input').val();
     
     goodsInfo.goodName=val;
-    fistLoad=true;
+
     updatePageNum(1);
 
 });

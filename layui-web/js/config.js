@@ -85,6 +85,7 @@ var config={
     goodsEditor:'/shop/shop/public/index.php/admin/Good/edit',
     //商品详情页添加
     goodsDetail:'/shop/shop/public/index.php/admin/Good/detail',
+    bannerImg:'/shop/shop/public/index.php/admin/Banner/lst',
     goodsaddDetail:'/shop/shop/public/index.php/admin/Good/addDetail',
     //添加供货商地址
 	addSupplier:'/shop/shop/public/index.php/admin/supplier/add',
@@ -226,7 +227,6 @@ var config={
 		   	success: function(msg){
 	
            // console.log(msg);
-                msg=typeof msg==='object'?msg:JSON.parse(msg);
                 if(msg.code&&msg.code=='401'){
                     open('login.html','_self');
                 }else{

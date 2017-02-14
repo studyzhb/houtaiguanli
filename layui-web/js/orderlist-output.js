@@ -383,13 +383,22 @@ $('.confirmorder').on('click',function(){
                 },500)
                 
             }else{
-                layer.msg('网络错误，请稍后重试');
+				   var index=layer.open({
+				  content: data.mess,
+				  yes: function(index, layero){
+				    //do something
+
+				    layer.closeAll(); //如果设定了yes回调，需进行手工关闭
+				  }
+				});     
+				 
+               /* layer.msg(data.mess);
                 
                 setTimeout(function(){
                 	layer.closeAll();
                 	location.reload();
                     // open('orderlistOutput.html','_self');
-                },500)
+                },500)*/
             }
 		});
 	}else{

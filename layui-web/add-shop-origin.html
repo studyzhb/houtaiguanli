@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>添加店铺</title>
+	<title>标题</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
@@ -154,7 +154,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-block">
-                  <input type="text" name="details" placeholder="请点击地图选择地址" autocomplete="off" class="layui-input address-shop">
+                  <input type="text" name="details" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -205,10 +205,10 @@
               <div class="layui-form-item" style="display:none">
                 <label class="layui-form-label">经纬度</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="longitude" id="lngX" value="" placeholder="经度" autocomplete="off" class="layui-input">
+                  <input type="text" name="longitude" id="lngX" placeholder="经度" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
-                  <input type="text" name="latitude" id="latY" value="" placeholder="纬度" autocomplete="off" class="layui-input">
+                  <input type="text" name="latitude" id="latY" placeholder="纬度" autocomplete="off" class="layui-input">
                 </div>
               </div>
                <div class="layui-form-item">
@@ -270,11 +270,11 @@
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+        <a href="{{item.path}}">{{item.name}}</a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+          <a href="{{item.path}}">{{item.name}}</a>
         </dd>
       {{# } }}
     {{#  }); }}

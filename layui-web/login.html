@@ -5,7 +5,7 @@
 	<title>万店联盟登录页</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="./css/login.css" />
+	<link rel="stylesheet" href="./css/login.css?v=1.0" />
 	<link rel="stylesheet" href="./layui/css/layui.css" />
 	<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="./js/MD5.js"></script>
@@ -32,7 +32,7 @@
 				<ul>
 					<li><label><i class="layui-icon">&#xe612;</i></label><input type="text" class="username" name="job_num" value="" placeholder="请输入管理员名称"></li>
 					<li><label><i class="layui-icon">&#xe63c;</i></label><input type="password" name="password" value="" placeholder="请输入管理员密码" class="md5password"></li>
-					<li class="yz"><label><i class="layui-icon">&#xe61c;</i></label><input type="text"  name="" value="" placeholder="请输入验证码"><img class="yanzheng" src="" alt=""></li>
+					<li class="yz"><label><i class="layui-icon">&#xe61c;</i></label><input type="text" id="code" name="code" value="" placeholder="请输入验证码"><img class="yanzheng" style="position:absolute;right: -106px;width: 106px;" src="/shop/shop/public/index.php/admin/Login/getCode" alt=""></li>
 					
 				</ul>
 				<div class="submit">
@@ -49,7 +49,9 @@
 	/*config.ajax('get',config.ajaxAddress.getValiCode,function(data){
 		console.log(data);
 	});*/
-
+	$('.yanzheng').on('click',function($this){
+		this.src="/shop/shop/public/index.php/admin/Login/getCode?"+Math.random();
+	});
 	$('.submit').on('click',function(){
 		/*var pwd=$('.md5password').val();
 		 pwd=hex_md5(pwd+config.accessKey);
@@ -60,7 +62,10 @@
 				cookieUtil.setExpiresDate('token',data.token,7);
 				open('index.html','_self');
 			}else{
+				$("#code").val('');
 				alert(data.mess);
+				//$('.yanzheng').src="/shop/shop/public/index.php/admin/Login/getCode?"+Math.random();
+				window.location.reload(); 
 			}
 		})
 	});

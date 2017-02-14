@@ -17,7 +17,7 @@ $(function(){
 	$('.brandName').val(unescape(brandId[2].split('=')[1]));
 	var tml=$('.editSortPic').html();
 	config.ajax('get',config.ajaxAddress.editGoodsSort,function(data){
-		console.log(data);
+		console.log(data,tml);
 		$('#authorList').append(config.formatTemplate(data.data,tml));
 	},{id:bid});
 	$('.commit-author').on('click',function(){
@@ -30,6 +30,9 @@ $(function(){
 		});
 	});
 
+
+
+	
       $('#authorList').on('click','.imageaddc',function(){
           
           ImageWrapper.btap=false;

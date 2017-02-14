@@ -320,10 +320,10 @@
     <td>{{d.adminName}}</td>
     <td>{{d.adminName}}</td>
     <td>
-      {{#  if(d.status=='1'){ }}
+      {{#  if(d.status=='1'||d.status=='2'){ }}
       <div class="layui-btn layui-btn-warm layui-btn-small printOrderlist" data-id="{{d.id}}">打印采购单</div>
       <div class="layui-btn layui-btn-warm layui-btn-small exceloutput" data-id="{{d.id}}">导出采购单</div>
-      {{#  }else if(d.status=='2'){ }}
+     <!--  {{#  }else if(d.status=='2'){ }} -->
 
       {{#  }else{ }}
         <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">审核</div>
