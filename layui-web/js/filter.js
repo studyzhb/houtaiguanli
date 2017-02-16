@@ -84,11 +84,13 @@ switch(switchVal){
 	case 'shopprice-his':
 		netPath+='/shop-price.html';
 		break;
+	case　'add-psort':
+		netPath+='/pSort.html'
 }
 // if(!cookAuthor){
 	config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){
 		console.log(data.code,typeof data);
-		if(data.code=='401'){
+		if(data.code=='401'||!data.code){
 			open('login.html','_self');
 			return;
 		}
@@ -97,10 +99,8 @@ switch(switchVal){
 		}else{
 			open('login.html','_self');
 		}
-
 		cookieUtil.setExpiresDate('authorlist',JSON.stringify(data));
-		updateList(data);
-		
+		updateList(data.data);
 	});
 // }else{
 // 	if(!!user){

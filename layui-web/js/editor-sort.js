@@ -8,9 +8,6 @@ $(function(){
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
 	});
-	
-
-
 	console.log(brandId);
 	var bid=brandId[1].split('=')[1];
 	$('.brandId').val(brandId[1].split('=')[1]);

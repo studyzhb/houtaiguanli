@@ -183,8 +183,11 @@ var config={
       refuseStorelist:'/shop/shop/public/index.php/admin/Store/jujue',
       //库存
       storehouse:'/shop/shop/public/index.php/admin/Purchase/storeLst',
-      excelOutput:'/shop/shop/public/index.php/admin/Excel/excel'
-
+      excelOutput:'/shop/shop/public/index.php/admin/Excel/excel',
+      specialSubject:{
+        showlist:'/shop/shop/public/index.php/admin/Special/Show',
+        addSort:'/shop/shop/public/index.php/admin/Special/add'
+      }
 	},
   pSort:{
     pagecount:10
@@ -226,7 +229,7 @@ var config={
 		   	data:data||{date:new Date().getTime()},
 		   	success: function(msg){
 	
-           // console.log(msg);
+           console.log(msg,typeof msg);
                 if(msg.code&&msg.code=='401'){
                     open('login.html','_self');
                 }else{

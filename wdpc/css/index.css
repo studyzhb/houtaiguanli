@@ -128,8 +128,9 @@
   margin: 0 auto; }
   .allliance-area .sort-liance {
     height: 29px;
-    padding: 23px 0 0 85px;
-    background: url(../img/food.png) no-repeat 24px 0;
+    padding: 23px 0 0 28px;
+    background: url(../img/food.png) no-repeat 0 24px;
+    background-size: 25px;
     position: relative; }
     .allliance-area .sort-liance .iconImage {
       position: absolute;
@@ -149,12 +150,12 @@
       .allliance-area .sort-liance ul li.right-sort-area {
         float: right; }
   .allliance-area .liance-con-wrapper {
-    padding: 25px 28px;
+    padding: 25px 0;
     overflow: hidden; }
     .allliance-area .liance-con-wrapper .liance-con {
       width: 1100px; }
       .allliance-area .liance-con-wrapper .liance-con .single-liance-show {
-        margin-right: 22px;
+        margin-right: 29px;
         margin-bottom: 12px;
         margin-top: 12px;
         display: inline-block; }

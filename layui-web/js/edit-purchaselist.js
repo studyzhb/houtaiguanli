@@ -6,14 +6,13 @@ $(function(){
 		selectedList:[],
 		dposit:0,
 		initDposit:0,
+		isCanClick:true,
 		updateOrderList:function(){
 			var tempHtml=goodsContent.innerHTML;
 			$('#goods-orderlist .updateCon').remove();
 			this.dposit=this.initDposit;
 			$.each(orderlist.selectedList,function(index,item){
 				item.selectedindex=index;
-				console.log(item);
-				
 				orderlist.dposit+=item.number*item.buyprice;
 				laytpl(tempHtml).render(item,function(html){
 					$('#goods-orderlist').append(html);
@@ -237,37 +236,44 @@ $('#ordernum').val(new Date().getTime());
 
 //保存数据库
 $('#confirm-save').on('click',function(){
-	if(orderlist.selectedList.length<=0){
-		if(layer){
-		layer.msg('请选择商品');
-			
+	if(orderlist.isCanClick){
+		orderlist.isCanClick=false;
+		if(orderlist.selectedList.length<=0){
+			if(layer){
+			layer.msg('请选择商品');
+				
+			}else{
+				alert('请选择商品');
+			}
 		}else{
-			alert('请选择商品');
+			layer.open({type: 3});
+			var arr=[];
+			$.each(orderlist.selectedList,function(index,item){
+				arr.push({'good_id':item.id,'unm':item.number});
+			})
+			$('#goods').val(JSON.stringify(arr));
+			// console.log($('#goods').val());
+			config.formSubmit('#orderlist-submit',config.ajaxAddress.addOnlyOrderlist,function(data){
+				console.log(data);
+				 if(data.code==200){
+	                layer.msg('添加成功');
+	                setTimeout(function(){
+	                    open('purchaselist.html','_self');
+	                },500);
+	                
+	            }else{
+	    			orderlist.isCanClick=true;	
+	                layer.msg('网络错误，请稍后重试');
+	                setTimeout(function(){
+	                    open('purchaselist.html','_self');
+	                },500);
+	            }
+			});
 		}
 	}else{
-		layer.open({type: 3});
-		var arr=[];
-		$.each(orderlist.selectedList,function(index,item){
-			arr.push({'good_id':item.id,'unm':item.number});
-		})
-		$('#goods').val(JSON.stringify(arr));
-		// console.log($('#goods').val());
-		config.formSubmit('#orderlist-submit',config.ajaxAddress.addOnlyOrderlist,function(data){
-			console.log(data);
-			 // if(data.code==200){
-    //             layer.msg('添加成功');
-    //             setTimeout(function(){
-    //                 open('purchaselist.html','_self');
-    //             },500);
-                
-    //         }else{
-    //             layer.msg('网络错误，请稍后重试');
-    //             setTimeout(function(){
-    //                 open('purchaselist.html','_self');
-    //             },500);
-    //         }
-		});
+		layer.msg('请勿重复点击');
 	}
+	
 	console.log('save-111');
 });
 

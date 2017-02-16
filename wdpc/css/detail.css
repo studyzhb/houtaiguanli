@@ -127,7 +127,7 @@
         position: absolute;
         height: 25px;
         background: #fff url(../img/shoppingcar/pro-btns.png) no-repeat;
-        display: block; }
+        display: none; }
       .goods-detail-content .left-small-piclist .show-goods-smalllist span.top-icon {
         background-position: 20px 4px; }
       .goods-detail-content .left-small-piclist .show-goods-smalllist span.bottom-icon {
