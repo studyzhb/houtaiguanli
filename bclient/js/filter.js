@@ -4,9 +4,10 @@ if(!user){
 	open('login.html','_self');
 }
 
-!function(){
-    layui.use('layer', function(){
-        window.layer = layui.layer;
+!function(w){
+    layui.use(['layer','laytpl'], function(){
+        w.layer = layui.layer;
+        w.laytpl = layui.laytpl;
   
     }); 
-}()
+}(window)

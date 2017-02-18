@@ -85,7 +85,12 @@ switch(switchVal){
 		netPath+='/shop-price.html';
 		break;
 	case　'add-psort':
-		netPath+='/pSort.html'
+		netPath+='/pSort.html';
+		break;
+	case 'editor-psort':
+		netPath+='/pSort.html';
+		break;
+		
 }
 // if(!cookAuthor){
 	config.ajax('get',config.ajaxAddress.getAuthorlist,function(data){

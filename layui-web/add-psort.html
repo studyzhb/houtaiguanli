@@ -72,13 +72,13 @@
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <div class="layui-form-item">
+              <!-- <div class="layui-form-item">
                 <label class="layui-form-label">排序(0-255)</label>
                 <div class="layui-input-inline">
                   <input type="text" lay-verify="required" name="des" placeholder="请输入" autocomplete="off" class="layui-input sortpl">
                 </div>
                 <div class="layui-form-mid layui-word-aux">必填项</div>
-              </div>
+              </div> -->
               <div class="layui-form-item">
                 <label class="layui-form-label">类别名称</label>
                 <div class="layui-input-inline">
@@ -105,14 +105,15 @@
                   
                 </div>
               </div>
+              
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">请填写描述</label>
                 <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
+                  <textarea placeholder="请输入内容" name="des" class="layui-textarea"></textarea>
                 </div>
               </div>
               <!-- ================================================== -->
-
+              
               <!-- ================================================== -->
               <div class="layui-form-item">
                 <div class="layui-input-block">

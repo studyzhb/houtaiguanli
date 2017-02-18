@@ -567,7 +567,48 @@ $('.alertCon-wrapper').on('click','.supplieralert',function(){
     return false;
 });
 
+$('.alertCon-wrapper').on('click','.specialalert',function(){
+    
+    var me=this;
+    $('#province-list').html('');
+    $('.sortspec').html('');
+    var i;
+    config.ajax('get',config.ajaxAddress.addgoodsInfo,function(data){
+         
+        $.each(data.special,function(index,item){
+            var $li=$('<a>').appendTo($('#province-list')).html(item.title).attr('value',item.id);
+            $li.on('click',function(){
+                $(me).val($(this).html());
+                $('.good_special_id').val($(this).attr('value'));
+                isClick=true;
+                layer.close(i);
+            })
 
+        });
+        if(isClick){
+            
+            i=layer.open({
+                type:1,
+                content: $('#alertMessage'), //这里content是一个DOM
+              shade:[0.8,'#000'],
+              area:'900px',
+              maxmin: true,
+              end:function(){
+                // console.log('end');
+                isClick=true;
+              }
+            })
+            isClick=false;
+        }
+
+        
+       
+    })
+
+
+
+    return false;
+});
 
 /*
 价格监测

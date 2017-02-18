@@ -186,7 +186,11 @@ var config={
       excelOutput:'/shop/shop/public/index.php/admin/Excel/excel',
       specialSubject:{
         showlist:'/shop/shop/public/index.php/admin/Special/Show',
-        addSort:'/shop/shop/public/index.php/admin/Special/add'
+        addSort:'/shop/shop/public/index.php/admin/Special/add',
+        updateSort:'/shop/shop/public/index.php/admin/Special/update',
+        licenses:'/shop/shop/public/index.php/admin/SpecialGood/Show',
+        addSpecGoods:'/shop/shop/public/index.php/admin/SpecialGood/add',
+        deleteSpecGoods:'/shop/shop/public/index.php/admin/SpecialGood/del'
       }
 	},
   pSort:{

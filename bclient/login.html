@@ -44,8 +44,7 @@
 			
 
 	$('.validateCode').attr('src',config.ajaxAddress.publicAddress+config.ajaxAddress.getValiCode);
-
-	$('.submit').on('click',function(){
+	function login(){
 		/*var pwd=$('#md5password').val();
 		pwd=hex_md5(pwd+config.accessKey);
 		$('#md5password').val(pwd);*/
@@ -61,6 +60,12 @@
 				alert(data.message);
 			}
 		})
-	});
+	}
+	$('.submit').on('click',login);
+	$(document).on('keyup',function(e){
+		if(e.keyCode==13){
+			login()
+		}
+	})
 </script>
 </html>
