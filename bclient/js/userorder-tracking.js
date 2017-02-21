@@ -22,7 +22,7 @@ $(function(){
 			},{id:carid,num:num,pro:pro});
 		},
 		lookSingleOrder:function(){
-
+			
 			config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.userOrderDetail,function(data){
 				console.log(data);
 				layer.closeAll('loading');
@@ -30,6 +30,7 @@ $(function(){
 					
 					var tempHtml=orderlistGoods.innerHTML;
 					var tempHtml1=receiveuserInfo.innerHTML;
+					// var tempHtml2=info.innerHTML;
 					$('.goodsWrapper').html('');
 					$('.user-mess').html('');
 					
@@ -41,6 +42,13 @@ $(function(){
 						
 						$('.user-mess').append(html);
 					});
+
+					// laytpl(tempHtml2).render(data.time,function(html){
+						
+					// 	$('.user-mess').append(html);
+					// });
+
+					updateGoods(data.time);
 				}
 
 				layer.open({
@@ -57,27 +65,62 @@ $(function(){
 			},{id:orderTracking.data.coding,status:orderTracking.data.status});
 
 		},
-		printSingleOrder:function(){
-			var me=this;
-			config.ajax('post',config.ajaxAddress.publicAddress+config.ajaxAddress.printTrainOrder,function(data){
+		//打印小票或配送
+		showOrderlist:function(){
+			
+			config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.userOrderDetail,function(data){
 				console.log(data);
 				layer.closeAll('loading');
 				if(data.code=='200'){
 					
+					var tempHtml=singleOrderList.innerHTML;					
+					// var tempHtml2=info.innerHTML;
+					$('.purchaselist').html('');
+					
+					laytpl(tempHtml).render(data.orderinfo,function(html){
+						
+						$('.purchaselist').append(html);
+					});
+					
+
+					// laytpl(tempHtml2).render(data.time,function(html){
+						
+					// 	$('.user-mess').append(html);
+					// });
+
+					updateGoods(data.time);
 				}
-				//me.bodyScale();
+
 				layer.open({
 			        type:1,
-			        content: $('#alertMessage'), //这里content是一个DOM
+			        content: $('#alertMessage1'), //这里content是一个DOM
 			          shade:[0.8,'#000'],
-			          area:"800px",
+			          area:'800px',
 			          maxmin: true,
 			          end:function(){
 			            // console.log('end');
 			          }
 			        })
 
-			},{orderid:orderTracking.data.coding,type:'print'});
+			},{id:orderTracking.data.coding,status:orderTracking.data.status});
+
+		},
+		//打印小票或者配送完成
+		printSingleOrder:function(status){
+			var me=this;
+			config.ajax('post',config.ajaxAddress.publicAddress+config.ajaxAddress.printTrainOrder,function(data){
+				console.log(data);
+				layer.closeAll('loading');
+				if(data.code=='200'){
+					layer.msg('操作成功');
+					location.reload(true);
+				}else{
+					layer.msg('操作失败,请稍后重试',{
+
+					})
+				}
+
+			},{orderid:orderTracking.data.coding,type:status});
 
 		},
 		deleteSingleGoods:function(carid,pro,$obj){
@@ -108,7 +151,6 @@ $(function(){
 	    	var devicewidth=$('#alertMessage').width();
 	        var scale=devicewidth/750;
 	        $('.alert-main-con').css({'zoom':scale});
-	        console.log(devicewidth,scale);
 	    }
 	}
 
@@ -126,16 +168,13 @@ $(function(){
 			});
 		},{status:sN});
 	});
-
+	//打印小票
 	$('#purchaselist').on('click','.printTrain',function() {
 		$('.payInput').val('');
 		// layer.load();
 		// orderTracking.data.total=$(this).data('pri');
 		orderTracking.data.coding=$(this).data('id');
-		orderTracking.printSingleOrder();
-
-		
-
+		orderTracking.showOrderlist();
 	})
 
 	$('#purchaselist').on('click','.lookinfo',function() {
@@ -145,22 +184,39 @@ $(function(){
 		orderTracking.data.coding=$(this).data('id');
 		orderTracking.lookSingleOrder();
 
-		
-
 	})
 
-	function updateGoods(){
+	$('#purchaselist').on('click','.sendingOrder',function() {
+		$('.payInput').val('');
+		// layer.load();
+		orderTracking.data.status=$(this).data('status');
+		orderTracking.data.coding=$(this).data('id');
+		orderTracking.showOrderlist();
 
+	})
+	//打印小票(发货)
+	$('.purchaselist').on('click','.print-send',function(){
+		orderTracking.data.coding=$(this).data('id');
+		var type=$(this).data('type');
+		orderTracking.printSingleOrder(type);
+	})
+	//配送完成()
+	$('.purchaselist').on('click','.send-completed',function(){
+		orderTracking.data.coding=$(this).data('id');
+		var type=$(this).data('type');
+		orderTracking.printSingleOrder(type);
+	})
+	function updateGoods(data){
+		data=typeof data==='string'?JSON.parse(data):data;
         var arr=[{status:'卖家已下单'},{status:'卖家已付款'},{status:'商家已接单'},{status:'开始配送'},{status:'配送完成'}];
         
         var infoHtml=$('#info').html();
-        var data=$('.ps-bg').data('info');
        var outputIndex=data.num;
         var arrInfo=[];
         var tArr=data.data;
-        console.log(tArr);
+
         // $('.ps-bg').html('');
-        console.log(outputIndex);
+ 
         if(!!outputIndex&&outputIndex!=10){
             $.each(arr,function(index,item){
                 
@@ -170,7 +226,7 @@ $(function(){
                     da.setTime(tArr[index]*1000);
                     item.time=da.toLocaleString();
 
-                    arrInfo.push(formatTemplate(item,infoHtml));
+                    arrInfo.push(config.formatTemplate(item,infoHtml));
                 }
             });
             if(outputIndex==4){
@@ -185,18 +241,18 @@ $(function(){
                     da.setTime(tArr[index]*1000);
                     item.time=da.toLocaleString();
                     
-                    arrInfo.push(formatTemplate(item,infoHtml));
+                    arrInfo.push(config.formatTemplate(item,infoHtml));
                 }
             });
             var da=new Date();
             da.setTime(tArr[5]*1000);
-            arrInfo.push(formatTemplate({status:'退货完成',time:da.toLocaleString()},infoHtml));
+            arrInfo.push(config.formatTemplate({status:'退货完成',time:da.toLocaleString()},infoHtml));
             
         }else{
             var da=new Date();
-            arrInfo.push(formatTemplate({status:'暂无配送消息',time:da.toLocaleString()},infoHtml));
+            arrInfo.push(config.formatTemplate({status:'暂无配送消息',time:da.toLocaleString()},infoHtml));
         }
-//        console.log(arrInfo);
+       $('.ps-bg :not(.fugai)').remove();
         $('.ps-bg').append(arrInfo.join(''));
     }
 

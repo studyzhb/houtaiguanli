@@ -10,4 +10,4 @@ if(!user){
         w.laytpl = layui.laytpl;
   
     }); 
-}(window)
+}(this)

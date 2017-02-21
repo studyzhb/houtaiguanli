@@ -38,7 +38,16 @@ if(goodsInfo.status=='1'){
 	$('.unedit').addClass('layui-this');
 	$('.edited').removeClass('layui-this');
 }
+//导出采购单
 
+$('#goodExcel').on('click',function(){
+	console.log('click')
+	/*config.ajax('get',config.ajaxAddress.excelOutput,function(data){
+		console.log(data);
+	},{buyer_id:$(this).data('id')});*/
+	
+	open(config.ajaxAddress.goodExcel+'?token='+cookieUtil.getCookie('token')+'&status='+goodsInfo.status,'_self');
+});
 $('.unedit').on('click',function(){
 	fistLoad=true;
 	goodsInfo.status='0';

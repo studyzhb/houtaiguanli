@@ -6,7 +6,7 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="../layui/css/layui.css" />
-  <link rel="stylesheet" href="../css/alertcon.css?v=1.0" />
+  <link rel="stylesheet" href="../css/alertcon.css?v=2.0" />
   <link rel="stylesheet" href="../css/goodslist.css?v=2.0" />
 	<script src="../layui/layui.js"></script>
     <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
@@ -108,9 +108,18 @@
 
 
 
-            <div class="layui-form-item" style="position:absolute;left:30%;bottom:-20px;z-index:11;">
-              <div class="layui-input-block">
-                <div class="layui-btn intoShopList" >立即提交</div>
+            <div class="layui-form-item" style="position:absolute;left:0;bottom:-20px;z-index:11;display:block;width:98.5%;background:rgba(0,0,0,0.6)">
+              <div class="checkArea div-inline">
+                <div class="checkall div-inline" style="cursor:pointer;">
+                  <i class="layui-icon" style="font-size: 20px; color: #1E9FFF;">&#xe63f;</i>
+                  <span style="color:#fff;">全选</span>
+                </div>
+                <div class="checkshift div-inline" style="margin-left:20px;cursor:pointer;">
+                  <span style="color:#fff;">取消全选</span>
+                </div>
+              </div>
+              <div class="layui-input-block div-inline">
+                <div class="layui-btn intoShopList" data-title="进货管理">立即提交</div>
               </div>
             </div>
           </form>
@@ -268,8 +277,7 @@
                           </div>
                           <i class="arrow"></i>
                       </div>
-
-                      
+    
                   </div>
 
                   <div class="r-list" style="vertical-align:top;">

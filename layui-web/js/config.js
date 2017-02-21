@@ -61,6 +61,8 @@ var config={
   },
   accessKey:'5f843e288bb1cabb834b9d20eea3d8c0',
 	ajaxAddress:{
+    //商品状态导出
+    goodExcel:"/shop/shop/public/index.php/admin/Excel/goodExcel",
     //登录
     loginAdd:"/shop/shop/public/index.php/admin/Login/login",
     //访问前权限验证

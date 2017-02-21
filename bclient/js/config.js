@@ -66,6 +66,14 @@ var config={
 	ajaxAddress:{
     publicAddress:'/public/index.php/bweb',
     imgAddress:'',
+    //修改登录密码
+    updateloginpass:'/login/code/',
+    //设置支付密码
+    updatePayPass:'/login/addpay/',
+    //验证支付密码通过手机
+    checkoutCodeBypayTel:'/login/lookcode/',
+    //通过原密码更新密码
+    updateLoginPassByOld:'/login/updatalogin/',
     //登录
     loginAdd:"/login/index/",
     //访问前权限验证
@@ -95,7 +103,7 @@ var config={
     userOrderList:'/corder/index',
     //用户订单详情
     userOrderDetail:'/corder/ordershow',
-    //打印小票
+    //打印小票或者完成订单
     printTrainOrder:'/corder/updateorderstatus',
     //店铺展示
     showShopGoods:'/shopgood/index',
@@ -258,16 +266,22 @@ var config={
 		   	url:url,
 		   	data:data||{date:new Date().getTime()},
 		   	success: function(msg){
-	
-                console.log(typeof msg);
-                msg=typeof msg==='object'?msg:JSON.parse(msg);
-                if(msg.code&&msg.code=='401'){
-                    open('login.html','_self');
-                }else{
-                   if(fun){
-                    fun(msg);
-                    } 
-                }   		 	
+              msg=typeof msg==='object'?msg:JSON.parse(msg);
+              if(msg.code&&msg.code=='401'){
+                  layui.use('layer',function(){
+                    var layer=layui.layer;
+                    layer.closeAll();
+                     location.reload(true);
+                  })
+                 
+              }else if(msg.code&&msg.code=='402'){
+                  open('login.html','_self');
+              }
+              else{
+                 if(fun){
+                  fun(msg);
+                  } 
+              }   		 	
 		   },
        error:function(e){
          console.log(JSON.stringify(e));

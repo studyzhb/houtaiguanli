@@ -52,25 +52,45 @@ $(function(){
 	});
 	//
 	$('.intoShopList').on('click',function(){
+		var title=$(this).data('title');
 		config.formSubmit('#goodsWraper',config.ajaxAddress.publicAddress+config.ajaxAddress.addMart,function(data){
 			console.log(data);
 			if(data.code=='200'){
 				layer.msg('添加成功');
 				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 				parent.layer.close(index);
+				closeTaskapp(title);
+				//$().removeClass("disabled")
 			}else{
-
+				closeTaskapp(title);
 			}
 		});
 	});
 
+	function closeTaskapp(title){
+		//关闭底部tab栏
+		$(".desktop-app",parent.document).each(function() {
+			var a = $(this);
+			if(a.data('title')==title){
+				a.removeClass('disabled');
+			}
+		})
+		
+		$(".taskbar-app",parent.document).each(function() {
+			var a = $(this);
+			if(a.attr('title')==title){
+				a.remove();
+			}
+		})
+	}
+
 	//点击添加至进货单
 	$('#goodsWraper').on('click','.addOrder',function(){
-
+		
 		$(this).parent('.shop-mask').siblings('.mutiCode').animate({
 			bottom:0,
 			zIndex:10
-		},1000);
+		},100);
 
 		
 	});
@@ -79,7 +99,7 @@ $(function(){
 		
 		$(this).addClass('sele-this');
 	});
-
+	//确认添加到购物车
 	$('#goodsWraper').on('click','.saveIntoMart',function(){
 		var arrMuti=$(this).data('info');
 		var goodid=$(this).data('id');

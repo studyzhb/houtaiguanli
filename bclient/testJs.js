@@ -40,6 +40,7 @@ function() {
 						cookieUtil.removeCookie('username');
 						cookieUtil.removeCookie('shopname');
 						cookieUtil.removeCookie('is_pay_password');
+						location.reload(true);
 					}
 				});
 				// layer.close(index);
@@ -372,4 +373,5 @@ function() {
 			type = a.data('type');
 		p[type] ? p[type].call(this, a) : ''
 	})
+	window.app=p;
 }();

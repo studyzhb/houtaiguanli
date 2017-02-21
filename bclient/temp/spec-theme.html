@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../js/filter.js"></script>
     <link href="../css/jquery.gridly.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../css/alertcon.css" />
+    <link rel="stylesheet" href="../css/gird.css?v1" />
 </head>
 <body>
     <style type="text/css">
@@ -33,24 +34,26 @@
     background: #ff0;
   }
 </style>
-<div class="lay-main">
+<div class="lay-main example">
     <div class="gridly">
         
     </div>
 </div>
 
-
+<script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+<script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>
+<script src="/public/utf8-php/ueditor.config.js"></script>
+<script src="/public/utf8-php/ueditor.all.js"></script>
+<script src="/public/utf8-php/ueditor.all.min.js"></script>
 <script id="specContent" type="text/html">
   <div class="brick small" data-id={{d.id}}>
+      <a class='delete' href='#'>&times;</a>
       <img src="{{d.pic}}" alt="">
+        <div style="position:absolute;bottom:0;left:0;height:28px;text-align:center;background-color:rgba(0,0,0,0.6);">{{d.title}}</div>
   </div>
 </script>
 <script>
-  $('.gridly').gridly({
-    base: 60, // px 
-    gutter: 20, // px
-    columns: 12
-  });
+  
 </script>
 <script src="../js/spec-theme.js"></script>
 </body>

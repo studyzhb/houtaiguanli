@@ -95,32 +95,19 @@ isicon:1,height:"",width:""},m406:{appid:"106",icon:"&#xe639;",iconbg:"#e6db74",
 <script src="testJs.js"></script>
 <script src="./js/filter.js"></script>
 <script>
+
+    $(".desktop-app").each(function() {
+        var a = $(this);
+       
+        if(a.data('title')=='订单管理'){
+            if (a.hasClass("disabled")) return false;
+            a.addClass("disabled");
+            app.appopen(a)
+        }
+        
+    })
     var sName=cookieUtil.getCookie('shopname');
     $('.username').text(sName);
-
-	/*layui.use('layer',function(){
-		var layer = layui.layer;
-		setTimeout(function(){layer.open({
-		  type: 1
-		  ,title: false //不显示标题栏
-		  ,closeBtn: false
-		  ,area: '300px;'
-		  ,shade: 0.8
-		  ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-		  ,resize: false
-		  ,btn: ['火速点赞', '知晓了']
-		  ,btnAlign: 'c'
-		  ,moveType: 1 //拖拽模式，0或者1
-		  ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br>在你再次看见的时候，已再次更新，桌面app打开逻辑更完善。<br>更新了通知栏是否显示图标；更新显示的时候，点击通知栏就隐藏并去掉高亮；更新窗体大小由用户自定义初始化；<br>觉得赞的请在LAYUI案例页面为我点赞，在此感谢了！！！<br>须知：本案例不能用于商业项目，仅限于LAYUI的朋友学习交流！<br><a href="https://jq.qq.com/?_wv=1027&k=42nXboq" style=" color:#fff">QQ群：601178086(有源码)</a></div>'
-		  ,success: function(layero){
-			var btn = layero.find('.layui-layer-btn');
-			btn.find('.layui-layer-btn0').attr({
-			  href: 'http://fly.layui.com/case/2016/top'
-			  ,target: '_blank'
-			});
-		  }
-		});},1000*19);
-	});*/
 
     function updateOrder(){
         setTimeout(function(){
