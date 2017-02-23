@@ -20,6 +20,7 @@ $(function(){
 	}
 
 	var specInfo=JSON.parse(decodeURIComponent(location.href.split('?')[1].split('&')[1]));
+	console.log(specInfo);
 	$('#specName').val(specInfo.title)
 	$('#specId').val(specInfo.id)
 

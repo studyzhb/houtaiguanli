@@ -66,7 +66,9 @@ var config={
 	ajaxAddress:{
     publicAddress:'/public/index.php/bweb',
     imgAddress:'',
-    //修改登录密码
+    //判断session 是否失效
+    checkSession:'/index/index',
+    //获取手机短信验证码
     updateloginpass:'/login/code/',
     //设置支付密码
     updatePayPass:'/login/addpay/',
@@ -117,6 +119,10 @@ var config={
       specInfo:'/ShopSpecial/shoeSpecialGood',
       updateSpec:'/ShopSpecial/addShopSpecial',
       sortSpec:'/ShopSpecial/SetSpecialSort'
+    },
+    shopDetail:{
+      shopInfo:'/Shopdetail/index',
+      shopbalance:'/mypurse/index'
     },
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
@@ -268,12 +274,16 @@ var config={
 		   	success: function(msg){
               msg=typeof msg==='object'?msg:JSON.parse(msg);
               if(msg.code&&msg.code=='401'){
-                  layui.use('layer',function(){
+                  /*layui.use('layer',function(){
                     var layer=layui.layer;
-                    layer.closeAll();
-                     location.reload(true);
-                  })
-                 
+                    layer.closeAll('iframe');
+                  var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                  parent.layer.close(index);
+                  location.href='http://web.wandlm.com/bclient';
+                      parent.window.frames['iframeId']
+                  })*/
+                $(parent.document).find('iframe').remove();
+                open('login.html','_self');
               }else if(msg.code&&msg.code=='402'){
                   open('login.html','_self');
               }

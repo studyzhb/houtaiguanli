@@ -21,29 +21,29 @@
 			<span>修改密码</span>
 		</header><!-- /header -->
 		<div class="larry-personal-body clearfix changepwd">
-			<form class="layui-form col-lg-4" method="post" action="">
-			 	<div class="layui-form-item">
+			<form class="layui-form" method="post" action="" id="userinfo">
+			 	<!-- <div class="layui-form-item">
 					<label class="layui-form-label">用户名</label>
 					<div class="layui-input-block">  
 					  	<input type="text" name="title"  autocomplete="off"  class="layui-input layui-disabled" value="admin" disabled="disabled" >
 					</div>
-				</div>
+				</div> -->
 				<div class="layui-form-item">
 					<label class="layui-form-label">旧密码</label>
 					<div class="layui-input-block">  
-					  	<input type="password" name="title"  autocomplete="off"  class="layui-input" value="" placeholder="请输入旧密码">
+					  	<input type="password" name="title" lay-verify="required"  autocomplete="off"  class="layui-input" value="" placeholder="请输入旧密码">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">新密码</label>
 					<div class="layui-input-block">  
-					  	<input type="password" name="title"  autocomplete="off"  class="layui-input" value="" placeholder="请输入新密码">
+					  	<input type="password" name="title"  lay-verify="required" autocomplete="off"  class="layui-input" value="" placeholder="请输入新密码">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">确认密码</label>
 					<div class="layui-input-block">  
-					  	<input type="password" name="title"  autocomplete="off"  class="layui-input" value="" placeholder="请输入确认新密码">
+					  	<input type="password" name="title" lay-verify="required" autocomplete="off"  class="layui-input" value="" placeholder="请输入确认新密码">
 					</div>
 				</div>
 				<div class="layui-form-item change-submit">
@@ -62,5 +62,6 @@
          var form = layui.form();
 	});
 </script>
+<script src="../js/userpasswd.js"></script>
 </body>
 </html>

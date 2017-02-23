@@ -415,7 +415,7 @@
 
 <script id="goodsContent" type="text/html">
 
-  <ul class="wd-list">
+  <ul class="wd-list" data-id="{{d.typeid}}">
     {{# layui.each(d.goodinfo,function(index,item){ }}
       <li>
         
@@ -431,6 +431,7 @@
             
           </div>
           <div class="box">
+
             <div class="mutiCode">
               <dl>
                 <dt>规格</dt>
@@ -454,8 +455,12 @@
               </div>
             </div>
             <div class="shop-mask">
-
-              <div class="addOrder" data-info="{{item.pro}}" data-id="{{item.goodid}}">进货</div>
+              {{# if(item.pro.length==1){ }}
+                <div class="addOrder confirmSelect" data-info="{{item.pro}}" data-id="{{item.goodid}}" >确认选择</div>
+            {{# }else { }}
+                <div class="addOrder selectStandard" data-info="{{item.pro}}" data-id="{{item.goodid}}">进货</div>
+            {{# } }}
+              
               
               <h3 class="shop-name">
                 <a href="#">万店联盟凤台路店</a>

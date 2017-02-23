@@ -54,7 +54,7 @@ $(function(){
 
 		$.each(speclicenses.specArr,function(ind,item){
 			if(item.id==id){
-				speclicenses.specInfo.name=item.title;
+				speclicenses.specInfo.title=item.title;
 				return false;
 			}
 		})

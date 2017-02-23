@@ -3,28 +3,25 @@ $(function(){
 	var addUser={
 		maxNum:''
 	}
-	var shopid=location.href.split('?')[1].split('=')[1]||'';
-	//config.ajaxAddress.addshopUser
+
 
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
-		config.ajax('post',config.ajaxAddress.shophis,function(data){
+		config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.shopDetail.shopbalance,function(data){
 		console.log(data);
 			var tempHtml=shophis.innerHTML;
 			//console.log(tempHtml);
 			
 			$('#purchaselist').html('');
-			$.each(data.data,function(index,item){
-				console.log(item);
-				laytpl(tempHtml).render(item,function(html){
+			laytpl(tempHtml).render(data,function(html){
 					$('#purchaselist').append(html);
 				});
-			});
+			
 		
 		layui.use('form',function(){
 			
 		});
-	},{id:shopid});
+	});
 
 
 	});
@@ -50,7 +47,7 @@ $(function(){
 		}
 	});
 
-	$('.addUserInfo').on('click',function(){
+	/*$('.addUserInfo').on('click',function(){
 		config.formSubmit('#adminInfo',config.ajaxAddress.addshopUser,function(data){
 			console.log(data);
 			if(data.code==200){
@@ -66,6 +63,6 @@ $(function(){
                 },500)
             }
 		});
-	})
+	})*/
 
 });

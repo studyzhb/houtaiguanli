@@ -1,4 +1,9 @@
 $(function(){
+      var specWrapper={
+        data:{
+            $o:''
+        }
+      }
      var o_ueditorupload = UE.getEditor('j_ueditorupload',
       {
         autoHeightEnabled:false
@@ -11,36 +16,13 @@ $(function(){
     //监听图片上传
     o_ueditorupload.addListener('beforeInsertImage', function (t,arg)
     {
-        $.each(arg,function(index,item){
-          // console.log(item.src);
-          ImageWrapper.suolveImg.push(item.src);
-          ImageWrapper.imgArr.push(item.src);
-        });
+       
 
         // console.log(ImageWrapper.imgArr);
         // $()
-          // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
+          console.log('这是图片地址：'+arg[0].src+'test111');
 
-          $('.image-suolve').html('');
-         $.each(ImageWrapper.suolveImg,function(index,item){
-            
-            console.log(item);
-            // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
-            //   $('#imageadd').show();
-            // }else{
-            //    $('#imageadd').hide();
-            // }
-            if(index<=4){
-
-              $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
-            }
-
-        });
-         if(ImageWrapper.suolveImg.length<5){
-          $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
-
-         }
-         $('.shopinput').val(JSON.stringify(ImageWrapper.suolveImg));
+          specWrapper.data.$o.find('img').attr('src',arg[0].src);
     });
 
 
@@ -61,7 +43,7 @@ $(function(){
       {
         // ImageWrapper.temp=str;
         // console.log(str);
-
+          specWrapper.data.$o=str;
         var myImage = o_ueditorupload.getDialog("insertimage");
         myImage.open();
       }
@@ -77,30 +59,88 @@ $(function(){
         
         var laytpl = layui.laytpl;
         config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.specApi.specManage,function(data){
-            var tempHtml=specContent.innerHTML;
-            $('.gridly').html('');
-            $('.gridly').gridly({
-                base: 60, // px 
-                gutter: 20, // px
-                columns: 8
-              });
-
+            var tempHtml=specBox.innerHTML;
+            
             console.log(data);
             if(data.code==200){
                 $.each(data.shop_special,function(index,item){
                     laytpl(tempHtml).render(item,function(html){
-                        $('.gridly').append(html);
+                        $('.specWrapper').append(html);
                     });
                 })
-                $('.gridly').on('click','.brick',function(){
-                  console.log(UE);
-                  upImage('image-suolve');
+                $('.specWrapper').on('click','.singlePic',function(){
+                  
+                  upImage($(this));
                 })
+                $('.specWrapper').on('hover','.singlePic',function(){
+                  
+                  upImage($(this));
+                })
+                //鼠标滑过显示删除
+              $('.specWrapper').on('mouseover','.singlePic',function(){
+              $(this).find('.addSelect').show();
+
+              });
+              $('.specWrapper').on('mouseout','.singlePic',function(){
+              $(this).find('.addSelect').hide();
+
+              });
+              $('.specWrapper').on('mousedown','.addSelect',function(){
+                
+                return false;
+              });
+              $('.specWrapper').on('click','.addSelect',function(){
+                var tml=specContent.innerHTML;
+                var item={};
+                item.id=$(this).data('info');
+                item.pic=$(this).siblings('img').attr('src');
+                item.title=$(this).prev().text();
+                laytpl(tml).render(item,function(html){
+                        $('.gridly').append(html);
+                    });
+                $(this).parents('.singlePic').remove();
+                return false;
+              });
             }
 
         })
   
     });
 
+
+    $('.gridly').gridly({
+        base: 60, // px 
+        gutter: 20, // px
+        columns: 8
+      });
+    function updateSortSpec(arrData){
+
+      arrData.sort(function(a,b){
+        console.log(a,b);
+        return parseInt(a.left)-parseInt(b.left);
+      })
+    }
+
+    //添加paixu
+    $('.saveSortSpec').on('click',function(){
+          var index=0;
+          var arrData=[];
+        $('.gridly').find('.brick').each(function(){
+            index++;
+            arrData.push({id:$(this).find('span').data('id'),left:$(this).css('left')})
+            
+        })
+        updateSortSpec(arrData)
+        $.each(arrData,function(ind,item){
+            item.sort=ind+1;
+        })
+        $('.specWrapper').find('.singlePic').each(function(){
+          index++;
+          arrData.push({id:$(this).find('span').data('id'),sort:index})
+        })
+      config.ajax('post',config.ajaxAddress.publicAddress+config.ajaxAddress.specApi.sortSpec,function(data){
+        console.log(data);
+      },{specManage:JSON.stringify(arrData)});
+    })
 
 })
