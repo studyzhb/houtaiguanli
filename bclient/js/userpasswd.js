@@ -27,7 +27,7 @@ layui.use('form',function(){
     })*/
   
   	config.formSubmit('#userinfo',config.ajaxAddress.publicAddress+config.ajaxAddress.updateLoginPassByOld,function(data){
-	console.log(data);
+		console.log(data);
 		if(data.code==200){
             layer.msg('添加成功');
             setTimeout(function(){

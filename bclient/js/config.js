@@ -64,7 +64,7 @@ var config={
   },
   accessKey:'5f843e288bb1cabb834b9d20eea3d8c0',
 	ajaxAddress:{
-    publicAddress:'/public/index.php/bweb',
+    publicAddress:'/api/public/index.php/bweb',
     imgAddress:'',
     //判断session 是否失效
     checkSession:'/index/index',

@@ -40,9 +40,46 @@ $(function(){
 					layer.msg('支付成功');
 					location.reload();
 				}
-				
 			},{paypassword:this.data.pass,orderid:this.data.coding,total:this.data.total});
-		}
+		},
+		//打印小票或配送
+		showOrderlist:function(){
+			
+			config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.userOrderDetail,function(data){
+				console.log(data);
+				layer.closeAll('loading');
+				if(data.code=='200'){
+					
+					var tempHtml=singleOrderList.innerHTML;					
+					// var tempHtml2=info.innerHTML;
+					$('.purchaselist').html('');
+					
+					laytpl(tempHtml).render(data.orderinfo,function(html){
+						
+						$('.purchaselist').append(html);
+					});
+					
+
+					// laytpl(tempHtml2).render(data.time,function(html){
+						
+					// 	$('.user-mess').append(html);
+					// });
+
+					updateGoods(data.time);
+				}
+
+				layer.open({
+			        type:1,
+			        content: $('#alertMessage1'), //这里content是一个DOM
+			          shade:[0.8,'#000'],
+			          area:'800px',
+			          maxmin: true,
+			          end:function(){
+			            // console.log('end');
+			          }
+			        })
+
+			},{id:orderTracking.data.coding,status:orderTracking.data.status});
 	}
 
 	layui.use(['laytpl','element'],function(){
@@ -88,9 +125,15 @@ $(function(){
 				})
 				
 			})
-			 
-
 	})
+
+	$('#purchaselist').on('click','.lookinfo',function() {
+		// layer.load();
+		// orderTracking.data.total=$(this).data('pri');
+		orderTracking.data.coding=$(this).data('id');
+		orderTracking.showOrderlist();
+	})
+
 	$('.payInput:last').on('keyup',function(){
 		console.log('zhifu');
 		$('.payInput').each(function(){

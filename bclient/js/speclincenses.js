@@ -74,6 +74,7 @@ $(function(){
                         speclicenses.specInfo.id=data.value;
                         
                     config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.specApi.specInfo,function(data){
+                        console.log(data);
                         speclicenses.updateList(data.good_info);
                     },{special_id:data.value})
                     });
