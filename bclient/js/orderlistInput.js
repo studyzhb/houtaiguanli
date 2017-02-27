@@ -135,12 +135,20 @@ $(function(){
 		
 	});
 	//confirmSelect
+	//点击确认,再次点击取消
 	$('#goodsWraper').on('click','.confirmSelect',function(){
 		//选中此商品
-		$(this).parents('li').addClass('active');
 		var pro=$(this).data('info');
 		var goodid=$(this).data('id');
-		$(this).parent('.shop-mask').prev().prev().find('input').val(JSON.stringify({goodid:goodid,pro:pro.split(',')}))
+		var isSelected=$(this).data('selected');
+		if(!isSelected){
+			$(this).parents('li').addClass('active');
+			$(this).parent('.shop-mask').prev().prev().find('input').val(JSON.stringify({goodid:goodid,pro:pro.split(',')}))
+		}else{
+			$(this).parents('li').removeClass('active');
+			$(this).parent('.shop-mask').prev().prev().find('input').val('');
+		}
+		
 	});
 
 	$('#goodsWraper').on('click','.mutiCode span',function(){

@@ -346,7 +346,7 @@ function updatePage(){
 
 $('.alertCon-wrapper').on('click','.method_typealert',function(){
     var me=this;
-
+    $('.clickSpecShow').hide();
     $('#province-list').html('');
     $('.sortspec').html('');
     var i;
@@ -392,6 +392,7 @@ function updateInfo(){
 
 
 $('.alertCon-wrapper').on('click','.retailsalert',function(){
+    $('.clickSpecShow').hide();
     var me=this;
     $('#province-list').html('');
     $('.sortspec').html('');
@@ -430,7 +431,7 @@ $('.alertCon-wrapper').on('click','.retailsalert',function(){
     return false;
 });
 $('.alertCon-wrapper').on('click','.sortalert',function(){
-    
+    $('.clickSpecShow').hide();
     var me=this;
     $('#province-list').html('');
     $('.sortspec').html('');
@@ -488,7 +489,7 @@ $('.alertCon-wrapper').on('click','.sortalert',function(){
 return false;
 });
 $('.alertCon-wrapper').on('click','.goodsbrandalert',function(){
-
+    $('.clickSpecShow').hide();
     var me=this;
     $('#province-list').html('');
     $('.sortspec').html('');
@@ -525,7 +526,7 @@ $('.alertCon-wrapper').on('click','.goodsbrandalert',function(){
     return false;
 });
 $('.alertCon-wrapper').on('click','.supplieralert',function(){
-    
+    $('.clickSpecShow').hide();
     var me=this;
     $('#province-list').html('');
     $('.sortspec').html('');
@@ -572,6 +573,7 @@ $('.alertCon-wrapper').on('click','.specialalert',function(){
     var me=this;
     $('#province-list').html('');
     $('.sortspec').html('');
+    $('.clickSpecShow').show();
     var i;
     config.ajax('get',config.ajaxAddress.addgoodsInfo,function(data){
          
@@ -581,6 +583,7 @@ $('.alertCon-wrapper').on('click','.specialalert',function(){
                 $(me).val($(this).html());
                 $('.good_special_id').val($(this).attr('value'));
                 isClick=true;
+                $('.clickSpecShow').hide();
                 layer.close(i);
             })
 

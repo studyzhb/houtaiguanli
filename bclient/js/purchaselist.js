@@ -14,7 +14,7 @@ $(function(){
 				if(data.code=='200'){
 					$obj.val(num);
 					purchaselist.data.total+=(num*price).toFixed(2);
-					purchaselist.data.total=purchaselist.data.total.toFixed(2);
+					purchaselist.data.total=(purchaselist.data.total-0).toFixed(2);
 					$obj.parents('td').next('td.dPrice').text(num*price.toFixed(2));
 					$('.detailPrice').text(purchaselist.data.total);
 				}
@@ -55,7 +55,7 @@ $(function(){
 			$.each(data.goodinfo,function(index,item){
 				purchaselist.data.total+=item.minsell*item.wholesale*item.carnum;
 			})
-			purchaselist.data.total=purchaselist.data.total.toFixed(2);
+			purchaselist.data.total=(purchaselist.data.total-0).toFixed(2);
 			laytpl(tempHtml).render(data,function(html){
 				$('#purchaselist').append(html);
 			});

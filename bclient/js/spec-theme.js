@@ -23,6 +23,7 @@ $(function(){
           console.log('这是图片地址：'+arg[0].src+'test111');
 
           specWrapper.data.$o.find('img').attr('src',arg[0].src);
+          uploadImagePath(specWrapper.data.$o.data('id'),arg[0].src);
     });
 
 
@@ -53,7 +54,14 @@ $(function(){
         //var myFiles = o_ueditorupload.getDialog("attachment");
         //myFiles.open();
       } */
-    
+    function uploadImagePath(id,src){
+        config.ajax('post',config.ajaxAddress.publicAddress+config.ajaxAddress.specApi.updateSpecPic,function(data){
+              console.log(data);
+              if(data.code==200){
+                layer.msg('添加图片成功');
+              }
+        },{shopspecialId:id,pic:src});
+    }
 
     layui.use('laytpl', function(){
         
@@ -128,7 +136,6 @@ $(function(){
         $('.gridly').find('.brick').each(function(){
             index++;
             arrData.push({id:$(this).find('span').data('id'),left:$(this).css('left')})
-            
         })
         updateSortSpec(arrData)
         $.each(arrData,function(ind,item){
@@ -140,6 +147,9 @@ $(function(){
         })
       config.ajax('post',config.ajaxAddress.publicAddress+config.ajaxAddress.specApi.sortSpec,function(data){
         console.log(data);
+        if(data.code==200){
+          layer.msg('排序成功');
+        }
       },{specManage:JSON.stringify(arrData)});
     })
 
