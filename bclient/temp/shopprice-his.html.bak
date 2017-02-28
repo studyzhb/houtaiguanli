@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="../layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	<script src="../layui/layui.js"></script>
+  	<script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-form.js"></script>
+    
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	
+	
+	<!-- ============================主要内容区================================ -->
+
+
+	<div class="lay-main" style="padding-left:10px;">
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form layui-form-pane" id="adminInfo" action="" method="POST">
+             <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <div id="purchaselist"></div>
+              
+              
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </form>
+          </div>
+        </div>
+
+
+     </div>
+
+
+
+
+    
+    </div> 
+
+
+
+
+ 
+
+  <!-- =======================弹出窗========================= -->
+
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+
+<script type="text/html" id="shophis" >
+<div class="layui-form-item"> 
+                
+                  <label class="layui-form-label">店铺余额</label>
+                  <div class="layui-input-inline">
+                    <input type="text" readonly="" name="" value="{{d.yue}}" class="layui-input" >
+                  </div>
+                  <label class="layui-form-label">冻结金额</label>
+                  <div class="layui-input-inline">
+                    <input type="text" readonly="" name="" value="{{d.money}}" class="layui-input" >
+                  </div>
+              </div>
+
+              <table class="layui-table">
+          <colgroup>
+            <!-- <col width="100">
+            <col width="100">
+            <col>
+            <col width="100">
+            <col width="300"> -->
+          </colgroup>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>单号</th>
+              <th>店铺操作前余额</th>
+              <th>操作金额</th>
+              <th>余额</th>
+              <th>操作时间</th>
+              
+              <th>交易类型</th>
+              
+            </tr> 
+          </thead>
+          <tbody >
+            {{# layui.each(d.purse,function(index,item){ }}
+                <tr>
+                  <td>{{index+1}}</td>
+                  <td>{{item.order}}</td>
+                  <td>{{item.hbalance}}</td>
+                  <td>{{item.total}}</td>
+                  <td>{{item.hbalance}}</td>
+                  <td>{{new Date(item.createtime*1000).toLocaleString()}}</td>
+                  {{# if(item.type=='1'){ }}
+                  <td>余额支付</td>
+                  {{# }else if(item.type=='2'){ }}
+                  <td>支付宝支付</td>
+                   {{# }else if(item.type=='3'){ }}
+                  <td>微信支付</td>
+                  {{# }else if(item.type=='4'){ }}
+                  <td>收入</td>
+                  {{# }else if(item.type=='5'){ }}
+                  <td>退款</td>
+                  {{# }else if(item.type=='6'){ }}
+                  <td>充值</td>
+                  {{# }else if(item.type=='7'){ }}
+                  <td>提现申请中</td>
+                  {{# }else if(item.type=='8'){ }}
+                  <td>提现成功</td>
+                  {{# } }}
+                </tr>
+            {{# }) }}
+          </tbody>
+      </table>
+
+</script>
+
+
+</div>
+
+</body>
+<script src="../js/config.js"></script>
+<script src="../js/filter.js"></script>
+<script src="../js/getInfoByUserCard.js"></script>
+<script src="../js/shoppricehis.js?v=1.0"></script>
+</html>

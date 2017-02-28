@@ -1,9 +1,6 @@
 <!doctype html>
 <html>
 <head>
-<meta http-equiv="pragma" content="no-cache"> 
-<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
-<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
 	<meta charset="utf-8">
 	<title>商品信息</title>
 	<meta name="keywords" content="">
@@ -160,12 +157,12 @@
           </legend>
           
           <div>
-            <input type="text" name="" value="" focus class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+            <input type="text" name="" value="" focus class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
           </div>
 
         </fieldset> 
@@ -260,6 +257,8 @@
     </td>
   </tr>
 {{# }) }}
+
+  
 </script>
 
 <script id="slider" type="text/html">
@@ -291,6 +290,6 @@
 
 <script src="../js/config.js"></script>
 <script src="../js/filter.js"></script>
-<script src="../js/purchaselist.js?v=2"></script>
+<script src="../js/purchaselist.js?v=0"></script>
 </body>
 </html>

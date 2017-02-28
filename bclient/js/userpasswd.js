@@ -46,3 +46,5 @@ layui.use('form',function(){
   });
 
 });
+var telNum=cookieUtil.getCookie('tel');
+$('.telName').val(telNum);

@@ -69,7 +69,7 @@ layui.use('form',function(){
 
     return false;
   });
-
+var telNum=cookieUtil.getCookie('tel');
   //获取手机验证码
 $('.getTelCode').on('click',function(){
   config.ajax('post',config.ajaxAddress.publicAddress+config.ajaxAddress.updateloginpass,function(data){
@@ -79,8 +79,10 @@ $('.getTelCode').on('click',function(){
       }else{
         layer.msg('获取验证码失败,请稍后重试')
       }
-  },{type:'updatepay',tel:$('.telName').val().trim()})
+  },{type:'updatepay',tel:telNum})
 })
+
+$('.telName').val(telNum);
   
 
 });

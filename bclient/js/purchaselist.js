@@ -5,18 +5,31 @@ $(function(){
 			//采购单号
 			coding:'',
 			pass:'',
-			total:0
+			total:0,
+			selectedTotal:0
 		},
+		/**
+		*
+		*/
 		updateShoppingList:function(carid,num,pro,$obj,price){
+			console.log(num,price);
+			var self=this;
 			config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.updateShoppingList,function(data){
-				console.log(data);
+
 				layer.closeAll('loading');
 				if(data.code=='200'){
 					$obj.val(num);
-					purchaselist.data.total+=(num*price).toFixed(2);
+					//判断是否选中,假设选中更改合计价格
+					var sPrice=num*price;
+					purchaselist.data.total=purchaselist.data.total-0;
+					purchaselist.data.total+=sPrice;
 					purchaselist.data.total=(purchaselist.data.total-0).toFixed(2);
 					$obj.parents('td').next('td.dPrice').text(num*price.toFixed(2));
-					$('.detailPrice').text(purchaselist.data.total);
+					if(self.isAddTotal){
+						purchaselist.data.selectedTotal+=sPrice;
+						$('.detailPrice').text(purchaselist.data.selectedTotal.toFixed(2));
+					}
+					//$('.detailPrice').text(purchaselist.data.total);
 				}
 			},{id:carid,num:num,pro:pro});
 		},
@@ -39,9 +52,19 @@ $(function(){
 				if(data.code=="200"){
 					layer.msg('支付成功');
 					location.reload();
+				}else{
+					layer.msg(data.message);
+					// location.reload();
 				}
 				
 			},{paypassword:this.data.pass,orderid:this.data.coding,total:this.data.total});
+		},
+		//判断是否选中
+		isAddTotal:function(s){
+			if(s.checked){
+
+
+			}
 		}
 	}
 
@@ -55,11 +78,13 @@ $(function(){
 			$.each(data.goodinfo,function(index,item){
 				purchaselist.data.total+=item.minsell*item.wholesale*item.carnum;
 			})
-			purchaselist.data.total=(purchaselist.data.total-0).toFixed(2);
+			purchaselist.data.total=purchaselist.data.total.toFixed(2);
+			purchaselist.data.total=purchaselist.data.total-0;
 			laytpl(tempHtml).render(data,function(html){
 				$('#purchaselist').append(html);
 			});
-			$('.detailPrice').text(purchaselist.data.total);
+			$('.detailPrice').text('0.00');
+			//$('.detailPrice').text(purchaselist.data.total);
 		})
 	});
 
@@ -67,10 +92,12 @@ $(function(){
 	$('#purchaselist').on('click','.addNum',function(){
 		layer.load(1);
 		purchaselist.data.total-=$(this).parents('td').next('td.dPrice').text()-0;
+		
 		var price=$(this).parents('td').prev('td').text()-0;
 		var $obj=$(this).next();
 		var num=$obj.val()-0;
 		num++;
+
 		purchaselist.updateShoppingList($(this).data('id'),num,$(this).data('pro'),$obj,price);
 	});
 
@@ -102,15 +129,30 @@ $(function(){
 	//全选
 	$('.isChecked').on('click',function(){
 		var tag=this.checked;
-		console.log('quanxuan',tag);
+		if(tag){
+			//全选
+			$('.detailPrice').text(purchaselist.data.total);
+		}else{
+			$('.detailPrice').text('0.00');
+		}
 		$('#purchaselist .tagSelect').each(function(){
 			this.checked=tag;
+
 		})
 	});
-
+	//单个点击复选框2017/2/28修改合计价格区域
 	$('#purchaselist').on('click','.tagSelect',function(){
 		var isCheck=true;
+		var dPrice=$(this).siblings('.dPrice').text()-0;
+		if(this.checked){
+			//增加此类商品总价格到合计区
+			purchaselist.data.selectedTotal+=dPrice;
+		}else{
+			//从合计区域减掉此价格
+			purchaselist.data.selectedTotal-=dPrice;
+		}
 		$('#purchaselist .tagSelect').each(function(){
+
 			if(!this.checked){
                 isCheck=false;
             }
@@ -119,6 +161,7 @@ $(function(){
 		$('.isChecked')[0].checked=isCheck;
 	});
 
+	//点击生成订单
 	$('#payToorder').on('click',function(){
 		var arr=[];
 		layer.load();				
@@ -165,11 +208,12 @@ $(function(){
 
 	})
 	$('.payInput:last').on('keyup',function(){
-		console.log('zhifu');
+		
 		$('.payInput').each(function(){
 			purchaselist.data.pass+=$(this).val().trim();
 
 		})
+		this.blur();
 		purchaselist.data.pass=hex_md5(purchaselist.data.pass+config.accessKey);
 		layer.load();
 		purchaselist.payOrder();

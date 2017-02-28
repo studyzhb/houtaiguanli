@@ -75,12 +75,12 @@
           </legend>
           
           <div>
-            <input type="text" name="" value="" focus class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-            <input type="text" name="" value="" class="layui-input w60 payInput" maxlength="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+            <input type="text" name="" value="" focus class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
+            <input type="text" name="" value="" class="layui-input w60 payInput" >
           </div>
 
         </fieldset> 
@@ -92,62 +92,33 @@
 <!-- ================================================= -->
 <div class="alertCon-wrapper" id="alertMessage1" style="margin:10px auto;display:none;">
   <div class="alert-main-con">
-    <div class="purchaselist"></div>
-      
-    </div>
-</div>
-<!-- ===================================== -->
-<script id="singleOrderList" type="text/html">
-    <div class="thumbInfo">
-        <div class="infoWrap fl">
-          进货店铺：{{d.sname}}
-        </div>
-        <div class="infoWrap fr">
-          单号：{{d.coding}}
-        </div>
-      </div>
-      <div class="thumbInfo">
-        <div class="infoWrap fl">
-          收货地址：{{d.address}}
-        </div>
-        <div class="infoWrap fr">
-          手机号：{{d.tel}}
-        </div>
-      </div>
       <table class="layui-table">
             <colgroup>
               
             </colgroup>
             <thead>
               <tr>
+                <th><input type="checkbox" class="isChecked" name="" value=""></th>
                 <th>序号</th>
                 <th>商品名称</th>
-                <th>商品单价</th>
-                <th>商品数量</th>
-                <th>商品总价</th>
+                <th>商品条形码</th>
+                <th>规格</th>
+                <th>最小销售单位</th>
+                <th>价格（组）</th>
+                <th>数量</th>
+                <th>总价</th>
+                <th>操作</th>
               </tr> 
             </thead>
-            <tbody>
-              {{# layui.each(d.good,function(index,item){ }}
-                <tr>
-                  <td>{{index+1}}</td>
-                  <td>{{item.goodname}}</td>
-                  <td>{{item.goodprice}}</td>
-                  <td>{{item.goodnum}}</td>
-                  <td>{{(item.goodprice*item.goodnum).toFixed(2)}}</td>
-                </tr>
-            
-              {{# }) }}
+            <tbody id="purchaselist">
+              
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="5">合计：<span>{{(d.total-0).toFixed(2)}}</span></td>
-              </tr>
+              
             </tfoot>
         </table>
-
-</script>
-
+    </div>
+</div>
 <script id="singleOrderlist" type="text/html">
 
 {{# layui.each(d.goodinfo,function(index,item){ }}
@@ -173,6 +144,7 @@
   </tr>
 {{# }) }}
 
+  
 </script>
 
 <script id="supplierList" type="text/html">
@@ -197,9 +169,7 @@
       <div class="layui-btn layui-btn-warm layui-btn-small payPreLook" data-id="{{item.id}}" data-pri="{{item.zprice}}">支付</div>
     </td>
     {{# }else{ }}
-    <td>
-    <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{item.id}}" data-pri="{{item.zprice}}">查看</div>
-    </td>
+    <td></td>
     {{# } }}  
   </tr>
 {{# }) }}

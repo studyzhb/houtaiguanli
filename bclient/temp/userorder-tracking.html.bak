@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>首页</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="../layui/css/layui.css" />
+  <link rel="stylesheet" href="../css/alertcon.css?v=1" />
+  <link rel="stylesheet" href="../css/orderlist.css" />
+  <link rel="stylesheet" href="../css/print.css" />
+  <script src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/MD5.js"></script>
+    <script type="text/javascript" src="../js/userorder-tracking.js?v=2.0"></script>
+
+</head>
+<body style="overflow:auto;">
+<noscript>
+对不起，你的浏览器不支持或者禁用了脚本功能。
+</noscript>
+  <!-- 框架结构  -->
+  <div class="layui-layout">
+  
+  
+
+  <!-- ============================主要内容区================================ -->
+
+    <!-- <span class="layui-breadcrumb">
+      <a href="#">首页</a>
+      <a href="#">组织机构</a>
+      <a href="#">组织机构管理</a>
+      <a><cite>正文</cite></a>
+    </span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       
+      <div class="layui-content" style="padding:20px 50px;">
+          <table class="layui-table">
+            <colgroup>
+              
+            </colgroup>
+            <thead>
+              <tr>
+                
+                <th>序号</th>
+                <th>订单号</th>
+                <th>下单时间</th>
+                <th>状态</th>
+                <th>应付金额</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody id="purchaselist">
+              
+            </tbody>
+            <tfoot>
+              
+            </tfoot>
+        </table>
+      </div>
+
+     </div>
+
+
+
+</div>
+
+  <!-- =======================弹出窗========================= -->
+<div class="alertCon-wrapper" id="alertMessage" style="margin:10px auto;display:none;">
+  <div class="alert-main-con">
+      <section>
+        <div class="wrapper">
+            <h3>
+                <img src="../img/title-icon.png" alt="">
+                <span>收货人信息</span>
+            </h3>
+            <ul class="user-mess">
+                
+            </ul>
+            <div class="remark">
+                <img class="leftline" src="../img/left-line.png" alt="">
+                <img class="leftIcon" src="../img/bianqian.png" alt="">
+                <p>附赠一张卡片，上面写嫁给我。</p>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="remark">
+                
+                <img class="left-ps-icon" src="../img/peisong.png" alt="">
+                <p>订单跟踪（配送费：5元）</p>
+            </div>
+            <div class="ps-bg" data-info="10">
+                <div class="fugai"></div>
+                
+            </div>
+            
+            
+        </div>
+        <div class="wrapper">
+            <div class="goodsWrapper"></div>
+            
+        </div>
+
+        <div class="wrapper">
+             <h3>
+                <img src="../img/title-icon.png" alt="">
+                <span>订单详情</span>
+            </h3>
+            <ul class="user-mess">
+                <li>订单编号：<span>181123456789</span></li>
+                <li>支付方式：<span>暂无</span></li>
+                <li>下单时间：<span>2016-12-07 09:49</span></li>
+            </ul>
+        </div>
+    </section>
+    </div>
+</div>
+
+<!-- ================================================= -->
+<div class="alertCon-wrapper" id="alertMessage1" style="margin:10px auto;display:none;">
+  <div class="alert-main-con">
+    <div class="purchaselist"></div>
+      
+    </div>
+</div>
+<!-- 用户商品详情 -->
+<script id="tag" type="text/html">
+
+{{# layui.each(d.goodinfo,function(index,item){ }}
+  <tr>
+    <td>{{index+1}}</td>
+    <td>{{item.goodname}}</td>
+    <td>{{item.coding}}</td>
+    <td>{{item.carpro}}</td>
+    <td>{{item.minsell}}</td>
+    <td>{{(item.minsell*item.wholesale).toFixed(2)}}</td>
+    <td class="goodsnum">
+      <div class="wrapGoodsNum">
+        <a href="#" class="addNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}"></a>
+        <input class="inputNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}" type="text" value="{{item.carnum}}"/>
+        <a href="#" class="reduce" data-id="{{item.carid}}" data-pro="{{item.carpro}}"></a>
+      </div>
+    </td>
+    <td class="dPrice">{{(item.minsell*item.wholesale*item.carnum).toFixed(2)}}</td>
+  </tr>
+{{# }) }}
+
+  
+</script>
+<!-- 用户订单列表 -->
+<script id="supplierList" type="text/html">
+
+{{# layui.each(d.orderifno,function(index,item){ }}
+  <tr>
+    <td>{{index+1}}</td>
+    <td>{{item.coding}}</td>
+    <td>{{new Date(item.createtime*1000).toLocaleString()}}</td>
+    {{# if(item.status=='1'){ }}
+    <td>待付款</td>
+    {{# }else if(item.status=='2'){ }}
+    <td>待配送</td>
+    {{# }else if(item.status=='3'){ }}
+    <td>配送中</td>
+    {{# }else if(item.status=='4'){ }}
+    <td>已完成</td>
+    {{# }else{ }}
+    <td>已退货</td>
+    {{# } }}
+    <td>{{item.total}}</td>
+    {{# if(item.status=='1'){ }}
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small lookinfo" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="1">查看订单</div>
+    </td>
+    {{# }else if(item.status=='2'){ }}
+    <td>
+        <div class="layui-btn layui-btn-warm layui-btn-small printTrain" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="2">打印小票</div>
+    </td>
+    {{# }else if(item.status=='3'){ }}
+    <td>
+        <div class="layui-btn layui-btn-warm layui-btn-small sendingOrder" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="3">配送中</div>
+    </td>
+    {{# }else if(item.status=='4'){ }}
+    <td>
+        <div class="layui-btn layui-btn-warm layui-btn-small finishedOrder" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="4">已完成</div>
+    </td>
+    {{# }else{ }}
+      <td>
+        <div class="layui-btn layui-btn-warm layui-btn-small refuseOrder" data-id="{{item.id}}" data-pri="{{item.zprice}}" data-status="10">已退货</div>
+    </td>
+    {{# } }}  
+  </tr>
+{{# }) }}
+
+  
+</script>
+<script type="text/template" id="info">
+    <div class="remark">
+    <p>{status}</p>
+    <p class="time">{time}</p>
+    </div>      
+</script>
+
+<script type="text/template" id="completed">
+    <div class="remark lastDiv" style="background:#42ae78;">
+            <p class="">配送完成</p>
+        </div>
+</script>
+<script type="text/template" id="backGoods">
+    <div class="remark lastDiv" style="background:#42ae78;">
+            
+    </div>
+</script>
+<script id="orderlistGoods" type="text/html">
+    <h3>
+        <img src="../img/title-icon.png" alt="">
+        <span>共<em>{{d.good.length}}</em>件商品</span>
+    </h3>
+    <ul class="orderlist">
+        {{# layui.each(d.good,function(index,item){ }}
+             
+            <li>
+                <dt>
+                    <img src="{{item.goodpic}}" width="100%" height="100%" alt="">
+                </dt>
+                <dd>
+                    <p class="clearfix">
+                        <span>{{item.goodname}}</span><em>￥{{item.goodprice}}</em>
+                        <b>x <i>{{item.goodnum}}</i></b>
+                    </p>
+                </dd>
+            </li>
+        {{# }) }}
+    </ul>
+ 
+            <ul class="detailPrice">
+                <li>
+                    <em>总价：</em><span>￥{{d.total}}</span>
+                </li>
+                
+                <li>
+                    <em>配送费：</em><span>￥0</span>
+                </li>
+            </ul>
+            <div class="remark">
+                <p class="padding-right">实付金额：<span>￥{{d.total}}</span></p>
+            </div>
+
+
+
+</script>
+<!-- 弹出窗单个订单用户商品信息 -->
+<script id="singleOrderList" type="text/html">
+    <div class="thumbInfo">
+        <div class="infoWrap fl">
+          收货人：{{d.sname}}
+        </div>
+        <div class="infoWrap fr">
+          单号：{{d.coding}}
+        </div>
+      </div>
+      <div class="thumbInfo">
+        <div class="infoWrap fl">
+          收货地址：{{d.address}}
+        </div>
+        <div class="infoWrap fr">
+          手机号：{{d.tel}}
+        </div>
+      </div>
+      <table class="layui-table">
+            <colgroup>
+              
+            </colgroup>
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>商品名称</th>
+                <th>商品单价</th>
+                <th>商品数量</th>
+                <th>商品总价</th>
+              </tr> 
+            </thead>
+            <tbody>
+              {{# layui.each(d.good,function(index,item){ }}
+                <tr>
+                  <td>{{index+1}}</td>
+                  <td>{{item.goodname}}</td>
+                  <td>{{item.goodprice}}</td>
+                  <td>{{item.goodnum}}</td>
+                  <td>{{(item.goodprice*item.goodnum).toFixed(2)}}</td>
+                </tr>
+            
+              {{# }) }}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">合计：<span>{{(d.total-0).toFixed(2)}}</span></td>
+              </tr>
+            </tfoot>
+        </table>
+        <div class="layui-form-item">
+        <div class="layui-input-block">
+          {{# if(d.status=='2'){ }}
+            <div class="layui-btn print-send" data-type="print" data-id="{{d.id}}">打印小票</div>
+          {{# }else if(d.status=='3'){ }}
+            <div class="layui-btn send-completed" data-type="done" data-id="{{d.id}}">配送完成</div>
+          {{# } }}
+        </div>
+      </div>
+</script>
+<!-- 收货人信息 -->
+
+
+
+
+<script id="receiveuserInfo" type="text/html">
+    <li>收货人：<span>{{d.sname}}</span></li>
+    <li>电话：<span>{{d.tel}}</span></li>
+    <li>收货地址：<span>{{d.address}}</span></li>
+</script>
+
+</body>
+<script>
+
+  layui.use('element', function(){
+    var element = layui.element();
+  });
+  layui.use('form', function(){
+    var form = layui.form();
+    //各种基于事件的操作，下面会有进一步介绍
+  });
+</script>
+</html>

@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
 <head>
+<meta http-equiv="pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
 	<meta charset="utf-8">
 	<title>标题</title>
 	<meta name="keywords" content="">
@@ -57,7 +60,14 @@
           </ul>
 
         <div class="layui-content" style="position:absolute;box-sizing:border-box;height:100%;overflow:hidden;padding-top:70px;top:0;">
-            <form id="goodsWraper" class="layui-form" method="POST" action="" style="position:relative;height:98%;"></form>  
+            <form id="goodsWraper" class="layui-form" method="POST" action="" style="position:relative;height:98%;">
+              <div class="layui-form-item" style="position:absolute;left:0;bottom:-20px;z-index:11;display:block;width:98.5%;background:rgba(0,0,0,0.6)">
+              
+              <div class="layui-input-block div-inline">
+                <div class="layui-btn moreAdd" data-status='1' data-title="">批量上架</div>
+              </div>
+            </div>
+            </form>  
         </div>
      </div>
 
@@ -237,11 +247,11 @@
     {{#  layui.each(d.zi,function(index, item){ }}
         {{# if(d.selectedindex=='0'&&index=='0'){ }}
         <dd class="layui-this">
-          <a href="#" data-id="{{item.id}}"><span style="padding:0 10px">{{item.type}}</span></a>
+          <a href="#" data-id="{{item.id}}" data-pid="{{item.pid}}"><span style="padding:0 10px">{{item.type}}</span></a>
         </dd>
         {{# }else{ }}
           <dd>
-          <a href="#" data-id="{{item.id}}"><span style="padding:0 10px">{{item.type}}</span></a>
+          <a href="#" data-id="{{item.id}}" data-pid="{{item.pid}}"><span style="padding:0 10px">{{item.type}}</span></a>
         </dd>
         {{# } }}
 
@@ -314,7 +324,7 @@
 </script>
 
 </body>
-<script type="text/javascript" src="../js/putaway.js?v=1.0"></script>
+<script type="text/javascript" src="../js/putaway.js?v=4.0"></script>
 <script>
   function editorMenu(obj){
     console.log($(obj).data('id'));

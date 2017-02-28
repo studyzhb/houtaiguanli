@@ -1,9 +1,6 @@
 <!doctype html>
 <html>
 <head>
-<meta http-equiv="pragma" content="no-cache"> 
-<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
-<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
 	<meta charset="utf-8">
 	<title>标题</title>
 	<meta name="keywords" content="">
@@ -26,13 +23,13 @@
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-          <li class="layui-nav-item layui-nav-itemed">
+          <!-- <li class="layui-nav-item layui-nav-itemed">
             <a href="javascript:;">包装食品</a>
             <dl class="layui-nav-child">
               <dd><a href="javascript:;">休闲</a></dd>
               <dd><a href="javascript:;">饼干糕点</a></dd>
             </dl>
-          </li>
+          </li> -->
           
         </ul>
 
@@ -49,116 +46,18 @@
 
 	<div class="lay-main">
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle" style="height:100%">
-       <!-- <ul class="layui-tab-title">
-          <li class="layui-this">
-            店铺列表
-          </li>
-          <li>
-            <a href="add-shop-origin.html">添加店铺</a>
-          </li>
-        </ul> -->
-        <div class="layui-content" style="height:100%;overflow:hidden;">
-            <ul class="wd-list">
-              <li>
-                <div class="inner">
-                  <div class="pic-wrap">
-                    <div class="img-vertical">
-                      <a href="#" class="img-wrap">
-                        <img width="230" src="../img/test.jpg" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="txt red">
-                    
-                  </div>
-                  <div class="box">
-                    <div class="info">
-                      <h3 class="title">
-                        <a href="#">松鼠萌炭烧腰果</a>
-                      </h3>
-                      <div class="price">
-                        抢新价
-                        <em>￥</em>
-                        <span>29.44</span>
-                      </div>
-                    </div>
-                    <div class="shop-mask">
-                      <div class="addOrder"></div>
-                      <h3 class="shop-name">
-                        <a href="#">万店联盟凤台路店</a>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="inner">
-                  <div class="pic-wrap">
-                    <div class="img-vertical">
-                      <a href="#" class="img-wrap">
-                        <img width="230" src="../img/test.jpg" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="txt red">
-                    
-                  </div>
-                  <div class="box">
-                    <div class="info">
-                      <h3 class="title">
-                        <a href="#">松鼠萌炭烧腰果</a>
-                      </h3>
-                      <div class="price">
-                        抢新价
-                        <em>￥</em>
-                        <span>29.44</span>
-                      </div>
-                    </div>
-                    <div class="shop-mask">
-                      <div class="addOrder"></div>
-                      <h3 class="shop-name">
-                        <a href="#">万店联盟凤台路店</a>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="inner">
-                  <div class="pic-wrap">
-                    <div class="img-vertical">
-                      <a href="#" class="img-wrap">
-                        <img width="230" src="../img/test.jpg" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="txt red">
-                    
-                  </div>
-                  <div class="box">
-                    <div class="info">
-                      <h3 class="title">
-                        <a href="#">松鼠萌炭烧腰果</a>
-                      </h3>
-                      <div class="price">
-                        抢新价
-                        <em>￥</em>
-                        <span>29.44</span>
-                      </div>
-                    </div>
-                    <div class="shop-mask">
-                      <div class="addOrder"></div>
-                      <h3 class="shop-name">
-                        <a href="#">万店联盟凤台路店</a>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+
+        <ul class="layui-tab-title" style="z-index:11;">
+            <li class="layui-this" data-status="0">
+              未上架
+            </li>
+            <li data-status='1'>
+              已上架
+            </li>
+          </ul>
+
+        <div class="layui-content" style="position:absolute;box-sizing:border-box;height:100%;overflow:hidden;padding-top:70px;top:0;">
+            <form id="goodsWraper" class="layui-form" method="POST" action="" style="position:relative;height:98%;"></form>  
         </div>
      </div>
 
@@ -328,14 +227,94 @@
 
 <!-- ========================================================= -->
 
-
-
-
-
 </div>
 
+<script id="slider" type="text/html">
+
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;"><img src="{{d.bpic}}" width="40" height="40" style="vertical-align:middle;"><span style="padding:0 10px;line-height: 45px;display: inline-block;height: 40px;vertical-align: top;">{{d.type}}</span></a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.zi,function(index, item){ }}
+        {{# if(d.selectedindex=='0'&&index=='0'){ }}
+        <dd class="layui-this">
+          <a href="#" data-id="{{item.id}}"><span style="padding:0 10px">{{item.type}}</span></a>
+        </dd>
+        {{# }else{ }}
+          <dd>
+          <a href="#" data-id="{{item.id}}"><span style="padding:0 10px">{{item.type}}</span></a>
+        </dd>
+        {{# } }}
+
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+<script id="goodsContent" type="text/html">
+
+  <ul class="wd-list">
+    {{# layui.each(d.goodinfo,function(index,item){ }}
+      <li>
+        
+        <div class="inner">
+          <div class="pic-wrap">
+            <div class="img-vertical">
+              <a href="#" class="img-wrap">
+                <img width="230" height="230" src="{{item.goodpic}}" alt="">
+              </a>
+            </div>
+          </div>
+          <div class="txt red">
+            
+          </div>
+          <div class="box">
+            <div class="mutiCode">
+              <dl>
+                <dt>规格</dt>
+                <dd>
+                  {{# layui.each(item.pro,function(i,it){ }}
+                    <span>{{it}}</span>
+                  {{# }) }}
+                </dd>
+              </dl>
+              <div class="layui-btn saveIntoMart" data-info="{{item.pro}}" data-id="{{item.goodid}}">确定</div>
+              <input type="hidden" name="goods[]" value="">
+            </div>
+            <div class="info">
+              <h3 class="title">
+                <a href="#">{{item.goodname}}</a>
+              </h3>
+              <div class="price">
+                抢新价
+                <em>￥</em>
+                {{# if(d.status=='0'){ }}
+                  <span><input type="text" class="editPrice" data-id="{{item.storeid}}" style="width:70px;text-align:center;" placeholder="{{item.shopprice}}" value=""></span>
+                {{# }else{ }}
+                  <span>{{item.shopprice}}</span>
+                {{# } }}
+              </div>
+            </div>
+            <div class="shop-mask {{d.status}}" >
+            {{# if(d.status=='0'){ }}
+              <div class="addOrder" data-status="1" data-id="{{item.storeid}}">上架</div>
+            {{# }else{ }}
+              <div class="addOrder" data-status="0" data-id="{{item.storeid}}">下架</div>
+            {{# } }}
+              <h3 class="shop-name">
+                <a href="#">万店联盟凤台路店</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </li>
+    {{# }) }}
+    
+    
+  </ul>
+</script>
+
 </body>
-<script type="text/javascript" src="../js/goodslist.js"></script>
+<script type="text/javascript" src="../js/putaway.js?v=1.0"></script>
 <script>
   function editorMenu(obj){
     console.log($(obj).data('id'));

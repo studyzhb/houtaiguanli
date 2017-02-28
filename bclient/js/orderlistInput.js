@@ -142,9 +142,13 @@ $(function(){
 		var goodid=$(this).data('id');
 		var isSelected=$(this).data('selected');
 		if(!isSelected){
+			$(this).text('取消选择');
+			$(this).data('selected',true);
 			$(this).parents('li').addClass('active');
 			$(this).parent('.shop-mask').prev().prev().find('input').val(JSON.stringify({goodid:goodid,pro:pro.split(',')}))
 		}else{
+			$(this).text('确认选择');
+			$(this).data('selected',false);
 			$(this).parents('li').removeClass('active');
 			$(this).parent('.shop-mask').prev().prev().find('input').val('');
 		}

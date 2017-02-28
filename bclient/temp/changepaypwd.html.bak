@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta http-equiv="pragma" content="no-cache"> 
-	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
-	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
 	<meta charset="UTF-8">
 	<title>个人信息</title>
 	<meta name="renderer" content="webkit">	
@@ -29,7 +26,7 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">手机号</label>
 					<div class="layui-input-inline">  
-					  	<input type="text" name="tel" lay-verify="required"  autocomplete="off"  class="layui-input telName" readonly value="" placeholder="请输入手机号">
+					  	<input type="text" name="tel" lay-verify="required"  autocomplete="off"  class="layui-input telName" value="" placeholder="请输入手机号">
 					  	<input type="hidden" name="type"  autocomplete="off"  class="layui-input" value="addpay">
 					</div>
 					<div class="layui-input-inline">
@@ -53,20 +50,19 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">手机号</label>
 					<div class="layui-input-block">  
-					  	<input type="text" name="code" lay-verify="required"  autocomplete="off"  class="layui-input telName" readonly value="" placeholder="请输入手机号">
-					  	<input type="hidden" name="type" lay-verify="required"  autocomplete="off"  class="layui-input" readonly value="addpay">
+					  	<input type="text" name="tel" lay-verify="required"  autocomplete="off"  class="layui-input telName" value="" placeholder="请输入手机号">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">新密码</label>
 					<div class="layui-input-block">  
-					  	<input type="password" name="password"  lay-verify="required" autocomplete="off"  class="layui-input" value="" placeholder="请输入新密码">
+					  	<input type="password" name="title"  lay-verify="required" autocomplete="off"  class="layui-input" value="" placeholder="请输入新密码">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">确认密码</label>
 					<div class="layui-input-block">  
-					  	<input type="password" name="" lay-verify="required" autocomplete="off"  class="layui-input" value="" placeholder="请输入确认新密码">
+					  	<input type="password" name="title" lay-verify="required" autocomplete="off"  class="layui-input" value="" placeholder="请输入确认新密码">
 					</div>
 				</div>
 				<div class="layui-form-item change-submit">

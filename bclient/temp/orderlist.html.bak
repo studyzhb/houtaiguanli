@@ -1,9 +1,6 @@
 <!doctype html>
 <html>
 <head>
-<meta http-equiv="pragma" content="no-cache"> 
-<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
-<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
   <meta charset="utf-8">
   <title>首页</title>
   <meta name="keywords" content="">
@@ -28,14 +25,23 @@
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
           <li class="layui-nav-item layui-nav-itemed">
-            <a href="javascript:;">专题管理</a>
+            <a href="javascript:;">进货订单管理</a>
             <dl class="layui-nav-child">
-              <dd><a href="javascript:;" data-url="spec-licenses.html">专题档案</a></dd>
-              <dd><a href="javascript:;" data-url="spec-theme.html">专题布局</a></dd>
-              
+              <dd><a href="javascript:;" data-url="order-tracking.html?status=1">未支付</a></dd>
+              <dd><a href="javascript:;" data-url="order-tracking.html?status=2,3,4">待发货</a></dd>
+              <dd><a href="javascript:;" data-url="order-tracking.html?status=5">配送中</a></dd> 
+              <dd><a href="javascript:;" data-url="order-tracking.html?status=6,10">已完成</a></dd> 
             </dl>
           </li>
-          
+          <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">用户订单管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;" data-url="userorder-tracking.html?status=1">未支付</a></dd>
+              <dd><a href="javascript:;" data-url="userorder-tracking.html?status=2">待发货</a></dd>
+              <dd><a href="javascript:;" data-url="userorder-tracking.html?status=3">配送中</a></dd> 
+              <dd><a href="javascript:;" data-url="userorder-tracking.html?status=4,10">已完成</a></dd> 
+            </dl>
+          </li>
         </ul>
 
     </div>
@@ -44,7 +50,7 @@
 
   <!-- ============================主要内容区================================ -->
 
-  <div class="lay-main" style="padding-left:20px;">
+  <div class="lay-main">
     <!-- <span class="layui-breadcrumb">
       <a href="#">首页</a>
       <a href="#">组织机构</a>
