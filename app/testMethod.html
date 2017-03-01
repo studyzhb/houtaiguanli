@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+	
+	<script src="./js/zepto.js"></script>
+	<script src="./js/touch.min.js"></script>
+	<script src="./js/swiper-3.3.1.min.js"></script>
+	<script src="./js/rem.js"></script>
+	<link rel="stylesheet" href="./css/swiper-3.3.1.min.css">
+	<link rel="stylesheet" href="./css/shopContent.css" />
+
+</head>
+<body>
+	
+	<section>
+		<div class="banner-wrapper">
+			<div class="banner-box">
+				<div class="swiper-container box">
+					<div class="swiper-wrapper box1">
+						<div class="swiper-slide aa bb1">
+							<img src="./img/test1.png" alt="">
+						</div>
+						<div class="swiper-slide aa bb2" >
+							<img src="./img/test1.png" alt="">
+						</div>
+						<div class="swiper-slide aa bb4">
+							<img src="./img/test1.png" alt="">
+						</div>
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<div class="goods-intro">
+				<div class="topIconContent">
+					<div class="pricewrapper">
+						<span><img src="./img/danwei.png" alt=""></span>
+						<em>30</em>
+					</div>
+					<div class="enterbuy">
+						<img src="./img/jinhuo.png" alt="" />
+					</div>
+				</div>
+				<div class="bottomCon">
+					<p>商品名称：<span>速溶咖啡</span></p>
+				</div>
+			</div>
+		</div>
+			
+		
+		<div class="main" id="content1">
+			<h3 class="h3-title">
+				商品详情
+			</h3>
+
+			<div class="img-content" >
+				<div class="img-single">
+					<img src="./img/test1.png" alt="">
+				</div>
+				<div class="img-single">
+					<img src="./img/test1.png" alt="">
+				</div>
+				<div class="img-single">
+					<img src="./img/test1.png" alt="">
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	
+</body>
+<script>
+		
+		var mySwiper = new Swiper('.swiper-container',{
+				autoplay: 5000,
+				direction:'horizontal',
+				pagination:'.swiper-pagination',
+				loop:true
+			})  
+
+			function tapToAndroid(goodId){
+				phone.CallBack(goodId);
+			}
+
+		  $('.enterbuy').on('tap',function(){
+		  		alert('...');
+		  		tapToAndroid('111');
+		  })    
+		
+</script>
+</html>

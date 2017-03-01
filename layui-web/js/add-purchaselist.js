@@ -6,6 +6,7 @@ $(function(){
 		selectedList:[],
 		dposit:0,
 		isCanClick:true,
+		isCanSearch:true,
 		updateOrderList:function(){
 			var tempHtml=goodsContent.innerHTML;
 			$('#goods-orderlist').html('');
@@ -106,7 +107,8 @@ $(function(){
 	});
 
 	$('#goods-coding').on('click',function(){
-	
+	if(orderlist.isCanSearch){
+			orderlist.isCanSearch=false;
 	var val=$(this).prev().find('input').val();
 
 	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
@@ -126,14 +128,19 @@ $(function(){
 	      content: $('#goods-list'), //这里content是一个DOM
 	      shade:[0.8,'#000'],
 	      area:'900px',
-	      maxmin: true
+	      maxmin: true,
+	      end:function() {
+	      	// body...
+	      	orderlist.isCanSearch=true;
+	      }
 	    })
 
 	},{'coding':val,'supplier_id':orderlist.supplierId});
-	console.log(val);
+	}
 });
 $('#goods-barcode').on('click',function(){
-	
+	if(orderlist.isCanSearch){
+			orderlist.isCanSearch=false;
 	var val=$(this).prev().find('input').val();
 	
 	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
@@ -153,13 +160,19 @@ $('#goods-barcode').on('click',function(){
 	      content: $('#goods-list'), //这里content是一个DOM
 	      shade:[0.8,'#000'],
 	      area:'900px',
-	      maxmin: true
+	      maxmin: true,
+	      end:function() {
+	      	// body...
+	      	orderlist.isCanSearch=true;
+	      }
 	    })
 	},{'barcode':val,'supplier_id':orderlist.supplierId});
+}
 });
 // console.log(goodsName);
 $('#goodsName').on('click',function(){
-	
+	if(orderlist.isCanSearch){
+			orderlist.isCanSearch=false;
 	var val=$(this).prev().find('input').val();
 	
 	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
@@ -179,10 +192,14 @@ $('#goodsName').on('click',function(){
 	      content: $('#goods-list'), //这里content是一个DOM
 	      shade:[0.8,'#000'],
 	      area:'900px',
-	      maxmin: true
+	      maxmin: true,
+	      end:function() {
+	      	// body...
+	      	orderlist.isCanSearch=true;
+	      }
 	    })
 	},{'name':val,'supplier_id':orderlist.supplierId});
-	
+	}
 });
 
 //选择之后添加到展示列表
