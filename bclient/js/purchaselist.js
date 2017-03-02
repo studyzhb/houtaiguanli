@@ -24,8 +24,8 @@ $(function(){
 					purchaselist.data.total=purchaselist.data.total-0;
 					purchaselist.data.total+=sPrice;
 					purchaselist.data.total=(purchaselist.data.total-0).toFixed(2);
-					$obj.parents('td').next('td.dPrice').text(num*price.toFixed(2));
-					if(self.isAddTotal){
+					$obj.parents('td').next('td.dPrice').text((num*price).toFixed(2));
+					if(self.isAddTotal($obj)){
 						purchaselist.data.selectedTotal+=sPrice;
 						$('.detailPrice').text(purchaselist.data.selectedTotal.toFixed(2));
 					}
@@ -61,10 +61,12 @@ $(function(){
 		},
 		//判断是否选中
 		isAddTotal:function(s){
-			if(s.checked){
-
-
+			var o=s.parents('td.goodsnum').siblings('td.checkInput').find('input')[0];
+			
+			if(o.checked){
+				return true;
 			}
+			return false;
 		}
 	}
 
@@ -72,7 +74,7 @@ $(function(){
 		laytpl = layui.laytpl;
 		element= layui.element();
 		config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.showShoppingList,function(data){
-			console.log(data);
+
 			var tempHtml=supplierList.innerHTML;
 			$('#purchaselist').html('');
 			$.each(data.goodinfo,function(index,item){
@@ -92,12 +94,14 @@ $(function(){
 	$('#purchaselist').on('click','.addNum',function(){
 		layer.load(1);
 		purchaselist.data.total-=$(this).parents('td').next('td.dPrice').text()-0;
-		
+
 		var price=$(this).parents('td').prev('td').text()-0;
 		var $obj=$(this).next();
+		if(purchaselist.isAddTotal($obj)){
+			purchaselist.data.selectedTotal-=$(this).parents('td').next('td.dPrice').text()-0;
+		}
 		var num=$obj.val()-0;
 		num++;
-
 		purchaselist.updateShoppingList($(this).data('id'),num,$(this).data('pro'),$obj,price);
 	});
 
@@ -105,15 +109,23 @@ $(function(){
 		layer.load(2);
 		var $obj=$(this).prev();
 		var num=$(this).prev().val()-0;
-		purchaselist.data.total-=$(this).parents('td').next('td.dPrice').text()-0;
+		if(num>1){
+			purchaselist.data.total-=$(this).parents('td').next('td.dPrice').text()-0;
+			if(purchaselist.isAddTotal($obj)){
+				purchaselist.data.selectedTotal-=$(this).parents('td').next('td.dPrice').text()-0;
+			}
+		}
 		var price=$(this).parents('td').prev('td').text()-0;
-		num=--num==0?1:--num;
+		num=num<2?1:--num;
 		purchaselist.updateShoppingList($(this).data('id'),num,$(this).data('pro'),$obj,price);
 	});
 
 	$('#purchaselist').on('blur','.inputNum',function(){
 		layer.load(2);
 		var num=$(this).val()-0;
+		if(num<1){
+			num=1;
+		}
 		purchaselist.data.total-=$(this).parents('td').next('td.dPrice').text()-0;
 		var price=$(this).parents('td').prev('td').text()-0;
 		purchaselist.updateShoppingList($(this).data('id'),num,$(this).data('pro'),$(this),price);
@@ -131,19 +143,19 @@ $(function(){
 		var tag=this.checked;
 		if(tag){
 			//全选
-			$('.detailPrice').text(purchaselist.data.total);
+			$('.detailPrice').text((purchaselist.data.total-0).toFixed(2));
 		}else{
 			$('.detailPrice').text('0.00');
 		}
 		$('#purchaselist .tagSelect').each(function(){
 			this.checked=tag;
-
 		})
 	});
 	//单个点击复选框2017/2/28修改合计价格区域
 	$('#purchaselist').on('click','.tagSelect',function(){
 		var isCheck=true;
-		var dPrice=$(this).siblings('.dPrice').text()-0;
+		var dPrice=$(this).parents('td').siblings('.dPrice').text()-0;
+		
 		if(this.checked){
 			//增加此类商品总价格到合计区
 			purchaselist.data.selectedTotal+=dPrice;
@@ -151,6 +163,7 @@ $(function(){
 			//从合计区域减掉此价格
 			purchaselist.data.selectedTotal-=dPrice;
 		}
+		$('.detailPrice').text((purchaselist.data.selectedTotal-0).toFixed(2));
 		$('#purchaselist .tagSelect').each(function(){
 
 			if(!this.checked){

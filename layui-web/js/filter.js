@@ -90,6 +90,12 @@ switch(switchVal){
 	case 'editor-psort':
 		netPath+='/pSort.html';
 		break;
+	case　'add-task-sort':
+		netPath+='/taskSort.html';
+		break;
+	case 'editor-task-sort':
+		netPath+='/taskSort.html';
+		break;
 		
 }
 // if(!cookAuthor){

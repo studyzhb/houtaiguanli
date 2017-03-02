@@ -240,7 +240,7 @@
 
 {{# layui.each(d.goodinfo,function(index,item){ }}
   <tr>
-    <td><input type="checkbox" data-id="{{item.carid}}" class="tagSelect" name="" value=""></td>
+    <td class="checkInput"><input type="checkbox" data-id="{{item.carid}}" class="tagSelect" name="" value=""></td>
     <td>{{index+1}}</td>
     <td>{{item.goodname}}</td>
     <td>{{item.coding}}</td>
@@ -250,7 +250,7 @@
     <td class="goodsnum">
       <div class="wrapGoodsNum">
         <a href="#" class="addNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}"></a>
-        <input class="inputNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}" type="text" value="{{item.carnum}}"/>
+        <input class="inputNum" data-id="{{item.carid}}" data-pro="{{item.carpro}}" type="text" value="{{item.carnum}}" onkeyup="this.value=this.value.replace(/[^1-9]/g,'')"/>
         <a href="#" class="reduce" data-id="{{item.carid}}" data-pro="{{item.carpro}}"></a>
       </div>
     </td>
@@ -291,6 +291,6 @@
 
 <script src="../js/config.js"></script>
 <script src="../js/filter.js"></script>
-<script src="../js/purchaselist.js?v=2"></script>
+<script src="../js/purchaselist.js?v=4"></script>
 </body>
 </html>

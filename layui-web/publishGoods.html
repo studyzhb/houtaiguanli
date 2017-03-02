@@ -30,7 +30,7 @@
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
         
         </ul>
-
+        
     </div>
   </div>
 	
@@ -68,31 +68,36 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            采购单列表
-          </li>
-          <li>
-            <a href="add-purchaselist.html">添加采购单</a>
+            专题档案管理
           </li>
         </ul>
 
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
-            <form class="layui-form layui-form-pane" action="" style="display:inline-block;">
+            <div class="layui-form layui-form-pane" action="" >
               
-              <div class="layui-inline">
-                <label class="layui-form-label">关键词</label>
+              <div class="layui-form-item"> 
+                  <label class="layui-form-label">关键词</label>
+                  <div class="layui-input-inline">
+                    <input id="ordernum" type="text" name="oddnum" placeholder="请输入商品名称或供应商"  class="layui-input">
+                  </div>
+                  <button class="layui-btn searchGoods" style="float:left;margin-right:10px;">
+                    <i class="layui-icon">&#xe615;</i> 搜索
+                  </button>
+                  <label class="layui-form-label">专题分类</label>
                 <div class="layui-input-inline">
-                  <input type="text" class="layui-input" name="" value="">
+                  <select class="stockList" lay-filter="special">
+                    
+                  </select>
                 </div>
-                
-
-              </div>
-              <button class="layui-btn">
-                   搜索
-                </button>
-
-            </form>
-            <div style="margin-top:20px;">
+                <button class="layui-btn addgoods">
+                <i class="layui-icon">&#xe608;</i> 添加
+              </button>
+              
+                </div>
+              
+            </div>
+            <!-- <div style="margin-top:20px;">
               <ul class="layui-tab-title">
               <li class="layui-this nshenhe">
                 未审核
@@ -107,11 +112,9 @@
                 被拒绝
               </li>
             </ul>
-            </div>
+            </div> -->
           <table class="layui-table">
           <colgroup>
-           
-            
             <col>
             <col>
             <col>
@@ -123,15 +126,10 @@
           </colgroup>
           <thead>
             <tr>
-              <th>采购单号</th>
-              
-              <th>仓库</th>
-              <th>创建时间</th>
-              <th>订货总金额</th>
-              <th>审核状态</th>
-              <th>供应商名称</th>
-              <th>操作员</th>
-              <th>业务员</th>
+              <th>序号</th>
+              <th>商品条形码</th>
+              <th>商品名称</th>
+              <th>所属专题</th>
               <th>操作</th>
             </tr> 
           </thead>
@@ -302,33 +300,14 @@
 <script src="./js/filter.js"></script>
 <script id="supplierList" type="text/html">
   <tr>
-    <td>{{d.oddnum}}</td>
+    <td>{{d.selectedindex+1}}</td>
     
-    <td>{{d.deptName}}</td>
-    <td>{{d.create_time}}</td>
-    <td>{{(d.dposit-0).toFixed(2)}}</td>
-    {{#  if(d.status=='1'){ }}
-  <td>已审核</td>
-  {{# }else if(d.status=='2'){ }}
-    <td>已入库</td>
-  {{# }else if(d.status=='10'){ }}
-    <td>被拒绝:{{d.note}}</td>
-{{# }else{ }}
-     <td>等待审核</td>
-    {{# } }}
-    <td>{{d.supplierName}}</td>
-    <td>{{d.adminName}}</td>
-    <td>{{d.adminName}}</td>
+    <td>{{d.coding}}</td>
+    <td>{{d.name}}</td>
+    <td>{{(d.title)}}</td>
     <td>
-      {{#  if(d.status=='1'||d.status=='2'){ }}
-      <div class="layui-btn layui-btn-warm layui-btn-small printOrderlist" data-id="{{d.id}}">打印采购单</div>
-      <div class="layui-btn layui-btn-warm layui-btn-small exceloutput" data-id="{{d.id}}">导出采购单</div>
-     <!--  {{#  }else if(d.status=='2'){ }} -->
-
-      {{#  }else{ }}
-        <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">审核</div>
-        <div class="layui-btn layui-btn-warm layui-btn-small addorderInfo" data-id="{{d.id}}">添加商品</div>
-      {{# } }}
+ 
+        <div class="layui-btn layui-btn-warm layui-btn-small delete-this-goods" data-selecInd="{{d.selectedindex}}" data-id="{{d.id}}">删除</div>
     </td>
   </tr>
 </script>
@@ -380,13 +359,12 @@
         </dd>
       {{# } }}
     {{#  }); }}
-      
     </dl>
   </li>
 </script>
 
 </div>
-<script src="./js/purchaselist.js"></script>
+<script src="./js/speclicenses.js"></script>
 </body>
 <script>
   function printPage(){

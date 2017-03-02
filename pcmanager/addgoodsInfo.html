@@ -14,48 +14,6 @@
 <body>
 	<!-- 框架结构	 -->
 	<div class="layui-layout layui-layout-admin">
-  <div class="layui-header header header-demo">
-    <a class="logo" href="#">
-        <img src="./img/logo.png" alt="万店联盟">
-    </a>
-    <div class="user-action" style="position:absolute;right:15px;top:25px;">
-      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
-      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
-    </div>
-  </div>
-  <div class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      
-        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
-<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-        
-        </ul>
-
-    </div>
-  </div>
-	
-	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-	    <ul class="layui-tab-title site-demo-title">
-	      <li class="layui-this">预览</li>
-	      <li>查看代码</li>
-	      <li>帮助</li>
-	    </ul>
-    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
-	      <div class="layui-tab-item layui-show">
-	        <div class="layui-main">
-
-	        </div>
-		</div>
-		</div>
-	</div> -->
-	<!-- ============================主要内容区================================ -->
-  
-
-        
-
-
-
-
 
 	<div class="lay-main">
 	  <!-- <span class="layui-breadcrumb">
@@ -805,6 +763,9 @@
     $('.zname-show').val(con.substr(0,10));
   }
 
+  function deleteChecked(_this){
+    $(_this).parents('ul.title-tr-th').remove();
+  }
 
   var da=new Date().getTime()+'';
 

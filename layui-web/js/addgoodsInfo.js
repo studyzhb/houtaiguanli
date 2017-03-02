@@ -24,17 +24,20 @@ var goodsInfo={
         // console.log(data);
         
         $('.baseSingleInfo').append(config.formatTemplate(data.good[0],htm));
-        $.each(data.good[1],function(index,item){
-            //console.log(item);
-            item.fullname=data.good[0].name;
-            item.barcode=data.good[0].barcode;
-            $('.muticoding').append(config.formatTemplate(item,htmdecode));
-        });
-        $.each(data.good[2],function(index,item){
-            item.fullname=data.good[0].name;
-            item.barcode=data.good[0].barcode;
-             $('.mutigoods').append(config.formatTemplate(item,htmdename));
-        });
+            if(data.good[1].length>0&&data.good[2].length>0){
+                $.each(data.good[1],function(index,item){
+                    //console.log(item);
+                    item.fullname=data.good[0].name;
+                    item.barcode=data.good[0].barcode;
+                    $('.muticoding').append(config.formatTemplate(item,htmdecode));
+                });
+                $.each(data.good[2],function(index,item){
+                    item.fullname=data.good[0].name;
+                    item.barcode=data.good[0].barcode;
+                     $('.mutigoods').append(config.formatTemplate(item,htmdename));
+                });
+        }
+        
         
         // ======================================
         $.each(data.goodBrand,function(index,item){
