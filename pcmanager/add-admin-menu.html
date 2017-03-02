@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./layui/css/layui.css" />
+  	<link rel="stylesheet" href="./css/alertcon.css" />
+	<script src="./layui/layui.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+  	<script type="text/javascript" src="./js/jquery-form.js"></script>
+    
+    
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+  <div class="layui-header header header-demo">
+    <a class="logo" href="#">
+        <img src="./img/logo.png" alt="万店联盟">
+    </a>
+    <div class="user-action" style="position:absolute;right:15px;top:25px;">
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
+    </div>
+  </div>
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      
+        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
+<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+  
+</ul>
+
+    </div>
+  </div>
+	
+	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+	    <ul class="layui-tab-title site-demo-title">
+	      <li class="layui-this">预览</li>
+	      <li>查看代码</li>
+	      <li>帮助</li>
+	    </ul>
+    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
+	      <div class="layui-tab-item layui-show">
+	        <div class="layui-main">
+
+	        </div>
+		</div>
+		</div>
+	</div> -->
+	<!-- ============================主要内容区================================ -->
+  
+  
+        
+
+
+
+
+
+	<div class="lay-main">
+	  <!-- <span class="layui-breadcrumb">
+		  <a href="#">首页</a>
+		  <a href="#">组织机构</a>
+		  <a href="#">组织机构管理</a>
+		  <a><cite>正文</cite></a>
+		</span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          <li >
+            <a href="admin-menulist.html">菜单管理</a>
+          </li>
+          <li class="layui-this">
+            添加菜单列表
+          </li>
+        </ul>
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form layui-form-pane menuForm" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">上级机构</label>
+                <div class="layui-input-block">
+                  <select name="pid" class="parCom">
+                    
+                  </select>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">菜单名称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">菜单路径</label>
+                <div class="layui-input-block">
+                  <input type="text" name="path" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">控制器名字</label>
+                <div class="layui-input-block">
+                  <input type="text" name="controller_name" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">module_name</label>
+                <div class="layui-input-block">
+                  <input type="text" name="controller_name" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">请填写描述</label>
+                <div class="layui-input-block">
+                  <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn commitMenu">立即提交</div>
+                </div>
+              </div>
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </form>
+          </div>
+        </div>
+     </div>
+
+    </div> 
+  <ul id="biuuu_city_list"></ul>
+
+  <!-- =======================弹出窗========================= -->
+<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
+  <div class="alert-main-con">
+      <form method="" action="">
+        <fieldset>
+          <legend>
+            基本信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
+        <fieldset>
+          <legend>
+            价格信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <input type="checkbox" />
+                <label>允许采购订货</label>
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
+        <div class="col-3-table clearfix">
+          <ul class="left-list">
+            <li class="active">一品多码</li>
+            <li>商品价格</li>
+            
+          </ul>
+          <div class="middle-item">
+            <ul class="title-tr-th w80 clearfix">
+              <li class="w20">商品编码</li>
+              <li class="w60">商品条码</li>
+              <li class="w20"></li>
+            </ul>
+
+            <div class="button">增加</div>
+            <div class="button button-next">增加</div>
+          </div>
+        </div>
+        <div class="search-bottom">
+          <div class="single-select">
+            快速查找：
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span>请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="first-sort">
+                                  
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+                      
+
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span class="subclass">请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="sub-sort">
+                                  
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+
+                      
+                  </div>
+
+                  <div class="r-list" style="vertical-align:top;">
+                        <input type="text" class="keyword" name="" value="">
+                        <a href="" class="btn-search">查询</a>
+                    </div>
+        </div>
+        
+
+      </form>
+    </div>
+</div>
+
+<!-- ========================================================= 
+
+	<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>-->
+
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+
+
+
+</div>
+<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/filter.js"></script>
+<script src="./js/add-admin-menu.js"></script>
+</body>
+</html>

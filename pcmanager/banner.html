@@ -1,0 +1,445 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>添加商品详情信息</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./layui/css/layui.css" />
+    <link rel="stylesheet" href="./css/alertcon.css" />
+    <link rel="stylesheet" href="./css/editorPc.css" />
+	   <script src="./layui/layui.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+  	<script type="text/javascript" src="./js/jquery-form.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/filter.js"></script>
+  
+    <style>
+      .tab-content dl dd {
+            margin-left: 0; 
+        }
+        .detail-image-col-2 .image-content{
+            position:absolute;
+            width:100%;
+            height:100%;
+            opacity:0;
+            left:0;
+            top:0;
+        }
+        
+        div.moving{
+                border: 1px dashed gray;
+                background: white;
+        }
+        div.draging{
+            width: 300px;
+            height: 180px;
+            position: absolute;
+            background: goldenrod;
+            box-shadow: 0 0 4px 2px #555;
+            border-radius: 5px; 
+            z-index: 500;
+        }
+    </style>
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+  <div class="layui-header header header-demo">
+    <a class="logo" href="#">
+        <img src="./img/logo.png" alt="万店联盟">
+    </a>
+    <div class="user-action" style="position:absolute;right:15px;top:25px;">
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
+    </div>
+  </div>
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      
+        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
+<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+  <!--<li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">默认展开</a>
+    <dl class="layui-nav-child">
+      <dd><a href="javascript:;">选项1</a></dd>
+      <dd><a href="javascript:;">选项2</a></dd>
+      <dd><a href="">跳转</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item">
+    <a href="javascript:;">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模版</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>
+ <li class="layui-nav-item">
+    <a href="javascript:;">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模版</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item">
+    <a href="javascript:;">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模版</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>-->
+</ul>
+
+    </div>
+  </div>
+	
+	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+	    <ul class="layui-tab-title site-demo-title">
+	      <li class="layui-this">预览</li>
+	      <li>查看代码</li>
+	      <li>帮助</li>
+	    </ul>
+    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
+	      <div class="layui-tab-item layui-show">
+	        <div class="layui-main">
+
+	        </div>
+		</div>
+		</div>
+	</div> -->
+	<!-- ============================主要内容区================================ -->
+  
+  
+        
+
+
+
+
+
+	<div class="lay-main">
+	  <!-- <span class="layui-breadcrumb">
+		  <a href="#">首页</a>
+		  <a href="#">组织机构</a>
+		  <a href="#">组织机构管理</a>
+		  <a><cite>正文</cite></a>
+		</span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          <li>
+            <a href="editorgoodsInfo.html">商品信息</a>
+          </li>
+          <li class="layui-this">
+            添加商品详情信息
+          </li>
+        </ul>
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-tab-item layui-show">
+
+            <form class="layui-form layui-form-pane" id="detailContent" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <table class="layui-table" style="width:100%;">
+                <!-- <colgroup>
+                  <col width="150">
+                  
+                  <col>
+                </colgroup> -->
+                <thead>
+                  <tr>
+                    <th width="130">商品名称</th>
+                    <th class="fullname"></th>
+                  </tr>
+                  <tr>
+                    <th width="130">上传图片</th>
+                    <th>
+                      <div class="image-suolve" style="position:relative;height:200px;">
+                           <!-- <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
+                                                     </div> -->
+                          
+                      </div>
+                    </th>
+                    
+                  </tr> 
+                </thead>
+                <tbody>
+                  <tr>
+                    <td width="130">商品描述</td>
+                    <td>
+                      <ul class="layui-tab-title goodseditor">
+           
+                        <li class="layui-this comp">
+                          <a href="#">电脑端</a>
+                        </li>
+                        <li class="tel">
+                          手机端
+                        </li>
+                      </ul>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <form action="" method="post" id="detailContent">
+<!-- border:1px solid #eee; -->
+            <div id="panel-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" style="position:relative;" >
+              <div onclick="upImage('img-pc')" style="width:100px;height:36px;text-align:center;line-height:36px;position:absolute;right:600px;top:4px;cursor:pointer;"><i class="layui-icon">&#xe64a;</i></div>
+              <textarea id="demo" style="display: none;" name="">
+                
+              </textarea>
+              <script id="container" name="content" type="text/plain" style="width:90%;height:300px;overflow:auto;">
+                                            
+              </script>
+      <!-- <div class="main" id="content1">
+                  <h3 class="h3-title">
+                    商品详情
+                  </h3>
+                
+                  <div class="img-content-pc" >
+                    <div class="img-single">
+                      <img src="./img/blue.jpg" alt="">
+                    </div>
+                    <div class="img-single">
+                      <img src="./img/blue.jpg" alt="">
+                    </div>
+                    <div class="img-single">
+                      <img src="./img/blue.jpg" alt="">
+                    </div>
+                    
+                  </div>
+                </div> -->
+                 
+            </div>
+            <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" style="display:none;">
+              <div class="ncsc-mobile-editor">
+                <div class="pannel">
+                 <!--  <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>00</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>20</em>字</span></div> -->
+                  <div class="control-panel" nctype="mobile_pannel">
+                        <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;"></script>
+                    </div>
+                  <div class="add-btn">
+                    <ul class="btn-wrap">
+                      <li style="width:50%;height:100%;box-sizing:content-box;"><a href="javascript:void(0);" style="display:block;" onclick="upImage('img-content')" ></i>
+                        图片
+                        </a></li>
+                      <li style="width:50%;height:100%;box-sizing:content-box;"><a href="javascript:void(0);" style="display:block;" onclick="addGoodsText()"><i class="icon-font"></i>
+                        文字
+                        </a></li>
+                    </ul>
+                  </div>
+                    <section>
+                        <div class="main" id="content1">
+                            <div class="img-content" style="height:346px;overflow:auto;">
+                                
+                            </div>
+                        </div>
+                    </section>
+                       
+                </div>
+                <div class="explain">
+                  <dl>
+                    <dt>1、基本要求：</dt>
+                    <dd>（1）手机详情总体大小：图片+文字，图片不超过20张，文字不超过000字；</dd>
+                    <dd>建议：所有图片都是本宝贝相关的图片。</dd>
+                  </dl><dl>
+                    <dt>2、图片大小要求：</dt>
+                    <dd>（1）建议使用宽度480 ~ 620像素、高度小于等于960像素的图片；</dd>
+                    <dd>（2）格式为：JPG\JEPG\GIF\PNG；</dd>
+                    <dd>举例：可以上传一张宽度为480，高度为960像素，格式为JPG的图片。</dd>
+                  </dl><dl>
+                    <dt>3、文字要求：</dt>
+                    <dd>（1）每次插入文字不能超过500个字，标点、特殊字符按照一个字计算；</dd>
+                    <dd>建议：不要添加太多的文字，这样看起来更清晰。</dd>
+                  </dl>
+                </div>
+              </div>
+
+            </div>
+            <input type="hidden" name="apptext" value="" id="appHtml" />
+            <input type="hidden" name="spic" value="" id="slImg" />
+            <input type="hidden" name="id" value="" id="goodsId" />
+            <input type="hidden" name="pcContent" value="" id="pcContent" />
+    
+            </form>
+                    </td>
+                   
+                  </tr>
+                </tbody>
+              </table>
+              <div class="layui-btn" id="btnSubmit">提交</div>
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </form>
+            
+          </div>
+        </div>
+
+
+     </div>
+
+
+    </div> 
+  <ul id="biuuu_city_list"></ul>
+  <div id="goodsNum" class="layui-form" style="display:none">
+    <div class="layui-form-item">
+      <label class="layui-form-label">文字</label>
+      <div class="layui-input-inline">
+        <input type="text" placeholder="请输入" autocomplete="off" class="layui-input singleNum">
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <div class="layui-btn saveGoodsNum" id="confirmsavetext">确定</button>
+      </div>
+    </div>
+  </div>
+
+<script type="text/template" id="image-suolve">
+     <div class="detail-image-col-2 detail-banner-split" >
+        <div class="left-block" data-imgsrc="{imgsrc}"></div>
+        <div class="deleteAvata" data-index="{selectIndex}">删除</div>
+        <div class="right-block"></div>
+        <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
+
+<script type="text/template" id="img-content">
+     <div class="img-single">
+     <div class="deleteAvata" style="display:none">删除</div>
+        <img src="{imgsrc}" width="" />
+    </div>
+</script>
+<script type="text/template" id="img-text">
+     <h3 class="h3-title" style="text-align:center;">
+        {text}
+    </h3>
+</script>
+
+  <script >
+
+  </script>
+
+  <!-- =======================弹出窗========================= -->
+
+
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+	
+<script>
+  function addGoodsText(){
+      $('.add-con-area').show();
+      $('.add-alert-area').show();
+     // $('<h3>').appendTo($('#content1'));
+     layer.open({
+            type:1,
+            content: $('#goodsNum'), //这里content是一个DOM
+          shade:[0.8,'#000'],
+          area:'500px',
+          maxmin: true
+        })
+  }
+
+
+  $('.comp').on('click',function(){
+    $('#panel-1').show();
+    $('#panel-2').hide();
+  })
+  $('.tel').on('click',function(){
+      $('#panel-2').show();
+    $('#panel-1').hide();
+  })
+
+	$(".image-suolve").on('mousedown','.detail-banner-split',function(e){
+            // console.log('dianji');
+            var that = this;
+            var disX=e.offsetX, disY=e.offsetY;
+            var $clone = $("<div>");
+            $clone.addClass("draging").css("left",$(this).position().left).css("top",$(this).position().top).html($(this).html());
+            $(this).addClass("moving").html("");
+            $clone.appendTo($(this).parent());
+            $(".image-suolve").on("mousemove",function(e){
+              //悬浮层跟随鼠标移动
+              $clone.css("left",e.clientX-$(this).offset().left-disX).css("top",e.clientY-$(this).offset().top-disY);
+            });
+            $clone.mouseup(function(){
+              //取消拖拽事件
+              $(".image-suolve").off("mousemove");
+              //判断最小距离，进行交换
+              var swapIndex = $(that).index();
+              var minDistance = 1000;
+              $(".image-suolve .detail-banner-split").each(function(){
+                var dis = Math.sqrt(Math.pow($clone.position().left-$(this).position().left, 2) +
+                  Math.pow($clone.position().top-$(this).position().top, 2));
+                
+                if(dis<minDistance){
+                  minDistance = dis;
+                  swapIndex = $(this).index();
+                }
+              });
+              
+              if(swapIndex == $(that).index() ){
+                //恢复原位
+                $clone.animate($(that).position(),200,function(){
+                  $(that).removeClass("moving").html($clone.html());
+                  $clone.remove();
+                })
+              } else {
+                //交换位置元素
+                var $swapEle = $(".image-suolve .detail-banner-split").eq(swapIndex);
+                //生成第二个需要运动的复制元素
+                var $clone2 = $("<div>");
+                //将复制元素的位置设定在交换元素上
+                $clone2.addClass("draging").css("left", $swapEle.position().left ).css("top", $swapEle.position().top ).html($swapEle.html());
+                //将交换元素的样式暂时改为移动状态
+                $swapEle.addClass("moving").html("");
+                //将复制元素2加入九宫格
+                $(".image-suolve").append($clone2);
+                //交换位置, 复制元素1移动至交换元素处
+                $clone.animate($swapEle.position(),400, function(){
+                  $swapEle.removeClass("moving").html($clone.html()); 
+                  $clone.remove(); //消失，同时交换元素恢复状态
+                });
+                //复制元素2移动至初始元素处
+                $clone2.animate( $(that).position(),400, function(){
+                  $(that).removeClass("moving").html( $clone2.html() );
+                  $clone2.remove();//消失，同时初始元素恢复状态
+                  
+                });
+              }
+            });
+
+        return false;
+          });
+</script>
+
+</div>
+
+</body>
+<script src="/shop/shop/public/utf8-php/ueditor.config.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.all.js"></script>
+<script>
+  
+
+</script>
+<script type="text/javascript" src="./js/banner.js"></script>
+</html>

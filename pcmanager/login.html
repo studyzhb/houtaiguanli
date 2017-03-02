@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>万店联盟登录页</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./css/login.css?v=1.0" />
+	<link rel="stylesheet" href="./layui/css/layui.css" />
+	<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="./js/MD5.js"></script>
+	<script type="text/javascript" src="./js/jquery-form.js"></script>
+	
+	<script src="./js/config.js"></script>
+	<style>
+		input{
+			color: #888;
+			font-size:14px;
+		}
+		label .layui-icon{
+			font-size:18px;
+			line-height: 42px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="login-wrapper">
+		<h5>万店联盟E+便利店APP智能管理系统</h5>
+		<div class="login-content">
+			<form method="POST" action="" id="loginForm">
+				<ul>
+					<li><label><i class="layui-icon">&#xe612;</i></label><input type="text" class="username" name="job_num" value="" placeholder="请输入管理员名称"></li>
+					<li><label><i class="layui-icon">&#xe63c;</i></label><input type="password" name="password" value="" placeholder="请输入管理员密码" class="md5password"></li>
+					<li class="yz"><label><i class="layui-icon">&#xe61c;</i></label><input type="text" id="code" name="code" value="" placeholder="请输入验证码"><img class="yanzheng" style="position:absolute;right: -106px;width: 106px;" src="/shop/shop/public/index.php/admin/Login/getCode" alt=""></li>
+					
+				</ul>
+				<div class="submit">
+					登录
+				</div>
+			</form>
+		</div>
+		
+		
+	</div>
+
+</body>
+<script>
+	/*config.ajax('get',config.ajaxAddress.getValiCode,function(data){
+		console.log(data);
+	});*/
+	$('.yanzheng').on('click',function($this){
+		this.src="/shop/shop/public/index.php/admin/Login/getCode?"+Math.random();
+	});
+	$('.submit').on('click',function(){
+		/*var pwd=$('.md5password').val();
+		 pwd=hex_md5(pwd+config.accessKey);
+    	$('.md5password').val(pwd);*/
+		config.formSubmit('#loginForm',config.ajaxAddress.loginAdd,function(data){
+			if(data.code==200){
+				cookieUtil.setExpiresDate('username',$('.username').val(),7);
+				cookieUtil.setExpiresDate('token',data.token,7);
+				open('index.html','_self');
+			}else{
+				$("#code").val('');
+				alert(data.mess);
+				//$('.yanzheng').src="/shop/shop/public/index.php/admin/Login/getCode?"+Math.random();
+				window.location.reload(); 
+			}
+		})
+	});
+</script>
+</html>
