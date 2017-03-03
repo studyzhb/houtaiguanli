@@ -301,9 +301,7 @@ var config={
             }
         })
 		
-		// var test='{"data":[{"id": 2,"coding": "234561","name": "可口可乐","barcode": "1215456131311","jname": "可口可乐","typename": "饮用水","eachsale": "瓶","brandname": "拉芳","suppliername": "供货商七"}]}'
-	
-		//fun(test);
+
     },
     uploadImage:function(inputId,imgId) {
         var docObj=document.getElementById(inputId);
@@ -338,53 +336,12 @@ var config={
                         document.selection.empty();
                 }
                 return true;
-        },
-    //自动生成供货商编号规则(总计12位)：(省市县各2位，后4位随机)
-    //省：
-    //市：
-    //县：
-    //
-    createSupplierNumber:function(){
-		
-    },
-    //生成省的编号
-    createProNum:function(key){
-		
-		
-    },
-    //生成市的编号
-    createCityNum:function(){
+        }
 
-    },
-    //生成县区编号
-    createCounNum:function(){
-		
-    }
    
 }
 
 
-//!function(){
-//	var pro=["北京市", "天津市", "上海市", "重庆市", "河北省", "山西省", "内蒙古", "辽宁省", "吉林省", "黑龙江省", "江苏省", "浙江省", "安徽省", "福建省", "江西省", "山东省", "河南省", "湖北省", "湖南省", "广东省", "广西", "海南省", "四川省", "贵州省", "云南省", "西藏", "陕西省", "甘肃省", "青海省", "宁夏", "新疆", "香港", "澳门", "台湾省"];
-//  
-//  for (var i=0;i<pro.length;i++) {
-//  	var index=i<10?'0'+i:i;
-//  	var obj={};
-//  	obj[index]=pro[i];
-//  	config.area_num.pro.push(obj);
-//  }
-//  
-//  
-//  for (var i=0;i<config.area_num.pro.length;i++) {
-//  	for(var j in config.area_num.pro[i]){
-//  		var obj={};
-//  		
-//  		config.area_num.city.push()
-//  	}
-//  }
-//  
-//  
-//}()
 
 
 

@@ -80,7 +80,7 @@ var config={
     //验证商品的一品多码decode
     goodsNum:'/shop/shop/public/index.php/admin/Good/checkDecode',
     //物品信息列表http://192.168.1.18/wp/public/index.php/admin/good/show
-	goodsInfo:'/shop/shop/public/index.php/admin/Good/show',
+	 goodsInfo:'/shop/shop/public/index.php/admin/Good/show',
     //添加物品信息
     addgoodsInfo:'/shop/shop/public/index.php/admin/Good/addGoods',
     //商品基本信息编辑更改
@@ -90,9 +90,9 @@ var config={
     bannerImg:'/shop/shop/public/index.php/admin/Banner/lst',
     goodsaddDetail:'/shop/shop/public/index.php/admin/Good/addDetail',
     //添加供货商地址
-	addSupplier:'/shop/shop/public/index.php/admin/supplier/add',
+	   addSupplier:'/shop/shop/public/index.php/admin/supplier/add',
     //更新单个供货商信息地址http://192.168.1.18/wp/public/index.php/admin/supplier/update
-	updateSupplier:'/shop/shop/public/index.php/admin/Supplier/edit',
+	 updateSupplier:'/shop/shop/public/index.php/admin/Supplier/edit',
     //显示供货商列表信息http://192.168.1.18/wp/public/index.php/admin/supplier/show
     showSupplierList:'/shop/shop/public/index.php/admin/Supplier/lst',
     //商品分类添加
@@ -193,6 +193,13 @@ var config={
         licenses:'/shop/shop/public/index.php/admin/SpecialGood/Show',
         addSpecGoods:'/shop/shop/public/index.php/admin/SpecialGood/add',
         deleteSpecGoods:'/shop/shop/public/index.php/admin/SpecialGood/del'
+
+      },
+      //赚钱花钱分类列表
+      taskSort:{
+        showSort:'/shop/shop/public/index.php/admin/classify/show',
+        addSort:'/shop/shop/public/index.php/admin/classify/add',
+        editSort:'/shop/shop/public/index.php/admin/classify/edit'
       }
 	},
   pSort:{

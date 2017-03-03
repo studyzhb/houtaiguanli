@@ -2,15 +2,19 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>标题</title>
+	<title>万店联盟</title>
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
+	<link rel="icon" type="image/png" href="./img/logo.png">
 	<link rel="stylesheet" href="./common/layui/css/layui.css" />
-  	<link rel="stylesheet" href="./css/alertcon.css" />
-  	<link rel="stylesheet" href="./css/adminstyle.css" />
+	<link rel="stylesheet" href="./css/alertcon.css" />
+	<link rel="stylesheet" href="./css/adminstyle.css" />
+	<script data-main="./js/domain" src="./js/require.min.js"></script>
 	<script src="./common/layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
-    <script type="text/javascript" src="./js/larry.js"></script>
+	<script type="text/javascript" src="./js/larry.js"></script>
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -33,53 +37,38 @@
 							<span>后台首页</span>
 						</a>
 					</li>
-			<li class="layui-nav-item layui-nav-itemed">
-	            <a href="javascript:;">
+					<li class="layui-nav-item">
+							<a href="javascript:;">
 								测试yij
 							</a>
-	            <dl class="layui-nav-child">
-	              <dd>
+							<dl class="layui-nav-child">
+								<dd>
 									<a href="javascript:;" data-url="addgoodsInfo.html">
 										<i class="layui-icon" data-icon='&#xe613;'>&#xe613;</i>
-                    <span>个人信息</span>
+										<span>个人信息1</span>
 									</a>
 								</dd>
 								<dd>
 									<a href="javascript:;" data-url="addgoodsInfo.html">
 										<i class="layui-icon" data-icon='&#xe613;'>&#xe613;</i>
-                    <span>个人信息</span>
+										<span>个人信息</span>
 									</a>
 								</dd>
-	              
-	            </dl>
-	         </li>
+								
+							</dl>
+					</li>
+					<li class="layui-nav-item">
+							<a href="javascript:;" data-url="./temp/label.html">
+								<i class="layui-icon" data-icon='&#xe613;'>&#xe613;</i>
+								<span>标签管理</span>
+							</a>
+
+					</li>
   
 		</ul>
 
     </div>
   </div>
-	
-	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-	    <ul class="layui-tab-title site-demo-title">
-	      <li class="layui-this">预览</li>
-	      <li>查看代码</li>
-	      <li>帮助</li>
-	    </ul>
-    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
-	      <div class="layui-tab-item layui-show">
-	        <div class="layui-main">
-
-	        </div>
-		</div>
-		</div>
-	</div> -->
-	<!-- ============================主要内容区================================ -->
-  
-
-        
-
-
-
 <!-- 左侧侧边导航结束 -->
 	<!-- 右侧主体内容 -->
 	<div class="layui-body" id="larry-body" style="bottom: 0;border-left: solid 2px #1AA094;padding-left:10px;">
@@ -92,15 +81,10 @@
 					<iframe class="larry-iframe" data-id='0' src="main.html"></iframe>
 				</div>
 			</div>
-		</div>
-
-        
+		</div>   
 	</div>
 
- 
-
-  <!-- =======================弹出窗========================= -->
-
+</div>
 <!-- ========================================================= -->
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
@@ -121,10 +105,14 @@
     </dl>
   </li>
 </script>
-	
-
-
-</div>
-
 </body>
+<script>
+		require(['main','config'],function(MyObj,config){
+
+			var o=MyObj.load();
+			MyObj.extend(config);
+
+		})
+    
+</script>
 </html>

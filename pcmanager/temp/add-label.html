@@ -1,3 +1,7 @@
+
+
+
+
 <!doctype html>
 <html>
 <head>
@@ -5,61 +9,24 @@
 	<title>标题</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="./layui/css/layui.css" />
-  	<link rel="stylesheet" href="./css/alertcon.css" />
-	 <script src="./layui/layui.js"></script>
-    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="./js/jquery-form.js"></script>
-  	<script type="text/javascript" src="./js/config.js"></script>
-    <script type="text/javascript" src="./js/filter.js"></script>
-    <script type="text/javascript" src="./js/addTaskSort.js"></script>
+	<link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	 <script src="../common/layui/layui.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-form.js"></script>
+
     
 </head>
 <body>
 	<!-- 框架结构	 -->
 	<div class="layui-layout layui-layout-admin">
-  <div class="layui-header header header-demo">
-    <a class="logo" href="#">
-        <img src="./img/logo.png" alt="万店联盟">
-    </a>
-    <div class="user-action" style="position:absolute;right:15px;top:25px;">
-      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
-      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
-    </div>
-  </div>
-  <div class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      
-        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
-<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
- 
-</ul>
 
-    </div>
-  </div>
+
 	
-	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-	    <ul class="layui-tab-title site-demo-title">
-	      <li class="layui-this">预览</li>
-	      <li>查看代码</li>
-	      <li>帮助</li>
-	    </ul>
-    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
-	      <div class="layui-tab-item layui-show">
-	        <div class="layui-main">
 
-	        </div>
-		</div>
-		</div>
-	</div> -->
-	<!-- ============================主要内容区================================ -->
   
   
         
-
-
-
-
 
 	<div class="lay-main">
 	  <!-- <span class="layui-breadcrumb">
@@ -72,48 +39,45 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li>
-            <a href="taskSort.html">分类信息</a>
+            <a href="label.html">标签信息</a>
           </li>
           <li class="layui-this">
-            添加分类
+            添加新标签
           </li>
         </ul>
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <div class="layui-form-item">
-                <label class="layui-form-label">上级分类</label>
-                <div class="layui-input-block">
-                  <select class="parCom" name="parentclass">
-                    <option value="0">一级机构</option>
-                    <option value="1">万店联盟</option>
-                  </select>
-                </div>
-              </div>
+              
               <div class="layui-form-item">
                 <label class="layui-form-label">类别名称</label>
                 <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" class="layui-input">
-                  
+                  <input type="text" placeholder="请输入" autocomplete="off" class="layui-input piliangsort">
+                  <input type="hidden" name="type" placeholder="请输入" autocomplete="off" class="layui-input sortpl">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">请选择标签类型</label>
+                <div class="layui-input-block">
+                  <select class="parCom" name="pid">
+                    <option value="0">图标</option>
+                    <option value="1">文字</option>
+                  </select>
                 </div>
               </div>
               <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
               <div class="layui-form-item">
-                <label class="layui-form-label">类别图标</label>
+                <label class="layui-form-label">类别图标B端</label>
                 <div class="layui-input-block" style="padding-left:20px;">
                   <img class="sfz imageadd" src="" alt="" width="50" height="50">
-                  
-                  <input type="hidden" name="pic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
-                  <input type="hidden" name="status" value="1">
+                  <input type="hidden" name="bpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
                 </div>
               </div>
-              <div class="layui-form-item" style="display:none;">
+              <div class="layui-form-item">
                 <label class="layui-form-label">类别图标c端</label>
                 <div class="layui-input-block" style="padding-left:20px;">
                   <img class="sfzc imageaddc" src="" alt="" width="50" height="50">
-                  
-                  <input type="hidden" placeholder="请输入" autocomplete="off" class="layui-input sfzinputc">
-                  
+                  <input type="hidden" name="pic" placeholder="请输入" autocomplete="off" class="layui-input sfzinputc">
                 </div>
               </div>
               <div class="layui-form-item layui-form-text">
