@@ -234,9 +234,13 @@ section {
               display: inline-block;
               line-height: 0.48rem;
               height: 0.48rem; }
-          section .sendInfo .otherBaseInfo .record-price .record-content .single-person-area .right-price {
+          .right-price {
             float: right; }
-            section .sendInfo .otherBaseInfo .record-price .record-content .single-person-area .right-price span {
+            .right-price img {
+              width: 0.14rem;
+              height: 0.26rem;
+              overflow: hidden; }
+            .right-price span {
               font-size: 0.3rem;
               color: #666; }
           section .sendInfo .otherBaseInfo .record-price .record-content .single-person-area .contact-name {

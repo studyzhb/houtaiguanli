@@ -1,7 +1,7 @@
 /**
  * 封装工具集合
  */
-define(function(){
+define(['config'],function(config){
     function MyObj(){
         return this._init.apply(this,arguments);
     }
@@ -9,7 +9,7 @@ define(function(){
             = function(){
                 return {
                     _init:function(){// 初始化方法
-                        console.log(this);
+                        
                         this.setting = Array.prototype.slice.call(arguments);
                         return this;
                     },
@@ -32,9 +32,10 @@ define(function(){
         }
         if (extended) extend(MyObj);
     };
+    MyObj.extend(config);
     MyObj.load = function(param){
         return new MyObj(param)._pageLoad();
     }
-
+    
     return MyObj;
 })

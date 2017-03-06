@@ -35,13 +35,11 @@ var cookieUtil={
 var config={
   //表单提交
   formSubmit:function(formId,urlhttp,fun){
-    var tok=cookieUtil.getCookie('token');
+
     
     $(formId).ajaxSubmit({
       url:urlhttp,
-      data:{
-        token:tok
-      },
+      type:'post',
       success:function(data){
         console.log(data);
         if(!!fun){
@@ -50,10 +48,6 @@ var config={
       }
     });
   },
-	ajaxAddress:{
-    
-
-	},
 
     formatTemplate:function(dta, tmpl) {  
         var b;

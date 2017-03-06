@@ -220,8 +220,15 @@ section{
                                 height: 0.48rem;
                             }
                         }
+                        @at-root
                         .right-price{
                             float: right;
+                            img{
+                              width:0.14rem;
+                              height:0.26rem;
+                              overflow:hidden;
+
+                            }
                             span{
                                 font-size:0.3rem;
                                 color:#666;

@@ -1,14 +1,12 @@
+
+
 require.config({
-    paths:{
-        "jquery":"jquery-1.12.4.min",
-        "jquery.form":"jquery.form",
-        "config":"config",
-        "main":"main"
-    },
+　　　　paths: {
+　　　　　　"jquery": "./jquery-1.12.4.min",
+　　　　},
     shim:{
-        "jquery.form" : {
+        "jquery-form" : {
             deps : ["jquery"]
         }
     }
-
-})
+　　});

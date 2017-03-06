@@ -1,0 +1,175 @@
+require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function($,jf,myObj,ajaxAddress,layObj,log){
+
+    var common=myObj.load();
+    var form=layObj.form();
+    var navObj={
+        //防止向上向下重复点击标志位
+        isUpOrDownClick:true,
+        /**
+         * 展示导航列表信息
+         */
+        showNavlist:function(){
+
+        },
+    }
+
+    /**
+     * 请求服务器获取导航信息
+     */
+    layui.use(['laytpl'],function(){
+        var tmp=sortContent.innerHTML;
+        var laytpl=layui.laytpl;
+        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.showNavlist,function(data){
+            
+            if(data.code==200){
+                laytpl(tmp).render(data.data,function(html){
+                    $('#tableList').append(html);
+                })
+            }
+            
+        })
+        
+
+    })
+
+    /**
+     * 排序
+     */
+    $('#tableList').on('click','.upSort',function(){
+        if(navObj.isUpOrDownClick){
+            navObj.isUpOrDownClick=false;
+        }
+    })
+    //
+    $('#tableList').on('click','.downSort',function(){
+        if(navObj.isUpOrDownClick){
+            navObj.isUpOrDownClick=false;
+
+        }
+    })
+
+
+    /**
+     * 编辑导航信息
+     * 
+     */
+    $('#tableList').on('click','.editNavInfo',function(){
+        var navId=$(this).data('id');
+        var tmpl=editorNavCon.innerHTML;
+        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getSingleNavInfoById,function(data){
+            if(data.code==200){
+                $('.editorNavBox').html('');
+                layObj.laytpl(tmpl).render(data.data,function(html){
+                    
+                    $('.editorNavBox').append(html);
+                })
+
+                layObj.layer.open({
+                    type:1,
+                    content: $('#editorNav'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:'600px',
+                    maxmin: true
+                })
+                form.render('radio')
+                
+            }
+            
+            
+
+        },{id:navId});
+
+        
+        
+    })
+
+
+
+
+    //添加导航信息
+    $('.addgoods').on('click',function(){
+        
+        layObj.layer.open({
+            type:1,
+            content: $('#alertDemo'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:'600px',
+            maxmin: true
+        })
+    })
+
+    
+ 
+
+			form.verify({
+			  username: function(value){
+			    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+			      return '用户名不能有特殊字符';
+			    }
+			    if(/(^\_)|(\__)|(\_+$)/.test(value)){
+			      return '用户名首尾不能出现下划线\'_\'';
+			    }
+			    
+			  }
+			  
+			  //我们既支持上述函数式的方式，也支持下述数组的形式
+			  //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+			  ,pass: [
+			    /^[\S]{6,12}$/
+			    ,'密码必须6到12位，且不能出现空格'
+			  ] 
+			});
+
+			//监听提交
+		  form.on('submit(formDemo)', function(data1){
+		    /*layer.alert(JSON.stringify(data.field), {
+		      title: '最终的提交信息'
+		    })*/
+		  
+		  	common.tools.formSubmit('#navForm',ajaxAddress.preFix+ajaxAddress.nav.addNavInfo,function(data){
+			    
+				if(data.code==200){
+	                layer.msg('添加成功');
+	                setTimeout(function(){
+	                    
+	                },1000);
+	                
+	            }else{
+	                layer.msg('网络错误，请稍后重试');
+	                setTimeout(function(){
+	                    
+	                },1000);
+	            }
+			});
+
+		    return false;
+		  });
+
+
+          //编辑导航信息
+		  form.on('submit(formEditDemo)', function(data1){
+		    /*layer.alert(JSON.stringify(data.field), {
+		      title: '最终的提交信息'
+		    })*/
+		  
+		  	common.tools.formSubmit('#editNavForm',ajaxAddress.preFix+ajaxAddress.nav.updateNav,function(data){
+			    
+				if(data.code==200){
+	                layer.msg('添加成功');
+	                setTimeout(function(){
+	                    
+	                },1000);
+	                
+	            }else{
+	                layer.msg('网络错误，请稍后重试');
+	                setTimeout(function(){
+	                    
+	                },1000);
+	            }
+			});
+
+		    return false;
+		  });
+
+
+});
