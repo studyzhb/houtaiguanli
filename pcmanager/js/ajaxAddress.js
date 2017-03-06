@@ -9,7 +9,8 @@ define({
         updateNav:'/Nav/updateNav',
         deleteNav:'/Nav/deleteNav',
         //根据id获取导航信息(get)
-        getSingleNavInfoById:'/Nav/navInfo'
+        getSingleNavInfoById:'/Nav/navInfo',
+        sortNavlist:'/Nav/navorder'
     }
 
 });

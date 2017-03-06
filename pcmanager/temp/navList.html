@@ -44,7 +44,7 @@
                     </colgroup>
                     <thead>
                         <tr>
-                            <th>序号</th>
+                            <th>排序</th>
                             <th>导航名称</th>
                             <th>导航类型</th>
                             <th>跳转地址</th>
@@ -53,7 +53,7 @@
                         </tr> 
                     </thead>
                     <tbody id="tableList">
-                        <tr>
+                        <!--<tr>
                             <td>1</td>
                             <td>美食</td>
                             <td>00</td>
@@ -70,7 +70,7 @@
                                         编辑
                                 </div>
                             </td>
-                        </tr>
+                        </tr>-->
                         
                     </tbody>
                 </table>
@@ -192,8 +192,10 @@
 <script id="sortContent" type="text/html">
 
   {{#  layui.each(d,function(index, item){ }}
-    <tr>
-        <td>{{index+1}}</td>
+    <tr data-id="{{item.id}}" data-order="{{item.displayorder}}">
+        <td>
+           <input type="text" placeholder="0" value='{{item.displayorder}}' data-order="{{item.displayorder}}"  autocomplete="off" class="layui-input sortInput" data-id="{{item.id}}" /> 
+        </td>
         <td>{{item.name}}</td>
         <td>{{item.navtype}}</td>
         <td>nnn.html</td>
@@ -203,15 +205,18 @@
          <td>停用</td>
         {{# } }}
         <td>
-            <div class="button  layui-btn-warm upSort" style="margin:10px 0;">
-            <i class="layui-icon">&#xe619;</i>
-            </div>
-            <div class="button  layui-btn-warm downSort" style="margin:10px 0;">
-            <i class="layui-icon">&#xe61a;</i>
-            </div>
             <div class="layui-btn layui-btn-warm editNavInfo" data-id="{{item.id}}" style="margin:10px 0;">
-                    编辑
+                编辑
             </div>
+            {{# if(index<0){ }}
+                
+                <div class="button  layui-btn-warm downSort" data-id="{{item.id}}" data-order="{{item.displayorder}}" style="margin:10px 0;">
+                <i class="layui-icon">&#xe61a;</i>
+                </div>
+            
+            {{# } }}
+            
+            
         </td>
     </tr>
 {{#  }); }}
@@ -244,17 +249,30 @@
                 <input type="radio" name="navtype" title="内页导航" value="4">
             {{# }else if(d.navtype=='3'){ }}
                 <input type="radio" name="navtype" title="主导航" value="1">
-            <input type="radio" name="navtype" title="侧导航" value="2">
-            <input type="radio" name="navtype" checked title="底部导航" value="3">
-            <input type="radio" name="navtype" title="内页导航" value="4">
+                <input type="radio" name="navtype" title="侧导航" value="2">
+                <input type="radio" name="navtype" checked title="底部导航" value="3">
+                <input type="radio" name="navtype" title="内页导航" value="4">
             {{# }else if(d.navtype=='4'){ }}
                 <input type="radio" name="navtype" title="主导航" value="1">
-            <input type="radio" name="navtype" title="侧导航" value="2">
-            <input type="radio" name="navtype" title="底部导航" value="3">
-            <input type="radio" name="navtype" checked title="内页导航" value="4">
+                <input type="radio" name="navtype" title="侧导航" value="2">
+                <input type="radio" name="navtype" title="底部导航" value="3">
+                <input type="radio" name="navtype" checked title="内页导航" value="4">
             {{# } }}
             
         </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            {{# if(d.status=='1'){ }}
+                <input type="radio" name="status" checked title="启用" value="1">
+                <input type="radio" name="status" title="停用" value="0">
+            {{# }else{ }}
+                <input type="radio" name="status"  title="启用" value="1">
+                <input type="radio" name="status" checked title="停用" value="0">
+            {{# } }}
+        </div>
+        <div class="layui-form-mid layui-word-aux">*必填项</div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">跳转地址</label>

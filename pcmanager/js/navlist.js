@@ -4,13 +4,41 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     var form=layObj.form();
     var navObj={
         //防止向上向下重复点击标志位
-        isUpOrDownClick:true,
+        isUpOrDownClick:false,
         /**
          * 展示导航列表信息
          */
         showNavlist:function(){
 
         },
+        /**
+         * 根据上移下移按钮进行排序
+         * @param $obj 获取到当前行的jquery对象
+         * @param sortWay 上移或者下移 1/-1
+         */
+        sortNavList:function($obj,sortWay){
+            //当前元素的id 与 位置
+            var currentId=$obj.data('id');
+            var currentOrder=$obj.data('order');
+            var targetId,targetOrder;
+            if(sortWay>0){
+               targetId = $obj.prev('tr').data('id');
+               targetOrder = $obj.prev('tr').data('order');
+            }else{
+                targetId = $obj.next('tr').data('id');
+                targetOrder = $obj.next('tr').data('order');
+            }
+
+        },
+        /**
+         * @param {Number} id 要排序的导航id 
+         * @param {Number} order 要排序的位置
+         */
+        sortNavListByInput:function(id,order,oldOrder){
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.nav.sortNavlist,function(data){
+                console.log(data);
+            },{id:id,displayorder:oldOrder,displayorderNew:order});
+        }
     }
 
     /**
@@ -20,7 +48,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
         var tmp=sortContent.innerHTML;
         var laytpl=layui.laytpl;
         common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.showNavlist,function(data){
-            
+            log.d(data);
             if(data.code==200){
                 laytpl(tmp).render(data.data,function(html){
                     $('#tableList').append(html);
@@ -35,17 +63,30 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     /**
      * 排序
      */
+    //上移
     $('#tableList').on('click','.upSort',function(){
+        //暂不使用
         if(navObj.isUpOrDownClick){
             navObj.isUpOrDownClick=false;
+            navObj.sortNavList($(this).parents('tr'),1)
         }
     })
-    //
+    //下移
     $('#tableList').on('click','.downSort',function(){
         if(navObj.isUpOrDownClick){
             navObj.isUpOrDownClick=false;
-
+            navObj.sortNavList($(this).parents('tr'),-1)
         }
+    })
+
+    /**
+     * 失去焦点时请求服务器进行排序
+     */
+    $('#tableList').on('blur','.sortInput',function(){
+        var value=$(this).val().trim();
+        var navId=$(this).data('id');
+        var order=$(this).data('order');
+        navObj.sortNavListByInput(navId,value,order);
     })
 
 
