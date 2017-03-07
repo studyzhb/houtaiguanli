@@ -3,52 +3,62 @@ html
     head
         link(href='../css/reset.css',rel='stylesheet')
         link(href='../css/header.css',rel='stylesheet')
-        script(src='../lib/js/jquery-1.12.4.min.js',type='text/javascript')
-        script(src='../layer/layer.js',type='text/javascript')
-        script(src='../js/detail.js',type='text/javascript')
+        link(href='../iconfont/iconfont.css',rel='stylesheet')
     body(style="zoom:1.2;")
         header
-            .wd-title-container
-                ul.left-logo-name
-                    li.wd-common-name
-                        a(href="index.html") 万店联盟
-                ul.right-menu-area
-                    li.wd-login-reg
-                        span
-                            a 登录
-                            ||
-                        span
-                            a 注册
-                    li.wd-mye
-                        a 我的e+
-                    li.wd-myphone
-                        a 我的手机e+
-                    li.wd-focus-e
-                        a 关注e+
-                    li.wd-serve-cus
-                        a 客服服务
+            .wd-title-bg
+                .wd-title-container
+                    ul.left-logo-name
+                        li.wd-common-name
+                            a(href="index.html")
+                                i.iconfont.icon-dingwei(style="color:#f00;")
+                                span 郑州
+                        li.wd-common-login
+                         a 请登录
+                    ul.right-menu-area
+                        li.wd-mye
+                            a 我的e+便利
+                            | |
+                        li.wd-my-order
+                            a 我的订单
+                        li.wd-business
+                            a 招商
+                        li.wd-help-center
+                            a 帮助中心
+                        li.wd-serve-cus
+                            a 联系客服
+                        li.nav-website
+                            a 网站导航
+                        li.phone-alliance
+                            a 手机异业联盟
 
             .wd-logo-container
                 .logoImage
                     a
                         img(src='../img/header/logo.png')
                 .wd-search-area
+                    .tab-shop-goods
+                        .tab-item.active 商品
+                        .tab-item 商家
                     form.logo-search-form
                         input(class='search-text',type='text',placeholder='万店联盟搜索')
                         input(class='search-btn',type='button',value='搜索')
                     .hotwords
                         a 奶糖
                         a 红枣
-                .wd-shoppinglist-small
-                    .showshopping-con 去购物车结算
-                        span (0)
         .wd-nav-area-bg
             ul.wd-nav-area
-                - var navlist=[{id:'category',name:'分类'},{id:'111',name:'首页有惊喜'},{id:'food',name:'美食馆'},{id:'game',name:'休闲娱乐'},{id:'travel',name:'旅游出行'},{id:'hotel',name:'住宿'},{id:'life',name:'生活服务'},{id:'shopping',name:'购物'}];
+                - var navlist=[{id:'category',name:'全部分类'},{id:'111',name:'首页'},{id:'food',name:'美食'},{id:'game',name:'休闲娱乐'},{id:'travel',name:'旅游出行'},{id:'hotel',name:'住宿'},{id:'life',name:'生活服务'},{id:'shopping',name:'同城便利'}];
                 each item,index in navlist
-                    if index==1
-                        li.surprise
+                    if index==0
+                        li.all-category 
                             a #{item.name}
+                            dl.menuList
+                                dd
+                                    a 美食
+                                    p 
+                                        a 精选品牌
+                                        a 小吃快餐
                     else 
                         li
                             a(href='\##{item.id}') #{item.name}
