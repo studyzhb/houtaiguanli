@@ -104,10 +104,10 @@
               <div style="margin-top:20px;">
               <ul class="layui-tab-title">
               <li class="layui-this unedit">
-                未编辑
+                未审核
               </li>
               <li class="edited">
-                已编辑
+                已审核
               </li>
               
             </ul>
@@ -122,14 +122,11 @@
           </colgroup>
           <thead>
             <tr>
-              <th>商品全称</th>
-              <th>助记码</th>
-              <th>商品编码</th>
-              <th>商品条形码</th>
-              <th>主供应商</th>
-              <th>品牌</th>
-              <th>规格</th>
-              <th>价格</th>
+              <th>序号</th>
+              <th>留言人</th>
+              <th>留言内容</th>
+              <th>商品标题</th>
+              <th>发布时间</th>
               <th>操作</th>
             </tr> 
           </thead>
@@ -347,23 +344,22 @@
 <script src="./js/filter.js"></script>
 <script id="supplierList" type="text/html">
   <tr>
-
-    {{# if(d.editstatus==1){ }}
-      <td>{{d.name}}</td>
+  <td>{{d.selectedindex+1}}</td>
+    {{# if(d.status==1){ }}
+      <td>{{d.user.name||''}}</td>
     {{# }else{ }}
-      <td style="color:#007632;">{{d.name}}</td>
+      <td style="color:#007632;">{{d.user.name||''}}</td>
     {{# } }}
-
-    <td>{{d.zname}}</td>
-    <td>{{d.coding}}</td>
-    <td>{{d.barcode}}</td>
-    <td>{{d.fac}}</td>
-    <td>{{d.brandname}}</td>
-    <td>{{d.eachsale}}</td>
-    <td>{{d.buyprice}}</td>
+    <td>{{d.des}}</td>
+    <td>{{d.title}}</td>
+    <td>{{new Date(d.createtime*1000).toLocaleString()}}</td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small" onclick="editorSingleInfo(this)" data-id="{{d.id}}" data-name="{{d.name}}" >编辑</div>
-      <!-- <button class="layui-btn layui-btn-small layui-btn-danger">删除</button> -->
+      {{# if(d.status==1){ }}
+      <div class="layui-btn layui-btn-warm layui-btn-small disableMess" data-id="{{d.id}}" data-name="{{d.name}}" >禁用此留言</div>
+    {{# }else{ }}
+      <div class="layui-btn layui-btn-warm layui-btn-small enableMess" data-id="{{d.id}}" data-name="{{d.name}}" >发布留言</div>
+    {{# } }}
+      
     </td>
   </tr>
 </script>
@@ -388,12 +384,7 @@
 </script>
 
 </div>
-<script src="./js/goodsInfo.js"></script>
+<script src="./js/messageManager.js"></script>
 </body>
-<script>
-  function editorSingleInfo(obj){
-    var fname=escape($(obj).data('name'));
-    location.href='editor-goodsInfo.html?id='+$(obj).data('id')+'?'+fname;
-  }
-</script>
+
 </html>

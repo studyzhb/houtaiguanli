@@ -195,12 +195,18 @@ var config={
         deleteSpecGoods:'/shop/shop/public/index.php/admin/SpecialGood/del'
 
       },
+      //添加商品时品牌搜索
+      addBrandSearch:'/shop/shop/public/index.php/admin/Brand/search',
       //赚钱花钱分类列表
       taskSort:{
         showSort:'/shop/shop/public/index.php/admin/classify/show',
         addSort:'/shop/shop/public/index.php/admin/classify/add',
         editSort:'/shop/shop/public/index.php/admin/classify/edit'
-      }
+      },
+      message:{
+        showMessage:'/shop/shop/public/index.php/admin/leave/edit'
+      },
+      publishNotice:'/shop/shop/public/index.php/admin/notice/edit'
 	},
   pSort:{
     pagecount:10
