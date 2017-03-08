@@ -76,9 +76,215 @@
         }
     }
 }
+//activity
+.activity-bg{
+    height:82px;
+    background-color:#f8f8f8;
+    .activity{
+        width:1280px;
+        height:82px;
+        margin:0 auto;
+        .activity-wrapper{
+            margin:0 auto;
+            font-size:12px;
+            color:#737373;
+            line-height:82px;
+            text-align:center;
+            .activity-title{
+                height:82px;
+                padding:0 36px;
+                font-size:22px;
+                line-height:82px;
+                color:#ca1c29;
+            }
+            .time-bg{
+                display:inline-block;
+                width:26px;
+                height:26px;
+                border-radius:50%;
+                background-color:#000;
+                line-height:26px;
+                text-align:center;
+                margin-right:3px;
+                color:#efefef;
+            }
+            .time-inter{
+                padding:0 10px;
+            }
+        }
+    }
+}
 
+.activity-con-bg{
+    background-color:#fff;
+    .activity-con{
+        width:1280px;
+        height:423px;
+        overflow:hidden;
+        margin:0 auto;
+        .activity-con-wrapper{
+            float:left;
+            width:987px;
+            height:424px;
+            overflow:hidden;
+            .activity-con-box{
+                width:989px;
+                height:424px;
+            }
+            dl{
+                width:493px;
+                height:211px;
+                border-right:1px solid #e0e0e0;
+                border-bottom:1px solid #e0e0e0;
+                float:left;
+                dt{
+                    width:235px;
+                    float:left;
+                    height:211px;
+                    text-align:center;
+                    img{
+                        width:126px;
+                        height:136px;
+                        display:inline-block;
+                        vertical-align:middle;
+                        overflow:hidden;
+                    }
+                    span{
+                        display:inline-block;
+                        height:211px;
+                        vertical-align:middle;
+                        width:0;
+                    }
+                }
+                dd{
+                    width:258px;
+                    float:left;
+                    padding-top:38px;
+                    h3{
+                        height:20px;
+                        line-height:20px;
+                        font-size:14px;
+                        color:#262626;
+                    }
+                    p{
+                        font-size:12px;
+                        line-height:18px;
+                        color:#616161;
+                    }
+                    .goods-price{
+                        color:#c70d1b;
+                        height:42px;
+                        line-height:42px;
+                        margin-bottom:7px;
+                        span{
+                            font-weight:bold;
+                            font-size:18px;
+                        }
+                        em{
+                            font-size:12px;
+                            text-decoration:line-through;
+                        }
+                    }
+                    .remain-count{
+                        width:106px;
+                        height:28px;
+                        padding:1px;
+                        background-color:#ffcdd1;
+                        border-radius:10px;
+                        position:relative;
+                        overflow:hidden;
+                        .remain-count-bg{
+                            width:106px;
+                            height:28px;
+                            background:#fff;
+                            border-radius:7px;
+                            font-size:14px;
+                            color:#ca1926;
+                            line-height:28px;
+                            text-align:center;
+                        }
+                        .remain-bak{
+                            width:106px;
+                            height:28px;
+                            padding:1px;
+                            background-color:#ffcdd1;
+                            border-radius:10px;
+                            position:absolute;
+                            top:0;
+                            left:-50px;
+                            opacity:0.78;
+                        }
+                    }
+                }
+            }
+        }
+        .activity-con-click-more{
+            float:right;
+            width:292px;
+            height:423px;
+            font-size:0;
+            img{
+                width:100%;
+                height:100%;
+                overflow:hidden;
+            }
+        }
+    }
+}
 
+.common-title-bg{
+    height:58px;
+    background-color:#f8f8f8;
+    .common-title{
+        width:1280px;
+        height:58px;
+        margin:0 auto;
+        h3{
+            padding-left:24px;
+            height:58px;
+            i{
+                font-size:28px;
+                color:#000;
+            }
+            span{
+                line-height:58px;
+                font-size:18px;
+                padding-left:18px;
+            }
+        }
+    }
+}
 
+.allicences-shop-con-bg{
+    background-color:#fff;
+    .allicences-con{
+        width:1280px;
+        height:423px;
+        overflow:hidden;
+        margin:0 auto;
+        .allicences-con-wrapper{
+
+            .allicences-con-box{
+                dl{
+                    width:493px;
+                    height:211px;
+                    border-right:1px solid #e0e0e0;
+                    border-bottom:1px solid #e0e0e0;
+                    dt{
+                        float:left;
+                    }
+                    dd{
+                        float:left;
+                        p{
+                            font-size:14px;
+                            color:#808080;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 .shop-banner-wrapper{
     padding:42px 0 15px 85px;

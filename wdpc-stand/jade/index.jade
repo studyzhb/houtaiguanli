@@ -63,6 +63,77 @@ block content
                 block ad-img
                 block ad-img
                 block ad-img
+                .advertisement-item
+                    img(src="../img/link-code.png")
+    .activity-bg
+        .activity
+            h2.activity-wrapper
+                span.activity-title 今日限时购
+                span(style="margin-right:22px;") 还剩
+                span.time-bg 0
+                span.time-bg 0
+                em.time-inter :
+                span.time-bg 0
+                span.time-bg 0
+                em.time-inter :
+                span.time-bg 0
+                span.time-bg 0
+    .activity-con-bg
+        .activity-con
+            .activity-con-wrapper
+                .activity-con-box
+                    block imgacti
+                        dl
+                            dt
+                                img(src="../img/img-hot.png")
+                                span
+                            dd
+                                h3 远离尘嚣 我有绝招
+                                p iRoot 智能扫地机器人吸尘器 Roomba650 支持国内保修
+                                .goods-price
+                                    span $3199
+                                    em $4590
+                                .remain-count
+                                    .remain-count-bg 剩余463件
+                                    .remain-bak
+                    block imgacti
+                    block imgacti
+                    block imgacti
+                    block imgacti
+            .activity-con-click-more
+                img(src="../img/click-more.png")
+    .common-title-bg
+        .common-title
+            h3
+                i.iconfont.icon-cart
+                span 美食热门商家
+    .allicences-shop-con-bg
+        .allicences-con
+            .allicences-con-wrapper
+                .allicences-con-box
+                    block imgshop
+                        dl
+                            dt
+                                img(src="../img/img-hot.png")
+                                span
+                            dd
+                                h3 张亮麻辣烫 (升龙店)
+                                p
+                                    span 5.0分
+                                    em 120条评论
+                                p
+                                    span 地铁口
+                                    span 环境好
+                                p 
+                                    span 全场8.5折优惠
+                                p
+                                    i.iconfont.icon-wuxian
+                                    i.iconfont.icon-p
+                                p
+                                    span 美食商家
+                                    span 中州大道农业路
+            .allicences-con-click-more
+                img(src="../img/click-more.png")
     .feature-wrapper
         .feature
             mixin feature(name,info)
@@ -110,8 +181,7 @@ block content
                         li.right-sort-area
                             a #{name} 
                             ||
-                            a 代金券
-                            
+                            a 代金券   
                 .liance-con-wrapper
                     .liance-con
                         each item in arrPro
