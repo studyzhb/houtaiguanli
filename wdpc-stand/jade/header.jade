@@ -52,13 +52,18 @@ html
                 each item,index in navlist
                     if index==0
                         li.all-category 
-                            a #{item.name}
+                            a.allcat #{item.name}
                             dl.menuList
-                                dd
-                                    a 美食
-                                    p 
-                                        a 精选品牌
-                                        a 小吃快餐
+                                block menulist
+                                    dd
+                                        a.mainTitle 美食
+                                        p 
+                                            a 精选品牌
+                                            a 小吃快餐
+                                block menulist
+                                block menulist
+                                block menulist
+                                block menulist
                     else 
                         li
                             a(href='\##{item.id}') #{item.name}
