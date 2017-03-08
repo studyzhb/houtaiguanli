@@ -6,19 +6,20 @@
     .banner-area{
         position:relative;
         width:1280px;
-        height:452px;
+        height:450px;
         display: inline-block;
         overflow: hidden;
 
         ul.notice-pic{
             position:absolute;
             width:4680px;
+            height:450px;
             left:0;
             top:0;
             li{
                 float:left;
                 width:1280px;
-                height:452px;
+                height:450px;
                 font-size:0;
                 img{
                     width:100%;
@@ -46,6 +47,38 @@
         }
     }
 }
+//adver
+.advertisement-bg{
+    padding-top:22px;
+    height:166px;
+    background-color:#f8f8f8;
+    .advertisement{
+        width:1280px;
+        height:166px;
+        margin:0 auto;
+        overflow:hidden;
+        .advertisement-wraper{
+            width:1350px;
+            height:166px;
+
+        }
+        .advertisement-item{
+            width:240px;
+            height:166px;
+            display:inline-block;
+            font-size:0;
+            margin-right:19px;
+            img{
+                width:100%;
+                height:100%;
+                overflow:hidden;
+            }
+        }
+    }
+}
+
+
+
 
 .shop-banner-wrapper{
     padding:42px 0 15px 85px;

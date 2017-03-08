@@ -199,8 +199,10 @@ header {
         top: 42px;
         width: 270px;
         height: 450px;
+        overflow: hidden;
         background-color: #000;
-        opacity: 0.56; }
+        opacity: 0.56;
+        z-index: 1; }
         .wd-nav-area-bg ul.wd-nav-area li.all-category .menuList dd {
           width: 100%;
           height: 64px;

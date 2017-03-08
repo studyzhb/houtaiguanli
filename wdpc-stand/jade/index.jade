@@ -54,12 +54,15 @@ block content
                     img(src='../img/ban02.png')
                 li
                     img(src='../img/ban03.png')
-        .right-spec
-            .compersive-area
-                img(src='../img/test11.png',style='width:100%;height:100%;')
-            .down-area
-                img(src='../img/download.jpg')
-    
+    .advertisement-bg
+        .advertisement
+            .advertisement-wraper
+                block ad-img
+                    .advertisement-item
+                        img(src="../img/adver.png")
+                block ad-img
+                block ad-img
+                block ad-img
     .feature-wrapper
         .feature
             mixin feature(name,info)
@@ -70,11 +73,6 @@ block content
                         dd
                             h4 #{name}
                             p #{info}
-            +feature('天天低价','人工审核震撼低价')
-            +feature('正品保证','人工审核震撼低价')
-            +feature('7天无理由退货','人工审核震撼低价')
-            
-
 
     .special-title
         h3
