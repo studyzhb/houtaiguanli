@@ -766,4 +766,34 @@ a.active-p {
     left: 0;
     top: 0; }
 
+/**
+*website
+*/
+
+.website-area{
+
+}
+.website-area label{
+  display: block;
+  width:116px;
+  height:40px;
+  line-height: 40px;
+  text-align: center;
+}
+.website-all-area{
+ 
+  padding-top:40px;
+  padding-left:100px;
+}
+.website-all-area a{
+  display: inline-block;
+  width:118px;
+  height:50px;
+  text-align: center;
+  margin-right:10px; 
+  margin-bottom:10px;
+  line-height:50px;
+  border:1px solid #666;
+  border-radius:10px; 
+}
 

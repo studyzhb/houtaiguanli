@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>导航管理</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	<script src="../common/layui/layui.js"></script>
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<div class="lay-main">
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
+              
+              <label class="layui-form-label">分类</label>
+                <div class="layui-input-inline">
+                  <select name="city" lay-verify="required">
+                    <option value=""></option>
+                    <option value="0">北京</option>
+                    <option value="1">上海</option>
+                    <option value="2">广州</option>
+                    <option value="3">深圳</option>
+                    <option value="4">杭州</option>
+                  </select>
+                </div>
+              <div class="layui-inline">
+                <label class="layui-form-label">关键词</label>
+                <div class="layui-input-inline">
+                  <input type="text" class="layui-input" name="" value="">
+                </div>
+                
+
+              </div>
+              <div class="layui-btn searchByKeywords">
+                   搜索
+                </div>
+                <div class="layui-btn" id="goodExcel">
+                   导出商品
+                </div>
+            </form>
+              <div style="margin-top:20px;">
+              <ul class="layui-tab-title">
+                <li class="layui-this unedit">
+                    店铺列表
+                </li>
+                <li class="edited">
+                    店铺推荐列表
+                </li>
+            </ul>
+            </div>
+            <table class="layui-table">
+                <colgroup>
+                    <!-- <col width="100">
+                    <col width="100">
+                    <col>
+                    <col width="100">
+                    <col width="300"> -->
+                </colgroup>
+                <thead>
+                    <tr>
+                    <th>序号</th>
+                    <th>店铺名称</th>
+                    <th>开户时间</th>
+                    <th>经营类型</th>
+                    <th>负责人姓名</th>
+                    <th>所在地</th>
+                    <th>优惠力度</th>
+                    <th>商家产品</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                    </tr> 
+                </thead>
+                <tbody id="purchaselist">
+                    <tr>
+                        <td>1</td>
+                        <td>阿利茄汁面</td>
+                        <td>2017/3/9</td>
+                        <td>美食</td>
+                        <td>张11</td>
+                        <td>郑州</td>
+                        <td>全场折扣95折</td>
+                        <td>10</td>
+                        <td>启用</td>
+                        <td>编辑</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+
+
+     </div>
+    </div> 
+	
+</body>
+<script>
+    layui.use('form',function(){
+
+    })
+</script>
+<script src=""></script>
+</html>

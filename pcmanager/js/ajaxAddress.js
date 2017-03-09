@@ -10,7 +10,16 @@ define({
         deleteNav:'/Nav/deleteNav',
         //根据id获取导航信息(get)
         getSingleNavInfoById:'/Nav/navInfo',
-        sortNavlist:'/Nav/navorder'
+        sortNavlist:'/Nav/navorder',
+        /**
+         * 导航分类类型
+         */
+        navclassifyInfo:'/Classify_type/classifyTypeLst',
+        addnavclassifyInfo:'/Classify_type/addClassifyType',
+        updatenavclassify:'/Classify_type/updateClassify',
+        getClassifyById:'/Classify_type/classifyTypeInfo',
+        deletenavclassify:'/Classify_type/deleteClassify',
+        classifyDetail:''
     }
 
 });
