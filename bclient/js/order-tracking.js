@@ -6,7 +6,10 @@ $(function(){
 			//采购单号
 			coding:'',
 			pass:'',
-			total:0
+			total:0,
+			orderDetail:{
+
+			}
 		},
 		updateShoppingList:function(carid,num,pro,$obj,price){
 			config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.updateShoppingList,function(data){
@@ -44,20 +47,35 @@ $(function(){
 		},
 		//打印小票或配送
 		showOrderlist:function(){
-			
-			config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.userOrderDetail,function(data){
+			var oId=orderTracking.data.coding;
+			if(orderTracking.data.orderDetail[oId]){
+
+				var data=orderTracking.data.orderDetail[oId]
+			var tempHtml=singleOrderList.innerHTML;					
+					// var tempHtml2=info.innerHTML;
+				$('.purchaselist').html('');
+				
+				laytpl(tempHtml).render(data,function(html){
+					
+					$('.purchaselist').append(html);
+				});
+			}
+			layer.open({
+		        type:1,
+		        content: $('#alertMessage1'), //这里content是一个DOM
+		          shade:[0.8,'#000'],
+		          area:'800px',
+		          maxmin: true,
+		          end:function(){
+		            // console.log('end');
+		          }
+		        })
+			/*config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.userOrderDetail,function(data){
 				console.log(data);
 				layer.closeAll('loading');
 				if(data.code=='200'){
 					
-					var tempHtml=singleOrderList.innerHTML;					
-					// var tempHtml2=info.innerHTML;
-					$('.purchaselist').html('');
 					
-					laytpl(tempHtml).render(data.orderinfo,function(html){
-						
-						$('.purchaselist').append(html);
-					});
 					
 
 					// laytpl(tempHtml2).render(data.time,function(html){
@@ -68,18 +86,12 @@ $(function(){
 					updateGoods(data.time);
 				}
 
-				layer.open({
-			        type:1,
-			        content: $('#alertMessage1'), //这里content是一个DOM
-			          shade:[0.8,'#000'],
-			          area:'800px',
-			          maxmin: true,
-			          end:function(){
-			            // console.log('end');
-			          }
-			        })
 
-			},{id:orderTracking.data.coding,status:orderTracking.data.status});
+				
+
+			},{id:orderTracking.data.coding,status:orderTracking.data.status});*/
+
+		}
 	}
 
 	layui.use(['laytpl','element'],function(){
@@ -87,6 +99,14 @@ $(function(){
 		element= layui.element();
 		config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.borderList,function(data){
 			console.log(data);
+			if(data.code==200){
+				data.orderifno=data.orderifno||[];
+				$.each(data.orderifno,function(ind,item){
+						if(!orderTracking.data.orderDetail[item.id]){
+								orderTracking.data.orderDetail[item.id]=item;
+						}
+				})
+			
 			var tempHtml=supplierList.innerHTML;
 			$('#purchaselist').html('');
 			
@@ -94,6 +114,7 @@ $(function(){
 				
 				$('#purchaselist').append(html);
 			});
+		}
 		},{status:sN});
 	});
 

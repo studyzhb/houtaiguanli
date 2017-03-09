@@ -5,8 +5,12 @@
   <title>首页</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
+  <meta http-equiv="pragma" content="no-cache"> 
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+  <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
   <link rel="stylesheet" href="../layui/css/layui.css" />
   <link rel="stylesheet" href="../css/alertcon.css?v=1" />
+  <link rel="stylesheet" href="../css/print.css?v=1" />
   <script src="../layui/layui.js"></script>
     <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="../js/config.js"></script>
@@ -100,20 +104,20 @@
 <script id="singleOrderList" type="text/html">
     <div class="thumbInfo">
         <div class="infoWrap fl">
-          进货店铺：{{d.sname}}
+          进货店铺：{{d.shop}}
         </div>
         <div class="infoWrap fr">
-          单号：{{d.coding}}
+          单号：{{d.oddnum}}
         </div>
       </div>
-      <div class="thumbInfo">
+      <!--<div class="thumbInfo">
         <div class="infoWrap fl">
           收货地址：{{d.address}}
         </div>
         <div class="infoWrap fr">
           手机号：{{d.tel}}
         </div>
-      </div>
+      </div>-->
       <table class="layui-table">
             <colgroup>
               
@@ -141,7 +145,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5">合计：<span>{{(d.total-0).toFixed(2)}}</span></td>
+                    <td colspan="5">合计：<span>{{(d.zprice-0).toFixed(2)}}</span></td>
               </tr>
             </tfoot>
         </table>
@@ -198,7 +202,7 @@
     </td>
     {{# }else{ }}
     <td>
-    <div class="layui-btn layui-btn-warm layui-btn-small" data-id="{{item.id}}" data-pri="{{item.zprice}}">查看</div>
+    <div class="layui-btn layui-btn-warm layui-btn-small lookinfo" data-id="{{item.id}}" data-pri="{{item.zprice}}">查看</div>
     </td>
     {{# } }}  
   </tr>
