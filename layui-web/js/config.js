@@ -123,6 +123,23 @@ var config={
     checkOrderList:'/shop/shop/public/index.php/admin/purchase/check',
     //采购单中新增商品
     addOnlyOrderlist:'/shop/shop/public/index.php/admin/Purchase/purchaseAdd',
+
+    //展示退货单
+    showOrderlistBack:'/shop/shop/public/index.php/admin/ReturnGoods/lst',
+    //添加退货单
+    addOrderlistBack:'/shop/shop/public/index.php/admin/ReturnGoods/add',
+    //编辑退货单
+    editOrderlistBack:'/shop/shop/public/index.php/admin/ReturnGoods/edit',
+    //搜索商品
+    searchOrderBack:'/shop/shop/public/index.php/admin/ReturnGoods/getInfo',
+    
+    //退货单出库
+    orderlistBackOutput:'/shop/shop/public/index.php/admin/Store/returnGoods',
+    //退货单单个详情
+    orderlistBackCheckCount:'/shop/shop/public/index.php/admin/Store/checkreturn',
+    //退货单审核数量
+    orderlistBackCommit:'/shop/shop/public/index.php/admin/Store/editreturn',
+
     //增加菜单
     addMenulist:'/shop/shop/public/index.php/admin/Privilege/add',
     //修改菜单

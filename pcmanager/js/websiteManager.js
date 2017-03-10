@@ -21,6 +21,9 @@ require(['jquery','main','log'],function($,myObj,log){
         case 'shop':
             dataUrl='shop.html';
             break;
+        case 'goods':
+            dataUrl='shop-goods.html';
+            break;
     }
 
     $('.website-all-area').on('click','a',function(){
