@@ -124,6 +124,8 @@ var config={
     //采购单中新增商品
     addOnlyOrderlist:'/shop/shop/public/index.php/admin/Purchase/purchaseAdd',
 
+    addOnlyOrderlistBack:'/shop/shop/public/index.php/admin/returnGoods/returnAdd',
+
     //展示退货单
     showOrderlistBack:'/shop/shop/public/index.php/admin/ReturnGoods/lst',
     //添加退货单
@@ -139,6 +141,9 @@ var config={
     orderlistBackCheckCount:'/shop/shop/public/index.php/admin/Store/checkreturn',
     //退货单审核数量
     orderlistBackCommit:'/shop/shop/public/index.php/admin/Store/editreturn',
+
+    orderlistDetailBack:'/shop/shop/public/index.php/admin/returnGoods/edit',
+
 
     //增加菜单
     addMenulist:'/shop/shop/public/index.php/admin/Privilege/add',
@@ -203,6 +208,8 @@ var config={
       //库存
       storehouse:'/shop/shop/public/index.php/admin/Purchase/storeLst',
       excelOutput:'/shop/shop/public/index.php/admin/Excel/excel',
+      excelOrderlistBackOutput:'/shop/shop/public/index.php/admin/Excel/excelreturn',
+
       specialSubject:{
         showlist:'/shop/shop/public/index.php/admin/Special/Show',
         addSort:'/shop/shop/public/index.php/admin/Special/add',

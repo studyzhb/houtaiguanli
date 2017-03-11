@@ -205,7 +205,7 @@ $('#purchaselist').on('click','.exceloutput',function(){
 });
 //查看
 $('#purchaselist').on('click','.lookdetail',function(){
-	open('printTemplate.html?id='+$(this).data('id'),'_self');
+	open('printBackOrderlist.html?id='+$(this).data('id'),'_self');
 	
 });
 $('.saveGoodsNum').on('click',function(){

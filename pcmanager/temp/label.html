@@ -11,8 +11,7 @@
 	<link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
 	<script src="../common/layui/layui.js"></script>
-    <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
     <style>
       .layui-form-select dl dd {
         height: 20px;
@@ -87,6 +86,36 @@
                                         <input type="checkbox" title="标签内容已">
                                         <input type="checkbox" title="标签内容已">
                                         <button class="layui-btn layui-btn-primary layui-btn-small add-new-label" style="margin-top:-9px;margin-left:9px;">
+                                            <i class="layui-icon">&#xe614;</i>
+                                        </button>
+                                    </div>
+                                    
+                                </td>
+                                
+                            </div>
+                        </tr>
+
+                        <tr>
+                            <div class="layui-form-item">
+                                <td>1</td>
+                                <td>
+                                    <div class="layui-input-inline">
+                                      <select>
+                                        <option value="">图标</option>
+                                      </select>
+                                    </div>
+                                    <div class="layui-input-inline" style="margin-left:-14px;">
+                                        <input type="checkbox" title="标签内容已">
+                                        
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="layui-input-block" style="margin-left:0;">
+                                        <input type="checkbox" title="标签内容已">
+                                        <input type="checkbox" title="标签内容已">
+                                        <input type="checkbox" title="标签内容已">
+                                        <input type="checkbox" title="标签内容已">
+                                        <button class="layui-btn layui-btn-primary layui-btn-small add-new-label" data-id='1' style="margin-top:-9px;margin-left:9px;">
                                             <i class="layui-icon">&#xe614;</i>
                                         </button>
                                     </div>
@@ -275,11 +304,11 @@
       </form>
     </div>
 </div>
-<div class="layui-form" style="display:none">
+<div class="layui-form" id="addTypeCon" style="display:none;padding-top:20px;font-size:14px;">
     <div class="layui-form-item">
-      <label class="layui-form-label">更改数量</label>
+      <label class="layui-form-label">请输入类型内容</label>
       <div class="layui-input-inline">
-        <input type="text" placeholder="请输入数量" autocomplete="off" class="layui-input singleNum" />
+        <input type="text" placeholder="内容区" autocomplete="off" class="layui-input singleNum" />
       </div>
     </div>
     <div class="layui-form-item">
@@ -339,9 +368,6 @@
 </div>
 
 </body>
-<script>
-    layui.use('form',function(){
 
-    })
-</script>
+<script src="../js/label.js"></script>
 </html>

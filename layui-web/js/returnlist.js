@@ -48,8 +48,8 @@ $(function(){
 		console.log('ruku');
 		purchasePage.status=2;
 		fistLoad=true;
-		purchasePage.requrl=config.ajaxAddress.showInputStore;
-		config.ajax('get',config.ajaxAddress.showInputStore,function(data){
+		purchasePage.requrl=config.ajaxAddress.orderlistBackOutput;
+		config.ajax('get',config.ajaxAddress.orderlistBackOutput,function(data){
 			updateList(data,laytpl);
 		},{status:2});
 	});
@@ -139,7 +139,7 @@ $('#purchaselist').on('click','.lookorderInfo',function(){
 
 $('#purchaselist').on('click','.addorderInfo',function(){
 	console.log('添加新商品');
-	open('edit-purchaselist.html?id='+$(this).data('id'),'_self');
+	open('edit-returnlist.html?id='+$(this).data('id'),'_self');
 });
 
 
@@ -152,7 +152,7 @@ $('#purchaselist').on('click','.exceloutput',function(){
 		console.log(data);
 	},{buyer_id:$(this).data('id')});*/
 	
-	open(config.ajaxAddress.excelOutput+'?token='+cookieUtil.getCookie('token')+'&buyer_id='+$(this).data('id'),'_self');
+	open(config.ajaxAddress.excelOrderlistBackOutput+'?token='+cookieUtil.getCookie('token')+'&buyer_id='+$(this).data('id'),'_self');
 });
 
 
@@ -182,7 +182,7 @@ $('#purchaselist').on('click','.printOrderlist',function(){
       maxmin: true
 	})*/
 	
-	open('printTemplate.html?id='+$(this).data('id'),'_self');
+	open('printBackOrderlist.html?id='+$(this).data('id'),'_self');
 
 });
 

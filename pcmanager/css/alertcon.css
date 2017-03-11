@@ -797,3 +797,20 @@ a.active-p {
   border-radius:10px; 
 }
 
+.nav-menu-all-area a{
+  display: inline-block;
+  width:78px;
+  height:40px;
+  text-align: center;
+  margin-right:10px; 
+  margin-bottom:10px;
+  line-height:40px;
+  border:1px solid #666;
+  border-radius:10px; 
+  
+}
+.nav-menu-all-area a:hover,.nav-menu-all-area a.active{
+  background-color:#29B6F6;
+  color:#fff; 
+}
+

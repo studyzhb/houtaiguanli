@@ -2,6 +2,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 
     var common=myObj.load();
     var form=layObj.form();
+    log.d(layObj);
     var navObj={
         //防止向上向下重复点击标志位
         isUpOrDownClick:false,

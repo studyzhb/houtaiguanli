@@ -34,7 +34,7 @@ $(function(){
 		通过采购单id获取采购单信息
 	*/
 	var orderid=location.href.split('?')[1].split('=')[1]||'';
-	config.ajax('get',config.ajaxAddress.addOnlyOrderlist,function(data){
+	config.ajax('get',config.ajaxAddress.addOnlyOrderlistBack,function(data){
 		console.log(data);
 		var baseInfo=data.info[0];
 		$('#orderlistId').val(orderid);
@@ -127,7 +127,7 @@ $(function(){
 			orderlist.isCanSearch=false;
 			var val=$(this).prev().find('input').val();
 
-			config.ajax('get',config.ajaxAddress.searchOrder,function(data){
+			config.ajax('get',config.ajaxAddress.searchOrderBack,function(data){
 				console.log(data);
 				orderlist.goodslist=data;
 				$('#searchedlist').html('');
@@ -161,7 +161,7 @@ $('#goods-barcode').on('click',function(){
 	orderlist.isCanSearch=false;
 	var val=$(this).prev().find('input').val();
 	
-	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
+	config.ajax('get',config.ajaxAddress.searchOrderBack,function(data){
 		console.log(data);
 		orderlist.goodslist=data;
 		$('#searchedlist').html('');
@@ -193,7 +193,7 @@ $('#goodsName').on('click',function(){
 	orderlist.isCanSearch=false;
 	var val=$(this).prev().find('input').val();
 	
-	config.ajax('get',config.ajaxAddress.searchOrder,function(data){
+	config.ajax('get',config.ajaxAddress.searchOrderBack,function(data){
 		orderlist.goodslist=data;
 		
 		$('#searchedlist').html('');
@@ -277,19 +277,19 @@ $('#confirm-save').on('click',function(){
 			})
 			$('#goods').val(JSON.stringify(arr));
 			// console.log($('#goods').val());
-			config.formSubmit('#orderlist-submit',config.ajaxAddress.addOnlyOrderlist,function(data){
+			config.formSubmit('#orderlist-submit',config.ajaxAddress.addOnlyOrderlistBack,function(data){
 				console.log(data);
 				 if(data.code==200){
 	                layer.msg('添加成功');
 	                setTimeout(function(){
-	                    open('purchaselist.html','_self');
+	                    open('returnlist.html','_self');
 	                },500);
 	                
 	            }else{
 	    			orderlist.isCanClick=true;	
 	                layer.msg('网络错误，请稍后重试');
 	                setTimeout(function(){
-	                    open('purchaselist.html','_self');
+	                    open('returnlist.html','_self');
 	                },500);
 	            }
 			});
