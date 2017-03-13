@@ -5,7 +5,7 @@ define(function() {
         if(test){
              console.log(value);
         }
-       
+        
     }
     return {
         d:d

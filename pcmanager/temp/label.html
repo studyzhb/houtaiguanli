@@ -14,7 +14,7 @@
     <script data-main="../js/domain" src="../js/require.min.js"></script>
     <style>
       .layui-form-select dl dd {
-        height: 20px;
+        /*height: 20px;*/
       }
     </style>
 </head>
@@ -47,7 +47,7 @@
                   <table class="layui-table" lay-skin="line">
                     <colgroup>
                         <col width="80">
-                        <col width="200">
+                        <col width="220">
                         <col>
                     </colgroup>
                     <thead>
@@ -58,7 +58,7 @@
                         </tr> 
                     </thead>
                     <tbody id="all-sort-list">
-                        <tr>
+                        <!--<tr>
                             <div class="layui-form-item">
                                 <td>1</td>
                                 <td>
@@ -93,38 +93,8 @@
                                 </td>
                                 
                             </div>
-                        </tr>
+                        </tr>-->
 
-                        <tr>
-                            <div class="layui-form-item">
-                                <td>1</td>
-                                <td>
-                                    <div class="layui-input-inline">
-                                      <select>
-                                        <option value="">图标</option>
-                                      </select>
-                                    </div>
-                                    <div class="layui-input-inline" style="margin-left:-14px;">
-                                        <input type="checkbox" title="标签内容已">
-                                        
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="layui-input-block" style="margin-left:0;">
-                                        <input type="checkbox" title="标签内容已">
-                                        <input type="checkbox" title="标签内容已">
-                                        <input type="checkbox" title="标签内容已">
-                                        <input type="checkbox" title="标签内容已">
-                                        <button class="layui-btn layui-btn-primary layui-btn-small add-new-label" data-id='1' style="margin-top:-9px;margin-left:9px;">
-                                            <i class="layui-icon">&#xe614;</i>
-                                        </button>
-                                    </div>
-                                    
-                                </td>
-                                
-                            </div>
-                        </tr>
-                        
                     </tbody>
                 </table>
                   
@@ -137,10 +107,6 @@
 
      </div>
 
-
-
-
-    
     </div> 
   <ul id="biuuu_city_list"></ul>
 
@@ -306,7 +272,7 @@
 </div>
 <div class="layui-form" id="addTypeCon" style="display:none;padding-top:20px;font-size:14px;">
     <div class="layui-form-item">
-      <label class="layui-form-label">请输入类型内容</label>
+      <label class="layui-form-label">请输入内容</label>
       <div class="layui-input-inline">
         <input type="text" placeholder="内容区" autocomplete="off" class="layui-input singleNum" />
       </div>
@@ -365,7 +331,107 @@
     
 </script>
 
+<script type="text/html" id="labelContent">
+  {{# layui.each(d,function(index,item){ }}
+      <tr>
+        <div class="layui-form-item">
+            <td>{{index+1}}</td>
+            <td>
+                <div class="layui-input-inline" style="width:56px;height:48px;">
+                  <select  lay-filter="labelType" data-ele="{{item.id}}">
+                      {{# if(item.type=='1'){ }}
+                        <option value="2">店铺</option>
+                        <option value="1" selected>产品</option>
+                        <option value="3">暂无</option>
+                      {{# }else if(item.type=='2'){ }}
+                        <option value="2" selected>店铺</option>
+                        <option value="1" >产品</option>
+                        <option value="3">暂无</option>
+                      {{# }else if(item.type=='3'){ }}
+                        <option value="2" >店铺</option>
+                        <option value="1" >产品</option>
+                        <option value="3" selected>暂无</option>
+                      {{# } }}
+                  </select>
+                </div>
+                <div class="layui-input-inline" style="margin-left:-14px;">
+
+                    {{# if(item.status=='1'){ }}
+                    <input type="checkbox" data-ele="{{item.id}}"  lay-filter="labelStatusType"  checked title="{{item.name}}">
+                    {{# }else{ }}
+                      <input type="checkbox" data-ele="{{item.id}}" lay-filter="labelStatusType" title="{{item.name}}">
+                    {{# } }}
+                </div>
+            </td>
+            <td>
+                <div class="layui-input-block" style="margin-left:0;">
+                    {{# layui.each(item.data,function(tyInd,itemLabel){ }}
+                      {{# if(item.status=='1'){ }}
+                      <button class="layui-btn">
+                        <i class="layui-icon">&#xe642;</i> {{itemLabel.name}}
+                      </button>
+                      {{# }else{ }}
+                        <button class="layui-btn layui-btn-primary">
+                        <i class="layui-icon">&#xe642;</i> {{itemLabel.name}}
+                      </button>
+                      {{# } }}
+                    {{# }) }}
+                    
+                    <button class="layui-btn layui-btn-primary layui-btn-small add-new-label" data-id="{{item.id}}" data-type="{{item.class}}" style="margin-top:-9px;margin-left:9px;">
+                        <i class="layui-icon">&#xe614;</i>
+                    </button>
+                </div>
+                
+            </td>
+            
+        </div>
+    </tr>
+  {{# }); }}
+  
+</script>
+
 </div>
+<div class="alertCon-wrapper" id="editorLabelCon" style="margin:10px auto;display:none;font-size: 16px;">
+  <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="editNavForm">
+          <div class="editorNavBox">
+
+          </div>
+        
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formEditDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/html" id="editorNavCon">
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型状态</label>
+        <div class="layui-input-block">
+            {{# if(d.status=='1'){ }}
+                <input type="radio" name="status" checked title="启用" value="1">
+                <input type="radio" name="status" title="停用" value="0">
+            {{# }else{ }}
+                <input type="radio" name="status"  title="启用" value="1">
+                <input type="radio" name="status" checked title="停用" value="0">
+            {{# } }}
+        </div>
+
+    </div>
+</script>
+
 
 </body>
 

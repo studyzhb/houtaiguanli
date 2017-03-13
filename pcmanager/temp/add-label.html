@@ -8,9 +8,7 @@
 	<link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
 	 <script src="../common/layui/layui.js"></script>
-    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-form.js"></script>
-
+   <script data-main="../js/domain" src="../js/require.min.js"></script>
     
 </head>
 <body>
@@ -34,28 +32,47 @@
             添加新标签
           </li>
         </ul>
-        <div class="layui-content" style="padding-top:20px;">
+        <div class="layui-content" style="padding-top:20px;padding-bottom: 40px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
               
               <div class="layui-form-item">
-                <label class="layui-form-label">类别名称</label>
-                <div class="layui-input-block">
-                  <input type="text" placeholder="请输入" autocomplete="off" class="layui-input piliangsort">
-                  <input type="hidden" name="type" placeholder="请输入" autocomplete="off" class="layui-input sortpl">
+                <label class="layui-form-label">标签名称</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="name" placeholder="请输入" lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">请选择标签类型</label>
-                <div class="layui-input-block">
-                  <select class="parCom" name="pid">
-                    <option value="0">图标</option>
+                <div class="layui-input-inline">
+                  <select class="parCom" name="type" lay-verify="required">
+                    <option value="2">店铺</option>
+                    <option value="1">产品</option>
+                    <option value="3">暂无</option>
+                  </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">标签内容格式</label>
+                <div class="layui-input-inline">
+                  <select class="parCom" name="class" lay-verify="required">
+                    <option value="2">图标</option>
                     <option value="1">文字</option>
                   </select>
                 </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">请填写描述</label>
+                <div class="layui-input-inline">
+                  <textarea placeholder="请输入内容" name="introduce" class="layui-textarea"></textarea>
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
               </div>
               <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
-              <div class="layui-form-item">
+              <!--<div class="layui-form-item">
                 <label class="layui-form-label">类别图标B端</label>
                 <div class="layui-input-block" style="padding-left:20px;">
                   <img class="sfz imageadd" src="" alt="" width="50" height="50">
@@ -72,9 +89,9 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">请填写描述</label>
                 <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
+                  <textarea placeholder="请输入内容" name="introduce" class="layui-textarea"></textarea>
                 </div>
-              </div>
+              </div>-->
               <!-- ================================================== -->
 
               <!-- ================================================== -->
@@ -82,7 +99,7 @@
 
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <div class="layui-btn commit-author" >立即提交</div>
+                  <div class="layui-btn" lay-submit lay-filter="addLabel" >立即提交</div>
                 </div>
               </div>
               <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
@@ -94,165 +111,6 @@
   <ul id="biuuu_city_list"></ul>
 
   <!-- =======================弹出窗========================= -->
-<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
-  <div class="alert-main-con">
-      <form method="" action="">
-        <fieldset>
-          <legend>
-            基本信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-          </ul>
-        </fieldset> 
-        <fieldset>
-          <legend>
-            价格信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <input type="checkbox" />
-                <label>允许采购订货</label>
-              </div>
-            </li>
-          </ul>
-        </fieldset> 
-        <div class="col-3-table clearfix">
-          <ul class="left-list">
-            <li class="active">一品多码</li>
-            <li>商品价格</li>
-            
-          </ul>
-          <div class="middle-item">
-            <ul class="title-tr-th w80 clearfix">
-              <li class="w20">商品编码</li>
-              <li class="w60">商品条码</li>
-              <li class="w20"></li>
-            </ul>
-
-            <div class="button">增加</div>
-            <div class="button button-next">增加</div>
-          </div>
-        </div>
-        <div class="search-bottom">
-          <div class="single-select">
-            快速查找：
-                      <div class="boxwrap">
-                          <a href="#" class="select-tit">
-                              <span>请选择</span><i></i>
-                          </a>
-                          <div class="select-items">
-                              <ul id="first-sort">
-                                  
-                              </ul>
-                          </div>
-                          <i class="arrow"></i>
-                      </div>
-                      
-
-                      <div class="boxwrap">
-                          <a href="#" class="select-tit">
-                              <span class="subclass">请选择</span><i></i>
-                          </a>
-                          <div class="select-items">
-                              <ul id="sub-sort">
-                                  
-                              </ul>
-                          </div>
-                          <i class="arrow"></i>
-                      </div>
-
-                      
-                  </div>
-
-                  <div class="r-list" style="vertical-align:top;">
-                        <input type="text" class="keyword" name="" value="">
-                        <a href="" class="btn-search">查询</a>
-                    </div>
-        </div>
-        
-
-      </form>
-    </div>
-</div>
 
 <!-- ========================================================= -->
 
@@ -289,87 +147,14 @@
       </div>
     </div>
 </script>
-<script src="/shop/shop/public/utf8-php/ueditor.config.js"></script>
-<script src="/shop/shop/public/utf8-php/ueditor.all.js"></script>
-<script src="/shop/shop/public/utf8-php/ueditor.all.min.js"></script>
 </div>
 <script>
-  var ImageWrapper={
-  temp:'',
-  btap:true,
-  imgArr:[],
-  suolveImg:[],
-  detailImg:[]
-};
-  //实例化编辑器
-  
-      var o_ueditorupload = UE.getEditor('j_ueditorupload',
-      {
-        autoHeightEnabled:false
-      });
-      o_ueditorupload.ready(function ()
-      {
-     
-    o_ueditorupload.hide();//隐藏编辑器
-     
-    //监听图片上传
-    o_ueditorupload.addListener('beforeInsertImage', function (t,arg)
-    {
-        ImageWrapper.imgArr.length=0;
-        
-        if(ImageWrapper.btap){
-          $('.sfz').attr('src',arg[0].src);
-          $('.sfzinput').val(arg[0].src);
-        }else{
-          $('.sfzc').attr('src',arg[0].src);
-          $('.sfzinputc').val(arg[0].src);
-        }
+  layui.use('form',function(){
+    
+  })
 
-        // console.log(ImageWrapper.imgArr);
-        // $()
-          // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
-    });
-
-
-     
-    /* 文件上传监听
-     * 需要在ueditor.all.min.js文件中找到
-     * d.execCommand("insertHtml",l)
-     * 之后插入d.fireEvent('afterUpfile',b)
-     */
-        o_ueditorupload.addListener('afterUpfile', function (t, arg)
-        {
-          alert('这是文件地址：'+arg[0].url);
-        });
-      });
-       
-      //弹出图片上传的对话框
-      function upImage(str)
-      {
-        ImageWrapper.temp=str;
-        // console.log(str);
-
-        var myImage = o_ueditorupload.getDialog("insertimage");
-        myImage.open();
-      }
-      //弹出文件上传的对话框
-      /*function upFiles()
-      {
-        //var myFiles = o_ueditorupload.getDialog("attachment");
-        //myFiles.open();
-      } */
-
-      $('.imageaddc').on('click',function(){
-          
-          ImageWrapper.btap=false;
-          upImage('image-suolve');
-        })
-
-      $('.imageadd').on('click',function(){
-          
-          ImageWrapper.btap=true;
-          upImage('image-suolve');
-        })
+ 
 </script>
+<script src="../js/add-label.js"></script>
 </body>
 </html>
