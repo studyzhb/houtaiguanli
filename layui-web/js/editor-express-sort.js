@@ -14,7 +14,7 @@ $(function(){
 	
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
-		config.ajax('get',config.ajaxAddress.taskSort.editSort,function(data){
+		config.ajax('get',config.ajaxAddress.editExpress,function(data){
 				var item=data.data;
 				if(!item.status){
 					item.status=1;
@@ -28,7 +28,7 @@ $(function(){
 		},{id:bid});	
 	});
 	$('.commit-author').on('click',function(){
-		config.formSubmit('#authorForm',config.ajaxAddress.taskSort.editSort,function(data){
+		config.formSubmit('#authorForm',config.ajaxAddress.editExpress,function(data){
 			console.log(data);
 			if(data.code==200){
 				//open('taskSort.html',"_self");

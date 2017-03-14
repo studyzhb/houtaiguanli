@@ -65,10 +65,10 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li>
-            <a href="taskSort.html">分类信息</a>
+            <a href="express-sort.html">快递信息</a>
           </li>
           <li class="layui-this">
-            编辑分类信息
+            编辑快递信息
           </li>
         </ul>
         <div class="layui-content" style="padding-top:20px;">
@@ -158,6 +158,20 @@
 </div>
 <script type="text/template" class="editSortPic">
   <div class="layui-form-item">
+    <label class="layui-form-label">官网地址</label>
+    <div class="layui-input-block">
+      <input type="text" name="url" placeholder="请输入" class="layui-input" value="{{d.url}}">
+      
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">电话</label>
+    <div class="layui-input-block">
+      <input type="text" name="tel" placeholder="请输入" class="layui-input" value="{{d.tel}}">
+      
+    </div>
+  </div>
+  <div class="layui-form-item">
     <label class="layui-form-label">类别图标</label>
     <div class="layui-input-block" style="padding-left:20px;">
       <img class="sfz imageadd" src="{{d.pic}}" alt="" width="50" height="50">
@@ -166,6 +180,7 @@
       
     </div>
   </div>
+
   <div class="layui-form-item">
     <label class="layui-form-label">状态</label>
     <div class="layui-input-block">

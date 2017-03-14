@@ -3,11 +3,11 @@ $(function(){
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;	
 		
-		config.ajax('get',config.ajaxAddress.taskSort.showSort,function(data){
+		config.ajax('get',config.ajaxAddress.expressList,function(data){
 
 		var tempHtml=sortContent.innerHTML;
 		$('#all-sort-list').html('');
-		$.each(data.classify_data,function(index,item){
+		$.each(data.data,function(index,item){
 			item.index=index;
 			if(!item.status){
 				item.status=1;
@@ -23,7 +23,7 @@ $(function(){
 	$('#all-sort-list').on('click','.editor-brand',function(){
 
 		var bname=escape($(this).data('name'));
-		location.href='editor-task-sort.html?id='+$(this).data('id')+'?brandname='+bname;
+		location.href='editor-express-sort.html?id='+$(this).data('id')+'?brandname='+bname;
 	});
 
 

@@ -69,10 +69,10 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            分类信息
+            快递信息
           </li>
           <li>
-            <a href="add-task-sort.html">添加分类</a>
+            <a href="add-express-sort.html">添加快递</a>
           </li>
         </ul>
 
@@ -90,8 +90,10 @@
           </colgroup>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>序号</th>
               <th>名称</th>
+              <th>网站地址</th>
+              <th>电话</th>
               <th>状态</th>
               <th>操作</th>
             </tr> 
@@ -301,6 +303,8 @@
   <tr>
     <td>{{d.index+1}}</td>
     <td>{{d.name}}</td>
+    <td>{{d.url}}</td>
+    <td>{{d.tel}}</td>
     {{# if(d.status=='1'){ }}
       <td>启用</td>
     {{# }else{ }}
@@ -311,22 +315,7 @@
       
     </td>
   </tr>
-  {{#  layui.each(d.subclass,function(index, item){ }}
-      <tr>
-        <td>{{d.index+1}}-{{index+1}}</td>
-        <td>| ---- {{item.name}}</td>
-          {{# if(d.status=='2'){ }}
-            <td>停用</td>
-          {{# }else{ }}
-            <td>启用</td>
-          {{# } }}
-        <td>
-          
-          <div class="layui-btn layui-btn-warm layui-btn-small editor-brand" data-id="{{item.id}}" data-name="{{item.name}}">编辑</div>
-          
-        </td>
-      </tr>
-    {{#  }); }}
+  
     
     
 </script>

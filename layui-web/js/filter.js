@@ -96,6 +96,12 @@ switch(switchVal){
 	case 'editor-task-sort':
 		netPath+='/taskSort.html';
 		break;
+	case　'add-express-sort':
+		netPath+='/express-sort.html';
+		break;
+	case 'editor-express-sort':
+		netPath+='/express-sort.html';
+		break;
 		
 }
 // if(!cookAuthor){

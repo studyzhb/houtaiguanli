@@ -65,13 +65,14 @@
 
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺名称</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="name" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
                 </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺编号</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="coding" readonly placeholder="请输入" class="layui-input shop-coding">
                 </div>
               </div>
@@ -85,15 +86,17 @@
                 </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">店铺负责人</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">联系电话</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
               </div>
                <div class="layui-form-item">
                     <label class="layui-form-label">经营类型</label>
@@ -102,6 +105,7 @@
                     <input type="checkbox" name="" title="休闲娱乐" checked>
                     <input type="checkbox" name="" title="旅游出行">
                     </div>
+                    <div class="layui-form-mid layui-word-aux">*</div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">店铺特点</label>
@@ -110,6 +114,7 @@
                     <input type="checkbox" name="" title="商务区" checked>
                     
                     </div>
+                    <div class="layui-form-mid layui-word-aux">*</div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">店铺服务</label>
@@ -119,6 +124,7 @@
                     <input type="checkbox" name="" title="会议室">
                     
                     </div>
+                    <div class="layui-form-mid layui-word-aux">*</div>
                 </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺地址</label>
@@ -141,27 +147,28 @@
               </div>
                <div class="layui-form-item">
                 <label class="layui-form-label">联系人</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="linkname" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">开户行</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="chequ" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">银行卡号</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="account" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="details" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
                 </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
                 <div id="mapContainer" style="width:100%;height: 800px;">
                     <div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 1000000;">
                         <b>请输入关键字：</b>
@@ -172,13 +179,13 @@
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺电话</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="tel" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">固话</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="fixedline" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
@@ -227,12 +234,14 @@
                
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺简介</label>
-                <div class="layui-input-block">
+                <div class="layui-input-block"> 
                   <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
               </div>
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺环境</label>
+                
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd" >   
@@ -244,6 +253,7 @@
                              </div>
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺资质</label>
+                
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd" >   

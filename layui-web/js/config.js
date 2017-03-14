@@ -144,6 +144,12 @@ var config={
 
     orderlistDetailBack:'/shop/shop/public/index.php/admin/returnGoods/edit',
 
+    //快递管理
+    expressList:'/shop/shop/public/index.php/admin/Express/show',
+    editExpress:'/shop/shop/public/index.php/admin/Express/edit',
+    addExpress:'/shop/shop/public/index.php/admin/Express/add',
+
+
 
     //增加菜单
     addMenulist:'/shop/shop/public/index.php/admin/Privilege/add',
