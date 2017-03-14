@@ -1,6 +1,17 @@
-require(['jquery','main','log'],function($,myObj,log){
+require(['jquery','main','log','ajaxAddress'],function($,myObj,log,ajaxAddress){
 
     var common=myObj.load();
+
+    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.city.citylist,function(data){
+        if(data.code==200){
+            $.each(data.data,function(index,item){
+                 $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.website-all-area'));
+            })
+           
+        }
+        
+    })
+
     /**
      * 获取地址栏中参数信息
      */
@@ -27,7 +38,7 @@ require(['jquery','main','log'],function($,myObj,log){
     }
 
     $('.website-all-area').on('click','a',function(){
-        open(dataUrl,'_self');
+        open(dataUrl+'?id='+$(this).data('id'),'_self');
     })
     
 });

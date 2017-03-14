@@ -42,7 +42,37 @@ define({
          * type标签类型修改属性 1:产品,2:店铺,3:暂无
          * status标签类型状态
          */
-        updateLabelType:'/label/updateLabelTypeStatus'
+        updateLabelType:'/label/updateLabelTypeStatus',
+        //获取id
+        getLabelListByNavId:'/shop/getlabelTypeInfo'
+    },
+    /**
+     * 商品信息
+     */
+    shopGoods:{
+        showlist:'/goods/indexList',
+        addShopGoods:'',
+        editShopGoodsById:''
+    },
+    /**
+     * 店铺
+     */
+    shop:{
+        shoplist:'/shop/indexList',
+        addShopList:'/shop/addShop',
+        updateShop:'shop/updateShop'
+    },
+    /**
+     * 城市
+     */
+    city:{
+        citylist:'/City/cityLst',
+        addCityList:'/City/CityAdd',
+        editCityList:'/City/CityEdit',
     }
+    /**
+     * 区域
+     */
+
 
 });

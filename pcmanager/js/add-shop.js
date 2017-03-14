@@ -4,6 +4,35 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 
     var form=layObj.form();
 
+    /**
+     * 获取地址栏中参数信息
+     */
+    var params=function(){
+
+        var paraData=location.href.split('?')||[];
+
+        var obj={};
+
+        $.each(paraData,function(index,item){
+
+            var arr=item.split('=')||[];
+            
+            arr.length==2?obj[arr[0]]=arr[1]:'';
+
+        })
+
+        return obj;
+    }();
+
+    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.label.getLabelListByNavId,function(data){
+        log.d(data);
+        var tmpl=$('#labelCon').html();
+        layObj.laytpl(tmpl).render(data,function(){
+            
+        })
+
+    },params);
+
     form.verify({
     username: function(value){
         if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){

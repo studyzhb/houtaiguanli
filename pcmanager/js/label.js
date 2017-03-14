@@ -35,7 +35,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
                                 
                             },{id:typeid,status:data.elem.checked?1:0});
                         })
-                    },1000);
+                    },300);
                 });
             }
         }
