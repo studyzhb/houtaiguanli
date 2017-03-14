@@ -70,7 +70,35 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
         
     })
 
+    /**
+     * 编辑标签
+     */
+    $('#all-sort-list').on('click','.labelCon',function(){
+        var tmpl=editorNavCon.innerHTML;
+        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.label.getLabelInfoByTypeId,function(data){
+            if(data.code==200){
+                layObj.laytpl(tmpl).render(data.data,function(html){
+                    $('.editorNavBox').append(html);
+                })
 
+                layObj.layer.open({
+                    type:1,
+                    content: $('#editorLabelCon'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:'400px',
+                    maxmin: true
+                })
+
+            }
+            
+        },{typeid:$(this).data('id')})
+
+        
+    })
+
+    /**
+     * 添加标签内容
+     */
     $('.saveGoodsNum').on('click',function(){
 
         var labelCon=$('.singleNum').val().trim();

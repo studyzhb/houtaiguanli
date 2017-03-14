@@ -8,55 +8,28 @@
 	<link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
 	<script src="./layui/layui.js"></script>
-  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    
+  	
 </head>
 <body>
 	<!-- 框架结构	 -->
 	<div class="layui-layout layui-layout-admin">
   <div class="layui-header header header-demo">
-    <div class="layui-main">
-      <a class="logo" href="#">
+    <a class="logo" href="#">
         <img src="./img/logo.png" alt="万店联盟">
-      </a>
+    </a>
+    <div class="user-action" style="position:absolute;right:15px;top:25px;">
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
     </div>
   </div>
   <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
       
-        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-  <li class="layui-nav-item layui-nav-itemed">
-    <a href="javascript:;">默认展开</a>
-    <dl class="layui-nav-child">
-      <dd><a href="javascript:;">选项1</a></dd>
-      <dd><a href="javascript:;">选项2</a></dd>
-      <dd><a href="">跳转</a></dd>
-    </dl>
-  </li>
-  <li class="layui-nav-item">
-    <a href="javascript:;">解决方案</a>
-    <dl class="layui-nav-child">
-      <dd><a href="">移动模块</a></dd>
-      <dd><a href="">后台模版</a></dd>
-      <dd><a href="">电商平台</a></dd>
-    </dl>
-  </li>
-  <li class="layui-nav-item">
-    <a href="javascript:;">解决方案</a>
-    <dl class="layui-nav-child">
-      <dd><a href="">移动模块</a></dd>
-      <dd><a href="">后台模版</a></dd>
-      <dd><a href="">电商平台</a></dd>
-    </dl>
-  </li>
-  <li class="layui-nav-item">
-    <a href="javascript:;">解决方案</a>
-    <dl class="layui-nav-child">
-      <dd><a href="">移动模块</a></dd>
-      <dd><a href="">后台模版</a></dd>
-      <dd><a href="">电商平台</a></dd>
-    </dl>
-  </li>
+  
 </ul>
 
     </div>
@@ -78,7 +51,7 @@
 	</div> -->
 	<!-- ============================主要内容区================================ -->
   
-  
+
         
 
 
@@ -95,78 +68,40 @@
      -->
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
-          <li >
-            <a href="admin-origin.html">组织机构</a>
-          </li>
           <li class="layui-this">
-            添加组织机构
+            分类信息
+          </li>
+          <li>
+            <a href="add-task-sort.html">添加分类</a>
           </li>
         </ul>
-        <div class="layui-content" style="padding-top:20px;">
-          <div class="layui-tab-item layui-show">
-            <form class="layui-form layui-form-pane"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              
-              <div class="layui-form-item">
-                <label class="layui-form-label">上级机构</label>
-                <div class="layui-input-block">
-                  <select name="origin" lay-filter="origin">
-                    <option value="0">一级机构</option>
-                    <option value="1">万店联盟</option>
-                  </select>
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">组织名称</label>
-                <div class="layui-input-block">
-                  <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-              </div>
-              <!--<div class="layui-form-item">
-                <label class="layui-form-label">复选框</label>
-                <div class="layui-input-block">
-                  <input type="checkbox" name="like[write]" title="写作">
-                  <input type="checkbox" name="like[read]" title="阅读">
-                </div>
-              </div>
-               <div class="layui-form-item">
-                <label class="layui-form-label">test</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" value="" class="layui-input" />
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">开关关</label>
-                <div class="layui-input-block">
-                  <input type="checkbox" lay-skin="switch">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">开关开</label>
-                <div class="layui-input-block">
-                  <input type="checkbox" checked lay-skin="switch">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">单选框</label>
-                <div class="layui-input-block">
-                  <input type="radio" name="sex" value="0" title="男">
-                  <input type="radio" name="sex" value="1" title="女" checked>
-                </div>
-              </div> -->
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">请填写描述</label>
-                <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <div class="layui-input-block">
-                  <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-              </div>
-              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
-            </form>
+
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            
+          <table class="layui-table">
+          <colgroup>
+            <col width="100">
+            <col >
+            
+            <col width="100">
+            <col>
+
+          </colgroup>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>名称</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr> 
+          </thead>
+          <tbody id="all-sort-list">
+
+          </tbody>
+      </table>
+     
+
           </div>
         </div>
 
@@ -342,15 +277,64 @@
 </div>
 
 <!-- ========================================================= -->
-
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
 	
-<script>
-	layui.use(['element','form','laypage','layer','laytpl'],function(){
-		var element = layui.element();
-	})
+<script id="sortContent" type="text/html">
+  <tr>
+    <td>{{d.index+1}}</td>
+    <td>{{d.name}}</td>
+    {{# if(d.status=='1'){ }}
+      <td>启用</td>
+    {{# }else{ }}
+      <td>停用</td>
+    {{# } }}
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small editor-brand" data-id="{{d.id}}" data-name="{{d.name}}" >编辑</div>
+      
+    </td>
+  </tr>
+  {{#  layui.each(d.subclass,function(index, item){ }}
+      <tr>
+        <td>{{d.index+1}}-{{index+1}}</td>
+        <td>| ---- {{item.name}}</td>
+          {{# if(d.status=='2'){ }}
+            <td>停用</td>
+          {{# }else{ }}
+            <td>启用</td>
+          {{# } }}
+        <td>
+          
+          <div class="layui-btn layui-btn-warm layui-btn-small editor-brand" data-id="{{item.id}}" data-name="{{item.name}}">编辑</div>
+          
+        </td>
+      </tr>
+    {{#  }); }}
+    
+    
 </script>
 
 </div>
 
 </body>
+<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/filter.js"></script>
+<script type="text/javascript" src="./js/expressSort.js"></script>
 </html>
