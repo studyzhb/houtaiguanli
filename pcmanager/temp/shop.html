@@ -147,7 +147,7 @@
     
  <!-- ========================================================= -->
 <script id="shopGoodsCon" type="text/html">
-    {{# layui.each(d,function(index,item){ }}
+    {{# layui.each(d.data,function(index,item){ }}
         <tr>
             <td>{{index+1}}</td>
             <td>{{=item.name}}</td>
@@ -163,10 +163,10 @@
             {{# } }}
             <td>{{=item.untest}}</td>
             <td>
-                <button class="layui-btn layui-btn-small">
+                <button class="layui-btn layui-btn-small add-shop-goods" data-id="{{item.id}}" data-cityId="{{d.cityid}}" data-navid="{{d.navId}}">
                     <i class="layui-icon">&#xe608;</i> 添加商品
                 </button>
-                <button class="layui-btn layui-btn-small layui-btn-primary">
+                <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo">
                     <i class="layui-icon">&#xe642;</i>
                 </button>
             </td>

@@ -3,8 +3,6 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     var common=myObj.load();
     var fistLoad=true;
 
-
-
     /**
      * 获取地址栏中参数信息
      */
@@ -35,7 +33,12 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
         methods:{
             updateShopList:function(data){
                  $('#tableWrapper').html('');
-                layObj.laytpl(ShopObj.data.tempGoodsContent).render(data,function(html){
+                 var obj={};
+                 obj.data=data;
+                 obj.navId=ShopObj.data.navId;
+                 obj.cityid=params.id;
+                 log.d(layObj);
+                layObj.laytpl(ShopObj.data.tempGoodsContent).render(obj,function(html){
                     $('#tableWrapper').append(html);
                 })
             },
@@ -73,7 +76,23 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
         }
     }
 
-   
+    /**
+     * 编辑店铺详细信息
+     */
+
+     $('#tableWrapper').on('click','.editInfo',function(){
+         log.d('nnnn');
+         open('editor-shop.html?id='+$(this).data('id'),'_self');
+     })
+
+
+     
+
+     $('#tableWrapper').on('click','.add-shop-goods',function(){
+         
+        open('add-shop-goods.html?cityid='+$(this).data('cityId')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
+     })
+     
 
     /**
      * 点击添加店铺先选择导航

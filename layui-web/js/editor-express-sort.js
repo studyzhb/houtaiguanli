@@ -31,7 +31,7 @@ $(function(){
 		config.formSubmit('#authorForm',config.ajaxAddress.editExpress,function(data){
 			console.log(data);
 			if(data.code==200){
-				//open('taskSort.html',"_self");
+				//open('express.html',"_self");
 			}else{
 				layer.msg('网络错误，请稍后重试');
 			}

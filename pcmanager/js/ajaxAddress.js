@@ -51,7 +51,7 @@ define({
      */
     shopGoods:{
         showlist:'/goods/indexList',
-        addShopGoods:'',
+        addShopGoods:'/goods/addGoods',
         editShopGoodsById:''
     },
     /**
@@ -60,7 +60,8 @@ define({
     shop:{
         shoplist:'/shop/indexList',
         addShopList:'/shop/addShop',
-        updateShop:'shop/updateShop'
+        updateShop:'/shop/updateShop',
+        getShopInfoById:'/shop/getOneInfo'
     },
     /**
      * 城市
@@ -69,10 +70,17 @@ define({
         citylist:'/City/cityLst',
         addCityList:'/City/CityAdd',
         editCityList:'/City/CityEdit',
-    }
+    },
     /**
      * 区域
      */
-
+    area:{
+        //区域列表
+        arealist:'/Area/areaLst',
+        //区域添加
+        getArea:'/Area/addArea',
+        //根据城市ID获取区域
+        getAreaByCityId:'/Area/getArea',
+    }
 
 });

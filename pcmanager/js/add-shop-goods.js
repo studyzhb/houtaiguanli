@@ -4,6 +4,52 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 
     var form;
 
+    /**
+     * 获取地址栏中参数信息
+     */
+    var params=function(){
+
+        var paraData=location.href.split('?')||[];
+        var readyData=paraData[1]?paraData[1]:'';
+        var arrData=readyData.split('&')||[];
+        log.d(location.href);
+        var obj={};
+
+        $.each(arrData,function(index,item){
+
+            var arr=item.split('=')||[];
+            
+            obj[arr[0]]=arr[1];
+            
+        })
+
+        return obj;
+    }();
+
+    var formData={
+        goodsname:'111',
+        goodsnum:'111',
+        shopid:'22',
+        goods_pic:"['http://enclosure.wandlm.net/user-release/android_1489550372150.png']",
+        cityid:'1',
+        navid:'1',
+        introduce:'1111',
+        goods_logo:"['http://enclosure.wandlm.net/user-release/android_1489550372150.png']",
+        price_pay:'111',
+        pricrc_sell:'111',
+        classifyid:'1',
+        validity_time:'11111111',
+        bespoke:'1',
+        refund:'1',
+        renew:'1'
+    }
+
+
+    log.d(params);
+    $('.cityInput').val(params.cityid);
+    $('.navInput').val(params.navid);
+    $('.shopInput').val(params.shopid);
+
     setTimeout(function(){
         form=layObj.form();
         form.verify({
@@ -31,7 +77,8 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
             });
 
             form.on('submit(shopInfo)',function(){
-                common.tools.formSubmit('',ajaxAddress.preFix+ajaxAddress,function(data){
+
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.addShopGoods,function(data){
                         log.d(data);
                         if(data.code==200){
                             layer.msg('添加成功');
@@ -45,13 +92,14 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
                                 
                             },1000);
                         }
-                    });
+                    },formData);
                     
                 return false;
             })
     },300);
 
     
+
 
 
 });

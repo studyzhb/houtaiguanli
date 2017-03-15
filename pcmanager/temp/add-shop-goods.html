@@ -73,44 +73,47 @@
                           
                   </div>
                 </div>
-                <input type="hidden" name="pic" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                <input type="hidden" name="goods_pic" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                <input type="hidden" name="cityid" placeholder="请输入" autocomplete="off" class="layui-input cityInput">
+                <input type="hidden" name="navid" placeholder="请输入" autocomplete="off" class="layui-input navInput">
+                <input type="hidden" name="shopid" placeholder="请输入" autocomplete="off" class="layui-input shopInput">
                              </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">产品编号</label>
                 <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="goodsnum" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>             
               <div class="layui-form-item">
                 <label class="layui-form-label">产品名称</label>
                 <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="goodsname" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">价格</label>
+                <label class="layui-form-label">商品支付价格</label>
                 <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="price_pay" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">原价</label>
                 <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="pricrc_sell" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">产品分类</label>
                 <div class="layui-input-block">
-                  <select name="" id="">
-                    <option value="">服装服饰</option>
+                  <select name="classifyid" >
+                    <option value="1" selected>服装服饰</option>
                   </select>
                 </div>
               </div>
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">产品描述</label>
                 <div class="layui-input-block">
-                  <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
+                  <textarea name="introduce" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>
               </div>
               <div class="layui-form-item layui-form-text">
@@ -124,52 +127,53 @@
                 <div class="layui-input-block" style="margin-top:10px;">
                   <img class="sfz imageadd" src="" alt="" width="100%" height="400">
                 </div>
-                <input type="hidden" name="cardpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
+                <input type="hidden" name="goods_logo" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
                              </div>
-              <div class="layui-form-item">
+              <!--<div class="layui-form-item">
                     <label class="layui-form-label">产品规格</label>
                     <div class="layui-input-block">
-                    <input type="radio" name="dp" title="单人餐">
-                    <input type="radio" name="dp" title="双人餐" checked>
-                    <input type="radio" name="dp" title="3-4人餐">
+                    <input type="radio" name="" title="单人餐">
+                    <input type="radio" name="" title="双人餐" checked>
+                    <input type="radio" name="" title="3-4人餐">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">使用规则</label>
                     <div class="layui-input-block">
-                    <input type="radio" name="dp" title="节假日通用">
-                    <input type="radio" name="dp" title="节假日不能使用" checked>
-                    <input type="radio" name="dp" title="特定日期不能使用">
+                    <input type="radio" name="" title="节假日通用">
+                    <input type="radio" name="" title="节假日不能使用" checked>
+                    <input type="radio" name="" title="特定日期不能使用">
                     </div>
-                </div>
+                </div>-->
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否免预约</label>
                     <div class="layui-input-block">
-                    <input type="radio" name="dp" title="是">
-                    <input type="radio" name="dp" title="否" checked>
-                    <input type="text" placeholder="至少提前多长时间预约">
+                    <input type="radio" name="bespoke" title="是">
+                    <input type="radio" name="bespoke" title="否" checked>
+                    <input type="radio" name="bespoke" placeholder="至少提前多长时间预约">
                     </div>
                 </div>
                 <div class="layui-form-item">
                 <label class="layui-form-label">到期时间</label>
                 <div class="layui-input-inline">
                   
-                  <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  <input type="text" id="date" name="validity_time" placeholder="hh:mm:ss" value="123455"  readonly autocomplete="off" class="layui-input">
                 </div>
               </div>
-              <div class="layui-form-item">
+              <!--<div class="layui-form-item">
                     <label class="layui-form-label">是否自动续期</label>
                     <div class="layui-input-block">
                     <input type="radio" name="dp" title="是">
                     <input type="radio" name="dp" title="否" checked>
                     
                     </div>
-                </div>
+                </div>-->
                 <div class="layui-form-item">
                     <label class="layui-form-label">退款</label>
                     <div class="layui-input-block">
-                    <input type="radio" name="dp" title="过期退">
-                    <input type="radio" name="dp" title="随时退" checked>
+                    <input type="radio" name="refund" value="2" title="过期退">
+                    <input type="radio" name="refund" value="1" title="随时退" checked>
+                    <input type="radio" name="refund" value="0" title="暂定">
                     
                     </div>
                 </div>
@@ -186,7 +190,7 @@
                              </div> -->
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <div class="layui-btn commitMenu">保存</div>
+                  <div class="layui-btn commitMenu" lay-submit lay-filter="shopInfo" >保存</div>
                 </div>
               </div>
               
