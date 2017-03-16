@@ -35,8 +35,8 @@ require(['jquery','main','log','ajaxAddress'],function($,myObj,log,ajaxAddress){
         case 'goods':
             dataUrl='shop-goods.html';
             break;
-        case '':
-            dataUrl='shop-goods.html';
+        case 'area':
+            dataUrl='area.html';
             break;
     }
 

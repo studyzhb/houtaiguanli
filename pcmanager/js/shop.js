@@ -1,4 +1,4 @@
-require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function($,jf,myObj,ajaxAddress,layObj,log){
+require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxAddress,layObj,log){
     
     var common=myObj.load();
     var fistLoad=true;
@@ -81,16 +81,13 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
      */
 
      $('#tableWrapper').on('click','.editInfo',function(){
-         log.d('nnnn');
+        //  log.d('nnnn');
          open('editor-shop.html?id='+$(this).data('id'),'_self');
      })
 
 
-     
-
      $('#tableWrapper').on('click','.add-shop-goods',function(){
-         
-        open('add-shop-goods.html?cityid='+$(this).data('cityId')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
+        open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
      })
      
 
@@ -112,7 +109,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
         $(this).addClass('active').siblings().removeClass('active');
         //log.d($(this))
         ShopObj.data.navId=$(this).data('id');
-        log.d(ShopObj.data.navId);
+        // log.d(ShopObj.data.navId);
         ShopObj.methods.updatePageNum(1);
     });
 
@@ -140,8 +137,8 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     /**
      * 获取城市列表
      */
-    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.showNavlist,function(data){
-        log.d(data);
+    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
+        // log.d(data);
         if(data.code==200){
             $.each(data.data,function(index,item){
                 if(index==0){
@@ -155,4 +152,6 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
            
         }
     })
+
+    
 })

@@ -9,11 +9,14 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 
-    <script type="text/javascript" src="../jedate/jquery.jedate.js"></script>
+    <!--<script type="text/javascript" src="../jedate/jquery.jedate.js"></script>-->
     <link type="text/css" rel="stylesheet" href="../jedate/skin/jedate.css">
     <link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
 	  <script src="../common/layui/layui.js"></script>
+    <script src="../utf8-php/ueditor.config.js"></script>
+    <script src="../utf8-php/ueditor.all.js"></script>
+    <script src="../utf8-php/ueditor.all.min.js"></script>
     <script data-main="../js/domain" src="../js/require.min.js"></script>
 
     <style>
@@ -68,7 +71,7 @@
                 <label class="layui-form-label">产品图片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
-                           <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
+                           <div class="detail-image-col-2 imageadd">   
                                                      </div>
                           
                   </div>
@@ -81,25 +84,25 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">产品编号</label>
                 <div class="layui-input-block">
-                  <input type="text" name="goodsnum" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="goodsnum" value="001" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>             
               <div class="layui-form-item">
                 <label class="layui-form-label">产品名称</label>
                 <div class="layui-input-block">
-                  <input type="text" name="goodsname" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="goodsname" placeholder="请输入" value="goods" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">商品支付价格</label>
                 <div class="layui-input-block">
-                  <input type="text" name="price_pay" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="price_pay" placeholder="请输入" value="11" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">原价</label>
                 <div class="layui-input-block">
-                  <input type="text" name="pricrc_sell" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="pricrc_sell" value="111" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -113,13 +116,13 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">产品描述</label>
                 <div class="layui-input-block">
-                  <textarea name="introduce" placeholder="请输入内容" class="layui-textarea"></textarea>
+                  <textarea name="introduce" placeholder="请输入内容" class="layui-textarea">1111</textarea>
                 </div>
               </div>
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">套餐详情</label>
                 <div class="layui-input-block">
-                  <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
+                  <textarea name="note" placeholder="请输入内容" class="layui-textarea">1111</textarea>
                 </div>
               </div>
               <div class="layui-form-item layui-form-text">
@@ -148,26 +151,26 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否免预约</label>
                     <div class="layui-input-block">
-                    <input type="radio" name="bespoke" title="是">
-                    <input type="radio" name="bespoke" title="否" checked>
-                    <input type="radio" name="bespoke" placeholder="至少提前多长时间预约">
+                    <input type="radio" name="bespoke" title="是" value="1">
+                    <input type="radio" name="bespoke" title="否" value="2" checked>
+                    <!--<input type="radio" name="bespoke" placeholder="至少提前多长时间预约">-->
                     </div>
                 </div>
                 <div class="layui-form-item">
-                <label class="layui-form-label">到期时间</label>
-                <div class="layui-input-inline">
-                  
-                  <input type="text" id="date" name="validity_time" placeholder="hh:mm:ss" value="123455"  readonly autocomplete="off" class="layui-input">
+                  <label class="layui-form-label">到期时间</label>
+                  <div class="layui-input-inline">
+                    <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  </div>
+                  <input type="hidden" name="validity_time" class="worktimesae" value="165655665">
                 </div>
-              </div>
-              <!--<div class="layui-form-item">
+                
+              <div class="layui-form-item">
                     <label class="layui-form-label">是否自动续期</label>
                     <div class="layui-input-block">
-                    <input type="radio" name="dp" title="是">
-                    <input type="radio" name="dp" title="否" checked>
-                    
+                      <input type="radio" name="renew" title="是" value="1">
+                      <input type="radio" name="renew" title="否" value="2" checked>
                     </div>
-                </div>-->
+                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">退款</label>
                     <div class="layui-input-block">
@@ -242,11 +245,9 @@
     </div>
 </script>
 
-<script src="../utf8-php/ueditor.config.js"></script>
-<script src="../utf8-php/ueditor.all.js"></script>
-<script src="../utf8-php/ueditor.all.min.js"></script>
 
-<script type="text/javascript">
+
+<script type="text/hhtml">
 
         var ImageWrapper={
   temp:'',

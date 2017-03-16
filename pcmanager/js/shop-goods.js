@@ -78,7 +78,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     /**
      * 获取城市列表
      */
-    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.showNavlist,function(data){
+    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
         log.d(data);
         if(data.code==200){
             $.each(data.data,function(index,item){

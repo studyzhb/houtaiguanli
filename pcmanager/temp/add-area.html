@@ -40,40 +40,35 @@
      -->
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
-          <li>
-            <a href="classify.html">分类信息</a>
+          <li class="arealist">
+            <a href="javascript:;">区域信息</a>
           </li>
           <li class="layui-this">
-            添加分类
+            添加区域
           </li>
         </ul>
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
               <div class="layui-form-item">
-                <label class="layui-form-label">上级分类</label>
+                <label class="layui-form-label">分类类型</label>
                 <div class="layui-input-block">
-                  <select class="parCom" name="pid">
-                    <option value="0">一级机构</option>
-                    <option value="1">万店联盟</option>
+                  <select class="areaType" name="typeid">
+                    <option value="0">添加类型</option>
+                    
                   </select>
                 </div>
               </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">类别名称</label>
+                <label class="layui-form-label">内容</label>
                 <div class="layui-input-block">
-                  <input type="text" placeholder="请输入" autocomplete="off" class="layui-input piliangsort">
-                  <input type="hidden" name="type" placeholder="请输入" autocomplete="off" class="layui-input sortpl">
+                  <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+                  
                 </div>
               </div>
-              <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
               
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">请填写描述</label>
-                <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
-                </div>
-              </div>
+              
+              
               <!-- ================================================== -->
 
               <!-- ================================================== -->
@@ -81,7 +76,7 @@
 
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <div class="layui-btn commit-author" >立即提交</div>
+                  <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
                 </div>
               </div>
               <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->

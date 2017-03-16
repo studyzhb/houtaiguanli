@@ -1,4 +1,4 @@
-require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function($,jf,myObj,ajaxAddress,layObj,log){
+require(['jquery','main','ajaxAddress','lay-model','log','image-upload'],function($,myObj,ajaxAddress,layObj,log,upload){
 
     var common=myObj.load();
 
@@ -76,8 +76,8 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
             }
             });
 
-            form.on('submit(shopInfo)',function(){
-
+            form.on('submit(shopInfo)',function(formParams){
+                
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.addShopGoods,function(data){
                         log.d(data);
                         if(data.code==200){
@@ -92,14 +92,19 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
                                 
                             },1000);
                         }
-                    },formData);
+                    },formParams.field);
                     
                 return false;
             })
     },300);
 
     
-
+    $('.imageadd').on('click',function(){
+        upload.uploadImage(this,function(arrData){
+            log.d(arrData);
+            
+        });
+    })
 
 
 });

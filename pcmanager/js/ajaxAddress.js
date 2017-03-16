@@ -4,6 +4,7 @@ define({
      * 导航模块
      */
     nav:{
+        getPrimaryNav:'/nav/navPrimary',
         showNavlist:'/Nav/navLst',
         addNavInfo:'/Nav/addNav',
         updateNav:'/Nav/updateNav',
@@ -76,11 +77,25 @@ define({
      */
     area:{
         //区域列表
+        
         arealist:'/Area/areaLst',
+        //获取区域类型
+        getAreaType:'/Area_Type/AreaTypeLst',
+        addArea:'/Area_Type/addAreaType',
+        addAreaInfo:'/Area/addArea',
         //区域添加
-        getArea:'/Area/addArea',
+        updateAreaInfo:'/Area/areaInfo',
+        //区域类型更新
+        updateAreaType:'/Area_Type/updateAreaType',
         //根据城市ID获取区域
         getAreaByCityId:'/Area/getArea',
+    },
+    /**
+     * 分类
+     */
+    Classify:{
+
     }
+
 
 });

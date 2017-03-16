@@ -1,4 +1,4 @@
-require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function($,jf,myObj,ajaxAddress,layObj,log){
+require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload','log'],function($,jf,myObj,ajaxAddress,layObj,upload,log){
 
     var common=myObj.load();
 
@@ -87,14 +87,16 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
      * 图片上传
      */
     $('.imageadd').on('click',function(){
-        // upload.uploadImage(this,function(arrImage){
-        //     log.d(arrImage);
-        //     var arr=[];
-        //     $.each(arrImage,function(index,item){
-        //         arr.push(item.src);
-        //     })
-        //     $(this).parent('image-suolve').next('input').val(JSON.stringify(arr));
-        // });
+        upload.uploadImage(this,function(arrImage){
+            log.d(arrImage);
+            var arr=[];
+            $.each(arrImage,function(index,item){
+                log.d(common.tools.formatTemplate({imgsrc:item.src},$('#image-suolve').html()));
+                // $(this).before();
+                arr.push(item.src);
+            })
+            $(this).parent('image-suolve').next('input').val(JSON.stringify(arr));
+        });
     });
 
 });

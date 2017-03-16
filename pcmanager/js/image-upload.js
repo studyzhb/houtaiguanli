@@ -17,7 +17,7 @@ define(function(){
                 
                 // console.log(ImageWrapper.imgArr);
                 // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
-                
+                console.log(arg);
                 fn.call(obj,arg);
 
             });
@@ -41,7 +41,6 @@ define(function(){
       //弹出图片上传的对话框
       function upImage(obj,fn)
       {
-        toDoUp(obj,fn);
         var myImage = o_ueditorupload.getDialog("insertimage");
         myImage.open();
       }
@@ -53,7 +52,10 @@ define(function(){
       } */
 
       var uploadImage=function(obj,fn){
+
+          toDoUp(obj,fn);
           upImage(obj,fn);
+           
       }
 
     return {
