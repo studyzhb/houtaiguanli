@@ -58,39 +58,30 @@
                    搜索
                 </div>
                 <div class="layui-btn add-shop-info">
-                    添加店铺
+                    添加优惠信息
                 </div>
             </form>
-              <div style="margin-top:20px;">
-              <ul class="layui-tab-title">
-                <li class="layui-this unedit">
-                    店铺列表
-                </li>
-                <li class="edited">
-                    店铺推荐列表
-                </li>
-            </ul>
+              
             </div>
             <table class="layui-table">
                 <colgroup>
-                    <!-- <col width="100">
-                    <col width="100">
+                     <col width="100">
                     <col>
-                    <col width="100">
-                    <col width="300"> -->
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col width="100"> 
                 </colgroup>
                 <thead>
                     <tr>
                     <th>序号</th>
-                    <th>店铺名称</th>
-                    <th>开户时间</th>
-                    <th>经营类型</th>
-                    <th>负责人姓名</th>
-                    <th>所在地</th>
+                    <th>名称</th>
                     <th>优惠力度</th>
-                    <th>商家产品</th>
                     <th>状态</th>
+                    <th>起止时间</th>
                     <th>操作</th>
+                    <th>修改排序</th>
                     </tr> 
                 </thead>
                 <tbody id="tableWrapper">
@@ -124,11 +115,7 @@
         </div>
 
      </div>
-
-     
-
     </div> 
-
 
     
  <!-- ========================================================= -->
@@ -137,24 +124,23 @@
         <tr>
             <td>{{index+1}}</td>
             <td>{{=item.name}}</td>
-            <td>{{=item.addtime}}</td>
-            <td>zhang</td>
-            <td>{{=item.validity_time}}</td>
-            <td>{{=item.pricrc_sell}}</td>
-            <td>10</td>
-            {{# if(item.status=='0'){ }}
-                <td>停用</td>
+            <td>{{=item.benefit_info}}</td>
+            {{# if(item.status=='1'){ }}
+                <td>上架</td>
             {{# }else{ }}
-                <td>启用</td>
+                <td>下架</td>
             {{# } }}
-            <td>{{=item.untest}}</td>
             <td>
-                <button class="layui-btn layui-btn-small add-shop-goods" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
-                    <i class="layui-icon">&#xe608;</i> 添加商品
-                </button>
+                {{=new Date(item.release_begin*1000).toLocaleString()}}--{{=new Date(item.release_end*1000).toLocaleString()}}
+            </td>
+            <td>
+                
                 <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo">
                     <i class="layui-icon">&#xe642;</i>
                 </button>
+            </td>
+            <td>
+                <input type="text" placeholder="0" value='{{item.displayorder}}' data-order="{{item.displayorder}}"  autocomplete="off" class="layui-input sortInput" data-id="{{item.id}}" /> 
             </td>
         </tr>
 
@@ -167,5 +153,5 @@
 
     })
 </script>
-<script src="../js/shop.js"></script>
+<script src="../js/discountInfo.js"></script>
 </html>

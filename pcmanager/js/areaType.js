@@ -101,25 +101,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         }
     }
 
-    // common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaType,function(data){
-    //      classObj.methods.updateAreaType(data.data);
-    //      classObj.methods.updatePageNum(1);
-    //     log.d(data);
-    //     if(data.code==200){
-            
-    //     }else{
-    //         layObj.layer.msg(data.msg);
-    //     }
-       
-        
-    // },{cityId:params.id})
 
     setTimeout(function(){
         form=layObj.form();
         form.on('submit(shopInfo)',function(formParams){
             log.d(formParams.field)
             formParams.field.navId=classObj.data.navId;
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.addClass,function(data){
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.addArea,function(data){
                     log.d(data);
                     if(data.code==200){
                         layer.msg('添加成功');
@@ -172,7 +160,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             log.d(formParams.field)
             
             
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateClassType,function(data){
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.updateAreaType,function(data){
                     log.d(data);
                     if(data.code==200){
                         layer.msg('添加成功');
@@ -215,13 +203,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     },1000);
 
-    $('.nav-menu-all-area').on('click','a',function(){
-        $(this).addClass('active').siblings().removeClass('active');
-        //log.d($(this))
-        classObj.data.navId=$(this).data('id');
-        // log.d(classObj.data.navId);
-        classObj.methods.updatePageNum(1);
-    });
+
 
     //添加分类类型
     $('.addArea').on('click',function(){
@@ -234,17 +216,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             maxmin: true
         })
     })
-    //添加区域内容
-    $('#all-sort-list').on('click','.addAreaType',function(){
-        classObj.data.typeId=$(this).data('id');
-        layObj.layer.open({
-             type:1,
-            content: $('#areaInfoForm'), //这里content是一个DOM
-            shade:[0.8,'#000'],
-            area:'600px',
-            maxmin: true
-        })
-    })
+
     //编辑区域类型
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
         classObj.data.typeId=$(this).data('id');
@@ -257,71 +229,21 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         })
     })
 
-    //编辑类型内容
-    $('#all-sort-list').on('click','.editorSingleAreaInfo',function(){
-        var self=this;
-        layObj.layer.load();
-        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.city.citylist,function(data){
-            if(data.code==200){
-                console.log(data.data);
-                var cityInfo=data.data;
-                var tpml=$('#editorAreaCon').html();
-                classObj.methods.getAreaInfo($(self).data('id'),function(res){
-                    var obj={};
-                    obj.data=res;
-                    obj.cityid=params.id;
-                    obj.typeid=classObj.data.typeId;
-                    obj.cityInfo=cityInfo;
-                    obj.typeInfo=classObj.data.typeInfo;
-                    log.d(obj);
-                    layObj.laytpl(tpml).render(obj,function(html){
-                        $('.editorAreaInfo').append(html);
-                    })
-                    form.render();
-                    layObj.layer.closeAll('loading');
-                    layObj.layer.open({
-                        type:1,
-                        content: $('#editorAreaWrapper'), //这里content是一个DOM
-                        shade:[0.8,'#000'],
-                        area:'600px',
-                        maxmin: true
-                    })
-                })
-            }
-            
-        })
+
+    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaType,function(data){
+         classObj.methods.updateArealist(data.data);
         
-    })
-
-    $('.createAreaInfoInput').on('click',function(){
-        $('<input type="text" placeholder="请输入" autocomplete="off" class="layui-input">').appendTo($('.areaInfoInput')).attr('name',Math.floor(Math.random()*1000));
-    })
-
-    $('.nav-menu-all-area').on('click','a',function(){
-        $(this).addClass('active').siblings().removeClass('active');
-        //log.d($(this))
-        classObj.data.navId=$(this).data('id');
-        // log.d(classObj.data.navId);
-        classObj.methods.updatePageNum(1);
-    });
-
-    /**
-     * 获取导航列表
-     */
-    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
-        // log.d(data);
+        log.d(data);
         if(data.code==200){
-            $.each(data.data,function(index,item){
-                if(index==0){
-                    classObj.data.navId=item.id;
-                    $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                     classObj.methods.updatePageNum(1);
-                }else{
-                    $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                }  
-            })
-           
+            
+        }else{
+            layObj.layer.msg(data.msg);
         }
-    })
+       
+        
+    },{cityId:params.id})
+
+
+    
 
 })

@@ -1,0 +1,134 @@
+.delicacy-wrap {
+  width: 1280px;
+  margin: 0 auto; }
+  .delicacy-wrap .de-info {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden; }
+    .delicacy-wrap .de-info .shop {
+      overflow: hidden; }
+  .delicacy-wrap .nav-bar {
+    overflow: hidden; }
+    .delicacy-wrap .nav-bar li {
+      float: left;
+      margin-right: 10px; }
+      .delicacy-wrap .nav-bar li a {
+        border: 1px solid gray;
+        padding: 5px 10px;
+        color: #333;
+        display: inline-block;
+        font-size: 14px; }
+      .delicacy-wrap .nav-bar li i {
+        margin-top: 5px;
+        display: inline-block; }
+
+.choice {
+  font-size: 14px; }
+  .choice .datetime {
+    margin-right: 40px; }
+    .choice .datetime .time {
+      width: 192px;
+      height: 30px;
+      border: 1px solid #D8D8D8;
+      margin: 0px  20px;
+      display: inline-block;
+      position: relative;
+      top: 10px; }
+      .choice .datetime .time i {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: #333; }
+  .choice .search {
+    position: relative; }
+    .choice .search input {
+      width: 192px;
+      height: 30px;
+      border: 1px solid #D8D8D8;
+      text-indent: 10px;
+      display: inline-block; }
+    .choice .search i {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      background: #333; }
+
+.choiceTerm {
+  margin: 25px 0px 40px 0px; }
+
+.areaChoice p {
+  float: left;
+  margin-top: 20px; }
+.areaChoice ul {
+  overflow: hidden;
+  margin: 16px 0px 0px 0px; }
+  .areaChoice ul li {
+    float: left;
+    margin: 20px 0px 0px 30px;
+    cursor: pointer; }
+
+.sortChoiceLeft {
+  float: left; }
+
+.sortChoiceRight {
+  float: right; }
+
+.sortChoiceinfo {
+  font-size: 14px; }
+  .sortChoiceinfo .sortNav {
+    overflow: hidden; }
+    .sortChoiceinfo .sortNav li {
+      float: left;
+      margin-right: 56px;
+      cursor: pointer; }
+  .sortChoiceinfo .sortContent {
+    overflow: hidden;
+    margin-top: 46px; }
+    .sortChoiceinfo .sortContent li {
+      float: left;
+      margin-right: 50px; }
+      .sortChoiceinfo .sortContent li p {
+        margin-bottom: 62px; }
+        .sortChoiceinfo .sortContent li p i {
+          margin-right: 20px; }
+    .sortChoiceinfo .sortContent .sortEval i {
+      color: red;
+      margin-right: 6px; }
+    .sortChoiceinfo .sortContent .sortEval span {
+      margin: 0px 10px; }
+    .sortChoiceinfo .sortContent .sortEval p {
+      margin-top: 58px; }
+
+.color-red {
+  color: red; }
+
+.typeHouse li {
+  margin-bottom: 30px;
+  text-align: center; }
+  .typeHouse li span {
+    margin-left: 62px; }
+    .typeHouse li span a {
+      display: inline-block;
+      padding: 8px 26px;
+      border: 1px solid #999;
+      border-radius: 10px;
+      cursor: pointer; }
+  .typeHouse li .shopPrice {
+    text-decoration: line-through;
+    color: #999; }
+  .typeHouse li i {
+    margin-left: 10px; }
+
+.downArrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #333; }
+
+/*# sourceMappingURL=accommdation.css.map */

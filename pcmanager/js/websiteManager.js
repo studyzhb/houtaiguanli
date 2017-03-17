@@ -38,6 +38,12 @@ require(['jquery','main','log','ajaxAddress'],function($,myObj,log,ajaxAddress){
         case 'area':
             dataUrl='area.html';
             break;
+        case 'banner':
+            dataUrl='bannerInfo.html';
+            break;
+        case 'discount':
+            dataUrl='discountInfo.html';
+            break;
     }
 
     $('.website-all-area').on('click','a',function(){

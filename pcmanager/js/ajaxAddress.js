@@ -69,8 +69,8 @@ define({
      */
     city:{
         citylist:'/City/cityLst',
-        addCityList:'/City/CityAdd',
-        editCityList:'/City/CityEdit',
+        addCityList:'/City/addCity',
+        editCityList:'/City/editCity',
     },
     /**
      * 区域
@@ -93,8 +93,40 @@ define({
     /**
      * 分类
      */
-    Classify:{
-
+    classify:{
+        showlist:'/Classify/classifyLst',
+        getClassType:'',
+        addClass:'/Classify/addClassify',
+        addClassInfo:'/ClassifyType/addClassifyType',
+        updateClassType:'/ClassifyType/updateClassifyType',
+        updateClssInfo:'/Classify/updateClassify'
+        
+    },
+    /**
+     * 优惠信息
+     */
+    discount:{
+        showlist:'/benefit/indexList',
+        showSingleInfo:'/benefit/oneBenefitInfo',
+        addInfo:'/benefit/addBenefit',
+        updateInfo:'/benefit/updateBenefit',
+        deleteInfo:'/benefit/deleteBenefit',
+        sortBenefit:'/benefit/positionChange'
+    },
+    /**
+     * banner图管理
+     */
+    banner:{
+        showlist:'/banner/bannerList',
+        //获取单个banner图信息
+        getOneInfo:'/banner/getOneBanner',
+        //添加banner图信息
+        addBanner:'/banner/addBanner',
+        //更新banner图信息
+        updateBannerInfo:'/banner/updateBanner',
+        sortBanner:'/banner/positionChange',
+        //删除
+        deleteBanner:'/banner/deleteBanner'
     }
 
 

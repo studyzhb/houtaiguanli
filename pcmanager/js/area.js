@@ -169,6 +169,52 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 
             return false;
         })
+
+        form.on('submit(editorAreaType)',function(formParams){
+            log.d(formParams.field)
+            
+            
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.addAreaInfo,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        layer.msg('添加成功');
+                        setTimeout(function(){
+                            
+                        },1000);
+                        
+                    }else{
+                        layer.msg('网络错误，请稍后重试');
+                        setTimeout(function(){
+                            
+                        },1000);
+                    }
+                },formParams.field);
+                
+            return false;
+        })
+
+        form.on('submit(editorAreaInfo)',function(formParams){
+            log.d(formParams.field)
+            
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.addAreaInfo,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        layer.msg('添加成功');
+                        setTimeout(function(){
+                            
+                        },1000);
+                        
+                    }else{
+                        layer.msg('网络错误，请稍后重试');
+                        setTimeout(function(){
+                            
+                        },1000);
+                    }
+                },formParams.field);
+                
+            return false;
+        })
+
     },1000);
 
     $('.nav-menu-all-area').on('click','a',function(){
@@ -179,8 +225,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         areaObj.methods.updatePageNum(1);
     });
 
-    
+    //添加区域类型
     $('.addArea').on('click',function(){
+        $('input.cityid').val(params.id);
         layObj.layer.open({
              type:1,
             content: $('#authorForm'), //这里content是一个DOM
@@ -189,7 +236,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             maxmin: true
         })
     })
-
+    //添加区域内容
     $('#all-sort-list').on('click','.addAreaType',function(){
         areaObj.data.typeId=$(this).data('id');
         layObj.layer.open({
@@ -200,7 +247,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             maxmin: true
         })
     })
-
+    //编辑区域类型
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
         areaObj.data.typeId=$(this).data('id');
         layObj.layer.open({
@@ -233,6 +280,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         $('.editorAreaInfo').append(html);
                     })
                     form.render();
+                    layObj.layer.closeAll('loading');
                     layObj.layer.open({
                         type:1,
                         content: $('#editorAreaWrapper'), //这里content是一个DOM

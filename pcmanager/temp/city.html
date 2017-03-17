@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>导航管理</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	<script src="../common/layui/layui.js"></script>
+    <script data-main="../js/domain" src="../js/require.min.js"></script>	
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<div class="lay-main">
+	  
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            
+            <div class="website-area">
+                <label style="display: inline-block;">城市列表</label>
+                <div class="layui-btn layui-btn-small layui-btn-primary addCity">
+                    <i class="layui-icon">&#xe608;</i>
+                </div>
+                <div class="website-all-area">
+                    <!--<a href="javascript:;">全国站</a>
+                    <a href="javascript:;">北京站</a>
+                    <a href="javascript:;">上海站</a>
+                    <a href="javascript:;">郑州站</a>
+                    <a href="javascript:;">郑州站</a>
+                    <a href="javascript:;">郑州站</a>
+                    <a href="javascript:;">郑州站</a>
+                    <a href="javascript:;">郑州站</a>
+                    <a href="javascript:;">郑州站</a>
+                    <a href="javascript:;">郑州站</a>
+                    <a href="javascript:;">郑州站</a>-->
+                </div>
+            </div>
+          </div>
+        </div>
+
+
+     </div>
+    </div> 
+	<!--编辑城市内容-->
+    <form class="layui-form layui-form-pane" id="editorCityInfo" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        
+        <div class="editorCity"></div>
+        <div class="layui-form-item">
+        <div class="layui-input-block">
+            <div class="layui-btn" lay-submit lay-filter="editcityInfo">立即提交</div>
+        </div>
+        </div>
+        
+    </form>
+
+    <!--添加城市-->
+    <form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <div class="layui-form-item">
+        <label class="layui-form-label">城市名称</label>
+        <div class="layui-input-block">
+            
+            <input type="text" placeholder="请输入" value="" name="name" autocomplete="off" class="layui-input">
+            
+            <input type="hidden" value="2" placeholder="请输入" name="level" autocomplete="off" class="layui-input">
+            
+        </div>
+        </div>
+       <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            
+                <input type="radio" name="status" value="1" title="是" checked>
+                <input type="radio" name="status" value="0" title="否" >
+           
+        </div>
+        </div>
+        <div class="editorCity"></div>
+        <div class="layui-form-item">
+        <div class="layui-input-block">
+            <div class="layui-btn" lay-submit lay-filter="cityInfo">立即提交</div>
+        </div>
+        </div>
+        
+    </form>
+
+    <script type="text/html" id="editorCityCon">
+        <div class="layui-form-item">
+        <label class="layui-form-label">城市名称</label>
+        <div class="layui-input-block">
+            
+            <input type="text" placeholder="请输入" value="{{=d.name}}" name="name" autocomplete="off" class="layui-input">
+            
+            <input type="hidden" value="{{=d.level}}" placeholder="请输入" name="level" autocomplete="off" class="layui-input">
+            <input type="hidden" value="{{=d.id}}" placeholder="请输入" name="id" autocomplete="off" class="layui-input">
+        </div>
+        </div>
+       <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            {{# if(d.status==1){ }}
+                <input type="radio" name="status" value="1" title="是" checked>
+                <input type="radio" name="status" value="0" title="否" >
+            {{# }else{ }}
+                <input type="radio" name="status" value="1" title="是" >
+                <input type="radio" name="status" value="0" title="否" checked>
+            {{# } }}
+        </div>
+        </div>
+    </script>
+</body>
+<script>
+    layui.use('form',function(){
+
+    })
+</script>
+<script src="../js/city.js"></script>
+</html>

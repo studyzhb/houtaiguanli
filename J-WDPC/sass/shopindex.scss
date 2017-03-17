@@ -1,0 +1,289 @@
+
+.delicacy-wrap{
+    width: 1280px;
+    margin: 0 auto;
+    .de-info{
+        width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+        .shop{
+            overflow: hidden;
+        }
+    }
+    .nav-bar{
+        overflow: hidden;
+            li{
+                float: left;
+                margin-right: 10px;
+                a{
+                    border: 1px solid gray;
+                    padding: 5px 10px;
+                    color: #333;
+                    display: inline-block;
+                    font-size: 14px;
+                }
+                i{
+                    margin-top: 5px;
+                    display: inline-block;
+                }
+            }
+    }
+}
+.de-center{
+    float: left;
+}
+.de-picture{
+    li{
+        margin-top: 30px;
+    }
+}
+.shopcenter{
+    margin: 10px 20px;
+    width: 343px;
+    .phoneSee{
+        float: right;
+        font-size: 12px;
+    }
+    li{
+        margin-top: 30px;
+        font-size: 14px;
+        color: #333;
+        i{
+            margin-right: 10px;
+        }
+    }  
+    .con{
+        span{
+            margin-right: 10px;
+        }
+    }
+}
+.color-red{
+    color: red;
+    font-weight: bold;
+}
+.color-9{
+    color: #999;
+}
+.Nodate{
+            color: #F78260;
+        }
+.Goshop{
+    border: 1px solid #bbb8b8;
+    float: right;
+    padding: 16px;
+}
+.Go-sup-dl{
+    .shopname{
+        font-weight: bold;
+        margin-bottom: 18px;
+    }
+    dd{
+        font-size: 14px;
+        margin-top: 10px;
+        .sub-dl{
+            margin-left: 30px;
+                dt{
+                font-size: 16px;
+                font-weight: bold;
+                color: black;
+                float: left;
+                height: 58px;
+                margin-right: 30px;
+                line-height: 58px;
+            }
+            dd{
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
+        span{
+            border: 1px solid #bbb8b8;
+            padding: 6px 10px;
+            margin: 10px 18px;
+            display: inline-block;
+        }
+    }
+}
+.shopAddress{
+    width: 230px;
+    li{
+        font-size: 12px;
+        margin-top: 10px;
+    }
+}
+.hotPro{
+    margin:60px 0px;
+    overflow: hidden;
+    .hotPre-top{
+        margin: 10px 0px;
+        font-weight: bold;
+    }
+    li{
+        float: left;
+        margin-right: 20px;
+        p{
+            margin-bottom: 12px;
+            font-size: 14px;
+            .right{
+                float: right;
+                i{
+                    margin-left: 3px;
+                }
+            }
+            .delprice{
+                text-decoration: line-through;
+                color: #999;
+                margin-left: 20px;
+                font-size: 12px;
+            }
+        }
+        
+    }
+}
+.business{
+    padding-bottom: 60px; 
+    overflow: hidden;
+    .b-nav{
+        overflow: hidden;
+        li{
+            float: left;
+            font-weight: bold;
+            margin-right: 78px;
+            cursor: pointer;
+        }
+    }
+    .b-address{
+        float: left;
+        margin-left: 110px;
+        li{
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .b-name{
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+    }
+}
+.b-message{
+    margin-top: 40px;
+    .business-map{
+        float: left;
+    }
+}
+.goodsdetailLeft{
+    p{
+        margin: 20px 10px;
+        font-size: 16px;
+    }
+    .b-date{
+        font-size: 12px;
+    }
+    .goodsTbl{
+        font-size: 14px;
+         border-collapse:   separate;   border-spacing:   10px;  
+        tr{
+            margin-top: 10px;
+            th{
+                font-weight: bold;
+                text-indent: 20px;
+            }
+            td{
+                text-indent: 20px;
+            }
+        }
+    }
+}
+.evaluateLeft{float: left;}
+.evaluateRight{float: right;}
+.ELeftTop{
+    font-size: 14px;
+    overflow: hidden;
+    dl{
+        float: left;
+        margin-left: 48px;
+        dt{
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        dd{
+          margin-bottom: 12px;
+        }
+    }
+    ul{
+        float: left;
+        padding: 0px 160px;
+        li{
+            .evalProg{
+                width: 256px;
+                height: 20px;
+                background: #D8D8D8;
+                position: relative;
+                margin: 0px 18px 10px 18px;
+                display: inline-block;
+                vertical-align: middle;
+                i{
+                    width: 100px;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background: red;
+                }
+            }
+        }
+    }
+}
+.bgcolor{background: #D8D8D8}
+.ELeftbott{
+    font-size: 12px;
+    width: 850px;
+    .progNav{
+        margin: 50px 0px;
+        overflow: hidden;
+        li{
+            float: left;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor:pointer;
+        }
+    }
+    .parents{
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        align-items:flex-start;
+        -webkit-align-items:flex-start;
+        -webkit-align-items: flex-start;
+        -ms-align-items: flex-start;
+         margin-top: 40px;
+       .userPic{
+           margin-right: 2em;
+           img{
+               text-align: center;
+               margin-bottom: 6px;
+           }
+       } 
+       .evalText{
+           flex: 1;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+           li{
+               margin-bottom: 10px;
+               line-height: 18px
+           }
+           .evaluate-Pic{
+               margin-top: 30px;
+               img{
+                   margin-right: 10px;
+               }
+           }
+       }
+    }
+    
+}

@@ -24,7 +24,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     }();
     
 
-    var ShopObj={
+    var disObj={
         data:{
             navId:'',
             tempGoodsContent:$('#shopGoodsCon').html(),
@@ -35,10 +35,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                  $('#tableWrapper').html('');
                  var obj={};
                  obj.data=data;
-                 obj.navId=ShopObj.data.navId;
+                 obj.navId=disObj.data.navId;
                  obj.cityid=params.id;
                  log.d(layObj);
-                layObj.laytpl(ShopObj.data.tempGoodsContent).render(obj,function(html){
+                layObj.laytpl(disObj.data.tempGoodsContent).render(obj,function(html){
                     $('#tableWrapper').append(html);
                 })
             },
@@ -48,11 +48,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     var layer = layui.layer;
                     laypage({
                         cont: 'page'
-                        ,pages: ShopObj.data.pageCount //总页数
+                        ,pages: disObj.data.pageCount //总页数
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            ShopObj.methods.updatePageNum(data.curr);
+                            disObj.methods.updatePageNum(data.curr);
                         }
                     });
                 });
@@ -60,67 +60,66 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 fistLoad=false;
             },
             updatePageNum:function(num){
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shoplist,function(data){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.discount.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
                         if(fistLoad){
-                            ShopObj.methods.updatePage();
+                            disObj.methods.updatePage();
                         }
-                        ShopObj.data.pageCount=data.pageAllNum%10==0?data.pageAllNum/10:Math.ceil(data.pageAllNum/10);
-                        ShopObj.methods.updateShopList(data.data);
+                        disObj.data.pageCount=data.pageAllNum%10==0?data.pageAllNum/10:Math.ceil(data.pageAllNum/10);
+                        disObj.methods.updateShopList(data.data);
                     }else{
                         layObj.layer.msg(data.msg);
                     }
-                },{page:num,cityid:params.id,navid:ShopObj.data.navId});
+                },{page:num,cityid:params.id,navid:disObj.data.navId});
+            },
+            /**
+             * @param {Number} id 要排序的导航id 
+             * @param {Number} order 要排序的位置
+             */
+            sortNavListByInput:function(id,order,oldOrder){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.sortBenefit,function(data){
+                    if(data.code==200){
+                        location.reload();
+                    }
+                },{id:id,oldPostion:oldOrder,newPostion:order});
             }
         }
     }
 
-    /**
-     * 推荐列表与全部切换
-     */
-    $('.unedit').on('click',function(){
-        
-    })
-
-    $('.edited').on('click',function(){
-        
-    })
     /**
      * 编辑店铺详细信息
      */
 
      $('#tableWrapper').on('click','.editInfo',function(){
         //  log.d('nnnn');
-         open('editor-shop.html?id='+$(this).data('id'),'_self');
+         open('editor-discountInfo.html?id='+$(this).data('id'),'_self');
      })
 
 
-     $('#tableWrapper').on('click','.add-shop-goods',function(){
-        open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
-     })
+     /**
+     * 失去焦点时请求服务器进行排序
+     */
+    $('#tableWrapper').on('blur','.sortInput',function(){
+        var value=$(this).val().trim();
+        var navId=$(this).data('id');
+        var order=$(this).data('order');
+        disObj.methods.sortNavListByInput(navId,value,order);
+    })
      
-
     /**
      * 点击添加店铺先选择导航
      */
     $('.add-shop-info').on('click',function(){
-        // layObj.layer.open({
-        //     type:1,
-        //     content: $('.alertWrapper'), //这里content是一个DOM
-        //     shade:[0.8,'#000'],
-        //     area:'400px',
-        //     maxmin: true
-        // })
-        open('add-shop.html?navid='+ShopObj.data.navId,'_self');
+        open('add-discountInfo.html?cityid='+params.id+'&navid='+disObj.data.navId,'_self');
     })
 
     $('.nav-menu-all-area').on('click','a',function(){
         $(this).addClass('active').siblings().removeClass('active');
         //log.d($(this))
-        ShopObj.data.navId=$(this).data('id');
-        // log.d(ShopObj.data.navId);
-        ShopObj.methods.updatePageNum(1);
+        disObj.data.navId=$(this).data('id');
+        // log.d(disObj.data.navId);
+        disObj.methods.updatePageNum(1);
     });
 
     /**
@@ -138,8 +137,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     // common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shoplist,function(data){
     //     log.d(data);
     //     if(data.code==200){
-    //         ShopObj=data.pageAllNum%10==0?data.pageAllNum/10:Math.ceil(data.pageAllNum/10);
-    //        ShopObj.methods.updateShopList(data.data);
+    //         disObj=data.pageAllNum%10==0?data.pageAllNum/10:Math.ceil(data.pageAllNum/10);
+    //        disObj.methods.updateShopList(data.data);
     //     }else{
     //         layObj.layer.msg('获取数据失败,请稍后再试!!');
     //     }
@@ -153,9 +152,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         if(data.code==200){
             $.each(data.data,function(index,item){
                 if(index==0){
-                    ShopObj.data.navId=item.id;
+                    disObj.data.navId=item.id;
                     $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                     ShopObj.methods.updatePageNum(1);
+                     disObj.methods.updatePageNum(1);
                 }else{
                     $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
                 }  
