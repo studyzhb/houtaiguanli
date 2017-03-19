@@ -25,11 +25,22 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
 
     setTimeout(function(){
         form=layObj.form();
-
+        
         form.on('submit(cityInfo)',function(paramsData){
             log.d(paramsData.field);
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.city.addCityList,function(data){
                 log.d(data);
+                if(data.code==200){
+                    layObj.layer.msg('添加城市成功');
+                    setTimeout(function(){
+                        location.reload();
+                    },1000);
+                }else{
+                    layObj.layer.msg('添加城市失败,请稍后再试');
+                    setTimeout(function(){
+                        location.reload();
+                    },1000);
+                }
             },paramsData.field);
         })
         form.on('submit(editcityInfo)',function(paramsData){
@@ -39,16 +50,22 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
         })
     },500);
 
-    // $('.zanwu').on('click',function(){
-
-    //     layObj.layer.open({
-    //         type:1,
-    //         content: $('#editorCityInfo'), //这里content是一个DOM
-    //         shade:[0.8,'#000'],
-    //         area:'400px',
-    //         maxmin: true
-    //     })
-    // })
+    $('.website-all-area').on('click','a',function(){
+        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.city.editCityList,function(data){
+            var tpl=$('#editorCityCon').html();
+            layObj.laytpl(tpl).render(data.data,function(html){
+                $('.editorCity').apend(html);
+                layObj.layer.open({
+                    type:1,
+                    content: $('#editorCityInfo'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:'400px',
+                    maxmin: true
+                })
+            })
+        },{id:$(this).data('id')});
+        
+    })
 
 
 })

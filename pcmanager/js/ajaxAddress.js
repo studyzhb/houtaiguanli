@@ -62,7 +62,9 @@ define({
         shoplist:'/shop/indexList',
         addShopList:'/shop/addShop',
         updateShop:'/shop/updateShop',
-        getShopInfoById:'/shop/getOneInfo'
+        getShopInfoById:'/shop/getOneInfo',
+        //店铺推荐列表
+        recommendList:'/shop/getReShop'
     },
     /**
      * 城市
@@ -70,7 +72,7 @@ define({
     city:{
         citylist:'/City/cityLst',
         addCityList:'/City/addCity',
-        editCityList:'/City/editCity',
+        editCityList:'/City/updateCity',
     },
     /**
      * 区域

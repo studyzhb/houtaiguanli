@@ -86,7 +86,7 @@ require(['jquery','log'],function($,log){
         });
    
    
-        document.getElementById("keyword").onkeyup = keydown;
+        // document.getElementById("keyword").onkeyup = keydown;
         //输入提示
         function autoSearch() {
             var keywords = document.getElementById("keyword").value;
@@ -273,5 +273,9 @@ require(['jquery','log'],function($,log){
             }
         }
 
+        $('#keyword').on('keydown',function(e){
+            keydown(e);
+        })
+        
 
 })

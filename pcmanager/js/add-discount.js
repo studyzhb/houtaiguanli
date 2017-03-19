@@ -14,7 +14,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
         var arrData=readyData.split('&')||[];
         log.d(location.href);
         var obj={};
-
+        
         $.each(arrData,function(index,item){
 
             var arr=item.split('=')||[];

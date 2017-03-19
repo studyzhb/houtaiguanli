@@ -44,6 +44,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.getShopInfoById,function(data){
         log.d(data);
         if(data.code==200){
+            var tpl=$('#formCon').html();
             // $.each(data.data,function(index,item){
             //     if(index==0){
             //         ShopObj.data.navId=item.id;
@@ -53,59 +54,67 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
             //         $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
             //     }  
             // })
+
+            layObj.laytpl(tpl).render({},function(html){
+                $('.formWrapper').append(html);
+                renderForm();
+            });
            
         }
     },params);
 
-    setTimeout(function(){
-        form=layObj.form();
-        form.verify({
-        username: function(value){
-            if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
-            return '用户名不能有特殊字符';
+    function renderForm(){
+        setTimeout(function(){
+            form=layObj.form();
+            form.verify({
+            username: function(value){
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                return '用户名不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                return '用户名首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                return '用户名不能全为数字';
+                }
             }
-            if(/(^\_)|(\__)|(\_+$)/.test(value)){
-            return '用户名首尾不能出现下划线\'_\'';
-            }
-            if(/^\d+\d+\d$/.test(value)){
-            return '用户名不能全为数字';
-            }
-        }
-        
-        ,pass: [
-            /^[\S]{6,12}$/
-            ,'密码必须6到12位，且不能出现空格'
-        ],
-        isChangeValue:function(value,a){
             
-            if($(a).data('info')==value){
-                $(a).val('');
-            }else{
-                formData[$(a).attr('name')]=value;
-            }  
-        }
-        });
+            ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ],
+            isChangeValue:function(value,a){
+                
+                if($(a).data('info')==value){
+                    $(a).val('');
+                }else{
+                    formData[$(a).attr('name')]=value;
+                }  
+            }
+            });
 
-        form.on('submit(shopInfo)',function(){
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.nav.addnavclassifyInfo,function(data){
-                    log.d(data);
-                    if(data.code==200){
-                        layer.msg('添加成功');
-                        setTimeout(function(){
+            form.on('submit(shopInfo)',function(){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.nav.addnavclassifyInfo,function(data){
+                        log.d(data);
+                        if(data.code==200){
+                            layer.msg('添加成功');
+                            setTimeout(function(){
+                                
+                            },1000);
                             
-                        },1000);
-                        
-                    }else{
-                        layer.msg('网络错误，请稍后重试');
-                        setTimeout(function(){
-                            
-                        },1000);
-                    }
-                },formData);
+                        }else{
+                            layer.msg('网络错误，请稍后重试');
+                            setTimeout(function(){
+                                
+                            },1000);
+                        }
+                    },formData);
 
-            return false;
-        })
-    },1000);
+                return false;
+            })
+        },1000);
+    }
+    
 
 
     

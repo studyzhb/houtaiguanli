@@ -4,6 +4,70 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload',
 
     var form;
 
+    /**
+     * 获取地址栏中参数信息
+     */
+    var params=function(){
+
+        var paraData=location.href.split('?')||[];
+        var readyData=paraData[1]?paraData[1]:'';
+        var arrData=readyData.split('&')||[];
+        log.d(location.href);
+        var obj={};
+
+        $.each(arrData,function(index,item){
+
+            var arr=item.split('=')||[];
+            
+            obj[arr[0]]=arr[1];
+            
+        })
+
+        return obj;
+    }();
+    
+    
+   layui.use('laydate',function(){
+       var laydate=layui.laydate;
+        var start = {
+            min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                var timeStamp=Math.floor(new Date(datas).getTime());
+                $(this.elem).next('input').val(timeStamp);
+                
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+        
+        var end = {
+            min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                var timeStamp=Math.floor(new Date(datas).getTime());
+                $(this.elem).next('input').val(timeStamp);
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+
+        $('#date').on('click',function(){
+            log.d(layObj);
+            start.elem = this;
+            layObj.laydate(start);
+        })
+        // $('#date01').on('click',function(){
+        //     end.elem = this
+        //     layObj.laydate(end);
+        // })
+   })
+
+    
+
     setTimeout(function(){
         form=layObj.form();
         form.verify({
@@ -30,14 +94,16 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload',
             }
             });
             log.d(form);
-            form.on('submit(shopInfo)',function(){
-                log.d('tijiao ')
-                common.tools.formSubmit('.menuForm',ajaxAddress.preFix+ajaxAddress.shop.addShopList,function(data){
+            form.on('submit(shopInfo)',function(paramsData){
+                log.d(params);
+                paramsData.field.cityid=params.cityid;
+                paramsData.field.navid=params.navid;
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.addShopList,function(data){
                         log.d(data);
                         if(data.code==200){
                             layer.msg('添加成功');
                             setTimeout(function(){
-                                
+                                open('shop.html?id='+params.cityid+'&navid='+params.navid,'_self');
                             },1000);
                             
                         }else{
@@ -46,31 +112,13 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload',
                                 
                             },1000);
                         }
-                    });
+                    },paramsData.field);
                     
                 return false;
             })
     },1000)
 
-    /**
-     * 获取地址栏中参数信息
-     */
-    var params=function(){
-
-        var paraData=location.href.split('?')||[];
-
-        var obj={};
-
-        $.each(paraData,function(index,item){
-
-            var arr=item.split('=')||[];
-            
-            arr.length==2?obj[arr[0]]=arr[1]:'';
-
-        })
-
-        return obj;
-    }();
+    
 
     common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.label.getLabelListByNavId,function(data){
         log.d(data);
@@ -87,16 +135,8 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload',
      * 图片上传
      */
     $('.imageadd').on('click',function(){
-        upload.uploadImage(this,function(arrImage){
-            log.d(arrImage);
-            var arr=[];
-            $.each(arrImage,function(index,item){
-                log.d(common.tools.formatTemplate({imgsrc:item.src},$('#image-suolve').html()));
-                // $(this).before();
-                arr.push(item.src);
-            })
-            $(this).parent('image-suolve').next('input').val(JSON.stringify(arr));
-        });
+        console.log('dianji')
+        upload.uploadImage(this);
     });
 
 });

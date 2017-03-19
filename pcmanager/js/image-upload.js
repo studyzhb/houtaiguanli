@@ -1,11 +1,12 @@
-define(function(){
-
+define(['jquery','main'],function($,main){
+    var common=main.load();
+    var self;
     var o_ueditorupload = UE.getEditor('j_ueditorupload',
       {
         autoHeightEnabled:false
       });
 
-      function toDoUp(obj,fn){
+    //   function toDoUp(obj,fn){
           o_ueditorupload.ready(function ()
             {
             
@@ -17,8 +18,18 @@ define(function(){
                 
                 // console.log(ImageWrapper.imgArr);
                 // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
-                console.log(arg);
-                fn.call(obj,arg);
+                var arr=[];
+                var arrInfo=[];
+                $.each(arg,function(index,item){
+                    arrInfo.push(common.tools.formatTemplate({imgsrc:item.src},$('#image-suolve').html()));
+                    arr.push(item.src);
+                })
+                
+                $(self).before(arrInfo.join(''));
+                var $oldInfo=$(self).parent('.image-suolve').next('input');
+
+                arr=arr.concat($oldInfo.data('info')?JSON.parse($oldInfo.data('info'))||[]:[]);
+                $(self).parent('.image-suolve').next('input').data('info',JSON.stringify(arr)).val(JSON.stringify(arr));
 
             });
 
@@ -34,13 +45,14 @@ define(function(){
                 alert('这是文件地址：'+arg[0].url);
                 });
             });
-      }
+    //   }
 
       
 
       //弹出图片上传的对话框
-      function upImage(obj,fn)
+      function upImage(obj)
       {
+          self=obj;
         var myImage = o_ueditorupload.getDialog("insertimage");
         myImage.open();
       }
@@ -51,10 +63,10 @@ define(function(){
         //myFiles.open();
       } */
 
-      var uploadImage=function(obj,fn){
+      var uploadImage=function(obj){
 
-          toDoUp(obj,fn);
-          upImage(obj,fn);
+          
+          upImage(obj);
            
       }
 

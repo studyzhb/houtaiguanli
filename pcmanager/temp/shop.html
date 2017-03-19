@@ -86,10 +86,9 @@
                     <th>开户时间</th>
                     <th>经营类型</th>
                     <th>负责人姓名</th>
-                    <th>所在地</th>
                     <th>优惠力度</th>
-                    <th>商家产品</th>
                     <th>状态</th>
+                    <th>是否推荐</th>
                     <th>操作</th>
                     </tr> 
                 </thead>
@@ -138,10 +137,9 @@
             <td>{{index+1}}</td>
             <td>{{=item.name}}</td>
             <td>{{=item.addtime}}</td>
-            <td>zhang</td>
-            <td>{{=item.validity_time}}</td>
-            <td>{{=item.pricrc_sell}}</td>
-            <td>10</td>
+            <td>{{=}}</td>
+            <td>{{=item.proprietor}}</td>
+            <td>{{=item.discount}}折</td>
             {{# if(item.status=='0'){ }}
                 <td>停用</td>
             {{# }else{ }}

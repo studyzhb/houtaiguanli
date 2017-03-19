@@ -10,14 +10,15 @@
 	<meta name="description" content="">
 
     <!--<script type="text/javascript" src="../jedate/jquery.jedate.js"></script>-->
+    <script src="../js/jquery.js"></script>  
     <link type="text/css" rel="stylesheet" href="../jedate/skin/jedate.css">
     <link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
 	  <script src="../common/layui/layui.js"></script>
     <script src="../utf8-php/ueditor.config.js"></script>
-    <script src="../utf8-php/ueditor.all.js"></script>
-    <!--<script src="../utf8-php/ueditor.all.min.js"></script>                                                    -->
-    <script src="../js/jquery.js"></script>                                                    
+    <!--<script src="../utf8-php/ueditor.all.js"></script>-->
+    <script src="../utf8-php/ueditor.all.min.js"></script>                                                    
+                                                      
     <script data-main="../js/domain" src="../js/require.min.js"></script>
 
     <style>
@@ -77,29 +78,29 @@
                                                      </div>
                           
                   </div>
-                </div>
-                <input type="hidden" name="logo" placeholder="请输入" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="logo" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
                              </div>
+                </div>
+                
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺名称</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="name" value="121313" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
+                  <input type="text" name="name" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
-              <div class="layui-form-item">
+              <!--<div class="layui-form-item">
                 <label class="layui-form-label">店铺编号</label>
                 <div class="layui-input-inline">
                   <input type="text" name="shopnum" readonly placeholder="请输入" class="layui-input shop-coding">
                 </div>
-              </div>
+              </div>-->
       
             <div class="layui-form-item">
                 <label class="layui-form-label">店铺负责人</label>
                 <div class="layui-input-inline">
                   <input type="text" name="proprietor" placeholder="请输入" autocomplete="off" class="layui-input">
-                  <input type="hidden" name="navid" placeholder="请输入" value="1" autocomplete="off" class="layui-input">
-                  <input type="hidden" name="cityid" placeholder="请输入" value="1" autocomplete="off" class="layui-input">
+                  
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
@@ -199,11 +200,11 @@
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
                 <div id="mapContainer" style="width:100%;height: 800px;">
-                    <div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 1000000;">
+                    <!--<div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 1000000;">
                         <b>请输入关键字：</b>
-                            <input type="text" id="keyword" name="keyword" value="" onkeydown='keydown(event)' style="width: 300px;"/>
+                            <input type="text" id="keyword" name="keyword" value="" style="width: 300px;"/>
                         <div id="result1" name="result1"></div>
-                        </div>
+                        </div>-->
                 </div>
               </div>
               <!--<div class="layui-form-item">
@@ -235,21 +236,25 @@
                                                      </div>
                           
                   </div>
-                </div>
-                <input type="hidden" name="intr_pic" placeholder="请输入" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="intr_pic" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
                              </div>
+                </div>
+                
 
               <div class="layui-form-item">
-                <label class="layui-form-label">营业时间</label>
+                <label class="layui-form-label">有效期</label>
                 <div class="layui-input-inline">
                   
                   <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" name="validity_time" value="0" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+
                 </div>
-                <div class="layui-input-inline">
+                <!--<div class="layui-input-inline">
                   
                   <input type="text" id="date01" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
-                </div>
-                <input type="hidden" name="worktime" class="worktimesae" value="">
+                  <input type="text"  placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input" name="">
+                </div>-->
+                <!--<input type="hidden" name="worktime" class="worktimesae" value="">-->
               </div>
               <div class="layui-form-item" style="display:none">
                 <label class="layui-form-label">经纬度</label>
@@ -277,9 +282,10 @@
                                                      </div>
                           
                   </div>
-                </div>
-                <input type="hidden" name="environment_pic" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="environment_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                              </div>
+                </div>
+                
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺资质</label>
                 
@@ -289,9 +295,10 @@
                                                      </div>
                           
                   </div>
-                </div>
-                <input type="hidden" name="aptitude_pic" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="aptitude_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                              </div>
+                </div>
+                
             <div class="layui-form-item">
                 <label class="layui-form-label">店铺账号</label>
                 <div class="layui-input-inline">
@@ -408,134 +415,7 @@
 });
        
 </script>
-<script type="text/ttml">
 
-        var ImageWrapper={
-  temp:'',
-  imgArr:[],
-  suolveImg:[],
-  detailImg:[]
-};
-var goodsHouse={
-            goodsType:{
-                cata1:'',
-                cata2:''
-            },
-            goodsData:{
-                goodsName:'',
-                goodsCode:''
-            },
-            goodsId:'2'
-        };
-
-//实例化编辑器
-  
-      var o_ueditorupload = UE.getEditor('j_ueditorupload',
-      {
-        autoHeightEnabled:false
-      });
-      o_ueditorupload.ready(function ()
-      {
-     
-    o_ueditorupload.hide();//隐藏编辑器
-     
-    //监听图片上传
-    o_ueditorupload.addListener('beforeInsertImage', function (t,arg)
-    {
-        
-        
-        $.each(arg,function(index,item){
-          // console.log(item.src);
-          ImageWrapper.suolveImg.push({imgsrc:item.src});
-          ImageWrapper.imgArr.push(item.src);
-        });
-
-        // console.log(ImageWrapper.imgArr);
-        // $()
-          // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
-
-          $('.image-suolve').html('');
-         $.each(ImageWrapper.suolveImg,function(index,item){
-            
-            console.log(item);
-            // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
-            //   $('#imageadd').show();
-            // }else{
-            //    $('#imageadd').hide();
-            // }
-            if(index<=4){
-
-              $('.image-suolve').append(config.formatTemplate(item,$('#image-suolve').html()));
-            }
-
-        });
-         if(ImageWrapper.suolveImg.length<5){
-          $('<div class="detail-image-col-2 imageadd">').appendTo($('.image-suolve'));
-
-         }
-         $('.shopinput').val(JSON.stringify(ImageWrapper.imgArr));
-    });
-
-
-     
-    /* 文件上传监听
-     * 需要在ueditor.all.min.js文件中找到
-     * d.execCommand("insertHtml",l)
-     * 之后插入d.fireEvent('afterUpfile',b)
-     */
-        o_ueditorupload.addListener('afterUpfile', function (t, arg)
-        {
-          alert('这是文件地址：'+arg[0].url);
-        });
-      });
-       
-      //弹出图片上传的对话框
-      function upImage(str)
-      {
-        ImageWrapper.temp=str;
-        // console.log(str);
-
-        var myImage = o_ueditorupload.getDialog("insertimage");
-        myImage.open();
-      }
-      //弹出文件上传的对话框
-      /*function upFiles()
-      {
-        //var myFiles = o_ueditorupload.getDialog("attachment");
-        //myFiles.open();
-      } */
-
-
-
-    //   $('.image-suolve').on('click','.imageadd',function(){
-    //       console.log(UE);
-    //       upImage('image-suolve');
-    //     })
-
-      
-        
-
-
-
-
-      
-
-        $('.provinceswrap').on('change',function(){
-          console.log(222);
-          
-        });
-
-
-        
-        
-        
-
-
-
-
-
-
-</script>
 
 </body>
 </html>

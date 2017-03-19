@@ -9,14 +9,16 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     var params=function(){
 
         var paraData=location.href.split('?')||[];
-
+        var readyData=paraData[1]?paraData[1]:'';
+        var arrData=readyData.split('&')||[];
+        log.d(location.href);
         var obj={};
 
-        $.each(paraData,function(index,item){
+        $.each(arrData,function(index,item){
 
             var arr=item.split('=')||[];
             
-            arr.length==2?obj[arr[0]]=arr[1]:'';
+            obj[arr[0]]=arr[1];
             
         })
 
@@ -60,7 +62,22 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 fistLoad=false;
             },
             updatePageNum:function(num){
+                log.d(params);
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shoplist,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        if(fistLoad){
+                            ShopObj.methods.updatePage();
+                        }
+                        ShopObj.data.pageCount=data.pageAllNum%10==0?data.pageAllNum/10:Math.ceil(data.pageAllNum/10);
+                        ShopObj.methods.updateShopList(data.data);
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{page:num,cityid:params.id,navid:ShopObj.data.navId});
+            },
+            updateRecommendList:function(num){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.recommendList,function(data){
                     log.d(data);
                     if(data.code==200){
                         if(fistLoad){
@@ -80,11 +97,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
      * 推荐列表与全部切换
      */
     $('.unedit').on('click',function(){
-        
+        $(this).addClass('layui-this').siblings().removeClass('layui-this');
+        ShopObj.methods.updatePageNum(1);
     })
 
     $('.edited').on('click',function(){
-        
+        $(this).addClass('layui-this').siblings().removeClass('layui-this');
+        ShopObj.methods.updateRecommendList(1);
     })
     /**
      * 编辑店铺详细信息
@@ -112,7 +131,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         //     area:'400px',
         //     maxmin: true
         // })
-        open('add-shop.html?navid='+ShopObj.data.navId,'_self');
+        open('add-shop.html?navid='+ShopObj.data.navId+'&cityid='+params.id,'_self');
     })
 
     $('.nav-menu-all-area').on('click','a',function(){
@@ -150,9 +169,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
      */
     common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
         // log.d(data);
+        var ind;
+        params.navid&&(ind=params.navid);
         if(data.code==200){
             $.each(data.data,function(index,item){
-                if(index==0){
+            if(ind&&item.id==ind||index==0){
                     ShopObj.data.navId=item.id;
                     $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
                      ShopObj.methods.updatePageNum(1);
