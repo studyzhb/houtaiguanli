@@ -26,7 +26,44 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload',
         return obj;
     }();
 
+    layui.use('laydate',function(){
+       var laydate=layui.laydate;
+        var start = {
+            min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                var timeStamp=Math.floor(new Date(datas).getTime());
+                $(this.elem).next('input').val(timeStamp);
+                
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+        
+        var end = {
+            min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                var timeStamp=Math.floor(new Date(datas).getTime());
+                $(this.elem).next('input').val(timeStamp);
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
 
+        $('#date').on('click',function(){
+            log.d(layObj);
+            start.elem = this;
+            layObj.laydate(start);
+        })
+        // $('#date01').on('click',function(){
+        //     end.elem = this
+        //     layObj.laydate(end);
+        // })
+   })
 
     var formData={
         title:'111111',
@@ -86,7 +123,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload',
                                 
                             },1000);
                         }
-                    },formData);
+                    },paraData.field);
                     
                 return false;
             });

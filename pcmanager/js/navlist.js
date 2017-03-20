@@ -1,10 +1,15 @@
 require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function($,jf,myObj,ajaxAddress,layObj,log){
 
     var common=myObj.load();
-    var form=layObj.form();
+    var form;
     var navObj={
         //防止向上向下重复点击标志位
         isUpOrDownClick:false,
+        data:{
+            checkTypeId:'',
+            checkNum:0,
+            arrRemo:[]
+        },
         /**
          * 展示导航列表信息
          */
@@ -28,7 +33,6 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
                 targetId = $obj.next('tr').data('id');
                 targetOrder = $obj.next('tr').data('order');
             }
-
         },
         /**
          * @param {Number} id 要排序的导航id 
@@ -37,6 +41,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
         sortNavListByInput:function(id,order,oldOrder){
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.nav.sortNavlist,function(data){
                 console.log(data);
+                if(data.code==200){
+                    location.reload();
+                }
             },{id:id,displayorder:oldOrder,displayorderNew:order});
         }
     }
@@ -65,6 +72,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
      */
     //上移
     $('#tableList').on('click','.upSort',function(){
+        
         //暂不使用
         if(navObj.isUpOrDownClick){
             navObj.isUpOrDownClick=false;
@@ -99,20 +107,26 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
         var tmpl=editorNavCon.innerHTML;
         common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getSingleNavInfoById,function(data){
             if(data.code==200){
+                console.log(data);
                 $('.editorNavBox').html('');
                 layObj.laytpl(tmpl).render(data.data,function(html){
                     
                     $('.editorNavBox').append(html);
+                    form.render();
                 })
-
+                // form.render();
                 layObj.layer.open({
                     type:1,
                     content: $('#editorNav'), //这里content是一个DOM
                     shade:[0.8,'#000'],
                     area:'600px',
-                    maxmin: true
+                    maxmin: true,
+                    end:function(){
+                        log.d('关闭');
+                        $('#editorNav').hide();
+                    }
                 })
-                form.render('radio')
+                // form.render('radio')
                 
             }
             
@@ -125,7 +139,44 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     })
 
 
+    $('#tableList').on('click','.addRecommend',function(){
+        console.log('11');
+        var navId=$(this).data('id');
+        navObj.data.navId=navId;
+        navObj.data.arrRemo=[];
+        navObj.data.checkTypeId='';
+        navObj.data.checkNum=0;
+        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.classify.updateRecommend,function(data){
+            console.log(data);
+            if(data.code==200){
+                var tpl=$('#recommendInfo').html();
+                $('.recommendWrapper').html('');
+                layObj.laytpl(tpl).render(data.data,function(html){
+                    $('.recommendWrapper').append(html);
+                   form.render();
+                })
+                
+                layObj.layer.open({
+                    type:1,
+                    content: $('.recommendCon'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:'600px',
+                    maxmin: true,
+                    end:function(){
+                        log.d('关闭');
+                        $('.recommendCon').hide();
+                    }
+                })
+                // form.render('radio')
+                
+            }else if(data.code==300){
+                layObj.layer.msg('暂无数据');
+            }
+            
+            
 
+        },{id:navId});
+    })
 
     //添加导航信息
     $('.addgoods').on('click',function(){
@@ -135,14 +186,16 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
             content: $('#alertDemo'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'600px',
-            maxmin: true
+            maxmin: true,
+            end:function(){
+                $('#alertDemo').hide();
+            }
         })
     })
 
-    
- 
-
-			form.verify({
+    setTimeout(function(){
+        form=layObj.form();
+        form.verify({
 			  username: function(value){
 			    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
 			      return '用户名不能有特殊字符';
@@ -158,34 +211,136 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 			  ,pass: [
 			    /^[\S]{6,12}$/
 			    ,'密码必须6到12位，且不能出现空格'
-			  ] 
+			  ],
+              checkIsCanSelect:function(value,a){
+                  var seleId=$(a).data('id');
+                  
+                      if(navObj.data.checkNum<=0){
+                          navObj.data.arrRemo=[];
+                          //navObj.data.checkTypeId=seleId;
+                      }
+ 
+                  if(navObj.data.checkNum>2){
+                      layObj.layer.msg('超过最大数量');
+                      return '最多只能选择2个'
+                  }else{
+                      console.log(a.checked);
+                      if(a.checked){
+                          if(navObj.data.checkTypeId!=seleId){
+                            //   a.checked=false;
+                            //   form.render();
+                              return '只能选择同一类型';
+                          }else{
+                              
+                            //   navObj.data.checkTypeId=seleId;
+                              
+                            //   console.log(navObj.data.arrRemo);
+                          }
+                      }else{
+                          $.each(navObj.data.arrRemo,function(index,item){
+                              if(item.id==seleId){
+                                navObj.data.arrRemo.split(index,1);
+                                index--;
+                              }
+                          })
+                      }
+                      
+                  }
+                  
+              } 
+              ,isChangeValue:function(value,a){
+                    if($(a).data('info')==value){
+                        $(a).val('');
+                        $(a).removeAttr("name");
+                    }  
+                },
+                isChangeNull:function(value,a){
+                    if($(a).data('info')==value){
+                        $(a).val('');
+                        
+                    } 
+                }
 			});
+
+            form.on('checkbox(clickRecommend)',function(data){
+               var seleId=$(data.elem).data('id')
+                if(data.elem.checked){
+
+                    if(!navObj.data.checkTypeId){
+                        navObj.data.checkTypeId=seleId;
+                    }
+                    if(navObj.data.checkTypeId!=seleId){
+                        layObj.layer.msg('只能选择一种类型');
+                        data.elem.checked=false;
+                        form.render('checkbox');
+                    }else{
+                        navObj.data.checkNum++;
+                        var obj={};
+                        obj.id=$(data.elem).attr('value');
+                        obj.name=$(data.elem).attr('title');
+                        
+                        navObj.data.arrRemo.push(obj);
+                    }
+                    
+                }else{
+                    navObj.data.checkNum--;
+
+                }
+            })
 
 			//监听提交
 		  form.on('submit(formDemo)', function(data1){
 		    /*layer.alert(JSON.stringify(data.field), {
 		      title: '最终的提交信息'
 		    })*/
-		  
-		  	common.tools.formSubmit('#navForm',ajaxAddress.preFix+ajaxAddress.nav.addNavInfo,function(data){
+            
+		  	common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.nav.addNavInfo,function(data){
 			    
+				if(data.code==200){
+                    
+	                layer.msg('添加成功');
+	                setTimeout(function(){
+	                    location.reload();
+	                },1000);
+	                
+	            }else{
+                    
+	                layer.msg('网络错误，请稍后重试');
+	                setTimeout(function(){
+	                    location.reload();
+	                },1000);
+	            }
+			},data1.field);
+
+		    return false;
+		  });
+
+          //监听提交
+		  form.on('submit(saveRecommend)', function(data1){
+		    /*layer.alert(JSON.stringify(data.field), {
+		      title: '最终的提交信息'
+		    })*/
+            console.log(navObj.data.arrRemo);
+		  	common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.commitRecommend,function(data){
+			    navObj.data.arrRemo=[];
+                navObj.data.checkTypeId='';
+                navObj.data.checkNum=0;
 				if(data.code==200){
 	                layer.msg('添加成功');
 	                setTimeout(function(){
-	                    
+	                    //location.reload();
 	                },1000);
 	                
 	            }else{
 	                layer.msg('网络错误，请稍后重试');
 	                setTimeout(function(){
-	                    
+	                    //location.reload();
 	                },1000);
 	            }
-			});
+              },{recommend:JSON.stringify(navObj.data.arrRemo),id:navObj.data.navId});
 
 		    return false;
 		  });
-
 
           //编辑导航信息
 		  form.on('submit(formEditDemo)', function(data1){
@@ -193,24 +348,27 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 		      title: '最终的提交信息'
 		    })*/
 		  
-		  	common.tools.formSubmit('#editNavForm',ajaxAddress.preFix+ajaxAddress.nav.updateNav,function(data){
+		  	common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.nav.updateNav,function(data){
 			    
 				if(data.code==200){
 	                layer.msg('添加成功');
 	                setTimeout(function(){
-	                    
+	                    location.reload();
 	                },1000);
 	                
 	            }else{
 	                layer.msg('网络错误，请稍后重试');
 	                setTimeout(function(){
-	                    
+	                    location.reload();
 	                },1000);
 	            }
-			});
+			},data1.field);
 
 		    return false;
 		  });
+    },1000);
+
+			
 
 
 });

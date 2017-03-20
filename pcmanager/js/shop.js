@@ -89,6 +89,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         layObj.layer.msg(data.msg);
                     }
                 },{page:num,cityid:params.id,navid:ShopObj.data.navId});
+            },
+            updateRecommendStatus:function(id,status){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.addRecommend,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        layObj.layer.msg('添加成功');
+                       location.reload();
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{id:id,recommend:status});
             }
         }
     }
@@ -105,6 +116,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         $(this).addClass('layui-this').siblings().removeClass('layui-this');
         ShopObj.methods.updateRecommendList(1);
     })
+    
     /**
      * 编辑店铺详细信息
      */
@@ -119,6 +131,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
      })
      
+
+     $('#tableWrapper').on('click','.recommendInfo',function(){
+         ShopObj.methods.updateRecommendStatus($(this).data('id'),$(this).data('status'));
+     })
 
     /**
      * 点击添加店铺先选择导航
@@ -173,7 +189,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         params.navid&&(ind=params.navid);
         if(data.code==200){
             $.each(data.data,function(index,item){
-            if(ind&&item.id==ind||index==0){
+            if(ind&&item.id==ind||index==0&&!ind){
                     ShopObj.data.navId=item.id;
                     $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
                      ShopObj.methods.updatePageNum(1);

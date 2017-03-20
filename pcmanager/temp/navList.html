@@ -36,6 +36,9 @@
                   <button class="layui-btn addgoods">
                     <i class="layui-icon">&#xe608;</i> 添加
                 </button>
+                <button class="layui-btn" onclick="location.reload()">
+                    刷新
+                </button>
                   <table class="layui-table" lay-skin="line">
                     <colgroup>
                         <col width="80">
@@ -48,6 +51,7 @@
                             <th>导航名称</th>
                             <th>导航类型</th>
                             <th>跳转地址</th>
+                            <th>导航推荐</th>
                             <th>状态</th>
                             <th>操作</th>
                         </tr> 
@@ -84,28 +88,27 @@
 
      </div>
 
-
-
-
-    
     </div> 
   <ul id="biuuu_city_list"></ul>
+
+
+
 
   <!-- =======================弹出窗========================= -->
 <div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;font-size: 16px;">
   <div class="alert-main-con" style="padding-right:20px;">
       <form class="layui-form" action="" id="navForm">
         <div class="layui-form-item">
-            <label class="layui-form-label">导航名称</label>
+            <label class="layui-form-label">*导航名称</label>
             <div class="layui-input-inline">
             <input type="text" name="name" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">*必填项</div>
+            <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
         </div>
 
 
         <div class="layui-form-item">
-            <label class="layui-form-label">导航类型</label>
+            <label class="layui-form-label">*导航类型</label>
             <div class="layui-input-block">
             <input type="radio" name="navtype" title="主导航" value="1" checked>
             <input type="radio" name="navtype" title="侧导航" value="2" >
@@ -114,11 +117,26 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">跳转地址</label>
+            <label class="layui-form-label">绑定模板</label>
+    
+            <div class="layui-input-inline">
+                <select name="template">
+                    <option value="food">美食模板</option>
+                    <option value="travel">旅行模板</option>
+                    <option value="hotail">住宿模板</option>
+                    <option value="live">生活模板</option>
+                </select>
+            
+            </div>
+            <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
+        </div>
+       
+        <div class="layui-form-item">
+            <label class="layui-form-label">*跳转地址</label>
             <div class="layui-input-inline">
             <input type="text" name="url" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">*必填项</div>
+            <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">描述</label>
@@ -153,6 +171,41 @@
         </form>
     </div>
 </div>
+
+<div class="alertCon-wrapper recommendCon" style="margin:10px auto;display:none;font-size: 16px;">
+  <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="editNavForm">
+          <div class="recommendWrapper"></div>
+        
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="saveRecommend">立即提交</button>
+            
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/html" id="recommendInfo">
+    {{#  layui.each(d,function(index,item){ }}
+        <div class="layui-form-item">
+            <label class="layui-form-label">{{=item.name}}</label>
+            <div class="layui-input-block">
+                {{# layui.each(item.data,function(ind,its){ }}
+                   {{# if(its.selected){ }}
+                        <input type="checkbox" checked lay-filter="clickRecommend" name="recommend[{{its.name}}]" data-status="0"  lay-verify="checkIsCanSelect" data-id="{{item.id}}"  value="{{=its.id}}" title="{{=its.name}}" placeholder="请输入数量" autocomplete="off" class="layui-input" />
+                   {{# }else{ }}
+                        <input type="checkbox" lay-filter="clickRecommend" name="recommend[{{its.name}}]" data-status="0"  lay-verify="checkIsCanSelect" data-id="{{item.id}}"  value="{{=its.id}}" title="{{=its.name}}" placeholder="请输入数量" autocomplete="off" class="layui-input" />
+                   {{# } }} 
+                    
+                {{# }) }}
+            </div>
+        </div>
+    {{# }) }}
+    
+</script>
 
 <div class="layui-form" style="display:none">
     <div class="layui-form-item">
@@ -196,9 +249,17 @@
         <td>
            <input type="text" placeholder="0" value='{{item.displayorder}}' data-order="{{item.displayorder}}"  autocomplete="off" class="layui-input sortInput" data-id="{{item.id}}" /> 
         </td>
-        <td>{{item.name}}</td>
-        <td>{{item.navtype}}</td>
-        <td>nnn.html</td>
+        <td>{{=item.name}}</td>
+        <td>{{=item.navtype}}</td>
+        <td>{{=item.url}}</td>
+        <td>
+            <div class="layui-btn layui-btn-primary">
+                {{=item.recommend_name}}
+            </div>
+           <div class="layui-btn addRecommend" data-id="{{item.id}}" style="margin:10px 0;">
+                <i class="layui-icon">&#xe608;</i>  
+            </div> 
+        </td>
         {{# if(item.status=='1'){ }}
         <td>启用</td>
         {{# }else{ }}
@@ -226,65 +287,102 @@
 </div>
 <script type="text/html" id="editorNavCon">
     <div class="layui-form-item">
-        <label class="layui-form-label">导航名称</label>
+        <label class="layui-form-label">*导航名称</label>
         <div class="layui-input-inline">
         <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
-        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        <input type="text" name="name" data-info="{{d.name}}" lay-verify="isChangeValue" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
-        <div class="layui-form-mid layui-word-aux">*必填项</div>
+        <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">导航类型</label>
+        <label class="layui-form-label">*导航类型</label>
         <div class="layui-input-block">
             {{# if(d.navtype=='1'){ }}
-                <input type="radio" name="navtype" checked title="主导航" value="1">
-                <input type="radio" name="navtype" title="侧导航" value="2">
-                <input type="radio" name="navtype" title="底部导航" value="3">
-                <input type="radio" name="navtype" title="内页导航" value="4">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" checked title="主导航" value="1">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="侧导航" value="2">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="底部导航" value="3">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="内页导航" value="4">
             {{# }else if(d.navtype=='2'){ }}
-                <input type="radio" name="navtype" title="主导航" value="1">
-                <input type="radio" checked name="navtype" title="侧导航" value="2">
-                <input type="radio" name="navtype" title="底部导航" value="3">
-                <input type="radio" name="navtype" title="内页导航" value="4">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="主导航" value="1">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" checked name="navtype" title="侧导航" value="2">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="底部导航" value="3">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="内页导航" value="4">
             {{# }else if(d.navtype=='3'){ }}
-                <input type="radio" name="navtype" title="主导航" value="1">
-                <input type="radio" name="navtype" title="侧导航" value="2">
-                <input type="radio" name="navtype" checked title="底部导航" value="3">
-                <input type="radio" name="navtype" title="内页导航" value="4">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="主导航" value="1">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="侧导航" value="2">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" checked title="底部导航" value="3">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="内页导航" value="4">
             {{# }else if(d.navtype=='4'){ }}
-                <input type="radio" name="navtype" title="主导航" value="1">
-                <input type="radio" name="navtype" title="侧导航" value="2">
-                <input type="radio" name="navtype" title="底部导航" value="3">
-                <input type="radio" name="navtype" checked title="内页导航" value="4">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="主导航" value="1">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="侧导航" value="2">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" title="底部导航" value="3">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="navtype" checked title="内页导航" value="4">
             {{# } }}
             
         </div>
     </div>
     <div class="layui-form-item">
+            <label class="layui-form-label">绑定模板</label>
+    
+            <div class="layui-input-inline">
+                <select name="template" lay-verify="isChangeValue" data-info="{{d.template}}">
+                    {{# if(d.template=='food'){ }}
+                        <option value="food" selected>美食模板</option>
+                        <option value="travel">旅行模板</option>
+                        <option value="hotail">住宿模板</option>
+                        <option value="live">生活模板</option>
+                    {{# }else if(d.template=='travel'){ }}
+                        <option value="food">美食模板</option>
+                        <option value="travel" selected>旅行模板</option>
+                        <option value="hotail">住宿模板</option>
+                        <option value="live">生活模板</option>
+                    {{# }else if(d.template=='hotail'){ }}
+                        <option value="food">美食模板</option>
+                        <option value="travel">旅行模板</option>
+                        <option value="hotail" selected>住宿模板</option>
+                        <option value="life">生活模板</option>
+                    {{# }else if(d.template=='life'){ }}
+                        <option value="food">美食模板</option>
+                        <option value="travel">旅行模板</option>
+                        <option value="hotail">住宿模板</option>
+                        <option value="life" selected>生活模板</option>
+                    {{# }else{ }}
+                        <option value="food">美食模板</option>
+                        <option value="travel">旅行模板</option>
+                        <option value="hotail">住宿模板</option>
+                        <option value="life" selected>生活模板</option>
+                    {{# } }}
+                </select>
+            
+            </div>
+            <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
+        </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
         <div class="layui-input-block">
             {{# if(d.status=='1'){ }}
-                <input type="radio" name="status" checked title="启用" value="1">
-                <input type="radio" name="status" title="停用" value="0">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.status}}" name="status" checked title="启用" value="1">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.status}}" name="status" title="停用" value="0">
             {{# }else{ }}
-                <input type="radio" name="status"  title="启用" value="1">
-                <input type="radio" name="status" checked title="停用" value="0">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.status}}" name="status"  title="启用" value="1">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.status}}" name="status" checked title="停用" value="0">
             {{# } }}
         </div>
-        <div class="layui-form-mid layui-word-aux">*必填项</div>
+        <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">跳转地址</label>
         <div class="layui-input-inline">
-        <input type="text" name="url"  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        <input type="text" name="url" lay-verify="isChangeValue" data-info="{{d.url}}" value="{{d.url}}"  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
-        <div class="layui-form-mid layui-word-aux">*必填项</div>
+        <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
     </div>
+
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">描述</label>
         <div class="layui-input-block">
-        <textarea name="title" placeholder="请输入内容" class="layui-textarea" data-info="{{d.title}}" >{{d.title}}</textarea>
+        <textarea name="title" placeholder="请输入内容" lay-verify="isChangeNull" class="layui-textarea" data-info="{{d.title}}" data-info="{{d.title}}">{{d.title}}</textarea>
         </div>
     </div>
 </script>

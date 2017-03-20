@@ -91,6 +91,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload',
                 if($(a).data('info')==value){
                     $(a).val('');
                 }  
+            },
+            joinShopLabel:function(value,a){
+                
             }
             });
             log.d(form);

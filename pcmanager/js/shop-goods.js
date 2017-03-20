@@ -63,9 +63,62 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
                         layObj.layer.msg(data.msg);
                     }
                 },{page:num,cityid:params.id,navid:GoodsObj.data.navId});
+            },
+            updateRecommendList:function(num){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.recommendList,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        if(fistLoad){
+                            GoodsObj.methods.updatePage();
+                        }
+                        GoodsObj.data.pageCount=data.pageAllNum%10==0?data.pageAllNum/10:Math.ceil(data.pageAllNum/10);
+                        GoodsObj.methods.updateShopList(data.data);
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{page:num,cityid:params.id,navid:GoodsObj.data.navId});
+            },
+            updateRecommendStatus:function(id,status){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.addRecommend,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        layObj.layer.msg('添加成功');
+                       location.reload();
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{id:id,recommend:status});
             }
         }
     }
+
+    /**
+     * 编辑店铺详细信息
+     */
+
+     $('#tableWrapper').on('click','.editInfo',function(){
+        //  log.d('nnnn');
+         open('editor-shop-goods.html?id='+$(this).data('id'),'_self');
+     })
+
+
+    /**
+     * 推荐列表与全部切换
+     */
+    $('.unedit').on('click',function(){
+        $(this).addClass('layui-this').siblings().removeClass('layui-this');
+        GoodsObj.methods.updatePageNum(1);
+    })
+
+    $('.edited').on('click',function(){
+        $(this).addClass('layui-this').siblings().removeClass('layui-this');
+        GoodsObj.methods.updateRecommendList(1);
+    })
+
+    $('#tableWrapper').on('click','.recommendInfo',function(){
+         ShopObj.methods.updateRecommendStatus($(this).data('id'),$(this).data('status'));
+     })
+
 
     $('.nav-menu-all-area').on('click','a',function(){
         $(this).addClass('active').siblings().removeClass('active');

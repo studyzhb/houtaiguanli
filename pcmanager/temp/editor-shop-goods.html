@@ -54,9 +54,9 @@
 	 
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
-          <li >
+          <!--<li >
             <a href="shop.html">商品列表</a>
-          </li>
+          </li>-->
           <li class="layui-this">
             添加商品
           </li>
@@ -64,126 +64,14 @@
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane menuForm" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">产品图片</label>
-                <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
-                           <div class="detail-image-col-2" id="imageadd" onclick="upImage('image-suolve')">   
-                                                     </div>
-                          
-                  </div>
-                </div>
-                <input type="hidden" name="pic" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
-                             </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">产品编号</label>
-                <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-              </div>             
-              <div class="layui-form-item">
-                <label class="layui-form-label">产品名称</label>
-                <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">价格</label>
-                <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">原价</label>
-                <div class="layui-input-block">
-                  <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">产品分类</label>
-                <div class="layui-input-block">
-                  <select name="" id="">
-                    <option value="">服装服饰</option>
-                  </select>
-                </div>
-              </div>
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">产品描述</label>
-                <div class="layui-input-block">
-                  <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
-                </div>
-              </div>
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">套餐详情</label>
-                <div class="layui-input-block">
-                  <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
-                </div>
-              </div>
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">套餐图片</label>
-                <div class="layui-input-block" style="margin-top:10px;">
-                  <img class="sfz imageadd" src="" alt="" width="100%" height="400">
-                </div>
-                <input type="hidden" name="cardpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
-                             </div>
-              <div class="layui-form-item">
-                    <label class="layui-form-label">产品规格</label>
-                    <div class="layui-input-block">
-                    <input type="radio" name="dp" title="单人餐">
-                    <input type="radio" name="dp" title="双人餐" checked>
-                    <input type="radio" name="dp" title="3-4人餐">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">使用规则</label>
-                    <div class="layui-input-block">
-                    <input type="radio" name="dp" title="节假日通用">
-                    <input type="radio" name="dp" title="节假日不能使用" checked>
-                    <input type="radio" name="dp" title="特定日期不能使用">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">是否免预约</label>
-                    <div class="layui-input-block">
-                    <input type="radio" name="dp" title="是">
-                    <input type="radio" name="dp" title="否" checked>
-                    <input type="text" placeholder="至少提前多长时间预约">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                <label class="layui-form-label">到期时间</label>
-                <div class="layui-input-inline">
+              <div class="formWrapper">
                   
-                  <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
-                </div>
               </div>
-              <div class="layui-form-item">
-                    <label class="layui-form-label">是否自动续期</label>
-                    <div class="layui-input-block">
-                    <input type="radio" name="dp" title="是">
-                    <input type="radio" name="dp" title="否" checked>
-                    
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">退款</label>
-                    <div class="layui-input-block">
-                    <input type="radio" name="dp" title="过期退">
-                    <input type="radio" name="dp" title="随时退" checked>
-                    
-                    </div>
-                </div>
               
                
               
               <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
-               <!-- <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">身份证照片</label>
-                <div class="layui-input-block" style="margin-top:10px;">
-                  <img class="sfz imageadd" src="" alt="" width="100%" height="400">
-                </div>
-                <input type="hidden" name="cardpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
-                             </div> -->
+               
               <div class="layui-form-item">
                 <div class="layui-input-block">
                   <div class="layui-btn commitMenu">保存</div>
@@ -230,6 +118,147 @@
 
 </div>
 
+<script type="text/html" id="formCon">
+   <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">产品图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           {{# if(JSON.parse(d.goods_pic)){ }}
+                        {{# layui.each(JSON.parse(d.goods_pic),function(index,item){ }}
+                          <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{{item}}">
+                              <div class="left-block"></div>
+                              <div class="right-block"></div>
+                              <img src="{{item}}" width="100%" height="100%" />    
+                          </div>
+                      {{# }) }}
+                      {{# } }}
+                           <div class="detail-image-col-2 imageadd">   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="goods_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                </div>
+                
+                <input type="hidden" name="cityid" placeholder="请输入" autocomplete="off" class="layui-input cityInput">
+                <input type="hidden" name="navid" placeholder="请输入" autocomplete="off" class="layui-input navInput">
+                <input type="hidden" name="shopid" placeholder="请输入" autocomplete="off" class="layui-input shopInput">
+                             </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">产品编号</label>
+                <div class="layui-input-block">
+                  <input type="text" name="goodsnum" value="001" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>             
+              <div class="layui-form-item">
+                <label class="layui-form-label">产品名称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="goodsname" placeholder="请输入" value="goods" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品支付价格</label>
+                <div class="layui-input-block">
+                  <input type="text" name="price_pay" placeholder="请输入" value="11" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">原价</label>
+                <div class="layui-input-block">
+                  <input type="text" name="pricrc_sell" value="111" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">产品分类</label>
+                <div class="layui-input-block">
+                  <select name="classifyid" >
+                    <option value="1" selected>服装服饰</option>
+                  </select>
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">产品描述</label>
+                <div class="layui-input-block">
+                  <textarea name="introduce" placeholder="请输入内容" class="layui-textarea">1111</textarea>
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">套餐详情</label>
+                <div class="layui-input-block">
+                  <textarea name="note" placeholder="请输入内容" class="layui-textarea">1111</textarea>
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">套餐图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                 <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           {{# if(JSON.parse(d.goods_logo)){ }}
+                        {{# layui.each(JSON.parse(d.goods_logo),function(index,item){ }}
+                          <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{{item}}">
+                              <div class="left-block"></div>
+                              <div class="right-block"></div>
+                              <img src="{{item}}" width="100%" height="100%" />    
+                          </div>
+                      {{# }) }}
+                      {{# } }}
+                           <div class="detail-image-col-2 imageadd">   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="goods_logo" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                </div>
+                
+                             </div>
+              <!--<div class="layui-form-item">
+                    <label class="layui-form-label">产品规格</label>
+                    <div class="layui-input-block">
+                    <input type="radio" name="" title="单人餐">
+                    <input type="radio" name="" title="双人餐" checked>
+                    <input type="radio" name="" title="3-4人餐">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">使用规则</label>
+                    <div class="layui-input-block">
+                    <input type="radio" name="" title="节假日通用">
+                    <input type="radio" name="" title="节假日不能使用" checked>
+                    <input type="radio" name="" title="特定日期不能使用">
+                    </div>
+                </div>-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否免预约</label>
+                    <div class="layui-input-block">
+                    <input type="radio" name="bespoke" title="是" value="1">
+                    <input type="radio" name="bespoke" title="否" value="2" checked>
+                    <!--<input type="radio" name="bespoke" placeholder="至少提前多长时间预约">-->
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">到期时间</label>
+                  <div class="layui-input-inline">
+                    <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  </div>
+                  <input type="hidden" name="validity_time" class="worktimesae" value="165655665">
+                </div>
+                
+              <div class="layui-form-item">
+                    <label class="layui-form-label">是否自动续期</label>
+                    <div class="layui-input-block">
+                      <input type="radio" name="renew" title="是" value="1">
+                      <input type="radio" name="renew" title="否" value="2" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">退款</label>
+                    <div class="layui-input-block">
+                    <input type="radio" name="refund" value="2" title="过期退">
+                    <input type="radio" name="refund" value="1" title="随时退" checked>
+                    <input type="radio" name="refund" value="0" title="暂定">
+                    
+                    </div>
+                </div>
+</script>
+
+
 <script type="text/template" id="image-suolve">
      <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
         <div class="left-block"></div>
@@ -242,116 +271,7 @@
 <script src="../utf8-php/ueditor.all.js"></script>
 <script src="../utf8-php/ueditor.all.min.js"></script>
 
-<script type="text/javascript">
 
-        var ImageWrapper={
-  temp:'',
-  imgArr:[],
-  suolveImg:[],
-  detailImg:[]
-};
-var goodsHouse={
-            goodsType:{
-                cata1:'',
-                cata2:''
-            },
-            goodsData:{
-                goodsName:'',
-                goodsCode:''
-            },
-            goodsId:'2'
-        };
-
-//实例化编辑器
-  
-      var o_ueditorupload = UE.getEditor('j_ueditorupload',
-      {
-        autoHeightEnabled:false
-      });
-      o_ueditorupload.ready(function ()
-      {
-     
-    o_ueditorupload.hide();//隐藏编辑器
-     
-    //监听图片上传
-    o_ueditorupload.addListener('beforeInsertImage', function (t,arg)
-    {
-        
-        
-        // $.each(arg,function(index,item){
-        //   // console.log(item.src);
-        //   ImageWrapper.suolveImg.push({imgsrc:item.src});
-        //   ImageWrapper.imgArr.push(item.src);
-        // });
-
-        // // console.log(ImageWrapper.imgArr);
-        // // $()
-        //   // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
-
-        //   $('.image-suolve').html('');
-        //  $.each(ImageWrapper.suolveImg,function(index,item){
-            
-        //     console.log(item);
-        //     // if(ImageWrapper.temp=="image-suolve"&&ImageWrapper.suolveImg.length<3){
-        //     //   $('#imageadd').show();
-        //     // }else{
-        //     //    $('#imageadd').hide();
-        //     // }
-        //     if(index<=4){
-
-        //       $('.image-suolve').append(config.formatTemplate(item,$('#image-suolve').html()));
-        //     }
-
-        // });
-        //  if(ImageWrapper.suolveImg.length<5){
-        //   $('<div class="detail-image-col-2 imageadd" id="imageadd">').appendTo($('.image-suolve'));
-
-        //  }
-        //  $('.shopinput').val(JSON.stringify(ImageWrapper.imgArr));
-    });
-
-
-     
-    /* 文件上传监听
-     * 需要在ueditor.all.min.js文件中找到
-     * d.execCommand("insertHtml",l)
-     * 之后插入d.fireEvent('afterUpfile',b)
-     */
-        o_ueditorupload.addListener('afterUpfile', function (t, arg)
-        {
-          alert('这是文件地址：'+arg[0].url);
-        });
-      });
-       
-      //弹出图片上传的对话框
-      function upImage(str)
-      {
-        ImageWrapper.temp=str;
-        // console.log(str);
-
-        var myImage = o_ueditorupload.getDialog("insertimage");
-        myImage.open();
-      }
-      //弹出文件上传的对话框
-      /*function upFiles()
-      {
-        //var myFiles = o_ueditorupload.getDialog("attachment");
-        //myFiles.open();
-      } */
-
-
-
-      // $('.image-suolve').on('click','.imageadd',function(){
-      //     console.log(UE);
-      //     upImage('image-suolve');
-      //   })
-
-        // $('.provinceswrap').on('change',function(){
-        //   console.log(222);
-          
-        // });
-
-</script>
 <script src="../js/editor-shop-goods.js"></script>
 </body>
 </html>

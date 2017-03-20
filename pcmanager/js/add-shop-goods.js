@@ -100,10 +100,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','image-upload'],functio
 
     
     $('.imageadd').on('click',function(){
-        upload.uploadImage(this,function(arrData){
-            log.d(arrData);
-            
-        });
+        upload.uploadImage(this);
     })
 
 

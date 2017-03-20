@@ -365,11 +365,11 @@
                 <div class="layui-input-block" style="margin-left:0;">
                     {{# layui.each(item.data,function(tyInd,itemLabel){ }}
                       {{# if(item.status=='1'){ }}
-                      <button class="layui-btn labelCon">
+                      <button class="layui-btn labelCon" data-id="{{itemLabel.id}}">
                         <i class="layui-icon">&#xe642;</i> {{itemLabel.name}}
                       </button>
                       {{# }else{ }}
-                        <button class="layui-btn layui-btn-primary labelCon">
+                        <button class="layui-btn layui-btn-primary labelCon" data-id="{{itemLabel.id}}">
                         <i class="layui-icon">&#xe642;</i> {{itemLabel.name}}
                       </button>
                       {{# } }}

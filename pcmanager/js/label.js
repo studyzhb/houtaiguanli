@@ -76,6 +76,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     $('#all-sort-list').on('click','.labelCon',function(){
         var tmpl=editorNavCon.innerHTML;
         common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.label.getLabelInfoByTypeId,function(data){
+            log.d(data);
             if(data.code==200){
                 layObj.laytpl(tmpl).render(data.data,function(html){
                     $('.editorNavBox').append(html);

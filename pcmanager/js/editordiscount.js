@@ -34,11 +34,20 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','image-upload',
             getSingleInfo:function(){
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.discount.showSingleInfo,function(data){
                     log.d(data);
+                    if(data.code==200){
+                        var tpl=$('#formCon').html();
+                        layObj.laytpl(tpl).render({},function(html){
+                            $('.formWrapper').append(html);
+                            renderForm();
+                        });
+                    
+                    }
                 },params)
             }
         }
     }
 
+    disObj.methods.getSingleInfo();
 
     setTimeout(function(){
 

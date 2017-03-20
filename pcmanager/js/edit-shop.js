@@ -7,6 +7,21 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     var formData={
 
     }
+    renderForm();
+    var ShopObj={
+        data:{
+
+        },
+        methods:{
+            updateShopInfo:function(data){
+                var tpl=$('#formCon').html();
+                layObj.laytpl(tpl).render(data,function(html){
+                    $('.formWrapper').append(html);
+                });
+            }
+        }
+    }
+
 
     /**
      * 获取地址栏中参数信息
@@ -44,21 +59,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.getShopInfoById,function(data){
         log.d(data);
         if(data.code==200){
-            var tpl=$('#formCon').html();
-            // $.each(data.data,function(index,item){
-            //     if(index==0){
-            //         ShopObj.data.navId=item.id;
-            //         $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-            //          ShopObj.methods.updatePageNum(1);
-            //     }else{
-            //         $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-            //     }  
-            // })
-
-            layObj.laytpl(tpl).render({},function(html){
-                $('.formWrapper').append(html);
-                renderForm();
-            });
+            
+            ShopObj.methods.updateShopInfo(data.data);
+            
            
         }
     },params);
@@ -94,7 +97,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
             });
 
             form.on('submit(shopInfo)',function(){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.nav.addnavclassifyInfo,function(data){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.updateShop,function(data){
                         log.d(data);
                         if(data.code==200){
                             layer.msg('添加成功');

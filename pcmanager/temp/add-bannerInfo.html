@@ -9,14 +9,12 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 
-    <!--<script type="text/javascript" src="../jedate/jquery.jedate.js"></script>-->
-    <link type="text/css" rel="stylesheet" href="../jedate/skin/jedate.css">
     <link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
 	  <script src="../common/layui/layui.js"></script>
-    <!--<script src="../utf8-php/ueditor.config.js"></script>
-    <script src="../utf8-php/ueditor.all.js"></script>
-    <script src="../utf8-php/ueditor.all.min.js"></script>                                                    -->
+    <script src="../utf8-php/ueditor.config.js"></script>
+    <!--<script src="../utf8-php/ueditor.all.js"></script>-->
+    <script src="../utf8-php/ueditor.all.min.js"></script>                                                    
     <script src="../js/jquery.js"></script>                                                    
     <script data-main="../js/domain" src="../js/require.min.js"></script>
 
@@ -71,102 +69,56 @@
             <form class="layui-form layui-form-pane menuForm" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
               <div class="layui-form-item">
-                <label class="layui-form-label">优惠信息标题</label>
+                <label class="layui-form-label">标题</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="name" value="121313" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">*</div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">优惠力度</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="benefit_info" readonly placeholder="请输入" class="layui-input shop-coding">
-                </div>
-              </div>
-      
-            <div class="layui-form-item">
-                <label class="layui-form-label">店铺负责人</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="proprietor" placeholder="请输入" autocomplete="off" class="layui-input">
-                  
-                </div>
-                <div class="layui-form-mid layui-word-aux">*</div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">联系电话</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="telephone" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="title" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
 
-
-
               <div class="layui-form-item">
-                <label class="layui-form-label">详细地址</label>
+                <label class="layui-form-label">图片位置</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="address" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
+                  <select name="position" lay-filter="pro" class="provinceswrap">
+                    <option value="1" selected>主展示区</option>
+                    <option value="2">底部区域</option>
+                  </select>
                 </div>
-                <div class="layui-form-mid layui-word-aux">*</div>
-                <div id="mapContainer" style="width:100%;height: 800px;">
-                    <div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 1000000;">
-                        <b>请输入关键字：</b>
-                            <input type="text" id="keyword" name="keyword" value="" onkeydown='keydown(event)' style="width: 300px;"/>
-                        <div id="result1" name="result1"></div>
-                        </div>
-                </div>
+                
+                
               </div>
 
-              <div class="layui-form-item">
-                <label class="layui-form-label">固话</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="fixedline" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
-              </div>
               <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
 
 
               <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">优惠图片</label>
+                <label class="layui-form-label">banner图片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd" >   
                                                      </div>
                           
                   </div>
-                </div>
-                <input type="hidden" name="pic_url" placeholder="请输入" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="slide_src" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
                              </div>
+                </div>
+                
 
               <div class="layui-form-item">
                 <label class="layui-form-label">起止时间</label>
                 <div class="layui-input-inline">
                   
-                  <input type="text" id="date" placeholder="hh:mm:ss" name="release_begin"  readonly autocomplete="off" class="layui-input">
+                  <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" placeholder="hh:mm:ss" name="release_begin"  readonly autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
                   
-                  <input type="text" id="date01" placeholder="hh:mm:ss" name="release_end"  readonly autocomplete="off" class="layui-input">
+                  <input type="text" id="date01" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" placeholder="hh:mm:ss" name="release_end"  readonly autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
-              <div class="layui-form-item" style="display:none">
-                <label class="layui-form-label">经纬度</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="longitude" value="190" id="lngX" placeholder="经度" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-input-inline">
-                  <input type="text" name="latitude" value="13" id="latY" placeholder="纬度" autocomplete="off" class="layui-input">
-                </div>
-              </div>
-               
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">优惠介绍</label>
-                <div class="layui-input-block"> 
-                  <textarea name="introduce" placeholder="请输入内容" class="layui-textarea">1111</textarea>
-                </div>
-                <div class="layui-form-mid layui-word-aux">*</div>
-              </div>
+
               
 
               <div class="layui-form-item">
@@ -243,8 +195,8 @@
 <script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>
 
 -->
-<!--<script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>-->
-<!--<script src="../js/baiduMap.js"></script>-->
+<script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>-->
+<script src="../js/baiduMap.js"></script>
 <script src="../js/add-bannerInfo.js"></script>
 
 <script type="text/javascript">

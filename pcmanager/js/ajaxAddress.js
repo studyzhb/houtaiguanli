@@ -5,7 +5,7 @@ define({
      */
     nav:{
         getPrimaryNav:'/nav/navPrimary',
-        showNavlist:'/Nav/navLst',
+        showNavlist:'/Nav/navList',
         addNavInfo:'/Nav/addNav',
         updateNav:'/Nav/updateNav',
         deleteNav:'/Nav/deleteNav',
@@ -53,7 +53,10 @@ define({
     shopGoods:{
         showlist:'/goods/indexList',
         addShopGoods:'/goods/addGoods',
-        editShopGoodsById:''
+        getGoodsById:'/goods/getOneInfo',
+        editShopGoodsById:'/goods/updateGoods',
+        recommendList:'/goods/upReGoods',
+        addRecommend:'/goods/upReGoods'
     },
     /**
      * 店铺
@@ -64,7 +67,9 @@ define({
         updateShop:'/shop/updateShop',
         getShopInfoById:'/shop/getOneInfo',
         //店铺推荐列表
-        recommendList:'/shop/getReShop'
+        recommendList:'/shop/getReShop',
+        addRecommend:'/shop/upReShop'
+
     },
     /**
      * 城市
@@ -96,12 +101,14 @@ define({
      * 分类
      */
     classify:{
-        showlist:'/Classify/classifyLst',
+        showlist:'/Classify/classifyList',
         getClassType:'',
-        addClass:'/Classify/addClassify',
-        addClassInfo:'/ClassifyType/addClassifyType',
-        updateClassType:'/ClassifyType/updateClassifyType',
-        updateClssInfo:'/Classify/updateClassify'
+        addClass:'/Classify_Type/addClassifyType',
+        addClassInfo:'/Classify/addClassify',
+        updateClassType:'/Classify_Type/updateClassifyType',
+        updateClssInfo:'/Classify/updateClassify',
+        updateRecommend:'/Nav/getRecommend',
+        commitRecommend:'/Nav/updateRecommend'
         
     },
     /**

@@ -114,21 +114,39 @@
     {{# layui.each(d,function(index,item){ }}
         <tr>
             <td>{{index+1}}</td>
-            <td>{{item.goodsname}}</td>
-            <td>{{item.shopname}}</td>
+            <td>{{=item.goodsname}}</td>
+            <td>{{=item.shopname}}</td>
             <td>zhang</td>
-            <td>{{item.validity_time}}</td>
+            <td>{{=(new Date(item.validity_time*1000).toLocaleString())}}</td>
             <td>{{(item.pricrc_sell*1).toFixed(2)}}</td>
             <td>全场折扣95折</td>
             <td>10</td>
+            {{# if(item.recommend=='0'){ }}
+                <td>未推荐</td>
+            {{# }else{ }}
+                <td>推荐</td>
+            {{# } }}
+            <td>编辑</td>
             {{# if(item.status=='0'){ }}
                 <td>停用</td>
             {{# }else{ }}
                 <td>启用</td>
             {{# } }}
-            <td>编辑</td>
-            <td>编辑</td>
-            <td>编辑</td>
+            <td>
+                <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo">
+                    <i class="layui-icon">&#xe642;</i>
+                </button>
+                {{# if(item.recommend=='1'){ }}
+                    <button class="layui-btn layui-btn-small recommendInfo" data-status="0" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
+                        取消推荐
+                    </button>
+                {{# }else{ }}
+                    <button class="layui-btn layui-btn-small recommendInfo" data-status="1" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
+                        推荐
+                    </button>
+                {{# } }}
+                
+            </td>
         </tr>
 
     {{# }) }}

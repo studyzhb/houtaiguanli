@@ -38,14 +38,22 @@
         <div class="layui-content" style="padding-top:20px;padding-bottom: 40px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label">绑定导航</label>
+                <div class="layui-input-block navWrapper">
+                  <input type="checkbox" name="navid">
+                  <input type="checkbox" name="navid">
+                </div>
+              </div>
               
               <div class="layui-form-item">
-                <label class="layui-form-label">标签名称</label>
+                <label class="layui-form-label">标签类型</label>
                 <div class="layui-input-inline">
                   <input type="text" name="name" placeholder="请输入" lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
+              
               <div class="layui-form-item">
                 <label class="layui-form-label">请选择标签类型</label>
                 <div class="layui-input-inline">
@@ -69,7 +77,7 @@
               </div>
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">请填写描述</label>
-                <div class="layui-input-inline">
+                <div class="layui-input-block">
                   <textarea placeholder="请输入内容" name="introduce" class="layui-textarea"></textarea>
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>

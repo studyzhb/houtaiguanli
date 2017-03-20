@@ -85,6 +85,7 @@
                     <th>店铺名称</th>
                     <th>开户时间</th>
                     <th>经营类型</th>
+                    <th>用户名</th>
                     <th>负责人姓名</th>
                     <th>优惠力度</th>
                     <th>状态</th>
@@ -138,6 +139,7 @@
             <td>{{=item.name}}</td>
             <td>{{=item.addtime}}</td>
             <td>{{=}}</td>
+            <td>{{=item.loginid}}</td>
             <td>{{=item.proprietor}}</td>
             <td>{{=item.discount}}折</td>
             {{# if(item.status=='0'){ }}
@@ -145,14 +147,30 @@
             {{# }else{ }}
                 <td>启用</td>
             {{# } }}
-            <td>{{=item.untest}}</td>
+            
+                {{# if(item.recommend=='0'){ }}
+                    <td>未推荐</td>
+                {{# }else{ }}
+                    <td>推荐店铺</td>
+                {{# } }}
+            
             <td>
+                {{# if(item.recommend=='1'){ }}
+                    <button class="layui-btn layui-btn-small recommendInfo" data-status="0" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
+                        取消推荐
+                    </button>
+                {{# }else{ }}
+                    <button class="layui-btn layui-btn-small recommendInfo" data-status="1" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
+                        推荐
+                    </button>
+                {{# } }}
                 <button class="layui-btn layui-btn-small add-shop-goods" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
                     <i class="layui-icon">&#xe608;</i> 添加商品
                 </button>
                 <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo">
                     <i class="layui-icon">&#xe642;</i>
                 </button>
+
             </td>
         </tr>
 

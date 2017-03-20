@@ -26,6 +26,44 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
         return obj;
     }();
 
+    layui.use('laydate',function(){
+       var laydate=layui.laydate;
+        var start = {
+            min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                var timeStamp=Math.floor(new Date(datas).getTime());
+                $(this.elem).next('input').val(timeStamp);
+                
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+        
+        var end = {
+            min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                var timeStamp=Math.floor(new Date(datas).getTime());
+                $(this.elem).next('input').val(timeStamp);
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+
+        $('#date').on('click',function(){
+            log.d(layObj);
+            start.elem = this;
+            layObj.laydate(start);
+        })
+        // $('#date01').on('click',function(){
+        //     end.elem = this
+        //     layObj.laydate(end);
+        // })
+   })
     var formData={
         name:'111111',
         benefit_info:'111123214421',
@@ -132,18 +170,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
      * 图片上传
      */
     $('.imageadd').on('click',function(){
-        upload.uploadImage(this,function(arrImage){
-            log.d(arrImage);
-            var arr=[];
-            var arrInfo=[];
-            $.each(arrImage,function(index,item){
-                arrInfo.push(common.tools.formatTemplate({imgsrc:item.src},$('#image-suolve').html()));
-                // $(this).before();
-                arr.push(item.src);
-            })
-            $(this).before(arrInfo.join(''));
-            $(this).parent('image-suolve').next('input').val(JSON.stringify(arr));
-        });
+        upload.uploadImage(this);
     });
 
 });

@@ -9,8 +9,7 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 
-    <!--<script type="text/javascript" src="../jedate/jquery.jedate.js"></script>-->
-    <link type="text/css" rel="stylesheet" href="../jedate/skin/jedate.css">
+
     <link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
     <script src="../js/jquery.js"></script> 
@@ -135,19 +134,22 @@
                                                      </div>
                           
                   </div>
-                </div>
-                <input type="hidden" name="pic_url" placeholder="请输入" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="pic_url" placeholder="请输入" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" autocomplete="off" class="layui-input shopinput">
                              </div>
+                </div>
+                
 
               <div class="layui-form-item">
                 <label class="layui-form-label">起止时间</label>
                 <div class="layui-input-inline">
                   
-                  <input type="text" id="date" placeholder="hh:mm:ss" name="release_begin"  readonly autocomplete="off" class="layui-input">
+                  <input type="text" id="date" placeholder="hh:mm:ss" readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" placeholder="hh:mm:ss" name="release_begin"  readonly autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
                   
                   <input type="text" id="date01" placeholder="hh:mm:ss" name="release_end"  readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" placeholder="hh:mm:ss" name="release_end"  readonly autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
