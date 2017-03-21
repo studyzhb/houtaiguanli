@@ -75,41 +75,51 @@ define({
      * 城市
      */
     city:{
-        citylist:'/City/cityLst',
+        citylist:'/City/cityList',
         addCityList:'/City/addCity',
         editCityList:'/City/updateCity',
+        updateCityStatus:'/City/updateCityStatus',
+        deleteCity:'/City/deleteCity'
     },
     /**
      * 区域
      */
     area:{
-        //区域列表
+        //区域列表updateAreaType
         
-        arealist:'/Area/areaLst',
+        arealist:'/Area/areaList',
         //获取区域类型
-        getAreaType:'/Area_Type/AreaTypeLst',
-        addArea:'/Area_Type/addAreaType',
+        getAreaType:'/Area/AreaTypeList',
+        //获取单个区域类型
+        getSingleAreaTypeInfo:'/Area/getOneAreaType',
+        getSingleAreaInfo:'',
+        addArea:'/Area/addAreaType',
         addAreaInfo:'/Area/addArea',
         //区域添加
         updateAreaInfo:'/Area/areaInfo',
+        updateAreaSingleInfo:'',
         //区域类型更新
-        updateAreaType:'/Area_Type/updateAreaType',
+        updateAreaType:'/Area/updateAreaType',
         //根据城市ID获取区域
         getAreaByCityId:'/Area/getArea',
+        updateStatusType:'/Area/updateAreaTypeStatus'
     },
     /**
      * 分类
      */
     classify:{
         showlist:'/Classify/classifyList',
-        getClassType:'',
-        addClass:'/Classify_Type/addClassifyType',
+        getClassType:'/Classify/getOneClassifyTypeInfo',
+        getClassInfo:'/Classify/getOneclassifyInfo',
+        addClass:'/Classify/addClassifyType',
         addClassInfo:'/Classify/addClassify',
-        updateClassType:'/Classify_Type/updateClassifyType',
+        updateClassType:'/Classify/updateClassifyType',
         updateClssInfo:'/Classify/updateClassify',
         updateRecommend:'/Nav/getRecommend',
-        commitRecommend:'/Nav/updateRecommend'
-        
+        commitRecommend:'/Nav/updateRecommend',
+        updateStatusType:'/Classify/updateClassifyTypeStatus',
+        updateStatusInfoType:'/Classify/updateClassifyStatus',
+        deleteClassInfo:'/Classify/deleteClassify'
     },
     /**
      * 优惠信息

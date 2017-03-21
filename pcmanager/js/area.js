@@ -99,9 +99,88 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         layObj.layer.msg(data.msg);
                     }
                 },{id:id});
+            },
+            deleteClassInfo:function(id){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.deleteClassInfo,function(data){
+                    log.d(data);
+                    
+                    if(data.code==200){
+                        
+                        layObj.layer.closeAll();
+                        classObj.methods.updatePageNum(1);
+                       
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                        layObj.layer.closeAll();
+                        classObj.methods.updatePageNum(1);
+                    }
+                },{id:id});
+            },
+            updateStatusInfoType:function(sta,upId,obj,pId){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusInfoType,function(data){
+                    log.d(data);
+                    classObj.data.isCanClick=true;
+                    if(data.code==200){
+                        //location.reload();
+                        layObj.layer.closeAll();
+                        
+                        if(sta=='1'){
+                            $(obj).text('启用').addClass('active').data('status',0);
+                        }else{
+                            $(obj).text('停用').removeClass('active').data('status',1);
+                        }
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                        // layObj.layer.closeAll();
+                        //location.reload();
+                    }
+                },{navid:classObj.data.navId,status:sta,id:upId,typeid:pId});
+            },
+            updateAreaTypeInfo:function(){
+                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaType,function(data){
+                        classObj.methods.updateArealist(data.data);
+                        
+                        log.d(data);
+                        if(data.code==200){
+                            areaObj.methods.updateAreaType(data.data);
+         areaObj.methods.updatePageNum(1);
+                        }else{
+                            layObj.layer.msg(data.msg);
+                        }
+                    
+                        
+                    },{cityId:params.id})
             }
         }
     }
+
+    
+
+    $('#all-sort-list').on('click','.icon-btn-sub',function(){
+        var status=$(this).data('status');
+        var upId=$(this).data('id');
+        var pId=$(this).data('typeid');
+        if(classObj.data.isCanClick){
+            classObj.data.isCanClick=false;
+            classObj.methods.updateStatusInfoType(status,upId,this,pId);
+            return;
+            if(status=='0'){
+                layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+                    
+                    layObj.layer.close(index);
+
+                })
+            }else{
+                classObj.methods.updateStatusInfoType(status,upId,this,pId);
+            }
+        }else{
+            layObj.layer.msg('请勿重复点击');
+        }
+        // layObj.layer.load();
+        
+    })
 
     common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaType,function(data){
          areaObj.methods.updateAreaType(data.data);
@@ -126,13 +205,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                             areaObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                             areaObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },formParams.field);
@@ -156,13 +237,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                             areaObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                             areaObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },dataForm);
@@ -179,13 +262,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                             areaObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                             areaObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },formParams.field);
@@ -201,13 +286,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                             areaObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                             layObj.layer.closeAll();
+                             areaObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },formParams.field);
@@ -233,7 +320,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             content: $('#authorForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'400px',
-            maxmin: true
+            maxmin: true,
+            end:function(){
+                $('#authorForm').hide();
+            }
         })
     })
     //添加区域内容
@@ -244,7 +334,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             content: $('#areaInfoForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'600px',
-            maxmin: true
+            maxmin: true,
+            end:function(){
+                $('#authorForm').hide();
+            }
         })
     })
     //编辑区域类型
@@ -255,7 +348,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'600px',
-            maxmin: true
+            maxmin: true,
+            end:function(){
+                $('#authorForm').hide();
+            }
         })
     })
 
@@ -286,7 +382,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         content: $('#editorAreaWrapper'), //这里content是一个DOM
                         shade:[0.8,'#000'],
                         area:'600px',
-                        maxmin: true
+                        maxmin: true,
+                        end:function(){
+                            $('#authorForm').hide();
+                        }
                     })
                 })
             }

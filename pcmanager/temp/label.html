@@ -270,10 +270,18 @@
     </div>
 </div>
 <div class="layui-form" id="addTypeCon" style="display:none;padding-top:20px;font-size:14px;">
-    <div class="layui-form-item">
+    <div class="typeArea">
+
+    </div>
+    
+  </div>
+
+<script type="text/html" class="text-wrapper"> 
+  <div class="layui-form-item">
       <label class="layui-form-label">请输入内容</label>
       <div class="layui-input-inline">
         <input type="text" placeholder="内容区" autocomplete="off" class="layui-input singleNum" />
+        
       </div>
     </div>
     <div class="layui-form-item">
@@ -281,7 +289,22 @@
         <div class="layui-btn saveGoodsNum">确定</div>
       </div>
     </div>
-  </div>
+</script>
+
+<script type="text/html" class="icon-wrapper">
+  <div class="layui-form-item">
+      <label class="layui-form-label">请选择图标</label>
+      <div class="layui-input-block">
+        {{# layui.each(d.iconlist,function(index,item){ }}
+            <button class="layui-btn layui-btn-small layui-btn-primary icon-btn">
+              <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe60c;</i>
+            </button>
+        {{# }) }}
+        <!--<input type="text" placeholder="内容区" autocomplete="off" class="layui-input singleNum" />-->
+      </div>
+    </div>
+</script>
+
 <!-- ========================================================= -->
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
@@ -408,7 +431,7 @@
 
 <script type="text/html" id="editorNavCon">
     <div class="layui-form-item">
-        <label class="layui-form-label">类型名称</label>
+        <label class="layui-form-label">标签内容</label>
         <div class="layui-input-inline">
         <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
         <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">

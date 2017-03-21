@@ -28,6 +28,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     var classObj={
         data:{
             pageCount:'',
+            isCanClick:true,
             navId:'',
             typeId:"",
             typeInfo:[],
@@ -97,6 +98,69 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         layObj.layer.msg(data.msg);
                     }
                 },{id:id});
+            },
+            updateStatusType:function(sta,upId,obj){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusType,function(data){
+                    log.d(data);
+                    classObj.data.isCanClick=true;
+                    if(data.code==200){
+                        //location.reload();
+                        layObj.layer.closeAll();
+                        
+                        if(sta=='1'){
+                            $(obj).text('启用').addClass('active').data('status',0);
+                        }else{
+                            $(obj).text('停用').removeClass('active').data('status',1);
+                        }
+                        classObj.methods.updatePageNum(1);
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                        // layObj.layer.closeAll();
+                        //location.reload();
+                    }
+                },{navid:classObj.data.navId,status:sta,id:upId});
+            },
+            updateStatusInfoType:function(sta,upId,obj,pId){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusInfoType,function(data){
+                    log.d(data);
+                    classObj.data.isCanClick=true;
+                    if(data.code==200){
+                        //location.reload();
+                        layObj.layer.closeAll();
+                        
+                        if(sta=='1'){
+                            $(obj).text('启用').addClass('active').data('status',0);
+                        }else{
+                            $(obj).text('停用').removeClass('active').data('status',1);
+                        }
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                        // layObj.layer.closeAll();
+                        //location.reload();
+                    }
+                },{navid:classObj.data.navId,status:sta,id:upId,typeid:pId});
+            },
+            updateSubInfo:function(obj){
+
+            },
+            deleteClassInfo:function(id){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.deleteClassInfo,function(data){
+                    log.d(data);
+                    
+                    if(data.code==200){
+                        
+                        layObj.layer.closeAll();
+                        classObj.methods.updatePageNum(1);
+                       
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                        layObj.layer.closeAll();
+                        classObj.methods.updatePageNum(1);
+                    }
+                },{id:id});
             }
         }
     }
@@ -113,6 +177,54 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
        
         
     // },{cityId:params.id})
+    /**
+     * 状态更改
+     */
+    $('#all-sort-list').on('click','.icon-btn',function(){
+        var status=$(this).data('status');
+        var upId=$(this).data('id');
+        var self=this;
+        if(classObj.data.isCanClick){
+            classObj.data.isCanClick=false;
+            if(status=='0'){
+                layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+                    layObj.layer.close(index);
+                    classObj.methods.updateStatusType(status,upId,self);
+                })
+            }else{
+                classObj.methods.updateStatusType(status,upId,this);
+
+            }
+        }else{
+            layObj.layer.msg('请勿重复点击');
+        }
+        // layObj.layer.load();
+        
+    })
+
+    $('#all-sort-list').on('click','.icon-btn-sub',function(){
+        var status=$(this).data('status');
+        var upId=$(this).data('id');
+        var pId=$(this).data('typeid');
+        if(classObj.data.isCanClick){
+            classObj.data.isCanClick=false;
+            classObj.methods.updateStatusInfoType(status,upId,this,pId);
+            return;
+            if(status=='0'){
+                layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+                    
+                    layObj.layer.close(index);
+
+                })
+            }else{
+                classObj.methods.updateStatusInfoType(status,upId,this,pId);
+            }
+        }else{
+            layObj.layer.msg('请勿重复点击');
+        }
+        // layObj.layer.load();
+        
+    })
 
     setTimeout(function(){
         form=layObj.form();
@@ -124,13 +236,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },formParams.field);
@@ -142,25 +256,28 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             
             var arrName=[];
             for(var item in formParams.field){
-                log.d(item)
+                
                 arrName.push(formParams.field[item]);
             }
             var dataForm={};
             dataForm.navId=classObj.data.navId;
             dataForm.typeId=classObj.data.typeId;
-            dataForm.name=arrName;
+            dataForm.name=JSON.stringify(arrName);
+            
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.addClassInfo,function(data){
                     log.d(data);
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },dataForm);
@@ -177,13 +294,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            // location.reload();
+                            layObj.layer.closeAll();
+                            classObj.data.typeEl.text(formParams.field.name)
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            // location.reload();
                         },1000);
                     }
                 },formParams.field);
@@ -199,13 +318,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },formParams.field);
@@ -231,65 +352,107 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             content: $('#authorForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'400px',
-            maxmin: true
+            maxmin: true,
+            end:function(){
+                classObj.data.isCanClick=true;
+                $('#authorForm').hide();
+            }
         })
     })
     //添加区域内容
     $('#all-sort-list').on('click','.addAreaType',function(){
         classObj.data.typeId=$(this).data('id');
+        var classN=$(this).data('name');
+        $('.sortName').text(classN);
         layObj.layer.open({
              type:1,
             content: $('#areaInfoForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'600px',
-            maxmin: true
+            maxmin: true,
+            end:function(){
+                classObj.data.isCanClick=true;
+                $('#areaInfoForm').hide();
+            }
         })
     })
     //编辑区域类型
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
         classObj.data.typeId=$(this).data('id');
-        layObj.layer.open({
-             type:1,
-            content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
-            shade:[0.8,'#000'],
-            area:'600px',
-            maxmin: true
-        })
+        classObj.data.typeEl=$(this).parent('td').prevAll('.typeName');
+        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.classify.getClassType,function(data){
+           var tpl=$('#editorNavCon').html();
+            if(data.code==200){
+                
+                     $('.editor-area-type').html('');
+                 
+                    layObj.laytpl(tpl).render(data.data,function(html){
+                        $('.editor-area-type').append(html);
+                        form.render();
+                    })
+                
+                 layObj.layer.open({
+                    type:1,
+                    content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:'600px',
+                    maxmin: true,
+                    end:function(){
+                        classObj.data.isCanClick=true;
+                        $('#editorAreaTypeWrapper').hide();
+                    }
+                })
+                
+            }
+        },{id:classObj.data.typeId})
+        
     })
 
     //编辑类型内容
     $('#all-sort-list').on('click','.editorSingleAreaInfo',function(){
         var self=this;
         layObj.layer.load();
-        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.city.citylist,function(data){
+        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.classify.getClassInfo,function(data){
             if(data.code==200){
-                console.log(data.data);
-                var cityInfo=data.data;
+                
                 var tpml=$('#editorAreaCon').html();
-                classObj.methods.getAreaInfo($(self).data('id'),function(res){
-                    var obj={};
-                    obj.data=res;
-                    obj.cityid=params.id;
-                    obj.typeid=classObj.data.typeId;
-                    obj.cityInfo=cityInfo;
-                    obj.typeInfo=classObj.data.typeInfo;
-                    log.d(obj);
-                    layObj.laytpl(tpml).render(obj,function(html){
-                        $('.editorAreaInfo').append(html);
-                    })
+                $('.editorAreaInfo').html('');
+                layObj.laytpl(tpml).render(data.data,function(html){
+                    $('.editorAreaInfo').append(html);
                     form.render();
-                    layObj.layer.closeAll('loading');
-                    layObj.layer.open({
-                        type:1,
-                        content: $('#editorAreaWrapper'), //这里content是一个DOM
-                        shade:[0.8,'#000'],
-                        area:'600px',
-                        maxmin: true
-                    })
                 })
+                
+                layObj.layer.closeAll('loading');
+                layObj.layer.open({
+                    type:1,
+                    content: $('#editorAreaWrapper'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:'600px',
+                    maxmin: true,
+                    end:function(){
+                        classObj.data.isCanClick=true;
+                        $('#editorAreaWrapper').hide();
+                    }
+                })
+                
             }
             
-        })
+        },{id:$(this).data('id')});
+        
+    })
+
+     //删除类型内容
+    $('#all-sort-list').on('click','.deleteSingleAreaInfo',function(){
+        var self=this;
+        
+        var deleId=$(this).data('id');
+        layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+                    
+                    layObj.layer.close(index);
+                    classObj.methods.deleteClassInfo(deleId);
+
+                })
+        
         
     })
 

@@ -1,10 +1,10 @@
-require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function($,jf,myObj,ajaxAddress,layObj,log){
+require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxAddress,layObj,log){
 
     var common=myObj.load();
     var form;
     var navObj={
         //防止向上向下重复点击标志位
-        isUpOrDownClick:false,
+        isUpOrDownClick:true,
         data:{
             checkTypeId:'',
             checkNum:0,
@@ -105,34 +105,40 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
     $('#tableList').on('click','.editNavInfo',function(){
         var navId=$(this).data('id');
         var tmpl=editorNavCon.innerHTML;
-        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getSingleNavInfoById,function(data){
-            if(data.code==200){
-                console.log(data);
-                $('.editorNavBox').html('');
-                layObj.laytpl(tmpl).render(data.data,function(html){
+        //暂不使用
+        if(navObj.isUpOrDownClick){
+            navObj.isUpOrDownClick=false;
+            common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getSingleNavInfoById,function(data){
+                if(data.code==200){
+                    console.log(data);
+                    $('.editorNavBox').html('');
+                    layObj.laytpl(tmpl).render(data.data,function(html){
+                        
+                        $('.editorNavBox').append(html);
+                        form.render();
+                    })
+                    // form.render();
+                    layObj.layer.open({
+                        type:1,
+                        content: $('#editorNav'), //这里content是一个DOM
+                        shade:[0.8,'#000'],
+                        area:'600px',
+                        maxmin: true,
+                        end:function(){
+                            log.d('关闭');
+                            navObj.isUpOrDownClick=true;
+                            $('#editorNav').hide();
+                        }
+                    })
+                    // form.render('radio')
                     
-                    $('.editorNavBox').append(html);
-                    form.render();
-                })
-                // form.render();
-                layObj.layer.open({
-                    type:1,
-                    content: $('#editorNav'), //这里content是一个DOM
-                    shade:[0.8,'#000'],
-                    area:'600px',
-                    maxmin: true,
-                    end:function(){
-                        log.d('关闭');
-                        $('#editorNav').hide();
-                    }
-                })
-                // form.render('radio')
+                }
                 
-            }
-            
-            
+                
 
-        },{id:navId});
+            },{id:navId});
+        }
+        
 
         
         
@@ -140,17 +146,25 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 
 
     $('#tableList').on('click','.addRecommend',function(){
-        console.log('11');
+        
         var navId=$(this).data('id');
         navObj.data.navId=navId;
         navObj.data.arrRemo=[];
         navObj.data.checkTypeId='';
         navObj.data.checkNum=0;
         common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.classify.updateRecommend,function(data){
-            console.log(data);
+            
             if(data.code==200){
                 var tpl=$('#recommendInfo').html();
                 $('.recommendWrapper').html('');
+                $.each(data.data,function(index,item){
+                    $.each(item.data,function(ind,its){
+                        if(its.selected){
+                            navObj.data.checkNum++;
+                            navObj.data.checkTypeId=item.id;
+                        }
+                    })
+                })
                 layObj.laytpl(tpl).render(data.data,function(html){
                     $('.recommendWrapper').append(html);
                    form.render();
@@ -172,10 +186,15 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
             }else if(data.code==300){
                 layObj.layer.msg('暂无数据');
             }
-            
-            
 
         },{id:navId});
+    })
+
+    $('.saveRecommend').on('click',function(){
+        console.log('11-click');
+        navObj.data.arrRemo=[];
+        navObj.data.checkTypeId='';
+        navObj.data.checkNum=0;
     })
 
     //添加导航信息
@@ -213,39 +232,73 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 			    ,'密码必须6到12位，且不能出现空格'
 			  ],
               checkIsCanSelect:function(value,a){
-                  var seleId=$(a).data('id');
-                  
+                        var seleId=$(a).data('id');
+                        
                       if(navObj.data.checkNum<=0){
                           navObj.data.arrRemo=[];
-                          //navObj.data.checkTypeId=seleId;
                       }
- 
-                  if(navObj.data.checkNum>2){
-                      layObj.layer.msg('超过最大数量');
-                      return '最多只能选择2个'
-                  }else{
-                      console.log(a.checked);
                       if(a.checked){
-                          if(navObj.data.checkTypeId!=seleId){
-                            //   a.checked=false;
-                            //   form.render();
-                              return '只能选择同一类型';
-                          }else{
-                              
-                            //   navObj.data.checkTypeId=seleId;
-                              
-                            //   console.log(navObj.data.arrRemo);
+                          if(!navObj.data.checkTypeId){
+                              navObj.data.checkTypeId=seleId;
                           }
-                      }else{
-                          $.each(navObj.data.arrRemo,function(index,item){
-                              if(item.id==seleId){
-                                navObj.data.arrRemo.split(index,1);
-                                index--;
-                              }
-                          })
+                          if(!navObj.data.checkNum){
+                              navObj.data.checkTypeId=seleId;
+                          }
+                            
+                          
+                          navObj.data.checkNum++;
+                          if(navObj.data.checkNum==1){
+                                var obj={};
+                                obj.id=$(a).attr('value');
+                                obj.name=$(a).attr('title');
+                                navObj.data.checkTypeId=seleId;
+                                    navObj.data.arrRemo.push(obj);
+                            }else if(navObj.data.checkNum>2){
+                                return '只能选择同一类型';
+                            }else{
+                                if(navObj.data.checkTypeId==seleId){
+                                    var obj={};
+                                obj.id=$(a).attr('value');
+                                obj.name=$(a).attr('title');
+                                navObj.data.checkTypeId=seleId;
+                                    navObj.data.arrRemo.push(obj);
+                                }else{
+                                     return '只能选择同一类型';
+                                }
+                            }
                       }
+
                       
-                  }
+
+                //   if(navObj.data.checkNum>2){
+                //       layObj.layer.msg('超过最大数量');
+                //       return '最多只能选择2个'
+                //   }else{
+                      
+                //       if(a.checked){
+                //           if(navObj.data.checkTypeId!=seleId){
+                //             //   a.checked=false;
+                //             //   form.render();
+                //               return '只能选择同一类型';
+                //           }else{
+                //               var obj={};
+                //             obj.id=$(a).attr('value');
+                //             obj.name=$(a).attr('title');
+                //               navObj.data.arrRemo.push(obj);
+                //             //   navObj.data.checkTypeId=seleId;
+                              
+                //             //   console.log(navObj.data.arrRemo);
+                //           }
+                //       }else{
+                //           $.each(navObj.data.arrRemo,function(index,item){
+                //               if(item.id==seleId){
+                //                 navObj.data.arrRemo.split(index,1);
+                //                 index--;
+                //               }
+                //           })
+                //       }
+                      
+                //   }
                   
               } 
               ,isChangeValue:function(value,a){
@@ -262,8 +315,12 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
                 }
 			});
 
-            form.on('checkbox(clickRecommend)',function(data){
+            /**form.on('checkbox(clickRecommend)',function(data){
                var seleId=$(data.elem).data('id')
+                if(navObj.data.checkNum<=0){
+                    navObj.data.checkNum=0;
+                    navObj.data.checkTypeId='';
+                }
                 if(data.elem.checked){
 
                     if(!navObj.data.checkTypeId){
@@ -284,9 +341,8 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
                     
                 }else{
                     navObj.data.checkNum--;
-
                 }
-            })
+            })**/
 
 			//监听提交
 		  form.on('submit(formDemo)', function(data1){
@@ -317,10 +373,8 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 
           //监听提交
 		  form.on('submit(saveRecommend)', function(data1){
-		    /*layer.alert(JSON.stringify(data.field), {
-		      title: '最终的提交信息'
-		    })*/
-            console.log(navObj.data.arrRemo);
+              navObj.data.checkNum=0;
+		    console.log('click-submit');
 		  	common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.commitRecommend,function(data){
 			    navObj.data.arrRemo=[];
                 navObj.data.checkTypeId='';
@@ -328,13 +382,13 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log'],function
 				if(data.code==200){
 	                layer.msg('添加成功');
 	                setTimeout(function(){
-	                    //location.reload();
+	                    location.reload();
 	                },1000);
 	                
 	            }else{
 	                layer.msg('网络错误，请稍后重试');
 	                setTimeout(function(){
-	                    //location.reload();
+	                    location.reload();
 	                },1000);
 	            }
               },{recommend:JSON.stringify(navObj.data.arrRemo),id:navObj.data.navId});

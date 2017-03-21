@@ -37,11 +37,28 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         })
                     },300);
                 });
+            },
+            addLabelConByLabelType:function(str){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.label.addLabelConByType,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        location.reload();
+                    }else{
+                        layObj.layer.msg('获取数据失败,请稍后再试!!');
+                    }
+                },{typeid:LabelObj.data.$el.data('id'),name:str});
             }
         }
    }
 
+   /**
+    * 图标选中关闭
+    */
 
+    $('.typeArea').on('click','.icon-btn',function(){
+        $(this).addClass('active').siblings().removeClass('active');
+        
+    })
 
    /**
     * 获取标签数据
@@ -59,6 +76,27 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     $('#all-sort-list').on('click','.add-new-label',function(){
         log.d('11111');
         LabelObj.data.$el=$(this);
+        var classType=$(this).data('type');
+        var tpl;
+        var dObj={};
+        //classType:1 文字 2 图标
+        if(classType==1){
+            tpl=$('.text-wrapper').html();
+            $('.typeArea').html('');
+            layObj.laytpl(tpl).render(dObj,function(html){
+                $('.typeArea').append(html);
+            })
+            
+        }else{
+            tpl=$('.icon-wrapper').html();
+            $('.typeArea').html('');
+            dObj={
+                iconlist:['&#xe60c;','&#xe60c;','&#xe60c;']
+            }
+            layObj.laytpl(tpl).render(dObj,function(html){
+                $('.typeArea').append(html);
+            })
+        }
         layObj.layer.open({
             type:1,
             content: $('#addTypeCon'), //这里content是一个DOM
@@ -78,8 +116,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.label.getLabelInfoByTypeId,function(data){
             log.d(data);
             if(data.code==200){
+                $('.editorNavBox').html('');
                 layObj.laytpl(tmpl).render(data.data,function(html){
                     $('.editorNavBox').append(html);
+                    form.render();
                 })
 
                 layObj.layer.open({

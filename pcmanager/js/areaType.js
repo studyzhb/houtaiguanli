@@ -29,6 +29,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         data:{
             pageCount:'',
             navId:'',
+            isCanClick:true,
             typeId:"",
             typeInfo:[],
             tempGoodsContent:$('#sortContent').html()
@@ -97,9 +98,70 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         layObj.layer.msg(data.msg);
                     }
                 },{id:id});
+            },
+            updateAreaTypeInfo:function(){
+                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaType,function(data){
+                        classObj.methods.updateArealist(data.data);
+                        
+                        log.d(data);
+                        if(data.code==200){
+                            
+                        }else{
+                            layObj.layer.msg(data.msg);
+                        }
+                    
+                        
+                    },{cityId:params.id})
+            },
+            updateStatusType:function(sta,upId,obj){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.updateStatusType,function(data){
+                    log.d(data);
+                    classObj.data.isCanClick=true;
+                    if(data.code==200){
+                        //location.reload();
+                        layObj.layer.closeAll();
+                        
+                        if(sta=='1'){
+                            $(obj).text('启用').addClass('active').data('status',0);
+                        }else{
+                            $(obj).text('停用').removeClass('active').data('status',1);
+                        }
+                        classObj.methods.updateAreaTypeInfo();
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                        // layObj.layer.closeAll();
+                        //location.reload();
+                    }
+                },{navid:classObj.data.navId,status:sta,id:upId});
             }
         }
     }
+
+    /**
+     * 状态更改
+     */
+    $('#all-sort-list').on('click','.icon-btn',function(){
+        var status=$(this).data('status');
+        var upId=$(this).data('id');
+        var self=this;
+        if(classObj.data.isCanClick){
+            classObj.data.isCanClick=false;
+            if(status=='0'){
+                layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+                    layObj.layer.close(index);
+                    classObj.methods.updateStatusType(status,upId,self);
+                })
+            }else{
+                classObj.methods.updateStatusType(status,upId,this);
+            }
+        }else{
+            layObj.layer.msg('请勿重复点击');
+        }
+        // layObj.layer.load();
+        
+    })
+
 
 
     setTimeout(function(){
@@ -112,13 +174,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updateAreaTypeInfo();
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updateAreaTypeInfo();
                         },1000);
                     }
                 },formParams.field);
@@ -142,13 +206,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updateAreaTypeInfo();
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updateAreaTypeInfo();
                         },1000);
                     }
                 },dataForm);
@@ -165,13 +231,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updateAreaTypeInfo();
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updateAreaTypeInfo();
                         },1000);
                     }
                 },formParams.field);
@@ -187,13 +255,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updateAreaTypeInfo();
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updateAreaTypeInfo();
                         },1000);
                     }
                 },formParams.field);
@@ -213,20 +283,45 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             content: $('#authorForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'400px',
-            maxmin: true
+            maxmin: true,
+            end:function(){
+                classObj.data.isCanClick=true;
+               $('#authorForm').hide();
+            }
         })
     })
 
+    
     //编辑区域类型
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
         classObj.data.typeId=$(this).data('id');
-        layObj.layer.open({
-             type:1,
-            content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
-            shade:[0.8,'#000'],
-            area:'600px',
-            maxmin: true
-        })
+        classObj.data.typeEl=$(this).parent('td').prevAll('.typeName');
+        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getSingleAreaTypeInfo,function(data){
+           var tpl=$('#editorNavCon').html();
+            if(data.code==200){
+                
+                     $('.editor-area-type').html('');
+                 
+                    layObj.laytpl(tpl).render(data.data,function(html){
+                        $('.editor-area-type').append(html);
+                        form.render();
+                    })
+                
+                 layObj.layer.open({
+                    type:1,
+                    content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:'600px',
+                    maxmin: true,
+                    end:function(){
+                        classObj.data.isCanClick=true;
+                        $('#editorAreaTypeWrapper').hide();
+                    }
+                })
+                
+            }
+        },{id:classObj.data.typeId})
+        
     })
 
 

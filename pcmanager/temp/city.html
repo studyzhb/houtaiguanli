@@ -22,13 +22,21 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
-            
+            <form class="layui-form layui-form-pane" style="">
+              
+              
+                
+                
+                <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                    <i class="layui-icon">&#x1002;</i>  
+                </div>
+            </form>
             <div class="website-area">
                 <label style="display: inline-block;">城市列表</label>
                 <div class="layui-btn layui-btn-small layui-btn-primary addCity">
                     <i class="layui-icon">&#xe608;</i>
                 </div>
-                <div class="website-all-area">
+                <div class="website-all-city-area">
                     <!--<a href="javascript:;">全国站</a>
                     <a href="javascript:;">北京站</a>
                     <a href="javascript:;">上海站</a>
@@ -59,6 +67,56 @@
         </div>
         
     </form>
+
+    <!--编辑区域内容-->
+<form class="layui-form layui-form-pane" id="editorAreaWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="editorAreaInfo">
+
+    </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorAreaInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<!--编辑区域内容-->
+<script id="editorAreaCon" type="text/html">
+<div class="layui-form-item">
+        <label class="layui-form-label">城市</label>
+        <div class="layui-input-block">
+             <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+</script>
+
+
+<!--添加类型内容-->
+<form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label">区域内容</label>
+    <div class="layui-input-block">
+        <div class="layui-btn createAreaInfoInput">
+            <i class="layui-icon">&#xe608;</i>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="areaInfoInput">
+            <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
+            
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="areaInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
 
     <!--添加城市-->
     <form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
@@ -97,23 +155,111 @@
             
             <input type="text" placeholder="请输入" value="{{=d.name}}" name="name" autocomplete="off" class="layui-input">
             
-            <input type="hidden" value="{{=d.level}}" placeholder="请输入" name="level" autocomplete="off" class="layui-input">
+            
             <input type="hidden" value="{{=d.id}}" placeholder="请输入" name="id" autocomplete="off" class="layui-input">
         </div>
         </div>
-       <div class="layui-form-item">
-        <label class="layui-form-label">状态</label>
-        <div class="layui-input-block">
-            {{# if(d.status==1){ }}
-                <input type="radio" name="status" value="1" title="是" checked>
-                <input type="radio" name="status" value="0" title="否" >
-            {{# }else{ }}
-                <input type="radio" name="status" value="1" title="是" >
-                <input type="radio" name="status" value="0" title="否" checked>
-            {{# } }}
-        </div>
-        </div>
+       
     </script>
+
+
+    <div class="layui-content areaInfo" style="display: none;padding:20px;font-size: 14px;">
+        <ul class="layui-tab-title">
+          <li class="layui-this cityName">
+            000000
+          </li>
+          
+        </ul>
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            <!--<form class="layui-form layui-form-pane" style="display:inline-block;">
+              
+              
+                
+                <div class="layui-btn" onclick="location.reload()">
+                    刷新
+                </div>
+            </form>-->
+          <table class="layui-table">
+          <colgroup>
+            <col width="100">
+            <col >
+            
+            <col width="100">
+            <col>
+
+          </colgroup>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr> 
+          </thead>
+          <tbody id="all-sort-list">
+
+          </tbody>
+      </table>
+     
+
+          </div>
+        </div>
+
+<script id="sortContent" type="text/html">
+{{# layui.each(d.data,function(index,item){ }}
+    <tr>
+    <td>{{index+1}}</td>
+    <td>{{=item.typename}}</td>
+    <td>
+      {{# if(item.status=='1'){ }}
+        
+              启用
+        
+      {{# }else{ }}
+        
+              停用
+        
+      {{# } }}
+    </td>
+    <td>
+      
+      <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}">
+            <i class="layui-icon">&#xe608;</i>
+        </div>
+    </td>
+  </tr>
+  {{#  layui.each(item.children,function(ind, its){ }}
+      <tr>
+        <td>{{index+1}}--{{ind}}</td>
+        <td>| ---- {{its.name}}</td>
+        <td>
+            {{# if(item.status=='1'){ }}
+              {{# if(its.status=='1'){ }}
+                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status='0' data-id="{{its.id}}" data-typeid="{{item.id}}">
+                      启用
+                </button>
+              {{# }else{ }}
+                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{its.id}}" data-typeid="{{item.id}}">
+                      停用
+                </button>
+              {{# } }}
+            {{# }else{ }}
+              停用
+            {{# } }}
+        </td>
+        <td>
+          <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">编辑</div>
+        </td>
+      </tr>
+    {{#  }); }}
+
+{{# }) }}
+  
+    
+    
+</script>
+
+
 </body>
 <script>
     layui.use('form',function(){

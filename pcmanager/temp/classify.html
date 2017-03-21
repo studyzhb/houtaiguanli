@@ -4,16 +4,15 @@
 	<meta charset="utf-8">
 	<title>标题</title>
     <meta http-equiv="pragma" content="no-cache"> 
-	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
-	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
     <link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
-	<script src="../common/layui/layui.js"></script>
+    <script src="../common/layui/layui.js"></script>
     <script data-main="../js/domain" src="../js/require.min.js"></script>
-    
-  	
+
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -25,13 +24,7 @@
 	<!-- ============================主要内容区================================ -->
 
 	<div class="lay-main">
-	  <!-- <span class="layui-breadcrumb">
-		  <a href="#">首页</a>
-		  <a href="#">组织机构</a>
-		  <a href="#">组织机构管理</a>
-		  <a><cite>正文</cite></a>
-		</span>
-     -->
+
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
@@ -64,8 +57,9 @@
               <div class="layui-btn searchByKeywords">
                    搜索
                 </div>
-                <div class="layui-btn addArea">
-                    添加分类类型
+                
+                <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                    <i class="layui-icon">&#x1002;</i>  
                 </div>
             </form>
           <table class="layui-table">
@@ -105,165 +99,6 @@
   <ul id="biuuu_city_list"></ul>
 
   <!-- =======================弹出窗========================= -->
-<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
-  <div class="alert-main-con">
-      <form method="" action="">
-        <fieldset>
-          <legend>
-            基本信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-          </ul>
-        </fieldset> 
-        <fieldset>
-          <legend>
-            价格信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>供应商编号</label>
-                <input type="text" class="w160" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <input type="checkbox" />
-                <label>允许采购订货</label>
-              </div>
-            </li>
-          </ul>
-        </fieldset> 
-        <div class="col-3-table clearfix">
-          <ul class="left-list">
-            <li class="active">一品多码</li>
-            <li>商品价格</li>
-            
-          </ul>
-          <div class="middle-item">
-            <ul class="title-tr-th w80 clearfix">
-              <li class="w20">商品编码</li>
-              <li class="w60">商品条码</li>
-              <li class="w20"></li>
-            </ul>
-
-            <div class="button">增加</div>
-            <div class="button button-next">增加</div>
-          </div>
-        </div>
-        <div class="search-bottom">
-          <div class="single-select">
-            快速查找：
-                      <div class="boxwrap">
-                          <a href="#" class="select-tit">
-                              <span>请选择</span><i></i>
-                          </a>
-                          <div class="select-items">
-                              <ul id="first-sort">
-                                  
-                              </ul>
-                          </div>
-                          <i class="arrow"></i>
-                      </div>
-                      
-
-                      <div class="boxwrap">
-                          <a href="#" class="select-tit">
-                              <span class="subclass">请选择</span><i></i>
-                          </a>
-                          <div class="select-items">
-                              <ul id="sub-sort">
-                                  
-                              </ul>
-                          </div>
-                          <i class="arrow"></i>
-                      </div>
-
-                      
-                  </div>
-
-                  <div class="r-list" style="vertical-align:top;">
-                        <input type="text" class="keyword" name="" value="">
-                        <a href="" class="btn-search">查询</a>
-                    </div>
-        </div>
-        
-
-      </form>
-    </div>
-</div>
 
 <!--添加类型-->
 <form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
@@ -287,12 +122,20 @@
 <!--编辑-->
 <form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
-    <div class="layui-form-item">
+    <!--<div class="layui-form-item">
     <label class="layui-form-label">编辑</label>
     <div class="layui-input-block">
         <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
     </div>
+    </div>-->
+
+
+    <div class="editor-area-type">
+
     </div>
+
+
+
     <div class="layui-form-item">
     <div class="layui-input-block">
         <div class="layui-btn" lay-submit lay-filter="editorAreaType">立即提交</div>
@@ -300,6 +143,33 @@
     </div>
     
 </form>
+
+<script type="text/html" id="editorNavCon">
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">类型状态</label>
+        <div class="layui-input-block">
+            {{# if(d.status=='1'){ }}
+                <input type="radio" name="status" checked title="启用" value="1">
+                <input type="radio" name="status" title="停用" value="0">
+            {{# }else{ }}
+                <input type="radio" name="status"  title="启用" value="1">
+                <input type="radio" name="status" checked title="停用" value="0">
+            {{# } }}
+        </div>
+
+    </div>-->
+</script>
+
+
+
 <!--编辑-->
 <form class="layui-form layui-form-pane" id="editorAreaWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     <div class="editorAreaInfo">
@@ -317,7 +187,7 @@
 <form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <div class="layui-form-item">
-    <label class="layui-form-label">类型内容</label>
+    <label class="layui-form-label sortName">类型内容</label>
     <div class="layui-input-block">
         <div class="layui-btn createAreaInfoInput">
             <i class="layui-icon">&#xe608;</i>
@@ -363,42 +233,16 @@
 	
 <!--编辑区域内容-->
 <script id="editorAreaCon" type="text/html">
-<div class="layui-form-item">
-        <label class="layui-form-label">城市</label>
-        <div class="layui-input-block">
-            <select class="areaType" name="cityId">
-                {{# layui.each(d.cityInfo,function(index,item){ }}
-                    {{# if(item.id==d.cityid){ }}
-                         <option value="{{item.id}}" selected>{{item.name}}</option>   
-                    {{# }else{ }}
-                         <option value="{{item.id}}">{{item.name}}</option>   
-                    {{# } }}
-                    
-                {{# }) }}
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">分类类型</label>
-        <div class="layui-input-block">
-            <select class="areaType" name="typeId">
-                {{# layui.each(d.cityInfo,function(index,item){ }}
-                    {{# if(item.id==d.typeid){ }}
-                         <option value="{{item.id}}" selected>{{item.name}}</option>   
-                    {{# }else{ }}
-                         <option value="{{item.id}}">{{item.name}}</option>   
-                    {{# } }}
-                    
-                {{# }) }}
-            
-            </select>
-        </div>
-    </div>
+
+    
     <div class="layui-form-item">
     <label class="layui-form-label">内容</label>
     <div class="layui-input-block">
-        <input type="text" value="{{d.data.name}}" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
-        <input type="hidden" value="{{d.data.id}}" placeholder="请输入" name="id" autocomplete="off" class="layui-input">
+        <input type="text" value="{{d.name}}" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.id}}" placeholder="请输入" name="id" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.typeid}}" placeholder="请输入" name="typeid" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.navid}}" placeholder="请输入" name="navid" autocomplete="off" class="layui-input">
+       
     </div>
     </div>
 </script>
@@ -409,17 +253,21 @@
 {{# layui.each(d.data,function(index,item){ }}
     <tr>
     <td>{{index+1}}</td>
-    <td>{{=item.typeName}}</td>
+    <td class="typeName">{{=item.typeName}}</td>
     <td>
       {{# if(item.status=='1'){ }}
-        启用
+        
+              启用
+        
       {{# }else{ }}
-        停用
+        
+              停用
+        
       {{# } }}
     </td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
-      <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}">
+      
+      <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.typeName}}">
             <i class="layui-icon">&#xe608;</i>
         </div>
     </td>
@@ -431,16 +279,24 @@
         <td>
             {{# if(item.status=='1'){ }}
               {{# if(its.status=='1'){ }}
-                  启用
+                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status='0' data-id="{{its.id}}" data-typeid="{{item.id}}">
+                      启用
+                </button>
               {{# }else{ }}
-                  停用
+                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{its.id}}" data-typeid="{{item.id}}">
+                      停用
+                </button>
               {{# } }}
             {{# }else{ }}
               停用
             {{# } }}
+            
         </td>
         <td>
           <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">编辑</div>
+          <div class="layui-btn layui-btn-danger layui-btn-small deleteSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">
+            <i class="layui-icon">&#xe640;</i>   
+          </div>
         </td>
       </tr>
     {{#  }); }}
