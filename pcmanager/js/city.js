@@ -136,24 +136,24 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
                 },{id:id});
             },
             deleteClassInfo:function(id){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.deleteClassInfo,function(data){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.deleteAreaInfo,function(data){
                     log.d(data);
                     
                     if(data.code==200){
                         
-                        layObj.layer.closeAll();
+                        
                         areaObj.methods.updatePageNum(1);
                        
                         
                     }else{
                         layObj.layer.msg(data.msg);
-                        layObj.layer.closeAll();
+                       
                         areaObj.methods.updatePageNum(1);
                     }
                 },{id:id});
             },
             updateStatusInfoType:function(sta,upId,obj,pId){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusInfoType,function(data){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.updateAreaStateInfo,function(data){
                     log.d(data);
                     areaObj.data.isCanClick=true;
                     if(data.code==200){
@@ -176,6 +176,7 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
             
             updateAreaTypeInfo:function(){
                 console.log(params);
+
                 areaObj.methods.updatePageNum(1);
                 //  common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaType,function(data){
                 //         //areaObj.methods.updateArealist(data.data);
@@ -239,6 +240,19 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
     })
 
 
+    $('#all-sort-list').on('click','.deleteSingleAreaInfo',function(){
+        var self=this;
+        
+        var deleId=$(this).data('id');
+        layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+                    
+                    layObj.layer.close(index);
+                    areaObj.methods.deleteClassInfo(deleId);
+
+                })
+    })
+
+
     /**
      *编辑区域内容
      */
@@ -247,7 +261,7 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
         var self=this;
         var tpml=$('#editorAreaCon').html();
         $('.editorAreaInfo').html('');
-        layObj.laytpl(tpml).render({},function(html){
+        layObj.laytpl(tpml).render({id:$(this).data('id'),typeid:$(this).data('typeid'),name:$(this).data('name')},function(html){
             $('.editorAreaInfo').append(html);
         })
         areaObj.data.closeIndex=layObj.layer.open({

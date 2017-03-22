@@ -84,9 +84,11 @@
 <!--编辑区域内容-->
 <script id="editorAreaCon" type="text/html">
 <div class="layui-form-item">
-        <label class="layui-form-label">城市</label>
+        <label class="layui-form-label">内容</label>
         <div class="layui-input-block">
-             <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
+             <input type="text" placeholder="请输入" name="name" value="{{d.name}}" autocomplete="off" class="layui-input">
+             <input type="hidden" placeholder="请输入" name="typeid" value="{{d.typeid}}" autocomplete="off" class="layui-input">
+             <input type="hidden" placeholder="请输入" name="id" autocomplete="off" value="{{d.id}}" class="layui-input">
         </div>
     </div>
 </script>
@@ -248,7 +250,10 @@
             {{# } }}
         </td>
         <td>
-          <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">编辑</div>
+          <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaInfo" data-id="{{its.id}}" data-typeid="{{item.id}}" data-name="{{its.name}}">编辑</div>
+          <div class="layui-btn layui-btn-danger layui-btn-small deleteSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">
+            <i class="layui-icon">&#xe640;</i>   
+          </div>
         </td>
       </tr>
     {{#  }); }}

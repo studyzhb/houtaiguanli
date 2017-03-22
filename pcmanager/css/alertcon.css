@@ -862,3 +862,14 @@ a.active-p {
   right:30px;
   top:0;
 }
+.labelCon{
+  position:relative;
+  z-index:0;
+}
+.labelIntro{
+  position:absolute;
+  bottom:-40px;
+  z-index:10;
+  left:0;
+  display: none;
+}

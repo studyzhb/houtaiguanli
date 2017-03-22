@@ -1,5 +1,5 @@
 define({
-    preFix:'http://web.yylm.com/public/index.php/unionAdmin',
+    preFix:'http://www.yylm.com/public/index.php/unionAdmin',
     /**
      * 导航模块
      */
@@ -37,15 +37,19 @@ define({
         editLabelInfo:'/label/labelInfo',
         //标签类型的编辑
         editLabelType:'/label/deleteLabelType',
+        updateLabelCon:'/label/updateLabel',
         //更新标签类型
         /**
          * id:类型ID
          * type标签类型修改属性 1:产品,2:店铺,3:暂无
          * status标签类型状态
          */
-        updateLabelType:'/label/updateLabelTypeStatus',
+        updateLabelType:'/label/updateLabelType',
         //获取id
-        getLabelListByNavId:'/shop/getlabelTypeInfo'
+        getLabelListByNavId:'/shop/getlabelTypeInfo',
+        deleteLabelInfo:'/label/deleteLabel',
+        getIconList:'/label/getLabelIco',
+        updateLabelTypeStatus:'/label/updateLabelTypeStatus'
     },
     /**
      * 商品信息
@@ -97,12 +101,14 @@ define({
         addAreaInfo:'/Area/addArea',
         //区域添加
         updateAreaInfo:'/Area/areaInfo',
-        updateAreaSingleInfo:'',
+        updateAreaSingleInfo:'/Area/updateArea',
         //区域类型更新
         updateAreaType:'/Area/updateAreaType',
         //根据城市ID获取区域
         getAreaByCityId:'/Area/getArea',
-        updateStatusType:'/Area/updateAreaTypeStatus'
+        updateStatusType:'/Area/updateAreaTypeStatus',
+        updateAreaStateInfo:'/Area/updateAreaStatus',
+        deleteAreaInfo:'/Area/deleteArea'
     },
     /**
      * 分类
