@@ -59,8 +59,8 @@
 	 
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
-          <li>
-            <a href="shop.html">优惠信息列表</a>
+          <li class="discountList">
+            <a href="#">优惠信息列表</a>
           </li>
           <li class="layui-this">
             添加优惠信息
@@ -69,29 +69,57 @@
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane menuForm" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-    
-              <div class="layui-form-item">
-                <label class="layui-form-label">优惠信息标题</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="name" value="121313" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">*店铺头像</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2 imageadd" >   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="pic_url" lay-verify="required" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
+                             </div>
                 </div>
-                <div class="layui-form-mid layui-word-aux">*</div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">优惠力度</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="benefit_info" placeholder="请输入" class="layui-input">
-                </div>
-              </div>
-      
-            <div class="layui-form-item">
-                <label class="layui-form-label">店铺负责人</label>
+                <!--<div class="layui-form-item">
+                <label class="layui-form-label">店铺负</label>
                 <div class="layui-input-inline">
                   <input type="text" name="proprietor" placeholder="请输入" autocomplete="off" class="layui-input">
                   
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
+              </div>-->
+              <div class="layui-form-item">
+                <label class="layui-form-label">*店铺名称</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="name" lay-verify="required"  placeholder="请输入" autocomplete="off" class="layui-input">
+                  
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
               </div>
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">优惠信息标题</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="name" value="121313" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+              </div>-->
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">经营类型</label>
+                <div class="layui-input-inline">
+                  <select name="navid"  class="provinceswrap">
+                    <option value="1" selected>111</option>
+                  </select>
+                </div>
+              </div>-->
+
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">优惠力度</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="benefit_info" placeholder="请输入" class="layui-input">
+                </div>
+              </div>-->
+      
+            
               <div class="layui-form-item">
                 <label class="layui-form-label">联系电话</label>
                 <div class="layui-input-inline">
@@ -100,45 +128,24 @@
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
 
-
-
               <div class="layui-form-item">
-                <label class="layui-form-label">详细地址</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="address" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
-                </div>
-                <div class="layui-form-mid layui-word-aux">*</div>
-                <div id="mapContainer" style="width:100%;height: 800px;">
-                    <div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 1000000;">
-                        <b>请输入关键字：</b>
-                            <input type="text" id="keyword" name="keyword" value="" onkeydown='keydown(event)' style="width: 300px;"/>
-                        <div id="result1" name="result1"></div>
-                        </div>
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                  <input type="radio" name="status" value="0" title="停用">
+                  <input type="radio" name="status" value="1" title="启用" checked>
                 </div>
               </div>
 
-              <div class="layui-form-item">
+              
+
+              <!--<div class="layui-form-item">
                 <label class="layui-form-label">固话</label>
                 <div class="layui-input-inline">
                   <input type="text" name="fixedline" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
-              </div>
+              </div>-->
               <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
-
-
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">优惠图片</label>
-                <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
-                           <div class="detail-image-col-2 imageadd" >   
-                                                     </div>
-                          
-                  </div>
-                  <input type="hidden" name="pic_url" placeholder="请输入" value="['http://enclosure.wandlm.net/user-release/android_1489550372150.png','http://enclosure.wandlm.net/user-release/android_1489550372150.png']" autocomplete="off" class="layui-input shopinput">
-                             </div>
-                </div>
-                
-
+               
               <div class="layui-form-item">
                 <label class="layui-form-label">起止时间</label>
                 <div class="layui-input-inline">
@@ -156,21 +163,49 @@
               <div class="layui-form-item" style="display:none">
                 <label class="layui-form-label">经纬度</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="longitude" value="190" id="lngX" placeholder="经度" autocomplete="off" class="layui-input">
+                  <input type="text" name="longitude" value="" id="lngX" placeholder="经度" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
-                  <input type="text" name="latitude" value="13" id="latY" placeholder="纬度" autocomplete="off" class="layui-input">
+                  <input type="text" name="latitude" value="" id="latY" placeholder="纬度" autocomplete="off" class="layui-input">
                 </div>
               </div>
-               
-              <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">优惠介绍</label>
+               <!--benefit_info-->
+               <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">优惠信息</label>
                 <div class="layui-input-block"> 
-                  <textarea name="introduce" placeholder="请输入内容" class="layui-textarea">1111</textarea>
+                  <textarea name="benefit_info" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+                </div>
+                
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">店铺介绍</label>
+                <div class="layui-input-block"> 
+                  <textarea name="introduce" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+                
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">温馨提示</label>
+                <div class="layui-input-block"> 
+                  <textarea name="tips" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+                
+              </div>
+
+              <div class="layui-form-item">
+                <label class="layui-form-label">详细地址</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="address" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
+                
               </div>
-              
+
+              <div class="layui-form-item">
+                <div id="mapContainer" style="width:50%;height: 400px;">
+                    
+                </div>
+              </div>
 
               <div class="layui-form-item">
                 <div class="layui-input-block">

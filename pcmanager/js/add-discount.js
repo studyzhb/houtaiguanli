@@ -1,4 +1,4 @@
-require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-upload'],function($,jf,myObj,ajaxAddress,layObj,log,upload){
+require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','img-single-load'],function($,jf,myObj,ajaxAddress,layObj,log,upload){
 
     var common=myObj.load();
 
@@ -26,6 +26,24 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
         return obj;
     }();
 
+    var disObj={
+        data:{
+            navData:[]
+        },
+        methods:{
+            updatePrimaryData:function(){
+                $('.provinceswrap').html('');
+                $.each(disObj.data.navData,function(index,item){
+                    
+                    $('<option>').appendTo($('.provinceswrap')).text(item.name).attr('value',item.id);
+                })
+                form.render();
+            }
+        }
+    }
+
+    
+
     layui.use('laydate',function(){
        var laydate=layui.laydate;
         var start = {
@@ -35,7 +53,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
             ,istoday: false
             ,choose: function(datas){
                 var timeStamp=Math.floor(new Date(datas).getTime());
-                $(this.elem).next('input').val(timeStamp);
+                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
                 
                 end.min = datas; //开始日选好后，重置结束日的最小日期
                 end.start = datas //将结束日的初始值设定为开始日
@@ -49,7 +67,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
             ,istoday: false
             ,choose: function(datas){
                 var timeStamp=Math.floor(new Date(datas).getTime());
-                $(this.elem).next('input').val(timeStamp);
+                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
                 start.max = datas; //结束日选好后，重置开始日的最大日期
             }
         };
@@ -59,10 +77,10 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
             start.elem = this;
             layObj.laydate(start);
         })
-        // $('#date01').on('click',function(){
-        //     end.elem = this
-        //     layObj.laydate(end);
-        // })
+        $('#date01').on('click',function(){
+            end.elem = this
+            layObj.laydate(end);
+        })
    })
     var formData={
         name:'111111',
@@ -77,9 +95,17 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
         
     }
 
+    /**
+     * 跳转到列表页
+     */
+
+    $('.discountList').on('click',function(){
+        location.href="discountInfo.html?id="+params.cityid+'&navid='+params.navid;
+    })
 
     setTimeout(function(){
         form=layObj.form();
+        disObj.methods.updatePrimaryData();
         form.verify({
             username: function(value){
                 if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
@@ -108,7 +134,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
                 log.d(paraData.field)
                 paraData.field.cityid=params.cityid;
                 paraData.field.navid=params.navid;
-                
+                paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
+                paraData.field.longitude='';
+                paraData.field.latitude='';
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.addInfo,function(data){
                         log.d(data);
                         if(data.code==200){
@@ -128,49 +156,24 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','image-up
                 return false;
             });
     },1000)
-    // log.d(jedate)
-    // $("#date").jeDate({
-	//     isinitVal:true,
-	//     festival:true,
-	//     ishmsVal:false,
-	//     minDate: '2016-06-16 23:59:59',
-	//     maxDate: $.nowDate(0),
-	//     format:"hh:mm:ss",
-	//     zIndex:3000,
-	//     choosefun:function(elem, val) {
-
-	//     },     
-	//     //选中日期后的回调, elem当前输入框ID, val当前选择的值
-	// 	clearfun:function(elem, val) {},      
-	// 	//清除日期后的回调, elem当前输入框ID, val当前选择的值
-	// 	okfun:function(elem, val) {
-	// 		console.log(val);
-	// 		addShopPage.worktime.start=val;
-	// 	},        
-	// 	//点击确定后的回调, elem当前输入框ID, val当前选择的值
-	// 	success:function(elem) {},            
-	// 	//层弹出后的成功回调方法, elem当前输入框ID
-	// });
-	// $("#date01").jeDate({
-	//     isinitVal:true,
-	//     festival:true,
-	//     ishmsVal:false,
-	//     minDate: '2016-06-16 23:59:59',
-	//     maxDate: '2016-07-16 21:59:59',
-	//     format:"hh:mm:ss",
-	//     zIndex:3000,
-	//     okfun:function(elem, val) {
-	// 		console.log(val);
-	// 		addShopPage.worktime.end=val;
-	// 	}
-	// })
+   
     
-
     /**
      * 图片上传
      */
     $('.imageadd').on('click',function(){
         upload.uploadImage(this);
     });
+
+    /**
+     * 获取城市列表
+     */
+    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
+        // log.d(data);
+        if(data.code==200){
+            disObj.data.navData=data.data;
+        }
+    })
+
 
 });

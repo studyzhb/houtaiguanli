@@ -56,43 +56,15 @@
 	<div class="lay-main">
 	 
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-       <ul class="layui-tab-title">
-          <li>
-            <a href="shop.html">店铺列表</a>
-          </li>
-          <li class="layui-this">
-            添加店铺
-          </li>
-        </ul>
+       
         <div class="layui-content" style="padding-top:20px;">
           <div class="layui-tab-item layui-show">
             <form class="layui-form layui-form-pane menuForm" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
-              <div class="layui-form-item">
-                <label class="layui-form-label">标题</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="title" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">*</div>
-              </div>
-
-              <div class="layui-form-item">
-                <label class="layui-form-label">图片位置</label>
-                <div class="layui-input-inline">
-                  <select name="position" lay-filter="pro" class="provinceswrap">
-                    <option value="1" selected>主展示区</option>
-                    <option value="2">底部区域</option>
-                  </select>
-                </div>
-                
-                
-              </div>
-
               <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
 
-
               <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">banner图片</label>
+                <label class="layui-form-label">幻灯片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd" >   
@@ -104,31 +76,30 @@
                 </div>
                 
 
-              <div class="layui-form-item">
-                <label class="layui-form-label">起止时间</label>
-                <div class="layui-input-inline">
-                  
-                  <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
-                  <input type="hidden" placeholder="hh:mm:ss" name="release_begin"  readonly autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-input-inline">
-                  
-                  <input type="text" id="date01" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
-                  <input type="hidden" placeholder="hh:mm:ss" name="release_end"  readonly autocomplete="off" class="layui-input">
-                </div>
-                
-              </div>
-
               
-
-              <div class="layui-form-item">
-                <div class="layui-input-block">
-                  <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
-                </div>
-              </div>
               
             </form>
 
+            <form class="layui-form layui-form-pane menuForm" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+              <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">广告图</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2 imageadd" >   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="slide_src" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
+                             </div>
+                </div>
+                
+
+              
+              
+            </form>
             
 
           </div>
@@ -189,9 +160,9 @@
     </div>
 </script>
 
-<script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>-->
+<script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>
 <script src="../js/baiduMap.js"></script>
-<script src="../js/add-bannerInfo.js"></script>
+<script src="../js/banner.js"></script>
 
 <script type="text/javascript">
     layui.use('form', function(){

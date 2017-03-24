@@ -27,6 +27,7 @@ define({
      */
     label:{
         showLabelList:'/label/indexList',
+        showLabelTypeList:'/label/labelTypeList',
         //添加标签类型
         addLabelType:'/label/addLabelType',
         //添加指定标签类型下的内容
@@ -49,7 +50,8 @@ define({
         getLabelListByNavId:'/shop/getlabelTypeInfo',
         deleteLabelInfo:'/label/deleteLabel',
         getIconList:'/label/getLabelIco',
-        updateLabelTypeStatus:'/label/updateLabelTypeStatus'
+        updateLabelTypeStatus:'/label/updateLabelTypeStatus',
+        deleteLabelType:'/label/deleteLabelType'
     },
     /**
      * 商品信息
@@ -136,7 +138,9 @@ define({
         addInfo:'/benefit/addBenefit',
         updateInfo:'/benefit/updateBenefit',
         deleteInfo:'/benefit/deleteBenefit',
-        sortBenefit:'/benefit/positionChange'
+        sortBenefit:'/benefit/positionChange',
+        updateDiscountStatus:'/benefit/updateBenefitStatus',
+        deleteDiscountInfo:'/benefit/deleteBenefit'
     },
     /**
      * banner图管理
@@ -151,7 +155,8 @@ define({
         updateBannerInfo:'/banner/updateBanner',
         sortBanner:'/banner/positionChange',
         //删除
-        deleteBanner:'/banner/deleteBanner'
+        deleteBanner:'/banner/deleteBanner',
+        updateBannerStatus:'/banner/updateBannerStatus'
     }
 
 

@@ -3,9 +3,12 @@ require(['jquery','main','log','ajaxAddress'],function($,myObj,log,ajaxAddress){
     var common=myObj.load();
 
     common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.city.citylist,function(data){
+
         if(data.code==200){
+            $('.website-all-area').html('');
+            $('<a href="javascript:;">').html('全国站').attr('data-id',0).appendTo($('.website-all-area'));
             $.each(data.data,function(index,item){
-                 $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.website-all-area'));
+                 $('<a href="javascript:;">').html(item.name).attr('data-id',item.id).appendTo($('.website-all-area'));
             })
            
         }
@@ -44,10 +47,13 @@ require(['jquery','main','log','ajaxAddress'],function($,myObj,log,ajaxAddress){
         case 'discount':
             dataUrl='discountInfo.html';
             break;
+        case 'bannerNew':
+            dataUrl='banner.html';
+            break;
     }
 
     $('.website-all-area').on('click','a',function(){
-        open(dataUrl+'?id='+$(this).data('id'),'_self');
+        open(dataUrl+'?id='+$(this).data('id')+'&name='+escape($(this).text()),'_self');
     })
     
 });

@@ -346,7 +346,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         $('.editorLabelWrapper').html('');
         layObj.laytpl(tmpl).render({id:lId,name:lName,introduce:lIntro},function(html){
             $('.editorLabelWrapper').append(html);
-            
         })
         layObj.layer.open({
             type:1,

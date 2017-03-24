@@ -60,6 +60,12 @@
                 <div class="layui-btn add-shop-info">
                     添加优惠信息
                 </div>
+                <div class="layui-btn" onclick="location.reload()">
+                    刷新
+                </div>
+                <div class="layui-btn" onclick="location.href='websiteManager.html?name=discount'">
+                    返回
+                </div>
             </form>
               
             </div>
@@ -70,7 +76,7 @@
                     <col>
                     <col>
                     <col>
-                    <col>
+                    <col width="220">
                     <col width="100"> 
                 </colgroup>
                 <thead>
@@ -126,9 +132,17 @@
             <td>{{=item.name}}</td>
             <td>{{=item.benefit_info}}</td>
             {{# if(item.status=='1'){ }}
-                <td>上架</td>
+                <td>
+                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                        上架
+                    </button>
+                </td>
             {{# }else{ }}
-                <td>下架</td>
+                <td>
+                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                        下架
+                    </button>
+                </td>
             {{# } }}
             <td>
                 {{=new Date(item.release_begin*1000).toLocaleString()}}--{{=new Date(item.release_end*1000).toLocaleString()}}
@@ -138,6 +152,9 @@
                 <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo">
                     <i class="layui-icon">&#xe642;</i>
                 </button>
+                <div data-id="{{item.id}}" class="layui-btn layui-btn-small layui-btn-primary deleteDiscountInfo" data-status="{{=item.status}}" data-order="{{=item.displayorder}}">
+                    <i class="layui-icon">&#xe640;</i>
+                </div>
             </td>
             <td>
                 <input type="text" placeholder="0" value='{{item.displayorder}}' data-order="{{item.displayorder}}"  autocomplete="off" class="layui-input sortInput" data-id="{{item.id}}" /> 
@@ -147,6 +164,11 @@
     {{# }) }}
   
 </script>
+
+
+
+
+
 </body>
 <script>
     layui.use('form',function(){

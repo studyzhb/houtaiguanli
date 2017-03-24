@@ -1,27 +1,8 @@
-require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxAddress,layObj,log){
+require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,myObj,ajaxAddress,layObj,log,params){
     
     var common=myObj.load();
     var fistLoad=true;
 
-    /**
-     * 获取地址栏中参数信息
-     */
-    var params=function(){
-
-        var paraData=location.href.split('?')||[];
-
-        var obj={};
-
-        $.each(paraData,function(index,item){
-
-            var arr=item.split('=')||[];
-            
-            arr.length==2?obj[arr[0]]=arr[1]:'';
-            
-        })
-
-        return obj;
-    }();
     
 
     var disObj={
@@ -83,6 +64,26 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         location.reload();
                     }
                 },{id:id,oldPostion:oldOrder,newPostion:order});
+            },
+            updateDiscountStatus:function(sta,id){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.updateDiscountStatus,function(data){
+                    if(data.code==200){
+                        layObj.layer.msg(data.msg);
+                        disObj.methods.updatePageNum(1);
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{id:id,status:sta});
+            },
+            deleteDiscountInfo:function(id){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.deleteDiscountInfo,function(data){
+                    if(data.code==200){
+                       disObj.methods.updatePageNum(1);
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{id:id});
             }
         }
     }
@@ -93,9 +94,31 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
      $('#tableWrapper').on('click','.editInfo',function(){
         //  log.d('nnnn');
-         open('editor-discountInfo.html?id='+$(this).data('id'),'_self');
+         open('editor-discountInfo.html?cityid='+params.id+'&id='+$(this).data('id')+"&navid="+disObj.data.navId,'_self');
      })
 
+     /**
+     * 删除详细信息
+     */
+
+     $('#tableWrapper').on('click','.deleteDiscountInfo',function(){
+        //  log.d('nnnn');
+         var dId=$(this).data('id');
+         layObj.layer.confirm('你确定要执行删除操作?',function(index){
+             layObj.layer.close(index);
+             disObj.methods.deleteDiscountInfo(dId);
+         })
+         
+     })
+
+     /**
+     * 状态改变
+     */
+    $('#tableWrapper').on('click','.icon-btn-sub',function(){
+        var sta=$(this).data("status");
+        var id=$(this).data("id");
+        disObj.methods.updateDiscountStatus(sta,id);
+    })
 
      /**
      * 失去焦点时请求服务器进行排序
@@ -149,13 +172,19 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
      */
     common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
         // log.d(data);
+        var ind=params.navid;
         if(data.code==200){
             $.each(data.data,function(index,item){
-                if(index==0){
+                if(!ind&&index==0){
                     disObj.data.navId=item.id;
                     $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
                      disObj.methods.updatePageNum(1);
-                }else{
+                }else if(index==ind){
+                    disObj.data.navId=item.id;
+                    $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
+                     disObj.methods.updatePageNum(1);
+                }
+                else{
                     $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
                 }  
             })

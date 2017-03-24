@@ -175,8 +175,6 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
             },
             
             updateAreaTypeInfo:function(){
-                console.log(params);
-
                 areaObj.methods.updatePageNum(1);
                 //  common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaType,function(data){
                 //         //areaObj.methods.updateArealist(data.data);

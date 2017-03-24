@@ -35,9 +35,6 @@
           <li class="layui-this">
             标签信息
           </li>
-          <li >
-            <a href="add-label.html">添加新标签</a>
-          </li>
         </ul>
 
         <div class="layui-content">
@@ -246,7 +243,7 @@
                   {{# } }}
                 </button>
                 <div class="layui-input-inline" style="width:75px;">
-                  <select  lay-filter="labelType" data-ele="{{item.id}}">
+                  <!--<select  lay-filter="labelType" data-ele="{{item.id}}">
                       {{# if(item.type=='1'){ }}
                         <option value="2">店铺</option>
                         <option value="1" selected>产品</option>
@@ -260,7 +257,19 @@
                         <option value="1" >产品</option>
                         <option value="3" selected>暂无</option>
                       {{# } }}
-                  </select>
+                  </select>-->
+                  <button class="layui-btn layui-btn-primary">
+                    {{# if(item.type=='1'){ }}
+                        产品
+                        
+                      {{# }else if(item.type=='2'){ }}
+                       店铺
+                        
+                      {{# }else if(item.type=='3'){ }}
+                      暂无
+                        
+                      {{# } }}
+                  </button>
                 </div>
                 <div class="layui-input-inline" style="/*margin-left:-14px;*/">
 
