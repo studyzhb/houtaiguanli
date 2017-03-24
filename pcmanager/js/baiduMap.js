@@ -1,6 +1,9 @@
 require(['jquery','log'],function($,log){
+
     var windowsArr = [];
         var marker = [];
+        var arrPosition=['113.71433','34.74661'];
+        //[113.71433,34.74661]
         // var longListX = document.getElementById("lngX").placeholder;
         // var longListY = document.getElementById("latY").placeholder;
         // console.log(longListX);
@@ -11,10 +14,12 @@ require(['jquery','log'],function($,log){
                 resizeEnable: true,
                 zoom:20,//地图显示的缩放级别
                 isHotspot: true,
-                center:[113.71433,34.74661]
+                center:arrPosition
             }),
             keyboardEnable:false
         });
+
+        
         
         var lngx;
         var laty;
@@ -83,6 +88,10 @@ require(['jquery','log'],function($,log){
         var clickEventListener=AMap.event.addListener(mapObj,'click',function(e){
             document.getElementById("lngX").value=e.lnglat.getLng();
             document.getElementById("latY").value=e.lnglat.getLat();
+            document.getElementById("lngX01").value=e.lnglat.getLng();
+            document.getElementById("latY01").value=e.lnglat.getLat();
+            $('.formWrapper').find('#lngX01').val(lng_str);
+            $('.formWrapper').find('#latY01').val(lat_str);
         });
    
    
@@ -221,6 +230,9 @@ require(['jquery','log'],function($,log){
                 infoWindow.open(mapObj, nowPosition);
                 document.getElementById("lngX").value = lng_str;
                 document.getElementById("latY").value = lat_str;
+
+                $('.formWrapper').find('#lngX01').val(lng_str);
+                $('.formWrapper').find('#latY01').val(lat_str);
             };
             AMap.event.addListener(mar, "mouseover", aa);
         }

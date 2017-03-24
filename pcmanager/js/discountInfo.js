@@ -1,4 +1,4 @@
-require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,myObj,ajaxAddress,layObj,log,params){
+require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-load'],function($,myObj,ajaxAddress,layObj,log,params,upload){
     
     var common=myObj.load();
     var fistLoad=true;
@@ -84,9 +84,90 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                         layObj.layer.msg(data.msg);
                     }
                 },{id:id});
+            },
+            getSingleInfo:function(id){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.discount.showSingleInfo,function(data){
+                    log.d(data);
+                    
+                    if(data.code==200){
+                        var tpl=$('#formCon').html();
+                        $('.formWrapper').html('');
+
+                        $('.readyBaidu').remove();
+
+                        $('#baiduPosition').data('info',data.data.itude)
+                        $('.mapWrapper').append($('#mapContainer'));
+                        // $('<script>').appendTo($('body')).attr('src','../js/baiduMap.js');
+                        layObj.laytpl(tpl).render(data.data,function(html){
+                            $('.formWrapper').append(html);
+                            setTimeout(function(){
+                                form.render();
+                            },600);
+                        });
+                    
+                    }
+                },{id:id})
             }
         }
     }
+
+    layui.use('laydate',function(){
+       var laydate=layui.laydate;
+        var start = {
+            min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                var timeStamp=Math.floor(new Date(datas).getTime());
+                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
+                
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+        
+        var end = {
+            min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss'
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                var timeStamp=Math.floor(new Date(datas).getTime());
+                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+
+        $('#date').on('click',function(){
+            log.d(layObj);
+            start.elem = this;
+            layObj.laydate(start);
+        })
+        $('#date01').on('click',function(){
+            end.elem = this
+            layObj.laydate(end);
+        })
+
+        $('.formWrapper').on('click','#date',function(){
+            log.d(layObj);
+            start.elem = this;
+            layObj.laydate(start);
+        })
+        $('.formWrapper').on('click','#date01',function(){
+            end.elem = this
+            layObj.laydate(end);
+        })
+   })
+
+   $('.cityName').text(unescape(params.name));
+
+    /**
+     * 图片上传
+     */
+    $('.imageadd').on('click',function(){
+        upload.uploadImage(this);
+    });
 
     /**
      * 编辑店铺详细信息
@@ -94,8 +175,20 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
 
      $('#tableWrapper').on('click','.editInfo',function(){
         //  log.d('nnnn');
-         open('editor-discountInfo.html?cityid='+params.id+'&id='+$(this).data('id')+"&navid="+disObj.data.navId,'_self');
-     })
+         //open('editor-discountInfo.html?cityid='+params.id+'&id='+$(this).data('id')+"&navid="+disObj.data.navId,'_self');
+         disObj.methods.getSingleInfo($(this).data('id'));
+         layObj.layer.open({
+             type:1,
+            content: $('.editMenuForm'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:['95%','80%'],
+            zIndex:10,
+            maxmin: true,
+            end:function(){
+                $('.editMenuForm').hide();
+            }
+         })
+    })
 
      /**
      * 删除详细信息
@@ -134,7 +227,23 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
      * 点击添加店铺先选择导航
      */
     $('.add-shop-info').on('click',function(){
-        open('add-discountInfo.html?cityid='+params.id+'&navid='+disObj.data.navId,'_self');
+        $('.menuForm')[0].reset();
+        $('.imageadd').show().prevAll().remove();
+        $('.addmapWrapper').append($('#mapContainer'));
+        // 打开添加优惠信息窗口
+        layObj.layer.open({
+             type:1,
+            content: $('.menuForm'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:['95%','80%'],
+            zIndex:10,
+            maxmin: true,
+            end:function(){
+                $('.menuForm').hide();
+            }
+         })
+
+        // open('add-discountInfo.html?cityid='+params.id+'&navid='+disObj.data.navId,'_self');
     })
 
     $('.nav-menu-all-area').on('click','a',function(){
@@ -152,20 +261,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
 
     })
 
-    // $('#purchaselist').on()
-
     /**
-    * 获取商品列表数据
-    */
-    // common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shoplist,function(data){
-    //     log.d(data);
-    //     if(data.code==200){
-    //         disObj=data.pageAllNum%10==0?data.pageAllNum/10:Math.ceil(data.pageAllNum/10);
-    //        disObj.methods.updateShopList(data.data);
-    //     }else{
-    //         layObj.layer.msg('获取数据失败,请稍后再试!!');
-    //     }
-    // })
+     * 图片上传
+     */
+    $('.formWrapper').on('click','.imageadd',function(){
+        upload.uploadImage(this);
+    });
+
     
     /**
      * 获取城市列表
@@ -191,6 +293,76 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
            
         }
     })
+
+    setTimeout(function(){
+        form=layObj.form();
+        
+        form.verify({
+            username: function(value){
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                return '用户名不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                return '用户名首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                return '用户名不能全为数字';
+                }
+            }
+            
+            ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ],
+            isChangeValue:function(value,a){
+                if($(a).data('info')==value){ 
+                    $(a).removeAttr("name");
+                }   
+            }
+            });
+
+            form.on('submit(shopInfo)',function(paraData){
+                log.d(paraData.field)
+                paraData.field.cityid=params.id;
+                paraData.field.navid=disObj.data.navId;
+                paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
+                paraData.field.longitude='';
+                paraData.field.latitude='';
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.addInfo,function(data){
+                        log.d(data);
+                        if(data.code==200){
+                            layer.msg('添加成功');
+                            setTimeout(function(){
+                                layObj.layer.closeAll();
+                                disObj.methods.updatePageNum();
+                            },1000);
+                            
+                        }else{
+                            layer.msg('网络错误，请稍后重试');
+                            setTimeout(function(){
+                                
+                            },1000);
+                        }
+                    },paraData.field);
+                    
+                return false;
+            });
+
+            form.on('submit(editorDiscountInfo)',function(paraFormData){
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.updateInfo,function(data){
+                log.d(data);
+                if(data.code==200){
+                    layObj.layer.msg('更新成功');
+                    layObj.layer.closeAll();
+                    disObj.methods.updatePageNum();
+                }else{
+                    layObj.layer.msg(data.msg);
+                    disObj.methods.getSingleInfo();
+                }
+            },paraFormData.field);
+        })
+    },1000)
+
 
     
 })
