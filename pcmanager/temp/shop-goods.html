@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
 	<script src="../common/layui/layui.js"></script>
+    <script src="../utf8-php/ueditor.config.js"></script>
+    <script src="../utf8-php/ueditor.all.min.js"></script> 
     <script data-main="../js/domain" src="../js/require.min.js"></script>
 </head>
 <body>
@@ -19,6 +21,12 @@
 
 	<div class="lay-main">
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+         <ul class="layui-tab-title" style="margin-bottom:10px;">
+          
+          <li class="layui-this cityName">
+            
+          </li>
+        </ul>
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
               <div class="nav-menu-area" style="padding-bottom:10px;">
@@ -53,11 +61,15 @@
                 </div>
               </div>
               <div class="layui-btn searchByKeywords">
-                   搜索
+                搜索
                 </div>
-                <div class="layui-btn add-shop-info" onclick="location.href='add-shop-goods.html'">
-                    添加商品
+                <div class="layui-btn" onclick="location.reload()">
+                    刷新
                 </div>
+                <div class="layui-btn" onclick="location.href='websiteManager.html?name=goods'">
+                    返回
+                </div>
+                
             </form>
               <div style="margin-top:20px;">
               <ul class="layui-tab-title">
@@ -81,15 +93,14 @@
                     <tr>
                         <th>序号</th>
                         <th>商品名称</th>
-                        <th>所属商户</th>
+                        <th>所属店铺</th>
                         <th>上传人</th>
                         <th>到期时间</th>
                         <th>价格</th>
-                        <th>类型</th>
+                        <th>折扣</th>
                         <th>使用规则</th>
-                        <th>审核状态</th>
-                        <th>审核人</th>
                         <th>状态</th>
+                        <th>是否推荐</th>
                         <th>操作</th>
                     </tr> 
                 </thead>
@@ -121,46 +132,222 @@
             <td>{{(item.pricrc_sell*1).toFixed(2)}}</td>
             <td>全场折扣95折</td>
             <td>10</td>
-            {{# if(item.recommend=='0'){ }}
-                <td>未推荐</td>
+           {{# if(item.status=='0'){ }}
+                <td>
+                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                            下架
+                    </button>
+                </td>
             {{# }else{ }}
-                <td>推荐</td>
+                <td>
+                    <div class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                            上架
+                        </div>
+                </td>
             {{# } }}
-            <td>编辑</td>
-            {{# if(item.status=='0'){ }}
-                <td>停用</td>
-            {{# }else{ }}
-                <td>启用</td>
-            {{# } }}
+                {{# if(item.status=='0'){ }}
+                    {{# if(item.recommend=='0'){ }}
+                        <td>
+                            未推荐
+                        </td>
+                    {{# }else{ }}
+                        <td>
+                            
+                                已推荐
+                           
+                            
+                        </td>
+                    {{# } }}
+                {{# }else{ }}
+                    {{# if(item.recommend=='0'){ }}
+                        <td>
+                            <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                                未推荐
+                            </button>
+                        </td>
+                    {{# }else{ }}
+                        <td>
+                            <div class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                                已推荐
+                            </div>
+                            
+                        </td>
+                    {{# } }}
+                {{# } }}
             <td>
-                <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo">
+                <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo" data-id="{{item.id}}">
                     <i class="layui-icon">&#xe642;</i>
                 </button>
-                {{# if(item.recommend=='1'){ }}
-                    <button class="layui-btn layui-btn-small recommendInfo" data-status="0" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
-                        取消推荐
-                    </button>
-                {{# }else{ }}
-                    <button class="layui-btn layui-btn-small recommendInfo" data-status="1" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
-                        推荐
-                    </button>
-                {{# } }}
-                
+                <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-danger deleteGoodsInfo" data-id="{{item.id}}">
+                    <i class="layui-icon">&#xe640;</i>
+                </button>
             </td>
         </tr>
 
     {{# }) }}
   
 </script>
+<script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+<!--编辑店铺信息-->
+<form class="layui-form layui-form-pane editMenuForm" method="POST" style="display: none;font-size:14px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="formWrapper"></div>
 
+    <div class="layui-form-item mapWrapper">
+
+    </div>
+
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorDiscountInfo">立即提交</div>
+    </div>
+    </div>
+
+</form>
+
+  <!-- =======================弹出窗========================= -->
+<script type="text/html" id="formCon">
+   <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">产品图片</label>
+    <div class="layui-input-block" style="margin-top:10px;">
+        <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+            {{# layui.each(eval(d.goods_pic)||[],function(index,item){ }}
+                <div class="detail-image-col-2 detail-banner-split">
+                    <div class="left-block"></div>
+                    <div class="right-block"></div>
+                    <img src="{{item}}" width="100%" height="100%" />    
+                </div>
+            {{# }) }}
+            {{# if(eval(d.goods_pic)||[].length<=5){ }}
+                <div class="detail-image-col-2 imageadd" >   
+                                            </div>
+            {{# } }}  
+                
+        </div>
+        <input type="hidden" name="goods_pic" value='{{=d.goods_pic}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+    </div>
+    
+    <input type="hidden" name="cityid" placeholder="请输入" autocomplete="off" class="layui-input cityInput">
+    <input type="hidden" name="navid" placeholder="请输入" autocomplete="off" class="layui-input navInput">
+    <input type="hidden" name="shopid" placeholder="请输入" autocomplete="off" class="layui-input shopInput">
+                    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">产品编号</label>
+    <div class="layui-input-block">
+        <input type="text" name="goodsnum" value="{{=d.goodsnum}}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+    </div>             
+    <div class="layui-form-item">
+    <label class="layui-form-label">产品名称</label>
+    <div class="layui-input-block">
+        <input type="text" name="goodsname" value="{{d.goodsname}}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">商品支付价格</label>
+    <div class="layui-input-block">
+        <input type="text" name="price_pay" placeholder="请输入" value="{{=d.price_pay}}" autocomplete="off" class="layui-input">
+    </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">原价</label>
+    <div class="layui-input-block">
+        <input type="text" name="pricrc_sell" value="{{=d.pricrc_sell}}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">产品分类</label>
+    <div class="layui-input-block">
+        <select name="classifyid" >
+        <option value="1" selected>服装服饰</option>
+        </select>
+    </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">产品描述</label>
+    <div class="layui-input-block">
+        <textarea name="introduce" placeholder="请输入内容" class="layui-textarea">{{=d.introduce}}</textarea>
+    </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">套餐详情</label>
+    <div class="layui-input-block">
+        <textarea name="note" placeholder="请输入内容" class="layui-textarea">{{=d.note}}</textarea>
+    </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">套餐图片</label>
+    <div class="layui-input-block" style="margin-top:10px;">
+        <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+            {{# layui.each(eval(d.goods_logo)||[],function(index,item){ }}
+                <div class="detail-image-col-2 detail-banner-split">
+                    <div class="left-block"></div>
+                    <div class="right-block"></div>
+                    <img src="{{item}}" width="100%" height="100%" />    
+                </div>
+            {{# }) }}
+            {{# if(eval(d.goods_logo)||[].length<=5){ }}
+                <div class="detail-image-col-2 imageadd" >   
+                                            </div>
+            {{# } }}                
+        </div>
+        <input type="hidden" name="goods_logo" value='{{=d.goods_logo}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+    </div>
+    
+                    </div>
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">产品规格</label>
+        <div class="layui-input-block">
+        <input type="radio" name="" title="单人餐">
+        <input type="radio" name="" title="双人餐" checked>
+        <input type="radio" name="" title="3-4人餐">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">使用规则</label>
+        <div class="layui-input-block">
+        <input type="radio" name="" title="节假日通用">
+        <input type="radio" name="" title="节假日不能使用" checked>
+        <input type="radio" name="" title="特定日期不能使用">
+        </div>
+    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否免预约</label>
+        <div class="layui-input-block">
+        <input type="radio" name="bespoke" title="是" value="1">
+        <input type="radio" name="bespoke" title="否" value="2" checked>
+        <!--<input type="radio" name="bespoke" placeholder="至少提前多长时间预约">-->
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">到期时间</label>
+        <div class="layui-input-inline">
+        <input type="text" id="date" placeholder="hh:mm:ss" value=""  readonly autocomplete="off" class="layui-input">
+        </div>
+        <input type="hidden" name="validity_time" class="worktimesae" value="{{=d.validity_time}}">
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否自动续期</label>
+        <div class="layui-input-block">
+            <input type="radio" name="renew" title="是" value="1">
+            <input type="radio" name="renew" title="否" value="2" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">退款</label>
+        <div class="layui-input-block">
+        <input type="radio" name="refund" value="2" title="过期退">
+        <input type="radio" name="refund" value="1" title="随时退" checked>
+        <input type="radio" name="refund" value="0" title="暂定">
+        
+        </div>
+    </div>
+              
+</script>
 
 
 
 </body>
-<script>
-    layui.use('form',function(){
-        
-    })
-</script>
 <script src="../js/shop-goods.js"></script>
 </html>

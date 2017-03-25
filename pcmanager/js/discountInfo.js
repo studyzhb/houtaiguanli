@@ -1,15 +1,14 @@
-require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-load'],function($,myObj,ajaxAddress,layObj,log,params,upload){
+require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-load','baiduMap'],function($,myObj,ajaxAddress,layObj,log,params,upload,mapObj){
     
     var common=myObj.load();
     var fistLoad=true;
-
     
-
     var disObj={
         data:{
             navId:'',
             tempGoodsContent:$('#shopGoodsCon').html(),
-            pageCount:0
+            pageCount:0,
+            currPage:'1'
         },
         methods:{
             updateShopList:function(data){
@@ -24,16 +23,19 @@ require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-lo
                 })
             },
             updatePage:function(){
+                
                 layui.use(['laypage', 'layer'],function(){
                     var laypage=layui.laypage;
                     var layer = layui.layer;
+                    
                     laypage({
                         cont: 'page'
                         ,pages: disObj.data.pageCount //总页数
-                        ,groups: 5 //连续显示分页数
+                        ,groups: 3 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
                             disObj.methods.updatePageNum(data.curr);
+                            disObj.data.currPage=data.curr;
                         }
                     });
                 });
@@ -43,14 +45,22 @@ require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-lo
             updatePageNum:function(num){
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.discount.showlist,function(data){
                     log.d(data);
+                    //page页数 pagesize每页个数 total总数
                     if(data.code==200){
+                        $('.pageWrapper').show();
                         if(fistLoad){
                             disObj.methods.updatePage();
                         }
-                        disObj.data.pageCount=data.pageAllNum%10==0?data.pageAllNum/10:Math.ceil(data.pageAllNum/10);
+                        $('.detailCount').text(data.total);
+                        //data.total%data.pagesize==0?data.total/data.pagesize:
+                        disObj.data.pageCount=Math.ceil(data.total/data.pageSize);
+                        // console.log(data.total/data.pagesize);
                         disObj.methods.updateShopList(data.data);
                     }else{
                         layObj.layer.msg(data.msg);
+                        disObj.data.pageCount=0;
+                        $('.pageWrapper').hide();
+                         disObj.methods.updateShopList([]);
                     }
                 },{page:num,cityid:params.id,navid:disObj.data.navId});
             },
@@ -65,22 +75,62 @@ require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-lo
                     }
                 },{id:id,oldPostion:oldOrder,newPostion:order});
             },
+            sortDiscountOrderInfo:function(id,order,obj,tag){
+                var targetEl={};
+                var tId,tOrder;
+                if(tag){
+                    tId=obj.prev().data('id');
+                    tOrder=obj.prev().data('order');
+                    if(!tId){
+                        targetEl='';
+                    }else{
+                        targetEl.id=tId||'';
+                        targetEl.displayorder=order;
+                    }
+                    
+                }else{
+                     tId=obj.next().data('id');
+                     tOrder=obj.next().data('order');
+                    if(!tId){
+                        targetEl='';
+                    }else{
+                        targetEl.id=tId||'';
+                        targetEl.displayorder=order;
+                    }
+                }
+                var arr=[];
+                arr[0]={id:id,displayorder:tOrder};
+                if(targetEl){
+                    arr.push(targetEl);
+                }
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.sortDiscount,function(data){
+                    if(data.code==200){
+                        layObj.layer.msg('排序成功');
+                        disObj.methods.updatePageNum(disObj.data.currPage);
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{positionJson:JSON.stringify(arr)});
+            },
             updateDiscountStatus:function(sta,id){
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.updateDiscountStatus,function(data){
                     if(data.code==200){
                         layObj.layer.msg(data.msg);
-                        disObj.methods.updatePageNum(1);
+                        disObj.methods.updatePageNum(disObj.data.currPage);
                         
                     }else{
                         layObj.layer.msg(data.msg);
+                        disObj.methods.updatePageNum(disObj.data.currPage);
                     }
                 },{id:id,status:sta});
             },
             deleteDiscountInfo:function(id){
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.deleteDiscountInfo,function(data){
                     if(data.code==200){
-                       disObj.methods.updatePageNum(1);
+                       disObj.methods.updatePageNum(disObj.data.currPage);
                     }else{
+                        disObj.methods.updatePageNum(disObj.data.currPage);
                         layObj.layer.msg(data.msg);
                     }
                 },{id:id});
@@ -92,11 +142,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-lo
                     if(data.code==200){
                         var tpl=$('#formCon').html();
                         $('.formWrapper').html('');
-
-                        $('.readyBaidu').remove();
-
                         $('#baiduPosition').data('info',data.data.itude)
                         $('.mapWrapper').append($('#mapContainer'));
+                        var pArr=data.data.itude?data.data.itude.split(',')||[]:[];
+                        new AMap.Marker({
+                            position :pArr,
+                            map : mapObj
+                        })
                         // $('<script>').appendTo($('body')).attr('src','../js/baiduMap.js');
                         layObj.laytpl(tpl).render(data.data,function(html){
                             $('.formWrapper').append(html);
@@ -251,8 +303,27 @@ require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-lo
         //log.d($(this))
         disObj.data.navId=$(this).data('id');
         // log.d(disObj.data.navId);
-        disObj.methods.updatePageNum(1);
+        disObj.methods.updatePageNum(disObj.data.currPage);
     });
+
+
+    /**
+     * 排序
+     */
+    $('#tableWrapper').on('click','.upSort',function(){
+        
+         
+         var bid=$(this).data('id');
+         var bOrder=$(this).data('order');
+         disObj.methods.sortDiscountOrderInfo(bid,bOrder,$(this).parents('tr'),true);
+     })
+
+     $('#tableWrapper').on('click','.downSort',function(){
+        
+        var bid=$(this).data('id');
+         var bOrder=$(this).data('order');
+         disObj.methods.sortDiscountOrderInfo(bid,bOrder,$(this).parents('tr'),false);
+     })
 
     /**
      * 
@@ -280,11 +351,11 @@ require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-lo
                 if(!ind&&index==0){
                     disObj.data.navId=item.id;
                     $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                     disObj.methods.updatePageNum(1);
+                     disObj.methods.updatePageNum(disObj.data.currPage);
                 }else if(index==ind){
                     disObj.data.navId=item.id;
                     $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                     disObj.methods.updatePageNum(1);
+                     disObj.methods.updatePageNum(disObj.data.currPage);
                 }
                 else{
                     $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
@@ -334,7 +405,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-lo
                             layer.msg('添加成功');
                             setTimeout(function(){
                                 layObj.layer.closeAll();
-                                disObj.methods.updatePageNum();
+                                disObj.methods.updatePageNum(disObj.data.currPage);
                             },1000);
                             
                         }else{
@@ -348,18 +419,19 @@ require(['jquery','main','ajaxAddress','lay-model','log','params','img-single-lo
                 return false;
             });
 
-            form.on('submit(editorDiscountInfo)',function(paraFormData){
+            form.on('submit(editorDiscountInfo)',function(paraData){
+            paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.updateInfo,function(data){
                 log.d(data);
                 if(data.code==200){
                     layObj.layer.msg('更新成功');
                     layObj.layer.closeAll();
-                    disObj.methods.updatePageNum();
+                    disObj.methods.updatePageNum(disObj.data.currPage);
                 }else{
                     layObj.layer.msg(data.msg);
                     disObj.methods.getSingleInfo();
                 }
-            },paraFormData.field);
+            },paraData.field);
         })
     },1000)
 

@@ -123,7 +123,7 @@
           </div>
         </div>
 
-        <div style="height:55px;padding-right:10px;">
+        <div style="height:55px;padding-right:10px;" class="pageWrapper">
             <div id="page" style="float:right;"></div>
             <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
         </div>
@@ -135,7 +135,7 @@
  <!-- ========================================================= -->
 <script id="shopGoodsCon" type="text/html">
     {{# layui.each(d.data,function(index,item){ }}
-        <tr>
+        <tr data-id="{{=item.id}}" data-order="{{=item.displayorder}}">
             <td>{{index+1}}</td>
             <td>{{=item.name}}</td>
             <td>{{=item.benefit_info}}</td>
@@ -165,7 +165,15 @@
                 </div>
             </td>
             <td>
-                <input type="text" placeholder="0" value='{{item.displayorder}}' data-order="{{item.displayorder}}"  autocomplete="off" class="layui-input sortInput" data-id="{{item.id}}" /> 
+              <div style="width:20px;display:inline-block;">
+                    {{# if(index!=0){ }}
+                        <i class="layui-icon upSort" data-id="{{=item.id}}" data-order="{{=item.displayorder}}" style="font-size:18px;cursor:pointer;">&#xe619;</i>
+                    {{# } }}
+                    {{# if(index!=d.data.length-1){ }}
+                        <i class="layui-icon downSort" data-id="{{=item.id}}" data-order="{{=item.displayorder}}" style="font-size:18px;cursor:pointer;">&#xe61a;</i>
+                    {{# } }}
+                </div>
+                
             </td>
         </tr>
 
@@ -343,7 +351,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">联系电话</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="telephone" value="{{=d.telephone}}" lay-verify="isChangeValue" data-info="{{=d.telephone}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="telephone" value="{{=d.telephone}}" lay-verify="" data-info="{{=d.telephone}}" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
@@ -357,22 +365,22 @@
                 <div class="layui-input-inline">
                   
                   <input type="text" id="date" placeholder="hh:mm:ss" value="{{=new Date(d.release_begin*1000).toLocaleString()}}" readonly autocomplete="off" class="layui-input">
-                  <input type="hidden" placeholder="hh:mm:ss" name="release_begin" value="{{=d.release_begin}}" lay-verify="isChangeValue" data-info="{{=d.release_begin}}"  readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" placeholder="hh:mm:ss" name="release_begin" value="{{=d.release_begin}}" lay-verify="" data-info="{{=d.release_begin}}"  readonly autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
                   
                   <input type="text" id="date01" placeholder="hh:mm:ss"  value="{{=new Date(d.release_end*1000).toLocaleString()}}"  readonly autocomplete="off" class="layui-input">
-                  <input type="hidden" placeholder="hh:mm:ss" name="release_end" value="{{=d.release_end}}" lay-verify="isChangeValue" data-info="{{=d.release_end}}" readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" placeholder="hh:mm:ss" name="release_end" value="{{=d.release_end}}" lay-verify="" data-info="{{=d.release_end}}" readonly autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
-              <div class="layui-form-item" style="display:none">
+              <div class="layui-form-item" style="display:none;">
                 <label class="layui-form-label">经纬度</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="longitude" id="lngX01" data-info="" placeholder="经度" autocomplete="off" class="layui-input">
+                  <input type="text" name="longitude" id="lngX01" data-info="" placeholder="经度" value="" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
-                  <input type="text" name="latitude" id="latY02" data-info="" placeholder="纬度" autocomplete="off" class="layui-input">
+                  <input type="text" name="latitude" id="latY01" data-info="" placeholder="纬度" value="" autocomplete="off" class="layui-input">
                 </div>
               </div>
                <!--benefit_info-->
@@ -388,7 +396,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺介绍</label>
                 <div class="layui-input-block"> 
-                  <textarea name="introduce" placeholder="请输入内容" data-info="{{=d.introduce}}" lay-verify="isChangeValue" class="layui-textarea">
+                  <textarea name="introduce" placeholder="请输入内容" data-info="{{=d.introduce}}" lay-verify="" class="layui-textarea">
                       {{=d.introduce}}
                   </textarea>
                 </div>
@@ -396,7 +404,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">温馨提示</label>
                 <div class="layui-input-block"> 
-                  <textarea name="tips" placeholder="请输入内容" data-info="{{=d.tips}}" lay-verify="isChangeValue" class="layui-textarea">
+                  <textarea name="tips" placeholder="请输入内容" data-info="{{=d.tips}}" lay-verify="" class="layui-textarea">
                       {{=d.tips}}
                   </textarea>
                 </div>
@@ -405,7 +413,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="address" value="{{=d.address}}" data-info="{{d.address}}" lay-verify="isChangeValue" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
+                  <input type="text" name="address" value="{{=d.address}}" data-info="{{d.address}}" lay-verify="" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
                 
@@ -420,6 +428,7 @@
     })
 </script>
 <script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>
+<!--<script src="../js/baiduMap.js" class="readyBaidu"></script>-->
 <script src="../js/discountInfo.js"></script>
-<script src="../js/baiduMap.js" class="readyBaidu"></script>
+
 </html>

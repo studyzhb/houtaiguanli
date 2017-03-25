@@ -873,3 +873,13 @@ a.active-p {
   left:0;
   display: none;
 }
+.opacity-z-index{
+  position: absolute;
+  display: none;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+}

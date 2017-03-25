@@ -47,7 +47,7 @@ define({
          */
         updateLabelType:'/label/updateLabelType',
         //获取id
-        getLabelListByNavId:'/shop/getlabelTypeInfo',
+        getLabelListByNavId:'/shop/getNavLabelTypeInfo',
         deleteLabelInfo:'/label/deleteLabel',
         getIconList:'/label/getLabelIco',
         updateLabelTypeStatus:'/label/updateLabelTypeStatus',
@@ -62,7 +62,9 @@ define({
         getGoodsById:'/goods/getOneInfo',
         editShopGoodsById:'/goods/updateGoods',
         recommendList:'/goods/upReGoods',
-        addRecommend:'/goods/upReGoods'
+        addRecommend:'/goods/upReGoods',
+        updateShopGoodsStatus:'/goods/updateGoodsStatus',
+        deleteShopGoodsInfo:'/goods/deleteGoods'
     },
     /**
      * 店铺
@@ -74,7 +76,8 @@ define({
         getShopInfoById:'/shop/getOneInfo',
         //店铺推荐列表
         recommendList:'/shop/getReShop',
-        addRecommend:'/shop/upReShop'
+        addRecommend:'/shop/upReShop',
+        updateShopStatus:'/shop/updateShopStatus',
 
     },
     /**
@@ -110,7 +113,8 @@ define({
         getAreaByCityId:'/Area/getArea',
         updateStatusType:'/Area/updateAreaTypeStatus',
         updateAreaStateInfo:'/Area/updateAreaStatus',
-        deleteAreaInfo:'/Area/deleteArea'
+        deleteAreaInfo:'/Area/deleteArea',
+        getAreaTypeList:'/shop/getAreaTypeInfo'
     },
     /**
      * 分类
@@ -140,7 +144,8 @@ define({
         deleteInfo:'/benefit/deleteBenefit',
         sortBenefit:'/benefit/positionChange',
         updateDiscountStatus:'/benefit/updateBenefitStatus',
-        deleteDiscountInfo:'/benefit/deleteBenefit'
+        deleteDiscountInfo:'/benefit/deleteBenefit',
+        sortDiscount:'/benefit/positionChange'
     },
     /**
      * banner图管理

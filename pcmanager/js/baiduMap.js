@@ -1,4 +1,4 @@
-require(['jquery','log'],function($,log){
+define(['jquery','log'],function($,log){
 
     var windowsArr = [];
         var marker = [];
@@ -88,10 +88,11 @@ require(['jquery','log'],function($,log){
         var clickEventListener=AMap.event.addListener(mapObj,'click',function(e){
             document.getElementById("lngX").value=e.lnglat.getLng();
             document.getElementById("latY").value=e.lnglat.getLat();
-            document.getElementById("lngX01").value=e.lnglat.getLng();
-            document.getElementById("latY01").value=e.lnglat.getLat();
-            $('.formWrapper').find('#lngX01').val(lng_str);
-            $('.formWrapper').find('#latY01').val(lat_str);
+            console.log(e.lnglat.getLat())
+            // document.getElementById("lngX01").value=e.lnglat.getLng();
+            // document.getElementById("latY01").value=e.lnglat.getLat();
+            $('.formWrapper').find('#lngX01').val(e.lnglat.getLng());
+            $('.formWrapper').find('#latY01').val(e.lnglat.getLat());
         });
    
    
@@ -288,6 +289,5 @@ require(['jquery','log'],function($,log){
         $('#keyword').on('keydown',function(e){
             keydown(e);
         })
-        
-
+        return mapObj;
 })
