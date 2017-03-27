@@ -17,7 +17,7 @@
 </head>
 <body>
 	<!-- 框架结构	 -->
-	<div class="layui-layout layui-layout-admin">
+	<div class="layui-layout layui-layout-admin shopWrapper">
 
 	<div class="lay-main">
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
@@ -96,13 +96,16 @@
                 <thead>
                     <tr>
                     <th>序号</th>
+                    <th>账户</th>
                     <th>店铺名称</th>
                     <th>开户时间</th>
-                    <th>用户名</th>
+
                     <th>负责人姓名</th>
                     <th>优惠力度</th>
                     <th>状态</th>
                     <th>是否推荐</th>
+                    <th>审核状态</th>
+                    <th>审核人</th>
                     <th>操作</th>
                     </tr> 
                 </thead>
@@ -147,7 +150,7 @@
                 <label class="layui-form-label">店铺logo</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
-                           <div class="detail-image-col-2 imageadd" >   
+                           <div class="detail-image-col-2 imageadd-single" >   
                                                      </div>
                           
                   </div>
@@ -181,16 +184,25 @@
                 </div>
                 
               </div>
-              
-              <div class="layui-form-item">
-                <label class="layui-form-label">营业执照号码</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">店铺分类</label>
+                <div class="layui-input-block">
+                  <select name="classifyid" class="shopProWrapper">
+                    <option value="1" selected>服装服饰</option>
+                  </select>
                 </div>
+              </div>-->
+              <div class="shopProWrapper"></div>
+              <div class="layui-form-item">
                 <label class="layui-form-label">证件号码</label>
                 <div class="layui-input-inline">
                   <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
+                <label class="layui-form-label">营业执照号码</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+                
               </div>
               
               <!--添加店铺类型-->
@@ -318,7 +330,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺简介</label>
                 <div class="layui-input-block"> 
-                  <textarea name="shop_info" placeholder="请输入内容" class="layui-textarea">1111</textarea>
+                  <textarea name="shop_info" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
@@ -360,7 +372,7 @@
               </div>-->
               <div class="layui-form-item">
                 <label class="layui-form-label">优惠力度</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="discount"  placeholder="请输入" value="9" autocomplete="off" class="layui-input">
                 </div>
               </div>
@@ -373,14 +385,14 @@
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">人均消费</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="average_price" value="12"  placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
 
               <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
-                <div class="layui-input-inline">
+                <div class="layui-input-block">
                   <input type="text" name="address" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
@@ -406,11 +418,12 @@
     {{# layui.each(d.data,function(index,item){ }}
         <tr>
             <td>{{index+1}}</td>
+            <td>{{=item.loginid}}</td>
             <td>{{=item.name}}</td>
             <td>{{=item.addtime}}</td>
-            <td>{{=item.loginid}}</td>
             <td>{{=item.proprietor}}</td>
             <td>{{=item.discount}}折</td>
+            
             {{# if(item.status=='0'){ }}
                 <td>
                     <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
@@ -453,12 +466,21 @@
                         </td>
                     {{# } }}
                 {{# } }}
-            
             <td>
-                <button class="layui-btn layui-btn-small add-shop-goods layui-btn-primary" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
+              {{# if(item.check=='0'){ }}
+                未审核
+              {{# }else if(item.check=='1'){ }}
+                审核通过
+              {{# }else if(item.check=='2'){ }}
+                已拒绝
+              {{# } }}
+            </td>
+            <td>{{=item.checker}}</td>
+            <td>
+                <button class="layui-btn layui-btn-small add-shop-goods layui-btn-primary" data-name="{{=item.name}}" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
                     <i class="layui-icon">&#xe608;</i> 
                 </button>
-                <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo">
+                <button data-id="{{item.id}}" class="layui-btn layui-btn-small layui-btn-primary editInfo">
                     <i class="layui-icon">&#xe642;</i>
                 </button>
 
@@ -468,38 +490,65 @@
     {{# }) }}
   
 </script>
-
+<!--===============================店铺产品模板标签=================================-->
 <script type="text/html" id="shopTypeCon">
 {{# layui.each(d,function(index,item){ }}
     <div class="layui-form-item">
-        <label class="layui-form-label">{{}}</label>
+        <label class="layui-form-label">{{item.name}}</label>
         <div class="layui-input-block">
-        <input type="checkbox" name="" title="" lay-verify="findLabelToJson" value="" >
-        <input type="checkbox" name="" title="" lay-verify="findLabelToJson" value="" checked>
-        <input type="checkbox" name="" title="" lay-verify="findLabelToJson" value="">
+          {{# layui.each(item.data,function(ind,its){ }}
+            {{# if(item.class=='1'){ }}
+            <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="{{its.name}}" lay-verify="findLabelToJson" >
+            {{# }else{ }}
+            <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="<em class='layui-icon'>{{its.name}}</em>" lay-verify="findLabelToJson" >
+            {{# } }}
+          {{# }) }}
         </div>
     </div>
 {{# }) }}
 </script>
-<script type="text/html" id="shopAreaCon">
+
+<script type="text/html" id="shopSortTypeCon">
 {{# layui.each(d,function(index,item){ }}
     <div class="layui-form-item">
-        <label class="layui-form-label"></label>
-        <div class="layui-input-inline">
-            <select name="areaid" lay-filter="pro" class="provinceswrap" lay-verify="findLabelToJson" value="">
-            <option value="1" selected>111</option>
-            </select>
-        </div>  
+        <label class="layui-form-label">{{item.typename}}</label>
+        <div class="layui-input-block">
+          {{# layui.each(item.children,function(ind,its){ }}
+            
+            <input type="checkbox" name="{{item.field}}" value="{{its.id}}" title="{{its.name}}" lay-verify="sortToJson" >
+            
+          {{# }) }}
+        </div>
     </div>
 {{# }) }}
 </script>
 
+<script type="text/html" id="shopAreaCon">
+
+    <div class="layui-form-item">
+      {{# layui.each(d,function(index,item){ }}
+        <label class="layui-form-label" data-id="{{item.id}}">{{item.typename}}</label>
+        <div class="layui-input-inline">
+            
+            <select name="{{item.field}}" lay-filter="pro" lay-verify="">
+              {{# layui.each(item.children,function(ind,its){ }}
+              {{# if(its.status=='1'){ }}
+              <option value="{{its.id}}" selected>{{its.name}}</option>
+            {{# } }}
+            {{# }) }}
+            </select>
+            
+        </div> 
+        {{# }) }} 
+    </div>
+
+</script>
 
 
 <script type="text/template" id="image-suolve">
      <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
          <div class="opacity-z-index"></div>
-        <i class="layui-icon icon-display">&#xe640;</i>
+        <i class="layui-icon icon-display" data-info="{imgsrc}">&#xe640;</i>
         <div class="left-block"></div>
         <div class="right-block"></div>
         <img src="{imgsrc}" width="100%" height="100%" />    
@@ -523,35 +572,44 @@
                              </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">产品编号</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="goodsnum" value="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
-              </div>             
-              <div class="layui-form-item">
                 <label class="layui-form-label">产品名称</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="goodsname" placeholder="请输入" value="" autocomplete="off" class="layui-input">
                 </div>
-              </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">商品支付价格</label>
+              </div>             
+              
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">所属区域</label>
                 <div class="layui-input-block">
-                  <input type="text" name="price_pay" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                  <input type="text" name="" readonly placeholder="请输入" value="" autocomplete="off" class="layui-input">
                 </div>
-              </div>
+              </div>-->
               <div class="layui-form-item">
                 <label class="layui-form-label">原价</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                   <input type="text" name="pricrc_sell" value="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
+                <label class="layui-form-label">支付价格</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="price_pay" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+                
               </div>
-              <div class="layui-form-item">
+              <!--<div class="layui-form-item">
                 <label class="layui-form-label">产品分类</label>
-                <div class="layui-input-block">
-                  <select name="classifyid" >
+                <div class="layui-input-inline">
+                  <select name="classifyid" class="productWrapper">
                     <option value="1" selected>服装服饰</option>
                   </select>
                 </div>
+              </div>-->
+              <div class="goodsProWrapper"></div>
+              <!--添加店铺类型-->
+              <div class="goodsTypeWrapper">
+
               </div>
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">产品描述</label>
@@ -668,21 +726,21 @@
                 <label class="layui-form-label">店铺logo</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
-                        {{# layui.each(eval(d.logo)||[],function(index,item){ }}
+                        
                             <div class="detail-image-col-2 detail-banner-split">
                                 <div class="opacity-z-index"></div>
-                                <i class="layui-icon icon-display">&#xe640;</i>
+                                <i class="layui-icon icon-display" data-info="{{d.logo}}">&#xe640;</i>
                                 <div class="left-block"></div>
                                 <div class="right-block"></div>
-                                <img src="{{item}}" width="100%" height="100%" />    
+                                <img src="{{d.logo}}" width="100%" height="100%" />    
                             </div>
-                        {{# }) }}
-                        {{# if(eval(d.logo)||[].length<=5){ }}
+                        
+                       
                             <div class="detail-image-col-2 imageadd" >   
                                                      </div>
-                        {{# } }}     
+                           
                   </div>
-                  <input type="hidden" name="logo" placeholder="请输入" value='{{d.logo}}' autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="logo" placeholder="请输入" lay-verify="isChangeValue" data-info="{{=d.logo}}" value='{{=d.logo}}' autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
@@ -705,7 +763,7 @@
                 </div>
                 <label class="layui-form-label">联系电话</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="telephone" value="{{d.telphone}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="telephone" value="{{=d.telephone}}" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
@@ -719,7 +777,50 @@
                <div class="editlabelWrapper">
 
                </div>
+               <div class="layui-form-item">
+                {{# layui.each(d.area,function(index,item){ }}
+                  <label class="layui-form-label" data-id="{{item.id}}">{{item.typename}}</label>
+                  <div class="layui-input-inline">
+                      
+                      <select name="{{item.field}}" lay-filter="pro" lay-verify="">
+                        {{# layui.each(item.children,function(ind,its){ }}
+                        {{# if(its.selected){ }}
+                        <option value="{{its.id}}" selected>{{its.name}}</option>
+                       {{# }else{ }}
+                        <option value="{{its.id}}" selected>{{its.name}}</option>
+                       {{# } }}
+                      {{# }) }}
+                      </select>
+                      
+                  </div> 
+                  {{# }) }} 
+              </div>
 
+
+               {{# layui.each(d.label,function(index,item){ }}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{{item.name}}</label>
+                    <div class="layui-input-block">
+                      {{# layui.each(item.data,function(ind,its){ }}
+                        {{# if(item.class=='1'){ }}
+                          {{# if(its.selected){ }}
+                              <input type="checkbox" name="{{item.id}}" checked value="{{its.id}}" title="{{its.name}}" lay-verify="findLabelToJson" >
+                          {{# }else{ }}
+                              <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="{{its.name}}" lay-verify="findLabelToJson" >
+                          {{# } }}
+                        
+                        {{# }else{ }}
+                          {{# if(its.selected){ }}
+                              <input type="checkbox" name="{{item.id}}" value="{{its.id}}" checked title="<em class='layui-icon'>{{its.name}}</em>" lay-verify="findLabelToJson" >
+                          {{# }else{ }}
+                              <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="<em class='layui-icon'>{{its.name}}</em>" lay-verify="findLabelToJson" >
+                          {{# } }}
+                        
+                        {{# } }}
+                      {{# }) }}
+                    </div>
+                </div>
+            {{# }) }}
 
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺图片</label>
@@ -727,6 +828,8 @@
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
                       {{# layui.each(eval(d.intr_pic)||[],function(index,item){ }}
                             <div class="detail-image-col-2 detail-banner-split">
+                                <div class="opacity-z-index"></div>
+                                <i class="layui-icon icon-display" data-info="{{item}}">&#xe640;</i>
                                 <div class="left-block"></div>
                                 <div class="right-block"></div>
                                 <img src="{{item}}" width="100%" height="100%" />    
@@ -777,6 +880,8 @@
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
                         {{# layui.each(eval(d.environment_pic)||[],function(index,item){ }}
                             <div class="detail-image-col-2 detail-banner-split">
+                                <div class="opacity-z-index"></div>
+                              <i class="layui-icon icon-display" data-info="{{item}}">&#xe640;</i>
                                 <div class="left-block"></div>
                                 <div class="right-block"></div>
                                 <img src="{{item}}" width="100%" height="100%" />    
@@ -799,7 +904,8 @@
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
                       {{# layui.each(d.aptitude_pic?JSON.parse(d.aptitude_pic):[],function(index,item){ }}
                             <div class="detail-image-col-2 detail-banner-split">
-                                
+                                <div class="opacity-z-index"></div>
+                                <i class="layui-icon icon-display" data-info="{{item}}">&#xe640;</i>
                                 <div class="left-block"></div>
                                 <div class="right-block"></div>
                                 <img src="{{item}}" width="100%" height="100%" />    
@@ -812,7 +918,7 @@
 
                           
                   </div>
-                  <input type="hidden" name="aptitude_pic" value='{{=d.aptitude_pic}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="aptitude_pic" data-info="{{=d.aptitude_pic}}" lay-verify="isChangeValue" value='{{=d.aptitude_pic}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
@@ -851,11 +957,42 @@
                   <input type="text" name="average_price" value='{{=d.average_price}}'  placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
+              <div class="layui-form-item">
+                
+                  <label class="layui-form-label">审核状态</label>
+                  <div class="layui-input-inline">
+                      
+                      <select name="check" lay-filter="pro" lay-verify="isChangeValue" data-info="{{d.check}}">
 
+                       
+                        {{# if(d.check=='0'){ }}
+                        <option value="0" selected>未审核</option>
+                        <option value="1" >审核通过</option>
+                        <option value="2" >拒绝</option>
+                       {{# }else if(d.check=='1'){ }}
+                        <option value="0" >未审核</option>
+                        <option value="1" selected>审核通过</option>
+                        <option value="2" >拒绝</option>
+                       {{# }else if(d.check=='2'){ }}
+                        <option value="0" >未审核</option>
+                        <option value="1" >审核通过</option>
+                        <option value="2" selected>拒绝</option>
+                       {{# } }}
+                      </select>
+                      
+                  </div> 
+                 
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">审核人</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="checker" value='{{=d.checker}}' readonly  placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="address" value="{{=d.address}}" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
+                  <input type="text" name="address" data-info="{{=d.address}}" lay-verify="isChangeValue" value="{{=d.address}}" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
                 </div>
               </div>
               

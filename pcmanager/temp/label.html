@@ -167,7 +167,7 @@
 </script>
 
 <script type="text/html" class="icon-wrapper">
-  <input type="hidden" name="ico" value="" id="iconId" >
+  <input type="hidden" name="name" value="" id="iconId" >
   <input type="hidden" name="typeid" value="{{d.id}}" id="iconId" >
   
   <div class="layui-form-item">
@@ -307,7 +307,7 @@
                         
                         <!--<span class="layui-btn layui-btn-primary labelIntro">{{=itemLabel.intro}}</span>-->
                       </button>
-                      <button class="layui-btn layui-btn-warm editlabelCon" style="margin-left:-5px;padding:0 14px;" data-name="{{=itemLabel.name}}" data-id="{{itemLabel.id}}" data-info="{{=itemLabel.introduce}}" data-typeid="{{=item.id}}">
+                      <button class="layui-btn layui-btn-warm editlabelCon" style="margin-left:-5px;padding:0 14px;" data-class="{{item.class}}" data-name="{{=itemLabel.name}}" data-id="{{itemLabel.id}}" data-info="{{=itemLabel.introduce}}" data-typeid="{{=item.id}}">
                         <i class="layui-icon">&#xe642;</i> 
                       </button>
                       <button class="layui-btn layui-btn-danger deleteLabelCon" style="margin-left:-5px;padding:0 14px;" data-typeid="item.id" data-id="{{itemLabel.id}}">
@@ -369,7 +369,23 @@
         <div class="layui-input-inline">
         <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
         <input type="hidden" autocomplete="off" name="typeid" class="layui-input" value="{{d.typeid}}" />
-        <input type="text" name="name" data-info="{{=d.name}}" value="{{=d.name}}" lay-verify="isChangeValue"  placeholder="请输入名称" autocomplete="off" class="layui-input">
+        {{# if(d.class=='1'){}}
+          <input type="text" name="name" data-info="{{=d.name}}" value="{{=d.name}}" lay-verify="isChangeValue"  placeholder="请输入名称" autocomplete="off" class="layui-input">
+        {{# }else if(d.class=='2'){ }}
+          
+          <input type="hidden" name="name" data-info="{{=d.name}}" value="{{=d.name}}" lay-verify="isChangeValue"  placeholder="请输入名称" autocomplete="off" class="layui-input iconSelectedInput">
+          {{#  layui.each(d.iconlist,function(index,item){ }}
+            {{# if(item.ico==d.name){ }}
+            <div class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-id="{{item.ico}}">
+              <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
+            </div>
+            {{# }else{ }}
+              <div class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-id="{{item.ico}}">
+                <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
+              </div>
+            {{# } }}
+          {{# }) }}
+        {{# } }}
         </div>
     </div>
     <div class="layui-form-item layui-form-text">

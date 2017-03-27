@@ -101,6 +101,8 @@
                         <th>使用规则</th>
                         <th>状态</th>
                         <th>是否推荐</th>
+                        <th>审核状态</th>
+                        <th>审核人</th>
                         <th>操作</th>
                     </tr> 
                 </thead>
@@ -174,11 +176,20 @@
                         </td>
                     {{# } }}
                 {{# } }}
+                {{# if(item.check=='0'){ }}
+                未审核
+              {{# }else if(item.check=='1'){ }}
+                审核通过
+              {{# }else if(item.check=='2'){ }}
+                已拒绝
+              {{# } }}
+            </td>
+            <td>{{=item.checker}}</td>
             <td>
-                <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-primary editInfo" data-id="{{item.id}}">
+                <button data-id={{item.id}} class="layui-btn layui-btn-small layui-btn-primary editInfo" data-id="{{item.id}}">
                     <i class="layui-icon">&#xe642;</i>
                 </button>
-                <button data-id={{item.id}}"" class="layui-btn layui-btn-small layui-btn-danger deleteGoodsInfo" data-id="{{item.id}}">
+                <button data-id={{item.id}} class="layui-btn layui-btn-small layui-btn-danger deleteGoodsInfo" data-id="{{item.id}}">
                     <i class="layui-icon">&#xe640;</i>
                 </button>
             </td>

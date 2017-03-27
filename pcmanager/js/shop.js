@@ -1,4 +1,4 @@
-require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-upload','params'],function($,myObj,ajaxAddress,layObj,log,mapObj,upload,params){
+require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-upload','params','img-single-load'],function($,myObj,ajaxAddress,layObj,log,mapObj,upload,params,uploadsingle){
     
     var common=myObj.load();
     var fistLoad=true;
@@ -14,6 +14,11 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
             shopid:'',
             arrLabel:[],
             labelJson:[],
+            arrGoodsLabel:[],
+            arrShopClassify:[],
+            arrGoodsClassify:[],
+            arrAreaGoods:[],
+            sortObj:{},
             currentPage:'1',
             currentRePage:'1',
             //当前处于哪个tab栏 1为全部列表,2为已推荐
@@ -47,9 +52,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                             }else if(ShopObj.data.currentStatus=='2'){
                                 ShopObj.data.currentRePage=data.curr;
                                 ShopObj.methods.updateRecommendList(data.curr);
-                            }
-                            
-                            
+                            }                 
                         }
                     });
                 });
@@ -120,7 +123,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                     if(data.code==200){
                         ShopObj.methods.updateShopInfo(data.data);
                     }
-                },{id:id});
+                },{id:id,cityid:params.id,navid:ShopObj.data.navId});
             },
             updateShopInfo:function(data){
                 var tpl=$('#formCon').html();
@@ -148,6 +151,17 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                     }
                 },{navid:ShopObj.data.navId});
             },
+            getGoodsLabelInfo:function(){
+                //TODO 产品标签数据
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.label.getGoodsLabelListByNavId,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        ShopObj.data.arrGoodsLabel=data.data;
+                    }else{
+                        ShopObj.data.arrGoodsLabel=[];
+                    }
+                },{navid:ShopObj.data.navId});
+            },
             getAreaInfo:function(){
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaTypeList,function(data){
                     log.d(data);
@@ -158,21 +172,159 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                     }
                 },{cityid:params.id});
             },
+            //添加商品时获取区域信息
+            addGoodsGetAreaInfo:function(id){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getAreaGoodsTypeList,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        ShopObj.data.arrAreaGoods=data.data;
+                    }else{
+                        ShopObj.data.arrAreaGoods={};
+                    }
+                },{shopid:ShopObj.data.shopid});
+            },
+            //添加商品时获取分类信息
+            addGoodsGetSortInfo:function(){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.sort.goodsShowlist,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        ShopObj.data.arrGoodsClassify=data.data;
+                    }else{
+                        ShopObj.data.arrGoodsClassify=[];
+                    }
+
+                },{navid:ShopObj.data.navId});
+            },
+            //添加店铺时获取分类信息
+            addShopGetSortInfo:function(){
+                var shopClassify;
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.sort.showlist,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        shopClassify=data.data;
+                        ShopObj.data.arrShopClassify=data.data;
+                    }else{
+                        shopClassify=[];
+                        ShopObj.data.arrShopClassify=[];
+                    }
+                    // $('.shopProWrapper').html('');
+                    // $.each(shopClassify.children,function(index,item){
+                    //     $('<option>').appendTo($('.shopProWrapper')).html(item.name).attr('name',item.id);
+                    // })
+                    // form.render();
+                },{navid:ShopObj.data.navId});
+            },
             renderShopInfo:function(){
                 var tpl=$('#shopTypeCon').html();
                 var tplArea=$('#shopAreaCon').html();
+                var tplClass=$('#shopSortTypeCon').html();
                 $('.labelWrapper').html('');
                 $('.shopTypeWrapper').html('');
+                $('.shopProWrapper').html('');
                 layObj.laytpl(tpl).render(ShopObj.data.arrLabel,function(html){
                     $('.labelWrapper').append(html);
+                })
+                layObj.laytpl(tplClass).render(ShopObj.data.arrShopClassify,function(html){
+                    $('.shopProWrapper').append(html);
                 })
                 layObj.laytpl(tplArea).render(ShopObj.data.arrArea,function(html){
                     $('.shopTypeWrapper').append(html);
                 })
                 form.render();
+            },
+            /**
+             * 编辑渲染标签
+             */
+            renderEditShopInfo:function(){
+                var tpl=$('#shopTypeCon').html();
+                var tplArea=$('#shopAreaCon').html();
+                layObj.laytpl(tpl).render(ShopObj.data.arrLabel,function(html){
+                    $('.labelWrapper').append(html);
+                })
+
+                layObj.laytpl(tplArea).render(ShopObj.data.arrArea,function(html){
+                    $('.shopTypeWrapper').append(html);
+                })
+                form.render();
+            },
+            /**
+             * 渲染添加产品所需标签
+             */
+            renderAddGoodsInfo:function(){
+                var tpl=$('#shopTypeCon').html();
+                var tplClass=$('#shopSortTypeCon').html();
+                $('.goodsTypeWrapper').html('');
+                $('.goodsProWrapper').html('');
+                layObj.laytpl(tpl).render(ShopObj.data.arrGoodsLabel,function(html){
+                    $('.goodsTypeWrapper').append(html);
+                })
+                layObj.laytpl(tplClass).render(ShopObj.data.arrGoodsClassify,function(html){
+                    $('.goodsProWrapper').append(html);
+                })
+            },
+            repeatArr:function(arr){
+                var nArr=[];
+                var obj={};
+                var str="";
+                // for(var i=0;i<arr.length;i++){
+                //     if(!obj[arr[i]['id']]){
+                //         obj[arr[i]['id']]=arr[i].name;
+                //     }else{
+                //         obj[arr[i]['id']]=obj[arr[i]['id']]+','+arr[i].name;
+                //     }
+                // }
+                // for(var key in obj){
+                //     var o={};
+                //     o[key]=obj[key];
+                //     nArr.push(o);
+                // }
+
+                for(var i=0;i<arr.length;i++){
+                    
+                    if(i==arr.length-1){
+                        str+=arr[i].name;
+                    }else{
+                        str+=arr[i].name+',';
+                    }
+                }
+                
+                return str;
             }
         }
     }
+
+    $('.shopWrapper').on('click','.icon-display',function(){
+        
+        var $o=$(this).parents('.detail-banner-split');
+        var $input=$o.parent('.image-suolve').next('input');
+        var imgStr=$(this).data('info');
+        console.log(imgStr);
+        if(/\[/.test($input.val())){
+            var arr=JSON.parse($input.val());
+            $.each(arr,function(index,item){
+                if(item==imgStr){
+                    arr.splice(index,1);
+                    return false;
+                }
+            })
+        }else{
+            $input.val('');
+        }
+
+        $o.remove();
+        
+        return false;
+    })
+
+    $('.shopWrapper').on('mouseover','.detail-banner-split',function(){
+        $(this).find('.icon-display').show();
+        $(this).find('.opacity-z-index').show();
+    })
+
+    $('.shopWrapper').on('mouseleave','.detail-banner-split',function(){
+        $(this).find('.icon-display').hide();
+         $(this).find('.opacity-z-index').hide();
+    })
 
     /**
      * 推荐列表与全部切换
@@ -195,7 +347,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
      * 编辑店铺详细信息
      */
      $('#tableWrapper').on('click','.editInfo',function(){
-        
+        ShopObj.data.labelJson=[];
         ShopObj.methods.getSingleInfo($(this).data('id'));
         layObj.layer.open({
              type:1,
@@ -218,12 +370,18 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
         // open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
         $('.addShopGoodsForm')[0].reset();
         $('.imageadd').show().prevAll().remove();
-        
+        var shopName=$(this).data('name');
+        //获取产品所属分类
+        ShopObj.methods.addGoodsGetSortInfo();
         ShopObj.data.shopid=$(this).data('id');
+        ShopObj.methods.renderAddGoodsInfo();
+        //获取产品所属店铺的区域
+        ShopObj.methods.addGoodsGetAreaInfo();
+        ShopObj.data.labelJson=[];
         // 打开添加店铺信息窗口
         layObj.layer.open({
              type:1,
-            
+             title:shopName,
             content: $('.addShopGoodsForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:['95%','98%'],
@@ -266,10 +424,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
      * 点击添加店铺先选择导航
      */
     $('.add-shop-info').on('click',function(){
+        ShopObj.data.labelJson=[];
         $('.menuForm')[0].reset();
+        $('.imageadd-single').show().prevAll().remove();
         $('.imageadd').show().prevAll().remove();
         $('.addmapWrapper').append($('#mapContainer'));
         ShopObj.methods.renderShopInfo();
+        ShopObj.methods.addShopGetSortInfo();
         // 打开添加店铺信息窗口
         layObj.layer.open({
              type:1,
@@ -293,10 +454,10 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
         log.d(ShopObj.data.navId);
         ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
         ShopObj.methods.getLabelInfo();
+        ShopObj.methods.getGoodsLabelInfo();
+        ShopObj.methods.addShopGetSortInfo();
     });
 
-
-  
     
     /**
      * 获取城市列表
@@ -306,6 +467,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
         var ind;
         params.navid&&(ind=params.navid);
         ShopObj.methods.getAreaInfo();
+        
         if(data.code==200){
             $.each(data.data,function(index,item){
             if(ind&&item.id==ind||index==0&&!ind){
@@ -313,6 +475,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                     $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
                      ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
                      ShopObj.methods.getLabelInfo();
+                     ShopObj.methods.getGoodsLabelInfo();
+                     ShopObj.methods.addShopGetSortInfo();
                 }else{
                     $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
                 }  
@@ -327,6 +491,10 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
     $('.imageadd').on('click',function(){
         upload.uploadImage(this);
     });
+
+    $('.imageadd-single').on('click',function(){
+        uploadsingle.uploadImage(this);
+    })
 
     /**
      * 图片上传
@@ -369,12 +537,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
             layObj.laydate(start);
         })
         $('#date01').on('click',function(){
-            end.elem = this
+            end.elem = this;
             layObj.laydate(end);
         })
 
         $('#date03').on('click',function(){
-            end.elem = this
+            end.elem = this;
+            console.log('date03')
             layObj.laydate(start);
         })
 
@@ -391,6 +560,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
 
 
    setTimeout(function(){
+       log.d(layObj);
         form=layObj.form();
         
         form.verify({
@@ -416,18 +586,35 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                 }   
             },
             findLabelToJson:function(value,a){
-                var obj={};
-                obj[$(a).attr('name')]=value;
+                
+                // obj[$(a).attr('name')]=value;
+                if(a.checked){
+                    var obj={};
+                    obj.id=$(a).attr('name');
+                obj.name=value;
                 ShopObj.data.labelJson.push(obj);
+                }
+                
+            },
+            sortToJson:function(value,a){
+                var stock=ShopObj.data.sortObj[$(a).attr('name')]||[];
+                if(a.checked){
+                   stock.push(value);  
+                }
             }
             });
 
             form.on('submit(shopInfo)',function(paraData){
                 log.d(paraData.field)
+                log.d(ShopObj.data.labelJson)
                 paraData.field.cityid=params.id;
                 paraData.field.navid=ShopObj.data.navId;
                 paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
+                var arr=ShopObj.methods.repeatArr(ShopObj.data.labelJson);
+
+                paraData.field.shop_label=arr;
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.addShopList,function(data){
+                        ShopObj.data.labelJson=[];
                         log.d(data);
                         if(data.code==200){
                             ShopObj.data.labelJson=[];
@@ -436,7 +623,6 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                                 layObj.layer.closeAll();
                                 ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
                             },1000);
-                            
                         }else{
                             ShopObj.data.labelJson=[];
                             layer.msg('网络错误，请稍后重试');
@@ -454,6 +640,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                 paraData.field.cityid=params.id;
                 paraData.field.navid=ShopObj.data.navId;
                 paraData.field.shopid=ShopObj.data.shopid;
+                paraData.field.area=ShopObj.data.arrAreaGoods.area;
+                paraData.field.business=ShopObj.data.arrAreaGoods.business;
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.addShopGoods,function(data){
                         log.d(data);
                         if(data.code==200){
@@ -476,8 +664,12 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
 
             form.on('submit(editorDiscountInfo)',function(paraData){
             paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
+            var arr=ShopObj.methods.repeatArr(ShopObj.data.labelJson);
+                
+                paraData.field.shop_label=arr;
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.updateShop,function(data){
                 log.d(data);
+                ShopObj.data.labelJson=[];
                 if(data.code==200){
                     layObj.layer.msg('更新成功');
                     layObj.layer.closeAll();
@@ -488,6 +680,6 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','image-uploa
                 }
             },paraData.field);
         })
-    },1000)
+    },1500)
     
 })

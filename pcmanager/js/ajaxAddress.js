@@ -48,10 +48,12 @@ define({
         updateLabelType:'/label/updateLabelType',
         //获取id
         getLabelListByNavId:'/shop/getNavLabelTypeInfo',
+        getGoodsLabelListByNavId:'/goods/getNavLabelTypeInfo',
         deleteLabelInfo:'/label/deleteLabel',
         getIconList:'/label/getLabelIco',
-        updateLabelTypeStatus:'/label/updateLabelTypeStatus',
-        deleteLabelType:'/label/deleteLabelType'
+        updateLabelTypeStatus:'/label/LabelTypeBindNav',
+        deleteLabelType:'/label/deleteLabelType',
+        updateLabelStatusType:"/label/updateLabelTypeStatus"
     },
     /**
      * 商品信息
@@ -114,7 +116,8 @@ define({
         updateStatusType:'/Area/updateAreaTypeStatus',
         updateAreaStateInfo:'/Area/updateAreaStatus',
         deleteAreaInfo:'/Area/deleteArea',
-        getAreaTypeList:'/shop/getAreaTypeInfo'
+        getAreaTypeList:'/shop/getAreaTypeInfo',
+        getAreaGoodsTypeList:'/goods/getAreaTypeInfo',
     },
     /**
      * 分类
@@ -132,6 +135,10 @@ define({
         updateStatusType:'/Classify/updateClassifyTypeStatus',
         updateStatusInfoType:'/Classify/updateClassifyStatus',
         deleteClassInfo:'/Classify/deleteClassify'
+    },
+    sort:{
+        showlist:'/shop/getClassifyTypeInfo',
+        goodsShowlist:'/goods/getClassifyTypeInfo'
     },
     /**
      * 优惠信息

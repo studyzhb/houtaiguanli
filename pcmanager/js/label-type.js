@@ -208,6 +208,22 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 })
                 
             
+            },
+            updateLabelStatusType:function(sta,id){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.label.updateLabelStatusType,function(data){
+                    log.d(data);
+                    
+                    if(data.code==200){
+                        
+                        layObj.layer.closeAll();
+                        LabelObj.methods.updatePageNum(1);
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                        layObj.layer.closeAll();
+                        LabelObj.methods.updatePageNum(1);
+                    }
+                },{status:sta,id:id});
             }
         }
     }
@@ -389,6 +405,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             }
         })
     })
+
+    //改变启用停用状态
+    $('#all-sort-list').on('click','.icon-btn',function(){
+        LabelObj.data.typeId=$(this).data('id');
+        var lId=$(this).data('id');
+        var lSta=$(this).data('status');
+        
+        LabelObj.methods.updateLabelStatusType(lSta,lId);
+        
+    })
+
     //编辑区域类型
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
         LabelObj.data.typeId=$(this).data('id');
@@ -407,11 +434,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         
         var laId=$(this).data('id');
        
-
-        LabelObj.methods.deleteLabelType(laId);
-
-       
-        
+        layObj.layer.confirm('你确定要执行删除操作?',function(){
+            LabelObj.methods.deleteLabelType(laId);
+        })
+   
     })
 
     //编辑类型内容
@@ -458,7 +484,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     LabelObj.methods.deleteClassInfo(deleId);
 
                 })
-        
         
     })
 

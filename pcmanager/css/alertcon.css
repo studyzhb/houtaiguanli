@@ -847,6 +847,8 @@ a.active-p {
 .icon-display{
   display: none;
   position:absolute;
+  color:#f00;
+  cursor: pointer;
   height: 20px;
   line-height: 20px;
   right:5px;

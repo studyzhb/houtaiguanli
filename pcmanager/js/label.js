@@ -10,7 +10,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
            //标签列表模板数据
             tempLabelContent:$('#labelContent').html(),
             isClick:true,
-            editLabelEl:''
+            editLabelEl:'',
+            iconlist:[]
        },
         methods:{
             updateLabelPage:function(data){
@@ -164,7 +165,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         var tpl=$('.icon-wrapper').html();
                         $('.typeArea').html('');
-                        
+                        LabelObj.data.iconlist=data.data;
                         layObj.laytpl(tpl).render({iconlist:data.data,id:lid},function(html){
                             $('.typeArea').append(html);
                         })
@@ -291,13 +292,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var tmpl=editorNavCon.innerHTML;
         var lName=$(this).data('name');
         var lId=$(this).data('id');
+        var lClass=$(this).data('class');
         var lTypeid=$(this).data('typeid');
         var lIntro=$(this).data('info');
         LabelObj.data.editLabelEl=$(this).prev();
         $('.editorNavBox').html('');
-        layObj.laytpl(tmpl).render({id:lId,name:lName,typeid:lTypeid,introduce:lIntro},function(html){
+        var obj={id:lId,name:lName,typeid:lTypeid,introduce:lIntro,class:lClass};
+        if(lClass=='2'){
+            obj.iconlist=LabelObj.data.iconlist;
+        }
+        layObj.laytpl(tmpl).render(obj,function(html){
             $('.editorNavBox').append(html);
-            
         })
         layObj.layer.open({
             type:1,
@@ -333,6 +338,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         },{typeid:$(this).data('id')})**/
 
         
+    })
+
+    $('.editorNavBox').on('click','icon-btn',function(){
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.iconSelectedInput').val($(this).data('id'));
     })
 
     /**

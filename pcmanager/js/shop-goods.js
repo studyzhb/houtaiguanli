@@ -50,7 +50,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                     log.d(data);
                     if(data.code==200){
                         if(fistLoad){
-                            GoodsObj.methods.updatePage(GoodsObj.data.currentPage);
+                            GoodsObj.methods.updatePage();
                         }
                         GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
                         $('.detailCount').text(data.total);
@@ -260,9 +260,6 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
         $(this).addClass('layui-this').siblings().removeClass('layui-this');
         GoodsObj.methods.updateRecommendList(GoodsObj.data.currentRePage);
     })
-
-   
-
 
     $('.nav-menu-all-area').on('click','a',function(){
         $(this).addClass('active').siblings().removeClass('active');
