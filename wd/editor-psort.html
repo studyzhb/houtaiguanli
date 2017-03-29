@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./layui/css/layui.css" />
+  	<link rel="stylesheet" href="./css/alertcon.css" />
+	 <script src="./layui/layui.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-form.js"></script>
+  	
+    
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+  <div class="layui-header header header-demo">
+    <a class="logo" href="#">
+        <img src="./img/logo.png" alt="万店联盟">
+    </a>
+    <div class="user-action" style="position:absolute;right:15px;top:25px;">
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
+    </div>
+  </div>
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      
+        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
+<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+          
+        </ul>
+
+    </div>
+  </div>
+	
+	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+	    <ul class="layui-tab-title site-demo-title">
+	      <li class="layui-this">预览</li>
+	      <li>查看代码</li>
+	      <li>帮助</li>
+	    </ul>
+    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
+	      <div class="layui-tab-item layui-show">
+	        <div class="layui-main">
+
+	        </div>
+		</div>
+		</div>
+	</div> -->
+	<!-- ============================主要内容区================================ -->
+  
+
+
+	<div class="lay-main">
+	  <!-- <span class="layui-breadcrumb">
+		  <a href="#">首页</a>
+		  <a href="#">组织机构</a>
+		  <a href="#">组织机构管理</a>
+		  <a><cite>正文</cite></a>
+		</span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          <li>
+            <a href="pSort.html">分类信息</a>
+          </li>
+          <li class="layui-this">
+            编辑分类信息
+          </li>
+        </ul>
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form layui-form-pane" id="authorForm" method="POST" action=""> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <input type="hidden" class="brandId" name="id" value="">
+              <div class="layui-form-item">
+                <label class="layui-form-label">类别名称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="title" placeholder="请输入" autocomplete="off" class="layui-input brandName">
+                </div>
+              </div>
+              <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+              <div id="authorList">
+                
+              </div>
+              
+              
+              
+              <!-- ================================================== -->
+
+              <!-- ================================================== -->
+
+
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn commit-author" >立即提交</div>
+                  <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+                </div>
+              </div>
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </form>
+          </div>
+        </div>
+     </div>
+
+
+
+
+    
+    </div> 
+  <ul id="biuuu_city_list"></ul>
+
+  <!-- =======================弹出窗========================= -->
+
+
+<!-- ========================================================= -->
+
+
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+<script id="authorContent" type="text/html">
+  <div class="layui-form-item">
+      <label class="layui-form-label">{{d.name}}</label>
+
+      <div class="layui-input-block">
+        {{#  layui.each(d.children,function(index, item){ }}
+            <input type="checkbox" name="pri_id[]" title="{{item.name}}" value='{{item.id}}'/>
+      {{#  }); }}
+
+      </div>
+    </div>
+</script>
+
+</div>
+<script type="text/html" id="editSortPic">
+  <div class="layui-form-item">
+    <label class="layui-form-label">类别图标B端</label>
+    <div class="layui-input-block" style="padding-left:20px;">
+      <img class="sfz imageadd" src="{{d.pic}}" alt="" width="50" height="50">
+      <input type="hidden" name="pic" value="{{d.pic}}" placeholder="请输入" autocomplete="off" class="layui-input sfzinput" />
+    </div>
+  </div>
+  <div class="layui-form-item" style="display:none;">
+    <label class="layui-form-label">类别图标c端</label>
+    <div class="layui-input-block" style="padding-left:20px;">
+      <img class="sfzc imageaddc" src="{{d.pic}}" alt="" width="50" height="50">
+      <input type="hidden" placeholder="请输入" autocomplete="off" class="layui-input sfzinputc">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">状态</label>
+    <div class="layui-input-block">
+      {{# if(d.status==1){ }}
+        <input type="radio" name="status" value="1" checked title="启用">
+        <input type="radio" name="status" value="0" title="停用">
+      {{# }else{ }}
+        <input type="radio" name="status" value="1"  title="启用">
+        <input type="radio" name="status" value="0" checked title="停用">
+      {{# } }}
+      
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">请填写描述</label>
+    <div class="layui-input-block">
+      <textarea placeholder="请输入内容" name="des" class="layui-textarea">{{d.des}}</textarea>
+    </div>
+  </div>
+</script>
+</body>
+<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/filter.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.config.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.all.js"></script>
+<script src="/shop/shop/public/utf8-php/ueditor.all.min.js"></script>
+<script type="text/javascript" src="./js/editor-psort.js"></script>
+
+<script>
+  var ImageWrapper={
+  temp:'',
+  btap:true,
+  imgArr:[],
+  suolveImg:[],
+  detailImg:[]
+};
+  //实例化编辑器
+  
+      var o_ueditorupload = UE.getEditor('j_ueditorupload',
+      {
+        autoHeightEnabled:false
+      });
+      o_ueditorupload.ready(function ()
+      {
+     
+    o_ueditorupload.hide();//隐藏编辑器
+     
+    //监听图片上传
+    o_ueditorupload.addListener('beforeInsertImage', function (t,arg)
+    {
+        ImageWrapper.imgArr.length=0;
+        
+        if(ImageWrapper.btap){
+          $('.sfz').attr('src',arg[0].src);
+          $('.sfzinput').val(arg[0].src);
+        }else{
+          $('.sfzc').attr('src',arg[0].src);
+          $('.sfzinputc').val(arg[0].src);
+        }
+
+        // console.log(ImageWrapper.imgArr);
+        // $()
+          // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
+    });
+
+
+     
+    /* 文件上传监听
+     * 需要在ueditor.all.min.js文件中找到
+     * d.execCommand("insertHtml",l)
+     * 之后插入d.fireEvent('afterUpfile',b)
+     */
+        o_ueditorupload.addListener('afterUpfile', function (t, arg)
+        {
+          alert('这是文件地址：'+arg[0].url);
+        });
+      });
+       
+      //弹出图片上传的对话框
+      function upImage(str)
+      {
+        ImageWrapper.temp=str;
+        // console.log(str);
+
+        var myImage = o_ueditorupload.getDialog("insertimage");
+        myImage.open();
+      }
+      //弹出文件上传的对话框
+      /*function upFiles()
+      {
+        //var myFiles = o_ueditorupload.getDialog("attachment");
+        //myFiles.open();
+      } */
+
+</script>
+</html>

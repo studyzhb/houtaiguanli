@@ -1,0 +1,36 @@
+@import 'reset';
+
+
+.main{
+		margin-top:0.12rem;
+		padding:0.03rem 0.2rem 0;
+		background-color:#fff;
+		width:100%;
+		-moz-box-flex:1;
+	    -webkit-box-flex:1;
+	    box-flex:1;
+		overflow: auto;
+		.h3-title{
+			text-align:center;
+			color:#666;
+			height:0.74rem;
+			font-size:0.34rem;
+			line-height:0.74rem;
+		}
+
+		.img-content{
+			font-size:0;
+			width:100%;
+			.img-single{
+				width:100%;
+				overflow:hidden;
+				//margin-top:-1px;
+				img{
+					width:100%;
+				}
+			}
+			
+		}
+		
+		
+	}

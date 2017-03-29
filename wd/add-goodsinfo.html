@@ -2,856 +2,449 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>万店联盟后台管理系统</title>
+	<title>标题</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/index.css">
-	<link rel="icon" type="image/png" href="img/favicon.png">
-  	<link rel="apple-touch-icon-precomposed" href="img/app-icon72x72@2x.png">
-  	<link rel="stylesheet" type="text/css" href="./css/identify.css">
-	<link rel="stylesheet" type="text/css" href="./css/layout.css">
-	<link rel="stylesheet" type="text/css" href="./css/account.css">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	<link rel="stylesheet" type="text/css" href="./css/control_index.css">
-    <link rel="stylesheet" href="./iconfont/iconfont.css">
-    <link rel="stylesheet" href="./css/content-input-list.css">
-    <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
-    
-	<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="./js/haidao.offcial.general.js"></script>
-	<script type="text/javascript" src="./js/select.js"></script>
-	<script type="text/javascript" src="./js/haidao.validate.js"></script>
-    <script src="./js/jquery-form.js"></script>
-	<script type="text/javascript" src="./js/config.js"></script>
-	<script src="./js/index.js"></script>
+	<link rel="stylesheet" href="./layui/css/layui.css" />
+  	<link rel="stylesheet" href="./css/alertcon.css" />
+	<script src="./layui/layui.js"></script>
+  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/filter.js"></script>
 </head>
 <body>
-		<div class="view-topbar">
-			<div class="topbar-console">
-				<div class="tobar-head fl">
-					<a href="#" class="topbar-logo fl">
-					<span><img src="./img/logo.png" width="20" height="20"></span>
-					</a>
-					<a href="#" class="topbar-home-link topbar-btn text-center fl"><span>管理控制台</span></a>
-				</div>
-			</div>
-			<div class="topbar-info">
-				
-			</div>
-		</div>
-		<div class="view-body">
-			<div class="view-sidebar">
-				<div class="sidebar-content">
-                    <div class="sidebar-nav">
-                        <div class="sidebar-title">
-                            <a href="#">
-                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
-                                <span class="text-normal">组织机构</span>
-                            </a>
-                        </div>
-                        <ul class="sidebar-trans">
-                            <li>
-                                <a href="admin-storage-organ.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_author.png" width="16" height="16"></b>
-                                    <span class="text-normal">组织机构列表</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="admin-storage-user.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_message.png" width="16" height="16"></b>
-                                    <span class="text-normal">员工管理</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="admin-author.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_market.png" width="16" height="16" /></b>
-                                    <span class="text-normal">权限管理</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-nav">
-                        <div class="sidebar-title">
-                            <a href="#">
-                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
-                                <span class="text-normal">供应商档案</span>
-                            </a>
-                        </div>
-                        <ul class="sidebar-trans">
-                            <li>
-                                <a href="supplier-area.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
-                                    <span class="text-normal">供应商区域</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="supplier-goods.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
-                                    <span class="text-normal">供应商资料</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="add-supplier-goods.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
-                                    <span class="text-normal">添加供货商信息</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
-                                    <span class="text-normal">004</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <b class="sidebar-icon"><img src="./img/icon_order.png" width="16" height="16"></b>
-                                    <span class="text-normal">005</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- 功能菜单 -->
-                    <div class="sidebar-nav">
-                        <div class="sidebar-title">
-                            <a href="#">
-                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
-                                <span class="text-normal">物品信息</span>
-                            </a>
-                        </div>
-                        <ul class="sidebar-trans">
-                            <li>
-                                <a href="goodsInfo.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
-                                    <span class="text-normal">物品资料</span>
-                                </a>
-                            </li>
-                            <li data-selected="selected">
-                                <a href="#">
-                                    <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
-                                    <span class="text-normal">添加商品信息</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="goods-brand.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
-                                    <span class="text-normal">品牌信息</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="addgoodsCatagory.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
-                                    <span class="text-normal">商品分类</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <b class="sidebar-icon"><img src="./img/icon_order.png" width="16" height="16"></b>
-                                    <span class="text-normal">005</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 分割线 -->
-                    
-                    <div class="sidebar-nav">
-                        <div class="sidebar-title">
-                            <a href="#">
-                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
-                                <span class="text-normal">仓储系统</span>
-                            </a>
-                        </div>
-                        <ul class="sidebar-trans">
-                            <li>
-                                <a href="storehouse-inventory.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
-                                    <span class="text-normal">商品库存</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="storehouse-input.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_authentication.png" width="16" height="16"></b>
-                                    <span class="text-normal">商品入库</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="storehouse-output.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_news.png" width="16" height="16"></b>
-                                    <span class="text-normal">商品出库</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <b class="sidebar-icon"><img src="./img/icon_gold.png" width="16" height="16"></b>
-                                    <span class="text-normal">004</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <b class="sidebar-icon"><img src="./img/icon_order.png" width="16" height="16"></b>
-                                    <span class="text-normal">005</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-nav">
-                        <div class="sidebar-title">
-                            <a href="#">
-                                <span class="icon"><b class="fl icon-arrow-down"></b></span>
-                                <span class="text-normal">采购管理</span>
-                            </a>
-                        </div>
-                        <ul class="sidebar-trans">
-                            <li>
-                                <a href="purchaselist.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
-                                    <span class="text-normal">采购单列表</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="add-purchaselist.html">
-                                    <b class="sidebar-icon"><img src="./img/icon_cost.png" width="16" height="16"></b>
-                                    <span class="text-normal">新增采购单</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-				</div>
-			</div>
-			<div class="view-product">
-				<div class="authority">
-					<!-- <div class="authority-head">
-						<div class="manage-head">
-							<h6 class="layout padding-left manage-head-con">添加商品信息
-							<span class="fr text-small text-normal padding-top">发布时间：</span>
-							<span class="fr margin-large-right padding-top text-small text-normal">最新版本：<em class="text-main">2.4.0.160708</em></span>
-							</h6>
-						</div>
-					</div> -->
-					
-                    <!-- 主要内容区 -->
-                    <!-- <div class="main-body padding-top-20"> -->
-                       <!-- 主要内容区 -->
-                    <div class="container-fluid padding-top-20 padding-left-20">
-                        <!--导航栏-->
-                        <div class="location">
-                          <!-- <a href="#" class="back"><i></i><span>返回列表页</span></a> -->
-                          <a href="#" class="home"><i></i><span>首页</span></a>
-                          <i class="arrow"></i>
-                          <a href="#"><span data-title="商品管理">内容管理</span></a>
-                          <i class="arrow"></i>
-                          <span data-title="添加商品信息">编辑内容</span>
-                        </div>
-                        <div class="line10"></div>
-                        <!-- <table class="table">
-                            <caption class="table-title-margin-10">单据信息</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-ms-3">
-                                        供应商：
-                                        <select name="" id="">
-                                            <option value="">----------</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-ms-3">单据编号
-                                        <input type="text" disabled class="table-input-disabled" />
-                                    </td>
-                                    <td class="col-ms-3">
-                                            制单日期
-                                            <input type="text" disabled />
-                                    </td>
-                                    <td class="col-ms-3">采购仓库
-                                        <select name="" id="">
-                                            <option value="">----------</option>
-                                        </select></td>                    
-                                </tr>
-                                <tr>
-                                    <td>业务员<input type="text" class="table-input-border"/></td>
-                                    <td>制单人<input type="text" class="table-input-border"/></td>
-                                    <td>备注<input type="text" class="table-input-border"/></td>
-                                    <td>有效期
-                                        <select name="" id="">
-                                            <option value="">----------</option>
-                                        </select></td>  
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>审核日期(审核人)<input type="text" class="table-input-border"/></td>
-                                    <td>审核人(入库人)<input type="text" class="table-input-border"/></td>
-                                    <td>单据摘要<input type="text" class="table-input-border"/></td>
-                                    <td>定金金额<input type="text" class="table-input-border"/></td>
-                                    
-                                </tr>
-                                
-                            </tbody>
-                        </table> -->
-                        <form method="POST" id="singleWillAddInfo" action="http://192.168.1.150/shop/shop/public/index.php/admin/Good/addGoods">
-                            
-                        <table class="table">
-                            <caption class="table-title-margin-10">商品基本信息</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-ms-2">
-                                        <div>
-                                            <span>商品编码</span>
-                                            <input type="text" class="table-input-border checkNumValidate" id="goods-code" name="coding" />
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-2">
-                                        <div>
-                                            <span>国际条码</span>
-                                            <input type="text" class="table-input-border barcode checkNumValidate" id="goods-barcode" name="barcode" />
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-2">
-                                        <div>
-                                            <span>计价方式</span>
-                                            <select name="method_id" id="goods-method">
-                                                <option value="">------</option>
-                                            </select>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-2">显示标志
-                                        <input type="text" class="table-input-border"/>    
-                                    </td>  
-                                    <td>商品全称<input type="text" class="table-input-border goods-fullname" name="name" /></td>                  
-                                    <td>商品简称<input type="text" class="table-input-border" name="jname"/></td>                  
-                                </tr>
-                                <tr>
-                                    
-                                    <td>助记码<input type="text"  class="table-input-border" name="zname" /></td>
-                                    <td>主供应商
-                                        <select name="supplier_id" id="main-supplier">
-                                            <option value="">------</option>
-                                        </select>
-                                    </td> 
-                                
-                                    <td>零售单位<input name="eachsale" type="text" class="table-input-border"/></td>
-                                    <td>规格
-                                        <select name="gg_id" id="gg">
-                                            <option value="">------</option>
-                                        </select>
-                                    </td>
-                                    <td>分类
-                                        <select name="" id="catagory1">
-                                            <option value="">一级分类</option>
-                                        </select>
-                                        <select name="good_type_id" id="catagory2">
-                                            <option value="">二级分类</option>
-                                        </select>
-                                    </td>
-                                    <td>品牌
-                                        <select name="good_brand_id" id="add-goods-brand">
-                                            <option value="">------</option>
-                                        </select>
-                                    </td>
-                                    
-                                </tr>
-
-                                <tr>
-                                    <td>原产地<input name="home" type="text" class="table-input-border"/></td>
-                                    <td>生产厂家<input name="fac" type="text" class="table-input-border"/></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-
-                        <table class="table">
-                            <caption class="table-title-margin-10">价格信息</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>进货价</span>
-                                            <input type="text" name="buyprice" class="table-input-border"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>毛利率</span>
-                                            <input type="text" name="gross" class="table-input-border checkNumValidate"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">
-                                        <div>
-                                            <span>进项税率</span>
-                                            <input type="text" name="incomerat" class="table-input-border checkNumValidate"/>
-                                            <!-- <i class="iconfont icon-search01 cursor-pointer"></i> -->
-                                        </div>
-                                    </td>
-                                    <td class="col-ms-3">销售税率
-                                        <input type="text" name="salesrate" class="table-input-border checkNumValidate"/>    
-                                    </td>  
-                                    <td>零售价<input type="text" name="retails" class="table-input-border checkNumValidate" /></td>
-                                    <td>批发价<input type="text" name="wholesale"  class="table-input-border checkNumValidate" /></td>                  
-                                </tr>
-                                <tr>
-                                    
-                                    <td>加盟价<input type="text" name="oiningprice" class="table-input-border checkNumValidate" /></td>
-                                    <td>会员价
-                                        <input type="text" name="vipprice"  class="table-input-border checkNumValidate" />
-                                    </td> 
-                                    
-                                    <td>会员价一<input name="vippriceo" type="text" class="table-input-border checkNumValidate"/></td>
-                                    <td>会员价二<input name="vippricet" type="text" class="table-input-border checkNumValidate"/></td>
-                                    <td>最低售价<input name="inimumprice" type="text" class="table-input-border checkNumValidate"/></td>
-                                    <td></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-
-                        <table class="table">
-                            <caption class="table-title-margin-10">扩展信息</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-ms-2">采购周期（天）
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-2">失效预警天数
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-2">保质期(天)
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-2">前台营业员提成
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">营业员提成金额
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">营业员提成比例
-                                        <input type="text" class="table-input-border"/>    
-                                    </td>                    
-                                </tr>
-                                <tr>
-                                    <!-- <td>单价<input type="text" class="table-input-border disabled-change" /></td> -->
-                                    
-                                    <td class="col-ms-3">最后修改人
-                                        <input type="text" class="table-input-border"/>    
-                                    </td> 
-                                    <td class="col-ms-3">允许采购订货
-                                        <input type="text" class="table-input-border"/>    
-                                    </td>
-                                    <td>允许采购退货<input type="text" class="table-input-border"/></td>
-                                    <td>允许前台销售<input type="text" class="table-input-border"/></td>
-                                    <td>允许前台手工折扣及会员折扣<input type="text" class="table-input-border"/></td>
-                                    <td></td>
-                                </tr>
-                                
-                                
-                            </tbody>
-                        </table>
-                         <!--</form>
-                         <div class="panel">
-                            <div class="panel-heading table-title-margin-10" style="text-align:center;">
-                                一品多码
-                            </div>
-                            <div class="panel-body">
-                                <div class="container-fluid">
-                                <div class="row" >
-                                    <div class="col-md-2" style="">
-                                        <input type="button" name="" value="一品多码" class="form-control">
-                                        <input type="button" name="" value="一码多品" class="form-control">
-                                    </div>
-                                    <div class="col-md-8" style="height:auto;min-height:100px">
-                                        <table class="table">
-                                            <tr>
-                                                <th>编码</th>
-                                                <th>条形码</th>
-                                                <th>条形码</th>
-                                                <th>条形码</th>
-                                            </tr>
-                                            <td class="col-ms-3">营业员提成金额
-                                                <input type="text" class="table-input-border"/>    
-                                            </td> 
-                                            <td class="col-ms-3">营业员提成比例
-                                                <input type="text" class="table-input-border"/>    
-                                            </td> 
-                                            <td class="col-ms-3">最后修改人
-                                                <input type="text" class="table-input-border"/>    
-                                            </td> 
-                                            <td class="col-ms-3">允许采购订货
-                                                <input type="text" class="table-input-border"/>    
-                                            </td>
-                                        </table>
-                                    </div>
-                                    <div class="col-md-2" style="">
-                                        <input type="button" name="" value="增加" class="form-control">
-                                        <input type="button" name="" value="删除" class="form-control">
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>  -->
-                        <!-- <table class="ltable">
-                            <caption class="table-title-margin-10">一品多码信息</caption>
-                            <tr>
-                               <th width="10%">菜单</th> 
-                               <th width="80%" >列表</th> 
-                               <th width="10%">操作</th> 
-                            </tr>
-                            <tr>
-                                <td width="10%"><a href="#">一品多码</a></td>
-                                <td width="80%" rowspan="5" style="border:1px solid #ccc;padding:0 0;">
-                                    <div class="container-fluid" id="goodsAddmore">
-                                        <div class="row" style="border-bottom:1px solid #ccc;padding-top:10px;">
-                                            <div class="col-md-3">条形码</div>
-                                            <div class="col-md-3">国际编码</div>
-                                            <div class="col-md-3">商品名称</div>
-                                            <div class="col-md-3">备注</div>
-                                        </div>
-                                        <div class="row" style="border-bottom:1px solid #ccc;">
-                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
-                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
-                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
-                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
-                                            
-                                        </div>
-                                        <div class="row" style="border-bottom:1px solid #ccc;">
-                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
-                                            <div class="col-md-3"><input type="text" name="" value=
-
-
-                                            "" class="input"></div>
-                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
-                                            <div class="col-md-3"><input type="text" name="" value="" class="input"></div>
-                                            
-                                        </div>
-                                        
-                                        
-                                    </div>
-                                </td>
-                                <td width="10%"><a href="#" class="addmore-goods-name">添加</a></td>
-                            </tr>
-                            <tr>
-                                <td width="10%">一码多品</td>
-                                
-                                <td width="10%"><a href="#">删除</a></td>
-                            </tr>
-                            <tr>
-                                <td width="10%" style="border:none"></td>
-                                
-                                <td width="10%" style="border:none"></td>
-                            </tr>
-                            <tr>
-                                <td width="10%" style="border:none"></td>
-                                
-                                <td width="10%" style="border:none"></td>
-                            </tr>
-                            <tr>
-                                <td width="10%" style="border:none"></td>
-                                
-                                <td width="10%" style="border:none"></td>
-                            </tr>
-                            
-                        </table> 
-                        
-                    </div>-->
-                    <!-- 一品多码一码多品 -->
-                    <!-- <form method="POST" id="mutitypeGoods" action="http://192.168.1.150/shop/shop/public/index.php/admin/Good/addCodesPro"> -->
-                        <div class="dataTables_wrapper" style="border-bottom:1px solid #666">
-        <table class="dataTable cell-border">
-            <caption class="table-title-margin-10">一品多码信息</caption>
-            <thead>
-                <tr>
-                    <th class="dt-center" colspan="2"><a href="#" id="addmore-goods-name" class="text-info">一码多品（点击显示列表）</a></th>
-                    <th class="dt-center" colspan="2"><a href="#" id="addmore-goods-coding">一品多码（点击显示列表）</a></th>
-                    <th class="dt-center" >
-                        <a href="#" class="addmore-goods-name" >增加</a>
-                    </th>
-                    
-                </tr>
-                
-                <tr>
-                    <!-- <th class="dt-center" width='10%'><input class="checkall" type="checkbox" name="checkList"></th> -->
-                    <th class="dt-center editorInput">商品多码</th>
-                    <th class="dt-center">商品全称</th>
-                    <th class="dt-center">国际条形码</th>
-                    <th class="dt-center">备注</th>
-                    <th class="dt-center">操作</th>
-                </tr>            
-            </thead>
-            <tbody id="muticoding">
-                
-            </tbody>
-            <tbody id="mutigoods">
-                
-
-                <!-- <tr>
-                    <td class="dt-center"><input class="ischecked" type="checkbox"></td>
-                    <td class="dt-center"><input type="text" name="name" value="" style="border:1px solid #eee;height:80%;"></td>
-                    <td class="dt-center"><input type="text" name="name" value=""></td>
-                    <td class="dt-center"><input type="text" name="name" value=""></td>
-                    <td class="dt-center"><input type="text" name="name" value=""></td>
-                </tr>
-                <tr>
-                    <td class="dt-center"><input class="ischecked" type="checkbox" name="checkList"></td>
-                    <td class="dt-center">万店联盟</td>
-                    <td class="dt-center">万店联盟</td>
-                    <td class="dt-center">万店联盟</td>
-                    <td class="dt-center">万店联盟</td>
-                </tr> -->
-                
- 
-            </tbody>
-            <tfoot>
-
-            </tfoot>
-        </table>
-        <!-- <div class="dataTables_paginate">
-            <div class="paginate_button"></div>
-            <div class="paginate_button"></div>
-        </div> -->
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+  <div class="layui-header header header-demo">
+    <a class="logo" href="#">
+        <img src="./img/logo.png" alt="万店联盟">
+    </a>
+    <div class="user-action" style="position:absolute;right:15px;top:25px;">
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
     </div>
-</form>
+  </div>
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      
+        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
+<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+  <!--<li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">默认展开</a>
+    <dl class="layui-nav-child">
+      <dd><a href="javascript:;">选项1</a></dd>
+      <dd><a href="javascript:;">选项2</a></dd>
+      <dd><a href="">跳转</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item">
+    <a href="javascript:;">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模版</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>
+ <li class="layui-nav-item">
+    <a href="javascript:;">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模版</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item">
+    <a href="javascript:;">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模版</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>-->
+</ul>
 
+    </div>
+  </div>
+	
+	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+	    <ul class="layui-tab-title site-demo-title">
+	      <li class="layui-this">预览</li>
+	      <li>查看代码</li>
+	      <li>帮助</li>
+	    </ul>
+    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
+	      <div class="layui-tab-item layui-show">
+	        <div class="layui-main">
 
-
-                    <!-- 分割线-------------------------------------- -->
-                    
-
-                    <!-- <div class="container-fluid">
-                    <div class="row " style="font-weight:bold;text-align:center;height:34px;line-height:34px;border:1px solid #eee;">
-                        <div class="col-md-2">
-                            菜单
-                        </div>
-                        <div class="col-md-8">
-                            列表
-
-                        </div>
-                        <div class="col-md-2">
-                            操作
-                        </div>
-                    </div>    
-                    <div class="row">
-                        <div class="col-md-2 table-menu" style="border:1px solid #ccc;">
-                            <table>
-                                <tr>
-                                    <td>一品多码</td>
-                                </tr>
-                                <tr>
-                                    <td>一码多品</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-8" style="min-height:100px;padding-left: 0;padding-right: 0;">
-                            <table class="ltable" id="goodsAddmore">
-                                <tr>
-                                    <th>
-                                        商品编码
-                                    </th>
-                                    <th>
-                                        条形码
-                                    </th>
-                                    <th>
-                                        商品名称
-                                    </th>
-                                    <th>
-                                        备注
-                                    </th>
-                                </tr>
-                                
-
-                            </table>
-
-                        </div>
-                        <div class="col-md-2 table-menu">
-                        	<a href="#" class="addmore-goods-name">添加</a>
-                        	<a href="#" class="">删除</a>
-                            
-                        </div>
-                    </div>
-                     </div>  -->   
-
-                    <div class="page-footer text-center">
-                      <div class="btn-wrap" style="position: static;">
-                        <input type="button" value="提交保存" id="btnSubmit" class="button" style="border-radius:0">
-                        <!-- <input name="btnReturn" type="button" value="返回上一页" class="button button-yellow" onclick="javascript:history.back(-1);" style="border-radius:0"> -->
-                      </div>
-                    </div>
-
-                    </div>
-
-				</div>
-			</div>
+	        </div>
 		</div>
+		</div>
+	</div> -->
+	<!-- ============================主要内容区================================ -->
+  
+  
         
-        <script type="text/template" id="duoma">
-            <tr>  
-                <td class="dt-center"><input class="ischecked" type="text" name="decode[]" placeholder="duoma"></td>
-                <td class="dt-center">{fullname}</td>
-                <td class="dt-center">{barcode}</td>
-                <td class="dt-center">一品多码</td>
-                <td class="dt-center"><a href="#" onclick="deleteChecked(this)">删除</a></td>
-            </tr>
-        </script>
-        <script type="text/template" id="duopin">
-            <tr>
+
+
+
+
+
+	<div class="lay-main">
+	  <!-- <span class="layui-breadcrumb">
+		  <a href="#">首页</a>
+		  <a href="#">组织机构</a>
+		  <a href="#">组织机构管理</a>
+		  <a><cite>正文</cite></a>
+		</span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          
+          <li>
+            <a href="goodsInfo">商品信息</a>
+          </li>
+          <li class="layui-this">
+            添加商品信息
+          </li>
+        </ul>
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form layui-form-pane"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+              <legend>商品基本信息</legend>
+                <div class="layui-form-item"> 
+                <label class="layui-form-label">商品名称</label>
+                <div class="layui-input-inline">
+                  <input type="text" id="fullname-jname" name="" value="" class="layui-input" >
+                </div>
+                <label class="layui-form-label">商品编号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+                </div>
+
+                <label class="layui-form-label">商品条形码</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+
+                </div>
+                <label class="layui-form-label">助记码</label>
+                <div class="layui-input-inline">
+                  <input type="text" id="zname-show" name="" value="" class="layui-input" >
+
+                </div>
+                <label class="layui-form-label">供货商</label>
+                <div class="layui-input-inline">
+                  <select class="supplierList">
+                    
+                  </select>
+                </div>
+              </div>
+
+                <div class="layui-form-item">
+                <label class="layui-form-label">规格</label>
+                <div class="layui-input-inline">
+                  <input id="ordernum" type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input">
+                </div>
+                <label class="layui-form-label">零售单位</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                <label class="layui-form-label">分类</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                  <label class="layui-form-label">计价方式</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
                 
-                <td class="dt-center"><input class="ischecked" type="text" name="goods[]"></td>
-                <td class="dt-center">{fullname}</td>
-                <td class="dt-center">{barcode}</td>
-                <td class="dt-center">一码多品</td>
-                <td class="dt-center"><a href="#" onclick="deleteChecked(this)">删除</a></td>
-            </tr>
-        </script>
-       
-<div class="add-alert-area"></div>
-</body>
+                </div>
+              </fieldset>
+              
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+              <legend>商品价格信息</legend>
+                <div class="layui-form-item"> 
+                
+                
+                <label class="layui-form-label">进货价</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+                </div>
+                <label class="layui-form-label">毛利率</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
+                </div>
+                
+                  
+                <label class="layui-form-label">进项税率</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" value="" class="layui-input" >
 
-<script>
-    var goodsHouse={
-        appendPar:'muticoding',
-        goodsContent:'duoma',
-        goodsType:{
-            cata1:[],
-            cata2:{}
-        },
-        goodsData:{
-            goodsName:'',
-            goodsCode:''
-        },
-        goodsId:''
-    }
+                </div>
+                <label class="layui-form-label">供货商</label>
+                <div class="layui-input-inline">
+                  <select class="supplierList">
+                    
+                  </select>
+                </div>
+              </div>
 
-    //添加商品信息，先获取需要选择的数据
-    config.ajax('get',config.ajaxAddress.addgoodsInfo,function(data){
-        // console.log(data);
-        //brand品牌 method计价方式 supplier:主供应商 gg:规格 types:商品分类
-        $.each(data.brand,function(index,item){
-            $('<option>').appendTo($('#add-goods-brand')).html(item.brand).attr('value',item.id);
-        });
-        $.each(data.method,function(index,item){
-            $('<option>').appendTo($('#goods-method')).html(item.method).attr('value',item.id);
-        });
-        $.each(data.gg,function(index,item){
-            $('<option>').appendTo($('#gg')).html(item.gg).attr('value',item.id);
-        });
-        $.each(data.supplier,function(index,item){
-            $('<option>').appendTo($('#main-supplier')).html(item.name).attr('value',item.id);
-        });
-        $.each(data.types,function(index,item){
-            // item.
-            
-            goodsHouse.goodsType.cata1.push(item.type);
-            goodsHouse.goodsType.cata2[index]=[];
-            if(item.child){
-                $.each(item.child,function(i,ites){
+                <div class="layui-form-item">
+                <label class="layui-form-label">规格</label>
+                <div class="layui-input-inline">
+                  <input id="ordernum" type="text" name="oddnum" readonly placeholder="请输入"  class="layui-input">
+                </div>
+                <label class="layui-form-label">零售单位</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                <label class="layui-form-label">分类</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                  <label class="layui-form-label">计价方式</label>
+                <div class="layui-input-inline">
+                  <select class="stockList" name="stock">
+                    
+                  </select>
+                </div>
+                
+                </div>
+              </fieldset>
+                
+              
+              <!-- ================================================== -->
 
-                    // console.log(index,goodsHouse.goodsType.cata2[index]);
+              <!-- ================================================== -->
 
-                    (goodsHouse.goodsType.cata2[index]).push({id:ites.id,val:ites.type});
-                });
-            }
-            
 
-            $('<option>').appendTo($('#catagory1')).html(item.type).attr('value',index);
-        });
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+              </div>
 
-    });
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </form>
+          </div>
+        </div>
 
-    $('#catagory1').on('change',function(){
-        console.log($(this).val());
-        var sub=goodsHouse.goodsType.cata2[$(this).val()];
-        $('#catagory2').html('');
-        $.each(sub,function(index,item){
-            $('<option>').appendTo($('#catagory2')).html(item.val).attr('value',item.id);
-        });
-    })
+     </div>
 
-    $('.checkall').on('click',function() {
-        $('.ischecked').attr('checked',!!$(this).attr('checked'));
-    });
 
-    $('#goodsAddmore').on('click','.ischecked',function(){
-        var ischecked=true;
-        $('.ischecked').each(function(){
-            if(!$(this).attr('checked')){
-                ischecked=false;
-            }
-        })
-        $('.checkall').attr('checked',ischecked);
-    });
 
-    function deleteChecked(obj){
-        console.log(obj);
-    }
-
-    var options = {
-        success: function (data) {
-           console.log(data);
-           if(data==200){
-                alert('添加成功');
-                // goodsHouse.goodsId=data.goodsId;
-                // $('<input type="hidden" value='+data.goodsId+'>').appendTo($('#mutitypeGoods'));
-                // $('.add-alert-area').hide();
-               //location.reload();
-           }else{
-               alert('添加失败，请重新添加');
-           }
-        }
-    };
-   
-    $('#btnSubmit').on('click',function(){
-         // $('.add-alert-area').css('z-index','9999').show();
-         console.log('tijiao');
-        $('#singleWillAddInfo').ajaxSubmit(options);
-    })
-
-    // $('#btnSubmit1').on('click',function(){
-    //      // $('.add-alert-area').css('z-index','9999').show();
-    //     $('#mutitypeGoods').ajaxSubmit(options);
-    // })
 
     
-    $('#addmore-goods-name').on('click',function(){
-        $(this).css('color','#f00');
-        $('.editorInput').text('商品多品');
-        $('#addmore-goods-coding').css('color','#666');
-        goodsHouse.appendPar='mutigoods';
-        goodsHouse.goodsContent='duopin';
-        $('#'+goodsHouse.appendPar).show();
-        $('#muticoding').hide();
-    })
-    $('#addmore-goods-coding').css('color','#f00');
-    $('#addmore-goods-coding').on('click',function(){
-        $('.editorInput').text('商品多码');
-        $(this).css('color','#f00');
-        $('#addmore-goods-name').css('color','#666');
-        goodsHouse.appendPar='muticoding';
-        goodsHouse.goodsContent='duoma';
-        $('#'+goodsHouse.appendPar).show();
-        $('#mutigoods').hide();
-    })
+    </div> 
+  <ul id="biuuu_city_list"></ul>
 
-    //添加一品多码
-    
-    $('.addmore-goods-name').on('click',function(){
+
+
+  <script >
+
+  </script>
+
+  <!-- =======================弹出窗========================= -->
+<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
+  <div class="alert-main-con">
+      <form method="" action="">
+        <fieldset>
+          <legend>
+            基本信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
+        <fieldset>
+          <legend>
+            价格信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <input type="checkbox" />
+                <label>允许采购订货</label>
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
+        <div class="col-3-table clearfix">
+          <ul class="left-list">
+            <li class="active">一品多码</li>
+            <li>商品价格</li>
+            
+          </ul>
+          <div class="middle-item">
+            <ul class="title-tr-th w80 clearfix">
+              <li class="w20">商品编码</li>
+              <li class="w60">商品条码</li>
+              <li class="w20"></li>
+            </ul>
+
+            <div class="button">增加</div>
+            <div class="button button-next">增加</div>
+          </div>
+        </div>
+        <div class="search-bottom">
+          <div class="single-select">
+            快速查找：
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span>请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="first-sort">
+                                  
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+                      
+
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span class="subclass">请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="sub-sort">
+                                  
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+
+                      
+                  </div>
+
+                  <div class="r-list" style="vertical-align:top;">
+                        <input type="text" class="keyword" name="" value="">
+                        <a href="" class="btn-search">查询</a>
+                    </div>
+        </div>
         
-        var html=$('#'+goodsHouse.goodsContent).html();
-        $('#'+goodsHouse.appendPar).append(config.formatTemplate({
-            barcode:$('.barcode').val(),
-            fullname:$('.goods-fullname').val()
-        },html));
- 
-    })
-    
+
+      </form>
+    </div>
+</div>
+
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
 </script>
-<script src="./js/add-goodsinfo.js"></script>
+<script src="./js/PinYin.js"></script>
+<script>
+	$('#fullname-jname').on('blur',function(){
+        var con=codefans_net_CC2PY($(this).val());
+        $('#zname-show').val(con);
+    });
+</script>
+
+</div>
+
+</body>
 </html>

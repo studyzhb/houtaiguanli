@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./layui/css/layui.css" />
+  	<link rel="stylesheet" href="./css/alertcon.css" />
+	<script src="./layui/layui.js"></script>
+  	<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-form.js"></script>
+    
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+  <div class="layui-header header header-demo">
+    <a class="logo" href="#">
+        <img src="./img/logo.png" alt="万店联盟">
+    </a>
+    <div class="user-action" style="position:absolute;right:15px;top:25px;">
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
+    </div>
+  </div>
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      
+        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
+          
+        </ul>
+
+    </div>
+  </div>
+	
+	
+	<!-- ============================主要内容区================================ -->
+
+
+	<div class="lay-main">
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          <li >
+            <a href="shop-price.html">店铺列表</a>
+          </li>
+          <li class="layui-this">
+            店铺交易信息
+          </li>
+        </ul>
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form layui-form-pane" id="adminInfo" action="" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <div class="layui-form-item"> 
+                
+                  <label class="layui-form-label">店铺编号</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" id="goods-coding" style="width:48px;height:38px;">搜索
+                  </div>
+                    
+                  <label class="layui-form-label">订单号</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" id="goods-barcode" style="width:48px;height:38px;" >
+                    搜索
+                  </div>
+                  <label class="layui-form-label">时间</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="" value="" class="layui-input" >
+
+                  </div>
+                  <div class="layui-btn layui-input-inline layui-btn-small" lay-filter="goodsName" id="goodsName" style="width:48px;height:38px;">
+                    搜索
+                  </div>
+
+                
+                
+              </div>
+
+              <table class="layui-table">
+          <colgroup>
+            <!-- <col width="100">
+            <col width="100">
+            <col>
+            <col width="100">
+            <col width="300"> -->
+          </colgroup>
+          <thead>
+            <tr>
+              <th>店铺编号</th>
+              <th>店铺名称</th>
+              <th>单号</th>
+              <th>店铺操作前余额</th>
+              <th>操作金额</th>
+              <th>余额</th>
+              <th>操作时间</th>
+              
+              <th>交易类型</th>
+              
+            </tr> 
+          </thead>
+          <tbody id="purchaselist">
+            
+            
+            
+          </tbody>
+      </table>
+              
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </form>
+          </div>
+        </div>
+
+
+     </div>
+
+
+
+
+    
+    </div> 
+
+
+
+
+ 
+
+  <!-- =======================弹出窗========================= -->
+
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+
+<script type="text/html" id="shophis" >
+  <tr>
+    <td>{{d.coding}}</td>
+    <td>{{d.name}}</td>
+    <td>{{d.order}}</td>
+    <td>{{d.balance}}</td>
+    <td>{{d.total}}</td>
+    <td>{{d.hbalance}}</td>
+    <td>{{d.createtime}}</td>
+    <td>{{d.typeName}}</td>
+  </tr>
+</script>
+
+
+</div>
+
+</body>
+<script src="./js/config.js"></script>
+<script src="./js/filter.js"></script>
+<script src="./js/getInfoByUserCard.js"></script>
+<script src="./js/shoppricehis.js"></script>
+</html>
