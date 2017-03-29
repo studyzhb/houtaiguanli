@@ -92,6 +92,7 @@
             <tr>
               <th>ID</th>
               <th>名称</th>
+              <th>类型</th>
               <th>状态</th>
               <th>操作</th>
             </tr> 
@@ -301,6 +302,7 @@
   <tr>
     <td>{{d.index+1}}</td>
     <td>{{d.name}}</td>
+    <td>{{=d.type}}</td>
     {{# if(d.status=='1'){ }}
       <td>启用</td>
     {{# }else{ }}
