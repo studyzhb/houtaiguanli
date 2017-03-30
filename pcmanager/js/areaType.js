@@ -277,7 +277,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     //添加分类类型
     $('.addArea').on('click',function(){
+        $('#authorForm')[0].reset();
         $('input.cityid').val(classObj.data.navId);
+        
         layObj.layer.open({
              type:1,
             content: $('#authorForm'), //这里content是一个DOM
@@ -296,8 +298,29 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
         classObj.data.typeId=$(this).data('id');
         classObj.data.typeEl=$(this).parent('td').prevAll('.typeName');
+        var tId=$(this).data('id');
+        var tName=$(this).data('name');
+        var tField=$(this).data('field');
+        var tpl=$('#editorNavCon').html();
+        $('.editor-area-type').html('');
+        layObj.laytpl(tpl).render({id:tId,name:tName,field:tField},function(html){
+            $('.editor-area-type').append(html);
+            form.render();
+        })
+        layObj.layer.open({
+            type:1,
+            content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:'600px',
+            maxmin: true,
+            end:function(){
+                classObj.data.isCanClick=true;
+                $('#editorAreaTypeWrapper').hide();
+            }
+        })
+        /**
         common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.area.getSingleAreaTypeInfo,function(data){
-           var tpl=$('#editorNavCon').html();
+           
             if(data.code==200){
                 
                      $('.editor-area-type').html('');
@@ -321,7 +344,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 
             }
         },{id:classObj.data.typeId})
-        
+         */
     })
 
 

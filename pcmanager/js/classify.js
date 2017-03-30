@@ -13,7 +13,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var arrData=readyData.split('&')||[];
         log.d(location.href);
         var obj={};
-
+        
         $.each(arrData,function(index,item){
 
             var arr=item.split('=')||[];
@@ -230,7 +230,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         form=layObj.form();
         form.on('submit(shopInfo)',function(formParams){
             log.d(formParams.field)
-            formParams.field.navId=classObj.data.navId;
+            formParams.field.navid=classObj.data.navId;
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.addClass,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -260,8 +260,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 arrName.push(formParams.field[item]);
             }
             var dataForm={};
-            dataForm.navId=classObj.data.navId;
-            dataForm.typeId=classObj.data.typeId;
+            // dataForm.navId=classObj.data.navId;
+            dataForm.typeid=classObj.data.typeId;
             dataForm.name=JSON.stringify(arrName);
             
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.addClassInfo,function(data){
@@ -276,8 +276,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            layObj.layer.closeAll();
-                            classObj.methods.updatePageNum(1);
+                            // layObj.layer.closeAll();
+                            // classObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },dataForm);
@@ -287,8 +287,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
         form.on('submit(editorAreaType)',function(formParams){
             log.d(formParams.field)
-            
-            
+
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateClassType,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -325,8 +324,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }else{
                         layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
-                            layObj.layer.closeAll();
-                            classObj.methods.updatePageNum(1);
+                            // layObj.layer.closeAll();
+                            // classObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },formParams.field);
@@ -346,7 +345,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     //添加分类类型
     $('.addArea').on('click',function(){
-        $('input.cityid').val(classObj.data.navId);
+         $('#authorForm')[0].reset();
+        // $('input.cityid').val(classObj.data.navId);
         layObj.layer.open({
              type:1,
             content: $('#authorForm'), //这里content是一个DOM
@@ -363,6 +363,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     $('#all-sort-list').on('click','.addAreaType',function(){
         classObj.data.typeId=$(this).data('id');
         var classN=$(this).data('name');
+        $('#areaInfoForm')[0].reset();
         $('.sortName').text(classN);
         layObj.layer.open({
              type:1,

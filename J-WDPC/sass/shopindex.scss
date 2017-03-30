@@ -2,10 +2,19 @@
 .delicacy-wrap{
     width: 1280px;
     margin: 0 auto;
+    background: #F8F8F8;
+    .contentInfo{
+        background: #fff;
+        width: 100%;
+        padding-bottom: 20px;
+        margin-top: 20px;
+        overflow: hidden;
+    }
     .de-info{
         width: 1200px;
         margin: 0 auto;
         overflow: hidden;
+        background: #fff;
         .shop{
             overflow: hidden;
         }
@@ -55,11 +64,12 @@
     .con{
         span{
             margin-right: 10px;
+            cursor: pointer;
         }
     }
 }
 .color-red{
-    color: red;
+    color: #C70D1B;
     font-weight: bold;
 }
 .color-9{
@@ -71,16 +81,19 @@
 .Goshop{
     border: 1px solid #bbb8b8;
     float: right;
-    padding: 16px;
+    // padding: 16px;
 }
 .Go-sup-dl{
     .shopname{
         font-weight: bold;
         margin-bottom: 18px;
+        background: #F8F8F8;
+        padding: 10px 20px;
     }
     dd{
         font-size: 14px;
         margin-top: 10px;
+        text-align: center;
         .sub-dl{
             margin-left: 30px;
                 dt{
@@ -89,7 +102,7 @@
                 color: black;
                 float: left;
                 height: 58px;
-                margin-right: 30px;
+                margin-left: 30px;
                 line-height: 58px;
             }
             dd{
@@ -99,29 +112,44 @@
         }
         span{
             border: 1px solid #bbb8b8;
-            padding: 6px 10px;
-            margin: 10px 18px;
+            padding: 10px 20px;
+            margin: 10px 20px;
             display: inline-block;
+            cursor: pointer;
         }
     }
 }
 .shopAddress{
     width: 230px;
+    margin-left: 30px;
+    margin-bottom: 20px;
     li{
         font-size: 12px;
         margin-top: 10px;
+        a{
+            cursor: pointer;
+        }
     }
 }
-.hotPro{
-    margin:60px 0px;
-    overflow: hidden;
-    .hotPre-top{
-        margin: 10px 0px;
+.hotPre-top{
+        margin: 0px auto;
         font-weight: bold;
+        width: 1200px;
+        margin-top: 20px;
     }
+.lineIn{
+    width: 100%;
+    height: 1px;
+    background: #E3E3E3;
+    position: relative;
+    top: 20px;
+}
+.hotPro{
+    margin-top:40px;
+    overflow: hidden;
     li{
         float: left;
-        margin-right: 20px;
+        margin-left: 20px;
         p{
             margin-bottom: 12px;
             font-size: 14px;
@@ -141,18 +169,19 @@
         
     }
 }
+.b-nav{
+    overflow: hidden;
+    margin-top: 30px;
+    li{
+        float: left;
+        // font-weight: bold;
+        margin-right: 78px;
+        cursor: pointer;
+    }
+}
 .business{
     padding-bottom: 60px; 
     overflow: hidden;
-    .b-nav{
-        overflow: hidden;
-        li{
-            float: left;
-            font-weight: bold;
-            margin-right: 78px;
-            cursor: pointer;
-        }
-    }
     .b-address{
         float: left;
         margin-left: 110px;
@@ -163,6 +192,7 @@
         .b-name{
             margin-bottom: 30px;
             font-weight: bold;
+            font-size: 16px;
         }
     }
 }
@@ -170,6 +200,10 @@
     margin-top: 40px;
     .business-map{
         float: left;
+        width:420px ;
+        height:284px;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
     }
 }
 .goodsdetailLeft{
@@ -182,20 +216,21 @@
     }
     .goodsTbl{
         font-size: 14px;
-         border-collapse:   separate;   border-spacing:   10px;  
         tr{
-            margin-top: 10px;
             th{
                 font-weight: bold;
                 text-indent: 20px;
+                padding: 12px 8px;
             }
             td{
                 text-indent: 20px;
+                padding: 12px 8px;
+                border-bottom: 1px solid #D8D8D8;
             }
         }
     }
 }
-.evaluateLeft{float: left;}
+.evaluateLeft{float: left;margin-top: 10px;}
 .evaluateRight{float: right;}
 .ELeftTop{
     font-size: 14px;
@@ -204,9 +239,9 @@
         float: left;
         margin-left: 48px;
         dt{
-            font-size: 18px;
+            font-size: 28px;
             font-weight: bold;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             text-align: center;
         }
         dd{
@@ -231,7 +266,7 @@
                     position: absolute;
                     top: 0;
                     left: 0;
-                    background: red;
+                    background: #C70D1B;
                 }
             }
         }
@@ -244,10 +279,11 @@
     .progNav{
         margin: 50px 0px;
         overflow: hidden;
+        background: #F3F3F3;
         li{
             float: left;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 14px;
             cursor:pointer;
         }
     }
@@ -261,10 +297,12 @@
         -webkit-align-items: flex-start;
         -ms-align-items: flex-start;
          margin-top: 40px;
+         border-bottom: 1px solid #E3E3E3;
+        padding-bottom: 20px;
        .userPic{
            margin-right: 2em;
+           text-align: center;
            img{
-               text-align: center;
                margin-bottom: 6px;
            }
        } 

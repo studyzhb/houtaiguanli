@@ -128,6 +128,44 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         form.render();
                     },600);
                 });
+            },
+            //排序
+            sortOrderInfo:function(id,order,obj,tag){
+                var targetEl={};
+                var tId,tOrder;
+                if(tag){
+                    tId=obj.prev().data('id');
+                    tOrder=obj.prev().data('order');
+                    if(!tId){
+                        targetEl='';
+                    }else{
+                        targetEl.id=tId||'';
+                        targetEl.displayorder=order;
+                    }
+                    
+                }else{
+                     tId=obj.next().data('id');
+                     tOrder=obj.next().data('order');
+                    if(!tId){
+                        targetEl='';
+                    }else{
+                        targetEl.id=tId||'';
+                        targetEl.displayorder=order;
+                    }
+                }
+                var arr=[];
+                arr[0]={id:id,displayorder:tOrder};
+                if(targetEl){
+                    arr.push(targetEl);
+                }
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.sortGoods,function(data){
+                    if(data.code==200){
+                        layObj.layer.msg('排序成功');
+                        GoodsObj.methods.updatePageNum(GoodsObj.data.currPage);
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{positionJson:JSON.stringify(arr)});
             }
         }
     }
@@ -268,6 +306,24 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
         log.d(GoodsObj.data.navId);
         GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
     });
+
+    /**
+     * 排序
+     */
+    $('#tableWrapper').on('click','.upSort',function(){
+        
+         
+         var bid=$(this).data('id');
+         var bOrder=$(this).data('order');
+         GoodsObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),true);
+     })
+
+     $('#tableWrapper').on('click','.downSort',function(){
+        
+        var bid=$(this).data('id');
+         var bOrder=$(this).data('order');
+         GoodsObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),false);
+     })
 
     /**
      * 获取城市列表

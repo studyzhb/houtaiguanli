@@ -106,8 +106,13 @@
     </div>
     </div>
     <div class="layui-form-item">
+       
+            <!--<input type="text" placeholder="请输入" name="name01" lay-verify="isNUll" autocomplete="off" class="layui-input">-->
+         
+    </div>
+    <div class="layui-form-item">
         <div class="areaInfoInput">
-            <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
+            <!--<input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">-->
             
         </div>
     </div>
@@ -124,12 +129,18 @@
     <form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
         <div class="layui-form-item">
         <label class="layui-form-label">城市名称</label>
-        <div class="layui-input-block">
+        <div class="layui-input-block layui-nav">
             
             <input type="text" placeholder="请输入" value="" name="name" autocomplete="off" class="layui-input">
             
             <input type="hidden" value="2" placeholder="请输入" name="level" autocomplete="off" class="layui-input">
-            
+            <div class="layui-nav-item">
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                    <dd>
+                        <a href="#">测试</a>
+                    </dd>
+                </dl>
+            </div>
         </div>
         </div>
        <div class="layui-form-item">

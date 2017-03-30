@@ -1,0 +1,209 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3,
+h4, h5, h6, p, blockquote, pre, a, abbr, acronym,
+address, big, cite, code, del, dfn, em, font, img, ins,
+kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+:focus {
+  outline: 0; }
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+th, td {
+  text-align: left;
+  font-weight: normal; }
+
+img, iframe {
+  border: none;
+  text-decoration: none; }
+
+ol, ul {
+  list-style: none; }
+
+input, textarea, select, button {
+  font-size: 100%;
+  font-family: inherit; }
+
+select {
+  margin: inherit; }
+
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #000;
+  background-color: #000;
+  height: 1px; }
+
+html {
+  font: 125%/1 "microsoft yahei","Arial Narrow"; }
+
+a {
+  text-decoration: none; }
+
+a:visited {
+  color: #666; }
+
+a:hover, a:active, a:focus {
+  color: #ff8400;
+  /* text-decoration:underline;*/ }
+
+.clearfix:after {
+  content: ".";
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+  display: block; }
+
+section {
+  width: 7.5rem;
+  min-height: 7.5rem;
+  height: auto;
+  overflow: auto;
+  font-size: 14px; }
+  section header {
+    padding-top: 0.26rem;
+    width: 100%;
+    font-size: 0; }
+    section header img {
+      width: 100%;
+      height: 100%; }
+  section .goodsDisplay .displaytime {
+    overflow: hidden;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex; }
+    section .goodsDisplay .displaytime li {
+      flex: 1;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      padding: 0.26rem 0;
+      text-align: center; }
+  section .goodsDisplay .goodsdata {
+    background: #E0CFC5;
+    padding-bottom: 1rem;
+    overflow: hidden;
+    padding: 0.16rem; }
+    section .goodsDisplay .goodsdata .goodsdataInfo {
+      width: 8rem;
+      overflow: hidden; }
+    section .goodsDisplay .goodsdata .data {
+      width: 3.4rem;
+      height: 4.6rem;
+      border-radius: 0.4rem;
+      box-shadow: 0.1rem 0.1rem 0.1rem gray;
+      background: #fff;
+      position: relative;
+      float: left;
+      margin: 0.1rem 0.3rem 0.3rem 0;
+      overflow: hidden; }
+      section .goodsDisplay .goodsdata .data img {
+        width: 2.03rem;
+        height: 2.03rem;
+        position: absolute;
+        top: 33%;
+        left: 50%;
+        margin-top: -1rem;
+        margin-left: -1rem; }
+      section .goodsDisplay .goodsdata .data ul {
+        padding: 0 0.25rem;
+        position: absolute;
+        top: 3rem; }
+        section .goodsDisplay .goodsdata .data ul li {
+          margin-bottom: 0.25rem;
+          font-size: 12px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 2.8rem; }
+          section .goodsDisplay .goodsdata .data ul li em {
+            display: inline-block;
+            background: #BBBBBB;
+            color: #fff;
+            border-radius: 0.23rem;
+            font-size: 16px;
+            float: right;
+            padding: 0.1rem 0.2rem; }
+          section .goodsDisplay .goodsdata .data ul li .Dprice {
+            font-size: 16px;
+            color: #C72D1B;
+            float: left;
+            position: relative;
+            top: 0.1rem; }
+  section .border {
+    border-bottom: 2px solid #C72D1B !important;
+    color: #C72D1B !important; }
+  section .color {
+    color: #C72D1B; }
+  section .bg {
+    background: #C72D1B !important; }
+
+.Mdisplaytime {
+  color: #C72D1B;
+  text-align: center;
+  padding: 0.3rem 0;
+  font-size: 16px; }
+  .Mdisplaytime img {
+    width: 0.48rem;
+    height: 0.37rem;
+    vertical-align: middle; }
+
+.mothergoods {
+  background: #eee;
+  overflow: hidden; }
+  .mothergoods .motherinfo {
+    padding: 0.1rem 0.05rem;
+    width: 8rem;
+    overflow: hidden; }
+    .mothergoods .motherinfo .Mdata {
+      width: 2.4rem;
+      height: 3.4rem;
+      background: #fff;
+      float: left;
+      margin-right: 0.1rem;
+      margin: 0.1rem 0.1rem 0.1rem 0; }
+      .mothergoods .motherinfo .Mdata p {
+        height: 2.10rem;
+        border-bottom: 2px solid #eee;
+        position: relative; }
+        .mothergoods .motherinfo .Mdata p img {
+          width: 1.33rem;
+          height: 1.65rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-top: -0.82rem;
+          margin-left: -0.6rem; }
+      .mothergoods .motherinfo .Mdata ul {
+        padding: 0.2rem 0.2rem; }
+        .mothergoods .motherinfo .Mdata ul li {
+          margin-bottom: 0.2rem;
+          font-size: 12px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 2.0rem; }
+          .mothergoods .motherinfo .Mdata ul li .Mprice {
+            font-size: 16px;
+            margin-right: 0.1rem; }
+          .mothergoods .motherinfo .Mdata ul li .oPrice {
+            text-decoration: line-through;
+            color: #999; }
+
+/*# sourceMappingURL=active.css.map */

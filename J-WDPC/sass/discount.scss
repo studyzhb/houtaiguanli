@@ -31,7 +31,7 @@
     font-size: 14px;
     dl{
         dt{
-            margin: 40px 0px;
+            margin: 72px 0px 23px 0px;
         }
         dd{
             margin-top: 12px;
@@ -40,10 +40,14 @@
             }
         }
     }
-    p{
-        margin: 40px 0px 20px 0px;
-    }
+    
     .remind{
-        line-height: 20px;
+        background: #F8F8F8;
+        padding: 12px 14px;
+        overflow: hidden;
+        margin-top: 40px;
+        p{
+            margin: 0px 0px 20px 0px;
+        }
     }
 }

@@ -14,9 +14,10 @@ $(function(){
     });
     // 住宿页面
     $(".areaChoice li").click(function(){
-        $(this).addClass("color-red").siblings().removeClass("color-red");
+        $(this).addClass("color-bg").siblings().removeClass("color-bg");
     });
     $(".sortNav li").click(function(){
         $(this).addClass("color-red").siblings().removeClass("color-red");
     });
+   
 });

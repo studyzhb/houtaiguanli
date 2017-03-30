@@ -57,7 +57,9 @@
               <div class="layui-btn searchByKeywords">
                    搜索
                 </div>
-                
+                <div class="layui-btn addArea">
+                    添加分类类型
+                </div>
                 <div class="layui-btn" onclick="location.reload()" style="float: right;">
                     <i class="layui-icon">&#x1002;</i>  
                 </div>
@@ -108,7 +110,13 @@
     <div class="layui-input-block">
         
         <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
-        <input type="hidden" placeholder="请输入" name="id" autocomplete="off" class="layui-input cityid">
+        <!--<input type="hidden" placeholder="请输入" name="id" autocomplete="off" class="layui-input cityid">-->
+    </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">属性</label>
+    <div class="layui-input-block">
+        <input type="text" placeholder="请输入" name="field" autocomplete="off" class="layui-input">
     </div>
     </div>
     <div class="layui-form-item">
@@ -256,17 +264,17 @@
     <td class="typeName">{{=item.typeName}}</td>
     <td>
       {{# if(item.status=='1'){ }}
-        
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
               启用
-        
+        </button>
       {{# }else{ }}
-        
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}">
               停用
-        
+        </button>
       {{# } }}
     </td>
     <td>
-      
+    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
       <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.typeName}}">
             <i class="layui-icon">&#xe608;</i>
         </div>

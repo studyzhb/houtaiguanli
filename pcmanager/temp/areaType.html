@@ -89,10 +89,16 @@
         <label class="layui-form-label">类型名称</label>
         <div class="layui-input-inline">
         <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
-        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}"   lay-verify="" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">属性</label>
+        <div class="layui-input-inline">
+           <input type="text" name="name" data-info="{{d.field}}" value="{{d.field}}"   lay-verify="" placeholder="" autocomplete="off" class="layui-input">
+        </div>
 
+    </div>
     <!--<div class="layui-form-item">
         <label class="layui-form-label">类型状态</label>
         <div class="layui-input-block">
@@ -120,6 +126,14 @@
         
         <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
         <input type="hidden" placeholder="请输入" name="id" autocomplete="off" class="layui-input cityid">
+    </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">属性</label>
+    <div class="layui-input-block">
+        
+        <input type="text" placeholder="请输入" name="field" autocomplete="off" class="layui-input">
+        
     </div>
     </div>
     <div class="layui-form-item">
@@ -265,7 +279,7 @@
       {{# } }}
     </td>
     <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.name}}" >编辑</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.name}}" data-field="{{=item.field}}" >编辑</div>
     </td>
   </tr>
 

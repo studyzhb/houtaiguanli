@@ -1,5 +1,5 @@
 define({
-    preFix:'http://www.yylm.com/public/index.php/unionAdmin',
+    preFix:'http://web.yylm.com/public/index.php/unionAdmin',
     /**
      * 导航模块
      */
@@ -66,7 +66,8 @@ define({
         recommendList:'/goods/upReGoods',
         addRecommend:'/goods/upReGoods',
         updateShopGoodsStatus:'/goods/updateGoodsStatus',
-        deleteShopGoodsInfo:'/goods/deleteGoods'
+        deleteShopGoodsInfo:'/goods/deleteGoods',
+        sortGoods:'/goods/positionChange',
     },
     /**
      * 店铺
@@ -80,7 +81,8 @@ define({
         recommendList:'/shop/getReShop',
         addRecommend:'/shop/upReShop',
         updateShopStatus:'/shop/updateShopStatus',
-
+        sortShop:'/shop/positionChange',
+        searchInfo:''
     },
     /**
      * 城市

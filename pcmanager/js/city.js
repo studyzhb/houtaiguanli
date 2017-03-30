@@ -204,6 +204,56 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
                     
                         
                     },{cityid:params.id,id:id,name:name})
+            },
+            /**
+             * 监听键盘事件
+             */
+            keydown:function (event){
+                var key = (event||window.event).keyCode;
+                var result = document.getElementById("result1")
+                var cur = result.curSelect;
+                
+                if(key===40){
+                    if(cur + 1 < result.childNodes.length){
+                        if(result.childNodes[cur]){
+                            result.childNodes[cur].style.background='';
+                        }
+                        result.curSelect=cur + 1;
+                        result.childNodes[cur+1].style.background='#CAE1FF';
+                        document.getElementById("keyword").value = result.tipArr[cur+1].name;
+                    }
+                }else if(key===38){
+                    if(cur - 1>=0){
+                        if(result.childNodes[cur]){
+                            result.childNodes[cur].style.background='';
+                        }
+                        result.curSelect=cur-1;
+                        result.childNodes[cur-1].style.background='#CAE1FF';
+                        document.getElementById("keyword").value = result.tipArr[cur-1].name;
+                    }
+                }else if(key === 13){
+                    var res = document.getElementById("result1");
+                    if(res && res['curSelect'] !== -1){
+                        cityObj.methods.selectResult(document.getElementById("result1").curSelect);
+                    }
+                }else{
+                    cityObj.methods.autoSearch();
+                }
+            },
+            /**
+             * 根据关键字查询
+             */
+            selectResult:function(){
+
+            },
+            //定位选择输入提示关键字
+            focus_callback:function () {
+                if (navigator.userAgent.indexOf("MSIE") > 0) {
+                    document.getElementById("keyword").onpropertychange = cityObj.methods.autoSearch;
+                }
+            },
+            autoSearch:function(){
+                
             }
         }
     }
@@ -225,7 +275,7 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
                 layObj.layer.confirm('你确认要停用此类型吗?',function(index){
                     
                     layObj.layer.close(index);
-
+                    
                 })
             }else{
                 areaObj.methods.updateStatusInfoType(status,upId,this,pId);
@@ -316,6 +366,8 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
     //添加区域内容
     $('#all-sort-list').on('click','.addAreaType',function(){
         areaObj.data.typeId=$(this).data('id');
+        $('#areaInfoForm')[0].reset();
+        $('.areaInfoInput').html('');
         areaObj.data.closeIndex=layObj.layer.open({
              type:1,
             content: $('#areaInfoForm'), //这里content是一个DOM
@@ -347,6 +399,14 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
     setTimeout(function(){
         form=layObj.form();
         
+        form.verify({
+            isNull:function(value,a){
+                if(!value){
+                    $(a).removeAttr('name');
+                }
+            }
+        })
+
         form.on('submit(cityInfo)',function(paramsData){
             log.d(paramsData.field);
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.city.addCityList,function(data){
@@ -411,7 +471,8 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
             dataForm.cityId=params.id;
             dataForm.typeId=areaObj.data.typeId;
             dataForm.name=arrName;
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.addAreaInfo,function(data){
+            if(arrName.length>0){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.area.addAreaInfo,function(data){
                     log.d(data);
                     if(data.code==200){
                         layer.msg('添加成功');
@@ -428,6 +489,13 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
                         },1000);
                     }
                 },dataForm);
+            }else{
+                $('.areaInfoInput').find('input').each(function(){
+                    $(this).attr('name',Math.floor(Math.random()*1000));
+                })
+                layObj.layer.msg('请添加内容再提交');
+            }
+            
                 
             return false;
         })
@@ -589,7 +657,7 @@ require(['jquery','main','log','lay-model','ajaxAddress'],function($,myObj,log,l
     })
 
     $('.createAreaInfoInput').on('click',function(){
-        $('<input type="text" placeholder="请输入" autocomplete="off" class="layui-input">').appendTo($('.areaInfoInput')).attr('name',Math.floor(Math.random()*1000));
+        $('<input type="text" lay-verify="isNull" placeholder="请输入" autocomplete="off" class="layui-input">').appendTo($('.areaInfoInput')).attr('name',Math.floor(Math.random()*1000));
     })
 
 })

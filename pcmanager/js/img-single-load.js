@@ -24,13 +24,16 @@ define(['jquery','main'],function($,main){
                     arrInfo.push(common.tools.formatTemplate({imgsrc:arg[0].src},$('#image-suolve').html()));
                     
                 })
+                
                 $(self).prevAll().remove();
+
                 $(self).before(common.tools.formatTemplate({imgsrc:arg[0].src},$('#image-suolve').html()));
                 
                 var $oldInfo=$(self).parent('.image-suolve').next('input');
 
                 
                 $(self).parent('.image-suolve').next('input').data('info',arg[0].src).val(arg[0].src);
+
                 $(self).hide();
 
             });

@@ -1,0 +1,530 @@
+.rightWrap{
+    width: 945px;
+    background: #eee;
+    margin: 0 auto;
+    font-size: 14px;
+    overflow: hidden;
+    .R_top{
+        background: #fff;
+        display: flex;
+        padding-bottom: 20px;
+        dl{
+            flex: 1;
+            margin-top: 20px;
+            }
+        .user{
+            dt{
+                float: left;
+                margin: 0px 20px;
+            }
+            dd{
+                margin-top: 20px;
+                span{
+                    margin-right: 10px;
+                }
+            }
+        }
+        .userEval{
+            border-left: 1px solid #d0cfcf;
+            border-right: 1px solid #d0cfcf;
+            overflow: hidden;
+            text-align: center;
+            dd{
+                float: left;
+                margin-left: 75px;
+                margin-top: 18px;
+                line-height: 30px;
+                overflow: hidden;
+            }
+        }
+        .money{
+            text-align: center;
+            dd{
+                margin-top: 20px;
+            }
+        }
+    }
+    .kongkong{
+            text-align: center;
+            padding: 126px 0px;
+        }
+    .R_bottom{
+        background: #fff;
+        margin-top: 20px;
+        .mylog{
+            float: left;
+        }
+        .lognav{
+            overflow: hidden;
+            span{
+                margin: 20px;
+            }
+        }
+        .checklog{
+            float: right;
+            font-size: 12px;
+            color: gray;
+            cursor: pointer;
+        }
+        
+        .listLog{
+            // border-top: 1px dashed #EEEEEE;
+            border-bottom: 1px dashed #EEEEEE;
+            overflow: hidden;
+            padding: 20px 0px;
+            li{
+                float: left;
+            }
+            .activemess{
+                margin-left: 20px;
+                font-size: 12px;
+                .logshopname{
+                    font-size: 16px;
+                }
+                .logshoptime{
+                    margin: 13px 0px;
+                    span{
+                        margin-right: 90px;
+                        color: gray;
+                        a{
+                            color: #000;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .orderList{
+        margin-top: 20px;
+    }
+    .orderNav{
+        overflow: hidden;
+        background: #fff;
+        padding: 10px 28px;
+        li{
+            float: left;
+            padding: 6px 8px;
+            font-size: 12px;
+            margin-right: 20px;
+            cursor:pointer;
+        }
+    }
+    .ordertop{
+        width: 100%;
+        height: 42px;
+        background: #FCFCFC;
+        li{
+            float: left;
+            margin-left: 134px;
+            line-height: 42px;
+        }
+    }
+    .orderNum{
+        background: #fff;
+        padding: 14px 0px;
+        font-size: 12px;
+        color: #999;
+        span{
+            margin-left: 20px;
+        }
+        .del{
+            float: right;
+            position: relative;
+            bottom: 7px;
+            right: 33px;
+        }
+    }
+}
+.color{
+    color:#C70D1B !important; 
+}
+.bg_color{
+    background: #C70D1B; 
+    color: #fff !important;
+}
+.disOrderList{
+    overflow: hidden;
+    padding: 18px 20px;
+    background: #FCFCFC;
+    dd{
+        float: left;
+        margin-right: 14px;
+        font-size: 12px;
+        .orderGoodsName{
+            margin-left: 20px;
+            .goodsName{
+                font-size: 16px;
+                color: #000;
+            }
+            p{
+                color: gray;
+                font-size: 12px;
+            }
+        }
+        span{
+            font-size: 14px;
+        }
+    }
+    .edit{
+        position: relative;
+        top: 30px;
+        color: gray;
+        width: 80px;
+        text-align: center;
+        cursor:pointer;
+        p{
+          border: 1px solid gray;
+          background: #fff;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          padding: 5px 0px;
+          position: relative;
+          top: -32px;
+          margin-top: 9px;
+          cursor: pointer;
+        }
+    }
+}
+.con{
+    background: #FCFCFC;
+}
+// judge
+.judge{
+    margin-left: 78px;
+    span{
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+        border: 1px solid #d4d1d1;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        line-height: 30px;
+        text-align: center;
+        cursor:pointer;
+        font-size: 12px;
+        color: #666;
+        margin-left: 10px;
+    }
+}
+.judgeContent{
+    overflow: hidden;
+    ul{
+        float: left;
+        font-size: 12px;
+    }
+    .judgelevel{
+        padding: 52px 140px;
+        li{
+            margin-top: 10px;
+            textarea{
+                border-radius: 5px;
+            }
+        }
+
+        i{
+            color: #F8C31F;
+        }
+    }
+    .judgewrite{
+        padding: 16px 0px;
+        li{
+            margin-top: 10px;
+            color: #666;
+        }
+        .confirm{
+            background: #C70D1B;
+            padding: 8px 22px;
+            color: #fff;
+            float: right;
+            cursor:pointer;
+            border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        }
+    }
+}
+.judgeData{
+    margin-left: 140px;
+    color: #999;
+    font-size: 12px;
+    li{
+        padding: 5px 0px;
+        .judgetime{
+            float: right;
+        }
+        .judgeitem{
+            display: inline-block;
+            line-height: 20px;
+            width: 658px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+// refund  record
+.fundrecord{
+    width: 825px;
+    margin: 0 auto;
+    background: #fff;
+   p{
+       margin:16px 0px;
+   }
+   .refundTbl{
+       tr{
+           color: #666;
+           font-size: 12px;
+           th{
+               background: #FCFCFC;
+               padding: 10px 55px;
+           }
+           td{
+               padding: 30px 0px;
+               border-bottom: 2px solid #eee;
+           }
+       }
+   }
+
+}
+// refundapply
+.applyContent{
+    width: 428px;
+    margin: 40px auto;
+    font-size: 12px;
+    color: #666;
+    li{
+         overflow: hidden;
+        margin-top: 16px;
+        span{
+            color: #333;
+        }
+        em{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 3px;
+            border: 1px solid gray;
+            margin-right: 5px;
+        }
+        table{
+            float: right;
+            td{
+               padding: 18px 10px 0px 0px;
+            }
+        }
+    }
+    .decision{
+        text-align: center;
+        margin-top: 42px;
+        .apply,.think{
+            padding: 10px 10px;
+            margin: 0 auto;
+            display: inline-block;
+            cursor: pointer;
+           margin: 0px 10px;
+           color: #C70D1B;
+        }
+    }
+}
+.border{
+     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+.sumwrap{
+    background:#eee;
+    margin: 0 auto;
+    overflow: hidden;
+    .sum{
+        height:130px;
+        background: #fff;
+        width: 100%; 
+        margin: 20px 0px;
+        line-height: 130px;
+        p{
+            font-size: 18px;
+            color: #666;
+            margin-left: 40px;
+            .recharge{
+                border: 1px solid #C70D1B;
+                display: inline-block;
+                padding: 12px 20px;
+                margin-left: 90px;
+                line-height: 0px;
+                font-size: 12px;
+                cursor:pointer;
+            }
+        }
+    }
+    .sumdata{
+        background: #fff;
+        p{
+            padding: 20px ;
+            font-weight: bold;
+        }
+        table{
+            th{
+                background:#FCFCFC;
+                padding:10px 47px;
+            }
+            td{
+                padding: 18px 0px;
+                border-bottom: 2px solid #eee;
+                font-size: 12px;
+            }
+        }
+    }
+}
+// myaccount
+.accountSet{
+    margin-top: 20px;
+    p{
+        background: #eee;
+        padding:8px 0px; 
+       span{
+           padding: 6px 8px;
+           margin-left: 20px;
+           display: inline-block;
+           cursor:pointer;
+       }
+    }
+    ul{
+        padding: 14px 23px;
+        li{
+            margin-top: 20px;
+            font-size: 12px;
+            span{
+                margin-left: 35px;
+                display: inline-block;
+            }
+        }
+    }
+}
+.perMess{
+    ul{
+        float: left;
+        overflow: hidden;
+        li{
+            
+        }
+    }
+    .getImg{
+        li{
+            text-align: center;
+            padding:0px 68px;
+        }
+    }
+    .nickname{
+        margin: 30px 0px;
+        overflow: hidden;
+        li{
+            input{
+               width: 162px;
+               height: 30px;
+               display: inline-block; 
+               border-bottom: 2px solid #eee;
+               border-top: none;
+               border-left: none;
+               border-right: none;
+            }
+            .sex{
+                margin-right: 5px;
+                cursor:pointer;
+                img{
+                    vertical-align: middle;
+                }
+            }
+            .success{
+                display: inline-block;
+                padding: 10px 28px;
+                cursor:pointer;
+            }
+        }
+    }
+}
+.inputFile{
+         position: relative;
+        display: inline-block;
+        overflow: hidden;
+        .fileImg{
+            position:absolute;
+            top: 0px;
+            opacity: 0;
+            -ms-filter: 'alpha(opacity=0)';
+            z-index: 9999;
+            width: 162px;
+            height: 172px;
+        }
+}
+// helpcenter
+.helpwrap{
+    width: 100%;
+    overflow: hidden;
+    background: #eee;
+    .helpinfo{
+        width: 1200px;
+        background: #fff;
+        margin: 0 auto;
+        margin-top: 40px;
+        .help{
+            width: 1020px;
+            margin: 0 auto;
+        }
+        .helpTop{
+            position: relative;
+            .movesigle{
+                position: absolute;
+                bottom: 0px;
+                left: 121px;
+            }
+            ul{
+                display:-webkit-flex;
+                display:-ms-flex;
+                display:-moz-flex;
+                display:flex;
+                padding: 70px 0px;
+                border-bottom: 1px solid #d2d0d0;
+                li{
+                    flex: 1;
+                    -ms-flex:1;
+                    -moz-flex:1;  
+                    -webkit-flex:1;
+                    text-align: center;
+                    font-size: 16px;
+                    cursor: pointer;
+                    span{
+                        width: 80px;
+                        height: 80px;
+                        display: inline-block;
+                        border: 1px solid #d2d0d0;
+                        color: #C70D1B;
+                        text-align: center;
+                        border-radius: 50%;
+                        -moz-border-radius:50%; 
+                        -moz-moz-radius:50%; 
+                        -moz-ms-radius:50%;
+                        line-height: 80px; 
+                    }
+                    p{
+                        margin-top: 40px;
+                    } 
+                }
+            }
+        }
+        .helpMain{
+            font-size: 14px;
+            padding-bottom: 70px;
+            .marginComm{
+                margin: 20px 0px;
+            }
+            .helpProgress{
+                border: 1px solid #C70D1B;
+                margin: 35px 0px;
+            }
+        }
+    }
+}
