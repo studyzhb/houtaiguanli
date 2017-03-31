@@ -140,7 +140,8 @@ define({
     },
     sort:{
         showlist:'/shop/getClassifyTypeInfo',
-        goodsShowlist:'/goods/getClassifyTypeInfo'
+        goodsShowlist:'/goods/getClassifyTypeInfo',
+        goodsClassifyByShop:'/goods/getShopClass'
     },
     /**
      * 优惠信息

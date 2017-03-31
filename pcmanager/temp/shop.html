@@ -559,6 +559,23 @@
 {{# }) }}
 </script>
 
+<!--产品分类是单选-->
+<script type="text/html" id="goodsSortTypeCon">
+{{# layui.each(d,function(index,item){ }}
+    <div class="layui-form-item">
+        <label class="layui-form-label">{{item.typename}}</label>
+        <div class="layui-input-block">
+          {{# layui.each(item.children,function(ind,its){ }}
+            
+            <input type="radio" name="{{item.field}}" value="{{its.id}}" title="{{its.name}}" lay-verify="" >
+            
+          {{# }) }}
+        </div>
+    </div>
+{{# }) }}
+</script>
+
+
 <script type="text/html" id="shopAreaCon">
 
     <div class="layui-form-item">
@@ -598,22 +615,23 @@
                 <label class="layui-form-label">产品图片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
-                           <div class="detail-image-col-2 imageadd">   
+                           <div class="detail-image-col-2 imageadd-single">   
                                                      </div>
                           
                   </div>
-                  <input type="hidden" name="goods_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="goods_logo" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                 </div>
                 
                              </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">产品编号</label>
-                <div class="layui-input-inline">
-                  <input type="text" name="goodsnum" value="" placeholder="请输入" autocomplete="off" class="layui-input">
-                </div>
+                <!---->
                 <label class="layui-form-label">产品名称</label>
                 <div class="layui-input-inline">
                   <input type="text" name="goodsname" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">产品数量</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="num" value="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>             
               
@@ -626,7 +644,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">原价</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="pricrc_sell" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="price_sell" value="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 <label class="layui-form-label">支付价格</label>
                 <div class="layui-input-inline">
@@ -647,16 +665,24 @@
               <div class="goodsTypeWrapper">
 
               </div>
-              <div class="layui-form-item layui-form-text">
+
+              <div class="targetDestinationWrapper">
+
+              </div>
+
+              <!--<div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">产品描述</label>
                 <div class="layui-input-block">
                   <textarea name="introduce" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>
-              </div>
+              </div>-->
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">套餐详情</label>
                 <div class="layui-input-block">
-                  <textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>
+                  <script id="container" name="introduce" type="text/plain" style="width:99.5%;height:300px;overflow:auto;">
+                      
+                  </script>
+                  <!--<textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>-->
                 </div>
               </div>
               <div class="layui-form-item layui-form-text">
@@ -667,7 +693,7 @@
                                                      </div>
                           
                   </div>
-                  <input type="hidden" name="goods_logo" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="goods_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                 </div>
                 
                              </div>
@@ -688,11 +714,25 @@
                     </div>
                 </div>-->
                 <div class="layui-form-item">
+                    <label class="layui-form-label">使用规则</label>
+                    <div class="layui-input-inline" style="width: 600px;">
+                    <input type="radio" name="use_time" value="1" title="节假日通用" lay-filter="isClickTrue">
+                    <input type="radio" name="use_time" value="2" title="节假日不能使用" checked lay-filter="isClickTrue">
+                    <input type="radio" name="use_time" value="3" title="特定日期不能使用" lay-filter="isClickTrue">
+                    </div>
+                    <div class="layui-input-inline" style="display: none;">
+                      <input type="text" name="use_time_info" class="layui-input" placeholder="特殊时间说明">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">是否免预约</label>
-                    <div class="layui-input-block">
-                    <input type="radio" name="bespoke" title="是" value="1">
-                    <input type="radio" name="bespoke" title="否" value="2" checked>
-                    <input type="radio" name="bespokeIntro" placeholder="至少提前多长时间预约">
+                    <div class="layui-input-inline">
+                      <input type="radio" name="bespoke" title="是" value="1" checked lay-filter="isCheckTrue">
+                      <input type="radio" name="bespoke" title="否" value="2"  lay-filter="isCheckTrue">
+                      
+                    </div>
+                    <div class="layui-input-inline" style="display: none;">
+                      <input type="text" name="bespoke_info" class="layui-input" placeholder="至少提前多长时间预约">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -700,7 +740,7 @@
                   <div class="layui-input-inline">
                     <input type="text" id="date03" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
                   </div>
-                  <input type="hidden" name="validity_time" class="worktimesae" value="165655665">
+                  <input type="hidden" name="validity_time" class="worktimesae" value="">
                 </div>
                 
               <div class="layui-form-item">
@@ -708,6 +748,13 @@
                     <div class="layui-input-block">
                       <input type="radio" name="renew" title="是" value="1">
                       <input type="radio" name="renew" title="否" value="2" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否启用</label>
+                    <div class="layui-input-block">
+                      <input type="radio" name="status" title="是" value="1" checked>
+                      <input type="radio" name="status" title="否" value="0" >
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -745,8 +792,23 @@
 </div>
 
 </form>
+<!--旅行输入框-->
+<script type="text/html" id="travelCon">
+  <div class="layui-form-item">
+      <label class="layui-form-label">目的地</label>
+      <div class="layui-input-inline layui-nav">
+        <input type="text" name="destination" placeholder="请输入" autocomplete="off" class="layui-input targetInput">
+        <div class="layui-nav-item">
+            <dl class="layui-nav-child layui-anim layui-anim-upbit searchConWrapper" >
+                <dd>
+                    <a href="#">测试</a>
+                </dd>
+            </dl>
+        </div>
+      </div>
 
-
+    </div>
+</script>
 
   <!-- =======================弹出窗========================= -->
 <script type="text/html" id="formCon">
@@ -836,6 +898,24 @@
                   </div> 
                   {{# }) }} 
               </div>
+
+              {{# layui.each(d.classify,function(index,item){ }}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{{=item.typename}}</label>
+                    <div class="layui-input-block">
+                      {{# layui.each(item.children,function(ind,its){ }}
+                        
+                          {{# if(its.selected){ }}
+                              <input type="checkbox" name="{{item.field}}" checked value="{{its.id}}" title="{{=its.name}}" lay-verify="sortAnotherToJson" >
+                          {{# }else{ }}
+                              <input type="checkbox" name="{{item.field}}" value="{{its.id}}" title="{{=its.name}}" lay-verify="sortAnotherToJson" >
+                          {{# } }}
+                        
+                        
+                      {{# }) }}
+                    </div>
+                </div>
+            {{# }) }}
 
 
                {{# layui.each(d.label,function(index,item){ }}

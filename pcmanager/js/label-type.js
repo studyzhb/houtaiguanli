@@ -215,13 +215,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     
                     if(data.code==200){
                         
-                        layObj.layer.closeAll();
+                        // layObj.layer.closeAll();
                         LabelObj.methods.updatePageNum(1);
                         
                     }else{
                         layObj.layer.msg(data.msg);
-                        layObj.layer.closeAll();
-                        LabelObj.methods.updatePageNum(1);
+                        // layObj.layer.closeAll();
+                        // LabelObj.methods.updatePageNum(1);
                     }
                 },{status:sta,id:id});
             }

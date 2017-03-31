@@ -194,16 +194,17 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 },{shopid:ShopObj.data.shopid});
             },
             //添加商品时获取分类信息
-            addGoodsGetSortInfo:function(){
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.sort.goodsShowlist,function(data){
+            addGoodsGetSortInfo:function(shopid,fn){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.sort.goodsClassifyByShop,function(data){
                     log.d(data);
                     if(data.code==200){
                         ShopObj.data.arrGoodsClassify=data.data;
+                        fn();
                     }else{
                         ShopObj.data.arrGoodsClassify=[];
                     }
 
-                },{navid:ShopObj.data.navId});
+                },{navid:ShopObj.data.navId,shopid:shopid});
             },
             //添加店铺时获取分类信息
             addShopGetSortInfo:function(){
@@ -262,16 +263,27 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
              */
             renderAddGoodsInfo:function(){
                 var tpl=$('#shopTypeCon').html();
-                var tplClass=$('#shopSortTypeCon').html();
+                var tplClass=$('#goodsSortTypeCon').html();
                 $('.goodsTypeWrapper').html('');
                 $('.goodsProWrapper').html('');
-                console.log(ShopObj.data.arrGoodsClassify)
+                
+
                 layObj.laytpl(tpl).render(ShopObj.data.arrGoodsLabel,function(html){
                     $('.goodsTypeWrapper').append(html);
                 })
+                //渲染产品分类数据
                 layObj.laytpl(tplClass).render(ShopObj.data.arrGoodsClassify,function(html){
                     $('.goodsProWrapper').append(html);
                 })
+                $('.targetDestinationWrapper').html('');
+                //如果是旅游导航添加目的地
+                if(ShopObj.data.goodsTemplate=='travel'){
+                    $('.targetDestinationWrapper').append($('#travelCon').html());
+                }else{
+                     //$('.targetDestinationWrapper').append($('#travelCon').html());
+                }
+
+                form.render();
             },
             repeatArr:function(arr){
                 var nArr=[];
@@ -364,6 +376,56 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                      layObj.layer.msg('推荐列表状态下不支持搜索,请切换..')
                  }
                 
+            },
+            /**
+             * 监听键盘事件
+             */
+            keydown:function (event){
+                var key = (event||window.event).keyCode;
+                var result = document.getElementById("result1")
+                var cur = result.curSelect;
+                
+                if(key===40){
+                    if(cur + 1 < result.childNodes.length){
+                        if(result.childNodes[cur]){
+                            result.childNodes[cur].style.background='';
+                        }
+                        result.curSelect=cur + 1;
+                        result.childNodes[cur+1].style.background='#CAE1FF';
+                        document.getElementById("keyword").value = result.tipArr[cur+1].name;
+                    }
+                }else if(key===38){
+                    if(cur - 1>=0){
+                        if(result.childNodes[cur]){
+                            result.childNodes[cur].style.background='';
+                        }
+                        result.curSelect=cur-1;
+                        result.childNodes[cur-1].style.background='#CAE1FF';
+                        document.getElementById("keyword").value = result.tipArr[cur-1].name;
+                    }
+                }else if(key === 13){
+                    var res = document.getElementById("result1");
+                    if(res && res['curSelect'] !== -1){
+                        ShopObj.methods.selectResult(document.getElementById("result1").curSelect);
+                    }
+                }else{
+                    ShopObj.methods.autoSearch();
+                }
+            },
+            /**
+             * 根据关键字查询
+             */
+            selectResult:function(){
+
+            },
+            //定位选择输入提示关键字
+            focus_callback:function () {
+                if (navigator.userAgent.indexOf("MSIE") > 0) {
+                    document.getElementById("keyword").onpropertychange = ShopObj.methods.autoSearch;
+                }
+            },
+            autoSearch:function(){
+                
             }
         }
     }
@@ -445,6 +507,15 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
      })
 
      /**
+      * 监听键盘事件目的地
+      */
+      $('.targetDestinationWrapper').on('keyup','.targetInput',function(e){
+          var val=$(this).val();
+          //console.log(val);
+          //ShopObj.methods.keydown(e,val);
+      })
+
+     /**
       * 添加店铺产品
       */
      $('#tableWrapper').on('click','.add-shop-goods',function(){
@@ -454,7 +525,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         var shopName=$(this).data('name');
         
         ShopObj.data.shopid=$(this).data('id');
-        ShopObj.methods.renderAddGoodsInfo();
+        ShopObj.methods.addGoodsGetSortInfo(ShopObj.data.shopid,ShopObj.methods.renderAddGoodsInfo);
+        
         //获取产品所属店铺的区域
         ShopObj.methods.addGoodsGetAreaInfo();
         ShopObj.data.labelJson=[];
@@ -546,13 +618,14 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         //log.d($(this))
         ShopObj.data.navId=$(this).data('id');
         ShopObj.data.goodsTemplate=$(this).data('template');
+        
         log.d(ShopObj.data.navId);
         ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
         ShopObj.methods.getLabelInfo();
         ShopObj.methods.getGoodsLabelInfo();
         ShopObj.methods.addShopGetSortInfo();
         //获取产品所属分类
-        ShopObj.methods.addGoodsGetSortInfo();
+        // ShopObj.methods.addGoodsGetSortInfo();
     });
 
     /**
@@ -589,15 +662,16 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             if(ind&&item.id==ind||index==0&&!ind){
                     ShopObj.data.navId=item.id;
                     ShopObj.data.goodsTemplate=item.template;
+                    
                     $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).data('template',item.template).appendTo($('.nav-menu-all-area'));
                      ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
                      ShopObj.methods.getLabelInfo();
                      ShopObj.methods.getGoodsLabelInfo();
                      ShopObj.methods.addShopGetSortInfo();
                      //获取产品所属分类
-                    ShopObj.methods.addGoodsGetSortInfo();
+                    // ShopObj.methods.addGoodsGetSortInfo();
                 }else{
-                    $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
+                    $('<a href="javascript:;">').html(item.name).data('id',item.id).data('template',item.template).appendTo($('.nav-menu-all-area'));
                 }  
             })
            
@@ -635,8 +709,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             ,max: '2099-06-16 23:59:59'
             ,istoday: false
             ,choose: function(datas){
+                
                 var timeStamp=Math.floor(new Date(datas).getTime());
-                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
+                $(this.elem).parent().next('input').val(Math.floor(timeStamp/1000));
                 
                 end.min = datas; //开始日选好后，重置结束日的最小日期
                 end.start = datas //将结束日的初始值设定为开始日
@@ -650,7 +725,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             ,istoday: false
             ,choose: function(datas){
                 var timeStamp=Math.floor(new Date(datas).getTime());
-                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
+                $(this.elem).parent().next('input').val(Math.floor(timeStamp/1000));
                 start.max = datas; //结束日选好后，重置开始日的最大日期
             }
         };
@@ -671,7 +746,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
 
         $('#date03').on('click',function(){
             start.elem = this;
-            console.log('date03')
+            
             layObj.laydate(start);
         })
 
@@ -732,12 +807,33 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
 
             },
             sortAnotherToJson:function(value,a){
+                
                 if(a.checked){
                     ShopObj.data.sortAnotherArr.push(value);
                 }
                 
             }
             });
+
+            //监听单选是否显示
+            form.on('radio(isClickTrue)',function(obj){
+                console.log(obj);
+                if(obj.value=='3'){
+                    $(obj.elem).parent().next().show();
+                }else{
+                    $(obj.elem).parent().next().hide();
+                }
+            })
+
+            //监听单选是否显示
+            form.on('radio(isCheckTrue)',function(obj){
+                console.log(obj);
+                if(obj.value=='2'){
+                    $(obj.elem).parent().next().show();
+                }else{
+                    $(obj.elem).parent().next().hide();
+                }
+            })
 
             form.on('submit(shopInfo)',function(paraData){
                 log.d(paraData.field)
@@ -785,7 +881,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 paraData.field.area=ShopObj.data.arrAreaGoods.area;
                 paraData.field.business=ShopObj.data.arrAreaGoods.business;
                 //分类合并
-                paraData.field.classifyids=ShopObj.data.sortAnotherArr.join(',');
+                // paraData.field.classifyids=ShopObj.data.sortAnotherArr.join(',');
+                //添加产品时所需要的模板
+                paraData.field.template=ShopObj.data.goodsTemplate;
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.addShopGoods,function(data){
                         ShopObj.data.sortObj={};
                         ShopObj.data.labelJson=[];
@@ -854,5 +952,14 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         })
 
     },1500)
-    
+
+
+    /**
+     * 加载百度编辑器
+     */
+    var editor = UE.getEditor('container',{
+        toolbars:[['source','undo','redo','inserttable']],
+        autoHeightEnabled:true,
+        autoFloatEnabled: true
+    });
 })
