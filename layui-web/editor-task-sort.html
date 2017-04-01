@@ -166,6 +166,30 @@
       
     </div>
   </div>
+  {{# if(d.type){ }}
+    <div class="layui-form-item">
+    <label class="layui-form-label">类型</label>
+    <div class="layui-input-block">
+      <select class="" name="type" lay-filter="sortFilter">
+        {{# if(d.type=='1'){ }}
+          <option value="1" selected="">商品</option>
+          <option value="2">发布服务</option>
+          <option value="3">求助服务</option>
+        {{# }else if(d.type=='2'){ }}
+          <option value="1">商品</option>
+        <option value="2" selected>发布服务</option>
+        <option value="3">求助服务</option>
+        {{# }else if(d.type=='3'){ }}
+          <option value="1" >商品</option>
+        <option value="2">发布服务</option>
+        <option value="3" selected>求助服务</option>
+        {{# } }}
+        
+      </select>
+    </div>
+  </div>
+  {{# } }}
+
   <div class="layui-form-item">
     <label class="layui-form-label">状态</label>
     <div class="layui-input-block">

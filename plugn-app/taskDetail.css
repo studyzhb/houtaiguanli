@@ -154,24 +154,24 @@ section {
                 height: 0.4rem;
                 line-height: 0.4rem;
                  }
-                section .sendInfo .baseInfo .personInfo .personSendInfo dl dd h3 span {
+                section .sendInfo .baseInfo .personInfo .personSendInfo dl dd h3 span,h3.newTitle span{
                   float: left;
                   max-width: 1.8rem;
                   white-space: nowrap;
                   font-size: 0.32rem;
                   overflow: hidden;
                   text-overflow:ellipsis; }
-                section .sendInfo .baseInfo .personInfo .personSendInfo dl dd h3 em {
+                section .sendInfo .baseInfo .personInfo .personSendInfo dl dd h3 em,h3.newTitle em {
                    font-size: 0.24rem;
                 color: #e60012; 
                 margin-top:-0.1rem;
                   float: right; }
-                section .sendInfo .baseInfo .personInfo .personSendInfo dl dd h3 em i{
+                section .sendInfo .baseInfo .personInfo .personSendInfo dl dd h3 em i,h3.newTitle em i{
                    font-size: 0.24rem;
                    font-style: normal;
                 color: #000; 
                    }
-                  section .sendInfo .baseInfo .personInfo .personSendInfo dl dd h3 em b {
+                  section .sendInfo .baseInfo .personInfo .personSendInfo dl dd h3 em b,h3.newTitle em b {
                       font-weight: normal;
                      font-size: 0.4rem;
                     color: #e60012; }
@@ -362,6 +362,7 @@ section {
             padding-left: 0.08rem;
             line-height: 0.32rem;
             font-size: 0.3rem;
+            overflow: hidden;
             color: #000; }
           .img-wrapper{
               padding-top:0.1rem;

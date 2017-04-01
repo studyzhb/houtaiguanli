@@ -739,8 +739,9 @@
                   <label class="layui-form-label">到期时间</label>
                   <div class="layui-input-inline">
                     <input type="text" id="date03" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                    <input type="hidden" name="validity_time" class="worktimesae" value="">
                   </div>
-                  <input type="hidden" name="validity_time" class="worktimesae" value="">
+                  
                 </div>
                 
               <div class="layui-form-item">
@@ -827,10 +828,10 @@
                         
                             <div class="detail-image-col-2 detail-banner-split">
                                 <div class="opacity-z-index"></div>
-                                <i class="layui-icon icon-display" data-info="{{d.logo}}">&#xe640;</i>
+                                <i class="layui-icon icon-display" data-info="{{=d.logo}}">&#xe640;</i>
                                 <div class="left-block"></div>
                                 <div class="right-block"></div>
-                                <img src="{{d.logo}}" width="100%" height="100%" />    
+                                <img src="{{=typeof eval(d.logo)=='object'?eval(d.logo)[0]:d.logo}}" width="100%" height="100%" />    
                             </div>
                             
                             {{# if(!d.logo){ }}
@@ -843,7 +844,7 @@
                             
                            
                   </div>
-                  <input type="hidden" name="logo" placeholder="请输入" lay-verify="isChangeValue" data-info="{{=d.logo}}" value='{{=d.logo}}' autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="logo" placeholder="请输入" lay-verify="isChangeValue" data-info='{{=d.logo}}' value='{{=d.logo}}' autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
@@ -959,10 +960,13 @@
                         {{# if(eval(d.intr_pic)||[].length<=5){ }}
                             <div class="detail-image-col-2 imageadd" >   
                                                      </div>
+                        {{# }else{ }}
+                            <div class="detail-image-col-2 imageadd" style="display:none;">   
+                                                     </div>
                         {{# } }} 
                           
                   </div>
-                  <input type="hidden" name="intr_pic" placeholder="请输入" value='{{=d.intr_pic}}' autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="intr_pic" placeholder="请输入" value='{{=d.intr_pic}}' data-info='{{=d.intr_pic}}' autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
@@ -999,6 +1003,7 @@
                 
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                    {{# if(d.environment_pic){ }}
                         {{# layui.each(eval(d.environment_pic)||[],function(index,item){ }}
                             <div class="detail-image-col-2 detail-banner-split">
                                 <div class="opacity-z-index"></div>
@@ -1008,13 +1013,19 @@
                                 <img src="{{item}}" width="100%" height="100%" />    
                             </div>
                         {{# }) }}
+                      
                         {{# if(eval(d.environment_pic)||[].length<=5){ }}
                             <div class="detail-image-col-2 imageadd" >   
                                                      </div>
-                        {{# } }} 
+                        {{# } }}
+                    {{# }else{ }}
+                        <div class="detail-image-col-2 imageadd" >   
+                                                     </div>
+                    {{# } }} 
+                      
                           
                   </div>
-                  <input type="hidden" name="environment_pic" value='{{=d.environment_pic}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="environment_pic" value='{{=d.environment_pic}}' data-info='{{=d.environment_pic}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
@@ -1023,7 +1034,8 @@
                 
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
-                      {{# layui.each(d.aptitude_pic?JSON.parse(d.aptitude_pic):[],function(index,item){ }}
+                    
+                      {{# layui.each(d.aptitude_pic?eval(d.aptitude_pic):[],function(index,item){ }}
                             <div class="detail-image-col-2 detail-banner-split">
                                 <div class="opacity-z-index"></div>
                                 <i class="layui-icon icon-display" data-info="{{item}}">&#xe640;</i>
@@ -1032,14 +1044,14 @@
                                 <img src="{{item}}" width="100%" height="100%" />    
                             </div>
                         {{# }) }}
-                        {{# if(JSON.parse(d.aptitude_pic).length<=5){ }}
+                        {{# if(eval(d.aptitude_pic)||[].length<=5){ }}
                             <div class="detail-image-col-2 imageadd" >   
                                                      </div>
                         {{# } }} 
 
                           
                   </div>
-                  <input type="hidden" name="aptitude_pic" data-info="{{=d.aptitude_pic}}" lay-verify="isChangeValue" value='{{=d.aptitude_pic}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="aptitude_pic" data-info='{{=d.aptitude_pic}}' lay-verify="isChangeValue" value='{{=d.aptitude_pic}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 

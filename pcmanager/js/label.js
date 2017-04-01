@@ -195,7 +195,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     $('.typeArea').on('click','.icon-btn',function(){
         $(this).addClass('active').siblings().removeClass('active');
-        $('#iconId').val($(this).data('id'));
+        $(this).siblings('#iconId').val($(this).data('id'));
+        // $('#iconId').val($(this).data('id'));
+    })
+
+    $('.editorNavBox').on('click','.icon-btn',function(){
+        $(this).addClass('active').siblings().removeClass('active');
+        $(this).siblings('.iconSelectedInput').val($(this).data('id'));
     })
 
     /**

@@ -1,12 +1,13 @@
 define(['jquery','main'],function($,main){
     var common=main.load();
-    var self,isMuti;
+    var self;
+    var isMuti=true
     var o_ueditorupload = UE.getEditor('j_ueditorupload',
       {
         autoHeightEnabled:false
       });
 
-    //   function toDoUp(obj,fn){
+    //   function toDoUp(obj,isMuti){
           o_ueditorupload.ready(function ()
             {
             
@@ -15,35 +16,41 @@ define(['jquery','main'],function($,main){
             //监听图片上传
             o_ueditorupload.addListener('beforeInsertImage', function (t,arg)
             {
-                
+                console.log(isMuti);
                 // console.log(ImageWrapper.imgArr);
                 // console.log('这是图片地址：'+arg[0].src+'test111'+arg[1].src);
-                if(isMuti){
-                    var arr=[];
-                    var arrInfo=[];
-                    $.each(arg,function(index,item){
-                        arrInfo.push(common.tools.formatTemplate({imgsrc:item.src},$('#image-suolve').html()));
-                        arr.push(item.src);
-                    })
-                    
-                    $(self).before(arrInfo.join(''));
-                    var $oldInfo=$(self).parent('.image-suolve').next('input');
+                    // setTimeout(function(){
+                    if(isMuti){
+                        var arr=[];
+                        var arrInfo=[];
+                        $.each(arg,function(index,item){
+                            arrInfo.push(common.tools.formatTemplate({imgsrc:item.src},$('#image-suolve').html()));
+                            arr.push(item.src);
+                        })
+                        
+                        $(self).before(arrInfo.join(''));
+                        var $oldInfo=$(self).parent('.image-suolve').next('input');
 
-                    arr=arr.concat($oldInfo.data('info')?JSON.parse($oldInfo.data('info'))||[]:[]);
-                    $(self).parent('.image-suolve').next('input').data('info',JSON.stringify(arr)).val(JSON.stringify(arr));
-                }else{
-                    
-                    $(self).prevAll().remove();
+                        // arr=arr.concat($oldInfo.data('info')?JSON.parse($oldInfo.data('info'))||[]:[]);
+                        arr=arr.concat($oldInfo.data('info')?eval($oldInfo.data('info'))||[]:[]);
+                        
+                        $(self).parent('.image-suolve').next('input').data('info',JSON.stringify(arr)).val(JSON.stringify(arr));
+                    }else{
+                        var arr01=[];
+                        $(self).prevAll().remove();
 
-                    $(self).before(common.tools.formatTemplate({imgsrc:arg[0].src},$('#image-suolve').html()));
-                    
-                    var $oldInfo=$(self).parent('.image-suolve').next('input');
+                        $(self).before(common.tools.formatTemplate({imgsrc:arg[0].src},$('#image-suolve').html()));
+                        
+                        var $oldInfo=$(self).parent('.image-suolve').next('input');
 
-                    
-                    $oldInfo.data('info',arg[0].src).val(arg[0].src);
+                        arr01.push(arg[0].src);
+                        
+                        $oldInfo.data('info',JSON.stringify(arr01)).val(JSON.stringify(arr01));
 
-                    $(self).hide();
-                }
+                        $(self).hide();
+                    }
+                // },1000);
+                
                 
 
             });
@@ -69,6 +76,8 @@ define(['jquery','main'],function($,main){
       {
         self=obj;
         isMuti=isMuti;
+        // console.log(isMuti);
+        // toDoUp(obj,isMuti)
         var myImage = o_ueditorupload.getDialog("insertimage");
         myImage.open();
       }

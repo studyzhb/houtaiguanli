@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+        <meta name = "format-detection" content = "telephone=no">
+        <meta http-equiv="pragma" content="no-cache"> 
+        <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+        <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+        <title>求购页面</title>
+        <link rel="stylesheet" href="__CSS__/notice/taskDetail.css?v=2">
+        <script src="__JS__/notice/rem.js"></script>
+        <script src="__JS__/notice/zepto.js"></script>
+        <script src="__JS__/notice/touch.min.js"></script>
+
+    </head>
+    <body>
+        <section>
+            <div class="sendInfo">
+              <div class="count-down" data-time="<?php if(($notice_data['notice_type'][0] == 3 ||  $notice_data['notice_type'][0] == 2) && $notice_data['status'] != 3 && $notice_data['status'] != 0){
+                                if($notice_data['notice_type'][0] == 2){
+                                    echo $notice_data['replacement_time'];
+                                }elseif($notice_data['notice_type'][0] == 3){
+                                    echo $notice_data['end_time'];
+                                }
+                    
+                   }?>">
+                    <div class="text-fix" id="timestamp">
+                        <!--距离拍卖结束时间
+                        <span>14</span>:
+                        <em>23</em>:
+                        <i>02</i>-->
+                    </div>
+                </div>
+              
+                <div class="baseInfo">
+                    <div class="personInfo">
+                        <div class="personSendInfo" data-type="<?php echo $notice_data['notice_type'][0]?>">
+                            <dl>
+                                <dt>
+                                    <img src="<?php echo $notice_data['promulgator']['pic']?>" alt="">
+                                </dt>
+                                <dd>
+                                    <h3>
+                                        <span><?php echo $notice_data['promulgator']['name']?></span>
+                                        <em class="mutiltype">
+                                            <i>当前价</i> ￥<b><?php if(!empty($currentprice['money'])){ echo $currentprice['money'];};?></b>
+                                        </em>
+                                    </h3>
+                                    <h5>
+                                        <span class="leftTime" data-time="<?php echo $notice_data['login_time']?>">
+                                            <i style="font-style: normal"></i><em><?php echo $notice_data['address']['addressdes'][1]?></em>
+                                        </span>
+                                        <em class="mutiltype font-pay">起拍价:￥<?php if(!empty($notice_data['starting_price'])){ echo $notice_data['starting_price'];};?></em>
+                                        
+                                    </h5>
+                                    <div class="typeSale">
+                                        <?php echo $notice_data['notice_type'][1]?>
+                                        <p>
+                                            <span><?php if($notice_data['notice_type'][0] != 2){ echo "￥";}?></span>
+                                            <b><?php echo $notice_data['value']?></b>
+                                        </p>
+                                        
+                                    </div>
+                                </dd>
+                            </dl>
+
+                        </div>
+                        <p>
+                            <span>#<?php echo $notice_data['classify']['name']?>#</span><?php echo $notice_data['title'].'  '.$notice_data['des']?>
+                            
+                        </p>
+                    </div>
+                    <?php if(!empty($notice_data['pic'])):?>
+                    <div class="img-content" >
+                        <div class="img-wrapper">
+                        <?php foreach($notice_data['pic'] as $k => $v):?>
+                        
+                            <div class="img-single">
+                            <img src="<?php echo $v?>" alt="">
+                            </div>
+                        
+                        
+                       <?php endforeach;?>
+                       </div>
+                    </div>
+                    <?php endif;?>
+                    <div class="role-browse">
+                        
+                        <div class="browseWrap">
+                            <div class="thumb-up">
+<!--                                <img src="__IMG__/notice/icon-thumb.png"></img>-->
+                                <span>点赞 <?php echo $notice_data['like']['size'];?></span>
+                            </div>
+                            <div class="browse-num">
+                                <!--<img src="__IMG__/notice/icon-browse.png"></img>-->
+                                <span>留言 <?php echo $notice_data['leave_num'];?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--其他用户显示区-->
+                
+                <div class="otherBaseInfo">
+                   
+                    <?php if(!empty($notic_suitors)):?>
+                    <div class="record-price">
+                        <h4 class="title-baseInfo">
+                            <div class="touchOpacityArea" data-id="<?php echo $notice_data['id']?>"></div>
+                            <!--<img class="conImage" src="__IMG__/notice/icon-record.png" alt="">-->
+                            <span class="conTitle"></span>
+                            <div class="right-price">
+                                <img src="__IMG__/notice/clickmore.png" style="width:0.12rem;height:0.24rem;" />
+                            </div>
+                        </h4>
+                        <div class="record-content">
+                           
+                            <?php foreach($notic_suitors as $k => $v):?>
+                           
+                            <div class="single-person-area">
+                                <div class="left-name">
+                                    <span>
+                                        <!--echo $v['pic']-->
+                                        <img src="<?php echo empty($v['pic'])?config('defaultUserPic'):$v['pic'] ;;?>" alt="">
+                                       
+                                    </span>
+                                    <em>
+                                       <?php echo $v['name'];?>
+                                    </em>
+                                </div>
+                     
+                                <div class="right-price isTime" data-time=" <?php if($notice_data['notice_type'][0] != 3){ echo $v['createtime']*1000;}?>">
+                                    <span></span>
+                                    <?php if($notice_data['notice_type'][0] == 3){ echo "出价：".$v['money'];}?>
+                                     
+                                </div>
+                            </div>
+                            <?php endforeach;?>
+                           
+                        </div>
+                      
+                    </div>
+                    <?php endif;?>
+                    <?php if(!empty($leave_data)):?>
+                    <div class="leave-message">
+                        <h4 class="title-baseInfo">
+                            <!--<img src="__IMG__/notice/icon-mess.png" alt="">-->
+                            留言
+                        </h4>
+                        <div class="leave-mess-content">
+                           <?php foreach($leave_data as $k=>$v):?>
+                            <div class="single-mess-area">
+                                <div class="title-name-time">
+                                    <div class="left-name">
+                                        <span>
+                                            <img src="<?php echo  empty($v['user']['pic'])?config('defaultUserPic'):$v['user']['pic']?>" alt="">
+                                        </span>
+                                        <em>
+                                            <?php echo $v['user']['name']?>
+                                        </em>     
+                                    </div>
+                                    <div class="right-price">
+                                       <?php echo date("Y年m月d日  H:i:s",$v['createtime']);?>
+                                    </div>
+                                </div>
+                                <p>
+                                   <?php if($v['des'] != 'NULL'){ echo $v['des'];}?>
+                                </p>
+                            </div>
+                            <?php endforeach;?>
+                            
+                        </div> 
+                    </div>
+                    <?php endif;?>
+                    
+                </div>
+            </div>
+        </section>
+    </body>
+    <script>
+        function tapToAndroid(goodId) {
+            phone.CallBack(goodId);
+        }
+        var strTime='';
+        var browser = {
+            versions: (function () {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {
+                    //移动终端浏览器版本信息
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+                    iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+                };
+            })(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+        $('.touchOpacityArea').on('tap', function () {
+            var gId = $(this).data('id');
+            if (browser.versions.ios) {
+
+                location.href = "notice://" + gId;
+            } else {
+                tapToAndroid(gId);
+            }
+
+
+        })
+
+        var interval = 1000;
+        function ShowCountDown(timestamp, divname) {
+            var now = new Date();
+            var endDate = new Date(timestamp);
+            var leftTime = endDate.getTime() - now.getTime();
+            var leftsecond = parseInt(leftTime / 1000);
+            //var day1=parseInt(leftsecond/(24*60*60*6)); 
+            var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+            var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+            var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+            var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+            var cc = document.getElementById(divname);
+            cc.innerHTML = "距离拍卖结束时间 " + '<span>' + hour + '</span>:<em>' + minute + '</em>:<i>' + second + '</i>';
+            //cc.innerHTML = "距离拍卖结束时间"+year+"年"+month+"月"+day+"日还有："+day1+"天"+hour+"小时"+minute+"分"+second+"秒"; 
+            if(leftTime<=0){
+                 cc.innerHTML = "交易已关闭";
+                return;
+            }
+            setTimeout(function(){
+                ShowCountDown(cutdowntime, 'timestamp');
+            },1000)
+        }
+        var $ct = $('.count-down');
+        var cutdowntime = $ct.data('time');
+        if (!cutdowntime) {
+            $ct.hide();
+        } else {
+            ShowCountDown(cutdowntime, 'timestamp');
+        }
+
+        function getTimeed(timestamp, ele) {
+            var $e = $(ele);
+
+            var now = new Date();
+            var leftTime =-timestamp+now.getTime();
+            var leftsecond = parseInt(leftTime / 1000);
+//            console.log(leftsecond, leftTime);
+            //var day1=parseInt(leftsecond/(24*60*60*6)); 
+            var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+            var hour = Math.floor(leftsecond / 3600);
+            var minute = Math.floor(leftsecond / 60);
+            var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+            
+            if (day1 > 0) {
+                $e.find('').html(day1 + '天前来过，发布于');
+            } else if (hour > 0) {
+                $e.find('i').html(hour + '小时前来过，发布于');
+            } else if (minute > 0) {
+                $e.find('i').html(minute + '分钟前来过，发布于');
+            } else {
+                $e.find('i').html('刚来过，发布于');
+            }
+        }
+        function getTimeShow(timestamp, ele) {
+            var $e = $(ele).find('span');
+
+            var now = new Date();
+            var leftTime = now.getTime() - timestamp;
+            var leftsecond = parseInt(leftTime / 1000);
+            
+            //var day1=parseInt(leftsecond/(24*60*60*6)); 
+            var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+            var hour = Math.floor(leftsecond / 3600);
+            var minute = Math.floor(leftsecond / 60);
+            var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+
+            if (day1 > 0) {
+                $e.html(day1 + '天前');
+            } else if (hour > 0) {
+                $e.html(hour + '小时前');
+            } else if (minute > 0) {
+                $e.html(minute + '分钟前');
+            } else {
+                $e.html('刚刚');
+            }
+        }
+        var ttime = $('.leftTime').data('time');
+        getTimeed(ttime, '.leftTime')
+        /**
+         * @param {Number} type更新类型
+         * 1，一口价
+         * 2，置换
+         * 3，拍卖
+         * 4，求购
+         */
+        function updatePageCon(type){
+            $('.conImage').attr('src','__IMG__/notice/icon-want.png');
+            if(type==1){
+                $('.mutiltype').hide();
+                $('.typeSale').show();
+                $('.conTitle').text('想要的人');
+            }else if(type==2){
+                $('.mutiltype').hide();
+                $('.typeSale').show();
+                $('.conTitle').text('他们想跟你置换');
+            }else if(type==3){
+                $('.mutiltype').show();
+                $('.typeSale').hide();
+                $('.conTitle').text('出价记录');
+                $('.conImage').attr('src','__IMG__/notice/icon-record.png');
+            }else if(type==4){
+                $('.mutiltype').hide();
+                $('.typeSale').show();
+                $('.conTitle').text('这些人有ta想要的');
+            }
+        }
+        var perType=$('.personSendInfo').data('type');
+        updatePageCon(perType);
+        
+        $('.isTime').each(function(){
+            var isShowTime=$(this).data('time').trim();
+            if(isShowTime){
+                getTimeShow(isShowTime,this);
+            }else{
+                $(this).find('span').hide();
+            }
+        })
+        
+    </script>
+</html>

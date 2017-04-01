@@ -521,6 +521,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
      $('#tableWrapper').on('click','.add-shop-goods',function(){
         // open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
         $('.addShopGoodsForm')[0].reset();
+        $('.imageadd-single').show().prevAll().remove();
         $('.imageadd').show().prevAll().remove();
         var shopName=$(this).data('name');
         
@@ -711,7 +712,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             ,choose: function(datas){
                 
                 var timeStamp=Math.floor(new Date(datas).getTime());
-                $(this.elem).parent().next('input').val(Math.floor(timeStamp/1000));
+                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
                 
                 end.min = datas; //开始日选好后，重置结束日的最小日期
                 end.start = datas //将结束日的初始值设定为开始日
@@ -725,7 +726,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             ,istoday: false
             ,choose: function(datas){
                 var timeStamp=Math.floor(new Date(datas).getTime());
-                $(this.elem).parent().next('input').val(Math.floor(timeStamp/1000));
+                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
                 start.max = datas; //结束日选好后，重置开始日的最大日期
             }
         };
