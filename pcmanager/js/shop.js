@@ -435,15 +435,19 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         var $o=$(this).parents('.detail-banner-split');
         var $input=$o.parent('.image-suolve').next('input');
         var imgStr=$(this).data('info');
-        console.log(imgStr);
-        if(/\[/.test($input.val())){
-            var arr=JSON.parse($input.val());
+        var val=$input.val();
+        // imgStr=/\[/.test(imgStr)?JSON.parse(imgStr)[0]||'':imgStr[0];
+        imgStr=typeof imgStr=='object'?imgStr[0]:(/\[/.test(imgStr)?JSON.parse(imgStr)[0]:imgStr);
+        if(/\[/.test(val)||typeof val=='object'){
+            var arr=typeof val=='string'?JSON.parse(val)||[]:val;
+            
             $.each(arr,function(index,item){
                 if(item==imgStr){
                     arr.splice(index,1);
                     return false;
                 }
             })
+            $input.val(JSON.stringify(arr)).attr('data-info',JSON.stringify(arr));
         }else{
             $input.val('');
         }
@@ -521,11 +525,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
      $('#tableWrapper').on('click','.add-shop-goods',function(){
         // open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
         $('.addShopGoodsForm')[0].reset();
+        $('.addShopGoodsForm').find('input:not([type=radio],[type=checkbox])').val('').attr('data-info','');
         $('.imageadd-single').show().prevAll().remove();
         $('.imageadd').show().prevAll().remove();
         var shopName=$(this).data('name');
         
         ShopObj.data.shopid=$(this).data('id');
+        ShopObj.data.shopname=shopName;
         ShopObj.methods.addGoodsGetSortInfo(ShopObj.data.shopid,ShopObj.methods.renderAddGoodsInfo);
         
         //获取产品所属店铺的区域
@@ -593,6 +599,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         ShopObj.data.sortObj={};
         ShopObj.data.sortAnotherArr=[];
         $('.menuForm')[0].reset();
+        $('.menuForm').find('input:not([type=radio],[type=checkbox])').val('').attr('data-info','');
+        document.getElementById('menuAddShop').reset();
+        
         $('.imageadd-single').show().prevAll().remove();
         $('.imageadd').show().prevAll().remove();
         $('.addmapWrapper').append($('#mapContainer'));
@@ -818,7 +827,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
 
             //监听单选是否显示
             form.on('radio(isClickTrue)',function(obj){
-                console.log(obj);
+                
                 if(obj.value=='3'){
                     $(obj.elem).parent().next().show();
                 }else{
@@ -828,8 +837,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
 
             //监听单选是否显示
             form.on('radio(isCheckTrue)',function(obj){
-                console.log(obj);
-                if(obj.value=='2'){
+                
+                if(obj.value=='1'){
                     $(obj.elem).parent().next().show();
                 }else{
                     $(obj.elem).parent().next().hide();
@@ -879,8 +888,11 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 paraData.field.cityid=params.id;
                 paraData.field.navid=ShopObj.data.navId;
                 paraData.field.shopid=ShopObj.data.shopid;
+                paraData.field.shopname=ShopObj.data.shopname;
                 paraData.field.area=ShopObj.data.arrAreaGoods.area;
                 paraData.field.business=ShopObj.data.arrAreaGoods.business;
+                var arr=ShopObj.methods.repeatArr(ShopObj.data.labelJson);
+                paraData.field.goods_label=arr;
                 //分类合并
                 // paraData.field.classifyids=ShopObj.data.sortAnotherArr.join(',');
                 //添加产品时所需要的模板
@@ -954,7 +966,6 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
 
     },1500)
 
-
     /**
      * 加载百度编辑器
      */
@@ -963,4 +974,5 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         autoHeightEnabled:true,
         autoFloatEnabled: true
     });
+    
 })

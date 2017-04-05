@@ -1,4 +1,4 @@
-require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params','image-upload'],function($,jf,myObj,ajaxAddress,layObj,log,params,upload){
+require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params','common-image-upload'],function($,jf,myObj,ajaxAddress,layObj,log,params,upload){
     
     var common=myObj.load();
     var fistLoad=true;
@@ -12,6 +12,8 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
             currentRePage:'1',
             //当前处于哪个tab栏 1为全部列表,2为已推荐
             currentStatus:'1',
+            labelJson:[],
+            sortAnotherArr:[]
         },
         methods:{
             updateGoodsList:function(data){
@@ -56,6 +58,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         $('.detailCount').text(data.total);
                         GoodsObj.methods.updateGoodsList(data.data);
                     }else{
+                        GoodsObj.methods.updateGoodsList([]);
                         layObj.layer.msg(data.msg);
                     }
                 },{page:num,cityid:params.id,navid:GoodsObj.data.navId});
@@ -71,6 +74,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         $('.detailCount').text(data.total);
                         GoodsObj.methods.updateShopList(data.data);
                     }else{
+                        GoodsObj.methods.updateShopList([]);
                         layObj.layer.msg(data.msg);
                     }
                 },{page:num,cityid:params.id,navid:GoodsObj.data.navId});
@@ -128,6 +132,43 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         form.render();
                     },600);
                 });
+               $('<script id="container" name="introduce" type="text/plain" style="width:99.5%;height:300px;overflow:auto;">').appendTo($('.formWrapper').find('.goodsintro')).html(data.introduce);
+               /**
+                 * 加载百度编辑器
+                 */
+                var editor = UE.getEditor('container',{
+                    toolbars:[['source','undo','redo','inserttable']],
+                    autoHeightEnabled:true,
+                    autoFloatEnabled: true
+                });
+            },
+            repeatArr:function(arr){
+                var nArr=[];
+                var obj={};
+                var str="";
+                // for(var i=0;i<arr.length;i++){
+                //     if(!obj[arr[i]['id']]){
+                //         obj[arr[i]['id']]=arr[i].name;
+                //     }else{
+                //         obj[arr[i]['id']]=obj[arr[i]['id']]+','+arr[i].name;
+                //     }
+                // }
+                // for(var key in obj){
+                //     var o={};
+                //     o[key]=obj[key];
+                //     nArr.push(o);
+                // }
+
+                for(var i=0;i<arr.length;i++){
+                    
+                    if(i==arr.length-1){
+                        str+=arr[i].name;
+                    }else{
+                        str+=arr[i].name+',';
+                    }
+                }
+                
+                return str;
             },
             //排序
             sortOrderInfo:function(id,order,obj,tag){
@@ -218,11 +259,61 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
             layObj.laydate(end);
         })
    })
+
+   /**
+    * 滑过出现删除
+    */
+    $('.formWrapper').on('click','.icon-display',function(){
+        
+        var $o=$(this).parents('.detail-banner-split');
+        var $input=$o.parent('.image-suolve').next('input');
+        var imgStr=$(this).data('info');
+        var val=$input.val();
+        // imgStr=/\[/.test(imgStr)?JSON.parse(imgStr)[0]||'':imgStr[0];
+        imgStr=typeof imgStr=='object'?imgStr[0]:(/\[/.test(imgStr)?JSON.parse(imgStr)[0]:imgStr);
+        if(/\[/.test(val)||typeof val=='object'){
+            var arr=typeof val=='string'?JSON.parse(val)||[]:val;
+            
+            $.each(arr,function(index,item){
+                if(item==imgStr){
+                    arr.splice(index,1);
+                    return false;
+                }
+            })
+            $input.val(JSON.stringify(arr)).attr('data-info',JSON.stringify(arr));
+        }else{
+            $input.val('');
+        }
+        $o.siblings('.imageadd').show();
+        $o.siblings('.imageadd-single').show();
+        $o.remove();
+        
+        return false;
+    })
+
+    $('.formWrapper').on('mouseover','.detail-banner-split',function(){
+        $(this).find('.icon-display').show();
+        $(this).find('.opacity-z-index').show();
+
+    })
+
+    $('.formWrapper').on('mouseleave','.detail-banner-split',function(){
+        $(this).find('.icon-display').hide();
+         $(this).find('.opacity-z-index').hide();
+    })
+
     /**
      * 图片上传
      */
     $('.formWrapper').on('click','.imageadd',function(){
-        upload.uploadImage(this);
+        upload.uploadImage(this,true);
+    });
+
+    /**
+     * 图片上传
+     */
+    $('.formWrapper').on('click','.imageadd-single',function(){
+        upload.uploadImage(this,false);
     });
 
     /**
@@ -267,6 +358,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
      */
      $('#tableWrapper').on('click','.editInfo',function(){
         //  log.d('nnnn');
+        GoodsObj.data.sortObj={};
+        GoodsObj.data.labelJson=[];
+        GoodsObj.data.sortAnotherArr=[];
         GoodsObj.methods.getSingleInfo($(this).data('id'));
         layObj.layer.open({
              type:1,
@@ -368,13 +462,64 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 if($(a).data('info')==value){ 
                     $(a).removeAttr("name");
                 }   
+            },
+            findLabelToJson:function(value,a){
+                
+                // obj[$(a).attr('name')]=value;
+                if(a.checked){
+                    var obj={};
+                    obj.id=$(a).attr('name');
+                obj.name=value;
+                GoodsObj.data.labelJson.push(obj);
+                }
+                
+            },
+            sortToJson:function(value,a){
+                var stock=GoodsObj.data.sortObj[$(a).attr('name')]=GoodsObj.data.sortObj[$(a).attr('name')]?GoodsObj.data.sortObj[$(a).attr('name')]:[];
+                if(a.checked){
+                   stock.push(value);  
+                }
+
+            },
+            sortAnotherToJson:function(value,a){
+                
+                if(a.checked){
+                    GoodsObj.data.sortAnotherArr.push(value);
+                }
+                
             }
             });
 
+            //监听单选是否显示
+            form.on('radio(isClickTrue)',function(obj){
+                
+                if(obj.value=='3'){
+                    $(obj.elem).parent().next().show();
+                }else{
+                    $(obj.elem).parent().next().hide();
+                }
+            })
+
+            //监听单选是否显示
+            form.on('radio(isCheckTrue)',function(obj){
+                
+                if(obj.value=='1'){
+                    $(obj.elem).parent().next().show();
+                }else{
+                    $(obj.elem).parent().next().hide();
+                }
+            })
+
             form.on('submit(editorDiscountInfo)',function(paraData){
                 paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
+                // paraData.field.classifyids=GoodsObj.data.sortAnotherArr.join(',');
+                var arr=GoodsObj.methods.repeatArr(GoodsObj.data.labelJson);
+                paraData.field.goods_label=arr;
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.editShopGoodsById,function(data){
                     log.d(data);
+                    GoodsObj.data.sortObj={};
+                    GoodsObj.data.labelJson=[];
+                    GoodsObj.data.sortAnotherArr=[];
                     if(data.code==200){
                         layObj.layer.msg('更新成功');
                         layObj.layer.closeAll();

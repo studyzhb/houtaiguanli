@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <meta name = "format-detection" content = "telephone=no">
+    <meta http-equiv="pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <title>求购页面</title>
+    <link rel="stylesheet" href="__CSS__/notice/taskDetail.css">
+    <script src="__JS__/notice/rem.js"></script>
+    <script src="__JS__/notice/zepto.js"></script>
+    <script src="__JS__/notice/touch.min.js"></script>
+    <script src="__JS__/notice/laytpl.js"></script>
+</head>
+<body>
+    <section data-info='<?php echo $data?>'>
+        
+    </section>
+    <script type="text/html" id="dataTpl">
+        <div class="sendInfo">
+            <div class="baseInfo">
+                
+                    
+                    {{# if(d.notice_data.pic instanceof Array&&d.notice_data.pic.length>0){ }}
+                        <div class="touchOpacityArea touchImage" data-pic='{{=JSON.stringify(d.notice_data.pic)}}'>
+                            <div class="img-content" data-pic='{{=JSON.stringify(d.notice_data.pic)}}'>
+                                <div class="img-single" >
+                                    <img src="{{=d.notice_data.pic[0]}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    {{# } }}
+                
+                 <div class="personInfo">
+                    <div class="personSendInfo">
+                        <dl>
+                            <dt>
+                                <img src="{{=d.notice_data.promulgator.pic||d.defaultImage}}" alt="">
+                            </dt>
+                            <dd>
+                                <h3 style="margin-top:0.2rem;">
+                                    <span>{{=d.notice_data.promulgator.name}}</span><span><img src="__IMG__/notice/vip.png"></span>
+                                </h3>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <!--标题-->
+            <div class="title">
+                <div class="titleInfo">
+                    <p style="font-size: 0.3rem;">{{=d.notice_data.title}}</p>
+                    <p class="money">赏金{{=d.notice_data.value}}元</p>
+                    <p style="line-height: 0.3rem;color: #666">#{{=d.notice_data.classify.name}}#{{=d.notice_data.des}}</p>
+                </div>
+            </div>
+
+            <!--其他用户显示区-->
+            <div class="otherBaseInfo">
+            {{# if(d.notice_data.suitors instanceof Array&&d.notice_data.suitors.length>0){ }}
+                <div class="record-price">
+                    <h4 class="title-baseInfo">
+                        <div class="touchOpacityArea touchList" data-id="{{=d.notice_data.id}}"></div>
+                        
+                        <span class="conTitle">想赚钱的他们</span>
+                        <div class="right-price">
+                            <img src="__IMG__/notice/clickmore.png" style="width:0.12rem;height:0.24rem;">
+                        </div>
+                        
+                    </h4>
+                    <div class="record-content">
+                    {{# if(d.notice_data.suitors){ }}
+                        {{# for (var i = 0; i < d.notice_data.suitors.length; i++) { }}
+                            
+                            <div class="single-person-area">
+                                <div class="left-name">
+                                    <span>
+                                        <img src="{{=d.notice_data.suitors[i].pic||d.defaultImage}}" alt="">
+                                    </span>
+                                    <em>
+                                         {{=d.notice_data.suitors[i].name}}
+                                    </em>
+                                </div>
+                                <div class="contact-name">
+                                   {{=d.notice_data.suitors[i].timeLeave}}
+                                </div>
+                            </div>
+
+                        {{#  }; }}
+
+                    {{# } }} 
+                        
+                        
+                        
+                    </div>
+                    <div class="find-more">
+                        
+                    </div>
+                </div>
+                {{# } }}
+                {{# if(d.leave_data instanceof Array&&d.leave_data.length>0){ }}
+                <div class="leave-message">
+                    <h4 class="title-baseInfo">
+                       
+                        留言
+                    </h4>
+                    <div class="leave-mess-content">
+                        {{# for (var i = 0; i < d.leave_data.length; i++) { }}
+                             <div class="single-mess-area">
+                                <div class="title-name-time">
+                                    <div class="left-name">
+                                        <span>
+                                            <img src="{{d.leave_data[i].user.pic||d.defaultImage}}" alt="">
+                                        </span>
+                                        <em>
+                                            {{=d.leave_data[i].user.name}}
+                                        </em>     
+                                    </div>
+                                    <div class="right-price">
+                                        {{=new Date(d.leave_data[i].createtime*1000).toLocaleString()}}
+                                    </div>
+                                </div>
+                                <p>
+                                    {{=d.leave_data[i].des}}
+                                </p>
+                            </div>
+                        {{# } }}
+                        
+                        
+                    </div> 
+                </div>
+                {{# } }}
+            </div>
+        </div>
+    </script>
+    <script>
+    
+        function getTimeShow(timestamp) {
+            // var $e = $(ele).find('span');
+
+            var now = new Date();
+            var leftTime = now.getTime() - timestamp;
+            var leftsecond = parseInt(leftTime / 1000);
+            
+            //var day1=parseInt(leftsecond/(24*60*60*6)); 
+            var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+            var hour = Math.floor(leftsecond / 3600);
+            var minute = Math.floor(leftsecond / 60);
+            var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+
+            if (day1 > 0) {
+                return day1 + '天前';
+            } else if (hour > 0) {
+                return hour + '小时前';
+            } else if (minute > 0) {
+                return minute + '分钟前';
+            } else {
+                return '刚刚';
+            }
+        }
+        var browser = {
+            versions: (function () {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {
+                    //移动终端浏览器版本信息
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+                    iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+                };
+            })(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+
+        var tplData=$('section').data('info');
+        $('section').data('info','');
+        tplData.defaultImage='http://enclosure.wandlm.net/img/i.png';
+        if(tplData.notice_data.suitors){
+            tplData.notice_data.suitors.forEach(function(item){
+                item.timeLeave=getTimeShow(item.createtime*1000);
+            })
+        }
+        
+        var tpl=$('#dataTpl').html();
+        laytpl(tpl).render(tplData,function(html){
+            $('section').append(html);
+        })
+
+        function tapToAndroid(arrImg) {
+            phone.showBigPhoto(arrImg);
+        }
+
+        function tapToAndroidList(goodId) {
+            phone.CallBack(goodId);
+        }
+
+        $('section').on('tap','.touchImage', function () {
+            var arrImg = $(this).data('pic');
+            console.log(arrImg);
+            if (browser.versions.ios) {
+                var url=location.href;
+                
+                
+                // location.href="";
+                // var stateObject = {};
+                // var title = "Wow Title";
+                // var newUrl = "notice://";
+                // history.pushState(stateObject,title,newUrl);
+                // history.back();
+                
+                window.location.href="noticeimage://"+'/'+arrImg.join('###');
+                
+                // location.href=url;
+            } else {
+                
+                tapToAndroid(JSON.stringify(arrImg));
+            }
+
+
+        })
+        $('section').on('tap','.touchList', function () {
+            var gId = $(this).data('id');
+            
+            if (browser.versions.ios) {
+                var url=location.href;
+                
+                // location.href="";
+                // var stateObject = {};
+                // var title = "Wow Title";
+                // var newUrl = "notice://";
+                // history.pushState(stateObject,title,newUrl);
+                // history.back();
+                
+                window.location.href="notice://"+gId;
+                
+                // location.href=url;
+            } else {
+                
+                tapToAndroidList(gId);
+            }
+
+
+        })
+
+
+    </script>
+</body>
+</html>
