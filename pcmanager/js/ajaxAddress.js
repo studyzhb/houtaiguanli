@@ -63,15 +63,14 @@ define({
         addShopGoods:'/goods/addGoods',
         getGoodsById:'/goods/getOneInfo',
         editShopGoodsById:'/goods/updateGoods',
-        recommendList:'/goods/upReGoods',
+        recommendList:'/goods/getReGoods',
         addRecommend:'/goods/upReGoods',
         updateShopGoodsStatus:'/goods/updateGoodsStatus',
         deleteShopGoodsInfo:'/goods/deleteGoods',
         sortGoods:'/goods/positionChange',
     },
     /**
-     * 店铺
-     */
+     * 店铺 
     shop:{
         shoplist:'/shop/indexList',
         addShopList:'/shop/addShop',

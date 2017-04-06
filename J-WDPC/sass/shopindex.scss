@@ -1,7 +1,7 @@
 
 .delicacy-wrap{
-    width: 1280px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 30px auto;
     background: #F8F8F8;
     .contentInfo{
         background: #fff;
@@ -138,11 +138,12 @@
         margin-top: 20px;
     }
 .lineIn{
-    width: 100%;
+    width: 1200px;
     height: 1px;
     background: #E3E3E3;
     position: relative;
     top: 20px;
+    margin: auto;
 }
 .hotPro{
     margin-top:40px;
@@ -221,6 +222,7 @@
                 font-weight: bold;
                 text-indent: 20px;
                 padding: 12px 8px;
+               background: #F8F8F8;
             }
             td{
                 text-indent: 20px;

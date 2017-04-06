@@ -8,10 +8,11 @@
         <link href="../css/shopindex.css" rel="stylesheet">
         <link href="../css/pageCode.css" rel="stylesheet">
         <link href="../iconfont/iconfont.css" rel="stylesheet">
+        <link href="../css/index.css?v=1" rel="stylesheet">
         <script src="../js/jquery-2.1.4.min.js" type="text/javascript"></script>
         <style>
             .delicacy-wrap{
-                width: 1200px;
+                width: 100%;
             }
             .choice{
                 border: 1px solid #cecaca;
@@ -29,6 +30,72 @@
         </style>
     </head>
     <body>
+         <link href="../css/header.css" rel="stylesheet">
+        <div class="container-head">
+            <header>
+                <div class="wd-title-bg">
+                <div class="wd-title-container">
+                    <ul class="left-logo-name">
+                    <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span>郑州</span></a></li>
+                    <li class="wd-common-login"><a>请登录</a></li>
+                    </ul>
+                    <ul class="right-menu-area">
+                    <li class="wd-mye"><a>我的e+便利</a>|</li>
+                    <li class="wd-my-order"><a>我的订单</a></li>
+                    <li class="wd-business"><a>招商</a></li>
+                    <li class="wd-help-center"><a>帮助中心</a></li>
+                    <li class="wd-serve-cus"><a>联系客服</a></li>
+                    <li class="nav-website"><a>网站导航</a></li>
+                    <li class="phone-alliance"><a>手机异业联盟</a></li>
+                    </ul>
+                </div>
+                </div>
+                <div class="wd-logo-container">
+                <div class="logoImage"><a><img src="../img/logo.png"></a></div>
+                <div class="wd-search-area">
+                    <div class="tab-shop-goods">
+                    <div class="tab-item active">商品</div>
+                    <div class="tab-item">商家</div>
+                    </div>
+                    <form class="logo-search-form">
+                    <input type="text" placeholder="万店联盟搜索" class="search-text">
+                    <input type="button" value="搜索" class="search-btn">
+                    </form>
+                    <div class="hotwords"><a>奶糖</a><a>红枣</a></div>
+                </div>
+                </div>
+            </header>
+            <div class="wd-nav-area-bg">
+                <ul class="wd-nav-area">
+                <li class="all-category"> <a class="allcat">全部分类</a>
+                    <dl class="menuList" style="display: none;">
+                    <dd><a class="mainTitle">美食</a>
+                        <p> <a>精选品牌</a><a>小吃快餐</a></p>
+                    </dd>
+                    <dd><a class="mainTitle">美食</a>
+                        <p> <a>精选品牌</a><a>小吃快餐</a></p>
+                    </dd>
+                    <dd><a class="mainTitle">美食</a>
+                        <p> <a>精选品牌</a><a>小吃快餐</a></p>
+                    </dd>
+                    <dd><a class="mainTitle">美食</a>
+                        <p> <a>精选品牌</a><a>小吃快餐</a></p>
+                    </dd>
+                    <dd><a class="mainTitle">美食</a>
+                        <p> <a>精选品牌</a><a>小吃快餐</a></p>
+                    </dd>
+                    </dl>
+                </li>
+                <li><a href="#111">首页</a></li>
+                <li><a href="#food">美食</a></li>
+                <li><a href="#game">休闲娱乐</a></li>
+                <li><a href="#travel">旅游出行</a></li>
+                <li><a href="#hotel">住宿</a></li>
+                <li><a href="#life">生活服务</a></li>
+                <li><a href="#shopping">同城便利</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="delicacy-wrap" id="app">
             <!--位置进度-->
              <div class="contentInfo">
@@ -45,7 +112,7 @@
                         <li class="areaChoice" style="border: none;overflow: hidden" v-for="classifylist in ClassifyData">
                             <p v-text="classifylist.typeName"><span class="sortAll color-bg"></span></p>
                             <ul class="sortAllList">
-                                <li v-for="(classifyItem,index) in classifylist.children" v-text="classifyItem.name"  @click="classifylist.sortIndex=index" :class="{'color-bg':index==classifylist.sortIndex}" v-bind:data-id="classifyItem.id"></li>
+                                <li v-for="(classifyItem,index) in classifylist.children" v-text="classifyItem.name"  @click="sortClick(classifylist,index,classifyItem.id)" :class="{'color-bg':index==classifylist.sortIndex}" v-bind:data-id="classifyItem.id"></li>
                                 
                             </ul>
                         </li>
@@ -65,7 +132,7 @@
                                 <!--全部-->
                                 <div class="AreaAll areaCon" v-for="(AreaList,areaIndex) in areaData" v-show="showIndex==areaIndex">
                                     <ul  class="areaConInfo">
-                                        <li  v-for="Listdata in AreaList.children" v-text="Listdata.name" v-bind:data-id="Listdata.id"></li>
+                                        <li  v-for="Listdata in AreaList.children"  @click="areaClick(Listdata.id,AreaList.id)" v-text="Listdata.name" v-bind:data-id="Listdata.id"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -91,99 +158,102 @@
                         <div class="sortChoice">
                             <div class="sortChoiceinfo">
                                 <ul class="sortNav">
-                                    <li class="color-red">默认</li>
-                                    <li>销量 <i class="iconfont icon-zhankai "></i></li>
-                                    <li>价格 <i class="iconfont icon-zhankai "></i></li>
-                                    <li>好评</li>
+                                    <li :class="{'color-red':selectedSortIndex==0}" @click="selectedSortIndex=0">默认</li>
+                                    <li :class="{'color-red':selectedSortIndex==1}" @click="selectedSortIndex=1">销量 <i class="iconfont icon-zhankai "></i></li>
+                                    <li :class="{'color-red':selectedSortIndex==2}" @click="selectedSortIndex=2">价格 <i class="iconfont icon-zhankai "></i></li>
+                                    <li :class="{'color-red':selectedSortIndex==3}" @click="selectedSortIndex=3">好评</li>
                                 </ul>
                                 <div class="hotPro" style="margin: 20px 0px 0px 20px;background: #fff; ">
-                                    <ul style="overflow: hidden">
-                                        <li style="margin-left: 0px">
-                                            <p><img src="../img/hotgoods-img1.png"></p>
-                                            <p><span class="color-9">土大力单人套餐<span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
-                                            <p><span class="color-red">￥44</span><span class="delprice">￥67</span><span class="right color-9">5.0</span></p>
-                                        </li>
-                                        <li style="margin: 0px 41px">
-                                            <p><img src="../img/hotgoods-img1.png"></p>
-                                            <p><span class="color-9">土大力单人套餐<span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
-                                            <p><span class="color-red">￥44</span><span class="delprice">￥67</span><span class="right color-9">5.0</span></p>
-                                        </li>
-                                        <li style="margin-left: 0px">
-                                            <p><img src="../img/hotgoods-img1.png"></p>
-                                            <p><span class="color-9">土大力单人套餐<span><span class="right"><i class="iconfont icon-xingxing color-red"></i><i class="iconfont icon-xingxing color-red"></i><i class="iconfont icon-xingxing color-red"></i></span></p>
-                                            <p><span class="color-red">￥44</span><span class="delprice">￥67</span><span class="right color-9">5.0</span></p>
-                                        </li>
-                                    </ul>
-                                    <ul style="margin-top: 10px;">
-                                        <li>
-                                            <p><img src="../img/hotgoods-img1.png"></p>
-                                            <p><span class="color-9">土大力单人套餐<span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
-                                            <p><span class="color-red">￥44</span><span class="delprice">￥67</span><span class="right color-9">5.0</span></p>
-                                        </li>
-                                        <li>
-                                            <p><img src="../img/hotgoods-img1.png"></p>
-                                            <p><span class="color-9">土大力单人套餐<span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
-                                            <p><span class="color-red">￥44</span><span class="delprice">￥67</span><span class="right color-9">5.0</span></p>
-                                        </li>
-                                        <li>
-                                            <p><img src="../img/hotgoods-img1.png"></p>
-                                            <p><span class="color-9">土大力单人套餐<span><span class="right"><i class="iconfont icon-xingxing color-red"></i><i class="iconfont icon-xingxing color-red"></i><i class="iconfont icon-xingxing color-red"></i></span></p>
-                                            <p><span class="color-red">￥44</span><span class="delprice">￥67</span><span class="right color-9">5.0</span></p>
-                                        </li>
-                                    </ul>
+                                    <div class="left-list-wrapper clearfix" style="width:838px;overflow:hidden;float:left;">
+                                        <ul style="width: 840px;overflow:hidden;margin-top:10px;">
+                                            <li v-for="goodsItem in goodslistArr" :data-id="goodsItem.id">
+                                                <p><img style="width:255px;height:174px;" :src="goodsItem.goods_logo | json2single"></p>
+                                                <p><span class="color-9" v-text="goodsItem.goodsname"></span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
+                                                <p><span class="color-red">￥{{goodsItem.price_pay}}</span><span class="delprice">￥{{goodsItem.price_sell}}</span><span class="right color-9">5.0</span></p>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="right-list-wrapper clearfix" style="float:right">
+                                        <div class="sortChoiceRight">
+                                            <!--<img src="../img/sortimg.png">-->
+                                            <div class="allicences-con-click-more">
+                                                <h3>优惠信息</h3>
+                                                <div class="discount-con">
+                                                <dl class="clearfix" v-for="beItem in benefitlistArr" :data-id="beItem.id">
+                                                    <dt> <img :src="beItem.pic_url"></dt>
+                                                    <dd>
+                                                    <h4 v-text="beItem.name"></h4>
+                                                    <p v-text="beItem.benefit_info">到店立享85折优惠</p>
+                                                    </dd>
+                                                </dl>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
                      </div>
-                     <link href="../css/index.css?v=1" rel="stylesheet">
-                     <div class="sortChoiceRight">
-                         <!--<img src="../img/sortimg.png">-->
-                         <div class="allicences-con-click-more">
-                            <h3>优惠信息</h3>
-                            <div class="discount-con">
-                            <dl class="clearfix">
-                                <dt> <img src="../img/discount-img.png"></dt>
-                                <dd>
-                                <h4>状元烤场东风路店</h4>
-                                <p>到店立享85折优惠</p>
-                                </dd>
-                            </dl>
-                            <dl class="clearfix">
-                                <dt> <img src="../img/discount-img.png"></dt>
-                                <dd>
-                                <h4>状元烤场东风路店</h4>
-                                <p>到店立享85折优惠</p>
-                                </dd>
-                            </dl>
-                            <dl class="clearfix">
-                                <dt> <img src="../img/discount-img.png"></dt>
-                                <dd>
-                                <h4>状元烤场东风路店</h4>
-                                <p>到店立享85折优惠</p>
-                                </dd>
-                            </dl>
-                            <dl class="clearfix">
-                                <dt> <img src="../img/discount-img.png"></dt>
-                                <dd>
-                                    <h4>状元烤场东风路店</h4>
-                                    <p>到店立享85折优惠</p>
-                                </dd>
-                            </dl>
-                            </div>
-                        </div>
-                     </div>
+                     
+                     
                  </div>
             </div>
             <div class="page">
                 <div class="tcdPageCode" id="pagecode"></div>
             </div>
         </div>
+        <footer>
+      <div class="foot-serve">
+        <div  class="foot-serve-top clearfix">
+          <div class="barcode">
+            <span class="client"></span>
+            <span class="official"></span>
+            <img src="../img/foot.png">
+          </div>
+          <ul class="serve">
+            <li class="white">购物指南</li>
+            <li><a href="javascript:;">购物流程</a></li>
+            <li><a href="javascript:;">订购方式</a></li>
+            <li><a href="javascript:;">常见问题</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">配送方式</li>
+            <li><a href="javascript:;">快速配送</a></li>
+            <li><a href="javascript:;">配送时间</a></li>
+            <li><a href="javascript:;">验货查收</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">支付方式</li>
+            <li><a href="javascript:;">支付方式</a></li>
+            <li><a href="javascript:;">代金券</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">售后服务</li>
+            <li><a href="javascript:;">退换货政策</a></li>
+            <li><a href="javascript:;">退款说明</a></li>
+            <li><a href="javascript:;">联系客服</a></li>
+          </ul>
+        </div>
+        <div class="foot-serve-bottom">
+          <img src="../img/360.png">
+          <img src="../img/website.png">
+        </div>
+      </div>
+
+      <div class="foot-about-bg">
+        <div class="foot-about">  <a>©2017 e+.RIGHT         </a><a>ICP备案号：豫ICP备15016705号-4         </a><a>         </a>
+        </div>
+      </div>
+    </footer>
     </body>
     <script src="../js/ajaxAddress.js"></script>
     <script src="../js/lib/vue2.js"></script>
     <script src="../js/lib/vue-resource.min.js"></script>
     <script src="../js/Vuedata.js"></script>
-    <script src="../js/shopindex.js" type="text/javascript"></script>
     <script src="../js/jquery.page.js"></script>
     <script type="text/javascript">
         $(function(){

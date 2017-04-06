@@ -48,6 +48,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 fistLoad=false;
             },
             updatePageNum:function(num){
+                $('#tableWrapper').html('');
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -64,6 +65,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 },{page:num,cityid:params.id,navid:GoodsObj.data.navId});
             },
             updateRecommendList:function(num){
+                $('#tableWrapper').html('');
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.recommendList,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -398,7 +400,12 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
         //log.d($(this))
         GoodsObj.data.navId=$(this).data('id');
         log.d(GoodsObj.data.navId);
-        GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
+        if(GoodsObj.data.currentStatus=='1'){
+            GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
+        }else{
+            GoodsObj.methods.updateRecommendList(GoodsObj.data.currentRePage);
+        }
+        
     });
 
     /**

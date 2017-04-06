@@ -71,6 +71,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 para=$.extend(options,para||{});
 
                 log.d(params);
+                $('#tableWrapper').html('');
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shoplist,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -87,6 +88,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 },para);
             },
             updateRecommendList:function(num){
+                $('#tableWrapper').html('');
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.recommendList,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -130,6 +132,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             getSingleInfo:function(id){
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.getShopInfoById,function(data){
                     log.d(data);
+
                     if(data.code==200){
                         ShopObj.methods.updateShopInfo(data.data);
                     }
@@ -144,6 +147,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                     position :pArr,
                     map : mapObj
                 })
+                
                 layObj.laytpl(tpl).render(data,function(html){
                     $('.formWrapper').append(html);
                     setTimeout(function(){
@@ -614,7 +618,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             content: $('.menuForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:['95%','98%'],
-            zIndex:10,
+            zIndex:10, 
             maxmin: true,
             end:function(){
                 $('.menuForm').hide();
@@ -630,7 +634,12 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         ShopObj.data.goodsTemplate=$(this).data('template');
         
         log.d(ShopObj.data.navId);
-        ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+        if(ShopObj.data.currentStatus=='1'){
+            ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+        }else{
+            ShopObj.methods.updateRecommendList(ShopObj.data.currentRePage);
+        }   
+        
         ShopObj.methods.getLabelInfo();
         ShopObj.methods.getGoodsLabelInfo();
         ShopObj.methods.addShopGetSortInfo();
