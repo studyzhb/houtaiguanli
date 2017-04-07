@@ -35,17 +35,40 @@ $(function(){
 			getEditInfoById:function(bid,fn){
 				config.ajax('get',config.ajaxAddress.taskSort.editSort,function(data){
 						var item=data.data;
-						if(!item.status){
+						if(item.status=='undefined'){
 							item.status=1;
 						}
-
+						
 						TaskObj.data.editorData=item;
 						fn();
 					
 				},{id:bid});
+			},
+			updateStatus:function(id,sta){
+				config.ajax('post',config.ajaxAddress.taskSort.editSort,function(data){
+					console.log(data);
+					if(data.code==200){
+						layer.closeAll(); //疯狂模式，关闭所有层
+						layer.msg('修改成功');
+	                    TaskObj.methods.updatePageInfo();
+						
+					}else{
+						layer.closeAll(); //疯狂模式，关闭所有层
+						layer.msg('网络错误，请稍后重试');
+	                    TaskObj.methods.updatePageInfo();
+						
+					}
+				},{id:id,status:sta});
 			}
 		}
 	}
+
+
+
+
+
+
+
 
 	layui.use(['laytpl','form'],function(){
 		laytpl = layui.laytpl;	
@@ -58,12 +81,16 @@ $(function(){
 			config.ajax('post',config.ajaxAddress.taskSort.addSort,function(data){
 				console.log(data);
 				if(data.code==200){
+					layer.closeAll();
 					layer.msg('添加成功');
-					//open('taskSort.html',"_self");
+					 //疯狂模式，关闭所有层
+                    TaskObj.methods.updatePageInfo();
 					
 				}else{
+					layer.closeAll();
 					layer.msg('网络错误，请稍后重试');
-					//open('taskSort.html',"_self");
+					 //疯狂模式，关闭所有层
+                    TaskObj.methods.updatePageInfo();
 					
 				}
 			},paramsData.field);
@@ -74,12 +101,13 @@ $(function(){
 			config.ajax('post',config.ajaxAddress.taskSort.addSort,function(data){
 				console.log(data);
 				if(data.code==200){
-					layer.msg('添加成功');
-					//open('taskSort.html',"_self");
+					layer.closeAll(); //疯狂模式，关闭所有层
+                    TaskObj.methods.updatePageInfo();
 					
 				}else{
+					layer.closeAll(); //疯狂模式，关闭所有层
 					layer.msg('网络错误，请稍后重试');
-					//open('taskSort.html',"_self");
+                    TaskObj.methods.updatePageInfo();
 					
 				}
 			},paramsData.field);
@@ -90,12 +118,14 @@ $(function(){
 			config.ajax('post',config.ajaxAddress.taskSort.editSort,function(data){
 				console.log(data);
 				if(data.code==200){
-					layer.msg('添加成功');
-					
+					layer.closeAll(); //疯狂模式，关闭所有层
+					layer.msg('修改成功');
+                    TaskObj.methods.updatePageInfo();
 					
 				}else{
+					layer.closeAll(); //疯狂模式，关闭所有层
 					layer.msg('网络错误，请稍后重试');
-					
+                    TaskObj.methods.updatePageInfo();
 					
 				}
 			},paramsData.field);
@@ -106,12 +136,16 @@ $(function(){
 			config.ajax('post',config.ajaxAddress.taskSort.editSort,function(data){
 				
 				if(data.code==200){
+					layer.closeAll(); //疯狂模式，关闭所有层
 					layer.msg('添加成功');
-					
+                    TaskObj.methods.updatePageInfo();
 					
 				}else{
 					layer.msg('网络错误，请稍后重试');
+						layer.closeAll(); //疯狂模式，关闭所有层
 					
+                    TaskObj.methods.updatePageInfo();
+              
 					
 				}
 			},paramsData.field);
@@ -145,10 +179,27 @@ $(function(){
         })
 	});
 
+	$('#all-sort-list').on('click','.icon-btn',function(){
+		var id=$(this).data('id');
+		var sta=$(this).data('status');
+		TaskObj.methods.updateStatus(id,sta);
+	});
+	$('#all-sort-list').on('click','.icon-sub-btn',function(){
+		
+		var id=$(this).data('id');
+		var sta=$(this).data('status');
+		TaskObj.methods.updateStatus(id,sta);
+	});
+
 	//±à¼­·ÖÀà
 	$('#all-sort-list').on('click','.editor-sub-sort',function(){
 		$('#authorSubList').html('');
+		var pId=$(this).data('pid');
 		TaskObj.methods.getEditInfoById($(this).data('id'),function(){
+			TaskObj.data.editorData.tagType=true;
+			TaskObj.data.editorData.sortData=TaskObj.data.sortData;
+			TaskObj.data.editorData.pId=pId;
+			console.log(TaskObj.data.editorData.sortData);
 			laytpl(tml).render(TaskObj.data.editorData,function(html){
 				$('#authorSubList').append(html);
 			});

@@ -132,12 +132,12 @@
                                 <!--全部-->
                                 <div class="AreaAll areaCon" v-for="(AreaList,areaIndex) in areaData" v-show="showIndex==areaIndex">
                                     <ul  class="areaConInfo">
-                                        <li  v-for="Listdata in AreaList.children"  @click="areaClick(Listdata.id,AreaList.id)" v-text="Listdata.name" v-bind:data-id="Listdata.id"></li>
+                                        <li  v-for="(Listdata,index) in AreaList.children" :class="{'color-bg':index==AreaList.areaIndex}"  @click="areaClick(Listdata,AreaList,index)" v-text="Listdata.name" v-bind:data-id="Listdata.id"></li>
                                     </ul>
                                 </div>
                             </div>
                             <!--价格-->
-                        <li class="areaChoice">
+                        <!--<li class="areaChoice">
                             <p>价格</p>
                             <ul>
                                 <li class="color-red">全部</li>
@@ -146,7 +146,7 @@
                                 <li>100-200元</li>
                                 <li>200-300元</li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                  </div>
              </div>
@@ -203,7 +203,25 @@
                  </div>
             </div>
             <div class="page">
-                <div class="tcdPageCode" id="pagecode"></div>
+                <div class="tcdPageCode" id="pagecode">
+                    <span v-if="currentPage==1&&pageCount!=1">上一页</span>
+                    <a href="javascript:;" v-else-if="pageCount!=1">上一页</a>
+
+
+                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" class="current">1</a>
+                    <!--<a href="javascript:;" class="tcdNumber">2</a>
+                    <a href="javascript:;" class="tcdNumber">3</a>
+                    <a href="javascript:;" class="tcdNumber">4</a>
+                    <a href="javascript:;" class="tcdNumber">5</a>
+                    <span>...</span>
+                    <a href="javascript:;" class="tcdNumber">6</a>
+                    <a href="javascript:;" class="tcdNumber">7</a>
+                    <a href="javascript:;" class="tcdNumber">8</a>-->
+
+                    <span v-if="currentPage==pageCount&&pageCount!=1">下一页</span>
+                    <a href="javascript:;" class="nextPage" v-else-if="pageCount!=1">下一页</a>
+                    
+                </div>
             </div>
         </div>
         <footer>
@@ -254,41 +272,5 @@
     <script src="../js/lib/vue2.js"></script>
     <script src="../js/lib/vue-resource.min.js"></script>
     <script src="../js/Vuedata.js"></script>
-    <script src="../js/jquery.page.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $(".areatab>ul>li").click(function(){
-                $(this).addClass("color-bg").siblings().removeClass("color-bg");
-                var _foodindex=$(this).index();
-                $(".hotArea .areaCon").eq(_foodindex).show().siblings().hide();
-                $(".sigle img").eq(_foodindex).show().siblings().hide();
-            });
-            $(".sortAllList li").click(function(){
-                 $(".sortAll").removeClass("color-bg");
-            })
-            // $(".choiceTerm").delegate("li","click",function(){
-            //      $(this).find("li").addClass("color-bg");
-            // })
-            $(".sortAll").click(function(){
-                $(this).addClass("color-bg");
-                $(".sortAllList li").removeClass("color-bg");
-            })
 
-            // $(".areatab li").hover(function(){
-            //     $(this).addClass("color-bg").siblings().removeClass("color-bg");
-            //     var _foodindex=$(this).index();
-            //     $(".hotArea .areaCon").eq(_foodindex).show().siblings().hide();
-            //     $(".sigle img").eq(_foodindex).show().siblings().hide();
-            // });
-        })
-    </script>
-    <script>
-         $(".tcdPageCode").createPage({
-                pageCount:30,
-                current:1,
-                backFn:function(p){
-                    console.log(p);
-                }
-            });
-    </script>
 </html>

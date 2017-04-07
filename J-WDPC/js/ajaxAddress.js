@@ -10,5 +10,8 @@ var ajaxAddress={
         shoplist:'/lists/shop',
         goodslist:'/lists/goods',
         benefit:'/lists/Benefit'
+    },
+    detail:{
+        goodsDetail:'/goods/GoodsDetail'
     }
 }

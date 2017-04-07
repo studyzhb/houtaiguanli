@@ -13,16 +13,17 @@ new Vue({
 		goodslistArr:[],
 		shoplistArr:[],
 		//总页数
-		pageCount:0,
+		pageCount:1,
 		//每页个数
 		pageSize:6,
 		currentPage:1,
 		benefitlistArr:[],
-		option:{
-			cityid:this.cityId,
-			navid:this.navId,
-			p:this.currentPage
-		}
+		parames:{
+			cityid:1,
+			navid:1,
+			p:1
+		},
+		gOstag:false
 	},
 	filters:{
 		json2single:function(value){
@@ -41,19 +42,45 @@ new Vue({
 	methods:{
 		renderView:function(){
 			var self=this;
+			
+			//获取城市站点和导航
+			this.getCityAndNav();
+			
+			this.getAreaList();
+
+			this.getClassifyInfo();
+			//true加载商品,false加载店铺
+			if(this.gOstag){
+				this.getGoodsInfo();
+			}else{
+				this.getShopInfo();
+			}
+			
+			this.getBefenit();
+			
+		},
+		getAreaList:function(){
+			var self=this;
 			/**
 			 * 获取区域列表
 			 */
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.area.areaData+'?cityid='+this.cityId+'&navid='+this.navId)
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.area.areaData+'?cityid='+this.parames.cityid+'&navid='+this.parames.navid)
 				.then(function(res){
-
+					res.body.data.forEach(function(item,index){
+						
+						item.areaIndex=-1;
+						
+					});
 					self.areaData=res.body.data;
                     
 				});
+		},
+		getClassifyInfo:function(){
+			var self=this;
 			/**
 			 * 获取分类列表
 			 */
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.Classify.Classifydata+'?cityid='+this.cityId+'&navid='+this.navId)
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.Classify.Classifydata+'?cityid='+this.parames.cityid+'&navid='+this.parames.navid)
 				.then(function(res){
 					
                     res.body.data.forEach(function(item,index){
@@ -62,23 +89,19 @@ new Vue({
                     self.ClassifyData=res.body.data;
 
 				});
-			
-			this.getGoodsInfo();
-			
-			this.getBefenit();
-			
 		},
 		getGoodsInfo:function(){
 			var self=this;
-			console.log(this.option);
-
 			/**
 			 * 获取商品数据
 			 */ 
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.goodslist+'?cityid='+this.cityId+'&navid='+this.navId,this.option)
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.goodslist,{params:this.parames})
 						.then(function(res){
-							console.log(res);
-							self.goodslistArr=res.body.data;
+							if(res.body.code==200){
+								self.goodslistArr=res.body.data;
+							}else{
+								self.goodslistArr=[];
+							} 
 						})
 		},
 		getShopInfo:function(){
@@ -86,7 +109,7 @@ new Vue({
 			/**
 			 * 获取店铺数据
 			 */ 
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.shoplist+'?cityid='+this.cityId+'&navid='+this.navId+'&p='+this.currentPage)
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.shoplist+'?cityid='+this.parames.cityid+'&navid='+this.parames.navid+'&p='+this.currentPage)
 						.then(function(res){
 							console.log(res);
 							self.shoplistArr=res.body.data;
@@ -97,19 +120,37 @@ new Vue({
 			/**
 			 * 获取优惠信息数据
 			 */ 
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.benefit+'?cityid='+this.cityId+'&navid='+this.navId)
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.benefit+'?cityid='+this.parames.cityid+'&navid='+this.parames.navid)
 						.then(function(res){
 							console.log(res);
 							self.benefitlistArr=res.body.data;
 						})
 		},
-		searchResultInfo:function(obj){
-			this.extendParams(obj);
+		searchResultInfo:function(obj,tag){
+			this.extendParams(obj,tag);
 			this.getGoodsInfo();
 		},
-		extendParams:function(obj){
+		extendParams:function(obj,tag){
+
+			if(tag){
+				if(!this.parames.field){
+					this.parames.field=[];
+				}
+				for(var i=0,j=this.parames.field;i<j.length;i++){
+					
+					for(var m in obj){
+						if(j[i][m]){
+							j[i][m]=obj[m];
+							break;
+						}
+					}
+				}
+				this.parames.field.push(obj);
+				return;
+			}
+
 			for(var i in obj){
-				this.option[i]=obj[i];
+				this.parames[i]=obj[i];
 			}
 		},
         getImageInfo:function(aIndex){
@@ -123,17 +164,31 @@ new Vue({
 			sortItem.sortIndex=index;
 			var obj={};
 			obj[sortItem.field]=id;
-			this.searchResultInfo(obj);
+			this.searchResultInfo(obj,true);
 		},
 		//区域
-		areaClick:function(id,pId){
+		areaClick:function(item,pItem,index){
 			var obj={};
-			if(pId=='1'){
-				obj.area=id;
+			pItem.areaIndex=index;
+			if(pItem.id=='1'){
+				obj.areaid=item.id;
+				
 			}else{
-				obj.business=id;
+				obj.business=item.id;
 			}
 			this.searchResultInfo(obj);
+		},
+		pageClick:function(n){
+			this.currentPage=n;
+			var obj={};
+			obj.p=n;
+			this.searchResultInfo(obj);
+		},
+		/**
+		 * 获取导航信息
+		 */
+		getCityAndNav:function(){
+			
 		}
 
 
