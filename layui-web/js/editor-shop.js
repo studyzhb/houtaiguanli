@@ -191,28 +191,24 @@ var addShopPage={
 	//提交菜单
 	$('.commitMenu').on('click',function(){
 		$('.worktimesae').val(addShopPage.worktime.start+'-'+addShopPage.worktime.end);
-		layer.open({type:3});
+		  layer.open({type:3});
+            var arr=[];
+            $('#editorwrap').find('.detail-banner-split .left-block').each(function(){
+                arr.push($(this).data('imgsrc'));
+            })
+            
+            // console.log($('.detail-banner-split').data('imgsrc'));
+            $('#editorwrap').find('.shopinput').val(JSON.stringify(arr));
 		config.formSubmit('.menuForm',config.ajaxAddress.editshopList,function(data){
 			console.log(data);
-			if(data.code==200){
-                layer.msg('添加成功');
-                setTimeout(function(){
-                    open('shop.html','_self');
-                },500)
-                
-            }else{
-                layer.msg('网络错误，请稍后重试');
-                setTimeout(function(){
-                    open('shop.html','_self');
-                },500)
-            }
+			/*
+            */
 		});
 	});
 
 
 
 	function updateMap(){
-
 		var windowsArr = [];
         var marker = [];
         // var longListX = document.getElementById("lngX").placeholder;
