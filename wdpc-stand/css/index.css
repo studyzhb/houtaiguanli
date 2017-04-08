@@ -10,7 +10,7 @@
     overflow: hidden; }
     .banner-wrapper .banner-area ul.notice-pic {
       position: absolute;
-      width: 4680px;
+      width: 6400px;
       height: 450px;
       left: 0;
       top: 0; }
@@ -269,6 +269,13 @@
                 color: #949494;
                 font-size: 12px;
                 margin-right: 10px; }
+              .allicences-shop-con-bg .allicences-con .allicences-con-wrapper .allicences-con-box dl dd p.score-area .scoreItem {
+                display: inline-block;
+                background: #C70D1B;
+                color: #fff;
+                font-size: 12px;
+                padding: 10px 5px;
+                line-height: 0px; }
             .allicences-shop-con-bg .allicences-con .allicences-con-wrapper .allicences-con-box dl dd p.discount {
               height: 24px;
               line-height: 24px;
@@ -282,8 +289,12 @@
               font-size: 12px;
               color: #929292;
               line-height: 35px; }
-              .allicences-shop-con-bg .allicences-con .allicences-con-wrapper .allicences-con-box dl dd p.description span {
-                margin-right: 20px; }
+              .allicences-shop-con-bg .allicences-con .allicences-con-wrapper .allicences-con-box dl dd p.description .shopaddress {
+                float: right;
+                width: 60%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap; }
     .allicences-con-click-more {
       float: left;
       padding-left: 20px;

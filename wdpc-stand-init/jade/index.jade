@@ -1,0 +1,192 @@
+extends header
+block content
+    link(href='../css/index.css?v=1',rel='stylesheet')
+    
+    - var arrfood = [{img:'../img/food/dingdinghong1.jpg',title:'金水区鼎鼎红',price:'32.20',url:'detail-food-1.html'},{img:'../img/food/dingdinghong2.jpg',title:'百年老妈',price:'14.72',url:'detail-food-2.html'},{img:'../img/food/dingdinghong3.jpg',title:'华都酒店',price:'79.00',url:'detail-food-3.html'},{img:'../img/food/dingdinghong4.jpg',title:'八哥酸辣粉',price:'7.90',url:'detail-food-4.html'},{img:'../img/food/dingdinghong3.jpg',title:'蜀香家宴酒楼',price:'89.00',url:'detail-food-5.html'},{img:'../img/food/dingdinghong2.jpg',title:'郑家小面故事',price:'38.00',url:'detail-food-6.html'},{img:'../img/food/bainianlaoma2.jpg',title:'金记饺子馆',price:'18.00',url:'detail-food-7.html'},{img:'../img/food/wenzhoumianguan5.jpg',title:'温州面馆',price:'28.00',url:'detail-food-8.html'},{img:'../img/food/bage1.jpg',title:'洛阳牛肉汤',price:'18.00',url:'detail-food-9.html'},{img:'../img/food/shuxiangjiayan3.jpg',title:'龙哥的面',price:'18.00',url:'detail-food-10.html'},{img:'../img/food/shuxiangjiayan4.jpg',title:'莆田人家',price:'88.00',url:'detail-food-11.html'},{img:'../img/food/shuxiangjiayan5.jpg',title:'米知味',price:'89.90',url:'detail-food-12.html'},{img:'../img/food/shuxiangjiayan8.jpg',title:'博爱牛肉丸子汤',price:'9.50',url:'detail-food-13.html'},{img:'../img/food/shuxiangjiayan6.jpg',title:'沙县小吃',price:'13.00',url:'detail-food-14.html'},{img:'../img/food/shuxiangjiayan7.jpg',title:'鸡小呆',price:'12.80',url:'detail-food-15.html'}];
+
+    - var arrshopping = [{img:'../img/shopping/1.jpg',title:'e+便利店（升龙环球大厦)',price:'24',url:'detail-shopping-01.html'},{img:'../img/shopping/13.jpg',title:'康乐渔具',price:'14.72',url:'detail-shopping-02.html'},{img:'../img/shopping/21.jpg',title:'左右间超市（东明路店）',price:'24',url:'detail-shopping-03.html'},{img:'../img/shopping/28.jpg',title:'e+便利店（凤台路店）',price:'24',url:'detail-shopping-04.html'},{img:'../img/shopping/35.jpg',title:'e+便利店（大学路丹尼斯店）',price:'24',url:'detail-shopping-05.html'}];
+
+    - var arrenter = [{img:'../img/entertainment/entertainment03.jpg',title:'【麦子乐器（英协路）吉尔11C/个】',price:'580.00',url:'detail-entertainment-01.html'},{img:'../img/entertainment/entertainment23.jpg',title:'第1真人密室逃脱（国贸店）',price:'58.00',url:'detail-entertainment-14.html'},{img:'../img/entertainment/entertainment15.jpg',title:'微笑美乐迪量贩KTV',price:'48.00',url:'detail-entertainment-03.html'},{img:'../img/entertainment/entertainment07.jpg',title:'【舒经堂足道（东明路店）中药足浴/次】',price:'58.00',url:'detail-entertainment-04.html'},{img:'../img/entertainment/shop3.jpg',title:'【舒经堂足道（东明路店）玫瑰足浴+手部按摩/次】',price:'78.00',url:'detail-entertainment-05.html'}];
+
+    - var arrserver = [{img:'../img/life/5.jpg',title:'唯艺造型（管城后街店）',price:'24',url:'detail-service-01.html'},{img:'../img/life/11.jpg',title:'北京中关村皇冠假日酒店',price:'200',url:'detail-service-02.html'},{img:'../img/life/14.jpg',title:'郑州中原驾校',price:'2700',url:'detail-service-03.html'},{img:'../img/life/22.jpg',title:'源之林经络减肥美容店',price:'80',url:'detail-service-04.html'},{img:'../img/life/31.jpg',title:'金水桶',price:'80',url:'detail-service-05.html'},{img:'../img/life/47.jpg',title:'牵喜婚庆',price:'240',url:'detail-service-06.html'},{img:'../img/life/44.jpg',title:'开门红',price:'210',url:'detail-service-07.html'},{img:'../img/life/49.jpg',title:'你好漂亮专业美发',price:'24',url:'detail-service-08.html'},{img:'../img/life/57.jpg',title:'商城黄焖鸡米饭',price:'27',url:'detail-service-09.html'},{img:'../img/life/67.jpg',title:'巧街坊',price:'16',url:'detail-service-10.html'},{img:'../img/life/74.jpg',title:'郑家小面故事',price:'18',url:'detail-service-11.html'},{img:'../img/life/82.jpg',title:'北京大鸭梨',price:'40',url:'detail-service-12.html'},{img:'../img/life/91.jpg',title:'状元郎韩式自助烤肉',price:'180',url:'detail-service-13.html'},{img:'../img/life/100.jpg',title:'农夫大盘鸡',price:'45',url:'detail-service-14.html'},{img:'../img/life/109.jpg',title:'美家快捷',price:'160',url:'detail-service-15.html'}];
+
+    - var arrtravel = [{img:'../img/travelImage/detail-01-01.jpg',title:'郑州方特欢乐世界',price:'80',url:'detail-travel-01.html'},{img:'../img/travelImage/detail-02-01.jpg',title:'雁鸣湖凌云温泉',price:'95',url:'detail-travel-02.html'},{img:'../img/travelImage/detail-03-01.jpg',title:'郑州新区如意湖景区',price:'48',url:'detail-travel-03.html'},{img:'../img/travelImage/detail-04-01.jpg',title:'香堤湾温泉',price:'120',url:'detail-travel-04.html'},{img:'../img/travelImage/detail-05-01.jpg',title:'郑国车马坑景区',price:'25',url:'detail-travel-05.html'},{img:'../img/travelImage/detail-06-01.jpg',title:'洛阳龙门海洋馆',price:'60',url:'detail-travel-06.html'},{img:'../img/travelImage/detail-07-01.jpg',title:'重渡沟风景区',price:'70',url:'detail-travel-07.html'},{img:'../img/travelImage/detail-08-01.jpg',title:'河南栾川老君山',price:'120',url:'detail-travel-08.html'},{img:'../img/travelImage/detail-09-01.jpg',title:'鸡冠洞',price:'140',url:'detail-travel-09.html'},{img:'../img/travelImage/detail-10-01.jpg',title:'郑州中国绿化博览园',price:'160',url:'detail-travel-10.html'},{img:'../img/travelImage/detail-11-01.jpg',title:'世纪欢乐园',price:'180',url:'detail-travel-11.html'},{img:'../img/travelImage/detail-12-01.jpg',title:'碧海蓝天养生温泉',price:'200',url:'detail-travel-12.html'},{img:'../img/travelImage/detail-13-01.jpg',title:'郑州宝龙冠军溜冰场',price:'120',url:'detail-travel-13.html'},{img:'../img/travelImage/detail-14-01.jpg',title:'金鹭鸵鸟游乐园',price:'96',url:'detail-travel-14.html'},{img:'../img/travelImage/detail-15-01.jpg',title:'荆紫仙山',price:'104',url:'detail-travel-15.html'}];
+
+    - var arratay = [{img:'../img/atay/a.jpg',title:'【罗曼蒂克时尚酒店（德化街店）】',price:'240.00',url:'detail-atay-01.html'},{img:'../img/atay/b-1.jpg',title:'【罗曼蒂克时尚酒店（德化街店）】',price:'168.00',url:'detail-atay-02.html'},{img:'../img/atay/c-1.jpg',title:'河南天地粤海酒店',price:'468.00',url:'detail-atay-03.html'},{img:'../img/atay/d-1.jpg',title:'郑州荣泰莱商务酒店',price:'179.00',url:'detail-atay-04.html'},{img:'../img/atay/e-1.jpg',title:'郑州如家快捷酒店（花园路中环百货店）',price:'132.00',url:'detail-atay-05.html'},{img:'../img/atay/dfks01.jpg',title:'【河南永和铂爵国际酒店】',price:'270.00',url:'detail-atay-06.html'},{img:'../img/atay/tdyh01.jpg',title:'【河南天地粤海酒店 】',price:'218.00',url:'detail-atay-07.html'},{img:'../img/atay/dskz01.jpg',title:'【郑州都市客栈 】',price:'120.00',url:'detail-atay-08.html'},{img:'../img/atay/hyss04.jpg',title:'【五月时尚酒店】',price:'110.00',url:'detail-atay-09.html'},{img:'../img/atay/ass01.jpg',title:'【郑州艾时尚商务酒店】',price:'164.00',url:'detail-atay-10.html'},{img:'../img/atay/pag01.jpg',title:'【平安果酒店】',price:'210.00',url:'detail-atay-11.html'},{img:'../img/atay/dfks04.jpg',title:'【郑州东方凯撒假日酒店】',price:'220.00',url:'detail-atay-12.html'},{img:'../img/atay/hyy04.jpg',title:'【郑州华原颐舍酒店EaseHouse】',price:'130.00',url:'detail-atay-13.html'},{img:'../img/atay/wakp01.jpg',title:'【唯爱精品酒店】',price:'210.00',url:'detail-atay-14.html'},{img:'../img/atay/ljd01.jpg',title:'【莱酒店(凤鸣路店)】',price:'300.00',url:'detail-atay-15.html'}];
+    - var arrFloor=[{floor:'../img/alliance/food.png',name:'美食'},{floor:'../img/alliance/shopping.png',name:'购物'},{floor:'../img/alliance/game.png',name:'休闲娱乐'},{floor:'../img/alliance/serve.png',name:'生活服务'},{floor:'../img/alliance/travel.png',name:'旅游出行'},{floor:'../img/alliance/atay.png',name:'住宿'},'']
+    .container
+        .hidden-area
+            .wait
+        .alert-area
+            .close 
+            .add-goods-box
+                .pro-success
+                    img(src='../img/download.png')
+                p.text-redirect 感谢您的信任,网站正在试运行中,如有需要,请扫描二维码下载手机APP,如有意见请发送邮件
+
+
+        #LoutiNav
+            ul
+                each item,index in arrFloor
+                    if index==0
+                        li.hover 
+                            img(src='#{item.floor}')
+                            span #{item.name}
+                    else if index==arrFloor.length-1
+                        li.last Top
+                    else 
+                        li 
+                            img(src='#{item.floor}')
+                            span #{item.name}
+
+        .banner-wrapper
+            .banner-area
+                ul.notice-pic.clearfix
+                    li
+                        img(src='../img/ban01.png')
+                    li
+                        img(src='../img/ban02.png')
+                    li
+                        img(src='../img/ban03.png')
+                    li
+                        img(src='../img/ban01.png')
+                    li
+                        img(src='../img/ban02.png')
+                    li
+                        img(src='../img/ban03.png')
+        .advertisement-bg
+            .advertisement
+                .advertisement-wraper
+                    block ad-img
+                        .advertisement-item
+                            img(src="../img/adver.png")
+                    block ad-img
+                    block ad-img
+                    block ad-img
+                    .advertisement-item
+                        img(src="../img/link-code.png")
+        .activity-bg
+            .activity
+                h2.activity-wrapper
+                    span.activity-title 今日限时购
+                    span(style="margin-right:22px;") 还剩
+                    span.time-bg 0
+                    span.time-bg 0
+                    em.time-inter :
+                    span.time-bg 0
+                    span.time-bg 0
+                    em.time-inter :
+                    span.time-bg 0
+                    span.time-bg 0
+        .activity-con-bg
+            .activity-con
+                .activity-con-wrapper
+                    .activity-con-box
+                        block imgacti
+                            dl
+                                dt
+                                    img(src="../img/img-hot.png")
+                                    span
+                                dd
+                                    h3 远离尘嚣 我有绝招
+                                    p iRoot 智能扫地机器人吸尘器 Roomba650 支持国内保修
+                                    .goods-price
+                                        span $3199
+                                        em $4590
+                                    .remain-count
+                                        .remain-count-bg 剩余463件
+                                        .remain-bak
+                        block imgacti
+                        block imgacti
+                        block imgacti
+                        block imgacti
+                .activity-con-click-more
+                    img(src="../img/click-more.png")
+        .common-title-bg
+            .common-title
+                h3
+                    i.iconfont.icon-cart
+                    span 美食热门商家
+        .allicences-shop-con-bg
+            .allicences-con
+                .allicences-con-wrapper
+                    .allicences-con-box
+                        block imgshop
+                            dl
+                                dt
+                                    img(src="../img/shop-test.png")
+                                    span
+                                dd
+                                    h3 张亮麻辣烫 (升龙店)
+                                    p.score-area
+                                        em 5.0分
+                                        span.m-l-25 120条评论
+                                    p.score-area
+                                        span 地铁口
+                                        span 环境好
+                                    p.discount 
+                                        span 全场8.5折优惠
+                                    p.icon-box
+                                        i.iconfont.icon-wuxian
+                                        i.iconfont.icon-p
+                                    p.description
+                                        span 美食商家
+                                        span 中州大道农业路
+                        block imgshop
+                        block imgshop
+                        block imgshop
+                        block imgshop
+                        block imgshop
+                .allicences-con-click-more
+                    h3 优惠信息
+                    .discount-con
+                        block dis-con
+                            dl.clearfix
+                                dt 
+                                    img(src="../img/discount-img.png")
+                                dd
+                                    h4 状元烤场东风路店
+                                    p 到店立享85折优惠
+                        block dis-con
+                        block dis-con
+                        block dis-con
+        
+        .common-title-bg
+            .common-title
+                h3
+                    i.iconfont.icon-cart
+                    span 美食热门预定
+        .common-goods-con-bg
+            .common-goods-con-wrapper.clearfix
+                .common-goods-con
+                    .common-goods-con-box.clearfix
+                        block singlei
+                            .single-item-goods-wrapper
+                                a
+                                    img(src="../img/img-con01.png")
+                                p
+                                    span 汉釜宫烤肉
+                                    em $128
+                        block singlei
+                        block singlei
+                        block singlei
+                        block singlei
+                        block singlei
+                .common-active-goods-wrapper
+                    .single-item-active-goods
+                        a
+                            img(src="../img/act-img.png")
+                        p
+                            span 汉釜宫烤肉
+                            em $182
+                
+
+                
+                    
+
+
+    
+
+
+
+

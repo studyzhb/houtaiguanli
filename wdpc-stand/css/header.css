@@ -237,7 +237,8 @@ footer {
       width: 560px;
       height: 88px;
       float: left;
-      margin-right: 12px; }
+      margin-right: 12px;
+      position: relative; }
     footer .foot-serve .foot-serve-top ul.serve {
       width: 92px;
       height: 88px;
@@ -248,9 +249,19 @@ footer {
       footer .foot-serve .foot-serve-top ul.serve li {
         height: 20px;
         font-size: 14px;
-        line-height: 20px; }
+        line-height: 20px;
+        margin-right: 20px;
+        margin-top: 2px; }
+        footer .foot-serve .foot-serve-top ul.serve li a {
+          color: #666;
+          font-size: 12px; }
       footer .foot-serve .foot-serve-top ul.serve li:hover {
         background-color: #fff; }
+    footer .foot-serve .white {
+      background-color: #fff; }
+    footer .foot-serve .foot-serve-bottom {
+      text-align: center;
+      margin-top: 20px; }
   footer .foot-about-bg {
     background: #343434;
     height: 20px; }

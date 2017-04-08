@@ -15,5 +15,11 @@ var ajaxAddress={
         goodsDetail:'/goods/GoodsDetail',
         shopDetail:'/goods/shopDetail',
         hotSale:'/goods/hotSale'
+    },
+    discount:{
+        bendfit:'/benefit/BenefitDetail',
+    },
+    label:{
+        labelAll:'/comment/LabelAll'
     }
 }

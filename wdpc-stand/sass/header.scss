@@ -315,6 +315,8 @@ footer{
                 height:88px;
                 float:left;
                 margin-right:12px;
+                position: relative;
+              
             }
             ul.serve{
                 width:92px;
@@ -327,13 +329,24 @@ footer{
                     height:20px;
                     font-size: 14px;
                     line-height: 20px;
-                   
-                   
+                    margin-right: 20px;
+                    margin-top: 2px;
+                    a{
+                        color: #666;
+                        font-size: 12px;
+                    }
                 }
                 li:hover{
                     background-color: #fff;
                 }
             }
+        }
+        .white{
+            background-color: #fff;
+        }
+        .foot-serve-bottom{
+            text-align: center;
+            margin-top: 20px;
         }
     }
     .foot-about-bg{

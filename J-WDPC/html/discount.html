@@ -86,7 +86,7 @@
                 </ul>
             </div>
             </div>
-        <div class="delicacy-wrap" style="width: 1200px">
+        <div class="delicacy-wrap" style="width: 1200px" id="app">
                 <!--位置进度-->
                 <div class="de-info">
                     <div class="shop">
@@ -100,17 +100,17 @@
                         <!--天方苑会面-->
                         <div class="de-center">
                             <ul class="de-picture">
-                                <li class="shopname">【郑东新区东建材】天方苑烩面泡馍馆</li>
-                                <li><img src="../img/j-img1.png"></li>
+                                <li class="shopname">{{shopDetailArr.name}}</li>
+                                <li><img style="width:463px;height:266px;"  src="../img/j-img1.png" :src="shopDetailArr.pic_url"></li>
                             </ul>
                         </div>
                         <div class="de-center shopcenter">
                             <ul class="shopdetail">
-                                <li class="discMessage">折扣信息：8.5折</li>
-                                <li style="color:black;  font-weight: bold;">距离打折结束还剩100天</li>
-                                <li>2017-03-04至2017-08-04</li>
-                                <li>郑州市金水区郑汴路与玉凤路交叉口向北200米路东</li>
-                                <li class="discphone">电话：<span>12345678</span><span>18636928156</span></li>
+                                <li class="discMessage">折扣信息：{{shopDetailArr.benefit_info}}</li>
+                                <li style="color:black;  font-weight: bold;" v-text="printDay(shopDetailArr.release_end)">距离打折结束还剩天</li>
+                                <li>{{new Date(shopDetailArr.release_begin*1000).toLocaleString()}}至{{new Date(shopDetailArr.release_end*1000).toLocaleString()}}</li>
+                                <li>{{shopDetailArr.address}}</li>
+                                <li class="discphone">电话：<span>{{shopDetailArr.telephone}}</span></li>
                                 <li class="con"><span><i class="iconfont icon-icon1"></i>收藏</span><span><i class="icon-share6 iconfont"></i>分享</span></li>
                             </ul>
                         </div>
@@ -120,9 +120,9 @@
                                     <dd><img src="../img/j-img4.png"></dd>
                                 </dl>
                                 <ul class="shopAddress">
-                                    <li>天方苑烩面泡馍馆(东建材店)</li>
-                                    <li>电话：0371-55197399</li>
-                                    <li>地址：郑州市金水区郑汴路与玉凤路交叉口向北200米路东</li>
+                                    <li v-text="shopDetailArr.name">天方苑烩面泡馍馆(东建材店)</li>
+                                    <li>电话：{{shopDetailArr.telephone}}</li>
+                                    <li>地址：{{shopDetailArr.address}}</li>
                                     <li class="color-red"><a>查看地图公交</a>/<a>驾车去这里</a></li>
                                 </ul>
                             </div>
@@ -133,15 +133,16 @@
                  <div class="discdetail">
                     <dl>
                         <dt>详细信息</dt>
-                        <dd>天方苑烩面泡馍馆（东建材店）</dd>
-                        <dd>电话：<span>12345678</span><span>18636928156</span><dd>
-                        <dd>地址：郑州市金水区郑汴路与玉凤路交叉口向北200米路东</dd>
+                        <dd  v-text="shopDetailArr.name">天方苑烩面泡馍馆（东建材店）</dd>
+                        <dd>电话：{{shopDetailArr.telephone}}<dd>
+                        <dd>地址：{{shopDetailArr.address}}</dd>
                     </dl>
                     
                     <div class="remind">
                         <p>温馨提醒：</p>
-                        本站打折信息采集于商家在线、线上官方宣传渠道或由我们的注册商家、会员自行发布，内容仅供参考，
-                        具体以商家实际情况为准。如果侵犯到了您的权益，请及时联系我们处理。客服电话400-0087-098.
+                        {{shopDetailArr.introduce}}
+                        {{shopDetailArr.tips}}
+                      
                     </div>
                  </div>
             </div>
@@ -190,6 +191,9 @@
       </div>
     </footer>
     </body>
-    <script src="../js/jquery-2.1.4.min.js" type="text/javascript"></script>
-    <script src="../js/shopindex.js" type="text/javascript"></script>
+    
 </html>
+<script src="../js/ajaxAddress.js"></script>
+<script src="../js/lib/vue2.js"></script>
+<script src="../js/lib/vue-resource.min.js"></script>
+<script src="../js/discount.js"></script>

@@ -23,7 +23,9 @@ new Vue({
 			navid:1,
 			p:1
 		},
-		gOstag:false
+		gOstag:false,
+		//获取标签信息
+		labelArr:[]
 	},
 	filters:{
 		json2single:function(value){
@@ -58,6 +60,15 @@ new Vue({
 			
 			this.getBefenit();
 			
+		},
+		showLabelAllInfo:function(){
+			var self=this;
+				//获得标签方法
+		   this.$http.get(ajaxAddress.preFix+ajaxAddress.lable.getLabel)
+			   .then(function(res){
+				   self.labelArr = res.body.data;
+				   
+			});		
 		},
 		getAreaList:function(){
 			var self=this;
@@ -114,6 +125,23 @@ new Vue({
 							console.log(res);
 							self.shoplistArr=res.body.data;
 						})
+		},
+		getLabelInfo:function(str,lField){
+			var arr=str.split(',');
+			var nArr=[];
+			var self=this;
+			//{id, type,field}
+			this.labelArr.forEach(function(item){
+				arr.forEach(function(its){
+					if(its.id==item.id){
+						if(LabelField[lField]==item.field){
+							nArr.push(item);
+						}
+					}
+				})
+			})
+
+			return nArr;
 		},
 		getBefenit:function(){
 			var self=this;

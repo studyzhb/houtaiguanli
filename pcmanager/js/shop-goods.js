@@ -74,9 +74,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         }
                         GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
                         $('.detailCount').text(data.total);
-                        GoodsObj.methods.updateShopList(data.data);
+                        GoodsObj.methods.updateGoodsList(data.data);
                     }else{
-                        GoodsObj.methods.updateShopList([]);
+                        GoodsObj.methods.updateGoodsList([]);
                         layObj.layer.msg(data.msg);
                     }
                 },{page:num,cityid:params.id,navid:GoodsObj.data.navId});
