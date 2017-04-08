@@ -270,4 +270,13 @@
         .ELeftbott .parents .evalText .evaluate-Pic img {
           margin-right: 10px; }
 
+#marquee {
+  width: 460px;
+  overflow: hidden; }
+  #marquee #marqueeinfo {
+    width: 800%; }
+    #marquee #marqueeinfo div {
+      float: left;
+      margin-right: 8px; }
+
 /*# sourceMappingURL=shopindex.css.map */

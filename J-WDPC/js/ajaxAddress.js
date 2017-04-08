@@ -12,6 +12,8 @@ var ajaxAddress={
         benefit:'/lists/Benefit'
     },
     detail:{
-        goodsDetail:'/goods/GoodsDetail'
+        goodsDetail:'/goods/GoodsDetail',
+        shopDetail:'/goods/shopDetail',
+        hotSale:'/goods/hotSale'
     }
 }

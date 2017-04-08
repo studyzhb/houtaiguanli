@@ -327,3 +327,15 @@
     }
     
 }
+#marquee{
+    width: 460px;
+    overflow: hidden;
+    #marqueeinfo{
+                width: 800%;
+                div{
+                    float: left;
+                    margin-right: 8px;
+                }
+            }
+    }
+                            

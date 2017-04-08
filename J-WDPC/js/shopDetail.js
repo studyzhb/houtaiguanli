@@ -5,7 +5,7 @@ new Vue({
         navId:1,
         goodsDetailArr:'',
         goodsId:'1',
-		shopId:'',
+		shopId:'1',
 		selectedIndex:'0',
 		hotGoodsArr:[],
 		shopDetailArr:''
@@ -29,20 +29,9 @@ new Vue({
 	methods:{
 		renderView:function(){
 			var self=this;
-            this.getGoodsInfo();
-			
+            this.getShopInfo();
+			this.getHotInfo();
 		},
-		getGoodsInfo:function(){
-            var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.goodsDetail+'?id='+this.goodsId)
-                    .then(function(res){
-                        console.log(res);
-                        self.goodsDetailArr=res.body.data;
-						self.shopId=self.goodsDetailArr.shopid;
-						self.getShopInfo();
-						self.getHotInfo();
-                    })
-        },
 		json2arr:function(value){
 			
 			var arr=typeof eval(value)=='object'?JSON.parse(value):[];

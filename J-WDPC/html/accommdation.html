@@ -19,11 +19,18 @@
               <li class="wd-common-login"><a>请登录</a></li>
             </ul>
             <ul class="right-menu-area">
-              <li class="wd-mye"><a>我的e+便利</a>|</li>
-              <li class="wd-my-order"><a>我的订单</a></li>
+              <li class="wd-mye"><a>我的e+便利</a><span class="sub_sigle"><img src="../img/sub_sigle.png"></span>
+                <ul id="myE">
+                    <li>我的e+便利</li>
+                    <li>我的e+便利</li>
+                    <li>我的e+便利</li>
+                    <li>我的e+便利</li>
+                </ul>
+              </li>
+              <!--<li class="wd-my-order"><a>我的订单</a></li>-->
               <li class="wd-business"><a>招商</a></li>
-              <li class="wd-help-center"><a>帮助中心</a></li>
-              <li class="wd-serve-cus"><a>联系客服</a></li>
+              <!--<li class="wd-help-center"><a>帮助中心</a></li>-->
+              <!--<li class="wd-serve-cus"><a>联系客服</a></li>-->
               <li class="nav-website"><a>网站导航</a></li>
               <li class="phone-alliance"><a>手机异业联盟</a></li>
             </ul>
@@ -41,6 +48,10 @@
               <input type="button" value="搜索" class="search-btn">
             </form>
             <div class="hotwords"><a>奶糖</a><a>红枣</a></div>
+          </div>
+          <div class="shopping">
+              <img src="../img/shopping.png">
+              <em class="goodsNum">3</em>
           </div>
         </div>
       </header>
@@ -66,10 +77,10 @@
             </dl>
           </li>
           <li><a href="#111">首页</a></li>
-          <li><a href="#food">美食</a></li>
+          <li><a href="foodlist.html">美食</a></li>
           <li><a href="#game">休闲娱乐</a></li>
-          <li><a href="#travel">旅游出行</a></li>
-          <li><a href="#hotel">住宿</a></li>
+          <li><a href="tour.html">旅游出行</a></li>
+          <li><a href="accommdation.html">住宿</a></li>
           <li><a href="#life">生活服务</a></li>
           <li><a href="#shopping">同城便利</a></li>
         </ul>
@@ -91,7 +102,7 @@
                             <li class="areaChoice"><span class="datetime">入住日期<span class="stayTime time"><i></i></span></span>
                                 <span class="datetime">离店日期<span class="goTime time"><i></i></span></span>
                                 <span class="search"><input placeholder="关键字"><i></i></span></li>
-                            <li class="areaChoice">
+                            <!--<li class="areaChoice">
                                 <ul>
                                     <p>选择区域：</p>
                                     <li class="color-bg">金水区</li>
@@ -114,7 +125,72 @@
                                     <li>科技市场</li>
                                     <li>丹尼斯七天地</li>
                                 </ul>
-                            </li>
+                            </li>-->
+
+                            <li class="bussiChoice areaChoice areatab">
+                            <p>区域</p>
+                            <ul class="bussiList">
+                                <li class="color-bg">全部</li>
+                                <li>行政区</li>
+                                <li>热门商圈</li>
+                            </ul>
+                            <div class="sigle" ref="parIndex">
+                                <img src="../img/sigle.png" class="sigleImg1 sigleImg" :style="{ left: imgLeft + 'px' }">
+                                <!--<img src="../img/sigle.png" class="sigleImg2 sigleImg" v-show="showIndex==1">
+                                <img src="../img/sigle.png" class="sigleImg3 sigleImg" v-show="showIndex==2">-->
+                            </div>
+                            <div style="clear both;"></div>
+                            <div class="hotArea">
+                                <!--全部-->
+                                <div class="AreaAll areaCon">
+                                    <ul  class="areaConInfo">
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                        <li>惠济区</li>
+                                        <li>郑东新区</li>
+                                        <li>高新区</li>
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                        <li>惠济区</li>
+                                        <li>郑东新区</li>
+                                        <li>高新区</li>
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                        <li>惠济区</li>
+                                        <li>郑东新区</li>
+                                        <li>高新区</li>
+                                    </ul>
+                                </div>
+                                <!--行政区-->
+                                <div class="adArea areaCon" style="display: none">
+                                    <ul  class="areaConInfo">
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                        <li>惠济区</li>
+                                        <li>郑东新区</li>
+                                        <li>高新区</li>
+                                    </ul>
+                                </div>
+                                <!--热门商圈-->
+                                <div class="hotAreas areaCon" style="display: none">
+                                    <ul  class="areaConInfo">
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
                         </ul>
                     </div>
                 </div>
@@ -304,4 +380,5 @@
             }
         });
     </script>
+    
 </html>
