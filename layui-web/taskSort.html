@@ -358,21 +358,33 @@
         <td></td>
           <td>
           {{# if(d.status=='1'){ }}
-              <button class="layui-btn layui-btn-small layui-btn-primary icon-sub-btn" data-status='0' data-id="{{item.id}}">
-                    启用
-              </button>
-            {{# }else{ }}
-              <button class="layui-btn layui-btn-small layui-btn-primary icon-sub-btn" data-status="1" data-id="{{item.id}}">
-                    停用
-              </button>
-            {{# } }}
+            {{# if(item.status=='1'){ }}
+                <button class="layui-btn layui-btn-small layui-btn-primary icon-sub-btn" data-status='0' data-id="{{item.id}}">
+                      启用
+                </button>
+              {{# }else{ }}
+                <button class="layui-btn layui-btn-small layui-btn-primary icon-sub-btn" data-status="1" data-id="{{item.id}}">
+                      停用
+                </button>
+              {{# } }}
+              {{# }else{ }}
+                {{# if(item.status=='1'){ }}
+                
+                      启用
+                
+              {{# }else{ }}
+                
+                      停用
+                
+              {{# } }}
+              {{# } }}
           </td>
         <td>
           
           <div class="layui-btn layui-btn-warm layui-btn-small editor-sub-sort" data-pid='{{d.id}}' data-id="{{item.id}}" data-name="{{item.name}}">编辑</div>
-          <button class="layui-btn layui-btn-small layui-btn-danger" data-id="{{item.id}}">
+          <!--<button class="layui-btn layui-btn-small layui-btn-danger" data-id="{{item.id}}">
             删除
-        </button>
+        </button>-->
         </td>
       </tr>
     {{#  }); }}

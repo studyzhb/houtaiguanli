@@ -14,9 +14,9 @@ $(function(){
 					$('#all-sort-list').html('');
 					$.each(data.classify_data,function(index,item){
 						item.index=index;
-						if(!item.status){
-							item.status=1;
-						}
+						// if(item.status=='undefined'){
+						// 	item.status=1;
+						// }
 						laytpl(tempHtml).render(item,function(html){
 							$('#all-sort-list').append(html);
 						});
@@ -35,9 +35,9 @@ $(function(){
 			getEditInfoById:function(bid,fn){
 				config.ajax('get',config.ajaxAddress.taskSort.editSort,function(data){
 						var item=data.data;
-						if(item.status=='undefined'){
-							item.status=1;
-						}
+						// if(item.status=='undefined'){
+						// 	item.status=1;
+						// }
 						
 						TaskObj.data.editorData=item;
 						fn();

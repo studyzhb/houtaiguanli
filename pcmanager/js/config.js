@@ -35,8 +35,6 @@ var cookieUtil={
 var config={
   //表单提交
   formSubmit:function(formId,urlhttp,fun){
-
-    
     $(formId).ajaxSubmit({
       url:urlhttp,
       type:'post',
