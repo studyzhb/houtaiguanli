@@ -1,4 +1,9 @@
-
+Vue.http.options.emulateJSON = true;
+Vue.http.options.xhr = { withCredentials: true }
+Vue.http.interceptors.push((request, next) => {
+request.credentials = true
+next()
+})
 new Vue({
 	el:'#app',
 	data:{
@@ -17,7 +22,24 @@ new Vue({
 		labelFArr:[],
 		laeblSArr:[],
 		laeblTArr:[],
-        isShowAllSort:false
+        isShowAllSortIndex:0,
+		loginIndex:'-1',
+		picCode:'',
+		loginUser:{
+			phone:'',
+			password:'',
+			code:''
+		},
+		registerUser:{
+			phone:'',
+			password:'',
+			code:''
+		},
+		resetUser:{
+			phone:'',
+			password:'',
+			code:''
+		}
 	},
 	filters:{
 		json2single:function(value){
@@ -25,13 +47,11 @@ new Vue({
 			var str=typeof eval(value)=='object'?JSON.parse(value)[0]:'';
 			return str;
 		},
-        parseUrl:function(value){
-            
-			return goToWhere+value.id+'&name='+escape(value.name);
-        }
+        
 		
 		
 	},
+
 	mounted:function() {
 		
 		this.$nextTick(function(){
@@ -42,9 +62,54 @@ new Vue({
 		})
 	},
 	methods:{
+		/**
+		 * 用户登录
+		 */
+		userLogin:function(){
+
+			var body=this.loginUser;
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,{},{params:body})
+				.then(function(res){
+					console.log(res);
+				})
+		},
+		//用户密码重置
+		resetPassword:function(){
+
+		},
+		//用户注册
+		registerUser:function(){
+			var body=this.registerUser;
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,{},{params:body,method:'POST'})
+					.then(function(res){
+						console.log(res);
+					})
+		},
+		//获取短信验证码
+		getMesscode:function(){
+			console.log('111');
+			var phone=this.registerUser.phone;
+			var code=this.registerUser.code;
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{},{params:{phone:phone,code:code}})
+					.then(function(res){
+						console.log(res);
+					})
+		},
+		getResetMesscode:function(){
+
+		},
+		updatePicCode:function(){
+			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode+'?v='+new Date().getTime();
+		},
+		parseUrl:function(value){
+            this.isShowAllSortIndex=1;
+			return goToWhere+value.id+'&name='+escape(value.name);
+        },
 		renderView:function(){
 			
 			var self=this;
+			console.log(ajaxAddress.user)
+			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode;
             //获取导航
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.nav.showPrimaryNav+'?navtype=1')
 				.then(function(res){

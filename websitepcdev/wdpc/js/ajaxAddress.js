@@ -1,10 +1,19 @@
 var ajaxAddress={
     preFix:'http://web.yylm.com/public/index.php/unionIndex',
+    formFix:'',
     area:{
         areaData:'/condition/getArea'
     },
     Classify:{
         Classifydata:'/condition/getClassify'
+    },
+    user:{
+        getPicCode:'/login/getcode',
+        getLoginMessCode:'/login/code',
+        login:'/login/login',
+        //
+        getRegisterMessCode:'/register/code',
+        register:'/register/register'
     },
     list:{
         shoplist:'/lists/shop',
