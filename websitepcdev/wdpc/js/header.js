@@ -1,9 +1,12 @@
 Vue.http.options.emulateJSON = true;
-Vue.http.options.xhr = { withCredentials: true }
+// Vue.http.options.xhr = { withCredentials: true }
 Vue.http.interceptors.push((request, next) => {
-request.credentials = true
-next()
+	request.credentials = true
+	next()
 })
+
+
+
 new Vue({
 	el:'#app',
 	data:{
@@ -40,6 +43,9 @@ new Vue({
 			password:'',
 			code:''
 		}
+	},
+	validators:{
+		
 	},
 	filters:{
 		json2single:function(value){

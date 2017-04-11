@@ -239,8 +239,10 @@
                 <button class="layui-btn layui-btn-primary">
                   {{# if(item.class==2){ }}
                     图
-                  {{# }else{ }}
+                  {{# }else if(item.class==1){ }}
                     文
+                  {{# }else{ }}
+                    文/挂
                   {{# } }}
                 </button>
                 <div class="layui-input-inline" style="width:75px;">
