@@ -1,14 +1,15 @@
 .perWrap {
   /*width: 1200px;
   min-width: 1200px;*/
+  width: 100%;
   background: #eee;
-  
+  padding-top: 40px;
   font-size: 14px;
   }
   .perWrap .perInfo {
     width: 1280px;
     margin: 0 auto;
-    margin-top: 40px;
+    
     overflow: hidden; }
   .perWrap .perLeft {
     width: 255px;

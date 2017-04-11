@@ -134,11 +134,15 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         form.render();
                     },600);
                 });
-               $('<script id="container" name="introduce" type="text/plain" style="width:99.5%;height:300px;overflow:auto;">').appendTo($('.formWrapper').find('.goodsintro')).html(data.introduce);
+                
+                var editorKindId='container'+Math.floor(Math.random()*1000)
+
+               $('<script name="introduce" type="text/plain" style="width:99.5%;height:300px;overflow:auto;">').appendTo($('.formWrapper').find('.goodsintro')).html(data.introduce).attr('id',editorKindId);
+                
                /**
                  * 加载百度编辑器
                  */
-                var editor = UE.getEditor('container',{
+                var editor = UE.getEditor(editorKindId,{
                     toolbars:[['source','undo','redo','inserttable']],
                     autoHeightEnabled:true,
                     autoFloatEnabled: true
@@ -373,6 +377,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
             maxmin: true,
             end:function(){
                 $('.editMenuForm').hide();
+                $('script#container').appendTo($('body'));
             }
          })
      })
@@ -524,6 +529,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 paraData.field.goods_label=arr;
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.editShopGoodsById,function(data){
                     log.d(data);
+                    $('script#container').appendTo($('body'));
                     GoodsObj.data.sortObj={};
                     GoodsObj.data.labelJson=[];
                     GoodsObj.data.sortAnotherArr=[];
