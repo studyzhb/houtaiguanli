@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <link href="../css/reset.css" rel="stylesheet">
+        <link href="../css/accommdation.css" rel="stylesheet">
+        <link href="../iconfont/iconfont.css" rel="stylesheet">
+        <link href="../css/pageCode.css" rel="stylesheet">
+    </head>
+    <body>
+        <link href="../css/header.css" rel="stylesheet">
+        <link href="../css/index.css?v=1" rel="stylesheet">
+        <style>
+                        .choice{
+                            border: 1px solid #cecaca;
+                            width: 1136px;
+                            margin: 20px auto;
+                        }
+                        .choiceTerm{
+                            width: 1086px;
+                            margin: 0 auto;
+                        }
+                        .areaChoice li{
+
+                        }
+                        .areaChoice{
+                            padding: 16px 0px;
+                        }
+                    </style>
+
+        <div class="delicacy-wrap" id="app">
+            <div class="contentInfo">
+                <div class="de-info">
+                    <div class="shop">
+                        <ul class="nav-bar">
+                            <li><a>全部</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                <div class="choice" >
+                    <ul class="choiceTerm" style="margin-top: 0px;">
+                        
+                        <li class="bussiChoice areaChoice areatab" style="position:relative;">
+                            <p >区域</p>
+                            <ul class="bussiList" >
+                                <li v-for="(AreaList,aIndex) in areaData" v-text="AreaList.typename" @click="getImageInfo(aIndex)" ref="aIndex"></li>
+                                <!--<li>行政区</li>
+                                <li>热门商圈</li>-->
+                            </ul>
+                            <div class="sigle" ref="parIndex">
+                                <img src="../img/sigle.png" class="sigleImg1 sigleImg" :style="{ left: imgLeft + 'px' }">
+                                <!--<img src="../img/sigle.png" class="sigleImg2 sigleImg" v-show="showIndex==1">
+                                <img src="../img/sigle.png" class="sigleImg3 sigleImg" v-show="showIndex==2">-->
+                            </div>
+                            <div class="hotArea">
+                                <!--全部-->
+                                <div class="AreaAll areaCon" v-for="(AreaList,areaIndex) in areaData" v-show="showIndex==areaIndex">
+                                    <ul  class="areaConInfo">
+                                        <li  v-for="(Listdata,index) in AreaList.children" :class="{'color-bg':index==AreaList.areaIndex}"  @click="areaClick(Listdata,AreaList,index)" v-text="Listdata.name" v-bind:data-id="Listdata.id"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--价格-->
+                        <!--<li class="areaChoice">
+                            <p>价格</p>
+                            <ul>
+                                <li class="color-red">全部</li>
+                                <li>50元以下</li>
+                                <li>50-100元</li>
+                                <li>100-200元</li>
+                                <li>200-300元</li>
+                            </ul>
+                        </li>-->
+                    </ul>
+                 </div>
+                 <div class="choice" style="display: none;">
+                    <ul class="choiceTerm" style="margin-top: 0px;">
+                        <li class="areaChoice" style="border-top: none">
+                            <p>分类<span class="sortAll color-bg">全部</span></p>
+                            <ul>
+                                <!--<li class="color-bg"></li>-->
+                                <li>今日菜单</li>
+                                <li>中餐</li>
+                                <li>家常菜</li>
+                                
+                            </ul>
+                        </li>
+                        <li class="bussiChoice areaChoice areatab">
+                            <p>区域</p>
+                            <ul class="bussiList">
+                                <li class="color-bg">全部</li>
+                                <li>行政区</li>
+                                <li>热门商圈</li>
+                            </ul>
+                            <div class="sigle" ref="parIndex">
+                                <img src="../img/sigle.png" class="sigleImg1 sigleImg" :style="{ left: imgLeft + 'px' }">
+                                <!--<img src="../img/sigle.png" class="sigleImg2 sigleImg" v-show="showIndex==1">
+                                <img src="../img/sigle.png" class="sigleImg3 sigleImg" v-show="showIndex==2">-->
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="hotArea">
+                                <!--全部-->
+                                <div class="AreaAll areaCon">
+                                    <ul  class="areaConInfo">
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                        <li>惠济区</li>
+                                        <li>郑东新区</li>
+                                        <li>高新区</li>
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                        <li>惠济区</li>
+                                        <li>郑东新区</li>
+                                        <li>高新区</li>
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                        <li>惠济区</li>
+                                        <li>郑东新区</li>
+                                        <li>高新区</li>
+                                    </ul>
+                                </div>
+                                <!--行政区-->
+                                <div class="adArea areaCon" style="display:none;">
+                                    <ul  class="areaConInfo">
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                        <li>惠济区</li>
+                                        <li>郑东新区</li>
+                                        <li>高新区</li>
+                                    </ul>
+                                </div>
+                                <!--热门商圈-->
+                                <div class="hotAreas areaCon" style="display: none">
+                                    <ul  class="areaConInfo">
+                                        <li>金水区</li>
+                                        <li>二七区</li>
+                                        <li>中原区</li>
+                                        <li>管城区</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                 </div>
+                </div>
+            </div>
+            <!--位置进度-->
+            <!--排序选择-->
+                 <div class="sortInfo">
+                    <div class="sortChoiceWrap">
+                        <div class="sortChoiceLeft clearfix" style="width:935px;overflow:hidden;float:left;">
+                            <div class="sortChoice">
+                                <div class="sortChoiceinfo">
+                                    <ul class="sortNav">
+                                        <li class="color-red">默认</li>
+                                        <li>销量 <i class="iconfont icon-zhankai "></i></li>
+                                        <li>价格 <i class="iconfont icon-zhankai "></i></li>
+                                        <li>好评</li>
+                                    </ul>
+                                    <div class="sortLBot" v-for="singleItem in shoplistArr">
+                                        <ul class="sortContent">
+                                            <li><img :src="singleItem.logo | json2single" style="width:250px;height:172px;"></li>
+                                            <li>
+                                                <p class="sortname" style="font-size: 16px;" @click="gotoShopDetail(singleItem.id)" v-text="singleItem.name">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
+                                                <p><em v-for="labelItem in getLabelInfo(singleItem.shop_label,'labelB')" v-text="labelItem.name">地铁口</em></p>
+                                                <p><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></p>
+                                                <p class="sortname" v-text="singleItem.address">未来路金水路向东300米未来路金水路向东300米未来路金水路向东300米</p>
+                                            </li>
+                                            <li class="sortEval">
+                                                <div><span>4.0</span>/5分</div>
+                                                <div>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                </div>
+                                            </li>
+                                            <li class="sortEvalPrice">
+                                            人均<span class="color-red">￥{{singleItem.average_price}}</span>
+                                            </li>
+                                        </ul>
+                                        <ul class="typeHouse">
+                                            <li v-for="item in singleItem.goods" :data-id="item.id">
+                                                <span v-text="item.goodsname">标准间</span>
+                                                <span v-text="item.use_time_info || '暂无'">节假日通用</span>
+                                                <span v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
+                                                <span class="color-red">￥{{item.price_pay}}</span>
+                                                <span class="shopPrice">门店价：￥{{item.price_sell}}</span>
+                                                <span><a href="javascript:;" style="color:#666;" @click="goToGoodsDetail(item.id)">查看详情</a></span>
+                                            </li>
+                                            <!--<li>
+                                                <span>大床房</span>
+                                                <span>节假日通用</span>
+                                                <span>提前24小时预约</span>
+                                                <span class="color-red">￥360</span>
+                                                <span class="shopPrice">门店价：￥480</span>
+                                                <span><a>查看详情</a></span>
+                                            </li>
+                                            <li style="cursor: pointer;">展开剩余一个<i class="iconfont icon-zhankai color-red"></i></li>-->
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                                <!--第二-->
+                                <div class="sortLBot">
+                                    <div class="sortChoiceinfo">
+                                        <ul class="sortContent">
+                                            <li><img src="../img/sortimg.png"></li>
+                                            <li>
+                                                <p class="sortname" style="font-size: 16px;">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
+                                                <p ><em>地铁口</em></p>
+                                                <p><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></p>
+                                                <p class="sortname">未来路金水路向东300米未来路金水路向东300米未来路金水路向东300米</p>
+                                            </li>
+                                            <li class="sortEval">
+                                                <div><span>4.0</span>/5分</div>
+                                                <div>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i class="iconfont icon-xingxing"></i>
+                                                </div>
+                                            </li>
+                                            <li class="sortEvalPrice">
+                                            人均<span class="color-red">￥36</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sortChoiceRight">
+                            <!--<img src="../img/sortimg.png">-->
+                            <div class="allicences-con-click-more">
+                                <h3>优惠信息</h3>
+                                <div class="discount-con">
+                                <dl class="clearfix" v-for="beItem in benefitlistArr" :data-id="beItem.id">
+                                    <dt> <img :src="beItem.pic_url"></dt>
+                                    <dd>
+                                    <h4 >
+                                        <a v-text="beItem.name" style="color:#3c3c3c;" href="javascript:;" @click="gotoDiscount(beItem.id)">
+
+                                        </a>
+                                    </h4>
+                                    <p v-text="beItem.benefit_info">到店立享85折优惠</p>
+                                    </dd>
+                                </dl>
+                                
+                                </div>
+                            </div>
+                             
+                        </div>
+                    </div>
+                 </div>
+                 <div class="page">
+                    <div class="tcdPageCode" id="pagecode"></div>
+                </div>
+          </div>
+          
+    </body>
+    <script src="../js/common.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/ajaxAddress.js"></script>
+    <script src="../js/lib/vue2.js"></script>
+    <script src="../js/lib/vue-resource.min.js"></script>
+    <script src="../js/searchInfo.js"></script>
+    
+
+</html>

@@ -1,4 +1,4 @@
-$(function(){
+
 	
 	var w=$('.shop-content').width();
 	var h=$('.shop-content').height();
@@ -85,9 +85,9 @@ $(function(){
     }
 
 
-	function showIframe(url,w,h){
+	function showIframe(url,w1,h1){
 	    //添加iframe
-	    var if_w = w; 
+	    var if_w = w1||w; 
 	    var if_h = 540; 
         
 	    //allowTransparency='true' 设置背景透明
@@ -140,4 +140,3 @@ $(function(){
         }
     }
 
-});

@@ -4,6 +4,8 @@ var goToWhere='tour.html?cityid=1&navid=';
 var shopDetailUrl='shopDetail.html?id=';
 var goodsDetailUrl="delicacy.html?id=";
 var discountInfo='discount.html?id=';
+var searchShop='search-shop.html?tag=';
+var searchGoods='search-goods.html?tag=';
 /**
  * 标签位置属性
  */

@@ -44,4 +44,8 @@ var ajaxAddress={
         hotContent:'/index/getRecommendShop',
         goods:'/index/getRecommendGoods '
     },
+    search:{
+        searchShop:'/search/shopList',
+        searchGoods:'/search/goodsList'
+    }
 }

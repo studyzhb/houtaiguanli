@@ -43,7 +43,10 @@ new Vue({
 			phone:'',
 			password:'',
 			code:''
-		}
+		},
+		//搜索 //true加载商品,false加载店铺
+		searchTag:true,
+		mainCon:''
 	},
 
 	filters:{
@@ -103,6 +106,18 @@ new Vue({
 					.then(function(res){
 						console.log(res);
 					})
+		},
+
+		//搜索
+		searchInfoFromData:function(){
+			var url=''
+			if(this.searchTag){
+				url=searchGoods+this.searchTag;
+			}else{
+				url=searchShop+this.searchTag;
+			}
+			showIframe(url+'&con='+this.mainCon);
+			this.isShowAllSortIndex=-1;
 		},
 		getResetMesscode:function(){
 

@@ -96,12 +96,12 @@
           <div class="logoImage"><a><img src="../img/header/logo.png"></a></div>
           <div class="wd-search-area">
             <div class="tab-shop-goods">
-              <div class="tab-item active">商品</div>
-              <div class="tab-item">商家</div>
+              <div class="tab-item" :class="{active:searchTag==true}" @click='searchTag=true'>商品</div>
+              <div class="tab-item" :class="{active:searchTag==false}" @click='searchTag=false'>商家</div>
             </div>
             <form class="logo-search-form">
-              <input type="text" placeholder="万店联盟搜索" class="search-text">
-              <input type="button" value="搜索" class="search-btn">
+              <input type="text" placeholder="万店联盟搜索" class="search-text" v-model="mainCon">
+              <input type="button" value="搜索" class="search-btn" @click="searchInfoFromData">
             </form>
             <div class="hotwords"><a>奶糖</a><a>红枣</a></div>
           </div>
