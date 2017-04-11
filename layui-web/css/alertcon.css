@@ -73,7 +73,7 @@ a:hover, a:active, a:focus {
   display: block; }
 
 .lay-main{
-  position:absolute;left:0;top:70px;width:100%;max-height:90%;box-sizing:border-box;overflow:auto;box-sizing:border-box;padding:10px 20px 10px 220px;font-size:14px;
+  position:absolute;left:0;top:0;width:100%;max-height:90%;box-sizing:border-box;overflow:auto;box-sizing:border-box;padding:10px 20px;font-size:14px;
 }
 
 html,body{
@@ -766,4 +766,122 @@ a.active-p {
     left: 0;
     top: 0; }
 
+/**
+*website
+*/
 
+.website-area{
+
+}
+.website-area label{
+  display: block;
+  width:116px;
+  height:40px;
+  line-height: 40px;
+  text-align: center;
+}
+.website-all-area{
+ 
+  padding-top:40px;
+  padding-left:100px;
+}
+
+.website-all-city-area{
+ 
+  padding-top:40px;
+  padding-left:100px;
+}
+
+.website-all-city-area a{
+  position:relative;
+  display: inline-block;
+  width:160px;
+  height:70px;
+  text-align: center;
+  margin-right:10px; 
+  margin-bottom:10px;
+  line-height:70px;
+  border:1px solid #666;
+  border-radius:10px; 
+}
+
+
+.website-all-area a{
+  display: inline-block;
+  width:118px;
+  height:50px;
+  text-align: center;
+  margin-right:10px; 
+  margin-bottom:10px;
+  line-height:50px;
+  border:1px solid #666;
+  border-radius:10px; 
+}
+
+.nav-menu-all-area a{
+  display: inline-block;
+  width:78px;
+  height:40px;
+  text-align: center;
+  margin-right:10px; 
+  margin-bottom:10px;
+  line-height:40px;
+  border:1px solid #666;
+  border-radius:10px; 
+  
+}
+.nav-menu-all-area a:hover,.nav-menu-all-area a.active,.website-all-city-area a.active{
+  background-color:#29B6F6;
+  color:#fff; 
+}
+
+
+
+.icon-btn.active{
+  border:1px solid #009688
+}
+.icon-btn-sub.active{
+  border:1px solid #009688
+}
+
+.icon-display{
+  display: none;
+  position:absolute;
+  color:#f00;
+  cursor: pointer;
+  height: 20px;
+  line-height: 20px;
+  right:5px;
+  top:0;
+}
+
+.icon-edit{
+  display: none;
+  position:absolute;
+  /*border: 1px solid #666;*/
+  height: 20px;
+  line-height: 20px;
+  right:30px;
+  top:0;
+}
+.labelCon{
+  position:relative;
+  z-index:0;
+}
+.labelIntro{
+  position:absolute;
+  bottom:-40px;
+  z-index:10;
+  left:0;
+  display: none;
+}
+.opacity-z-index{
+  position: absolute;
+  display: none;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+}

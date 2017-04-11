@@ -81,10 +81,6 @@ var config={
     		type:method,
 		   	url:url,
 		   	data:data||{date:new Date().getTime()},
-        // xhrFields: {
-        //               withCredentials: true
-        //       },
-        // crossDomain: true,
 		   	success: function(msg){
               msg=typeof msg==='object'?msg:JSON.parse(msg);
               if(msg.code&&msg.code=='401'){

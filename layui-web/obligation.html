@@ -1,0 +1,372 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>导航管理</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./layui/css/layui.css" />
+  	<link rel="stylesheet" href="./css/alertcon.css" />
+	<script src="./layui/layui.js"></script>
+    <script data-main="./js/domain" src="./js/require.min.js"></script>
+	
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<div class="lay-main">
+	  <!-- <span class="layui-breadcrumb">
+		  <a href="#">首页</a>
+		  <a href="#">组织机构</a>
+		  <a href="#">组织机构管理</a>
+		  <a><cite>正文</cite></a>
+		</span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       
+
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            
+              <div class="layui-form layui-form-pane">
+                  
+                <button class="layui-btn" onclick="location.reload()">
+                    刷新
+                </button>
+                  <table class="layui-table" lay-skin="line">
+                    <colgroup>
+                        <col width="80">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>债权人姓名</th>
+                            <th>债权金额</th>
+                            <th>身份证号</th>
+                            <th>创建时间</th>
+                            <th>审核状态</th>
+                            <th>操作</th>
+                        </tr> 
+                    </thead>
+                    <tbody id="tableList">
+                        <!--<tr>
+                            <td>1</td>
+                            <td>美食</td>
+                            <td>00</td>
+                            <td>nnn.html</td>
+                            <td>启用</td>
+                            <td>
+                                <div class="button  layui-btn-warm upSort" style="margin:10px 0;">
+                                <i class="layui-icon">&#xe619;</i>
+                                </div>
+                                <div class="button  layui-btn-warm downSort" style="margin:10px 0;">
+                                <i class="layui-icon">&#xe61a;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-warm" style="margin:10px 0;">
+                                        编辑
+                                </div>
+                            </td>
+                        </tr>-->
+                        
+                    </tbody>
+                </table>
+                  
+              </div>
+     
+
+          </div>
+        </div>
+
+
+     </div>
+
+    </div> 
+  <ul id="biuuu_city_list"></ul>
+
+
+
+
+  <!-- =======================弹出窗========================= -->
+<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;font-size: 16px;">
+  <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="navForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">*导航名称</label>
+            <div class="layui-input-inline">
+            <input type="text" name="name" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+            </div>
+            <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">*导航类型</label>
+            <div class="layui-input-block">
+            <input type="radio" name="navtype" title="主导航" value="1" checked>
+            <input type="radio" name="navtype" title="侧导航" value="2" >
+            <input type="radio" name="navtype" title="底部导航" value="3">
+            <input type="radio" name="navtype" title="内页导航" value="4">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">绑定模板</label>
+    
+            <div class="layui-input-inline">
+                <select name="template">
+                    <option value="food">美食模板</option>
+                    <option value="travel">旅行模板</option>
+                    <option value="hotail">住宿模板</option>
+                    <option value="live">生活模板</option>
+                </select>
+            
+            </div>
+            <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
+        </div>
+       
+        <div class="layui-form-item">
+            <label class="layui-form-label">*跳转地址</label>
+            <div class="layui-input-inline">
+            <input type="text" name="url" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+            </div>
+            <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+            <textarea name="title" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<!-- =======================编辑导航========================= -->
+<div class="alertCon-wrapper" id="editorNav" style="margin:10px auto;display:none;font-size: 16px;">
+  <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="editNavForm">
+          <div class="editorNavBox">
+
+          </div>
+        
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formEditDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<div class="alertCon-wrapper recommendCon" style="margin:10px auto;display:none;font-size: 16px;">
+  <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="editNavForm">
+          <div class="recommendWrapper"></div>
+        
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="layui-btn saveRecommend" lay-submit lay-filter="saveRecommend">立即提交</button>
+            
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/html" id="recommendInfo">
+    {{#  layui.each(d,function(index,item){ }}
+        <div class="layui-form-item">
+            <label class="layui-form-label">{{=item.name}}</label>
+            <div class="layui-input-block">
+                {{# layui.each(item.data,function(ind,its){ }}
+                   {{# if(its.selected){ }}
+                        <input type="checkbox" checked lay-filter="clickRecommend" name="recommend[{{its.name}}]" data-status="0"  lay-verify="checkIsCanSelect" data-id="{{item.id}}"  value="{{=its.id}}" title="{{=its.name}}" placeholder="请输入数量" autocomplete="off" class="layui-input" />
+                   {{# }else{ }}
+                        <input type="checkbox" lay-filter="clickRecommend" name="recommend[{{its.name}}]" data-status="0"  lay-verify="checkIsCanSelect" data-id="{{item.id}}"  value="{{=its.id}}" title="{{=its.name}}" placeholder="请输入数量" autocomplete="off" class="layui-input" />
+                   {{# } }} 
+                    
+                {{# }) }}
+            </div>
+        </div>
+    {{# }) }}
+    
+</script>
+
+<div class="layui-form" style="display:none">
+    <div class="layui-form-item">
+      <label class="layui-form-label">更改数量</label>
+      <div class="layui-input-inline">
+        <input type="text" placeholder="请输入数量" autocomplete="off" class="layui-input singleNum" />
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <div class="layui-btn saveGoodsNum">确定</div>
+        
+      </div>
+    </div>
+  </div>
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+	
+<script id="sortContent" type="text/html">
+
+  {{#  layui.each(d,function(index, item){ }}
+    <tr data-id="{{item.id}}" data-order="{{item.displayorder}}">
+        <td>
+           {{index+1}}
+        </td>
+        <td>{{=item.name}}</td>
+        <td>{{=item.debt_money}}</td>
+        <td>{{=item.cardID}}</td>
+        <td>
+            {{=new Date(item.createtime*1000).toLocaleString()}}
+        </td>
+        {{# if(item.status=='0'){ }}
+            <td>申请中</td>
+        {{# }else if(item.status=='1'){ }}
+            <td>还款中</td>
+        {{# }else if(item.status=='2'){ }}
+            <td>还款完成</td>
+        {{# } }}
+        <td>
+
+            <div class="layui-btn layui-btn-warm editNavInfo" data-id="{{item.id}}" style="margin:10px 0;">
+                审核
+            </div>
+            
+        </td>
+    </tr>
+{{#  }); }}
+       
+</script>
+
+</div>
+<script type="text/html" id="editorNavCon">
+    <div class="layui-form-item">
+        <label class="layui-form-label">*名称</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="hidden" autocomplete="off" name="user_id" class="layui-input" value="{{d.user_id}}" />
+        <input type="text" data-info="{{d.name}}" lay-verify="isChangeValue" value="{{d.name}}" readonly  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+        <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">身份证图片</label>
+        <div class="layui-input-block" style="margin-top:10px;">
+          <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
+                    
+                    <div class="detail-image-col-2 detail-banner-split">
+                        <div class="opacity-z-index"></div>
+                        <i class="layui-icon icon-display" data-info="{{=d.logo}}">&#xe640;</i>
+                        <div class="left-block"></div>
+                        <div class="right-block"></div>
+                        <img src="{{=d.card_pic}}" width="100%" height="100%" />    
+                    </div>
+ 
+          </div>
+          
+                     </div>
+        </div>
+     <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">手持身份证</label>
+        <div class="layui-input-block" style="margin-top:10px;">
+          <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
+                    
+                    <div class="detail-image-col-2 detail-banner-split">
+                        <div class="opacity-z-index"></div>
+                        <i class="layui-icon icon-display" data-info="{{=d.logo}}">&#xe640;</i>
+                        <div class="left-block"></div>
+                        <div class="right-block"></div>
+                        <img src="{{=d.hand_card_pic}}" width="100%" height="100%" />    
+                    </div>
+ 
+          </div>
+          
+                     </div>
+        </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">债权证明图片</label>
+        <div class="layui-input-block" style="margin-top:10px;">
+          <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
+                    
+                    <div class="detail-image-col-2 detail-banner-split">
+                        <div class="opacity-z-index"></div>
+                        <i class="layui-icon icon-display" data-info="{{=d.logo}}">&#xe640;</i>
+                        <div class="left-block"></div>
+                        <div class="right-block"></div>
+                        <img src="{{=d.proof_debt_pic}}" width="100%" height="100%" />    
+                    </div>
+ 
+          </div>
+          
+                     </div>
+        </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">*导航类型</label>
+        <div class="layui-input-block">
+            <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="status" checked title="拒绝" value="0">
+                <input type="radio" lay-verify="isChangeValue" data-info="{{d.navtype}}" name="status" title="同意" value="1">
+            
+            
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+        <textarea name="des" placeholder="请输入内容" lay-verify="isChangeNull" class="layui-textarea" data-info="{{d.title}}" data-info="{{d.title}}">{{d.des}}</textarea>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="image-suolve">
+     <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
+         <div class="opacity-z-index"></div>
+        <i class="layui-icon icon-display" data-info="{imgsrc}">&#xe640;</i>
+        <div class="left-block"></div>
+        <div class="right-block"></div>
+        <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
+
+</body>
+<script>
+    layui.use('form',function(){
+
+    })
+</script>
+<script src="./js/obligation.js"></script>
+</html>

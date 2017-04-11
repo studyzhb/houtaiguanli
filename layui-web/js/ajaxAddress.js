@@ -1,0 +1,10 @@
+define({
+    preFix:'/shop/shop/public/index.php/admin',
+    obligation:{
+        showlist:'/debtnexus/index',
+        update:'/debtnexus/edit',
+        typeshow:'/Proportion/show',
+        typeAdd:'/Proportion/add',
+        updateType:'/Proportion/edit'
+    }
+});

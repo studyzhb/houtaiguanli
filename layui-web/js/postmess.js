@@ -11,7 +11,6 @@ $(function(){
 				layer.closeAll();
 			}else{
 				layer.msg('网络错误，请稍后重试');
-				
 			}
 		});
 	});
