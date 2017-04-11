@@ -233,8 +233,31 @@ new Vue({
 		},
 		updateNav:function(id){
 			this.navid=id;
-            
-		},
+		}
 
 	}
 })
+
+/** 
+ * 获取滚动条距离顶端的距离 
+ * @return {}支持IE6 
+ */  
+function getScrollTop() {  
+        var scrollPos;  
+        if (window.pageYOffset) {  
+        scrollPos = window.pageYOffset; }  
+        else if (document.compatMode && document.compatMode != 'BackCompat')  
+        { scrollPos = document.documentElement.scrollTop; }  
+        else if (document.body) { scrollPos = document.body.scrollTop; }   
+        return scrollPos;   
+} 
+
+window.onscroll=function(){
+	var sT=getScrollTop();
+	// if(sT<20){
+	// 	document.getElementsByClassName('menuList')[0].style.display='block';
+	// }else{
+	// 	console.log('yincang')
+	// 	document.getElementsByClassName('menuList')[0].style.display='none';
+	// }
+}

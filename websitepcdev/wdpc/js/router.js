@@ -6,7 +6,15 @@ $(function(){
 	$('.wd-nav-area').on('click','li a',function() {
         console.log('click');
 		var url=$(this).data('url');
-        console.log(url,111);
+        
+		showIframe(url,w,h);
+        
+	});
+
+    $('.right-menu-area').on('click','li a',function() {
+        console.log('click');
+		var url=$(this).data('url');
+        
 		showIframe(url,w,h);
         
 	});

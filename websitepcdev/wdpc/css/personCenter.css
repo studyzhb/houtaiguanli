@@ -1,11 +1,13 @@
 .perWrap {
-  width: 1200px;
-  min-width: 1200px;
+  /*width: 1200px;
+  min-width: 1200px;*/
   background: #eee;
-  margin: 0 auto;
+  
   font-size: 14px;
-  overflow: hidden; }
+  }
   .perWrap .perInfo {
+    width: 1280px;
+    margin: 0 auto;
     margin-top: 40px;
     overflow: hidden; }
   .perWrap .perLeft {
