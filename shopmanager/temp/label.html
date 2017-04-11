@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标签管理</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	<script src="../common/layui/layui.js"></script>
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
+    <style>
+      .layui-form-select dl dd {
+        /*height: 20px;*/
+      }
+    </style>
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<div class="lay-main">
+	  <!-- <span class="layui-breadcrumb">
+		  <a href="#">首页</a>
+		  <a href="#">组织机构</a>
+		  <a href="#">组织机构管理</a>
+		  <a><cite>正文</cite></a>
+		</span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          <li class="layui-this">
+            标签信息
+          </li>
+        </ul>
+
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+              <div class="nav-menu-area" style="padding-bottom:10px;">
+                <div class="nav-menu-all-area" >
+                    
+                </div>
+            </div>
+            <div class="layui-btn" onclick="location.reload()" style="float: left;margin-bottom:10px;">
+                    <i class="layui-icon">&#x1002;</i>  
+                </div>
+              <div class="layui-form layui-form-pane">
+                  <table class="layui-table" lay-skin="line">
+                    <colgroup>
+                        <col width="80">
+                        <col width="320">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>标签类型</th>
+                            <th>标签内容</th>
+                        </tr> 
+                    </thead>
+                    <tbody id="all-sort-list">
+                      
+                        <!--<tr>
+                            <div class="layui-form-item">
+                                <td>1</td>
+                                <td>
+                                    <div class="layui-unselect layui-form-select" style="width:30px;display: inline-block;height: 28px;top:6px;border: 1px solid #d2d2d2;">
+                                        <div class="layui-select-title">
+                                            
+                                            <i class="layui-icon layui-edge">&#xe614;</i>
+                                        </div>
+                                        <dl class="layui-anim layui-anim-upbit">
+                                            <dd class="layui-this"><i class="layui-icon layui-edge">&#xe614;</i></dd>
+                                            <dd class="layui-this"><i class="layui-icon layui-edge">&#xe614;</i></dd>
+                                            <dd class="layui-this"><i class="layui-icon layui-edge">&#xe614;</i></dd>
+                                            <dd class="layui-this"><i class="layui-icon layui-edge">&#xe614;</i></dd>
+                                        </dl>
+                                    </div>
+                                    <div class="layui-input-inline" style="margin-left:-14px;">
+                                        <input type="checkbox" title="标签内容已">
+                                        
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="layui-input-block" style="margin-left:0;">
+                                        <input type="checkbox" title="标签内容已">
+                                        <input type="checkbox" title="标签内容已">
+                                        <input type="checkbox" title="标签内容已">
+                                        <input type="checkbox" title="标签内容已">
+                                        <button class="layui-btn layui-btn-primary layui-btn-small add-new-label" style="margin-top:-9px;margin-left:9px;">
+                                            <i class="layui-icon">&#xe614;</i>
+                                        </button>
+                                    </div>
+                                    
+                                </td>
+                                
+                            </div>
+                        </tr>-->
+
+                    </tbody>
+                </table>
+                  
+              </div>
+    
+          </div>
+        </div>
+
+
+     </div>
+
+    </div> 
+  <ul id="biuuu_city_list"></ul>
+
+  <!-- =======================弹出窗========================= -->
+
+
+<form class="layui-form" id="addTypeCon" style="display:none;padding:20px;font-size:14px;">
+    <div class="typeArea">
+
+    </div>
+    
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">内容说明</label>
+    <div class="layui-input-block">
+      <textarea name="introduce" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <div class="layui-btn"  lay-submit lay-filter="saveLabelInfo">确定</div>
+      </div>
+    </div>
+  </form>
+<div class="layui-form" id="editorTitle" style="display:none;padding:20px;font-size:14px;">
+    <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="editNavForm">
+          <div class="editorLabelWrapper">
+
+          </div>
+        
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <div class="layui-btn" lay-submit lay-filter="formEditType">立即提交</div>
+            
+            </div>
+        </div>
+        </form>
+    </div>
+
+  </div>
+
+
+<script type="text/html" class="text-wrapper"> 
+  <div class="layui-form-item">
+      <label class="layui-form-label">请输入内容</label>
+      <div class="layui-input-inline">
+        <input type="text" name="name" placeholder="内容区" autocomplete="off" class="layui-input singleNum" />
+        <input type="hidden" name="typeid" value="{{d.id}}" placeholder="内容区" autocomplete="off" class="layui-input singleNum" />
+        
+        
+      </div>
+    </div>
+    
+</script>
+
+<script type="text/html" class="icon-wrapper">
+  
+  <input type="hidden" name="typeid" value="{{d.id}}" >
+  
+  <div class="layui-form-item">
+      <label class="layui-form-label">请选择图标</label>
+      <div class="layui-input-block">
+        <input type="hidden" name="name" value="" id="iconId" >
+        {{# layui.each(d.iconlist,function(index,item){ }}
+            <div class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-id="{{item.ico}}">
+              <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
+            </div>
+        {{# }) }}
+        <!--<input type="text" placeholder="内容区" autocomplete="off" class="layui-input singleNum" />-->
+      </div>
+    </div>
+</script>
+
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+	
+<script id="sortContent" type="text/html">
+  <tr>
+    <td>{{d.id}}</td>
+    <td>{{d.type}}</td>
+    <td></td>
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small editor-brand" data-id="{{d.id}}" data-name="{{d.type}}" >编辑</div>
+    </td>
+  </tr>
+  {{#  layui.each(d.children,function(index, item){ }}
+      <tr>
+        <td>{{item.id}}</td>
+        <td>| ---- {{item.type}}</td>
+        <td></td>
+        <td>
+          
+          <div class="layui-btn layui-btn-warm layui-btn-small editor-brand" data-id="{{item.id}}" data-name="{{item.type}}">编辑</div>
+          
+        </td>
+      </tr>
+    {{#  }); }}
+    
+    
+</script>
+
+<script type="text/html" id="labelContent">
+  {{# layui.each(d,function(index,item){ }}
+      <tr>
+        <div class="layui-form-item">
+            <td>{{index}}</td>
+            <td>
+                <button class="layui-btn layui-btn-primary">
+                  {{# if(item.class==2){ }}
+                    图
+                  {{# }else if(item.class==1){ }}
+                    文
+                  {{# }else{ }}
+                    文/挂
+                  {{# } }}
+                </button>
+                <div class="layui-input-inline" style="width:75px;">
+                  <!--<select  lay-filter="labelType" data-ele="{{item.id}}">
+                      {{# if(item.type=='1'){ }}
+                        <option value="2">店铺</option>
+                        <option value="1" selected>产品</option>
+                        <option value="3">暂无</option>
+                      {{# }else if(item.type=='2'){ }}
+                        <option value="2" selected>店铺</option>
+                        <option value="1" >产品</option>
+                        <option value="3">暂无</option>
+                      {{# }else if(item.type=='3'){ }}
+                        <option value="2" >店铺</option>
+                        <option value="1" >产品</option>
+                        <option value="3" selected>暂无</option>
+                      {{# } }}
+                  </select>-->
+                  <button class="layui-btn layui-btn-primary">
+                    {{# if(item.type=='1'){ }}
+                        产品
+                        
+                      {{# }else if(item.type=='2'){ }}
+                       店铺
+                        
+                      {{# }else if(item.type=='3'){ }}
+                      暂无
+                        
+                      {{# } }}
+                  </button>
+                </div>
+                <div class="layui-input-inline" style="/*margin-left:-14px;*/">
+
+                    {{# if(item.status=='1'){ }}
+
+                    <!--<input type="checkbox" data-ele="{{item.id}}"  lay-filter="labelStatusType"  checked title="{{item.name}}">-->
+                    <button class="layui-btn labelItem" data-id="{{item.id}}" data-status="0">
+                        {{=item.name}}
+                      </button>
+                      <button class="layui-btn layui-btn-warm editlabelItem" style="margin-left:-5px;padding:0 14px;" data-id="{{=item.id}}" data-name="{{=item.name}}" data-info="{{=item.typeIntroduce}}">
+                        <i class="layui-icon">&#xe642;</i> 
+                      </button>
+                    {{# }else{ }}
+                      <!--<input type="checkbox" data-ele="{{item.id}}" lay-filter="labelStatusType" title="{{item.name}}">-->
+                      <button class="layui-btn layui-btn-disabled labelItem" data-id="{{item.id}}" data-status="1">
+                        {{=item.name}} 
+                      </button>
+                      <button class="layui-btn layui-btn-disabled" style="margin-left:-5px;padding:0 14px;">
+                        <i class="layui-icon">&#xe642;</i> 
+                      </button>
+                    {{# } }}
+                </div>
+            </td>
+            <td>
+                <div class="layui-input-block" style="margin-left:0;">
+                    {{# layui.each(item.data,function(tyInd,itemLabel){ }}
+                      <div style="display:inline-block;margin-bottom:10px;">
+                      {{# if(item.status=='1'){ }}
+                      <button class="layui-btn layui-btn-primary labelCon" data-id="{{itemLabel.id}}" data-info="{{=itemLabel.introduce}}">
+                        {{# if(item.class==2){ }}
+                          <i class="layui-icon">{{=itemLabel.name}}</i> 
+                        {{# }else{ }}
+                          {{=itemLabel.name}}
+                        {{# } }}
+                        
+                        <!--<span class="layui-btn layui-btn-primary labelIntro">{{=itemLabel.intro}}</span>-->
+                      </button>
+                      <button class="layui-btn layui-btn-warm editlabelCon" style="margin-left:-5px;padding:0 14px;" data-class="{{item.class}}" data-name="{{=itemLabel.name}}" data-id="{{itemLabel.id}}" data-info="{{=itemLabel.introduce}}" data-typeid="{{=item.id}}">
+                        <i class="layui-icon">&#xe642;</i> 
+                      </button>
+                      <button class="layui-btn layui-btn-danger deleteLabelCon" style="margin-left:-5px;padding:0 14px;" data-typeid="item.id" data-id="{{itemLabel.id}}">
+                        <i class="layui-icon">&#xe640;</i>
+                      </button>
+                      {{# }else{ }}
+                        <button class="layui-btn layui-btn-disabled" data-id="{{itemLabel.id}}">
+                        {{# if(item.class==2){ }}
+                          <i class="layui-icon">{{=itemLabel.name}}</i> 
+                        {{# }else{ }}
+                          {{=itemLabel.name}}
+                        {{# } }}
+                        
+                      </button>
+                      <button class="layui-btn layui-btn-disabled" style="margin-left:-5px;padding:0 14px;" data-id="{{itemLabel.id}}">
+                        <i class="layui-icon">&#xe642;</i> 
+                      </button>
+                      <button class="layui-btn layui-btn-disabled" style="margin-left:-10px;padding:0 14px;" data-id="{{itemLabel.id}}">
+                        <i class="layui-icon">&#xe640;</i>
+                      </button>
+                      {{# } }}
+                      </div>
+                    {{# }) }}
+                    
+                    <button class="layui-btn layui-btn-primary layui-btn-small add-new-label" data-id="{{item.id}}" data-type="{{item.class}}" style="margin-top:-9px;margin-left:9px;">
+                        <i class="layui-icon">&#xe608;</i>
+                    </button>
+                </div>
+                
+            </td>
+            
+        </div>
+    </tr>
+  {{# }); }}
+  
+</script>
+
+</div>
+<div class="alertCon-wrapper" id="editorLabelCon" style="margin:10px auto;display:none;font-size: 16px;">
+  <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="editNavForm">
+          <div class="editorNavBox">
+
+          </div>
+        
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <div class="layui-btn" lay-submit lay-filter="formEditDemo">立即提交</div>
+            
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/html" id="editorNavCon">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标签内容</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="hidden" autocomplete="off" name="typeid" class="layui-input" value="{{d.typeid}}" />
+        {{# if(d.class=='1'){}}
+          <input type="text" name="name" data-info="{{=d.name}}" value="{{=d.name}}" lay-verify="isChangeValue"  placeholder="请输入名称" autocomplete="off" class="layui-input">
+        {{# }else if(d.class=='2'){ }}
+          
+          <input type="hidden" name="name" data-info="{{=d.name}}" value="{{=d.name}}" lay-verify="isChangeValue"  placeholder="请输入名称" autocomplete="off" class="layui-input iconSelectedInput">
+          {{#  layui.each(d.iconlist,function(index,item){ }}
+            {{# if(item.ico==d.name){ }}
+            <div class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-id="{{item.ico}}">
+              <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
+            </div>
+            {{# }else{ }}
+              <div class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-id="{{item.ico}}">
+                <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
+              </div>
+            {{# } }}
+          {{# }) }}
+        {{# } }}
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">内容说明</label>
+    <div class="layui-input-block">
+      <textarea name="introduce" placeholder="请输入内容" data-info="{{=d.introduce}}" lay-verify="isChangeValue" class="layui-textarea">{{=d.introduce}}</textarea>
+    </div>
+  </div>
+   
+</script>
+
+<script type="text/html" id="editorLabelTypeInfo">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标签类型</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="text" name="name" data-info="{{=d.name}}" value="{{=d.name}}" lay-verify="isChangeValue"  placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">内容说明</label>
+    <div class="layui-input-block">
+      <textarea name="introduce" placeholder="请输入内容" data-info="{{=d.introduce}}" lay-verify="isChangeValue" class="layui-textarea">{{=d.introduce}}</textarea>
+    </div>
+  </div>
+   
+</script>
+
+
+</body>
+
+<script src="../js/label.js"></script>
+</html>

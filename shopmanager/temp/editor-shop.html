@@ -1,0 +1,459 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+  <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+    <!--<script type="text/javascript" src="../jedate/jquery.jedate.js"></script>-->
+    <link type="text/css" rel="stylesheet" href="../jedate/skin/jedate.css">
+    <link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	  <script src="../common/layui/layui.js"></script>
+    <!--<script src="../utf8-php/ueditor.config.js"></script>
+    <script src="../utf8-php/ueditor.all.js"></script>
+    <script src="../utf8-php/ueditor.all.min.js"></script>                                                    -->
+    <script src="../js/jquery.js"></script>                                                    
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
+
+    <style>
+      .tab-content dl dd {
+            margin-left: 0; 
+        }
+
+        .detail-image-col-2 .image-content{
+            position:absolute;
+            width:100%;
+            height:100%;
+            opacity:0;
+            left:0;
+            top:0;
+        }
+        
+        div.moving{
+                border: 1px dashed gray;
+                background: white;
+        }
+        div.draging{
+            width: 300px;
+            height: 180px;
+            position: absolute;
+            background: goldenrod;
+            box-shadow: 0 0 4px 2px #555;
+            border-radius: 5px; 
+            z-index: 500;
+        }
+    </style>
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<!-- ============================主要内容区================================ -->
+
+	<div class="lay-main">
+	 
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          <li>
+            <a href="shop.html">店铺列表</a>
+          </li>
+          <li class="layui-this">
+            添加店铺
+          </li>
+        </ul>
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form layui-form-pane menuForm" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+              <div class="formWrapper">
+                  
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
+                </div>
+              </div>
+              
+            </form>
+
+            
+
+          </div>
+        </div>
+     </div>
+
+    </div> 
+ 
+
+  <!-- =======================弹出窗========================= -->
+
+
+<!-- ========================================================= -->
+
+	<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+
+
+
+</div>
+
+<script type="text/html" id="labelCon">
+  <div class="layui-form-item">
+      <label class="layui-form-label">{{d.name}}</label>
+      <div class="layui-input-block">
+        {{# layui.each(d.info,function(index,item){ }}
+            <input type="checkbox" name="" title="{{item.name}}">
+        {{# }) }}
+      </div>
+      <div class="layui-form-mid layui-word-aux">*</div>
+  </div>
+</script>
+
+
+
+<script type="text/template" id="image-suolve">
+     <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
+        <div class="left-block"></div>
+        <div class="right-block"></div>
+        <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
+
+<script type="text/html" id="formCon">
+    <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">店铺logo</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                      {{# layui.each(d.logo,function(index,item){ }}
+                          <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{{item}}">
+                              <div class="left-block"></div>
+                              <div class="right-block"></div>
+                              <img src="{{item}}" width="100%" height="100%" />    
+                          </div>
+                      {{# }) }}
+                           <div class="detail-image-col-2 imageadd" >   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="logo" placeholder="请输入" data-info="{{}}" value="{{}}" autocomplete="off" class="layui-input shopinput">
+                </div>
+                
+            </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">店铺名称</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="name" data-info="{{d.name}}" value="{{name}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">店铺编号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="shopnum" value="{{d.shopnum}}" data-info="{{d.shopnum}}" readonly placeholder="请输入" class="layui-input shop-coding">
+                </div>
+              </div>
+      
+            <div class="layui-form-item">
+                <label class="layui-form-label">店铺负责人</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="proprietor" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="hidden" name="navid" value="{{d.navid}}" placeholder="请输入" value="1" autocomplete="off" class="layui-input">
+                  <input type="hidden" name="cityid" value="{{d.cityid}}" placeholder="请输入" value="1" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">联系电话</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="telephone" value="{{d.telephone}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+              </div>
+              
+
+              
+                <!--<div class="layui-form-item">
+                    <label class="layui-form-label">经营类型</label>
+                    <div class="layui-input-block">
+                    <input type="checkbox" name="" title="美食">
+                    <input type="checkbox" name="" title="休闲娱乐" checked>
+                    <input type="checkbox" name="" title="旅游出行">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">*</div>
+                </div>-->
+            
+               
+
+               
+                <div class="layui-form-item">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-block">
+                    <input type="checkbox" name="" title="美食">
+                    <input type="checkbox" name="" title="休闲娱乐" checked>
+                    <input type="checkbox" name="" title="旅游出行">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">*</div>
+                </div>
+              
+                <!--<div class="layui-form-item">
+                    <label class="layui-form-label">店铺特点</label>
+                    <div class="layui-input-block">
+                    <input type="checkbox" name="" title="地铁口">
+                    <input type="checkbox" name="" title="商务区" checked>
+                    
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">*</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">店铺服务</label>
+                    <div class="layui-input-block">
+                    <input type="checkbox" name="" title="无线网">
+                    <input type="checkbox" name="" title="停车场" checked>
+                    <input type="checkbox" name="" title="会议室">
+                    
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">*</div>
+                </div>-->
+              <div class="layui-form-item">
+                <label class="layui-form-label">店铺地址</label>
+                <div class="layui-input-inline">
+                  <select name="areaid" lay-filter="pro" class="provinceswrap">
+                    <option value="1" selected>111</option>
+                  </select>
+                </div>
+                <div class="layui-input-inline">
+                  <select name="business" lay-filter="city" class="cityswrap">
+                    <option value="1" selected>二七</option>
+                  </select>
+                </div>
+                
+              </div>
+               <!--<div class="layui-form-item">
+                <label class="layui-form-label">联系人</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="linkname" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">开户行</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="chequ" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">银行卡号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="account" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>-->
+              <div class="layui-form-item">
+                <label class="layui-form-label">详细地址</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="address" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+                <div id="mapContainer" style="width:100%;height: 800px;">
+                    <div id="tip" style="position: absolute;right: 10px;top: 10px;z-index: 1000000;">
+                        <b>请输入关键字：</b>
+                            <input type="text" id="keyword" name="keyword" value="" onkeydown='keydown(event)' style="width: 300px;"/>
+                        <div id="result1" name="result1"></div>
+                        </div>
+                </div>
+              </div>
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">店铺电话</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="tel" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">固话</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="fixedline" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>-->
+              
+               <!-- <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">身份证照片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <img class="sfz imageadd" src="" alt="" width="100%" height="400">
+                </div>
+                <input type="hidden" name="cardpic" placeholder="请输入" autocomplete="off" class="layui-input sfzinput">
+                             </div> -->
+
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">店铺图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                      {{# if(JSON.parse(d.logo)){ }}
+                        {{# layui.each(JSON.parse(d.logo),function(index,item){ }}
+                          <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{{item}}">
+                              <div class="left-block"></div>
+                              <div class="right-block"></div>
+                              <img src="{{item}}" width="100%" height="100%" />    
+                          </div>
+                      {{# }) }}
+                      {{# } }}
+                           <div class="detail-image-col-2 imageadd" >   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="intr_pic" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
+                             </div>
+                </div>
+                
+
+              <div class="layui-form-item">
+                <label class="layui-form-label">营业时间</label>
+                <div class="layui-input-inline">
+                  
+                  <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                  
+                  <input type="text" id="date01" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                </div>
+                
+              </div>
+              <div class="layui-form-item" style="display:none">
+                <label class="layui-form-label">经纬度</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="longitude" value="{{d.longitude}}" id="lngX" placeholder="经度" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                  <input type="text" name="latitude" value="{{d.latitude}}" id="latY" placeholder="纬度" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+               
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">店铺简介</label>
+                <div class="layui-input-block"> 
+                  <textarea name="shop_info" placeholder="请输入内容" class="layui-textarea">{{d.shop_info}}</textarea>
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">店铺环境</label>
+                
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                      {{# if(JSON.parse(d.environment_pic)){ }}
+                        {{# layui.each(JSON.parse(d.environment_pic),function(index,item){ }}
+                          <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{{item}}">
+                              <div class="left-block"></div>
+                              <div class="right-block"></div>
+                              <img src="{{item}}" width="100%" height="100%" />    
+                          </div>
+                      {{# }) }}
+                      {{# } }}
+                           <div class="detail-image-col-2 imageadd" >   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="environment_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                             </div>
+                </div>
+                
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">店铺资质</label>
+                
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                          {{# if(JSON.parse(d.aptitude_pic)){ }}
+                        {{# layui.each(JSON.parse(d.aptitude_pic),function(index,item){ }}
+                          <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{{item}}">
+                              <div class="left-block"></div>
+                              <div class="right-block"></div>
+                              <img src="{{item}}" width="100%" height="100%" />    
+                          </div>
+                      {{# }) }}
+                      {{# } }}
+                           <div class="detail-image-col-2 imageadd" >   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="aptitude_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                             </div>
+                </div>
+                
+            <div class="layui-form-item">
+                <label class="layui-form-label">店铺账号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="" placeholder="请输入" data-info="{{d.loginid}}" readonly autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">店铺密码</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="passsword" data-info="{{d.passsword}}" value="{{d.password}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">优惠力度</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="discount"   placeholder="请输入" value="9" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">输入7-9数值</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">是否免预约</label>
+                <div class="layui-input-block">
+                  {{# if(d.bespoke=='0'){ }}
+                    <input type="radio" name="bespoke" value="1" title="是">
+                    <input type="radio" name="bespoke" value="0" title="否" checked>
+                  {{# }else{ }}
+                    <input type="radio" name="bespoke" value="1" title="是" checked>
+                  <input type="radio" name="bespoke" value="0" title="否" >
+                  {{# } }}
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">人均消费</label>
+                <div class="layui-input-block">
+                  <input type="text" name="average_price" value="12"  placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+</script>
+
+
+
+<!--<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/filter.js"></script>
+<script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>
+
+-->
+<!--<script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>-->
+<!--<script src="../js/baiduMap.js"></script>-->
+<script src="../js/edit-shop.js"></script>
+
+<script type="text/javascript">
+    layui.use('form', function(){
+  var form = layui.form();
+  
+  
+});
+       
+</script>
+
+</body>
+</html>

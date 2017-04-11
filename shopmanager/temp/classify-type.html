@@ -1,0 +1,444 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+    <link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	<script src="../common/layui/layui.js"></script>
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
+    
+  	
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+ 
+
+	
+
+	<!-- ============================主要内容区================================ -->
+
+	<div class="lay-main">
+	  <!-- <span class="layui-breadcrumb">
+		  <a href="#">首页</a>
+		  <a href="#">组织机构</a>
+		  <a href="#">组织机构管理</a>
+		  <a><cite>正文</cite></a>
+		</span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       
+
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
+              
+              
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
+                  <select class="areaType" lay-filter="areaType">
+                    <option value=""></option>
+                    
+                  </select>
+                </div>
+              <div class="layui-inline">
+                <div class="layui-input-inline">
+                  <input type="text" class="layui-input" name="" value="">
+                </div>
+              </div>
+              <div class="layui-btn searchByKeywords">
+                   搜索
+                </div>
+                <div class="layui-btn addArea">
+                    添加分类类型
+                </div>
+                <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                    <i class="layui-icon">&#x1002;</i>  
+                </div>
+            </form>
+          <table class="layui-table">
+          <colgroup>
+            <col width="100">
+            <col >
+            
+            <col width="100">
+            <col>
+
+          </colgroup>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr> 
+          </thead>
+          <tbody id="all-sort-list">
+
+          </tbody>
+      </table>
+     
+
+          </div>
+        </div>
+
+        <div style="height:55px;padding-right:10px;">
+            <div id="page" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
+        </div>
+
+
+     </div>
+    </div> 
+  <ul id="biuuu_city_list"></ul>
+
+  <!-- =======================弹出窗========================= -->
+<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;">
+  <div class="alert-main-con">
+      <form method="" action="">
+        <fieldset>
+          <legend>
+            基本信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
+        <fieldset>
+          <legend>
+            价格信息
+          </legend>
+          <ul class="mess-content">
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input-wrapper">
+                <label>供应商编号</label>
+                <input type="text" class="w160" name="" value="">
+              </div>
+              <div class="input-wrapper">
+                <input type="checkbox" />
+                <label>允许采购订货</label>
+              </div>
+            </li>
+          </ul>
+        </fieldset> 
+        <div class="col-3-table clearfix">
+          <ul class="left-list">
+            <li class="active">一品多码</li>
+            <li>商品价格</li>
+            
+          </ul>
+          <div class="middle-item">
+            <ul class="title-tr-th w80 clearfix">
+              <li class="w20">商品编码</li>
+              <li class="w60">商品条码</li>
+              <li class="w20"></li>
+            </ul>
+
+            <div class="button">增加</div>
+            <div class="button button-next">增加</div>
+          </div>
+        </div>
+        <div class="search-bottom">
+          <div class="single-select">
+            快速查找：
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span>请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="first-sort">
+                                  
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+                      
+
+                      <div class="boxwrap">
+                          <a href="#" class="select-tit">
+                              <span class="subclass">请选择</span><i></i>
+                          </a>
+                          <div class="select-items">
+                              <ul id="sub-sort">
+                                  
+                              </ul>
+                          </div>
+                          <i class="arrow"></i>
+                      </div>
+
+                      
+                  </div>
+
+                  <div class="r-list" style="vertical-align:top;">
+                        <input type="text" class="keyword" name="" value="">
+                        <a href="" class="btn-search">查询</a>
+                    </div>
+        </div>
+        
+
+      </form>
+    </div>
+</div>
+
+<!--添加类型-->
+<form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label">分类类型</label>
+    <div class="layui-input-block">
+        
+        <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+        <input type="hidden" placeholder="请输入" name="id" autocomplete="off" class="layui-input cityid">
+    </div>
+    </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<!--编辑-->
+<form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <!--<div class="layui-form-item">
+    <label class="layui-form-label">编辑</label>
+    <div class="layui-input-block">
+        <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+    </div>
+    </div>-->
+
+
+    <div class="editor-area-type">
+
+    </div>
+
+
+
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorAreaType">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<script type="text/html" id="editorNavCon">
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">类型状态</label>
+        <div class="layui-input-block">
+            {{# if(d.status=='1'){ }}
+                <input type="radio" name="status" checked title="启用" value="1">
+                <input type="radio" name="status" title="停用" value="0">
+            {{# }else{ }}
+                <input type="radio" name="status"  title="启用" value="1">
+                <input type="radio" name="status" checked title="停用" value="0">
+            {{# } }}
+        </div>
+
+    </div>-->
+</script>
+
+
+
+<!--编辑-->
+<form class="layui-form layui-form-pane" id="editorAreaWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="editorAreaInfo">
+
+    </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorAreaInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<!--添加类型内容-->
+<form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label sortName">类型内容</label>
+    <div class="layui-input-block">
+        <div class="layui-btn createAreaInfoInput">
+            <i class="layui-icon">&#xe608;</i>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="areaInfoInput">
+            <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
+            
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="areaInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{=d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+	
+<!--编辑区域内容-->
+<script id="editorAreaCon" type="text/html">
+
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label">内容</label>
+    <div class="layui-input-block">
+        <input type="text" value="{{d.name}}" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.id}}" placeholder="请输入" name="id" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.typeid}}" placeholder="请输入" name="typeid" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.navid}}" placeholder="请输入" name="navid" autocomplete="off" class="layui-input">
+       
+    </div>
+    </div>
+</script>
+
+
+<!-- ------------------------------------------------------------------------------- -->
+<script id="sortContent" type="text/html">
+{{# layui.each(d.data,function(index,item){ }}
+    <tr>
+    <td>{{index+1}}</td>
+    <td class="typeName">{{=item.typeName}}</td>
+    <td>
+      {{# if(item.status=='1'){ }}
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
+              启用
+        </button>
+      {{# }else{ }}
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}">
+              停用
+        </button>
+      {{# } }}
+    </td>
+    <td>
+      <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
+      
+    </td>
+  </tr>
+  
+
+{{# }) }}
+  
+    
+    
+</script>
+
+</div>
+
+</body>
+<script type="text/javascript" src="../js/classify.js"></script>
+</html>

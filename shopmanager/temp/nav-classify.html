@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>导航分类管理</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	<script src="../common/layui/layui.js"></script>
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
+	
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<div class="lay-main">
+	  <!-- <span class="layui-breadcrumb">
+		  <a href="#">首页</a>
+		  <a href="#">组织机构</a>
+		  <a href="#">组织机构管理</a>
+		  <a><cite>正文</cite></a>
+		</span>
+     -->
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       
+
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            
+              <div class="layui-form layui-form-pane">
+                  <button class="layui-btn addgoods">
+                    <i class="layui-icon">&#xe608;</i> 添加
+                </button>
+                  <table class="layui-table" lay-skin="line">
+                    <colgroup>
+                        <col width="80">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>类型名称</th>
+                            <th>类型状态</th>
+                            <th>操作</th>
+                        </tr> 
+                    </thead>
+                    <tbody id="tableList">
+                        <!--<tr>
+                            <td>1</td>
+                            <td>美食</td>
+                            <td>00</td>
+                            <td>nnn.html</td>
+                            <td>启用</td>
+                            <td>
+                                <div class="button  layui-btn-warm upSort" style="margin:10px 0;">
+                                <i class="layui-icon">&#xe619;</i>
+                                </div>
+                                <div class="button  layui-btn-warm downSort" style="margin:10px 0;">
+                                <i class="layui-icon">&#xe61a;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-warm" style="margin:10px 0;">
+                                        编辑
+                                </div>
+                            </td>
+                        </tr>-->
+                        
+                    </tbody>
+                </table>
+                  
+              </div>
+     
+
+          </div>
+        </div>
+
+
+     </div>
+
+
+
+
+    
+    </div> 
+  <ul id="biuuu_city_list"></ul>
+
+  <!-- =======================弹出窗========================= -->
+<div class="alertCon-wrapper" id="alertDemo" style="margin:10px auto;display:none;font-size: 16px;">
+  <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="navForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">类型名称</label>
+            <div class="layui-input-inline">
+            <input type="text" name="name" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">*必填项</div>
+        </div>
+         <div class="layui-input-item">
+             <label class="layui-form-label">类型状态</label>
+             <div class="layui-input-block">
+                 <input type="radio" name="status"  title="启用" value="1">
+                <input type="radio" name="status" checked title="停用" value="0">
+             </div>  
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<!-- =======================编辑导航========================= -->
+<div class="alertCon-wrapper" id="editorNav" style="margin:10px auto;display:none;font-size: 16px;">
+  <div class="alert-main-con" style="padding-right:20px;">
+      <form class="layui-form" action="" id="editNavForm">
+          <div class="editorNavBox">
+
+          </div>
+        
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formEditDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<div class="layui-form" style="display:none">
+    <div class="layui-form-item">
+      <label class="layui-form-label">更改数量</label>
+      <div class="layui-input-inline">
+        <input type="text" placeholder="请输入数量" autocomplete="off" class="layui-input singleNum" />
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <div class="layui-btn saveGoodsNum">确定</div>
+        
+      </div>
+    </div>
+  </div>
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+	
+<script id="sortContent" type="text/html">
+
+  {{#  layui.each(d,function(index, item){ }}
+    <tr data-id="{{item.id}}" data-order="{{item.displayorder}}">
+        <td>
+           {{index+1}}
+        </td>
+        <td>{{item.name}}</td>
+        {{# if(item.status=='1'){ }}
+        <td>启用</td>
+        {{# }else{ }}
+         <td>停用</td>
+        {{# } }}
+        <td>
+            <div class="layui-btn layui-btn-warm editNavInfo" data-id="{{item.id}}" style="margin:10px 0;">
+                编辑
+            </div>
+            <div class="layui-btn layui-btn-warm deleteInfo" data-id="{{item.id}}" style="margin:10px 0;">
+                删除
+            </div>
+        </td>
+    </tr>
+{{#  }); }}
+       
+</script>
+
+</div>
+<script type="text/html" id="editorNavCon">
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型状态</label>
+        <div class="layui-input-block">
+            {{# if(d.status=='1'){ }}
+                <input type="radio" name="status" checked title="启用" value="1">
+                <input type="radio" name="status" title="停用" value="0">
+            {{# }else{ }}
+                <input type="radio" name="status"  title="启用" value="1">
+                <input type="radio" name="status" checked title="停用" value="0">
+            {{# } }}
+        </div>
+
+    </div>
+</script>
+</body>
+<script>
+    layui.use('form',function(){
+
+    })
+</script>
+<script src="../js/navclassify.js"></script>
+</html>

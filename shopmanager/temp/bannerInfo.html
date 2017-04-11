@@ -1,0 +1,488 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>导航管理</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	<script src="../common/layui/layui.js"></script>
+    <script src="../utf8-php/ueditor.config.js"></script>
+    <script src="../utf8-php/ueditor.all.min.js"></script>
+    <script src="../js/jquery.js"></script>    
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<div class="lay-main">
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+         <ul class="layui-tab-title" style="margin-bottom:10px;">
+          
+          <li class="layui-this cityName">
+            
+          </li>
+        </ul>
+        <div class="layui-content mainContent">
+          <div class="layui-tab-item layui-show">
+              
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
+              <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+                <!--<div class="layui-input-inline" style="width:70px;margin-left:5px;">
+                  <select name="city" lay-verify="required">
+                    <option value=""></option>
+                    <option value="0">北京</option>
+                    <option value="1">上海</option>
+                    <option value="2">广州</option>
+                    <option value="3">深圳</option>
+                    <option value="4">杭州</option>
+                  </select>
+                </div>-->
+              <div class="layui-inline">
+                
+                <!--<div class="layui-btn add-shop-info">
+                    添加展示图片信息
+                </div>-->
+                <div class="layui-btn" onclick="location.reload()">
+                    <i class="layui-icon">&#x1002;</i>
+                </div>
+
+                <div class="layui-btn" onclick="location.href='websiteManager.html?name=banner'">
+                    返回
+                </div>
+            </form>
+              
+            </div>
+            <fieldset style="border: none;padding: 0;border-top: 1px solid #eee;margin: 20px;">  
+                <legend>
+                    banner图
+                </legend>
+            </fieldset>
+            <table class="layui-table">
+                <colgroup>
+                     <col width="100">
+                    <col width="100">
+                    <col>
+                    <col>
+                    <col width="100">
+                    <col width="200"> 
+                    <col width="100"> 
+                </colgroup>
+                <thead>
+                    <tr>
+                    <th>序号</th>
+                    <th>图片详情</th>
+                    <th>描述信息</th>
+                    <th>图片链接</th>
+                    
+                    <th>状态</th>
+                    <th>操作</th>
+                    <th>修改排序</th>
+                    </tr> 
+                </thead>
+                <tbody id="tableWrapper">
+                    <!--<tr>
+                        <td>1</td>
+                        <td>阿利茄汁面</td>
+                        <td>2017/3/9</td>
+                        <td>美食</td>
+                        <td>张11</td>
+                        <td>郑州</td>
+                        <td>全场折扣95折</td>
+                        <td>10</td>
+                        <td>启用</td>
+                        <td>
+                            <button class="layui-btn">
+                                <i class="layui-icon">&#xe608;</i> 添加商品
+                            </button>
+                            <button class="layui-btn layui-btn-small layui-btn-primary">
+                                <i class="layui-icon">&#xe642;</i>
+                            </button>
+                        </td>
+                    </tr>-->
+                </tbody>
+            </table>
+            <fieldset style="border: none;padding: 0;border-top: 1px solid #eee;margin: 20px;">  
+                <legend>
+                    广告位
+                </legend>
+            </fieldset>
+            <table class="layui-table">
+                <colgroup>
+                     <col width="100">
+                    <col width="100">
+                    <col>
+                    <col>
+                    <col width="100">
+                    <col width="200"> 
+                    <col width="100"> 
+                </colgroup>
+                <thead>
+                    <tr>
+                    <th>序号</th>
+                    <th>图片详情</th>
+                    <th>描述信息</th>
+                    <th>图片链接</th>
+                    
+                    <th>状态</th>
+                    <th>操作</th>
+                    <th>修改排序</th>
+                    </tr> 
+                </thead>
+                <tbody id="tableWrapperNext">
+                    
+                </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!--<div style="height:55px;padding-right:10px;">
+            <div id="page" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
+        </div>-->
+
+     </div>
+    </div> 
+
+
+<!--===============================================================-->
+<form class="layui-form layui-form-pane menuForm" method="POST" style="display: none;font-size:14px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+              <div class="layui-form-item">
+                <label class="layui-form-label">详细描述</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="title" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
+                  <input type="hidden" name="displayorder" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input bannerPosition">
+                  <input type="hidden" name="position" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input bannerPositionReal">
+                  <input type="hidden" name="status" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input bannerStatus">
+                </div>
+                <div class="layui-form-mid layui-word-aux">*</div>
+              </div>
+              
+<!--
+              <div class="layui-form-item">
+                <label class="layui-form-label">图片位置</label>
+                <div class="layui-input-inline">
+                  <select name="position" lay-filter="pro" class="provinceswrap">
+                    <option value="1" selected>主展示区</option>
+                    <option value="2">底部区域</option>
+                  </select>
+                </div>
+                
+                
+              </div>
+
+              <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>-->
+
+
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">banner图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2 imageadd" >   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="slide_src" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
+                             </div>
+                </div>
+                <div class="layui-form-item">
+                <label class="layui-form-label">图片链接地址</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="slide_info" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                  
+                </div>
+                
+              </div>
+
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">起止时间</label>
+                <div class="layui-input-inline">
+                  
+                  <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" placeholder="hh:mm:ss" name="release_begin"  readonly autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                  
+                  <input type="text" id="date01" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" placeholder="hh:mm:ss" name="release_end"  readonly autocomplete="off" class="layui-input">
+                </div>
+                
+              </div>-->
+
+              
+
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
+                </div>
+              </div>
+              
+            </form>
+    
+<!--====================================编辑banner===================================-->
+
+<form class="layui-form layui-form-pane editMenuForm" method="POST" style="display: none;font-size:14px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="editBannerInfoWrapper">
+
+    </div>
+              
+
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn" lay-submit lay-filter="editorBannerCon">立即提交</div>
+                </div>
+              </div>
+              
+            </form>
+
+
+<script type="text/html" id="editorBannerCon">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">详细描述</label>
+        <div class="layui-input-inline">
+            <input type="text" name="title" value="{{d.title}}" placeholder="请输入" data-info="" autocomplete="off" class="layui-input">
+            <input type="hidden" name="displayorder" value="{{d.displayorder}}" placeholder="请输入" data-info="" autocomplete="off" class="layui-input">
+            <input type="hidden" name="position" value="{{d.position}}" placeholder="请输入" data-info="" autocomplete="off" class="layui-input">
+            <input type="hidden" name="status" value="{{d.status}}" placeholder="请输入" data-info="" autocomplete="off" class="layui-input">
+            <input type="hidden" name="id" value="{{d.id}}" placeholder="请输入" data-info="" autocomplete="off" class="layui-input">
+        </div>
+       
+        </div>
+
+
+        <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">banner图片</label>
+        <div class="layui-input-block" style="margin-top:10px;">
+            <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                   <div class="detail-image-col-2 detail-banner-split">
+                        <div class="left-block"></div>
+                        <div class="right-block"></div>
+                        <img src="{{d.slide_src}}" width="100%" height="100%" />    
+                    </div>
+                    
+            </div>
+            <!--<input type="hidden" name="slide_src" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">-->
+                        </div>
+        </div>
+        <div class="layui-form-item">
+        <label class="layui-form-label">图片链接地址</label>
+        <div class="layui-input-inline">
+            <input type="text" name="slide_info" value="{{d.slide_info}}" placeholder="请输入" autocomplete="off" class="layui-input">
+            
+        </div>
+        
+        </div>
+
+</script>
+
+ <!-- ========================================================= -->
+<script id="shopGoodsCon" type="text/html">
+    {{# layui.each(d.data,function(index,item){ }}
+        
+        <tr data-id="{{=item.id}}" data-order="{{=item.displayorder}}">
+            {{# if(!item.displayorder){ }}
+            <td>{{=index+1}}</td>
+            {{# }else{ }}
+            <td>{{=item.displayorder}}</td>
+            {{# } }}
+            <td>
+                <img width="40" height="40" src="{{=item.slide_src}}" alt="">                
+            </td>
+            <td>{{=item.title}}</td>
+            <td>{{=item.slide_info}}</td>
+            
+            {{# if(item.status=='1'&&item.id){ }}
+                <td>
+                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                        上架
+                    </button>
+                </td>
+            {{# }else if(item.status=='0'&&item.id){ }}
+                <td>
+                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                        下架
+                    </button>
+                </td>
+            {{# }else{ }} 
+                <td></td>
+            {{# } }}   
+            <td>
+                {{# if(!item.id){ }}
+                    <button class="layui-btn layui-btn-small layui-btn-primary addBannerInfo" data-position="1" data-status="0" data-order="{{index+1}}">
+                        <i class="layui-icon">&#xe608;</i>
+                    </button>
+                {{# }else{ }}
+                <button data-id="{{item.id}}" data-slidesrc="{{=item.slide_src}}" data-position="1" data-slideinfo="{{=item.slide_info}}" data-status="{{=item.status}}" data-title="{{=item.title}}" data-displayorder="{{=item.displayorder}}" class="layui-btn layui-btn-small layui-btn-primary editInfo">
+                    <i class="layui-icon">&#xe642;</i>
+                </button>
+                <button data-id="{{item.id}}" class="layui-btn layui-btn-small layui-btn-primary deleteBannerInfo" data-status="{{=item.status}}" data-order="{{=item.displayorder}}">
+                    <i class="layui-icon">&#xe640;</i>
+                </button>
+                {{# } }}
+            </td>
+            <td>
+                <!--<input type="text" placeholder="0" value='{{item.displayorder}}' data-cityid="{{item.cityid}}" data-order="{{item.displayorder}}"  autocomplete="off" class="layui-input sortInput" data-id="{{item.id}}" /> -->
+                <div style="width:20px;display:inline-block;">
+                    {{# if(index!=0&&item.id){ }}
+                        <i class="layui-icon upSort" data-id="{{=item.id}}" data-order="{{=item.displayorder}}" style="font-size:18px;cursor:pointer;">&#xe619;</i>
+                    {{# } }}
+                    {{# if(index!=4&&item.id){ }}
+                        <i class="layui-icon downSort" data-id="{{=item.id}}" data-order="{{=item.displayorder}}" style="font-size:18px;cursor:pointer;">&#xe61a;</i>
+                    {{# } }}
+                </div>
+            </td>
+            
+        </tr>
+    {{# }) }}
+
+    {{# if(d.data.length<5){ }}
+        {{# for(var i=0,k=5-d.data.length;i<k;i++){ }}
+        <tr>
+            <td>
+                {{d.data.length+i+1}}
+            </td>
+            <td>
+                <img width="40" height="40" src="{{=d.slide_src}}" alt="">
+            </td>
+            <td>
+               
+            </td>
+            <td></td>
+            <td>
+
+            </td>
+            
+            <td>
+               <button class="layui-btn layui-btn-small layui-btn-primary addBannerInfo" data-position="1" data-status="0" data-order="{{d.data.length+i+1}}">
+                    <i class="layui-icon">&#xe608;</i>
+                </button>
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        {{# } }}
+    {{# } }}
+  
+</script>
+
+<!-- 固定3张模板 -->
+<script id="bannerInfoFixCon" type="text/html">
+
+    {{# layui.each(d.data,function(index,item){ }}
+        
+        <tr data-id="{{=item.id}}" data-order="{{=item.displayorder}}">
+            {{# if(!item.displayorder){ }}
+            <td>{{=index+1}}</td>
+            {{# }else{ }}
+            <td>{{=item.displayorder}}</td>
+            {{# } }}
+            <td>
+                <img width="40" height="40" src="{{=item.slide_src}}" alt="">                
+            </td>
+            <td>{{=item.title}}</td>
+            <td>{{=item.slide_info}}</td>
+            
+            {{# if(item.status=='1'&&item.id){ }}
+                <td>
+                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                        上架
+                    </button>
+                </td>
+            {{# }else if(item.status=='0'&&item.id){ }}
+                <td>
+                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                        下架
+                    </button>
+                </td>
+            {{# }else{ }} 
+                <td></td>
+            {{# } }}   
+            <td>
+                {{# if(!item.id){ }}
+                    <button class="layui-btn layui-btn-small layui-btn-primary addBannerInfo" data-position="2" data-status="0" data-order="{{index+1}}">
+                        <i class="layui-icon">&#xe608;</i>
+                    </button>
+                {{# }else{ }}
+                <button data-id="{{item.id}}" data-slidesrc="{{=item.slide_src}}" data-position="2" data-slideinfo="{{=item.slide_info}}" data-status="{{=item.status}}" data-title="{{=item.title}}" data-displayorder="{{=item.displayorder}}" class="layui-btn layui-btn-small layui-btn-primary editInfo">
+                    <i class="layui-icon">&#xe642;</i>
+                </button>
+                <button data-id="{{item.id}}" class="layui-btn layui-btn-small layui-btn-primary deleteBannerInfo" data-status="{{=item.status}}" data-order="{{=item.displayorder}}">
+                    <i class="layui-icon">&#xe640;</i>
+                </button>
+                {{# } }}
+            </td>
+            <td>
+                <!--<input type="text" placeholder="0" value='{{item.displayorder}}' data-cityid="{{item.cityid}}" data-order="{{item.displayorder}}"  autocomplete="off" class="layui-input sortInput" data-id="{{item.id}}" /> -->
+                <div style="width:20px;display:inline-block;">
+                    {{# if(index!=0&&item.id){ }}
+                        <i class="layui-icon upSort" data-id="{{=item.id}}" data-order="{{=item.displayorder}}" style="font-size:18px;cursor:pointer;">&#xe619;</i>
+                    {{# } }}
+                    {{# if(index!=3&&item.id){ }}
+                        <i class="layui-icon downSort" data-id="{{=item.id}}" data-order="{{=item.displayorder}}" style="font-size:18px;cursor:pointer;">&#xe61a;</i>
+                    {{# } }}
+                </div>
+            </td>
+            
+        </tr>
+    {{# }) }}
+
+    {{# if(d.data.length<4){ }}
+        {{# for(var i=0,k=4-d.data.length;i<k;i++){ }}
+        <tr>
+            <td>
+                {{d.data.length+i+1}}
+            </td>
+            <td>
+                <img width="40" height="40" src="{{=d.slide_src}}" alt="">
+            </td>
+            <td>
+               
+            </td>
+            <td></td>
+            <td>
+
+            </td>
+            
+            <td>
+               <button class="layui-btn layui-btn-small layui-btn-primary addBannerInfo" data-position="2" data-status="0" data-order="{{d.data.length+i+1}}">
+                    <i class="layui-icon">&#xe608;</i>
+                </button>
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        {{# } }}
+    {{# } }}
+
+   
+</script>
+
+
+<script type="text/template" id="image-suolve">
+     <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
+        <div class="left-block"></div>
+        <div class="right-block"></div>
+        <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
+<!-- {{# layui.each(JSON.parse(item.slide_src),function(ind,its){ }}
+                    <img width="40" height="40" src="{{=its}}" alt="">
+                {{# }) }} -->
+</body>
+
+<script>
+    layui.use('form',function(){
+
+    })
+</script>
+<script src="../js/bannerInfo.js"></script>
+</html>
