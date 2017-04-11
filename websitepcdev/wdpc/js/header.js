@@ -36,6 +36,7 @@ new Vue({
 		registerUser:{
 			phone:'',
 			password:'',
+			phonecode:'',
 			code:''
 		},
 		resetUser:{
@@ -44,9 +45,7 @@ new Vue({
 			code:''
 		}
 	},
-	validators:{
-		
-	},
+
 	filters:{
 		json2single:function(value){
 			
@@ -81,12 +80,16 @@ new Vue({
 		},
 		//用户密码重置
 		resetPassword:function(){
-
+			var body=this.loginUser;
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginInfo,{},{params:body})
+				.then(function(res){
+					console.log(res);
+				})
 		},
 		//用户注册
 		registerUser:function(){
 			var body=this.registerUser;
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,{},{params:body,method:'POST'})
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,{},{params:body})
 					.then(function(res){
 						console.log(res);
 					})
