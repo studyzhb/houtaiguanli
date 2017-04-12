@@ -77,7 +77,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }else{
                         layObj.layer.msg(data.msg);
                     }
-                },{page:num,status:1});
+                },{page:num});
             },
             updateAreaType:function(data){
                 classObj.data.typeInfo=data;
@@ -102,18 +102,14 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 },{id:id});
             },
             updateStatusType:function(sta,upId,obj){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusType,function(data){
+                var item=classObj.methods.getSingleInfo(upId);
+                item.status=sta;
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.updateType,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
                     if(data.code==200){
                         //location.reload();
                         layObj.layer.closeAll();
-                        
-                        if(sta=='1'){
-                            $(obj).text('启用').addClass('active').data('status',0);
-                        }else{
-                            $(obj).text('停用').removeClass('active').data('status',1);
-                        }
                         classObj.methods.updatePageNum(1);
                         
                     }else{
@@ -121,7 +117,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         // layObj.layer.closeAll();
                         //location.reload();
                     }
-                },{navid:classObj.data.navId,status:sta,id:upId});
+                },item);
             },
             updateStatusInfoType:function(sta,upId,obj,pId){
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusInfoType,function(data){
@@ -268,19 +264,20 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         form.on('submit(shopInfo)',function(formParams){
             log.d(formParams.field)
             formParams.field.navid=classObj.data.navId;
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.addClass,function(data){
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.typeAdd,function(data){
                     log.d(data);
                     if(data.code==200){
                         layer.msg('添加成功');
+                        layObj.layer.closeAll();
                         setTimeout(function(){
-                            layObj.layer.closeAll();
                             classObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
                         layer.msg('网络错误，请稍后重试');
+                        layObj.layer.closeAll();
                         setTimeout(function(){
-                            layObj.layer.closeAll();
+                            
                             classObj.methods.updatePageNum(1);
                         },1000);
                     }
@@ -332,7 +329,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         setTimeout(function(){
                             // location.reload();
                             layObj.layer.closeAll();
-                            layObj.methods.updatePageNum(1);
+                            classObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{

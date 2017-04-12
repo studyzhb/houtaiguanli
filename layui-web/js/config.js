@@ -61,6 +61,8 @@ var config={
   },
   accessKey:'5f843e288bb1cabb834b9d20eea3d8c0',
 	ajaxAddress:{
+    //债权金标准
+    obligationType:'/shop/shop/public/index.php/admin/Proportion/show',
     //商品状态导出
     goodExcel:"/shop/shop/public/index.php/admin/Excel/goodExcel",
     //登录

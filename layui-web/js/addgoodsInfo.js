@@ -3,7 +3,8 @@ var laytpl;
 var isClick=true;
 var fistLoad=true;
 var goodsInfo={
-    goodName:''
+    goodName:'',
+    obligationArr:[]
 }
     layui.use('laytpl',function(){
         laytpl = layui.laytpl;
@@ -151,6 +152,18 @@ var goodsInfo={
         });
 
     });
+
+    config.ajax('get',config.ajaxAddress.obligationType,function(data){
+        $('.obligationType').html('');
+        if(data.code==200){
+            goodsInfo.obligationArr=data.data;
+            $.each(data.data,function(index,item){
+                $('<option>').appendTo($('.obligationType')).html(item.name).attr('value',item.id);
+            })
+            
+        }
+        
+    },{status:1});
 
     updatePageNum(1);
 

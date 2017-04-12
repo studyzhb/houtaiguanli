@@ -235,6 +235,7 @@
         
         <input type="text" placeholder="请输入" value="{{=d.name}}" name="name" autocomplete="off" class="layui-input">
         <input type="hidden" placeholder="请输入" value="{{=d.id}}" name="id" autocomplete="off" class="layui-input">
+        <input type="hidden" placeholder="请输入" value="{{=d.status}}" name="status" autocomplete="off" class="layui-input">
         
   
     </div>
@@ -359,7 +360,7 @@
           <td>
           {{# if(d.status=='1'){ }}
             {{# if(item.status=='1'){ }}
-                <button class="layui-btn layui-btn-small layui-btn-primary icon-sub-btn" data-status='0' data-id="{{item.id}}">
+                <button class="layui-btn layui-btn-small layui-btn-primary icon-sub-btn active" data-status='0' data-id="{{item.id}}">
                       启用
                 </button>
               {{# }else{ }}
@@ -370,7 +371,7 @@
               {{# }else{ }}
                 {{# if(item.status=='1'){ }}
                 
-                      启用
+                      停用
                 
               {{# }else{ }}
                 
