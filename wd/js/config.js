@@ -155,6 +155,41 @@ var config={
     addDictionary:'/shop/shop/public/index.php/admin/Dictionary/add',
     getDictionary:'/shop/shop/public/index.php/admin/Dictionary/getInfo',
 
+    //广告位置类型
+    showNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/lst',
+    editNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/update',
+    addNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/add',
+    deleteNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/delete',
+    getNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/getInfo',
+    beginStopUse:'/shop/shop/public/index.php/admin/NoticePosition/beginStopUse',
+    //banner图
+            //列表
+    bannerList:'/shop/shop/public/admin/Cbanners/lst',
+    bannerAdd:'/shop/shop/public/admin/Cbanners/add',
+    bannerupdate:'/shop/shop/public/admin/Cbanners/update',
+    bannerdelete:'/shop/shop/public/admin/Cbanners/delete',
+    bannerStop:'/shop/shop/public/admin/Cbanners/beginStopUse',
+    bindShop:'/shop/shop/public/admin/Cbanners/selectShop',
+    bindGoods:'/shop/shop/public/admin/Cbanners/selectGoods',
+    getinfobanner:'/shop/shop/public/admin/Cbanners/getInfo',
+    // 活动
+    activitylst:'/shop/shop/public/admin/Activity/lst',
+    activityadd:'/shop/shop/public/admin/Activity/add',
+    activityupdate:'/shop/shop/public/admin/Activity/update',
+    activitydelete:'/shop/shop/public/admin/Activity/delete',
+    activitygetinfo:'/shop/shop/public/admin/Activity/getInfo',
+    activitybeginStopUse:'/shop/shop/public/admin/Activity/beginStopUse',
+    activityorder:'/shop/shop/public/admin/Activity/activityOrder',
+    // Active/shop Goods
+    ActGoodslst:'/shop/shop/public/admin/ActivityGoods/lst',
+    ActconditionLst:'/shop/shop/public/admin/ActivityGoods/conditionLst',
+    ActaddGoods:'/shop/shop/public/admin/ActivityGoods/addGoods',
+    ActdeleteGoods:'/shop/shop/public/admin/ActivityGoods/deleteGoods',
+    ActgoodsbeginStopUse:'/shop/shop/public/admin/ActivityGoods/beginStopUse',
+    ActshopStoreLst:'/shop/shop/public/admin/ActivityGoods/shopStoreLst',
+    
+    
+    //版本迭代
     showVersion:'/shop/shop/public/index.php/admin/Version/lst',
     editVersion:'/shop/shop/public/index.php/admin/Version/update',
     addVersion:'/shop/shop/public/index.php/admin/Version/add',

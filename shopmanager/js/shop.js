@@ -1,4 +1,4 @@
-require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-image-upload','params'],function($,myObj,ajaxAddress,layObj,log,mapObj,upload,params){
+require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,myObj,ajaxAddress,layObj,log,params){
     
     var common=myObj.load();
     var fistLoad=true;
@@ -129,24 +129,19 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             /**
              * 获取单个店铺信息
              */
-            getSingleInfo:function(id){
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.getShopInfoById,function(data){
+            getSingleInfo:function(){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shopInfo,function(data){
                     log.d(data);
-
                     if(data.code==200){
                         ShopObj.methods.updateShopInfo(data.data);
                     }
-                },{id:id,cityid:params.id,navid:ShopObj.data.navId});
+                });
             },
             updateShopInfo:function(data){
                 var tpl=$('#formCon').html();
                 $('.formWrapper').html('');
                 $('.mapWrapper').append($('#mapContainer'));
                 var pArr=data.itude?data.itude.split(',')||[]:[];
-                new AMap.Marker({
-                    position :pArr,
-                    map : mapObj
-                })
                 
                 layObj.laytpl(tpl).render(data,function(html){
                     $('.formWrapper').append(html);
@@ -435,7 +430,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
     }
 
     $('.shopWrapper').on('click','.icon-display',function(){
-        
+    
         var $o=$(this).parents('.detail-banner-split');
         var $input=$o.parent('.image-suolve').next('input');
         var imgStr=$(this).data('info');
@@ -463,8 +458,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
     })
 
     $('.shopWrapper').on('mouseover','.detail-banner-split',function(){
-        $(this).find('.icon-display').show();
-        $(this).find('.opacity-z-index').show();
+        // $(this).find('.icon-display').show();
+        // $(this).find('.opacity-z-index').show();
 
     })
 
@@ -665,61 +660,11 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
          ShopObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),false);
      })
 
+        //  ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+    
+        ShopObj.methods.getSingleInfo();
 
     
-    /**
-     * 获取城市列表
-     */
-    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
-        log.d(data);
-        var ind;
-        params.navid&&(ind=params.navid);
-        ShopObj.methods.getAreaInfo();
-        
-        if(data.code==200){
-            $.each(data.data,function(index,item){
-            if(ind&&item.id==ind||index==0&&!ind){
-                    ShopObj.data.navId=item.id;
-                    ShopObj.data.goodsTemplate=item.template;
-                    
-                    $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).data('template',item.template).appendTo($('.nav-menu-all-area'));
-                     ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
-                     ShopObj.methods.getLabelInfo();
-                     ShopObj.methods.getGoodsLabelInfo();
-                     ShopObj.methods.addShopGetSortInfo();
-                     //获取产品所属分类
-                    // ShopObj.methods.addGoodsGetSortInfo();
-                }else{
-                    $('<a href="javascript:;">').html(item.name).data('id',item.id).data('template',item.template).appendTo($('.nav-menu-all-area'));
-                }  
-            })
-           
-        }
-    })
-
-    /**
-     * 图片上传
-     */
-    $('.imageadd').on('click',function(){
-        upload.uploadImage(this,true);
-    });
-
-    $('.imageadd-single').on('click',function(){
-
-        upload.uploadImage(this,false);
-
-    })
-
-    /**
-     * 图片上传
-     */
-    $('.formWrapper').on('click','.imageadd',function(){
-        upload.uploadImage(this,true);
-    });
-    $('.formWrapper').on('click','.imageadd-single',function(){
-        upload.uploadImage(this,false);
-    });
-
     layui.use('laydate',function(){
        var laydate=layui.laydate;
         var start = {
@@ -973,15 +918,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             ShopObj.data.selectedBusinessArea=data.value;
         })
 
-    },1500)
+    },500)
 
-    /**
-     * 加载百度编辑器
-     */
-    var editor = UE.getEditor('container',{
-        toolbars:[['source','undo','redo','inserttable']],
-        autoHeightEnabled:true,
-        autoFloatEnabled: true
-    });
     
 })

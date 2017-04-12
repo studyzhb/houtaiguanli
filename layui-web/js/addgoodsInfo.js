@@ -160,7 +160,7 @@ var goodsInfo={
             $.each(data.data,function(index,item){
                 $('<option>').appendTo($('.obligationType')).html(item.name).attr('value',item.id);
             })
-            
+            form.render();
         }
         
     },{status:1});

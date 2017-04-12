@@ -47,9 +47,10 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
 
                 fistLoad=false;
             },
+            //更新列表
             updatePageNum:function(num){
                 $('#tableWrapper').html('');
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.showlist,function(data){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.goodslist,function(data){
                     log.d(data);
                     if(data.code==200){
                         if(fistLoad){
@@ -431,24 +432,8 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
          GoodsObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),false);
      })
 
-    /**
-     * 获取城市列表
-     */
-    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
-        log.d(data);
-        if(data.code==200){
-            $.each(data.data,function(index,item){
-                if(index==0){
-                    GoodsObj.data.navId=item.id;
-                    $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                     GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
-                }else{
-                    $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                }  
-            })
-           
-        }
-    })
+      GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
+
 
     setTimeout(function(){
         form=layObj.form();
