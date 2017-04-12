@@ -22,40 +22,72 @@
 	<div class="lay-main">
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
          <ul class="layui-tab-title" style="margin-bottom:10px;">
-
+          
+          <li class="layui-this">
+            店铺信息
+          </li>
         </ul>
         <div class="layui-content">
           <div class="layui-tab-item layui-show">
-              <form class="layui-form layui-form-pane" style="display:inline-block;">
-                <label for="" class="layui-form-label">店铺余额</label>
-              <div class="layui-inline">
-                <div class="layui-input-inline">
-                  <input type="text" class="layui-input" name="" value="">
+              <form class="layui-form layui-form-pane searchForm" style="display:inline-block;">
+              
+              
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
+
+                  <select name="" lay-filter="selectStatus">
+                    <option value="">--状态--</option>
+                    <option value="1">启用</option>
+                    <option value="0">停用</option>
+                  </select>
+                  
+                  
+                  <!--<select name="" class="businessArea" lay-filter="selectBusinessArea">
+                    <option value="">--商圈--</option>
+                  </select>-->
+                  
                 </div>
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
+                  <select name="" lay-filter="selectCheckStatus">
+                    <option value="">--审核状态--</option>
+                    <option value="1">审核通过</option>
+                    <option value="2">未通过</option>
+                    <option value="0">未审核</option>
+                  </select>
+                </div>
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
+                  <select name="" lay-filter="selectRecommend">
+                    <option value="">--是否推荐</option>
+                    <option value="1">推荐</option>
+                    <option value="0">未推荐</option>
+                  </select>
+                </div>
+              <div class="layui-inline">
+                
+                  <input type="text"  class="layui-input searchName" name="" value="" placeholder="请输入要搜索的店铺名字">
+                  
+                  
+                
+              </div>
+              <div class="layui-inline">
+                <input type="text"  class="layui-input searchCheckname" name="" value="" placeholder="请输入要搜索的审核人">
               </div>
               <div class="layui-btn searchByKeywords">
-                提现
+                   搜索
+                </div>
+                <div class="layui-btn add-shop-info">
+                    添加银行卡
                 </div>
                 <div class="layui-btn" onclick="location.reload()">
                     刷新
                 </div>
-                
-                
+                <div class="layui-btn" onclick="location.href='websiteManager.html?name=shop'">
+                    返回
+                </div>
             </form>
               <div style="margin-top:20px;">
               <!--添加店铺产品信息-->
                 
-               <div style="margin-top:20px;">
-              <ul class="layui-tab-title">
-                <li class="layui-this unedit">
-                    提现记录
-                </li>
-                <li class=" ">
-                    收支明细
-                </li>
-            </ul>
-            </div>
-            <table class="layui-table">
+              <table class="layui-table">
                 <colgroup>
                     <!-- <col width="100">
                     <col width="100">
@@ -66,20 +98,14 @@
                 <thead>
                     <tr>
                         <th>序号</th>
-                        <th>单号</th>
-                        <th>店铺名</th>
-                        <th>操作金额</th>
-                        <th>余额</th>
-                        <th>创建时间</th>
-                        <th>到账时间</th>
-                        <th>提现类型</th>
-                        <th>银行</th>
-                        <th>卡号</th>
-                        <th>操作人</th>
+                        <th>姓名</th>
+                        <th>银行卡号</th>
+                        <th>开户行</th>
+                        <th>银行地址</th>
                     </tr> 
                 </thead>
                 <tbody id="tableWrapper">
-                    
+                   
                 </tbody>
             </table>
                 
@@ -104,81 +130,14 @@
     
  <!-- ========================================================= -->
 <script id="shopGoodsCon" type="text/html">
-    {{# layui.each(d,function(index,item){ }}
+    {{# layui.each(d.data,function(index,item){ }}
         <tr data-id="{{=item.id}}" data-order="{{=item.displayorder}}">
             <td>{{index+1}}</td>
-            <td>{{=item.id}}</td>
-            <td>{{=item.shopid}}</td>
-            <td>{{=item.money}}</td>
-            <td>{{=item.star_time}}</td>
-            <td>{{=item.discount}}折</td>
+            <td>{{=item.name}}</td>
+            <td>{{=item.number}}</td>
+            <td>{{=item.bank}}</td>
+            <td>{{=item.proprietor}}</td>
             
-            {{# if(item.status=='0'){ }}
-                <td>
-                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
-                            停用
-                    </button>
-                </td>
-            {{# }else{ }}
-                <td>
-                    <div class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
-                            启用
-                        </div>
-                </td>
-            {{# } }}
-                {{# if(item.status=='0'){ }}
-                    {{# if(item.recommend=='0'){ }}
-                        <td>
-                            未推荐
-                        </td>
-                    {{# }else{ }}
-                        <td>
-                            
-                                已推荐
-                           
-                            
-                        </td>
-                    {{# } }}
-                {{# }else{ }}
-                    {{# if(item.recommend=='0'){ }}
-                        <td>
-                            <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
-                                未推荐
-                            </button>
-                        </td>
-                    {{# }else{ }}
-                        <td>
-                            <div class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
-                                已推荐
-                            </div>
-                            
-                        </td>
-                    {{# } }}
-                {{# } }}
-            <td>
-              {{# if(item.check=='0'){ }}
-                未审核
-              {{# }else if(item.check=='1'){ }}
-                审核通过
-              {{# }else if(item.check=='2'){ }}
-                已拒绝
-              {{# }else{ }}
-
-              {{# } }}
-            </td>
-            <td>{{=item.checkename}}</td>
-            <td>
-                <button class="layui-btn layui-btn-small add-shop-goods layui-btn-primary" data-name="{{=item.name}}" data-id="{{item.id}}" data-cityid="{{d.cityid}}" data-navid="{{d.navId}}">
-                    <i class="layui-icon">&#xe608;</i> 
-                </button>
-                <button data-id="{{item.id}}" class="layui-btn layui-btn-small layui-btn-primary editInfo">
-                    <i class="layui-icon">&#xe642;</i>
-                </button>
-                
-            </td>
-            <td>
-              
-            </td>
         </tr>
 
     {{# }) }}
@@ -609,5 +568,6 @@
 
 </body>
 
-<script src="../js/fundsInfo.js"></script>
+<!--<script src="http://webapi.amap.com/maps?v=1.3&key=3ee94aaafab3217e125bbebc24942494&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow"></script>-->
+<script src="../js/bankCard.js"></script>
 </html>

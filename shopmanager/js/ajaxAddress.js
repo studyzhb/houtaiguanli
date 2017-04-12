@@ -3,8 +3,8 @@ define({
     shop:{
         shopInfo:'/index/index',
         goodslist:'/index/getGoodsList', 
-        bankCardList:'/order/bankCarList',
-        addBankCard:'/order/addBankCar',
+        bankCardList:'/shopbank/bankCarList',
+        addBankCard:'/shopbank/addBankCar',
     },
     shopOrder:{
         orderlist:'/order/indexList',
@@ -12,11 +12,11 @@ define({
         //订单校验成功后改变状态
         orderStatus:'/order/goodsChangeStatus',
         //商户账户资金展示
-        orderAccount:'/order/getAccount',
+        orderAccount:'/shopbank/getAccount',
         //提现记录展示
-        showOutPay:'/order/withdList',
+        showOutPay:'/shopbank/withdList',
         //申请提现 
-        applyMoney:'/order/getMoney'
+        applyMoney:'/shopbank/getMoney'
     }
 
 });

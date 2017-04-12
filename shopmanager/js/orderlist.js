@@ -69,6 +69,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                     }
                 },obj);
             },
+           
             updateRecommendList:function(num){
                 $('#tableWrapper').html('');
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.recommendList,function(data){
@@ -542,7 +543,23 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
              */
             form.on('submit(checkCode)',function(paraData){
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopOrder.verifyOrderCode,function(data){
-                    console.log(data);
+                    layObj.layer.confirm('确定使用?',function(index){
+                          layObj.layer.close(index);
+                          layObj.layer.load();
+                        //改变状态
+                        common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopOrder.orderStatus,function(data){
+                            console.log(data);
+                        },{id:1});
+                    })
+                    // if(data.code==200){
+                    //     layObj.layer.confirm('确定使用?',function(index){
+                            
+                    //     })
+                    // }else{
+                    //     layObj.layer.closeAll();
+                    //     layObj.layer.msg(data.msg);
+                        
+                    // }
                 },paraData.field);
             })
 
@@ -553,7 +570,18 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
      * 校验用户消费券码
      */
     $('.verifyOrderCode').on('click',function(){
-
+        layObj.layer.open({
+             type:1,
+            content: $('.checkFormCode'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:'400PX',
+            zIndex:10,
+            maxmin: true,
+            end:function(){
+                $('.checkFormCode').hide();
+               
+            }
+         })
     })
 
 })

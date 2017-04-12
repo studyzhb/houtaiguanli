@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <meta name = "format-detection" content = "telephone=no">
+    <meta http-equiv="pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <title>vip</title>
+    <link rel="stylesheet" href="./css/Vipactive.css">
+    <script src="./js/zepto.js"></script>
+    <script src="./js/touch.min.js"></script>
+    <script src="./js/rem.js"></script>
+</head>
+<body>
+    <section>
+       <div class="info">
+           <header>
+               <h4>VIP会员是我们专门提供给公司债权人的一种特级会员，成为会员立享尊贵特权！</h4>
+           </header>
+           <div class="main">
+               <ul>
+                   <li><img src="img/vipLogo.png" class="vipLogo"></li>
+                   <li>认证成为<span>VIP会员</span>解锁全部特权</li>
+                   <li>
+                       <dl>
+                           <dd>
+                               <p><img src="img/vipPrevill.png"></p>
+                               <p>会员特权</p>
+                               <p>专享服务</p>
+                           </dd>
+                           <dd>
+                               <p><img src="img/backcount.png"></p>
+                               <p>购物返现</p>
+                               <p>最高返20%</p>
+                           </dd>
+                           <dd>
+                               <p><img src="img/Recomfriends.png"></p>
+                               <p>推荐朋友</p>
+                               <p>她购物你得奖励</p>
+                           </dd>
+                       </dl>
+                   </li>
+                   <li><button class="onceChecked">立即认证</button></li>
+               </ul>
+           </div>
+           <footer>
+               <p>VIP会员详情</p>
+               <article class="article">
+                   VIP会员详情是我们专门提供给公司债权人的一种特级会员，
+                   e+便利普通会员通过提交自己的债务资料（债券金合同/债务合同图书等）和个人相关信息后，
+                   经过我们的工作人员审核通过后成为VIP会员。成为VIP会员以后，
+                   不论自己还是介绍自己的朋友来e+便利消费，
+                   你就能后的现金返现。消费越多返现越多，直到最终抵扣掉您的债券金。
+               </article>
+           </footer>
+       </div>
+    </section>
+</body>
+<script>
+    function tapToAndroid() {
+            phone.go2WriteCreditor();
+        }
+
+        var strTime='';
+        var browser = {
+            versions: (function () {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {
+                    //移动终端浏览器版本信息
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+                    iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+                };
+            })(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+
+
+        $('section').on('tap','.onceChecked',function () {
+            
+            if (browser.versions.ios) {
+                
+                // WebViewJavascriptBridge.callHandler('Click',null,function(response) {
+                //     console.log(response)
+                // });
+                window.webkit.messageHandlers.showmehod.postMessage(null);
+                
+            } else {
+                tapToAndroid();
+            }
+
+
+        })
+
+</script>
+</html>

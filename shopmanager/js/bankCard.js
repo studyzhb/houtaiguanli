@@ -63,7 +63,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
             },
             updatePageNum:function(num,para){
                 var options={
-                    page:num||ShopObj.data.currentPage
+                    page:num,
+                    cityid:params.id,
+                    navid:ShopObj.data.navId
                 }
 
                 para=$.extend(options,para||{});
@@ -83,7 +85,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                         layObj.layer.msg(data.msg);
                         ShopObj.methods.updateShopList([]);
                     }
-                },para);
+                });
             },
             updateRecommendList:function(num){
                 $('#tableWrapper').html('');
@@ -658,9 +660,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
          ShopObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),false);
      })
 
-        //  ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+         ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
     
-        ShopObj.methods.getSingleInfo();
+        // ShopObj.methods.getSingleInfo();
 
     
     layui.use('laydate',function(){

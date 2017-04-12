@@ -1,0 +1,83 @@
+@import "reset";
+section{
+    width: 7.5rem;
+    min-height: 7.5rem;
+    height: auto;
+    overflow: auto;
+    font-size: 14px; 
+    background: #eee;
+    .info{
+        width: 6.5rem;
+        margin: 0 auto;
+    }
+    header{
+        padding: 0.5rem 0;
+        width: 100%;
+        font-size: 0.24rem;
+        color:#CFAE67; 
+        line-height: 0.4rem;
+    }
+    .main{
+        background:#fff;
+        border-radius: 5px;
+        padding-bottom:0.2rem;
+        ul{
+            overflow: hidden;
+            li{
+                text-align: center;
+                overflow: hidden;
+                margin-top: 0.7rem;
+                span{
+                    color: #CFAE67;
+                }
+                dl{
+                    // margin: 0 auto;
+                    overflow: hidden;
+                    display: flex;
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    dd{
+                        flex: 1;
+                        -webkit-box-flex: 1;
+                        -webkit-flex: 1;
+                        text-align: center;
+                        p{
+                            margin-bottom: 0.1rem;
+                            font-size: 0.2rem;
+                        }
+                        img{
+                            width: 1rem;
+                            height: 1.03rem;
+                        }
+                    }
+                }
+                button{
+                    width:6rem;
+                    height: 1rem;
+                    border-radius: 0.2rem;
+                    background:  #CFAE67;
+                    border: none;
+                    color: #fff;
+                    font-size: 0.3rem;
+                }
+            }
+        }
+        .vipLogo{
+            width: 1.67rem;
+            height: 1.67rem;
+        }
+    }
+    footer{
+        width: 6.5rem;
+        margin: 0 auto;
+        padding-bottom: 0.6rem;
+        p{
+            font-size: 0.3rem;
+            padding: 0.5rem 0 0.2rem 0;
+        }
+        article{
+            font-size: 0.24rem;
+            line-height: 0.4rem;
+        }
+    }
+ }

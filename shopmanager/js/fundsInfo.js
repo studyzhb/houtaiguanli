@@ -18,7 +18,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
         methods:{
             updateGoodsList:function(data){
                 $('#tableWrapper').html('');
+                console.log(data);
                 layObj.laytpl(GoodsObj.data.tempGoodsContent).render(data,function(html){
+
                     $('#tableWrapper').append(html);
                 })
             },
@@ -47,10 +49,14 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
 
                 fistLoad=false;
             },
-            //更新列表
+             //提现记录列表
             updatePageNum:function(num){
+                var obj={page:GoodsObj.data.currentPage};
+                var ted=typeof num == 'object'?num:{};
+                obj=$.extend({},obj,ted);
                 $('#tableWrapper').html('');
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopOrder.orderAccount,function(data){
+
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopOrder.showOutPay,function(data){
                     log.d(data);
                     if(data.code==200){
                         if(fistLoad){
@@ -63,8 +69,27 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         GoodsObj.methods.updateGoodsList([]);
                         layObj.layer.msg(data.msg);
                     }
+                },obj);
+            },
+            //更新列表
+            updateFunds:function(){
+                $('#tableWrapper').html('');
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopOrder.orderAccount,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        if(fistLoad){
+                            GoodsObj.methods.updatePage();
+                        }
+                        GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
+                        $('.detailCount').text(data.total);
+                        //GoodsObj.methods.updateGoodsList(data.data);
+                    }else{
+                        //GoodsObj.methods.updateGoodsList([]);
+                        layObj.layer.msg(data.msg);
+                    }
                 });
             },
+
             updateRecommendList:function(num){
                 $('#tableWrapper').html('');
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.recommendList,function(data){
@@ -432,9 +457,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
          GoodsObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),false);
      })
 
-      GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
+      GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);//updateFunds
 
-
+      GoodsObj.methods.updateFunds(GoodsObj.data.currentPage);
     setTimeout(function(){
         form=layObj.form();
         
