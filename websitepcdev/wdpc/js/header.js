@@ -90,7 +90,7 @@ new Vue({
 				})
 		},
 		//用户注册
-		registerUser:function(){
+		registerUserInfo:function(){
 			var body=this.registerUser;
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,{},{params:body})
 					.then(function(res){

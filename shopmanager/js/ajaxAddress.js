@@ -19,13 +19,14 @@ define({
         applyMoney:'/shopbank/getMoney'
     },
     shopGoods:{
-        addShopGoods:''
+        addShopGoods:'/index/addGoods',
+        getGoodsById:'/index/getOneInfo',
     },
     sort:{
-        goodsClassifyByShop:''
+        goodsClassifyByShop:'/index/getShopClass'
     },
     label:{
-        getGoodsLabelListByNavId:''
+        getGoodsLabelListByNavId:'/index/getNavLabelTypeInfo'
     }
 
 });

@@ -129,6 +129,14 @@ new Vue({
 					
 					
 				})
+		
+			// 优惠信息
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.discountMessage.discountMesData+'?navid='+navObj.id)
+			.then(function(res){
+				navObj.benefit=res.body.data;
+				console.log(navObj.benefit);
+				
+			})
 
 			// this.$http.get(ajaxAddress.preFix+ajaxAddress.updataCon+'?navid='+navObj.id)
 			// .then(function(res){

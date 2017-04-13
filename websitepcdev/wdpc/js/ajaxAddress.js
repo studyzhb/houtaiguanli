@@ -13,8 +13,6 @@ var ajaxAddress={
         login:'/login/login',
         resetLoginInfo:'/login/foundBack',
         resetLoginCode:'/login/code',
-        register:'/register/register'
-        
         //
         getRegisterMessCode:'/register/code',
         register:'/register/register'
@@ -31,6 +29,9 @@ var ajaxAddress={
     },
     discount:{
         bendfit:'/benefit/BenefitDetail',
+    },
+    discountMessage:{
+        discountMesData:'/index/Benefit'
     },
     label:{
         labelAll:'/comment/LabelAll'
