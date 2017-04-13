@@ -530,6 +530,52 @@ $('.alertCon-wrapper').on('click','.sortalert',function(){
 
 return false;
 });
+
+
+/**/
+$('.alertCon-wrapper').on('click','.brandlert',function(){
+    $('.clickSpecShow').hide();
+    var me=this;
+    $('#province-list').html('');
+    $('.sortspec').html('');
+    $('.brandSearch').hide();
+    var ind;
+    
+         $.each(goodsInfo.obligationArr,function(index,item){
+            var $li=$('<a>').appendTo($('#province-list')).html(item.name).attr('value',item.id);
+            $li.on('click',function(){
+                $(me).val($(this).html());
+                
+                isClick=true;
+                layer.close(ind);
+
+            })
+        });
+
+
+
+        if(isClick){
+            
+            ind=layer.open({
+        type:1,
+        content: $('#alertMessage'), //这里content是一个DOM
+          shade:[0.8,'#000'],
+          area:'900px',
+          maxmin: true,
+          end:function(){
+            // console.log('end');
+            isClick=true;
+          }
+        })
+            isClick=false;
+        }
+        
+        
+  
+
+return false;
+});
+/**/
 $('.alertCon-wrapper').on('click','.goodsbrandalert',function(){
     $('.clickSpecShow').hide();
     var me=this;

@@ -314,13 +314,13 @@
         <label class="layui-form-label">身份证图片</label>
         <div class="layui-input-block" style="margin-top:10px;">
           <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
-                {{# layui.each() }} 
+                {{# layui.each(d.card_pic.split(','),function(index,item){ }} 
                     <div class="detail-image-col-2 detail-banner-split">
                         <div class="opacity-z-index"></div>
-                        <i class="layui-icon icon-display" data-info="{{=d.logo}}">&#xe640;</i>
+                        <i class="layui-icon icon-display">&#xe640;</i>
                         <div class="left-block"></div>
                         <div class="right-block"></div>
-                        <img src="{{=d.card_pic}}" width="100%" height="100%" />    
+                        <img src="{{=item}}" width="100%" height="100%" />    
                     </div>
                 {{# }) }}
           </div>
@@ -331,15 +331,15 @@
         <label class="layui-form-label">手持身份证</label>
         <div class="layui-input-block" style="margin-top:10px;">
           <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
-                    
+                {{# layui.each(d.hand_card_pic.split(','),function(index,item){ }} 
                     <div class="detail-image-col-2 detail-banner-split">
                         <div class="opacity-z-index"></div>
                         <i class="layui-icon icon-display" data-info="{{=d.logo}}">&#xe640;</i>
                         <div class="left-block"></div>
                         <div class="right-block"></div>
-                        <img src="{{=d.hand_card_pic}}" width="100%" height="100%" />    
+                        <img src="{{=item}}" width="100%" height="100%" />    
                     </div>
- 
+                {{# }) }}
           </div>
           
                      </div>
@@ -348,15 +348,15 @@
         <label class="layui-form-label">债权证明图片</label>
         <div class="layui-input-block" style="margin-top:10px;">
           <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
-                    
+                {{# layui.each(d.proof_debt_pic.split(','),function(index,item){ }} 
                     <div class="detail-image-col-2 detail-banner-split">
                         <div class="opacity-z-index"></div>
                         <i class="layui-icon icon-display" data-info="{{=d.logo}}">&#xe640;</i>
                         <div class="left-block"></div>
                         <div class="right-block"></div>
-                        <img src="{{=d.proof_debt_pic}}" width="100%" height="100%" />    
+                        <img src="{{=item}}" width="100%" height="100%" />    
                     </div>
- 
+                {{# }) }}
           </div>
           
                      </div>
