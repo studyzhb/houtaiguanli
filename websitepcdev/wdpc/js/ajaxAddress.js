@@ -1,5 +1,5 @@
 var ajaxAddress={
-    preFix:'http://web.yylm.com/public/index.php/unionIndex',
+    preFix:'/yylm/public/index.php/unionIndex',
     formFix:'',
     area:{
         areaData:'/condition/getArea'
@@ -12,6 +12,9 @@ var ajaxAddress={
         getLoginMessCode:'/login/code',
         login:'/login/login',
         resetLoginInfo:'/login/foundBack',
+        resetLoginCode:'/login/code',
+        register:'/register/register'
+        
         //
         getRegisterMessCode:'/register/code',
         register:'/register/register'

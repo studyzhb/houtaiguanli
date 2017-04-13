@@ -83,7 +83,7 @@ new Vue({
 		},
 		//用户密码重置
 		resetPassword:function(){
-			var body=this.loginUser;
+			var body=this.resetUser;
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginInfo,{},{params:body})
 				.then(function(res){
 					console.log(res);
@@ -107,7 +107,14 @@ new Vue({
 						console.log(res);
 					})
 		},
-
+		//忘记密码,重置
+		getResetMesscode:function(){
+			var body=this.resetUser;
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{},{params:body})
+				.then(function(res){
+					console.log(res);
+				})
+		},
 		//搜索
 		searchInfoFromData:function(){
 			var url=''

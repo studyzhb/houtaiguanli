@@ -47,8 +47,8 @@
                 <div class="layui-btn" onclick="location.reload()">
                     刷新
                 </div>
-                <div class="layui-btn" onclick="location.href='websiteManager.html?name=goods'">
-                    返回
+                <div class="layui-btn add-shop-goods">
+                    添加商品
                 </div>
                 
             </form>
@@ -526,6 +526,192 @@
         <div class="left-block"></div>
         <div class="right-block"></div>
         <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
+
+<!--添加店铺商品-->
+<form class="layui-form layui-form-pane addShopGoodsForm" method="POST" style="display: none;font-size:14px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">产品图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2 imageadd-single">   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="goods_logo" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                </div>
+                
+                             </div>
+              <div class="layui-form-item">
+                <!---->
+                <label class="layui-form-label">产品名称</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="goodsname" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">产品数量</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="num" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>             
+              
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">所属区域</label>
+                <div class="layui-input-block">
+                  <input type="text" name="" readonly placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>-->
+              <div class="layui-form-item">
+                <label class="layui-form-label">原价</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="price_sell" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">支付价格</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="price_pay" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+                
+              </div>
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">产品分类</label>
+                <div class="layui-input-inline">
+                  <select name="classifyid" class="productWrapper">
+                    <option value="1" selected>服装服饰</option>
+                  </select>
+                </div>
+              </div>-->
+              <div class="goodsProWrapper"></div>
+              <!--添加店铺类型-->
+              <div class="goodsTypeWrapper">
+
+              </div>
+
+              <div class="targetDestinationWrapper">
+
+              </div>
+
+              <!--<div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">产品描述</label>
+                <div class="layui-input-block">
+                  <textarea name="introduce" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+              </div>-->
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">套餐详情</label>
+                <div class="layui-input-block">
+                  <script id="container" name="introduce" type="text/plain" style="width:99.5%;height:300px;overflow:auto;">
+                      
+                  </script>
+                  <!--<textarea name="note" placeholder="请输入内容" class="layui-textarea"></textarea>-->
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">套餐图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                 <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2 imageadd">   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="goods_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                </div>
+                
+                             </div>
+              <!--<div class="layui-form-item">
+                    <label class="layui-form-label">产品规格</label>
+                    <div class="layui-input-block">
+                    <input type="radio" name="" title="单人餐">
+                    <input type="radio" name="" title="双人餐" checked>
+                    <input type="radio" name="" title="3-4人餐">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">使用规则</label>
+                    <div class="layui-input-block">
+                    <input type="radio" name="" title="节假日通用">
+                    <input type="radio" name="" title="节假日不能使用" checked>
+                    <input type="radio" name="" title="特定日期不能使用">
+                    </div>
+                </div>-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">使用规则</label>
+                    <div class="layui-input-inline" style="width: 600px;">
+                    <input type="radio" name="use_time" value="1" title="节假日通用" lay-filter="isClickTrue">
+                    <input type="radio" name="use_time" value="2" title="节假日不能使用" checked lay-filter="isClickTrue">
+                    <input type="radio" name="use_time" value="3" title="特定日期不能使用" lay-filter="isClickTrue">
+                    </div>
+                    <div class="layui-input-inline" style="display: none;">
+                      <input type="text" name="use_time_info" class="layui-input" placeholder="特殊时间说明">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">预约</label>
+                    <div class="layui-input-inline">
+                      <input type="radio" name="bespoke" title="是" value="1"  lay-filter="isCheckTrue">
+                      <input type="radio" name="bespoke" title="否" value="0" checked  lay-filter="isCheckTrue">
+                      
+                    </div>
+                    <div class="layui-input-inline" style="display: none;">
+                      <input type="text" name="bespoke_info" class="layui-input" placeholder="至少提前多长时间预约">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">到期时间</label>
+                  <div class="layui-input-inline">
+                    <input type="text" id="date03" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                    <input type="hidden" name="validity_time" class="worktimesae" value="">
+                  </div>
+                  
+                </div>
+                
+              <div class="layui-form-item">
+                    <label class="layui-form-label">是否自动续期</label>
+                    <div class="layui-input-block">
+                      <input type="radio" name="renew" title="是" value="1">
+                      <input type="radio" name="renew" title="否" value="0" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否启用</label>
+                    <div class="layui-input-block">
+                      <input type="radio" name="status" title="是" value="1" checked>
+                      <input type="radio" name="status" title="否" value="0" >
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">退款</label>
+                    <div class="layui-input-block">
+                    <input type="radio" name="refund" value="2" title="过期退">
+                    <input type="radio" name="refund" value="1" title="随时退" checked>
+                    <input type="radio" name="refund" value="0" title="暂定">
+                    
+                    </div>
+                </div>
+
+
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn commitMenu" lay-submit lay-filter="saveShopGoodsInfo" >保存</div>
+                </div>
+              </div>
+              
+            </form>
+
+<!--旅行输入框-->
+<script type="text/html" id="travelCon">
+  <div class="layui-form-item">
+      <label class="layui-form-label">目的地</label>
+      <div class="layui-input-inline layui-nav">
+        <input type="text" name="destination" placeholder="请输入" autocomplete="off" class="layui-input targetInput">
+        <div class="layui-nav-item">
+            <dl class="layui-nav-child layui-anim layui-anim-upbit searchConWrapper" >
+                <dd>
+                    <a href="#">测试</a>
+                </dd>
+            </dl>
+        </div>
+      </div>
+
     </div>
 </script>
 

@@ -17,6 +17,15 @@ define({
         showOutPay:'/shopbank/withdList',
         //申请提现 
         applyMoney:'/shopbank/getMoney'
+    },
+    shopGoods:{
+        addShopGoods:''
+    },
+    sort:{
+        goodsClassifyByShop:''
+    },
+    label:{
+        getGoodsLabelListByNavId:''
     }
 
 });

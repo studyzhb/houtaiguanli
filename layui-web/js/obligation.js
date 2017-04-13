@@ -16,13 +16,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
          */
         showNavlist:function(){
             var tmp=sortContent.innerHTML;
-            var laytpl=layui.laytpl;
+            
             $('#tableList').html('');
             common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.obligation.showlist,function(data){
                 log.d(data);
                 if(data.code==200){
                     navObj.data.arrObligation=data.data;
-                    laytpl(tmp).render(data.data,function(html){
+                    layObj.laytpl(tmp).render(data.data,function(html){
                         $('#tableList').append(html);
                     })
                 }

@@ -1,40 +1,50 @@
-$(function(){
-    $(".judgeContent").hide();
-    $(".judge span").click(function(){
-        $(this).addClass("bg_color").siblings().removeClass("bg_color");
-        $(this).parents(".listLog").next("div").slideDown("200");
-    });
-    $(".confirm").click(function(){
-        $(this).parents(".judgeContent").slideUp("200");
-    });
-    // 退款
-//    账户设置
-    $(".personNav span").click(function(){
-        var _index=$(this).index();
-        $(this).addClass('bg_color').siblings("span").removeClass('bg_color');
-        $(".personMess").eq(_index).show().siblings(".personMess").hide();
-    });
-    // 性别切换
-    $(".sex").click(function(){
-       var atr= $(this).find("img").attr("src");
-        console.log(atr);
-        if(atr=="../../img/sexNocheck.png"){
-            $(this).find("img").attr("src","../../img/sexcheck.png").parent().siblings().find("img").attr("src","../../img/sexNocheck.png");
-        }else{
-            $(this).find("img").attr("src","../../img/sexNocheck.png");
+new Vue({
+    el:'#app',
+    data:{
+        cityId:1,
+        navId:1,
+        navName:'',
+        goodsDetailArr:'',
+        goodsId:'1',
+        shopId:'1',
+        selectedIndex:'0',
+        hotGoodsArr:[],
+        userDetailArr:''
+    },
+    filters:{
+        json2single:function(value){
+            
+            var str=typeof eval(value)=='object'?JSON.parse(value)[0]:'';
+            
+            return str;
         }
-    })
+        
+    },
+    mounted:function() {
+        
+        this.$nextTick(function(){
+            this.renderView();
+    
+        })
 
-    // 帮助中心
-    $(".helpTop li").click(function(){
-        $(this).find("span").addClass("bg_color").parent().siblings().find("span").removeClass("bg_color");
-        $(this).find("p").addClass("color").parent().siblings().find("p").removeClass("color");
-        var _perindex=$(this).index();
-        $(".helpMain .heloComm").eq(_perindex).show().siblings('.heloComm').hide();
-        // var width=$(this).width();
-        // var Left=$(".movesigle").position().left;
-        // console.log(width);
-        // console.log(Left);
-
-    })
+    },
+    methods:{
+        renderView:function(){
+            var self=this;
+            this.shopId=paraObj.id;
+            this.navName=unescape(paraObj.name);
+            this.getUserInfo();
+            
+        },
+    
+        getUserInfo:function(){
+            var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.userData.userInfo+'?id='+this.shopId)
+                    .then(function(res){
+                        
+                        self.userDetailArr=res.body.data;
+                        console.log(self.userDetailArr);
+                    })
+        },
+    }
 })

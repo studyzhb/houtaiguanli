@@ -112,6 +112,57 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                     }
                 },{id:id});
             },
+            //添加商品时获取分类信息
+            addGoodsGetSortInfo:function(shopid,fn){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.sort.goodsClassifyByShop,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        GoodsObj.data.arrGoodsClassify=data.data;
+                        fn();
+                    }else{
+                        GoodsObj.data.arrGoodsClassify=[];
+                    }
+
+                },{navid:GoodsObj.data.navId,shopid:shopid});
+            },
+            /**
+             * 渲染添加产品所需标签
+             */
+            renderAddGoodsInfo:function(){
+                var tpl=$('#shopTypeCon').html();
+                var tplClass=$('#goodsSortTypeCon').html();
+                $('.goodsTypeWrapper').html('');
+                $('.goodsProWrapper').html('');
+                
+
+                layObj.laytpl(tpl).render(GoodsObj.data.arrGoodsLabel,function(html){
+                    $('.goodsTypeWrapper').append(html);
+                })
+                //渲染产品分类数据
+                layObj.laytpl(tplClass).render(GoodsObj.data.arrGoodsClassify,function(html){
+                    $('.goodsProWrapper').append(html);
+                })
+                $('.targetDestinationWrapper').html('');
+                //如果是旅游导航添加目的地
+                if(GoodsObj.data.goodsTemplate=='travel'){
+                    $('.targetDestinationWrapper').append($('#travelCon').html());
+                }else{
+                     //$('.targetDestinationWrapper').append($('#travelCon').html());
+                }
+
+                form.render();
+            },
+            getGoodsLabelInfo:function(){
+                //TODO 产品标签数据
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.label.getGoodsLabelListByNavId,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        GoodsObj.data.arrGoodsLabel=data.data;
+                    }else{
+                        GoodsObj.data.arrGoodsLabel=[];
+                    }
+                },{navid:GoodsObj.data.navId});
+            },
             /**
              * 获取单个商品详情
              */
@@ -177,6 +228,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 
                 return str;
             },
+            
             //排序
             sortOrderInfo:function(id,order,obj,tag){
                 var targetEl={};
@@ -361,6 +413,43 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
     })
 
     /**
+      * 添加店铺产品
+      */
+     $('.add-shop-goods').on('click',function(){
+         console.log('click');
+        // open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
+        $('.addShopGoodsForm')[0].reset();
+        $('.addShopGoodsForm').find('input:not([type=radio],[type=checkbox])').val('').attr('data-info','');
+        $('.imageadd-single').show().prevAll().remove();
+        $('.imageadd').show().prevAll().remove();
+        var shopName=$(this).data('name');
+        
+        GoodsObj.data.shopid=$(this).data('id');
+        GoodsObj.data.shopname=shopName;
+        GoodsObj.methods.addGoodsGetSortInfo(GoodsObj.data.shopid,GoodsObj.methods.renderAddGoodsInfo);
+        
+        //获取产品所属店铺的区域
+        // GoodsObj.methods.addGoodsGetAreaInfo();
+        GoodsObj.data.labelJson=[];
+        GoodsObj.data.sortObj={};
+        GoodsObj.data.sortAnotherArr=[];
+        // 打开添加店铺信息窗口
+        layObj.layer.open({
+             type:1,
+             title:shopName,
+            content: $('.addShopGoodsForm'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:['95%','98%'],
+            zIndex:10,
+            maxmin: true,
+            end:function(){
+                $('.addShopGoodsForm').hide();
+            }
+         })
+
+     })
+
+    /**
      * 编辑店铺详细信息
      */
      $('#tableWrapper').on('click','.editInfo',function(){
@@ -528,6 +617,44 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                     }
                 },paraData.field);
             })
+
+            form.on('submit(saveShopGoodsInfo)',function(paraData){
+                
+                paraData.field.cityid=params.id;
+                paraData.field.navid=GoodsObj.data.navId;
+                paraData.field.shopid=GoodsObj.data.shopid;
+                paraData.field.shopname=GoodsObj.data.shopname;
+                paraData.field.area=GoodsObj.data.arrAreaGoods.area;
+                paraData.field.business=GoodsObj.data.arrAreaGoods.business;
+                var arr=GoodsObj.methods.repeatArr(GoodsObj.data.labelJson);
+                paraData.field.goods_label=arr;
+                //分类合并
+                // paraData.field.classifyids=GoodsObj.data.sortAnotherArr.join(',');
+                //添加产品时所需要的模板
+                paraData.field.template=GoodsObj.data.goodsTemplate;
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.addShopGoods,function(data){
+                        GoodsObj.data.sortObj={};
+                        GoodsObj.data.labelJson=[];
+                        GoodsObj.data.sortAnotherArr=[];
+                        log.d(data);
+                        if(data.code==200){
+                            layer.msg('添加成功');
+                            setTimeout(function(){
+                                layObj.layer.closeAll();
+                                GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
+                            },1000);
+                            
+                        }else{
+                            layer.msg('网络错误，请稍后重试');
+                            setTimeout(function(){
+                                
+                            },1000);
+                        }
+                    },paraData.field);
+                    
+                return false;
+            });
+
     },1000)
 
     

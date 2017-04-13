@@ -171,7 +171,13 @@ define({
         //删除
         deleteBanner:'/banner/deleteBanner',
         updateBannerStatus:'/banner/updateBannerStatus'
+    },
+    /**
+     * 商户后台管理
+     */
+    commercialManager:{
+        orderlist:'',
+        widthdrawList:''
     }
-
 
 });

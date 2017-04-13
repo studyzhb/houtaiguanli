@@ -129,13 +129,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
             /**
              * 获取单个店铺信息
              */
-            getSingleInfo:function(){
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shopInfo,function(data){
-                    log.d(data);
-                    if(data.code==200){
-                        ShopObj.methods.updateShopInfo(data.data);
-                    }
-                });
+            getSingleInfo:function(data){
+                //TODO
+                ShopObj.methods.updateShopInfo(data);              
             },
             updateShopInfo:function(data){
                 var tpl=$('#formCon').html();
@@ -488,22 +484,21 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
     })
     
     /**
-     * 编辑店铺详细信息
+     * 编辑银行卡信息
      */
      $('#tableWrapper').on('click','.editInfo',function(){
-        ShopObj.data.labelJson=[];
-        ShopObj.data.sortObj={};
-        ShopObj.data.sortAnotherArr=[];
-        ShopObj.methods.getSingleInfo($(this).data('id'));
+        var obj={};
+        //TODO
+        ShopObj.methods.getSingleInfo(obj);
         layObj.layer.open({
              type:1,
-            content: $('.editMenuForm'), //这里content是一个DOM
+            content: $('.editorAreaTypeWrapper'), //这里content是一个DOM
             shade:[0.8,'#000'],
-            area:['95%','98%'],
+            area:'400px',
             zIndex:10,
             maxmin: true,
             end:function(){
-                $('.editMenuForm').hide();
+                $('.editorAreaTypeWrapper').hide();
             }
          })
          
@@ -518,41 +513,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
           //ShopObj.methods.keydown(e,val);
       })
 
-     /**
-      * 添加店铺产品
-      */
-     $('#tableWrapper').on('click','.add-shop-goods',function(){
-        // open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
-        $('.addShopGoodsForm')[0].reset();
-        $('.addShopGoodsForm').find('input:not([type=radio],[type=checkbox])').val('').attr('data-info','');
-        $('.imageadd-single').show().prevAll().remove();
-        $('.imageadd').show().prevAll().remove();
-        var shopName=$(this).data('name');
-        
-        ShopObj.data.shopid=$(this).data('id');
-        ShopObj.data.shopname=shopName;
-        ShopObj.methods.addGoodsGetSortInfo(ShopObj.data.shopid,ShopObj.methods.renderAddGoodsInfo);
-        
-        //获取产品所属店铺的区域
-        ShopObj.methods.addGoodsGetAreaInfo();
-        ShopObj.data.labelJson=[];
-        ShopObj.data.sortObj={};
-        ShopObj.data.sortAnotherArr=[];
-        // 打开添加店铺信息窗口
-        layObj.layer.open({
-             type:1,
-             title:shopName,
-            content: $('.addShopGoodsForm'), //这里content是一个DOM
-            shade:[0.8,'#000'],
-            area:['95%','98%'],
-            zIndex:10,
-            maxmin: true,
-            end:function(){
-                $('.addShopGoodsForm').hide();
-            }
-         })
+    
 
-     })
+
      
 
      /**
@@ -594,53 +557,29 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
      * 点击添加店铺先选择导航
      */
     $('.add-shop-info').on('click',function(){
-        ShopObj.data.labelJson=[];
-        ShopObj.data.sortObj={};
-        ShopObj.data.sortAnotherArr=[];
-        $('.menuForm')[0].reset();
-        $('.menuForm').find('input:not([type=radio],[type=checkbox])').val('').attr('data-info','');
-        document.getElementById('menuAddShop').reset();
+
+        $('#authorForm')[0].reset();
+        $('#authorForm').find('input:not([type=radio],[type=checkbox])').val('').attr('data-info','');
+        document.getElementById('authorForm').reset();
         
-        $('.imageadd-single').show().prevAll().remove();
-        $('.imageadd').show().prevAll().remove();
-        $('.addmapWrapper').append($('#mapContainer'));
-        ShopObj.methods.renderShopInfo();
-        ShopObj.methods.addShopGetSortInfo();
+
         // 打开添加店铺信息窗口
         layObj.layer.open({
              type:1,
-             title:'店铺添加',
-            content: $('.menuForm'), //这里content是一个DOM
+             title:'银行卡添加',
+            content: $('#authorForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
-            area:['95%','98%'],
+            area:'400px',
             zIndex:10, 
             maxmin: true,
             end:function(){
-                $('.menuForm').hide();
+                $('#authorForm').hide();
             }
          })
         // open('add-shop.html?navid='+ShopObj.data.navId+'&cityid='+params.id,'_self');
     })
 
-    $('.nav-menu-all-area').on('click','a',function(){
-        $(this).addClass('active').siblings().removeClass('active');
-        //log.d($(this))
-        ShopObj.data.navId=$(this).data('id');
-        ShopObj.data.goodsTemplate=$(this).data('template');
-        
-        log.d(ShopObj.data.navId);
-        if(ShopObj.data.currentStatus=='1'){
-            ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
-        }else{
-            ShopObj.methods.updateRecommendList(ShopObj.data.currentRePage);
-        }   
-        
-        ShopObj.methods.getLabelInfo();
-        ShopObj.methods.getGoodsLabelInfo();
-        ShopObj.methods.addShopGetSortInfo();
-        //获取产品所属分类
-        // ShopObj.methods.addGoodsGetSortInfo();
-    });
+
 
     /**
      * 排序
@@ -665,65 +604,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
         // ShopObj.methods.getSingleInfo();
 
     
-    layui.use('laydate',function(){
-       var laydate=layui.laydate;
-        var start = {
-            min: laydate.now()
-            ,format: 'YYYY-MM-DD hh:mm:ss'
-            ,max: '2099-06-16 23:59:59'
-            ,istoday: false
-            ,choose: function(datas){
-                
-                var timeStamp=Math.floor(new Date(datas).getTime());
-                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
-                
-                end.min = datas; //开始日选好后，重置结束日的最小日期
-                end.start = datas //将结束日的初始值设定为开始日
-            }
-        };
-        
-        var end = {
-            min: laydate.now()
-            ,format: 'YYYY-MM-DD hh:mm:ss'
-            ,max: '2099-06-16 23:59:59'
-            ,istoday: false
-            ,choose: function(datas){
-                var timeStamp=Math.floor(new Date(datas).getTime());
-                $(this.elem).next('input').val(Math.floor(timeStamp/1000));
-                start.max = datas; //结束日选好后，重置开始日的最大日期
-            }
-        };
 
-        
-
-        $('#date').on('click',function(){
-            
-            start.elem = this;
-            layObj.laydate(start);
-        })
-        $('#date01').on('click',function(){
-            end.elem = this;
-            layObj.laydate(end);
-        })
-
-        
-
-        $('#date03').on('click',function(){
-            start.elem = this;
-            
-            layObj.laydate(start);
-        })
-
-        $('.formWrapper').on('click','#date-edit',function(){
-            
-            start.elem = this;
-            layObj.laydate(start);
-        })
-        $('.formWrapper').on('click','#date-edit01',function(){
-            end.elem = this
-            layObj.laydate(end);
-        })
-   })
 
 
    setTimeout(function(){
