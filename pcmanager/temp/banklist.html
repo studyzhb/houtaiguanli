@@ -48,17 +48,11 @@
             </form>
               <div style="margin-top:20px;">
               <ul class="layui-tab-title">
-                <li class="layui-this statusTab" data-status="0">
-                    已完结
+                <li class="layui-this unedit">
+                    未审核银行卡列表
                 </li>
-                <li class="statusTab" data-status="1">
-                    需要审核
-                </li>
-                <li class="statusTab" data-status="2">
-                    未打款的提现申请
-                </li>
-                <li class="statusTab" data-status="3">
-                    已拒绝的提现申请
+                <li class="edited">
+                    审核通过列表
                 </li>
             </ul>
             </div>
@@ -75,9 +69,9 @@
                     <th>序号</th>
                     <th>店铺名称</th>
                     <th>银行卡号</th>
-                    <th>店铺余额</th>
-                    <th>申请提现金额</th>
-                    <th>申请时间</th>
+                    <th>银行名称</th>
+                    <th>添加时间</th>
+                    <th>更新时间</th>
                     <th>状态</th>
 
                     </tr> 
@@ -400,16 +394,16 @@
             <td>{{=item.proprietor}}</td>
             <td>{{=item.star_time}}</td>
             
-            {{# if(item.status=='2'){ }}
+            {{# if(item.status=='0'){ }}
                 <td>
-                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status="3" data-id="{{item.id}}" data-typeid="{{item.id}}">
-                        审核
+                    <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                        停用
                     </button>
                 </td>
-            {{# }else if(item.status=='3'){ }}
+            {{# }else if(item.status=='1'){ }}
                 <td>
-                    <div class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status="4" data-id="{{item.id}}" data-typeid="{{item.id}}">
-                        打款
+                    <div class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                        启用
                     </div>
                 </td>
             {{# }else{ }}
@@ -1088,5 +1082,5 @@
 
 </body>
 
-<script src="../js/withdrawlist.js"></script>
+<script src="../js/banklist.js"></script>
 </html>

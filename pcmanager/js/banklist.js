@@ -94,9 +94,10 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                 fistLoad=false;
             },
             updatePageNum:function(num,para){
-                ShopObj.methods.updateRequestUrl(ShopObj.data.currentTabPage);
+                // ShopObj.methods.updateRequestUrl(ShopObj.data.currentTabPage);
                 var options={
-                    page:num,
+                    page:num||ShopObj.data.currentPage,
+                    status:0,
                     cityid:params.id,
                     navid:ShopObj.data.navId
                 }
@@ -105,7 +106,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
 
                 log.d(params);
                 $('#tableWrapper').html('');
-                common.tools.ajax('get',ajaxAddress.preFix+ShopObj.data.requestUrl,function(data){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.commercialManager.account.banklist,function(data){
                     log.d(data);
                     if(data.code==200){
                         if(fistLoad){
@@ -150,7 +151,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                 },{id:id,recommend:status});
             },
             updateShopStatus:function(sta,id){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.updateShopStatus,function(data){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.commercialManager.account.changeBankStatus,function(data){
                     if(data.code==200){
                         layObj.layer.msg(data.msg);
                         ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
@@ -528,15 +529,15 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
         fistLoad=true;
         ShopObj.data.searched=true;
         $(this).addClass('layui-this').siblings().removeClass('layui-this');
-        ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+        ShopObj.methods.updatePageNum(ShopObj.data.currentPage,{status:0});
     })
 
     $('.edited').on('click',function(){
-        ShopObj.data.currentStatus='2';
+        ShopObj.data.currentStatus='1';
         fistLoad=true;
-        ShopObj.data.searched=false;
+        ShopObj.data.searched=true;
         $(this).addClass('layui-this').siblings().removeClass('layui-this');
-        ShopObj.methods.updateRecommendList(ShopObj.data.currentRePage);
+        ShopObj.methods.updatePageNum(ShopObj.data.currentPage,{status:1});
     })
 
     $('.statusTab').on('click',function(){
@@ -626,42 +627,19 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
     /**
      * 停用或启用
      */
-    /**$('#tableWrapper').on('click','.icon-btn',function(){
+    $('#tableWrapper').on('click','.icon-btn',function(){
         var sta=$(this).data("status");
         var id=$(this).data("id");
         if(sta=='0'){
-            layObj.layer.confirm('你确定要下架此商品?',function(index){
+            layObj.layer.confirm('你确定要停用?',function(index){
                 layObj.layer.close(index);
                  ShopObj.methods.updateShopStatus(sta,id);
             })
         }else{
              ShopObj.methods.updateShopStatus(sta,id);
         } 
-    })**/
-    $('#tableWrapper').on('click','.icon-btn',function(){
-        var sta=$(this).data("status");
-        var id=$(this).data("id");
-        if(sta=='3'){
-            layObj.layer.confirm('你确定同意此次审核?',function(index){
-                layObj.layer.close(index);
-                 ShopObj.methods.updateWithdrawStatus({status:sta,id:id});
-            })
-        }else{
-             $('.outputMoneyId').val(id);
-             layObj.layer.open({
-                 type:1,
-                title:'确认打款',
-                content: $('.outputmoneyForm'), //这里content是一个DOM
-                shade:[0.8,'#000'],
-                area:'400px',
-                zIndex:10, 
-                maxmin: true,
-                end:function(){
-                    $('.outputmoneyForm').hide();
-                }
-             })
-        } 
     })
+
 
     /**
      * 店铺搜索功能 2017 3/30

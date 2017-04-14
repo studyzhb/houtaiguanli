@@ -192,7 +192,7 @@ define({
             //财务拒绝的申请通知
             refuWithdrawList:'/withdr/WithdrNoPass',
             //提现状态更改
-            changeWithStatus:'/withdr/withdrStatusChange'
+            changeWithStatus:'/withdr/withdrStatuaChange'
         },
         account:{
             //商户账目资金列表

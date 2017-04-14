@@ -56,13 +56,15 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 var ted=typeof num == 'object'?num:{};
                 obj=$.extend({},obj,ted);
                 $('#tableWrapper').html('');
-
+                if(fistLoad){
+                    GoodsObj.methods.getBankList();
+                }
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopOrder.showOutPay,function(data){
                     log.d(data);
                     if(data.code==200){
                         if(fistLoad){
                             GoodsObj.methods.updatePage();
-                            GoodsObj.data.bankList=data.data;
+                            
                         }
                         GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
                         $('.detailCount').text(data.total);
@@ -72,6 +74,18 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         layObj.layer.msg(data.msg);
                     }
                 },obj);
+            },
+            getBankList:function(){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.bankCardList,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        GoodsObj.data.bankList=data.data;
+                    }else{
+                        GoodsObj.data.bankList=[];
+                        layObj.layer.msg(data.msg);
+                    }
+                });
+                
             },
             //更新列表
             updateFunds:function(){
@@ -410,6 +424,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
      * 申请提现
      */
     $('.applyMoney').on('click',function(){
+
         //银行卡列表
         $.each(GoodsObj.data.bankList,function(index,item){
             $('<option>').appendTo($('.bankList')).html(item.name).attr('value',item.id);
