@@ -6,5 +6,11 @@ define({
         typeshow:'/Proportion/show',
         typeAdd:'/Proportion/add',
         updateType:'/Proportion/edit'
+    },
+    article:{
+        showlist:'/Article/lst',
+        addSingle:'/Article/add',
+        updateSingle:'/Article/update',
+        changeStatus:'/Article/beginStopUse'
     }
 });

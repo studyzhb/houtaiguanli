@@ -45,7 +45,7 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            债权金标准
+            文章发布
           </li>
           
         </ul>
@@ -57,9 +57,10 @@
               
               
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
-                  <select class="areaType" lay-filter="areaType">
-                    <option value=""></option>
-                    
+                  <select class="" name="type" lay-filter="areaType">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
                   </select>
                 </div>
               <div class="layui-inline">
@@ -71,7 +72,7 @@
                    搜索
                 </div>
                 <div class="layui-btn addArea">
-                    添加标准类型
+                    添加新文章
                 </div>
                 <div class="layui-btn" onclick="location.reload()" style="float: right;">
                     <i class="layui-icon">&#x1002;</i>  
@@ -91,9 +92,9 @@
           <thead>
             <tr>
               <th>序号</th>
-              <th>名称</th>
-              <th>最小提现金额</th>
-              <th>返现比例</th>
+              <th>标题</th>
+              <th>内容</th>
+              <th>类别</th>
               <th>状态</th>
               <th>创建时间</th>
               <th>操作</th>
@@ -124,34 +125,37 @@
 <form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <div class="layui-form-item">
-        <label class="layui-form-label">类型名称</label>
+        <label class="layui-form-label">文章标题</label>
         <div class="layui-input-inline">
-          
-          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="1" />
-          <input type="text" name="name" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="0" />
+          <input type="text" name="title" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最小提现金额</label>
+        <label class="layui-form-label">文章类别</label>
         <div class="layui-input-inline">
-        
-        <input type="text" name="min_money" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+            <select class="" name='type' lay-filter="">
+                <option value="1">标准1</option>
+                <option value="2">标准2</option>
+                <option value="3">标准3</option>
+                <option value="4">标准4</option>
+            </select>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">返现比例</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" name="scale" data-info="" value="" required  lay-verify="required" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">债权金规则</label>
+     <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">文章内容</label>
         <div class="layui-input-block">
-            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+            <textarea name="body" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
         </div>
-        
     </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">发布时间</label>
+        <div class="layui-input-inline">
+           <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+            <input type="hidden" name="addtime" value="0" placeholder="hh:mm:ss" lay-verify="required"  readonly autocomplete="off" class="layui-input">
+        </div>
+    </div>
+   
     <div class="layui-form-item">
     <div class="layui-input-block">
         <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
@@ -184,37 +188,111 @@
     </div>
     
 </form>
-
+ <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;"></script>
 <script type="text/html" id="editorNavCon">
     <div class="layui-form-item">
-        <label class="layui-form-label">类型名称</label>
+        <label class="layui-form-label">文章标题</label>
         <div class="layui-input-inline">
-        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
-        <input type="hidden" autocomplete="off" name="status" class="layui-input" value="{{d.status}}" />
-        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+            <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+          
+          <input type="text" name="title" data-info="" value="{{d.title}}" required  lay-verify="" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最小提现金额</label>
+        <label class="layui-form-label">文章类别</label>
         <div class="layui-input-inline">
-        
-        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)" name="min_money" data-info="{{d.min_money}}" value="{{d.min_money}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+            <select class="" name='type' lay-filter="">
+                {{# if(d.type=='1'){ }}
+                    <option value="1" selected>标准1</option>
+                    <option value="2">标准2</option>
+                    <option value="3">标准3</option>
+                    <option value="4">标准4</option>
+                {{# }else if(d.type=='2'){ }}
+                    <option value="1" >标准1</option>
+                    <option value="2" selected>标准2</option>
+                    <option value="3">标准3</option>
+                    <option value="4">标准4</option>
+                {{# }else if(d.type=='3'){ }}
+                    <option value="1" >标准1</option>
+                    <option value="2">标准2</option>
+                    <option value="3" selected>标准3</option>
+                    <option value="4">标准4</option>
+                {{# }else if(d.type=='4'){ }}
+                    <option value="1" >标准1</option>
+                    <option value="2">标准2</option>
+                    <option value="3">标准3</option>
+                    <option value="4" selected>标准4</option>
+                {{# } }}
+                
+            </select>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">返现比例</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="scale" data-info="{{d.scale}}" value="{{d.scale}}" required  lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
+     <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">文章内容</label>
+        <div class="layui-input-block">
+            <textarea name="body" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.body}}</textarea>
         </div>
+        
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">债权金规则</label>
+        <label for="">文章内同</label>
         <div class="layui-input-block">
-            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.rolecon}}</textarea>
+            <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" style="display:none;">
+              <div class="ncsc-mobile-editor">
+                <div class="pannel">
+                 <!--  <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>00</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>20</em>字</span></div> -->
+                  <div class="control-panel" nctype="mobile_pannel">
+                       
+                    </div>
+                  <div class="add-btn">
+                    <ul class="btn-wrap">
+                      <li style="width:50%;height:100%;box-sizing:content-box;"><a href="javascript:void(0);" style="display:block;" onclick="upImage('img-content')" ></i>
+                        图片
+                        </a></li>
+                      <li style="width:50%;height:100%;box-sizing:content-box;"><a href="javascript:void(0);" style="display:block;" onclick="addGoodsText()"><i class="icon-font"></i>
+                        文字
+                        </a></li>
+                    </ul>
+                  </div>
+                    <section>
+                        <div class="main" id="content1">
+                            <div class="img-content" style="height:346px;overflow:auto;">
+                                
+                            </div>
+                        </div>
+                    </section>
+                       
+                </div>
+                <div class="explain">
+                  <dl>
+                    <dt>1、基本要求：</dt>
+                    <dd>（1）手机详情总体大小：图片+文字，图片不超过20张，文字不超过000字；</dd>
+                    <dd>建议：所有图片都是本宝贝相关的图片。</dd>
+                  </dl><dl>
+                    <dt>2、图片大小要求：</dt>
+                    <dd>（1）建议使用宽度480 ~ 620像素、高度小于等于960像素的图片；</dd>
+                    <dd>（2）格式为：JPG\JEPG\GIF\PNG；</dd>
+                    <dd>举例：可以上传一张宽度为480，高度为960像素，格式为JPG的图片。</dd>
+                  </dl><dl>
+                    <dt>3、文字要求：</dt>
+                    <dd>（1）每次插入文字不能超过500个字，标点、特殊字符按照一个字计算；</dd>
+                    <dd>建议：不要添加太多的文字，这样看起来更清晰。</dd>
+                  </dl>
+                </div>
+              </div>
+
+            </div>
         </div>
-        
     </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">发布时间</label>
+        <div class="layui-input-inline">
+           <input type="text" id="date-edit" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input" value="{{=new Date(d.addtime).toLocaleString()}}">
+            <input type="hidden" name="addtime" value="{{=d.addtime}}" placeholder="hh:mm:ss" lay-verify=""  readonly autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <
 </script>
 
 
@@ -302,21 +380,21 @@
 {{# layui.each(d.data,function(index,item){ }}
     <tr>
     <td>{{index+1}}</td>
-    <td class="typeName">{{=item.name}}</td>
-    <td >{{=item.min_money}}</td>
-    <td >{{=item.scale}}</td>
+    <td class="typeName">{{=item.title}}</td>
+    <td >{{=item.body}}</td>
+    <td >{{=item.type}}</td>
     <td>
       {{# if(item.status=='1'){ }}
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
-              启用
+              已发布
         </button>
       {{# }else{ }}
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}">
-              停用
+              未发布
         </button>
       {{# } }}
     </td>
-    <td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>
+    <td>{{=new Date(item.addtime).toLocaleString()}}</td>
     <td>
     <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
       <!--<div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.typeName}}">
@@ -365,5 +443,5 @@
  <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="./js/config.js"></script>
 <script type="text/javascript" src="./js/filter.js"></script>
-<script type="text/javascript" src="./js/obligationType.js"></script>
+<script type="text/javascript" src="./js/article.js"></script>
 </html>
