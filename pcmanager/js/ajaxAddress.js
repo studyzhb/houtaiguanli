@@ -176,8 +176,34 @@ define({
      * 商户后台管理
      */
     commercialManager:{
-        orderlist:'',
-        widthdrawList:''
+        order:{
+            showlist:'/order/getList',
+            //制定订单
+            getOneOrder:'/order/shopOrder',
+
+        },
+        //提现
+        withdraw:{
+            historyList:'/withdr/WithdrList',
+            //需要审核的列表
+            willWithdrawList:'/withdr/WithdrNeedArrival',
+            //未打款的提现申请
+            notWithdrawList:'/withdr/WithdrNoArrival',
+            //财务拒绝的申请通知
+            refuWithdrawList:'/withdr/WithdrNoPass',
+            //提现状态更改
+            changeWithStatus:'/withdr/withdrStatusChange'
+        },
+        account:{
+            //商户账目资金列表
+            showlist:'/accountList',
+            //银行卡列表
+            banklist:'/shopbank/BankCarList',
+            //查看制定商户的银行卡
+            getOneBanklist:'/shopbank/shopBankCarList',
+            //银行卡状态修改
+            changeBankStatus:'/shopbank/changeStatus'
+        }
     }
 
 });
