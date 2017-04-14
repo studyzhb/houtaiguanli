@@ -240,29 +240,36 @@
 <form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <div class="layui-form-item">
-        <label class="layui-form-label">银行卡号</label>
+        <label class="layui-form-label">开户人</label>
         <div class="layui-input-inline">
-        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="" />
+        
         <input type="text" name="name" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">卡号</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" name="number" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">银行名称</label>
         <div class="layui-input-inline">
-        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="" />
-        <input type="text" name="name" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        
+        <input type="text" name="bank" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">银行地址</label>
+        <label class="layui-form-label">具体地址</label>
         <div class="layui-input-inline">
-        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="" />
-        <input type="text" name="name" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        
+        <input type="text" name="branch" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
     <div class="layui-input-block">
-        <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
+        <div class="layui-btn" lay-submit lay-filter="addBankInfo">立即提交</div>
     </div>
     </div>
     

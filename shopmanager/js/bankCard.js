@@ -718,6 +718,29 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                 return false;
             });
 
+            form.on('submit(addBankInfo)',function(paraData){
+                console.log('111')
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.addBankCard,function(data){
+                        
+                        if(data.code==200){
+                            ShopObj.data.labelJson=[];
+                            layer.msg('添加成功');
+                            setTimeout(function(){
+                                layObj.layer.closeAll();
+                                ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+                            },1000);
+                        }else{
+                            ShopObj.data.labelJson=[];
+                            layer.msg('网络错误，请稍后重试');
+                            setTimeout(function(){
+                                
+                            },1000);
+                        }
+                    },paraData.field);
+                    
+                return false;
+            });
+
             form.on('submit(saveShopGoodsInfo)',function(paraData){
                 
                 paraData.field.cityid=params.id;
