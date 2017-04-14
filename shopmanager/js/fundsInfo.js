@@ -51,6 +51,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
             },
              //提现记录列表
             updatePageNum:function(num){
+                GoodsObj.methods.updateFunds();
                 var obj={page:GoodsObj.data.currentPage};
                 var ted=typeof num == 'object'?num:{};
                 obj=$.extend({},obj,ted);
@@ -61,6 +62,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                     if(data.code==200){
                         if(fistLoad){
                             GoodsObj.methods.updatePage();
+                            GoodsObj.data.bankList=data.data;
                         }
                         GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
                         $('.detailCount').text(data.total);
@@ -77,14 +79,10 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopOrder.orderAccount,function(data){
                     log.d(data);
                     if(data.code==200){
-                        if(fistLoad){
-                            GoodsObj.methods.updatePage();
-                        }
-                        GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
-                        $('.detailCount').text(data.total);
-                        //GoodsObj.methods.updateGoodsList(data.data);
+                        GoodsObj.data.moneyObj=data.data;
+                        
                     }else{
-                        //GoodsObj.methods.updateGoodsList([]);
+                        
                         layObj.layer.msg(data.msg);
                     }
                 });
@@ -412,6 +410,11 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
      * 申请提现
      */
     $('.applyMoney').on('click',function(){
+        //银行卡列表
+        $.each(GoodsObj.data.bankList,function(index,item){
+            $('<option>').appendTo($('.bankList')).html(item.name).attr('value',item.id);
+        });
+        form.render('select');
         layObj.layer.open({
             type:1,
              title:'申请提现',
@@ -475,9 +478,10 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
          GoodsObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),false);
      })
 
+
       GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);//updateFunds
 
-      GoodsObj.methods.updateFunds(GoodsObj.data.currentPage);
+    //   GoodsObj.methods.updateFunds(GoodsObj.data.currentPage);
     setTimeout(function(){
         form=layObj.form();
         
