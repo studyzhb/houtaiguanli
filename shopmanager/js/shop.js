@@ -587,6 +587,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
         ShopObj.methods.searchInfo(con,checkval);
     })
 
+    
+
 
     /**
      * 点击添加店铺先选择导航
@@ -620,25 +622,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
         // open('add-shop.html?navid='+ShopObj.data.navId+'&cityid='+params.id,'_self');
     })
 
-    $('.nav-menu-all-area').on('click','a',function(){
-        $(this).addClass('active').siblings().removeClass('active');
-        //log.d($(this))
-        ShopObj.data.navId=$(this).data('id');
-        ShopObj.data.goodsTemplate=$(this).data('template');
-        
-        log.d(ShopObj.data.navId);
-        if(ShopObj.data.currentStatus=='1'){
-            ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
-        }else{
-            ShopObj.methods.updateRecommendList(ShopObj.data.currentRePage);
-        }   
-        
-        ShopObj.methods.getLabelInfo();
-        ShopObj.methods.getGoodsLabelInfo();
-        ShopObj.methods.addShopGetSortInfo();
-        //获取产品所属分类
-        // ShopObj.methods.addGoodsGetSortInfo();
-    });
+   
 
     /**
      * 排序
@@ -774,6 +758,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                     ShopObj.data.sortAnotherArr.push(value);
                 }
                 
+            },
+            checkMoneyValid:function(value){
+
             }
             });
 
@@ -896,6 +883,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                 }
             },paraData.field);
         })
+        
 
         /**
          * 搜索下拉选中

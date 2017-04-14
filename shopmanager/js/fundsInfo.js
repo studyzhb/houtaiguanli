@@ -408,6 +408,24 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
          })
      })
 
+     /**
+     * 申请提现
+     */
+    $('.applyMoney').on('click',function(){
+        layObj.layer.open({
+            type:1,
+             title:'申请提现',
+            content: $('#authorForm'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:'400px',
+            zIndex:10,
+            maxmin: true,
+            end:function(){
+                $('#authorForm').hide();
+            }
+        })
+    })
+     
 
     /**
      * 推荐列表与全部切换
@@ -509,6 +527,9 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                     GoodsObj.data.sortAnotherArr.push(value);
                 }
                 
+            },
+            checkMoneyValid:function(value){
+
             }
             });
 
@@ -553,6 +574,25 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                     }
                 },paraData.field);
             })
+
+            /**
+             * 提现
+             */
+            form.on('submit(outputMoney)',function(paraData){
+                
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopOrder.applyMoney,function(data){
+                    
+                    if(data.code==200){
+                        layObj.layer.msg('更新成功');
+                        layObj.layer.closeAll();
+                        ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    
+                    }
+                },paraData.field);
+            })
+
     },1000)
 
     
