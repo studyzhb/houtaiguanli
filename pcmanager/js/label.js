@@ -264,7 +264,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var dObj={};
         var lid=$(this).data('id');
         //classType:1 文字 2 图标
-        if(classType==1){
+        if(classType==1||classType==3){
             tpl=$('.text-wrapper').html();
             $('.typeArea').html('');
             layObj.laytpl(tpl).render({id:lid},function(html){
