@@ -160,7 +160,7 @@
 <div class="alertCon-wrapper" id="editorgoodsInfo" style="margin:10px auto;display:none;">
   <div class="alert-main-con show-content">
       <form method="POST" action="" id="editorSingle">
-
+		
       <div class="baseSingleInfo"></div>
         
         <div class="col-3-table clearfix">
@@ -582,6 +582,10 @@
                 <label>最小起批量</label>
                 <input type="text" class="w160" name="minsell" value="{minsell}" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
               </div>
+              <div class="input-wrapper">
+                <label>债权金标准</label>
+                <input type="text" class="w160 brandlert" readonly name="" value="{debtName}">
+              </div>
               <!--<div class="input-wrapper">
                 <label>计价方式</label>
                 <div class="single-select">
@@ -605,6 +609,7 @@
               <input type="hidden" class="good_type_id" name="good_type_id" value="{good_type_id}">
               <input type="hidden" class="good_brand_id" name="good_brand_id" value="{good_brand_id}">
               <input type="hidden" class="good_special_id" name="special_id" value="{special_id}">
+              <input type="hidden" class="obligationType" name="debt_standard_id" value="{debt_standard_id}">
               <!--<div class="input-wrapper">
                 <label>零售单位</label>
                 <div class="single-select">

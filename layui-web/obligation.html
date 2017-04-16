@@ -280,6 +280,8 @@
             <td>还款中</td>
         {{# }else if(item.status=='2'){ }}
             <td>还款完成</td>
+        {{# }else if(item.status=='-1'){ }}
+            <td>申请拒绝</td>
         {{# } }}
         <td>
             {{# if(item.status=='0'){ }}

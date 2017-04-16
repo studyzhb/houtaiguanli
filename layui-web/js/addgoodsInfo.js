@@ -545,7 +545,7 @@ $('.alertCon-wrapper').on('click','.brandlert',function(){
             var $li=$('<a>').appendTo($('#province-list')).html(item.name).attr('value',item.id);
             $li.on('click',function(){
                 $(me).val($(this).html());
-                
+                $('.obligationType').val($(this).attr('value'));
                 isClick=true;
                 layer.close(ind);
 
