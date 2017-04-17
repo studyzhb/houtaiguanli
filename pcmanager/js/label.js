@@ -303,13 +303,19 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var lIntro=$(this).data('info');
         LabelObj.data.editLabelEl=$(this).prev();
         $('.editorNavBox').html('');
+
         var obj={id:lId,name:lName,typeid:lTypeid,introduce:lIntro,class:lClass};
+        console.log(obj);
         if(lClass=='2'){
+            if(!LabelObj.data.iconlist){
+                LabelObj.methods.getIconList()
+            }
             obj.iconlist=LabelObj.data.iconlist;
         }
         layObj.laytpl(tmpl).render(obj,function(html){
             $('.editorNavBox').append(html);
         })
+        form.render();
         layObj.layer.open({
             type:1,
             title:LabelObj.data.navName,

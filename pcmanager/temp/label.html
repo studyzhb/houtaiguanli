@@ -10,6 +10,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
+  	<link rel="stylesheet" href="../iconfont/iconfont.css" />
 	<script src="../common/layui/layui.js"></script>
     <script data-main="../js/domain" src="../js/require.min.js"></script>
     <style>
@@ -176,7 +177,7 @@
         <input type="hidden" name="name" value="" id="iconId" >
         {{# layui.each(d.iconlist,function(index,item){ }}
             <div class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-id="{{item.ico}}">
-              <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
+              <i class="iconfont" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
             </div>
         {{# }) }}
         <!--<input type="text" placeholder="内容区" autocomplete="off" class="layui-input singleNum" />-->
@@ -303,7 +304,7 @@
                       {{# if(item.status=='1'){ }}
                       <button class="layui-btn layui-btn-primary labelCon" data-id="{{itemLabel.id}}" data-info="{{=itemLabel.introduce}}">
                         {{# if(item.class==2){ }}
-                          <i class="layui-icon">{{=itemLabel.name}}</i> 
+                          <i class="iconfont">{{=itemLabel.name}}</i> 
                         {{# }else{ }}
                           {{=itemLabel.name}}
                         {{# } }}
@@ -380,11 +381,11 @@
           {{#  layui.each(d.iconlist,function(index,item){ }}
             {{# if(item.ico==d.name){ }}
             <div class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-id="{{item.ico}}">
-              <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
+              <i class="iconfont" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
             </div>
             {{# }else{ }}
               <div class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-id="{{item.ico}}">
-                <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
+                <i class="iconfont" style="font-size: 30px; color: #1E9FFF;">{{item.ico}}</i>
               </div>
             {{# } }}
           {{# }) }}
