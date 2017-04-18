@@ -1,5 +1,5 @@
 define({
-    preFix:'http://web.yylm.com/public/index.php/unionAdmin',
+    preFix:'/yylm/public/index.php/unionAdmin',
     /**
      * 导航模块
      */
@@ -71,6 +71,7 @@ define({
     },
     /**
      * 店铺 
+     */
     shop:{
         shoplist:'/shop/indexList',
         addShopList:'/shop/addShop',

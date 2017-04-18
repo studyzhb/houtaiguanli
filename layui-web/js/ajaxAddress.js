@@ -5,7 +5,11 @@ define({
         update:'/debtnexus/edit',
         typeshow:'/Proportion/show',
         typeAdd:'/Proportion/add',
-        updateType:'/Proportion/edit'
+        updateType:'/Proportion/edit',
+        updateListByTypeId:'/proportion/showgood',
+        searchFilterGoods:'/proportion/searchgood',
+        addObligationGoods:'/proportion/editStandard',
+        deleteObligationGoods:'/proportion/delgoodtandard'
     },
     article:{
         showlist:'/Article/lst',
