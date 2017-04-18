@@ -53,7 +53,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                                 ShopObj.methods.updatePageNum(data.curr,para);
                             }else if(ShopObj.data.currentStatus=='2'){
                                 ShopObj.data.currentRePage=data.curr;
-                                ShopObj.methods.updateRecommendList(data.curr);
+                                ShopObj.methods.updateRecommendList(data.curr,para);
                             }                 
                         }
                     });
@@ -67,7 +67,11 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                     cityid:params.id,
                     navid:ShopObj.data.navId
                 }
-
+                if(ShopObj.data.currentStatus=='1'){
+                    $('.unedit').addClass('layui-this').siblings().removeClass('layui-this');
+                }else{
+                    $('.edited').addClass('layui-this').siblings().removeClass('layui-this');
+                }
                 para=$.extend(options,para||{});
 
                 log.d(params);
@@ -87,8 +91,19 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                     }
                 },para);
             },
-            updateRecommendList:function(num){
+            updateRecommendList:function(num,para){
                 $('#tableWrapper').html('');
+                var options={
+                    page:num,
+                    cityid:params.id,
+                    navid:ShopObj.data.navId
+                }
+                if(ShopObj.data.currentStatus=='1'){
+                    $('.unedit').addClass('layui-this').siblings().removeClass('layui-this');
+                }else{
+                    $('.edited').addClass('layui-this').siblings().removeClass('layui-this');
+                }
+                para=$.extend(options,para||{});
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.recommendList,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -102,7 +117,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         layObj.layer.msg(data.msg);
                         ShopObj.methods.updateShopList([]);
                     }
-                },{page:num,cityid:params.id,navid:ShopObj.data.navId});
+                },para);
             },
             updateRecommendStatus:function(id,status){
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.addRecommend,function(data){
@@ -117,6 +132,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 },{id:id,recommend:status});
             },
             updateShopStatus:function(sta,id){
+                //
+                
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.updateShopStatus,function(data){
                     if(data.code==200){
                         layObj.layer.msg(data.msg);
@@ -343,13 +360,18 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 }
                 var arr=[];
                 arr[0]={id:id,displayorder:tOrder};
-                if(targetEl){
+                if(!!targetEl){
                     arr.push(targetEl);
                 }
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.sortShop,function(data){
                     if(data.code==200){
                         layObj.layer.msg('排序成功');
-                        ShopObj.methods.updatePageNum(ShopObj.data.currPage);
+                        if(ShopObj.data.currentStatus=='1'){
+                            ShopObj.methods.updatePageNum(ShopObj.data.currPage);
+                        }else{
+                            ShopObj.methods.updateRecommendList(ShopObj.data.currentRePage);
+                        }
+                        
                         
                     }else{
                         layObj.layer.msg(data.msg);
@@ -483,7 +505,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         $(this).addClass('layui-this').siblings().removeClass('layui-this');
         ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
     })
-
+    //推荐
     $('.edited').on('click',function(){
         ShopObj.data.currentStatus='2';
         fistLoad=true;

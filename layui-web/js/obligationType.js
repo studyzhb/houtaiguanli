@@ -1,8 +1,8 @@
 require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxAddress,layObj,log){
     
     var common=myObj.load();
-    var fistLoad=false;
-    var alertFirstLoad=false;
+    var fistLoad=true;
+    var alertFirstLoad=true;
     var form;
     /**
      * 获取地址栏中参数信息
@@ -35,7 +35,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             typeInfo:[],
             tempGoodsContent:$('#sortContent').html(),
             arrData:[],
-            alertPageCount:''
+            alertPageCount:'1'
         },
         methods:{
             //获取标准下的商品
@@ -45,10 +45,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     
                     var tml=$('#showGoodsContent').html();
                     if(data.code==200){
+                        
+                        classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
                         if(alertFirstLoad){
                             classObj.methods.updateAlertPage(id);
                         }
-                        classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
                         $('.obligationTotal').html(data.num);
                         layObj.laytpl(tml).render(data.data,function(html){
                             $('#goods-orderlist').append(html);
@@ -66,6 +67,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 })
             },
             updateAlertPage:function(id){
+                
                 layui.use(['laypage', 'layer'],function(){
                     var laypage=layui.laypage;
                     var layer = layui.layer;
@@ -446,7 +448,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                             $('#searchedlist').append(html);
                         })
 
-                        layer.open({
+                        classObj.data.alertIndex=layer.open({
                           type: 1,
                           content: $('#goods-list'), //这里content是一个DOM
                           shade:[0.8,'#000'],
@@ -610,7 +612,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.addObligationGoods,function(data){
             if(data.code==200){
                 layObj.layer.closeAll('loading');
-                layObj.layer.close(layObj.layer.index);
+                layObj.layer.close(classObj.data.alertIndex);
                 layObj.layer.msg(data.message);
                 classObj.methods.updateObligationTypeInfoById(classObj.data.typeId,classObj.data.currentPage)
             }else{

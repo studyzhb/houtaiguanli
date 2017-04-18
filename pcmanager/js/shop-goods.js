@@ -32,7 +32,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            GoodsObj.methods.updatePageNum(data.curr);
+                            // GoodsObj.methods.updatePageNum(data.curr);
                             //得到页数data.curr
                             if(GoodsObj.data.currentStatus=='1'){
                                 GoodsObj.data.currentPage=data.curr;
@@ -49,6 +49,11 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
             },
             updatePageNum:function(num){
                 $('#tableWrapper').html('');
+                if(GoodsObj.data.currentStatus=='1'){
+                    $('.unedit').addClass('layui-this').siblings().removeClass('layui-this');
+                }else{
+                    $('.edited').addClass('layui-this').siblings().removeClass('layui-this');
+                }
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -66,6 +71,11 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
             },
             updateRecommendList:function(num){
                 $('#tableWrapper').html('');
+                if(GoodsObj.data.currentStatus=='1'){
+                    $('.unedit').addClass('layui-this').siblings().removeClass('layui-this');
+                }else{
+                    $('.edited').addClass('layui-this').siblings().removeClass('layui-this');
+                }
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.recommendList,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -202,13 +212,18 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 }
                 var arr=[];
                 arr[0]={id:id,displayorder:tOrder};
-                if(targetEl){
+                if(!!targetEl){
                     arr.push(targetEl);
                 }
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.sortGoods,function(data){
                     if(data.code==200){
                         layObj.layer.msg('排序成功');
-                        GoodsObj.methods.updatePageNum(GoodsObj.data.currPage);
+                        if(GoodsObj.data.currentStatus=='1'){
+                            GoodsObj.methods.updatePageNum(GoodsObj.data.currPage);
+                        }else{
+                            GoodsObj.methods.updateRecommendList(GoodsObj.data.currentRePage);
+                        }
+                        
                     }else{
                         layObj.layer.msg(data.msg);
                     }
