@@ -272,7 +272,10 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 layObj.laytpl(tplArea).render(ShopObj.data.arrArea,function(html){
                     $('.shopTypeWrapper').append(html);
                 })
-                form.render();
+                setTimeout(function(){
+                    form.render();
+                },0);
+                
             },
             /**
              * 编辑渲染标签
@@ -887,8 +890,9 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             })
 
             form.on('submit(shopInfo)',function(paraData){
-                log.d(paraData.field)
-                log.d(ShopObj.data.labelJson)
+                log.d(paraData.field);
+                log.d(ShopObj.data.labelJson);
+                layObj.layer.load();
                 paraData.field.cityid=params.id;
                 paraData.field.navid=ShopObj.data.navId;
                 paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
@@ -904,7 +908,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         ShopObj.data.labelJson=[];
                         ShopObj.data.sortObj={};
                         ShopObj.data.sortAnotherArr=[];
-                        log.d(data);
+                        layObj.layer.closeAll('loading');
                         if(data.code==200){
                             ShopObj.data.labelJson=[];
                             layer.msg('添加成功');
@@ -925,7 +929,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             });
 
             form.on('submit(saveShopGoodsInfo)',function(paraData){
-                
+                 layObj.layer.load();
                 paraData.field.cityid=params.id;
                 paraData.field.navid=ShopObj.data.navId;
                 paraData.field.shopid=ShopObj.data.shopid;
@@ -942,7 +946,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         ShopObj.data.sortObj={};
                         ShopObj.data.labelJson=[];
                         ShopObj.data.sortAnotherArr=[];
-                        log.d(data);
+                        layObj.layer.closeAll('loading');
                         if(data.code==200){
                             layer.msg('添加成功');
                             setTimeout(function(){
@@ -962,6 +966,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             });
 
             form.on('submit(editorDiscountInfo)',function(paraData){
+                 layObj.layer.load();
             paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
             var arr=ShopObj.methods.repeatArr(ShopObj.data.labelJson);
                 for(var i in ShopObj.data.sortObj){
@@ -972,6 +977,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 paraData.field.classifyids=ShopObj.data.sortAnotherArr.join(',');
             common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.updateShop,function(data){
                 log.d(data);
+                layObj.layer.closeAll('loading');
                 ShopObj.data.sortObj={};
                 ShopObj.data.labelJson=[];
                 ShopObj.data.sortAnotherArr=[];

@@ -548,12 +548,13 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
             })
 
             form.on('submit(editorDiscountInfo)',function(paraData){
+                 layObj.layer.load();
                 paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
                 // paraData.field.classifyids=GoodsObj.data.sortAnotherArr.join(',');
                 var arr=GoodsObj.methods.repeatArr(GoodsObj.data.labelJson);
                 paraData.field.goods_label=arr;
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.editShopGoodsById,function(data){
-                    log.d(data);
+                    layObj.layer.closeAll('loading');
                     $('script#container').appendTo($('body'));
                     GoodsObj.data.sortObj={};
                     GoodsObj.data.labelJson=[];

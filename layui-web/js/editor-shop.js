@@ -73,7 +73,7 @@ var addShopPage={
 			console.log(data[0]);
 		//config.formatTemplate(data[0],tmphtml)
 		var tmphtml=$('.editShopCon').html();
-		var atime=data[0].worktime.split('-')?data[0].worktime.split('-'):[];
+		var atime=/-/.test(data[0].worktime)?data[0].worktime.split('-'):[];
 		addShopPage.worktime.start=atime[0];
 		addShopPage.worktime.end=atime[1];
 		var obj=data[0];
@@ -221,7 +221,7 @@ var addShopPage={
                 resizeEnable: true,
                 zoom:20,//地图显示的缩放级别
                 isHotspot: true,
-                center:[addShopPage.location.longitude,addShopPage.location.latitude]
+                center:[addShopPage.location.longitude||'113.7',addShopPage.location.latitude||'34.7']
             }),
             keyboardEnable:false
         });

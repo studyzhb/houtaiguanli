@@ -170,13 +170,13 @@
   <div class="layui-form-item">
                 <label class="layui-form-label">店铺名称</label>
                 <div class="layui-input-block">
-                  <input type="text" name="name" value="{{d.name}}"  autocomplete="off" class="layui-input">
+                  <input type="text" name="name" value="{{=d.name}}"  autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺编号</label>
                 <div class="layui-input-block">
-                  <input type="text" name="coding" value="{{d.coding}}" readonly placeholder="请输入" class="layui-input shop-coding">
+                  <input type="text" name="coding" value="{{=d.coding}}" readonly placeholder="请输入" class="layui-input shop-coding">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -184,44 +184,57 @@
               
                 <div class="layui-input-inline">
                   <select name="provinces" lay-filter="pro" class="provinceswrap">
-                    <option selected value="{{d.provinces}}">{{d.provinces}}</option>
+                    <option selected value="{{=d.provinces}}">{{=d.provinces}}</option>
                   </select>
                 </div>
                 <div class="layui-input-inline">
                   <select name="city" lay-filter="city" class="cityswrap">
                     <!--<option value="">市</option>-->
-                    <option selected value="{{d.city}}">{{d.city}}</option>
+                    <option selected value="{{=d.city}}">{{=d.city}}</option>
                   </select>
                 </div>
                 <div class="layui-input-inline">
                   <select name="county" class="counwrap">
                     <!--<option value="">县</option>-->
-                    <option value="{{d.county}}" selected>{{d.county}}</option>
+                    <option value="{{=d.county}}" selected>{{=d.county}}</option>
                   </select>
                 </div>
               </div>
                <div class="layui-form-item">
                 <label class="layui-form-label">联系人</label>
                 <div class="layui-input-block">
-                  <input type="text" name="linkname" value='{{d.linkname}}' placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="linkname" value='{{=d.linkname}}' placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-block">
-                  <input type="text" name="details" value="{{d.details}}" placeholder="请点击地图更改地址" autocomplete="off" class="layui-input address-shop">
+                  <input type="text" name="details" value="{{=d.details}}" placeholder="请点击地图更改地址" autocomplete="off" class="layui-input address-shop">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺电话</label>
                 <div class="layui-input-block">
-                  <input type="text" name="tel" value="{{d.tel}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="tel" value="{{=d.tel}}" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">固话</label>
                 <div class="layui-input-block">
-                  <input type="text" name="fixedline" value="{{d.fixedline}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="fixedline" value="{{=d.fixedline}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">是否同意债权金</label>
+                <div class="layui-input-block">
+                  {{# if(d.is_debt==0){ }}
+                    <input type="radio" name="is_debt" value="0" title="不同意" checked>
+                  <input type="radio" name="is_debt" value="1" title="同意" >
+                  {{# }else if(d.is_debt==1){ }}
+                      <input type="radio" name="is_debt" value="0" title="不同意">
+                    <input type="radio" name="is_debt" value="1" title="同意" checked>
+                  {{# } }}
+                  
                 </div>
               </div>
               
@@ -262,21 +275,21 @@
                 <label class="layui-form-label">营业时间</label>
                 <div class="layui-input-inline">
                   
-                  <input type="text" id="date" placeholder="hh:mm:ss" value="{{d.startTime}}" readonly autocomplete="off" class="layui-input">
+                  <input type="text" id="date" placeholder="hh:mm:ss" value="{{=d.startTime}}" readonly autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
                   
-                  <input type="text" id="date01" placeholder="hh:mm:ss" value="{{d.endTime}}" readonly autocomplete="off" class="layui-input">
+                  <input type="text" id="date01" placeholder="hh:mm:ss" value="{{=d.endTime}}" readonly autocomplete="off" class="layui-input">
                 </div>
                 <input type="hidden" name="worktime" class="worktimesae" value="">
               </div>
               <div class="layui-form-item" style="display:none">
                 <label class="layui-form-label">经纬度</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="longitude" id="lngX" value="{{d.longitude}}" placeholder="经度" autocomplete="off" class="layui-input">
+                  <input type="text" name="longitude" id="lngX" value="{{=d.longitude}}" placeholder="经度" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
-                  <input type="text" name="latitude" id="latY" value="{{d.latitude}}" placeholder="纬度" autocomplete="off" class="layui-input">
+                  <input type="text" name="latitude" id="latY" value="{{=d.latitude}}" placeholder="纬度" autocomplete="off" class="layui-input">
                 </div>
               </div>
                <div class="layui-form-item">
@@ -284,7 +297,7 @@
 
                 <div class="layui-input-inline">
                   <select name="dept_id" class="provinceswrap1">
-                    <option value="{{d.DeptId}}" selected >{{d.DeptName}}</option>
+                    <option value="{{=d.DeptId}}" selected >{{=d.DeptName}}</option>
                   </select>
                 </div>
                 

@@ -178,14 +178,14 @@
                                                      </div>
                           
                   </div>
-                  <input type="hidden" name="logo" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" name="logo" lay-verify="required" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
               <div class="layui-form-item">
                 <label class="layui-form-label">店铺名称</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="name" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
+                  <input type="text" name="name" lay-verify="required" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
@@ -199,12 +199,12 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">店铺负责人</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="proprietor" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="proprietor" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                   
                 </div>
                 <label class="layui-form-label">联系电话</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="telephone" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="telephone" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
@@ -220,11 +220,11 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">证件号码</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="cardid" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="cardid" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 <label class="layui-form-label">营业执照号码</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="license" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="license" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
@@ -321,7 +321,7 @@
                                                      </div>
                           
                   </div>
-                  <input type="hidden" name="intr_pic" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" lay-verify="required" name="intr_pic" placeholder="请输入" value="" autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
@@ -331,7 +331,7 @@
                 <div class="layui-input-inline">
                   
                   <input type="text" id="date" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
-                  <input type="hidden" name="validity_time" value="0" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
+                  <input type="hidden" lay-verify="required" name="validity_time" value="0" placeholder="hh:mm:ss"  readonly autocomplete="off" class="layui-input">
 
                 </div>
                 <!--<div class="layui-input-inline">
@@ -354,7 +354,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺简介</label>
                 <div class="layui-input-block"> 
-                  <textarea name="shop_info" placeholder="请输入内容" class="layui-textarea"></textarea>
+                  <textarea name="shop_info" lay-verify="required" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
@@ -367,7 +367,7 @@
                                                      </div>
                           
                   </div>
-                  <input type="hidden" name="environment_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" lay-verify="required" name="environment_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
@@ -380,7 +380,7 @@
                                                      </div>
                           
                   </div>
-                  <input type="hidden" name="aptitude_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" lay-verify="required" name="aptitude_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                              </div>
                 </div>
                 
@@ -397,14 +397,14 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">优惠力度</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="discount"  placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" name="discount"  placeholder="请输入" value="" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">预约</label>
                 <div class="layui-input-block">
-                  <input type="radio" name="bespoke" value="1" title="是" lay-verify='isCheckTrue'>
-                  <input type="radio" name="bespoke" value="0" title="否" checked lay-verify='isCheckTrue'>
+                  <input lay-verify="required" type="radio" name="bespoke" value="1" title="是" lay-verify='isCheckTrue'>
+                  <input lay-verify="required" type="radio" name="bespoke" value="0" title="否" checked lay-verify='isCheckTrue'>
                 </div>
                 <div class="layui-input-inline" style="display: none;">
                   <input type="text" name="bespoke_info" class="layui-input" placeholder="至少提前多长时间预约">
@@ -420,7 +420,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-block">
-                  <input type="text" name="address" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
+                  <input type="text" lay-verify="required" name="address" readonly placeholder="请输入" autocomplete="off" class="layui-input address-shop">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
                
@@ -613,7 +613,7 @@
 
 <!--添加店铺产品信息-->
 
-<form class="layui-form layui-form-pane addShopGoodsForm" method="POST" style="display: none;font-size:14px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane addShopGoodsForm" method="POST" style="display: none;font-size:12px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">产品图片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
@@ -622,7 +622,7 @@
                                                      </div>
                           
                   </div>
-                  <input type="hidden" name="goods_logo" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" lay-verify="required" name="goods_logo" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                 </div>
                 
                              </div>
@@ -630,11 +630,11 @@
                 <!---->
                 <label class="layui-form-label">产品名称</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="goodsname" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" name="goodsname" placeholder="请输入" value="" autocomplete="off" class="layui-input">
                 </div>
                 <label class="layui-form-label">产品数量</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="num" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" name="num" value="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>             
               
@@ -647,11 +647,11 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">原价</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="price_sell" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" name="price_sell" value="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 <label class="layui-form-label">支付价格</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="price_pay" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" name="price_pay" placeholder="请输入" value="" autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
@@ -696,7 +696,7 @@
                                                      </div>
                           
                   </div>
-                  <input type="hidden" name="goods_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" lay-verify="required" name="goods_pic" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
                 </div>
                 
                              </div>
@@ -719,9 +719,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">使用规则</label>
                     <div class="layui-input-inline" style="width: 600px;">
-                    <input type="radio" name="use_time" value="1" title="节假日通用" lay-filter="isClickTrue">
-                    <input type="radio" name="use_time" value="2" title="节假日不能使用" checked lay-filter="isClickTrue">
-                    <input type="radio" name="use_time" value="3" title="特定日期不能使用" lay-filter="isClickTrue">
+                    <input type="radio" lay-verify="required" name="use_time" value="1" title="节假日通用" lay-filter="isClickTrue">
+                    <input type="radio" lay-verify="required" name="use_time" value="2" title="节假日不能使用" checked lay-filter="isClickTrue">
+                    <input type="radio" lay-verify="required" name="use_time" value="3" title="特定日期不能使用" lay-filter="isClickTrue">
                     </div>
                     <div class="layui-input-inline" style="display: none;">
                       <input type="text" name="use_time_info" class="layui-input" placeholder="特殊时间说明">
