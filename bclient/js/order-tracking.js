@@ -166,5 +166,14 @@ $(function(){
 		orderTracking.payOrder();
 	})
 
+	$('.store2shop').on('click',function(){
+		layer.load();
+		config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.store2shop,function(data){
+				
+				layer.msg(data.message);
+				layer.closeAll('loading');
+		});
+	})
+
 	
 })

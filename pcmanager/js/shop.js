@@ -124,7 +124,12 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                     log.d(data);
                     if(data.code==200){
                         layObj.layer.msg('添加成功');
-                        ShopObj.methods.updatePageNum(1);
+
+                        if(ShopObj.data.currentStatus=='1'){
+                            ShopObj.methods.updatePageNum(ShopObj.data.currPage);
+                        }else{
+                            ShopObj.methods.updateRecommendList(ShopObj.data.currentRePage);
+                        }
                     }else{
                         layObj.layer.msg(data.msg);
 
@@ -137,7 +142,12 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.updateShopStatus,function(data){
                     if(data.code==200){
                         layObj.layer.msg(data.msg);
-                        ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+                        if(ShopObj.data.currentStatus=='1'){
+                            ShopObj.methods.updatePageNum(ShopObj.data.currPage);
+                        }else{
+                            ShopObj.methods.updateRecommendList(ShopObj.data.currentRePage);
+                        }
+                        
                     }else{
                         layObj.layer.msg(data.msg);
                     }
@@ -597,7 +607,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         var sta=$(this).data("status");
         var id=$(this).data("id");
         if(sta=='0'){
-            layObj.layer.confirm('你确定要下架此商品?',function(index){
+            layObj.layer.confirm('你确定要执行此操作?',function(index){
                 layObj.layer.close(index);
                  ShopObj.methods.updateShopStatus(sta,id);
             })

@@ -96,7 +96,12 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                     log.d(data);
                     if(data.code==200){
                         layObj.layer.msg('添加成功');
-                       GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
+                        if(GoodsObj.data.currentStatus=='1'){
+                            GoodsObj.methods.updatePageNum(GoodsObj.data.currPage);
+                        }else{
+                            GoodsObj.methods.updateRecommendList(GoodsObj.data.currentRePage);
+                        }
+                       
                     }else{
                         layObj.layer.msg(data.msg);
                     }
@@ -106,7 +111,12 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.updateShopGoodsStatus,function(data){
                     if(data.code==200){
                         layObj.layer.msg(data.msg);
-                        GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
+                        if(GoodsObj.data.currentStatus=='1'){
+                            GoodsObj.methods.updatePageNum(GoodsObj.data.currPage);
+                        }else{
+                            GoodsObj.methods.updateRecommendList(GoodsObj.data.currentRePage);
+                        }
+                        
                     }else{
                         layObj.layer.msg(data.msg);
                     }
@@ -352,7 +362,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
         var sta=$(this).data("status");
         var id=$(this).data("id");
         if(sta=='0'){
-            layObj.layer.confirm('你确定要下架此商品?',function(index){
+            layObj.layer.confirm('你确定要执行此操作?',function(index){
                 layObj.layer.close(index);
                  GoodsObj.methods.updateShopGoodsStatus(sta,id);
             })

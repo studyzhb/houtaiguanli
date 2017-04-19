@@ -126,6 +126,8 @@ var config={
       shopInfo:'/Shopdetail/index',
       shopbalance:'/mypurse/index'
     },
+    //一键同步
+      store2shop:'/Aa/stroetoshop',
     //推送
     postmessage:'/shop/shop/public/index.php/admin/tui/tuisong',
     //验证供应商编号
@@ -232,7 +234,8 @@ var config={
       //配送
       sendingStorelist:'/shop/shop/public/index.php/admin/Store/peisong',
       //拒绝
-      refuseStorelist:'/shop/shop/public/index.php/admin/Store/jujue'
+      refuseStorelist:'/shop/shop/public/index.php/admin/Store/jujue',
+
 
 	},
   pSort:{
