@@ -16,5 +16,11 @@ define({
         addSingle:'/Article/add',
         updateSingle:'/Article/update',
         changeStatus:'/Article/beginStopUse'
+    },
+    distributeShare:{
+        sharelist:'/share/show',
+        updateShareInfo:'/share/editdhare',
+        disShareList:'/sharesub/show',
+        updateDisShareInfo:'/sharesub/show'
     }
 });

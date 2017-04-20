@@ -220,11 +220,11 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">证件号码</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="cardid" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="cardid" lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"   placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 <label class="layui-form-label">营业执照号码</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="license" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="license" lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')"  placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
@@ -316,7 +316,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺图片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                  <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd" >   
                                                      </div>
                           
@@ -362,7 +362,7 @@
                 <label class="layui-form-label">店铺环境</label>
                 
                 <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                  <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd" >   
                                                      </div>
                           
@@ -375,7 +375,7 @@
                 <label class="layui-form-label">店铺资质</label>
                 
                 <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                  <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd" >   
                                                      </div>
                           
@@ -397,7 +397,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">优惠力度</label>
                 <div class="layui-input-inline">
-                  <input type="text" lay-verify="required" name="discount"  placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" name="discount"  placeholder="请输入1-100之间的数值" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" value="" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -413,7 +413,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">人均消费</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="average_price" value=""  placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="average_price" value="" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>
 
@@ -617,7 +617,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">产品图片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                  <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd-single">   
                                                      </div>
                           
@@ -634,7 +634,7 @@
                 </div>
                 <label class="layui-form-label">产品数量</label>
                 <div class="layui-input-inline">
-                  <input type="text" lay-verify="required" name="num" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" name="num" value="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
               </div>             
               
@@ -647,11 +647,11 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">原价</label>
                 <div class="layui-input-inline">
-                  <input type="text" lay-verify="required" name="price_sell" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" name="price_sell" value="" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 <label class="layui-form-label">支付价格</label>
                 <div class="layui-input-inline">
-                  <input type="text" lay-verify="required" name="price_pay" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                  <input type="text" lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" name="price_pay" placeholder="请输入" value="" autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
@@ -691,7 +691,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">套餐图片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
-                 <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                 <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
                            <div class="detail-image-col-2 imageadd">   
                                                      </div>
                           
@@ -898,7 +898,7 @@
                 </div>
                 <label class="layui-form-label">联系电话</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="telephone" value="{{=d.telephone}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="telephone" value="{{=d.telephone}}"  placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
                 
               </div>
@@ -978,7 +978,7 @@
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">店铺图片</label>
                 <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                  <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
                       {{# layui.each(eval(d.intr_pic)||[],function(index,item){ }}
                             <div class="detail-image-col-2 detail-banner-split">
                                 <div class="opacity-z-index"></div>
@@ -1033,7 +1033,7 @@
                 <label class="layui-form-label">店铺环境</label>
                 
                 <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                  <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
                     {{# if(d.environment_pic){ }}
                         {{# layui.each(eval(d.environment_pic)||[],function(index,item){ }}
                             <div class="detail-image-col-2 detail-banner-split">
@@ -1064,7 +1064,7 @@
                 <label class="layui-form-label">店铺资质</label>
                 
                 <div class="layui-input-block" style="margin-top:10px;">
-                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                  <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
                     
                       {{# layui.each(d.aptitude_pic?eval(d.aptitude_pic):[],function(index,item){ }}
                             <div class="detail-image-col-2 detail-banner-split">

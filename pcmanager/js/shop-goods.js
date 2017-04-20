@@ -565,7 +565,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                         GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
                     }else{
                         layObj.layer.msg(data.msg);
-                        GoodsObj.methods.getSingleInfo();
+                        // GoodsObj.methods.getSingleInfo();
                     }
                 },paraData.field);
             })
