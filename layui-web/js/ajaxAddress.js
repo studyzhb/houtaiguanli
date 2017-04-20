@@ -19,8 +19,8 @@ define({
     },
     distributeShare:{
         sharelist:'/share/show',
-        updateShareInfo:'/share/editdhare',
+        updateShareInfo:'/share/editShare',
         disShareList:'/sharesub/show',
-        updateDisShareInfo:'/sharesub/show'
+        updateDisShareInfo:'/sharesub/editSubShare'
     }
 });

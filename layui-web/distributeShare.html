@@ -53,7 +53,7 @@
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
             
-            <form class="layui-form layui-form-pane" style="display:inline-block;">
+            <form class="layui-form layui-form-pane" style="display:none;">
               
               
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
@@ -77,14 +77,19 @@
                     <i class="layui-icon">&#x1002;</i>  
                 </div>
             </form>
+          <fieldset style="border: none;padding: 0;border-top: 1px solid #eee;margin: 20px;">  
+                <legend>
+                    分润比例
+                </legend>
+            </fieldset>
+
           <table class="layui-table">
           <colgroup>
             <col width="100">
             <col >
             <col >
             <col > 
-            <col width="100">
-            <col >
+            <col width="300">
             <col>
 
           </colgroup>
@@ -92,9 +97,39 @@
             <tr>
               <th>序号</th>
               <th>名称</th>
-              <th>最小提现金额</th>
-              <th>返现比例</th>
-              <th>状态</th>
+              <th>分润比例</th>
+              <th>创建时间</th>
+              <th>操作</th>
+            </tr> 
+          </thead>
+          <tbody id="all-share-list">
+
+          </tbody>
+      </table>
+
+
+          <fieldset style="border: none;padding: 0;border-top: 1px solid #eee;margin: 20px;">  
+                <legend>
+                    分级分润比例
+                </legend>
+            </fieldset>
+
+          <table class="layui-table">
+          <colgroup>
+            <col width="100">
+            <col >
+            <col >
+            <col > 
+            <col width="300">
+            <col>
+
+          </colgroup>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>一级返现比例</th>
+              <th>二级返现比例</th>
               <th>创建时间</th>
               <th>操作</th>
             </tr> 
@@ -108,7 +143,7 @@
           </div>
         </div>
 
-        <div style="height:55px;padding-right:10px;">
+        <div style="display:none;height:55px;padding-right:10px;">
             <div id="page" style="float:right;"></div>
             <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
         </div>
@@ -161,7 +196,7 @@
 </form>
 
 <!--编辑-->
-<form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 12px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <!--<div class="layui-form-item">
     <label class="layui-form-label">编辑</label>
@@ -185,42 +220,100 @@
     
 </form>
 
-<script type="text/html" id="editorNavCon">
+<!--编辑分润比例-->
+<form class="layui-form layui-form-pane" id="editorShareTypeWrapper" method="POST" action="" style="display: none;font-size: 12px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <!--<div class="layui-form-item">
+    <label class="layui-form-label">编辑</label>
+    <div class="layui-input-block">
+        <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+    </div>
+    </div>-->
+
+
+    <div class="editor-share-type">
+
+    </div>
+
+
+
     <div class="layui-form-item">
-        <label class="layui-form-label">类型名称</label>
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorShareType">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<script type="text/html" id="editorNavCon">
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
         <div class="layui-input-inline">
         <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
-        <input type="hidden" autocomplete="off" name="status" class="layui-input" value="{{d.status}}" />
-        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        
+        <input type="text" name="name" data-info="{{=d.name}}" value="{{=d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>-->
+    <div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">一级返现比例</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d|\.]/g,'')" onblur="(this.value=((this.value.replace(/[^\d|\.]/g,'')-0)/100).toFixed(2))&&this.parentNode.parentNode.parentNode.getElementsByTagName('input')[1].setAttribute('value',1-this.value)" name="top_share" data-info="{{d.top_share}}" value="{{d.top_share}}"  required  lay-verify="required" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
+                
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最小提现金额</label>
+        <label class="layui-form-label">二级返现比例</label>
         <div class="layui-input-inline">
         
-        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)" name="min_money" data-info="{{d.min_money}}" value="{{d.min_money}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        <input type="text" name="on_share" data-info="{{d.on_share}}" value="{{d.on_share}}" required  lay-verify="required" readonly  placeholder="1-100之间数字" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">返现比例</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="scale" data-info="{{d.scale}}" value="{{d.scale}}" required  lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
-        </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">债权金规则</label>
+        <label class="layui-form-label">描述信息</label>
         <div class="layui-input-block">
-            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.rolecon}}</textarea>
+            <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+            <textarea name="des" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.des}}</textarea>
         </div>
         
     </div>
 </script>
 
 
+<script type="text/html" id="editorShareCon">
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        
+        <input type="text" name="name" data-info="{{=d.name}}" value="{{=d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>-->
+    <div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">分润比例</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d|\.]/g,'')" onblur="(this.value=((this.value.replace(/[^\d|\.]/g,'')-0)/100).toFixed(2))" name="share" data-info="{{=d.share}}" value="{{=d.share}}" required  lay-verify="required"  placeholder="1-100之间数字" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">描述信息</label>
+        <div class="layui-input-block">
+            <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+            <textarea name="des" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.des}}</textarea>
+        </div>
+        
+    </div>
+</script>
+
 
 <!--编辑-->
-<form class="layui-form layui-form-pane" id="editorAreaWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane" id="editorAreaWrapper" method="POST" action="" style="display: none;font-size: 12px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     <div class="editorAreaInfo">
 
     </div>
@@ -233,7 +326,7 @@
 </form>
 
 <!--添加类型内容-->
-<form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 12px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <div class="layui-form-item">
     <label class="layui-form-label sortName">类型内容</label>
@@ -383,31 +476,31 @@
 
     <tr>
     <td>1</td>
-    <td class="typeName">{{=d.name}}</td>
-    <td >{{=d.}}</td>
-    <td >{{=item.scale}}</td>
+    <td class="typeName">{{=d.des}}</td>
+    <td >{{=d.top_share}}</td>
+    <td >{{=d.on_share}}</td>
+    <td>{{=d.createtime}}</td>
     <td>
-      {{# if(item.status=='1'){ }}
-        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
-              启用
-        </button>
-      {{# }else{ }}
-        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}">
-              停用
-        </button>
-      {{# } }}
-    </td>
-    <td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>
-    <td>
-    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
-    <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.name}}">
-            <i class="layui-icon">&#xe608;</i>
-    </div>
+    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{d.id}}" data-name="{{=d.typename}}" >编辑</div>
     </td>
   </tr>
 
 </script>
 
+
+<script id="shareContent" type="text/html">
+
+    <tr>
+    <td>1</td>
+    <td class="typeName">{{=d.des}}</td>
+    <td >{{=d.share}}</td>
+    <td>{{=d.createtime}}</td>
+    <td>
+    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleShareType" data-id="{{d.id}}" data-name="{{=d.typename}}" >编辑</div>
+    </td>
+  </tr>
+
+</script>
 
 </div>
 <script id="showGoodsContent" type="text/html">

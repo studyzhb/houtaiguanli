@@ -34,6 +34,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             typeId:"",
             typeInfo:[],
             tempGoodsContent:$('#sortContent').html(),
+            tempShareContent:$('#shareContent').html(),
             arrData:[],
             alertPageCount:'1'
         },
@@ -62,8 +63,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                  var obj={};
                  obj.data=data;
                  log.d(obj);
-                layObj.laytpl(classObj.data.tempGoodsContent).render(obj,function(html){
+                layObj.laytpl(classObj.data.tempGoodsContent).render(data,function(html){
                     $('#all-sort-list').append(html);
+                })
+            },
+            updateShareList:function(data){
+                $('#all-share-list').html('');
+                 var obj={};
+                 obj.data=data;
+                 log.d(obj);
+                layObj.laytpl(classObj.data.tempShareContent).render(data,function(html){
+                    $('#all-share-list').append(html);
                 })
             },
             updateAlertPage:function(id){
@@ -108,12 +118,28 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     log.d(data);
                     if(data.code==200){
                         classObj.data.arrData=data.data;
+                        classObj.data.disShareData=data.data;
                         // if(fistLoad){
                         //     classObj.methods.updatePage();
                         // }
                         // classObj.data.pageCount=Math.ceil(data.pageAllNum/10);
                         // $('.detailCount').text(data.pageAllNum);
                         classObj.methods.updateArealist(data.data);
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{page:num});
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.distributeShare.sharelist,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        // classObj.data.arrData=data.data;
+                        classObj.data.shareData=data.data;
+                        // if(fistLoad){
+                        //     classObj.methods.updatePage();
+                        // }
+                        // classObj.data.pageCount=Math.ceil(data.pageAllNum/10);
+                        // $('.detailCount').text(data.pageAllNum);
+                        classObj.methods.updateShareList(data.data);
                     }else{
                         layObj.layer.msg(data.msg);
                     }
@@ -200,7 +226,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 },{id:id});
             },
-            //
+            //打开编辑一二级分润
             updateObligationInfo:function(data){
                 console.log(data);
                 var tpl=$('#editorNavCon').html();
@@ -220,6 +246,28 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     end:function(){
                         classObj.data.isCanClick=true;
                         $('#editorAreaTypeWrapper').hide();
+                    }
+                })        
+            },
+            updateShareInfo:function(data){
+                console.log(data);
+                var tpl=$('#editorShareCon').html();
+                $('.editor-share-type').html('');
+                 
+                    layObj.laytpl(tpl).render(data,function(html){
+                        $('.editor-share-type').append(html);
+                        form.render();
+                    })
+                
+                 layObj.layer.open({
+                    type:1,
+                    content: $('#editorShareTypeWrapper'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:'600px',
+                    maxmin: true,
+                    end:function(){
+                        classObj.data.isCanClick=true;
+                        $('#editorShareTypeWrapper').hide();
                     }
                 })        
             },
@@ -391,7 +439,31 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         form.on('submit(editorAreaType)',function(formParams){
             log.d(formParams.field)
 
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.updateType,function(data){
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.distributeShare.updateDisShareInfo,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        layer.msg('添加成功');
+                        setTimeout(function(){
+                            // location.reload();
+                            layObj.layer.closeAll();
+                            classObj.methods.updatePageNum(1);
+                        },1000);
+                        
+                    }else{
+                        layer.msg('网络错误，请稍后重试');
+                        setTimeout(function(){
+                            // location.reload();
+                        },1000);
+                    }
+                },formParams.field);
+                
+            return false;
+        })
+
+        form.on('submit(editorShareType)',function(formParams){
+            log.d(formParams.field)
+
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.distributeShare.updateShareInfo,function(data){
                     log.d(data);
                     if(data.code==200){
                         layer.msg('添加成功');
@@ -519,12 +591,23 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             }
         })
     })
-    //编辑区域类型
+    //编辑一二级分润比例
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
         classObj.data.typeId=$(this).data('id');
         classObj.data.typeEl=$(this).parent('td').prevAll('.typeName');
-        var sItem=classObj.methods.getSingleInfo(classObj.data.typeId);
+        // var sItem=classObj.methods.getSingleInfo(classObj.data.typeId);
+        var sItem=classObj.data.disShareData;
         classObj.methods.updateObligationInfo(sItem);
+
+    })
+
+     //编辑分润比例
+     $('#all-share-list').on('click','.editorSingleShareType',function(){
+        classObj.data.shareTypeId=$(this).data('id');
+        classObj.data.typeEl=$(this).parent('td').prevAll('.typeName');
+        // var sItem=classObj.methods.getSingleInfo(classObj.data.typeId);
+        var sItem=classObj.data.shareData;
+        classObj.methods.updateShareInfo(sItem);
 
     })
 
