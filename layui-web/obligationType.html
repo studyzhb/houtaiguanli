@@ -273,8 +273,8 @@
                     <div class="layui-input-inline" style="width:100px;margin-left:5px;">
                       <select name="field">
                         
-                        <option value="coding" selected>商品条形码</option>
-                        <option value="barcode">商品编号</option>
+                        <option value="barcode" selected>商品条形码</option>
+                        <option value="coding">商品编号</option>
                         <option value="name">商品名称</option>
                       </select>
                     </div>
@@ -446,8 +446,8 @@
 {{# layui.each(d,function(index,item){ }}
   <tr>
     <td>{{index+1}}</td>
-    <td>{{=item.barcode}}</td>
     <td>{{=item.coding}}</td>
+    <td>{{=item.barcode}}</td>
     <td>{{=item.name}}</td>
     <td>{{=item.brand}}</td>
     <td>{{=(item.retails-0).toFixed(2)}}</td>
@@ -503,8 +503,8 @@
 {{# layui.each(d,function(index,item){ }}
     <tr>
       <td><input type="checkbox" class="ischecked" data-id="{{item.id}}" name="" value=""></td>
-      <td>{{=item.barcode}}</td>
       <td>{{=item.coding}}</td>
+      <td>{{=item.barcode}}</td>
       <td>{{=item.name}}</td>
       <td>{{=(item.retails-0).toFixed(2)}}</td>
       <td>{{=item.brand}}</td>

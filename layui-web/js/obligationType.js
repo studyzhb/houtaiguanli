@@ -47,13 +47,14 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         
                         classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
-                        if(alertFirstLoad){
-                            classObj.methods.updateAlertPage(id);
-                        }
+                        
                         $('.obligationTotal').html(data.num);
                         layObj.laytpl(tml).render(data.data,function(html){
                             $('#goods-orderlist').append(html);
                         })
+                        if(alertFirstLoad){
+                            classObj.methods.updateAlertPage(id);
+                        }
                     }
                 },{standard_id:id,p:p});
             },
@@ -500,7 +501,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     //在标准下添加商品
     $('#all-sort-list').on('click','.addAreaType',function(){
         classObj.data.typeId=$(this).data('id');
-
+        alertFirstLoad=true;
         var classN=$(this).data('name');
         $('form').each(function(){
             this.reset();
@@ -610,6 +611,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             goods:JSON.stringify(arr)
         }
         common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.addObligationGoods,function(data){
+            alertFirstLoad=true;
             if(data.code==200){
                 layObj.layer.closeAll('loading');
                 layObj.layer.close(classObj.data.alertIndex);
