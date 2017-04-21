@@ -31,9 +31,10 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                  $('#tableWrapper').html('');
                  var obj={};
                  obj.data=data;
+                 obj.status=ShopObj.data.currentStatus;
                  obj.navId=ShopObj.data.navId;
                  obj.cityid=params.id;
-                 log.d(layObj);
+                 console.log(obj);
                 layObj.laytpl(ShopObj.data.tempGoodsContent).render(obj,function(html){
                     $('#tableWrapper').append(html);
                 })
@@ -128,7 +129,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.addRecommend,function(data){
                     log.d(data);
                     if(data.code==200){
-                        layObj.layer.msg('添加成功');
+                        layObj.layer.msg('操作成功');
 
                         if(ShopObj.data.currentStatus=='1'){
                             ShopObj.methods.updatePageNum(ShopObj.data.currPage);

@@ -18,7 +18,11 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
         methods:{
             updateGoodsList:function(data){
                 $('#tableWrapper').html('');
-                layObj.laytpl(GoodsObj.data.tempGoodsContent).render(data,function(html){
+                var obj={
+                    data:data,
+                    status:GoodsObj.data.currentStatus
+                }
+                layObj.laytpl(GoodsObj.data.tempGoodsContent).render(obj,function(html){
                     $('#tableWrapper').append(html);
                 })
             },
@@ -95,7 +99,7 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.addRecommend,function(data){
                     log.d(data);
                     if(data.code==200){
-                        layObj.layer.msg('添加成功');
+                        layObj.layer.msg('操作成功');
                         if(GoodsObj.data.currentStatus=='1'){
                             GoodsObj.methods.updatePageNum(GoodsObj.data.currPage);
                         }else{
