@@ -2,14 +2,19 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>商品信息</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./layui/css/layui.css" />
+	<title>标题</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="./layui/css/layui.css" />
   	<link rel="stylesheet" href="./css/alertcon.css" />
-	<script src="./layui/layui.js"></script>
-    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
-  	<script type="text/javascript" src="./js/jquery-form.js"></script>
+  	<link rel="stylesheet" href="./css/goodslist.css" />
+
+    <script src="./layui/layui.js"></script>
+    <script data-main="./js/domain" src="./js/require.min.js"></script>
+
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -28,465 +33,331 @@
       
         <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-        
-        </ul>
+  
+</ul>
 
     </div>
   </div>
+	
 
 	<!-- ============================主要内容区================================ -->
+
 	<div class="lay-main">
-	  <!-- <span class="layui-breadcrumb">
-		  <a href="#">首页</a>
-		  <a href="#">组织机构</a>
-		  <a href="#">组织机构管理</a>
-		  <a><cite>正文</cite></a>
-		</span>
-     -->
-     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle" style="min-height:600px;">
+
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            商品信息
+            债权金商品
           </li>
+          
         </ul>
 
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
-
-            <div class="layui-form layui-form-pane" style="display:inline-block;">
-              <div style="display:none;">
-                <label class="layui-form-label">分类</label> 
-                <div class="layui-input-inline">
-                  <select name="city" lay-verify="required">
+            
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
+              
+              
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
+                  <select class="areaType" lay-filter="areaType">
                     <option value=""></option>
-                    <option value="0">北京</option>
-                    <option value="1">上海</option>
-                    <option value="2">广州</option>
-                    <option value="3">深圳</option>
-                    <option value="4">杭州</option>
+                    
                   </select>
                 </div>
-              </div>
-              
               <div class="layui-inline">
-                <label class="layui-form-label">关键词</label>
                 <div class="layui-input-inline">
                   <input type="text" class="layui-input" name="" value="">
                 </div>
-                
-
               </div>
-              <button class="layui-btn searchByKeywords">
-                搜索
-              </button>
-              <button class="layui-btn addgoods">
-                <i class="layui-icon">&#xe608;</i> 添加
-              </button>
-            </div>
+              <div class="layui-btn searchByKeywords">
+                   搜索
+                </div>
+                <div class="layui-btn addArea">
+                    添加商品
+                </div>
+                <div class="layui-btn createGoodsBag">
+                    生成商品包
+                </div>
+                <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                    <i class="layui-icon">&#x1002;</i>  
+                </div>
+            </form>
           <table class="layui-table">
           <colgroup>
-            <!-- <col width="100">
             <col width="100">
+            <col >
+            <col >
+            <col > 
+            <col width="100">
+            <col >
             <col>
-            <col width="100">
-            <col width="300"> -->
+
           </colgroup>
           <thead>
             <tr>
-              <th>商品全称</th>
-              <th>助记码</th>
-              <th>商品编码</th>
-              <th>商品条形码</th>
-              <th>主供应商</th>
-              <th>品牌</th>
-              <th>规格</th>
-              <th>价格</th>
+              <th>序号</th>
+              <th>名称</th>
+              <th>最小提现金额</th>
+              <th>返现比例</th>
+              <th>状态</th>
+              <th>创建时间</th>
               <th>操作</th>
             </tr> 
           </thead>
-          <tbody id="purchaselist">
-            
-            
-            
+          <tbody id="all-sort-list">
+
           </tbody>
       </table>
      
 
           </div>
         </div>
-      
-      <div style="height:55px;padding-right:10px;">
-        <div id="page" style="float:right;"></div>
-        <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
-      </div>
-      
+
+        <div style="height:55px;padding-right:10px;">
+            <div id="page" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
+        </div>
+
 
      </div>
-
-
-
-
-    
     </div> 
-  
-
-  
+  <ul id="biuuu_city_list"></ul>
 
   <!-- =======================弹出窗========================= -->
 
-<!-- ================================================= -->
-<div class="alertCon-wrapper" id="editorgoodsInfo" style="margin:10px auto;display:none;">
-  <div class="alert-main-con show-content">
-      <form method="POST" action="" id="editorSingle">
-		
-      <div class="baseSingleInfo"></div>
-        
-        <div class="col-3-table clearfix">
-          <ul class="left-list">
-            <li class="active addmore-goods-coding">一品多码</li>
-            <li class="addmore-goods-name">一码多品</li>
-            
-          </ul>
-          <div class="middle-item">
-            <ul class="title-tr-th w80 clearfix">
-              <li class="w20 editorInput"></li>
-              <li class="w30">商品名称</li>
-              <li class="w20">商品条码</li>
-              <li class="w20">操作</li>
-            </ul>
-            <div class="muticoding"></div>
-            <div class="mutigoods" style="display:none;"></div>
-            
-            <div class="button addmoregoods">增加</div>
-            
-          </div>
+<!--添加类型-->
+<form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-inline">
+          
+          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="1" />
+          <input type="text" name="name" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
-        
-        <div class="button editorgoodsinfo" style="margin:10px 0 0 305px;">
-          提交
-        </div>
-
-      </form>
     </div>
-</div>
-
-<!-- =================================== -->
-<div class="alertCon-wrapper" id="addgoodsInfo" style="margin:10px auto;display:none;">
-  <div class="alert-main-con show-content">
-      <form method="POST" class="layui-form" action="" id="singleWillAddInfo">
+    <div class="layui-form-item">
+        <label class="layui-form-label">最小提现金额</label>
+        <div class="layui-input-inline">
         
-        <fieldset>
-          <legend>
-            基本信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>商品全称</label>
-                <input type="text" class="w160 goods-fullname fullname-jname" lay-verify="required" onblur="addCode(this.value)" id="fullname-jname" name="name" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>商品编码</label>
-                <input type="text" readonly class="w160 goodsBm" name="coding" value="" >
-              </div>
-              <div class="input-wrapper">
-                <label>国际条形码</label>
-                <input type="text" class="w160 barcode" lay-verify="required" id="goods-barcode" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" name="barcode" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>规格</label>
-                <input type="text" class="w160" lay-verify="required" name="eachsale" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>原产地</label>
-                <input type="text" class="w160" lay-verify="required" name="home" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>生产厂家</label>
-                <input type="text" class="w160" name="fac" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>助记码</label>
-                <input type="text" id="zname-show" lay-verify="required" class="w160 zname-show" name="zname" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>计价方式</label>
-                <input type="text" class="w160 method_typealert" lay-verify="required" readonly name="" value="" >
-              </div>
-              <div class="input-wrapper">
-                <label>零售单位</label>
-                <input type="text" class="w160 retailsalert" lay-verify="required" readonly name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>分类</label>
-                <input type="text" id="zname-show" lay-verify="required" readonly class="w160 sortalert" name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>品牌</label>
-                <input type="text" class="w160 goodsbrandalert" lay-verify="required" readonly name="" value="">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商</label>
-                <input type="text" class="w160 supplieralert" lay-verify="required" readonly name="" value="">
-              </div>
-               <div class="input-wrapper">
-                <label>专题类别</label>
-                <input type="text" class="w160 specialalert" lay-verify="required" readonly name="" value="">
-              </div>
-	           <div class="input-wrapper">
-                <label>最小起批量</label>
-                <input type="text" class="w160" name="minsell" lay-verify="required" value="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)">
-              </div>
-              <div class="input-wrapper">
-                <label>债权金标准</label>
-                <div class="lay-input-inline" style="width:160px;display:inline-block;">
-                  <select name="debt_standard_id" id="" class="w160 obligationType" lay-ignore>
-                    <option value="">111</option>
-                  </select>
-                </div>
-              </div>
-            </li>
-            <li>
-              <!-- <div class="input-wrapper">
-                <label>计价方式</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="goods-method">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div> -->
-              <input type="hidden" class="method_id" name="method_id" value="">
-              <input type="hidden" class="supplier_id" name="supplier_id" value="">
-              <input type="hidden" class="gg_id" name="gg_id" value="1">
-              <input type="hidden" class="good_type_id" name="good_type_id" value="">
-              <input type="hidden" class="good_brand_id" name="good_brand_id" value="">
-              <input type="hidden" class="good_special_id" name="special_id" value="">
-              <!-- <div class="input-wrapper">
-                <label>零售单位</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="gg">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-wrapper">
-                <label>分类</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="sort_goods">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-wrapper">
-                <label>品牌</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="add-goods-brand">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-wrapper">
-                <label>供应商</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="main-supplier">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div> -->
-             
-            </li>
+        <input type="text" name="min_money" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">返现比例</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" name="scale" data-info="" value="" required  lay-verify="required" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">债权金规则</label>
+        <div class="layui-input-block">
+            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+        </div>
+        
+    </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<!--编辑-->
+<form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <!--<div class="layui-form-item">
+    <label class="layui-form-label">编辑</label>
+    <div class="layui-input-block">
+        <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+    </div>
+    </div>-->
+
+
+    <div class="editor-area-type">
+
+    </div>
+
+
+
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorAreaType">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<script type="text/html" id="editorNavCon">
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型名称</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="hidden" autocomplete="off" name="status" class="layui-input" value="{{d.status}}" />
+        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最小提现金额</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)" name="min_money" data-info="{{d.min_money}}" value="{{d.min_money}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">返现比例</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" name="scale" data-info="{{d.scale}}" value="{{d.scale}}" required  lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">债权金规则</label>
+        <div class="layui-input-block">
+            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.rolecon}}</textarea>
+        </div>
+        
+    </div>
+</script>
+
+
+
+<!--编辑-->
+<form class="layui-form layui-form-pane" id="editorAreaWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="editorAreaInfo">
+
+    </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorAreaInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<!--添加类型内容-->
+<form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label sortName">类型内容</label>
+    <div class="layui-input-block">
+        <div class="layui-btn createAreaInfoInput">
+            <i class="layui-icon">&#xe608;</i>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="areaInfoInput">
+            <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
             
-          </ul>
-        </fieldset> 
-        <fieldset>
-          <legend>
-            价格信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>进货价</label>
-                <input type="text" class="w160 buyprice" name="buyprice" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="areaInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<!-- 添加标准时的展示页面 -->
+<div class="layui-form layui-form-pane" id="obligationTypeListInfo" action="" method="POST" style="height:100%;overflow:auto;display:none;font-size:14px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+ 
               
-              <div class="input-wrapper">
-                <label>批发价</label>
-                <input type="text" class="w160 wholesale" name="wholesale" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>零售价</label>
-                <input type="text" class="w160 retails" name="retails" lay-verify="required" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>毛利率</label>
-                <input type="text" class="w160 gross" name="gross"  value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>进项税率</label>
-                <input type="text" class="w160 incomerat" name="incomerat" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>销售税率</label>
-                <input type="text" class="w160" name="salesrate" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>加盟价</label>
-                <input type="text" class="w160 oiningprice" name="oiningprice" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>会员价</label>
-                <input type="text" class="w160 vipprice" name="vipprice"  value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>会员价一</label>
-                <input type="text" class="w160 vippricet" name="vippricet"  value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>会员价二</label>
-                <input type="text" class="w160 vippriceo" name="vippriceo" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>最低售价</label>
-                <input type="text" class="w160 inimumprice" name="inimumprice" value="" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-            </li>
-            
-            
-          </ul>
-        </fieldset> 
-        <div class="col-3-table clearfix">
-          <ul class="left-list">
-            <li class="active addmore-goods-coding">一品多码</li>
-            <li class="addmore-goods-name">一码多品</li>
-            
-          </ul>
-          <div class="middle-item">
-            <ul class="title-tr-th w80 clearfix">
-              <li class="w20 editorInput"></li>
-              <li class="w30">商品名称</li>
-              <li class="w20">商品条码</li>
-              <li class="w20">操作</li>
-            </ul>
-            <div class="muticoding"></div>
-            <div class="mutigoods"></div>
-            
-            <div class="button addmoregoods">增加</div>
-            
-          </div>
-        </div>
-        <div class="button" id="btnSubmit" lay-submit lay-filter="demo1" style="margin:10px 0 0 305px;">
-          提交
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+                <legend>债权金标准信息</legend>
+
+                
+                
+                  <form class="layui-form layui-form-pane" style="display:inline-block;">
+              
+              
+                    <div class="layui-input-inline" style="width:100px;margin-left:5px;">
+                      <select name="field">
+                        
+                        <option value="barcode" selected>商品条形码</option>
+                        <option value="coding">商品编号</option>
+                        <option value="name">商品名称</option>
+                      </select>
+                    </div>
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" name="value" class="layui-input"  value="">
+                    </div>
+                  </div>
+                  <div class="layui-btn" lay-submit lay-filter="searchFilterGoods">
+                       搜索
+                    </div>
+
+                    <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                        <i class="layui-icon">&#x1002;</i>  
+                    </div>
+                </form>
+
+                
+                
+                
+                
+
+                <table class="layui-table">
+                  <colgroup>
+                    <!-- <col width="100">
+                    <col width="100">
+                    <col>
+                    <col width="100">
+                    <col width="300"> -->
+
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>序号</th>
+                      <th>商品编号</th>
+                      <th>商品条形码</th>
+                      <th>商品名称</th>
+                      <th>商品品牌</th>
+                      <th>商品零售价</th>
+                      <th>操作</th>
+                    </tr> 
+                  </thead>
+                  <tbody id="goods-orderlist">
+                    <div id="goods-show">
+                      
+                    </div>
+                  </tbody>
+                  
+              </table>
+              </fieldset>
+
+              
+             
+
+              <!-- ================================================== -->
+        <div style="height:55px;padding-right:10px;">
+            <div id="alertpage" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="obligationTotal">30</span>条数据</div>
         </div>
 
-      </form>
-    </div>
-</div>
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </div>
+  
+
+
 <!-- ========================================================= -->
-<script type="text/template" id="duoma">
-    <ul class="title-tr-th w80 clearfix">
-      <li class="w20"><input class="ischecked" type="text" name="decode[]" placeholder="多码"></li>
-      <li class="w30">{fullname}</li>
-      <li class="w20">{barcode}</li>
-      <li class="w20"><a href="#" onclick="deleteChecked(this)">删除</a></li>
-    </ul>
-</script>
-<script type="text/template" id="duopin">
-  <ul class="title-tr-th w80 clearfix">
-    <li class="w20"><input class="ischecked" type="text" name="goods[]" placeholder="多品"></li>
-    <li class="w30">{fullname}</li>
-    <li class="w20">{barcode}</li>
-    <li class="w20"><a href="#" onclick="deleteChecked(this)">删除</a></li>
-  </ul>
-</script>
-
-<script type="text/template" id="duomaedit">
-    <ul class="title-tr-th w80 clearfix">
-      <li class="w20"><input class="ischecked" type="text" name="decode[]" value="{dcode}" placeholder="多码"></li>
-      <li class="w30">{fullname}</li>
-      <li class="w20">{barcode}</li>
-      <li class="w20"><a href="#" onclick="deleteChecked(this)">删除</a></li>
-    </ul>
-</script>
-
-<script type="text/template" id="duopinedit">
-  <ul class="title-tr-th w80 clearfix">
-    <li class="w20"><input class="ischecked" type="text" name="goods[]" value="{name}" placeholder="多品"></li>
-    <li class="w30">{fullname}</li>
-    <li class="w20">{barcode}</li>
-    <li class="w20"><a href="#" onclick="deleteChecked(this)">删除</a></li>
-  </ul>
-</script>
-
-<script src="./js/config.js"></script>
-<script src="./js/filter.js"></script>
-<script id="supplierList" type="text/html">
-  <tr>
-    <td>{{d.name}}</td>
-    <td>{{d.zname}}</td>
-    <td>{{d.coding}}</td>
-    <td>{{d.barcode}}</td>
-    <td>{{d.suppliername}}</td>
-    <td>{{d.brandname}}</td>
-    <td>{{d.eachsale}}</td>
-    <td>{{d.buyprice}}</td>
-    <td>
-      <div class="layui-btn layui-btn-warm layui-btn-small lookorderInfo" data-id="{{d.id}}">编辑</div>
-      
-    </td>
-  </tr>
-</script>
 <script id="slider" type="text/html">
   <li class="layui-nav-item layui-nav-itemed">
-    <a href="javascript:;">{{d.name}}</a>
+    <a href="javascript:;">{{=d.name}}</a>
     <dl class="layui-nav-child">
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+        <a href="{{item.path}}">{{item.name}}</a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+          <a href="{{item.path}}">{{item.name}}</a>
         </dd>
       {{# } }}
     {{#  }); }}
@@ -494,343 +365,279 @@
     </dl>
   </li>
 </script>
+	
+<!--编辑区域内容-->
+<script id="editorAreaCon" type="text/html">
 
-<script type="text/template" id="goodsContent">
-  <fieldset>
-          <legend>
-            基本信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>商品全称</label>
-                <input type="text" class="w160 goods-fullname fullname-jname" onblur="addCode(this.value)" name="name" value="{name}">
-              </div>
-              <div class="input-wrapper">
-                <label>商品编码</label>
-                <input type="text" readonly class="w160 goodsBm" name="coding" value="{coding}" >
-              </div>
-              <div class="input-wrapper">
-                <label>国际条形码</label>
-                <input type="text" class="w160 barcode" readonly name="barcode" value="{barcode}">
-              </div>
-              <div class="input-wrapper">
-                <label>规格</label>
-                <input type="text" class="w160" name="eachsale" value="{eachsale}">
-              </div>
-              <div class="input-wrapper">
-                <label>原产地</label>
-                <input type="text" class="w160" name="home" value="{home}">
-              </div>
-              <div class="input-wrapper">
-                <label>生产厂家</label>
-                <input type="text" class="w160" name="fac" value="{fac}">
-              </div>
-              <div class="input-wrapper">
-                <label>助记码</label>
-                <input type="text" readonly class="w160 zname-show" name="zname" value="{zname}">
-              </div>
-            </li>
-            <li>
-              <div class="input-wrapper">
-                <label>计价方式</label>
-                <input type="text" class="w160 method_typealert" readonly name="" value="{methodName}" >
-              </div>
-              <div class="input-wrapper">
-                <label>零售单位</label>
-                <input type="text" class="w160 retailsalert" readonly name="" value="{ggName}">
-              </div>
-              <div class="input-wrapper">
-                <label>分类</label>
-                <input type="text" id="zname-show" readonly class="w160 sortalert" name="" value="{typeName}">
-              </div>
-              <div class="input-wrapper">
-                <label>品牌</label>
-                <input type="text" class="w160 goodsbrandalert" readonly name="" value="{brandName}">
-              </div>
-              <div class="input-wrapper">
-                <label>供应商</label>
-                <input type="text" class="w160 supplieralert" readonly name="" value="{supplierName}">
-              </div>
-              <div class="input-wrapper">
-                <label>专题类别</label>
-                <input type="text" class="w160 specialalert" lay-verify="required" readonly name="" value="">
-              </div>
-	           <div class="input-wrapper">
-                <label>最小起批量</label>
-                <input type="text" class="w160" name="minsell" value="{minsell}" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
-              </div>
-              <div class="input-wrapper">
-                <label>债权金标准</label>
-                <input type="text" class="w160 brandlert" readonly name="" value="{debtName}">
-              </div>
-              <!--<div class="input-wrapper">
-                <label>计价方式</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="goods-method">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>-->
-              <input type="hidden" class="method_id" name="method_id" value="{method_id}">
-              <input type="hidden" class="goodsId" name="id" value="{id}">
-              <input type="hidden" class="supplier_id" name="supplier_id" value="{supplier_id}">
-              <input type="hidden" class="gg_id" name="gg_id" value="{gg_id}">
-              <input type="hidden" class="good_type_id" name="good_type_id" value="{good_type_id}">
-              <input type="hidden" class="good_brand_id" name="good_brand_id" value="{good_brand_id}">
-              <input type="hidden" class="good_special_id" name="special_id" value="{special_id}">
-              <input type="hidden" class="obligationType" name="debt_standard_id" value="{debt_standard_id}">
-              <!--<div class="input-wrapper">
-                <label>零售单位</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="gg">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-wrapper">
-                <label>分类</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="sort_goods">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-wrapper">
-                <label>品牌</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="add-goods-brand">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="input-wrapper">
-                <label>供应商</label>
-                <div class="single-select">
-                  <div class="boxwrap">
-                      <a href="#" class="select-tit">
-                          <span class="subclass">请选择</span><i></i>
-                      </a>
-                      <div class="select-items">
-                          <ul class="main-supplier">
-                              
-                          </ul>
-                      </div>
-                      <i class="arrow"></i>
-                  </div>
-                </div>
-              </div>-->
-             
-            </li>
-            
-          </ul>
-        </fieldset> 
-        <fieldset>
-          <legend>
-            价格信息
-          </legend>
-          <ul class="mess-content">
-            <li>
-              <div class="input-wrapper">
-                <label>进货价</label>
-                <input type="text" class="w160 buyprice" name="buyprice" value="{buyprice}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              
-              <div class="input-wrapper">
-                <label>批发价</label>
-                <input type="text" class="w160 wholesale" name="wholesale" value="{wholesale}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>零售价</label>
-                <input type="text" class="w160 retails" name="retails" value="{retails}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>毛利率</label>
-                <input type="text" class="w160 gross" name="gross" value="{gross}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>进项税率</label>
-                <input type="text" class="w160 incomerat" name="incomerat" value="{incomerat}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>销售税率</label>
-                <input type="text" class="w160 salesrate" name="salesrate" value="{salesrate}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')/100).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>加盟价</label>
-                <input type="text" class="w160 oiningprice" name="oiningprice" value="{oiningprice}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>会员价</label>
-                <input type="text" class="w160 vipprice" name="vipprice" value="{vipprice}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>会员价一</label>
-                <input type="text" class="w160 vippricet" name="vippricet" value="{vippricet}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>会员价二</label>
-                <input type="text" class="w160 vippriceo" name="vippriceo" value="{vippriceo}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-              <div class="input-wrapper">
-                <label>最低售价</label>
-                <input type="text" class="w160 inimumprice" name="inimumprice" value="{inimumprice}" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="this.value=(this.value.replace(/[^\d\.]/g,'')-0).toFixed(2)">
-              </div>
-            </li>
-          </ul>
-        </fieldset> 
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label">内容</label>
+    <div class="layui-input-block">
+        <input type="text" value="{{d.name}}" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.id}}" placeholder="请输入" name="id" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.typeid}}" placeholder="请输入" name="typeid" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.navid}}" placeholder="请输入" name="navid" autocomplete="off" class="layui-input">
+       
+    </div>
+    </div>
 </script>
 
-</div>
-<div class="alertCon-wrapper" id="addgoodsInfo" style="margin:10px auto;display:none;">
-  <div class="alert-main-con show-content">
-    <dl >
-      
-    </dl>
 
-  </div>
-</div>
-
-<div class="area-container padding-left-20" style="border:none;display:none;padding-bottom:30px;" id="alertMessage">
-  <div class="relative relative-show" style="border:1px solid #e1e1e1;padding:0 10px;">
-    <div class="layui-form layui-form-pane brandSearch" style="display:inline-block;padding-top:10px;">
-        
-        
-        <div class="layui-inline" >
-          <label class="layui-form-label">关键词</label>
-          <div class="layui-input-inline">
-            <input type="text" class="layui-input" name="" value="">
+<!-- ------------------------------------------------------------------------------- -->
+<script id="sortContent" type="text/html">
+{{# layui.each(d.data,function(index,item){ }}
+    <tr>
+    <td>{{index+1}}</td>
+    <td class="typeName">{{=item.name}}</td>
+    <td >{{=item.min_money}}</td>
+    <td >{{=item.scale}}</td>
+    <td>
+      {{# if(item.status=='1'){ }}
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
+              启用
+        </button>
+      {{# }else{ }}
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}">
+              停用
+        </button>
+      {{# } }}
+    </td>
+    <td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>
+    <td>
+    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
+    <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.name}}">
+            <i class="layui-icon">&#xe608;</i>
+    </div>
+    </td>
+  </tr>
+  {{#  layui.each(item.children,function(ind, its){ }}
+      <tr>
+        <td>{{index+1}}--{{ind}}</td>
+        <td>| ---- {{its.name}}</td>
+        <td>
+            {{# if(item.status=='1'){ }}
+              {{# if(its.status=='1'){ }}
+                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status='0' data-id="{{its.id}}" data-typeid="{{item.id}}">
+                      启用
+                </button>
+              {{# }else{ }}
+                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{its.id}}" data-typeid="{{item.id}}">
+                      停用
+                </button>
+              {{# } }}
+            {{# }else{ }}
+              停用
+            {{# } }}
+            
+        </td>
+        <td>
+          <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">编辑</div>
+          <div class="layui-btn layui-btn-danger layui-btn-small deleteSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">
+            <i class="layui-icon">&#xe640;</i>   
           </div>
+        </td>
+      </tr>
+    {{#  }); }}
+
+{{# }) }}
+  
+    
+    
+</script>
+
+
+</div>
+<script id="showGoodsContent" type="text/html">
+{{# layui.each(d,function(index,item){ }}
+  <tr>
+    <td>{{index+1}}</td>
+    <td>{{=item.coding}}</td>
+    <td>{{=item.barcode}}</td>
+    <td>{{=item.name}}</td>
+    <td>{{=item.brand}}</td>
+    <td>{{=(item.retails-0).toFixed(2)}}</td>
+    <td>
+      <div class="layui-btn layui-btn-danger layui-btn-small deleteObligationType" data-id="{{item.id}}" >
+            <i class="layui-icon">&#xe640;</i>   
+        </div>
+    </td>
+  </tr>
+{{# }) }}
+</script>
+
+<!--=================================弹出添加生成商品包===================================================-->
+<!-- 框架结构	 -->
+
+	<div class="layui-layout" id="goodsBag" style="display: none;">
+
+	<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      
+        <ul class="layui-nav layui-nav-tree" id="iframeSliderPage" lay-filter="test">
+<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> 
+          <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">包装食品</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;">休闲</a></dd>
+              <dd><a href="javascript:;">饼干糕点</a></dd>
+            </dl>
+          </li>-->
           
+        </ul>
+
+    </div>
+  </div>
+
+	<div class="lay-main" style="height: 98%;">
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle" style="height:100%;">
+       <!-- <ul class="layui-tab-title">
+          <li class="layui-this">
+            店铺列表
+          </li>
+          <li>
+            <a href="add-shop-origin.html">添加店铺</a>
+          </li>
+        </ul> -->
+        <div class="layui-content" style="height:100%;overflow:hidden;">
+              
+          <form id="goodsWraper" class="layui-form" method="POST" action="" style="position:relative;height:98%;">
+            
+            <ul class="wd-list">
+              <li>
+                <div class="inner">
+                  <div class="pic-wrap">
+                    <div class="img-vertical">
+                      <a href="#" class="img-wrap">
+                        <img width="230" src="../img/test.jpg" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="txt red">
+                    
+                  </div>
+                  <div class="box">
+                    <div class="mutiCode" style="bottom:0;z-index:10;">
+                      <dl>
+                        <dt>规格</dt>
+                        <dd>
+                          <span>120g</span>
+                          <span>121g</span>
+                          <span>122g</span>
+                        </dd>
+                      </dl>
+                      <div class="layui-btn" >确定</div>
+                    </div>
+                    <div class="info">
+                      <h3 class="title">
+                        <a href="#">松鼠萌炭烧腰果</a>
+                      </h3>
+                      <div class="price">
+                        抢新价
+                        <em>￥</em>
+                        <span>29.44</span>
+                      </div>
+                    </div>
+                    <div class="shop-mask">
+                      <h3 class="shop-name">
+                        <a href="#">万店联盟凤台路店</a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              
+
+            </ul>
+
+
+
+            <div class="layui-form-item" style="position:absolute;left:0;bottom:-20px;z-index:11;display:block;width:98.5%;background:rgba(0,0,0,0.6)">
+              <div class="checkArea div-inline">
+                <div class="checkall div-inline" style="cursor:pointer;">
+                  <i class="layui-icon" style="font-size: 20px; color: #1E9FFF;">&#xe63f;</i>
+                  <span style="color:#fff;">全选</span>
+                </div>
+                <div class="checkshift div-inline" style="margin-left:20px;cursor:pointer;">
+                  <span style="color:#fff;">取消全选</span>
+                </div>
+              </div>
+              <div class="layui-input-block div-inline">
+                <div class="layui-btn intoShopList" data-title="进货管理">立即提交</div>
+              </div>
+            </div>
+          </form>
+        
 
         </div>
-        <button class="layui-btn searchSortKeys">
-          搜索
-        </button>
+     </div>
 
-      </div>
-     <div class="button clickSpecShow"  style="margin:10px 0 0 305px;position:absolute;bottom:-38px;left:0;display:none;">
-          提交
-      </div>
-      <dl class="secitem" >
-          <dt class="wordindex" style="margin-right:7px;">
-              &nbsp;&nbsp;&nbsp;&nbsp;
+    </div> 
 
-          </dt>
-          <dd>
-            <div id="province-list">
-              
-            </div>
-          </dd>
-          <div class="sortspec"></div>
-          <!-- <div class="subarea" id="city-list">
-                  <span class="wordindex" style="margin-right:10px;">市&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-              </div>
-              <div class="subarea" id="contry-list">
-                  <span class="wordindex" style="margin-right:7px;">县/区</span>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-                  <a href="#">郑州</a>
-              </div> -->
-
-      </dl>
-
-
-  </div>
 
 </div>
 
 
+<!-- ========================================================= -->
 
-<script src="./js/addgoodsInfo.js?v=2.0"></script>
-<script src="./js/PinYin.js"></script>
-<script>
-  /*$('.fullname-jname').on('blur',function(){
-        var con=codefans_net_CC2PY($(this).val());
-        console.log(con);
-        $('.zname-show').val(con.substr(0,10));
-    });*/
 
-  function addCode(obj){
-    console.log(obj);
-    var con=codefans_net_CC2PY(obj);
-    $('.zname-show').val(con.substr(0,10));
-  }
-
-  function deleteChecked(_this){
-    $(_this).parents('ul.title-tr-th').remove();
-  }
-
-  var da=new Date().getTime()+'';
-
-  $('.goodsBm').val(da.substring(5));
+<!-- 显示搜索到的商品列表 -->
+<div id="goods-list" style="padding:10px;display:none;">
+  <table class="layui-table" >
+  <colgroup>
+    <col width="100">
+    <col>
+    <col>
+    <col>
+    <col width="100">
+    <col>
+    <col width="100">
+  </colgroup>
+  <thead>
+    <tr>
+      <th><input type="checkbox" class="checkall" name="" value=""></th>
+      <th>商品编号</th>
+      <th>商品条形码</th>
+      <th>商品名称</th>
+      <th>零售价格</th>
+      <th>品牌</th>
+    </tr> 
+  </thead>
+  <tbody id="searchedlist">
+    
+    
+  </tbody>
   
+</table>
+<div class="layui-form-item">
+  <div class="layui-input-block">
+    <div class="layui-btn" id="confirmorder">确认订单</div>
+  </div>
+</div>
+</div>
 
-  $('#goods-barcode').on('blur',function(){
-  config.ajax('post',config.ajaxAddress.goodsI18Num,function(data){
-    console.log(data);
-    if(data.code==400){
-      alert('条形码重复,请更改');
-    }else{
-      console.log('chengg')
-    }
-  },{barcode:$(this).val()});
-})
+<!-- 渲染搜索到的商品 -->
+<script id="searchedcontent" type="text/html">
+{{# layui.each(d,function(index,item){ }}
+    <tr>
+      <td><input type="checkbox" class="ischecked" data-id="{{item.id}}" name="" value=""></td>
+      <td>{{=item.coding}}</td>
+      <td>{{=item.barcode}}</td>
+      <td>{{=item.name}}</td>
+      <td>{{=(item.retails-0).toFixed(2)}}</td>
+      <td>{{=item.brand}}</td>
+
+    </tr>
+{{# }) }}
+  
 </script>
 </body>
+
+ <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/filter.js"></script>
+<script type="text/javascript" src="./js/obligationGoods.js"></script>
 </html>
+
+
+
+

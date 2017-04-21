@@ -888,3 +888,7 @@ a.active-p {
   background: #000;
   opacity: 0.6;
 }
+
+.div-inline{
+  display: inline-block;
+}

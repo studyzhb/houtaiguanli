@@ -1,0 +1,125 @@
+ul.wd-list {
+  height: 100%;
+  overflow: auto; }
+  ul.wd-list li {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    height: 45%;
+    width: 230px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e6e6e6; }
+    ul.wd-list li div.inner {
+      width: 100%;
+      height: 100%;
+      /* Firefox */
+      display: -moz-box;
+      -moz-box-orient: vertical;
+      /* Safari Opera Chrome */
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      /* W3C */
+      display: box;
+      box-orient: vertical; }
+      ul.wd-list li div.inner div.pic-wrap {
+        -moz-box-flex: 1;
+        /* Firefox */
+        -webkit-box-flex: 1;
+        /* Safari Chrome */
+        box-flex: 1;
+        width: 230px;
+        background: #fff;
+        overflow: hidden; }
+        ul.wd-list li div.inner div.pic-wrap div.img-vertical {
+          text-align: center;
+          overflow: hidden;
+          font-size: 0;
+          height: 100%; }
+          ul.wd-list li div.inner div.pic-wrap div.img-vertical .img-wrap {
+            width: 230px;
+            display: block;
+            vertical-align: middle; }
+          ul.wd-list li div.inner div.pic-wrap div.img-vertical img {
+            vertical-align: middle;
+            height: 100%; }
+      ul.wd-list li div.inner div.box {
+        height: 108px;
+        width: 228px;
+        position: relative; }
+        ul.wd-list li div.inner div.box div.mutiCode {
+          position: absolute;
+          left: 0;
+          bottom: -108px;
+          height: 100%;
+          width: 100%;
+          background-color: #000;
+          opacity: 0.5; }
+          ul.wd-list li div.inner div.box div.mutiCode dt, ul.wd-list li div.inner div.box div.mutiCode dd {
+            display: inline-block;
+            color: #fff; }
+          ul.wd-list li div.inner div.box div.mutiCode dt {
+            width: 50px;
+            text-align: center; }
+          ul.wd-list li div.inner div.box div.mutiCode dd span {
+            margin: 0 10px;
+            line-height: 18px; }
+          ul.wd-list li div.inner div.box div.mutiCode dd span.sele-this {
+            background-color: #f00; }
+        ul.wd-list li div.inner div.box .info {
+          position: relative;
+          height: 70px;
+          padding: 5px 10px 0;
+          width: 160px; }
+          ul.wd-list li div.inner div.box .info h3.title {
+            margin-bottom: 5px;
+            font-size: 12px;
+            line-height: 18px;
+            overflow: hidden;
+            height: 36px; }
+            ul.wd-list li div.inner div.box .info h3.title a {
+              color: #333;
+              font-weight: 400; }
+        ul.wd-list li div.inner div.box .price {
+          line-height: 26px;
+          color: #666;
+          vertical-align: top; }
+          ul.wd-list li div.inner div.box .price em {
+            color: #f03;
+            font-size: 14px; }
+          ul.wd-list li div.inner div.box .price span {
+            color: #f03;
+            font-size: 18px;
+            font-weight: 700; }
+        ul.wd-list li div.inner div.box .shop-mask {
+          position: relative; }
+          ul.wd-list li div.inner div.box .shop-mask div.addOrder {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            background-color: #F7B824;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer; }
+          ul.wd-list li div.inner div.box .shop-mask h3.shop-name {
+            width: 220px;
+            font-size: 12px;
+            font-weight: 400;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            padding-left: 10px;
+            border-top: 2px solid #f8f8f8;
+            line-height: 28px; }
+          ul.wd-list li div.inner div.box .shop-mask h3 a {
+            color: #333;
+            padding-right: 10px;
+            background: url(../img/link.png) right 4px no-repeat; }
+  ul.wd-list li.active {
+    border: 1px solid #f00; }
+
+/*# sourceMappingURL=goodslist.css.map */
