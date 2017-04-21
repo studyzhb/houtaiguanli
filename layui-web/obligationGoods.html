@@ -33,30 +33,8 @@
 
     </div>
   </div>
-	
-	<!-- <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-	    <ul class="layui-tab-title site-demo-title">
-	      <li class="layui-this">预览</li>
-	      <li>查看代码</li>
-	      <li>帮助</li>
-	    </ul>
-    	<div class="layui-body layui-tab-content site-demo site-demo-body">    
-	      <div class="layui-tab-item layui-show">
-	        <div class="layui-main">
 
-	        </div>
-		</div>
-		</div>
-	</div> -->
 	<!-- ============================主要内容区================================ -->
-  
-
-        
-
-
-
-
-
 	<div class="lay-main">
 	  <!-- <span class="layui-breadcrumb">
 		  <a href="#">首页</a>
@@ -828,8 +806,6 @@
         $('.zname-show').val(con.substr(0,10));
     });*/
 
-    
-
   function addCode(obj){
     console.log(obj);
     var con=codefans_net_CC2PY(obj);
@@ -849,8 +825,7 @@
   config.ajax('post',config.ajaxAddress.goodsI18Num,function(data){
     console.log(data);
     if(data.code==400){
-      // alert('条形码重复,请更改');
-      layer.msg('条形码重复,请更改');
+      alert('条形码重复,请更改');
     }else{
       console.log('chengg')
     }
