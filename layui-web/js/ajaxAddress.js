@@ -1,5 +1,6 @@
 define({
     preFix:'/shop/shop/public/index.php/admin',
+    obligationPreFix:'http://web.yylm.com/public/bfapp',
     obligation:{
         showlist:'/debtnexus/index',
         update:'/debtnexus/edit',
@@ -9,7 +10,13 @@ define({
         updateListByTypeId:'/proportion/showgood',
         searchFilterGoods:'/proportion/searchgood',
         addObligationGoods:'/proportion/editStandard',
-        deleteObligationGoods:'/proportion/delgoodtandard'
+        deleteObligationGoods:'/proportion/delgoodtandard',
+        classifyList:'/Goodsclass/classList',
+        addClass:'/Goodsclass/addClass',
+        updateClass:'/Goodsclass/upClass',
+        getOneClass:'/Goodsclass/oneClass',
+        updateStatusType:'/Goodsclass/onOff'
+
     },
     article:{
         showlist:'/Article/lst',

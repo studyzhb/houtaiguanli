@@ -38,7 +38,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             updateArealist:function(data){
                 $('#all-sort-list').html('');
                  var obj={};
-                 obj.data=data;
+                 obj.data=data.class_list;
                  log.d(obj);
                 layObj.laytpl(classObj.data.tempGoodsContent).render(obj,function(html){
                     $('#all-sort-list').append(html);
@@ -63,7 +63,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             updatePageNum:function(num){
                 
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.classify.showlist,function(data){
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.classifyList,function(data){
                     log.d(data);
                     if(data.code==200){
                         // if(fistLoad){
@@ -100,7 +100,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 },{id:id});
             },
             updateStatusType:function(sta,upId,obj){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusType,function(data){
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.updateStatusType,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
                     if(data.code==200){
@@ -115,7 +115,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         classObj.methods.updatePageNum(1);
                         
                     }else{
-                        layObj.layer.msg(data.msg);
+                        layObj.layer.msg(data.message);
                         // layObj.layer.closeAll();
                         //location.reload();
                     }
@@ -229,10 +229,12 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     setTimeout(function(){
         form=layObj.form();
         form.on('submit(shopInfo)',function(formParams){
+            layObj.layer.load();
             log.d(formParams.field)
             formParams.field.navid=classObj.data.navId;
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.addClass,function(data){
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.addClass,function(data){
                     log.d(data);
+                    
                     if(data.code==200){
                         layer.msg('添加成功');
                         setTimeout(function(){
@@ -287,15 +289,16 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
         form.on('submit(editorAreaType)',function(formParams){
             log.d(formParams.field)
-
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateClassType,function(data){
+            layObj.layer.load();
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.updateClass,function(data){
                     log.d(data);
                     if(data.code==200){
-                        layer.msg('添加成功');
+                        
                         setTimeout(function(){
                             // location.reload();
                             layObj.layer.closeAll();
-                            classObj.data.typeEl.text(formParams.field.name)
+                            classObj.data.typeEl.text(formParams.field.cname);
+                            layObj.layer.msg('操作成功');
                         },1000);
                         
                     }else{
@@ -379,15 +382,16 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     })
     //编辑区域类型
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
-        classObj.data.typeId=$(this).data('id');
+        var cid=classObj.data.typeId=$(this).data('id');
         classObj.data.typeEl=$(this).parent('td').prevAll('.typeName');
-        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.classify.getClassType,function(data){
-           var tpl=$('#editorNavCon').html();
-            if(data.code==200){
+        var cname=$(this).data('name');
+        var tpl=$('#editorNavCon').html();
+        $('.editor-area-type').html('');
+
                 
-                     $('.editor-area-type').html('');
+                     
                  
-                    layObj.laytpl(tpl).render(data.data,function(html){
+                    layObj.laytpl(tpl).render({id:cid,name:cname},function(html){
                         $('.editor-area-type').append(html);
                         form.render();
                     })
@@ -404,8 +408,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 })
                 
-            }
-        },{id:classObj.data.typeId})
+
         
     })
 
@@ -469,23 +472,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         classObj.methods.updatePageNum(1);
     });
 
-    /**
-     * 获取导航列表
-     */
-    common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.nav.getPrimaryNav,function(data){
-        // log.d(data);
-        if(data.code==200){
-            $.each(data.data,function(index,item){
-                if(index==0){
-                    classObj.data.navId=item.id;
-                    $('<a href="javascript:;" class="active">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                     classObj.methods.updatePageNum(1);
-                }else{
-                    $('<a href="javascript:;">').html(item.name).data('id',item.id).appendTo($('.nav-menu-all-area'));
-                }  
-            })
-           
-        }
-    })
+    classObj.methods.updatePageNum(1);
+
 
 })

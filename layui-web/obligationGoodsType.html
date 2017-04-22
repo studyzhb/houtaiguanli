@@ -104,7 +104,7 @@
           </div>
         </div>
 
-        <div style="height:55px;padding-right:10px;">
+        <div style="height:55px;padding-right:10px;display: none;">
             <div id="page" style="float:right;"></div>
             <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
         </div>
@@ -123,16 +123,17 @@
     <label class="layui-form-label">分类类型</label>
     <div class="layui-input-block">
         
-        <input type="text" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+        <input type="text" placeholder="请输入" name="cname" autocomplete="off" class="layui-input">
+        <input type="hidden" placeholder="请输入" name="pid" value="0" autocomplete="off" class="layui-input">
         <!--<input type="hidden" placeholder="请输入" name="id" autocomplete="off" class="layui-input cityid">-->
     </div>
     </div>
-    <div class="layui-form-item">
+    <!--<div class="layui-form-item">
     <label class="layui-form-label">属性</label>
     <div class="layui-input-block">
         <input type="text" placeholder="请输入" name="field" autocomplete="off" class="layui-input">
     </div>
-    </div>
+    </div>-->
     <div class="layui-form-item">
     <div class="layui-input-block">
         <div class="layui-btn" lay-submit lay-filter="shopInfo">立即提交</div>
@@ -171,7 +172,7 @@
         <label class="layui-form-label">类型名称</label>
         <div class="layui-input-inline">
         <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
-        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        <input type="text" name="cname" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -275,7 +276,7 @@
 {{# layui.each(d.data,function(index,item){ }}
     <tr>
     <td>{{index+1}}</td>
-    <td class="typeName">{{=item.typeName}}</td>
+    <td class="typeName">{{=item.cname}}</td>
     <td>
       {{# if(item.status=='1'){ }}
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
@@ -288,10 +289,10 @@
       {{# } }}
     </td>
     <td>
-    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
-      <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.typeName}}">
+    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.cname}}" >编辑</div>
+      <!--<div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.typeName}}">
             <i class="layui-icon">&#xe608;</i>
-        </div>
+        </div>-->
     </td>
   </tr>
   {{#  layui.each(item.children,function(ind, its){ }}
