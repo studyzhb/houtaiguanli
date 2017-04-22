@@ -603,6 +603,21 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
 
      })
      
+     //复制商品
+     $('.copyGoodsToStore').on('click',function(){
+         layObj.layer.open({
+             type:1,
+             title:'复制所需要的商品',
+            content: $('#obligationTypeListInfo'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:['95%','90%'],
+            maxmin: true,
+            end:function(){
+                classObj.data.isCanClick=true;
+                $('#obligationTypeListInfo').hide();
+            }
+        })
+     })
 
      /**
      * 推荐与否
@@ -953,6 +968,41 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
                     
                 }
             },paraData.field);
+        })
+        //搜索
+        form.on('submit(searchFilterGoods)',function(formParams){
+ 
+            $('#searchedlist').html('');
+            var tempHtml=searchedcontent.innerHTML;
+            // common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.searchFilterGoods,function(data){
+                    
+            //         if(data.code==200){
+                        
+                        layObj.laytpl(tempHtml).render({},function(html){
+                            $('#searchedlist').append(html);
+                        })
+
+                        ShopObj.data.alertIndex=layer.open({
+                          type: 1,
+                          content: $('#goods-list'), //这里content是一个DOM
+                          shade:[0.8,'#000'],
+                          area:'900px',
+                          maxmin: true,
+                          end:function() {
+                            // body...
+                            $('#goods-list').hide();
+                          }
+                        })
+                //     }else{
+                        
+                //         setTimeout(function(){
+                //             // layObj.layer.closeAll();
+                //             // classObj.methods.updatePageNum(1);
+                //         },1000);
+                //     }
+                // },formParams.field);
+                
+            return false;
         })
 
         /**
