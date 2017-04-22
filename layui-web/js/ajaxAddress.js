@@ -15,8 +15,17 @@ define({
         addClass:'/Goodsclass/addClass',
         updateClass:'/Goodsclass/upClass',
         getOneClass:'/Goodsclass/oneClass',
-        updateStatusType:'/Goodsclass/onOff'
-
+        updateStatusType:'/Goodsclass/onOff',
+        goods:{
+            showlist:'/goods/goodsList',
+            getOneInfo:'/goods/oneGoods',
+            addGoods:'/goods/addGoods',
+            updateGoods:'/goods/upGoods',
+            copyGoods:'/goods/copyGoods',
+            upordownGoods:'/goods/onOff',
+            lookInfoCopyed:'/goods/beforeId'
+            
+        }
     },
     article:{
         showlist:'/Article/lst',

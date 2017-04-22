@@ -116,8 +116,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         
                     }else{
                         layObj.layer.msg(data.message);
-                        // layObj.layer.closeAll();
-                        //location.reload();
                     }
                 },{navid:classObj.data.navId,status:sta,id:upId});
             },
