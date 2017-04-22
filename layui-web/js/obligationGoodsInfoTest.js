@@ -165,28 +165,25 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
              * 获取单个店铺信息
              */
             getSingleInfo:function(id){
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.getShopInfoById,function(data){
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goods.getOneInfo,function(data){
+                    data=data.data;
                     log.d(data);
-
                     if(data.code==200){
-                        ShopObj.methods.updateShopInfo(data.data);
+                        ShopObj.methods.updateShopInfo(data.goods_info);
                     }
-                },{id:id,cityid:params.id,navid:ShopObj.data.navId});
+                },{id:id});
             },
             updateShopInfo:function(data){
                 var tpl=$('#formCon').html();
                 $('.formWrapper').html('');
-                $('.mapWrapper').append($('#mapContainer'));
-                var pArr=data.itude?data.itude.split(',')||[]:[];
-                new AMap.Marker({
-                    position :pArr,
-                    map : mapObj
-                })
-                
+                data.classArr=ShopObj.data.arrGoodsClassify;
+               
                 layObj.laytpl(tpl).render(data,function(html){
                     $('.formWrapper').append(html);
+                    $('.editMenuForm').find('.img-content').html(data.introduce);
                     setTimeout(function(){
                         form.render();
+                         
                     },600);
                 });
             },
@@ -233,17 +230,19 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
                 },{shopid:ShopObj.data.shopid});
             },
             //添加商品时获取分类信息
-            addGoodsGetSortInfo:function(shopid,fn){
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.sort.goodsClassifyByShop,function(data){
-                    log.d(data);
+            addGoodsGetSortInfo:function(){
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.classifyList,function(data){
+                    
                     if(data.code==200){
-                        ShopObj.data.arrGoodsClassify=data.data;
-                        fn();
+                        data=data.data;
+                        ShopObj.data.arrGoodsClassify=data.class_list;
+                        
+                        
                     }else{
                         ShopObj.data.arrGoodsClassify=[];
                     }
 
-                },{navid:ShopObj.data.navId,shopid:shopid});
+                });
             },
             //添加店铺时获取分类信息
             addShopGetSortInfo:function(){
@@ -550,7 +549,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
             content: $('.editMenuForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:['95%','98%'],
-            zIndex:10,
+            zIndex:1000,
             maxmin: true,
             end:function(){
                 $('.editMenuForm').hide();
@@ -639,46 +638,67 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
         ShopObj.methods.searchInfo(con,checkval);
     })
 
-    // // 添加文字
-    // $('#confirmsavetext').on('click',function(){
-    //     layer.closeAll();
-    //     $('.img-content').append(config.formatTemplate({text:$('.singleNum').val()},$('#img-text').html()));
+    $('.editMenuForm').on('click','.addGoodsText',function(){
+        addGoodsText();
+    })
+
+    // 添加文字
+    $('#confirmsavetext').on('click',function(){
+        layer.close(layObj.layer.index);
+        $('.img-content').append(common.tools.formatTemplate({text:$('.singleNum').val()},$('#img-text').html()));
         
-    // })
+    })
 
-    // $('.addGoodsText').on('click',function(){
-    //     addGoodsText();
-    // })
+    $('.addGoodsText').on('click',function(){
+        addGoodsText();
+    })
 
-    // function addGoodsText(){
-    //     layer.open({
-    //             type:1,
-    //             content: $('#goodsNum'), //这里content是一个DOM
-    //         shade:[0.8,'#000'],
-    //         area:'500px',
-    //         maxmin: true,
-    //         end:function(){
-    //              $('#goodsNum').hide();
-    //         }
-    //         })
-    // }
+    function addGoodsText(){
+        layObj.layer.open({
+                type:1,
+                content: $('#goodsNum'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:'500px',
+            maxmin: true,
+            end:function(){
+                 $('#goodsNum').hide();
+            }
+            })
+    }
 
-    // //手机端页面显示删除
-    // $('.img-content').on('mouseover','.img-single',function(){
+    //手机端页面显示删除
+    $('.editMenuForm').on('mouseover','.img-content .img-single',function(){
     
-    //     if(!$(this).children('.deleteAvata').length){
+        if(!$(this).children('.deleteAvata').length){
         
-    //         $('<div class="deleteAvata" >').appendTo($(this));
-    //     }
-    //     $(this).find('.deleteAvata').show();
-    // });
-    // $('.img-content').on('mouseout','.img-single',function(){
-    // $(this).find('.deleteAvata').hide();
-    // });
-    // $('.img-content').on('mousedown','.deleteAvata',function(){
-    // $(this).parents('.img-single').remove();
-    // return false;
-    // });
+            $('<div class="deleteAvata" >').appendTo($(this));
+        }
+        $(this).find('.deleteAvata').show();
+    });
+    $('.editMenuForm').on('mouseout','.img-content .img-single',function(){
+        $(this).find('.deleteAvata').hide();
+    });
+    $('.editMenuForm').on('mousedown','.img-content .deleteAvata',function(){
+        $(this).parents('.img-single').remove();
+        return false;
+});
+
+//手机端页面显示删除
+    $('.img-content').on('mouseover','.img-single',function(){
+    
+        if(!$(this).children('.deleteAvata').length){
+        
+            $('<div class="deleteAvata" >').appendTo($(this));
+        }
+        $(this).find('.deleteAvata').show();
+    });
+    $('.img-content').on('mouseout','.img-single',function(){
+    $(this).find('.deleteAvata').hide();
+    });
+    $('.img-content').on('mousedown','.deleteAvata',function(){
+    $(this).parents('.img-single').remove();
+    return false;
+    });
 
 
     /**
@@ -699,44 +719,28 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
 
         // ShopObj.methods.renderShopInfo();
         // ShopObj.methods.addShopGetSortInfo();
+        $('.productWrapper').html('');
+        $.each(ShopObj.data.arrGoodsClassify,function(index,item){  
+            $('<option>').appendTo($('.productWrapper')).html(item.cname).attr('value',item.id);
+        })
+        form.render('select');
         // 打开添加店铺信息窗口
         layObj.layer.open({
              type:1,
              title:'商品添加',
-            content: $('.editMenuForm'), //这里content是一个DOM
+            content: $('.addShopGoodsForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:['95%','98%'],
             zIndex:1000, 
             maxmin: true,
-            // end:function(){
-            //     $('.editMenuForm').hide();
-            // }
+            end:function(){
+                $('.addShopGoodsForm').hide();
+            }
          })
         // open('add-shop.html?navid='+ShopObj.data.navId+'&cityid='+params.id,'_self');
     })
 
-    $('.nav-menu-all-area').on('click','a',function(){
-        fistLoad=true;
-        ShopObj.data.currentPage='1';
-        ShopObj.data.currentRePage='1';
-        $(this).addClass('active').siblings().removeClass('active');
-        //log.d($(this))
-        ShopObj.data.navId=$(this).data('id');
-        ShopObj.data.goodsTemplate=$(this).data('template');
-        
-        log.d(ShopObj.data.navId);
-        if(ShopObj.data.currentStatus=='1'){
-            ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
-        }else{
-            ShopObj.methods.updateRecommendList(ShopObj.data.currentRePage);
-        }   
-        
-        ShopObj.methods.getLabelInfo();
-        ShopObj.methods.getGoodsLabelInfo();
-        ShopObj.methods.addShopGetSortInfo();
-        //获取产品所属分类
-        // ShopObj.methods.addGoodsGetSortInfo();
-    });
+
 
     /**
      * 排序
@@ -757,7 +761,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
      })
      //获取商品信息
     ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
-    
+    ShopObj.methods.addGoodsGetSortInfo();
    
 
     /**
@@ -782,6 +786,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
     $('.formWrapper').on('click','.imageadd-single',function(){
         upload.uploadImage(this,false);
     });
+
 
 
 
@@ -900,22 +905,14 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
 
             form.on('submit(saveShopGoodsInfo)',function(paraData){
                  layObj.layer.load();
-                paraData.field.cityid=params.id;
-                paraData.field.navid=ShopObj.data.navId;
-                paraData.field.shopid=ShopObj.data.shopid;
-                paraData.field.shopname=ShopObj.data.shopname;
-                paraData.field.area=ShopObj.data.arrAreaGoods.area;
-                paraData.field.business=ShopObj.data.arrAreaGoods.business;
-                var arr=ShopObj.methods.repeatArr(ShopObj.data.labelJson);
-                paraData.field.goods_label=arr;
+                
+                paraData.field.introduce=$('.img-content').html();
                 //分类合并
                 // paraData.field.classifyids=ShopObj.data.sortAnotherArr.join(',');
                 //添加产品时所需要的模板
-                paraData.field.template=ShopObj.data.goodsTemplate;
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopGoods.addShopGoods,function(data){
-                        ShopObj.data.sortObj={};
-                        ShopObj.data.labelJson=[];
-                        ShopObj.data.sortAnotherArr=[];
+                // paraData.field.template=ShopObj.data.goodsTemplate;
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goods.addGoods,function(data){
+                        data=data.data;
                         layObj.layer.closeAll('loading');
                         if(data.code==200){
                             layer.msg('添加成功');
@@ -925,7 +922,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
                             },1000);
                             
                         }else{
-                            layer.msg('网络错误，请稍后重试');
+                            layer.msg(data.message);
                             setTimeout(function(){
                                 
                             },1000);
@@ -935,18 +932,14 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
                 return false;
             });
 
+            //编辑商品
             form.on('submit(editorDiscountInfo)',function(paraData){
-                 layObj.layer.load();
-            paraData.field.itude=paraData.field.longitude+','+paraData.field.latitude;
-            var arr=ShopObj.methods.repeatArr(ShopObj.data.labelJson);
-                for(var i in ShopObj.data.sortObj){
-                    ShopObj.data.sortObj[i]=ShopObj.data.sortObj[i].join(',');
-                    paraData.field[i]=ShopObj.data.sortObj[i];
-                }
-                paraData.field.shop_label=arr;
-                paraData.field.classifyids=ShopObj.data.sortAnotherArr.join(',');
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shop.updateShop,function(data){
+                layObj.layer.load();
+            
+            paraData.field.introduce=$('.editMenuForm').find('.img-content').html();
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goods.updateGoods,function(data){
                 log.d(data);
+                data=data.data;
                 layObj.layer.closeAll('loading');
                 ShopObj.data.sortObj={};
                 ShopObj.data.labelJson=[];
@@ -956,8 +949,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
                     layObj.layer.closeAll();
                     ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
                 }else{
-                    layObj.layer.msg(data.msg);
-                    ShopObj.methods.getSingleInfo();
+                    layObj.layer.msg(data.message);
+                    
                 }
             },paraData.field);
         })
