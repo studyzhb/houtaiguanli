@@ -23,7 +23,8 @@ define({
             updateGoods:'/goods/upGoods',
             copyGoods:'/goods/copyGoods',
             upordownGoods:'/goods/onOff',
-            lookInfoCopyed:'/goods/beforeId'
+            lookInfoCopyed:'/goods/beforeId',
+            searchFilterGoods:'/relevance/goodsList'
             
         }
     },

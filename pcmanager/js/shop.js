@@ -50,14 +50,22 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            if(ShopObj.data.currentStatus=='1'){ 
-
-                                ShopObj.data.currentPage=data.curr;
-                                ShopObj.methods.updatePageNum(data.curr,para);
-                            }else if(ShopObj.data.currentStatus=='2'){
-                                ShopObj.data.currentRePage=data.curr;
-                                ShopObj.methods.updateRecommendList(data.curr,para);
-                            }                 
+                                console.log(data.curr!=ShopObj.data.currentPage);
+                                if(ShopObj.data.currentStatus=='1'){ 
+                                    if(data.curr!=ShopObj.data.currentPage){
+                                        ShopObj.data.currentPage=data.curr;
+                                        ShopObj.methods.updatePageNum(data.curr,para);
+                                    }
+                                    
+                                }else if(ShopObj.data.currentStatus=='2'){
+                                    if(data.curr!=ShopObj.data.currentRePage){
+                                        ShopObj.data.currentRePage=data.curr;
+                                        ShopObj.methods.updateRecommendList(data.curr,para);
+                                    }
+                                    
+                                }
+                            
+                                             
                         }
                     });
                 });
@@ -78,7 +86,6 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 }
                 para=$.extend({},options,para||{});
 
-                log.d(options);
                 $('#tableWrapper').html('');
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shoplist,function(data){
                     log.d(data);
@@ -94,7 +101,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         layObj.layer.msg(data.msg);
                         ShopObj.methods.updateShopList([]);
                     }
-                },options);
+                },para);
             },
             updateRecommendList:function(num,para){
                 $('#tableWrapper').html('');
@@ -123,7 +130,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         layObj.layer.msg(data.msg);
                         ShopObj.methods.updateShopList([]);
                     }
-                },options);
+                },para);
             },
             updateRecommendStatus:function(id,status){
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.addRecommend,function(data){
@@ -360,6 +367,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 if(tag){
                     tId=obj.prev().data('id');
                     tOrder=obj.prev().data('order');
+
                     if(!tId){
                         targetEl='';
                     }else{
@@ -413,6 +421,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 //  if(checval){
                      obj.proprietor=checval||' ';
                 //  }
+                console.log(obj);
                  if(ShopObj.data.searched){
                      fistLoad=true;
                      $('.searchForm')[0].reset();

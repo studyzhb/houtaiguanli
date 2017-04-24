@@ -613,11 +613,60 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
             area:['95%','90%'],
             maxmin: true,
             end:function(){
-                classObj.data.isCanClick=true;
+                
                 $('#obligationTypeListInfo').hide();
             }
         })
      })
+
+     //确认复制所需的商品
+     
+     //确定选中商品
+    $('#confirmorder').on('click',function(){
+        layObj.layer.load();
+        var arr=[];
+        
+        $('.ischecked').each(function(){
+            if(this.checked){
+               arr.push($(this).data('id'));
+            }
+         });
+        var obj={
+            
+            goods_ids:arr.join(',')
+        }
+
+        $.each(ShopObj.data.arrGoodsClassify,function(index,item){
+            $('<option>').appendTo($('.obligationSortList')).html(item.cname).attr('value',item.id);
+        })
+
+        form.render();
+        layObj.layer.open({
+             type:1,
+             title:'复制所需要的商品',
+            content: $('#sortToWhere'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:['600px','500px'],
+            maxmin: true,
+            end:function(){
+                
+                $('#sortToWhere').hide();
+            }
+        })
+
+        // common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.addObligationGoods,function(data){
+        //     alertFirstLoad=true;
+        //     if(data.code==200){
+        //         layObj.layer.closeAll('loading');
+        //         layObj.layer.close(classObj.data.alertIndex);
+        //         layObj.layer.msg(data.message);
+        //         classObj.methods.updateObligationTypeInfoById(classObj.data.typeId,classObj.data.currentPage)
+        //     }else{
+        //         layObj.layer.closeAll('loading');
+        //         layObj.layer.msg(data.message);
+        //     }
+        // },obj);
+    })
 
      /**
      * 推荐与否
@@ -974,11 +1023,11 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
  
             $('#searchedlist').html('');
             var tempHtml=searchedcontent.innerHTML;
-            // common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.searchFilterGoods,function(data){
-                    
-            //         if(data.code==200){
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goods.searchFilterGoods,function(data){
+                    data=data.data;
+                    if(data.code==200){
                         
-                        layObj.laytpl(tempHtml).render({},function(html){
+                        layObj.laytpl(tempHtml).render(data.goods_list,function(html){
                             $('#searchedlist').append(html);
                         })
 
@@ -993,14 +1042,14 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
                             $('#goods-list').hide();
                           }
                         })
-                //     }else{
+                    }else{
                         
-                //         setTimeout(function(){
-                //             // layObj.layer.closeAll();
-                //             // classObj.methods.updatePageNum(1);
-                //         },1000);
-                //     }
-                // },formParams.field);
+                        setTimeout(function(){
+                            // layObj.layer.closeAll();
+                            // classObj.methods.updatePageNum(1);
+                        },1000);
+                    }
+                },formParams.field);
                 
             return false;
         })
