@@ -26,6 +26,27 @@ define({
             lookInfoCopyed:'/goods/beforeId',
             searchFilterGoods:'/relevance/goodsList'
             
+        },
+        goodsBag:{
+            showlist:'/package/packList',
+            getOneInfo:'/package/onePack',
+            addGoodsBag:'/package/addPack',
+            updateBagInfo:'/package/upPack',
+            updateStatus:'/package/onOff',
+            lookGoodsInBag:'/package/packGoods'
+        },
+        queueMode:{
+            showlist:'/Queue/queueList',
+            addNewMode:'/Queue/addQueue',
+            getOneInfo:'/Queue/oneQueue',
+            updateMode:'/Queue/upQueue',
+            updateStatus:'/Queue/onOff'
+        },
+        queueList:{
+            showlist:'/Lines/linesList',
+            readyGoods:'/Lines/Stocking',
+            leaveUser:'/Lines/tiRen',
+            sortList:'/Lines/positionChange'
         }
     },
     article:{
