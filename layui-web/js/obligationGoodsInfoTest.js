@@ -603,6 +603,25 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
 
      })
      
+//复选框选中
+    $('.checkall').on('click',function() {
+        var bt=this.checked;
+        $('.ischecked').each(function(){
+            this.checked=bt;
+        });
+        //$('.ischecked').attr('checked',this.checked);
+    });
+
+    $('#searchedlist').on('click','.ischecked',function(){
+        var ischecked=true;
+        $('.ischecked').each(function(){
+            if(!this.checked){
+                ischecked=false;
+            }
+        });
+        $('.checkall')[0].checked=ischecked;
+    });
+
      //复制商品
      $('.copyGoodsToStore').on('click',function(){
          layObj.layer.open({
@@ -635,9 +654,14 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
             
             goods_ids:arr.join(',')
         }
-
+        ShopObj.data.selectedGoodsArr=arr.join(',');
         $.each(ShopObj.data.arrGoodsClassify,function(index,item){
-            $('<option>').appendTo($('.obligationSortList')).html(item.cname).attr('value',item.id);
+            if(index==0){
+                $('<option>').appendTo($('.obligationSortList')).html(item.cname).attr({'value':item.id,'seleced':true});
+            }else{
+                $('<option>').appendTo($('.obligationSortList')).html(item.cname).attr('value',item.id);
+            }
+            
         })
 
         form.render();
@@ -1042,6 +1066,31 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
                             $('#goods-list').hide();
                           }
                         })
+                    }else{
+                        
+                        setTimeout(function(){
+                            // layObj.layer.closeAll();
+                            // classObj.methods.updatePageNum(1);
+                        },1000);
+                    }
+                },formParams.field);
+                
+            return false;
+        })
+
+        //确认复制的商品
+        form.on('submit(confirCodyGoods)',function(formParams){
+            layObj.layer.load();
+            
+            formParams.field.goods_ids=ShopObj.data.selectedGoodsArr;
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goods.copyGoods,function(data){
+                    data=data.data;
+                    if(data.code==200){
+                            layObj.layer.closeAll('loading');
+                            layObj.layer.close(layObj.layer.index);
+                            layObj.layer.close(ShopObj.data.alertIndex);
+                            layObj.layer.msg(data.message);
+                        
                     }else{
                         
                         setTimeout(function(){
