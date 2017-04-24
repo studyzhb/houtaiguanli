@@ -34,6 +34,7 @@ define({
             updateBagInfo:'/package/upPack',
             updateStatus:'/package/onOff',
             lookGoodsInBag:'/package/packGoods',
+            deleteObligationGoods:'/package/delGood',
             searchFilterGoods:'/goods/goodsList'
         },
         queueMode:{
