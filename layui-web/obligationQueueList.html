@@ -53,7 +53,7 @@
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
             
-            <form class="layui-form layui-form-pane" style="display:inline-block;">
+            <form class="layui-form layui-form-pane" style="display:none;">
               
               
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
@@ -90,14 +90,15 @@
           <thead>
             <tr>
               <th>序号</th>
-              <th>名称</th>
-              <th>商品包总额</th>
+              <th>用户</th>
               <th>债权金总额</th>
-              <th>利润率</th>
-              <th>退出队列需要人数</th>
-              <th>状态</th>
-              <th>描述</th>
-              <th>操作</th>
+              <th>已收益</th>
+              <th>提货点</th>
+              <th>备注</th>
+              <th>队列状态</th>
+              <th>商品状态</th>
+              
+              <th>排序</th>
             </tr> 
           </thead>
           <tbody id="all-sort-list">
@@ -310,9 +311,9 @@
                   <thead>
                     <tr>
                       <th>序号</th>
-                      <th>商品编号</th>
-                      <th>商品条形码</th>
-                      <th>商品名称</th>
+                      <th>用户</th>
+                      <th>债券金金额</th>
+                      <th>已收益</th>
                       <th>商品品牌</th>
                       <th>商品零售价</th>
                       <th>操作</th>
@@ -382,60 +383,54 @@
 <!-- ------------------------------------------------------------------------------- -->
 <script id="sortContent" type="text/html">
 {{# layui.each(d.data,function(index,item){ }}
-    <tr>
+    <tr data-id="{{=item.id}}" data-order="{{item.displayorder}}">
     <td>{{index+1}}</td>
-    <td class="typeName">{{=item.name}}</td>
-    <td >{{=item.true_amount}}</td>
-    <td >{{=item.total_amount}}</td>
-    <td >{{=item.profit_margin}}%</td>
-    <td >{{=item.number}}人</td>
-    <td>
-      {{# if(item.status=='1'){ }}
-        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
-              启用
-        </button>
-      {{# }else{ }}
-        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}">
-              停用
-        </button>
-      {{# } }}
-    </td>
+    <td class="typeName">{{=item.user}}</td>
+    <td >{{=item.money}}</td>
+    <td >{{=item.proceeds}}</td>
+    <td >{{=item.delivery_point}}</td>
     <td>{{=item.desc}}</td>
     <td>
-    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
-    <!--<div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.name}}">
-            <i class="layui-icon">&#xe608;</i>
-    </div>-->
+      {{# if(item.status=='-1'){ }}
+        被踢出
+    {{# }else if(item.status=='1'){ }}
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.order_id}}">
+              队列中
+        </button>
+      {{# }else if(item.status=='2'){ }}
+        获益出局
+      {{# } }}
     </td>
+    <td>
+        {{# if(item.take_delivery==0){ }}
+            <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status='0' data-id="{{item.order_id}}" data-typeid="{{item.id}}">
+                      备货中
+                </button>
+        {{# }else if(item.take_delivery==1){ }}
+            待提货
+        {{# }else if(item.take_delivery==2){ }}
+            已提货
+        {{# } }}
+    </td>
+    
+    <!--<td>
+    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
+    <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.name}}">
+            <i class="layui-icon">&#xe608;</i>
+    </div>
+    </td>-->
+    <td>
+            <div style="width:20px;display:inline-block;">
+                {{# if(index!=0){ }}
+                    <i class="layui-icon upSort" data-id="{{=item.id}}" data-order="{{=item.displayorder}}" style="font-size:18px;cursor:pointer;">&#xe619;</i>
+                {{# } }}
+                {{# if(index!=d.data.length-1){ }}
+                    <i class="layui-icon downSort" data-id="{{=item.id}}" data-order="{{=item.displayorder}}" style="font-size:18px;cursor:pointer;">&#xe61a;</i>
+                {{# } }}
+            </div> 
+        </td>
   </tr>
-  {{#  layui.each(item.children,function(ind, its){ }}
-      <tr>
-        <td>{{index+1}}--{{ind}}</td>
-        <td>| ---- {{its.name}}</td>
-        <td>
-            {{# if(item.status=='1'){ }}
-              {{# if(its.status=='1'){ }}
-                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status='0' data-id="{{its.id}}" data-typeid="{{item.id}}">
-                      启用
-                </button>
-              {{# }else{ }}
-                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{its.id}}" data-typeid="{{item.id}}">
-                      停用
-                </button>
-              {{# } }}
-            {{# }else{ }}
-              停用
-            {{# } }}
-            
-        </td>
-        <td>
-          <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">编辑</div>
-          <div class="layui-btn layui-btn-danger layui-btn-small deleteSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">
-            <i class="layui-icon">&#xe640;</i>   
-          </div>
-        </td>
-      </tr>
-    {{#  }); }}
+
 
 {{# }) }}
   

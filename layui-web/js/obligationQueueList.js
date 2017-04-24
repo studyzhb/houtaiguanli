@@ -35,9 +35,53 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             typeInfo:[],
             tempGoodsContent:$('#sortContent').html(),
             arrData:[],
-            alertPageCount:'1'
+            alertPageCount:'1',
+            currentPage:'1'
         },
         methods:{
+            //排序
+            sortOrderInfo:function(id,order,obj,tag){
+                var targetEl={};
+                var tId,tOrder;
+                if(tag){
+                    tId=obj.prev().data('id');
+                    tOrder=obj.prev().data('order');
+
+                    if(!tId){
+                        targetEl='';
+                    }else{
+                        targetEl.id=tId||'';
+                        targetEl.displayorder=order;
+                    }
+                    
+                }else{
+                     tId=obj.next().data('id');
+                     tOrder=obj.next().data('order');
+                    if(!tId){
+                        targetEl='';
+                    }else{
+                        targetEl.id=tId||'';
+                        targetEl.displayorder=order;
+                    }
+                }
+                var arr=[];
+                arr[0]={id:id,displayorder:tOrder};
+                if(!!targetEl){
+                    arr.push(targetEl);
+                }
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.sortList,function(data){
+                    if(data.code==200){
+                        layObj.layer.msg('排序成功');
+                        
+                            classObj.methods.updatePageNum(classObj.data.currPage);
+                        
+                        
+                        
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                },{positionJson:JSON.stringify(arr)});
+            },
             //获取标准下的商品
             updateObligationTypeInfoById:function(id,p){
                 $('#goods-orderlist').html('');
@@ -105,15 +149,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             updatePageNum:function(num){
                 
-                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goodsBag.showlist,function(data){
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.showlist,function(data){
                     log.d(data);
                     
                     if(data.code==200){
-                        classObj.data.arrData=data.data.pack_list;
+                        classObj.data.arrData=data.data.queue_list;
                         
                         classObj.data.pageCount=Math.ceil(data.pageAllNum/10);
                         $('.detailCount').text(data.data.all_num);
-                        classObj.methods.updateArealist(data.data.pack_list);
+                        classObj.methods.updateArealist(data.data.queue_list);
                         if(fistLoad){
                             classObj.methods.updatePage();
                         }
@@ -148,13 +192,31 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 // var item=classObj.methods.getSingleInfo(upId);
                 var item={};
                 item.status=sta;
-                item.id=upId;
-                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goodsBag.updateStatus,function(data){
+                item.order_id=upId;
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.leaveUser,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
                     if(data.code==200){
                         //location.reload();
                         layObj.layer.closeAll();
+                        layObj.layer.msg(data.message);
+                        classObj.methods.updatePageNum(1);
+                        
+                    }else{
+                        layObj.layer.msg(data.message);
+                        // layObj.layer.closeAll();
+                        //location.reload();
+                    }
+                },item);
+            },
+            updateStatusInfoType:function(sta,upId,obj,pId){
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.readyGoods,function(data){
+                    log.d(data);
+                    classObj.data.isCanClick=true;
+                    if(data.code==200){
+                        //location.reload();
+                        layObj.layer.closeAll();
+                        layObj.layer.msg(data.message);
                         classObj.methods.updatePageNum(1);
                         
                     }else{
@@ -162,28 +224,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         // layObj.layer.closeAll();
                         //location.reload();
                     }
-                },item);
-            },
-            updateStatusInfoType:function(sta,upId,obj,pId){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusInfoType,function(data){
-                    log.d(data);
-                    classObj.data.isCanClick=true;
-                    if(data.code==200){
-                        //location.reload();
-                        layObj.layer.closeAll();
-                        
-                        if(sta=='1'){
-                            $(obj).text('启用').addClass('active').data('status',0);
-                        }else{
-                            $(obj).text('停用').removeClass('active').data('status',1);
-                        }
-                        
-                    }else{
-                        layObj.layer.msg(data.msg);
-                        // layObj.layer.closeAll();
-                        //location.reload();
-                    }
-                },{navid:classObj.data.navId,status:sta,id:upId,typeid:pId});
+                },{order_id:upId});
             },
             updateSubInfo:function(obj){
 
@@ -281,20 +322,25 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var status=$(this).data('status');
         var upId=$(this).data('id');
         var self=this;
-        if(classObj.data.isCanClick){
-            classObj.data.isCanClick=false;
-            if(status=='0'){
-                layObj.layer.confirm('你确认要停用此类型吗?',function(index){
-                    layObj.layer.close(index);
-                    classObj.methods.updateStatusType(status,upId,self);
-                })
-            }else{
-                classObj.methods.updateStatusType(status,upId,this);
+        layObj.layer.confirm('你确认执行踢人操作吗?',function(index){
+            layObj.layer.close(index);
+            classObj.methods.updateStatusType(status,upId,self);
+        })
 
-            }
-        }else{
-            layObj.layer.msg('请勿重复点击');
-        }
+        // if(classObj.data.isCanClick){
+        //     classObj.data.isCanClick=false;
+        //     if(status=='0'){
+        //         layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+        //             layObj.layer.close(index);
+        //             classObj.methods.updateStatusType(status,upId,self);
+        //         })
+        //     }else{
+        //         classObj.methods.updateStatusType(status,upId,this);
+
+        //     }
+        // }else{
+        //     layObj.layer.msg('请勿重复点击');
+        // }
         // layObj.layer.load();
         
     })
@@ -315,7 +361,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var pId=$(this).data('typeid');
         if(classObj.data.isCanClick){
             classObj.data.isCanClick=false;
-            classObj.methods.updateStatusInfoType(status,upId,this,pId);
+             layObj.layer.confirm('备货完成?',function(index){
+                layObj.layer.close(index);
+                classObj.methods.updateStatusInfoType(status,upId,this,pId);
+            })
+            
             return;
             if(status=='0'){
                 layObj.layer.confirm('你确认要停用此类型吗?',function(index){
@@ -332,6 +382,24 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         // layObj.layer.load();
         
     })
+
+    /**
+     * 排序
+     */
+    $('#all-sort-list').on('click','.upSort',function(){
+        
+         
+         var bid=$(this).data('id');
+         var bOrder=$(this).data('order');
+         classObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),true);
+     })
+
+     $('#all-sort-list').on('click','.downSort',function(){
+        
+        var bid=$(this).data('id');
+         var bOrder=$(this).data('order');
+         classObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),false);
+     })
 
     setTimeout(function(){
         form=layObj.form();
