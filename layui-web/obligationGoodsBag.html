@@ -183,7 +183,7 @@
         <label class="layui-form-label">利润率</label>
         <div class="layui-input-inline">
         
-        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)" name="profit_margin" data-info="{{d.profit_margin}}" value="{{d.profit_margin}}" required  lay-verify="required" placeholder="请输入1-100之间数" autocomplete="off" class="layui-input">
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)" name="profit_margin" data-info="{{d.profit_margin}}" value="{{=d.profit_margin}}" required  lay-verify="required" placeholder="请输入1-100之间数" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -235,7 +235,7 @@
  
               
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
-                <legend>债权金标准信息</legend>
+                <legend>商品包信息</legend>
 
                 
                 
@@ -243,7 +243,7 @@
               
               
                     <div class="layui-input-inline" style="width:100px;margin-left:5px;">
-                      <select name="field">
+                      <select name="class_id" class="obligationGoodsType">
                         
                         <option value="barcode" selected>商品条形码</option>
                         <option value="coding">商品编号</option>
@@ -252,7 +252,7 @@
                     </div>
                   <div class="layui-inline">
                     <div class="layui-input-inline">
-                      <input type="text" name="value" class="layui-input"  value="">
+                      <input type="text" name="name" class="layui-input"  value="">
                     </div>
                   </div>
                   <div class="layui-btn" lay-submit lay-filter="searchFilterGoods">
@@ -450,8 +450,7 @@
       <th>商品条形码</th>
       <th>商品名称</th>
       <th>零售价格</th>
-
-      <th>品牌</th>
+      <th>支付价格</th>
 
     </tr> 
   </thead>
@@ -463,7 +462,7 @@
 </table>
 <div class="layui-form-item">
   <div class="layui-input-block">
-    <div class="layui-btn" id="confirmorder">确认订单</div>
+    <div class="layui-btn" id="confirmorder">确认</div>
   </div>
 </div>
 </div>
@@ -475,9 +474,9 @@
       <td><input type="checkbox" class="ischecked" data-id="{{item.id}}" name="" value=""></td>
       <td>{{=item.coding}}</td>
       <td>{{=item.barcode}}</td>
-      <td>{{=item.name}}</td>
-      <td>{{=(item.retails-0).toFixed(2)}}</td>
-      <td>{{=item.brand}}</td>
+      <td>{{=item.goodsname}}</td>
+      <td>{{=(item.price_sell-0).toFixed(2)}}</td>
+      <td>{{=(item.price_pay-0).toFixed(2)}}</td>
     </tr>
 {{# }) }}
   

@@ -109,7 +109,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     log.d(data);
                     
                     if(data.code==200){
-                        classObj.data.arrData=data.data;
+                        classObj.data.arrData=data.data.queue_list;
                         // if(fistLoad){
                         //     classObj.methods.updatePage();
                         // }
@@ -206,10 +206,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             //
             updateObligationInfo:function(data){
-                console.log(data);
+                
                 var tpl=$('#editorNavCon').html();
                 $('.editor-area-type').html('');
-                 
+                    data.goodsBagArr=classObj.data.goodsBagArr;
                     layObj.laytpl(tpl).render(data,function(html){
                         $('.editor-area-type').append(html);
                         form.render();
@@ -257,6 +257,19 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         
                     }
                 },{good_id:id});
+            },
+            getGoodsBagList:function(){
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goodsBag.showlist,function(data){
+                    
+                    
+                    if(data.code==200){
+                        classObj.data.goodsBagArr=data.data.pack_list;
+
+                    }else{
+                        
+                        
+                    }
+                });
             }
         }
     }
@@ -298,6 +311,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         
     })
 
+    //获取商品包
+    classObj.methods.getGoodsBagList();
+
     //删除标准下的商品
     $('#goods-orderlist').on('click','.deleteObligationType',function(){
         var id=$(this).data('id');
@@ -336,19 +352,22 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         form=layObj.form();
         form.on('submit(shopInfo)',function(formParams){
             log.d(formParams.field)
+            layObj.layer.load();
             formParams.field.navid=classObj.data.navId;
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.typeAdd,function(data){
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueMode.addNewMode,function(data){
                     log.d(data);
                     if(data.code==200){
-                        layer.msg('添加成功');
+                        
                         layObj.layer.closeAll();
+                        layer.msg('添加成功');
                         setTimeout(function(){
                             classObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
-                        layer.msg('网络错误，请稍后重试');
+                        
                         layObj.layer.closeAll();
+                        layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
                             
                             classObj.methods.updatePageNum(1);
@@ -394,15 +413,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
         form.on('submit(editorAreaType)',function(formParams){
             log.d(formParams.field)
-
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.updateType,function(data){
+            layObj.layer.load();
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueMode.updateMode,function(data){
                     log.d(data);
                     if(data.code==200){
-                        layer.msg('添加成功');
+                        layObj.layer.closeAll();
+                        layer.msg('操作成功');
+                        classObj.methods.updatePageNum(1);
                         setTimeout(function(){
                             // location.reload();
-                            layObj.layer.closeAll();
-                            classObj.methods.updatePageNum(1);
+                            
+                            
                         },1000);
                         
                     }else{
@@ -488,6 +509,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     //添加分类类型
     $('.addArea').on('click',function(){
          $('#authorForm')[0].reset();
+         $.each(classObj.data.goodsBagArr,function(index,item){
+             if(index==0){
+                $('<option>').appendTo($('.goodsBagList')).html(item.pack_name).attr({'value':item.id,selected:true});
+             }else{
+                $('<option>').appendTo($('.goodsBagList')).html(item.pack_name).attr('value',item.id);
+             }
+             
+         })
+         form.render();
         // $('input.cityid').val(classObj.data.navId);
         layObj.layer.open({
              type:1,

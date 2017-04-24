@@ -33,7 +33,8 @@ define({
             addGoodsBag:'/package/addPack',
             updateBagInfo:'/package/upPack',
             updateStatus:'/package/onOff',
-            lookGoodsInBag:'/package/packGoods'
+            lookGoodsInBag:'/package/packGoods',
+            searchFilterGoods:'/goods/goodsList'
         },
         queueMode:{
             showlist:'/Queue/queueList',

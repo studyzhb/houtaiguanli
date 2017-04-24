@@ -128,28 +128,51 @@
         <label class="layui-form-label">类型名称</label>
         <div class="layui-input-inline">
           
-          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="1" />
+          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="0" />
           <input type="text" name="name" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最小提现金额</label>
+        <label class="layui-form-label">请选择商品包</label>
+        <div class="layui-input-inline" style="width:100px;margin-left:5px;">
+          <select name="pack_id" lay-verify="required" class="goodsBagList">
+            <option value="barcode" selected>商品包</option>
+          </select>
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">债券金额</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="min_money" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="total_amount" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">返现比例</label>
+        <label class="layui-form-label">利润率</label>
         <div class="layui-input-inline">
         
-        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" name="scale" data-info="" value="" required  lay-verify="required" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
+        <input type="text" name="profit_margin" onkeyup="this.value=this.value.replace(/[^\d|\.]/g,'')"  value="" required  lay-verify="required" placeholder="请输入1-100" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排队人数</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" name="number" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品总金额</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  name="true_amount" data-info="" value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">债权金规则</label>
+        <label class="layui-form-label">债权金描述</label>
         <div class="layui-input-block">
-            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+            <textarea name="desc" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
         </div>
         
     </div>
@@ -190,29 +213,61 @@
     <div class="layui-form-item">
         <label class="layui-form-label">类型名称</label>
         <div class="layui-input-inline">
-        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
-        <input type="hidden" autocomplete="off" name="status" class="layui-input" value="{{d.status}}" />
-        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+          
+          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="{{d.status}}" />
+          <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+          <input type="text" name="name" data-info="" value="{{=d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最小提现金额</label>
+        <label class="layui-form-label">请选择商品包</label>
+        <div class="layui-input-inline" style="width:100px;margin-left:5px;">
+          <select name="pack_id" lay-verify="required" class="goodsBagList">
+            {{# layui.each(d.goodsBagArr,function(index,item){ }}
+              {{# if(item.id==d.pack_id){ }}
+                <option value="{{item.id}}" selected>{{=item.pack_name}}</option>
+              {{# }else{ }}
+                <option value="{{item.id}}">{{=item.pack_name}}</option>
+              {{# } }}
+              
+            {{# }) }}
+            
+          </select>
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">债券金额</label>
         <div class="layui-input-inline">
         
-        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)" name="min_money" data-info="{{d.min_money}}" value="{{d.min_money}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        <input type="text" name="total_amount" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.total_amount}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">返现比例</label>
+        <label class="layui-form-label">利润率</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="scale" data-info="{{d.scale}}" value="{{d.scale}}" required  lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
+        <input type="text" name="profit_margin" onkeyup="this.value=this.value.replace(/[^\d|\.]/g,'')"  value="{{=d.profit_margin}}" required  lay-verify="required" placeholder="请输入1-100" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排队人数</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" name="number" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.number}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品总金额</label>
+        <div class="layui-input-inline">
+        
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  name="true_amount" data-info="" value="{{=d.true_amount}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">债权金规则</label>
+        <label class="layui-form-label">债权金描述</label>
         <div class="layui-input-block">
-            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.rolecon}}</textarea>
+            <textarea name="desc" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.desc}}</textarea>
         </div>
         
     </div>
