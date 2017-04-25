@@ -585,9 +585,11 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         $('.imageadd-single').show().prevAll().remove();
         $('.imageadd').show().prevAll().remove();
         var shopName=$(this).data('name');
+        var shopNum=$(this).data('shopnum');
         
         ShopObj.data.shopid=$(this).data('id');
         ShopObj.data.shopname=shopName;
+        ShopObj.data.shopnum=shopNum;
         ShopObj.methods.addGoodsGetSortInfo(ShopObj.data.shopid,ShopObj.methods.renderAddGoodsInfo);
         
         //获取产品所属店铺的区域
@@ -954,6 +956,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 paraData.field.navid=ShopObj.data.navId;
                 paraData.field.shopid=ShopObj.data.shopid;
                 paraData.field.shopname=ShopObj.data.shopname;
+                paraData.field.shopnum=ShopObj.data.shopnum;
                 paraData.field.area=ShopObj.data.arrAreaGoods.area;
                 paraData.field.business=ShopObj.data.arrAreaGoods.business;
                 var arr=ShopObj.methods.repeatArr(ShopObj.data.labelJson);
