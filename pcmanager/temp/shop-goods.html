@@ -127,7 +127,9 @@
                 </thead>
                 <tbody>
                     {{# layui.each(d.data,function(index,item){ }}
+                        {{# if(item.shopStatus==1){ }}
                             <tr data-id="{{=item.id}}" data-order="{{=item.displayorder}}">
+                        
                                 <td>{{index+1}}</td>
                                 <td>{{=item.goodsname}}</td>
                                 <td>{{=item.shopname}}</td>
@@ -206,7 +208,76 @@
                                     </div> 
                                 </td>
                             </tr>
+                            {{# }else{ }}
+                                <tr data-id="{{=item.id}}" style="background:#888;" data-order="{{=item.displayorder}}">
+                        
+                                    <td>{{index+1}}</td>
+                                    <td>{{=item.goodsname}}</td>
+                                    <td>{{=item.shopname}}</td>
+                                    <!--<td>zhang</td>-->
+                                    <td>{{=(new Date(item.validity_time*1000).toLocaleString())}}</td>
+                                    <td>{{=(item.price_sell*1).toFixed(2)}}</td>
+                                    <!--<td>全场折扣95折</td>-->
 
+                                {{# if(item.status=='0'){ }}
+                                        <td>
+                                            <button class="layui-btn layui-btn-small layui-btn-primary" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                                                    下架
+                                            </button>
+                                        </td>
+                                    {{# }else{ }}
+                                        <td>
+                                            <div class="layui-btn layui-btn-small layui-btn-primary" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                                                    上架
+                                                </div>
+                                        </td>
+                                    {{# } }}
+                                        {{# if(item.status=='0'){ }}
+                                            {{# if(item.recommend=='0'){ }}
+                                                <td>
+                                                    未推荐
+                                                </td>
+                                            {{# }else{ }}
+                                                <td>                            
+                                                        已推荐
+
+                                                </td>
+                                            {{# } }}
+                                        {{# }else{ }}
+                                            {{# if(item.recommend=='0'){ }}
+                                                <td>
+                                                    <button class="layui-btn layui-btn-small layui-btn-primary" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                                                        未推荐
+                                                    </button>
+                                                </td>
+                                            {{# }else{ }}
+                                                <td>
+                                                    <div class="layui-btn layui-btn-small layui-btn-primary" data-status="0" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                                                        已推荐
+                                                    </div>
+                                                    
+                                                </td>
+                                            {{# } }}
+                                        {{# } }}
+                                    <td>
+                                        {{# if(item.check=='0'){ }}
+                                        未审核
+                                    {{# }else if(item.check=='1'){ }}
+                                        审核通过
+                                    {{# }else if(item.check=='2'){ }}
+                                        已拒绝
+                                    {{# } }}
+                                    </td>
+                                    <td>{{=item.checker}}</td>
+                                    <td>
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                            {{# } }}
                         {{# }) }}
                 </tbody>
             </table>
@@ -238,6 +309,7 @@
         </thead>
         <tbody>
             {{# layui.each(d.data,function(index,item){ }}
+                {{# if(item.shopStatus==1){ }}
                     <tr data-id="{{=item.id}}" data-order="{{=item.displayorder}}">
                         <td>{{index+1}}</td>
                         <td>{{=item.goodsname}}</td>
@@ -264,7 +336,7 @@
                             </div> 
                         </td>
                     </tr>
-
+                    {{# } }}
                 {{# }) }}
         </tbody>
     </table>

@@ -50,7 +50,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                                console.log(data.curr!=ShopObj.data.currentPage);
+                                
                                 if(ShopObj.data.currentStatus=='1'){ 
                                     if(data.curr!=ShopObj.data.currentPage){
                                         ShopObj.data.currentPage=data.curr;
@@ -75,7 +75,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
             updatePageNum:function(num,para){
                 
                 var options={
-                    page:num||ShopObj.data.currentPage,
+                    page:num,
                     cityid:params.id,
                     navid:ShopObj.data.navId
                 }
@@ -87,6 +87,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                 para=$.extend({},options,para||{});
 
                 $('#tableWrapper').html('');
+                
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.shoplist,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -101,12 +102,12 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         layObj.layer.msg(data.msg);
                         ShopObj.methods.updateShopList([]);
                     }
-                },para);
+                },options);
             },
             updateRecommendList:function(num,para){
                 $('#tableWrapper').html('');
                 var options={
-                    page:num||ShopObj.data.currentRePage,
+                    page:num,
                     cityid:params.id,
                     navid:ShopObj.data.navId
                 }
@@ -116,6 +117,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                     $('.edited').addClass('layui-this').siblings().removeClass('layui-this');
                 }
                 para=$.extend(options,para||{});
+                
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.recommendList,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -130,7 +132,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                         layObj.layer.msg(data.msg);
                         ShopObj.methods.updateShopList([]);
                     }
-                },para);
+                },options);
             },
             updateRecommendStatus:function(id,status){
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shop.addRecommend,function(data){
