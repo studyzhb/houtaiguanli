@@ -61,12 +61,13 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
-                        if(fistLoad){
-                            GoodsObj.methods.updatePage();
-                        }
+                        
                         GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
                         $('.detailCount').text(data.total);
                         GoodsObj.methods.updateGoodsList(data.data);
+                        if(fistLoad){
+                            GoodsObj.methods.updatePage();
+                        }
                     }else{
                         GoodsObj.methods.updateGoodsList([]);
                         layObj.layer.msg(data.msg);
@@ -83,12 +84,13 @@ require(['jquery','jquery-form','main','ajaxAddress','lay-model','log','params',
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.shopGoods.recommendList,function(data){
                     log.d(data);
                     if(data.code==200){
+                        
+                        GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
+                        $('.detailCount').text(data.totle);
+                        GoodsObj.methods.updateGoodsList(data.data);
                         if(fistLoad){
                             GoodsObj.methods.updatePage();
                         }
-                        GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
-                        $('.detailCount').text(data.total);
-                        GoodsObj.methods.updateGoodsList(data.data);
                     }else{
                         GoodsObj.methods.updateGoodsList([]);
                         layObj.layer.msg(data.msg);
