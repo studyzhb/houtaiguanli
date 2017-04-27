@@ -48,7 +48,13 @@ define({
             showlist:'/Lines/linesList',
             readyGoods:'/Lines/Stocking',
             leaveUser:'/Lines/tiRen',
-            sortList:'/Lines/positionChange'
+            sortList:'/Lines/positionChange',
+            sortInputList:'/Lines/chSort'
+        },
+        currencyMoney:{
+            showlist:'/debtreview/listdebt',
+            lookOneUserList:'/debtreview/listdebtdes',
+            oneUserGoodsList:'/debtreview/debegoodlist'
         }
     },
     article:{

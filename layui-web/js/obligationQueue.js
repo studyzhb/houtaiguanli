@@ -509,6 +509,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     //添加分类类型
     $('.addArea').on('click',function(){
          $('#authorForm')[0].reset();
+         $('.goodsBagList').html('');
          $.each(classObj.data.goodsBagArr,function(index,item){
              if(index==0){
                 $('<option>').appendTo($('.goodsBagList')).html(item.pack_name).attr({'value':item.id,selected:true});

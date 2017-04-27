@@ -45,7 +45,7 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-            债权金队列模式
+            债权金结算
           </li>
           
         </ul>
@@ -53,7 +53,7 @@
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
             
-            <form class="layui-form layui-form-pane" style="display:inline-block;">
+            <form class="layui-form layui-form-pane" style="display:none;">
               
               
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
@@ -71,7 +71,7 @@
                    搜索
                 </div>
                 <div class="layui-btn addArea">
-                    添加新的队列模式
+                    添加标准类型
                 </div>
                 <div class="layui-btn" onclick="location.reload()" style="float: right;">
                     <i class="layui-icon">&#x1002;</i>  
@@ -83,20 +83,18 @@
             <col >
             <col >
             <col > 
-            <col width="100">
-            <col >
-            <col>
+            <col > 
+
+
           </colgroup>
           <thead>
             <tr>
               <th>序号</th>
-              <th>名称</th>
-              <th>商品包总额</th>
-              <th>债权金总额</th>
-              <th>利润率</th>
-              <th>退出队列需要人数</th>
-              <th>状态</th>
-              <th>描述</th>
+              <th>结算周期</th>
+              <th>应结金额</th>
+              <th>未结金额</th>
+              <!--<th>状态</th>-->
+              <!--<th>创建时间</th>-->
               <th>操作</th>
             </tr> 
           </thead>
@@ -109,7 +107,7 @@
           </div>
         </div>
 
-        <div style="height:55px;padding-right:10px;display: none;">
+        <div style="height:55px;padding-right:10px;">
             <div id="page" style="float:right;"></div>
             <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
         </div>
@@ -128,72 +126,28 @@
         <label class="layui-form-label">类型名称</label>
         <div class="layui-input-inline">
           
-          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="0" />
+          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="1" />
           <input type="text" name="name" data-info="" value="" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">请选择商品包</label>
-        <div class="layui-input-inline" style="width:100px;margin-left:5px;">
-          <select name="pack_id" lay-verify="required" class="goodsBagList">
-            <option value="barcode" selected>商品包</option>
-          </select>
-        </div>
-    </div>
-    
-    <div class="layui-form-item">
-        <label class="layui-form-label">债券金额</label>
+        <label class="layui-form-label">最小提现金额</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="total_amount" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="min_money" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">利润率</label>
+        <label class="layui-form-label">返现比例</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="profit_margin" onkeyup="this.value=this.value.replace(/[^\d|\.]/g,'')"  value="" required  lay-verify="required" placeholder="请输入1-100" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">排队人数</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="number" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">单天最高单数</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="times_day" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">最高单数</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="times_max" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">间隔人数</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="spec" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">商品总金额</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  name="true_amount" data-info="" value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" name="scale" data-info="" value="" required  lay-verify="required" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">债权金描述</label>
+        <label class="layui-form-label">债权金规则</label>
         <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
         </div>
         
     </div>
@@ -234,82 +188,29 @@
     <div class="layui-form-item">
         <label class="layui-form-label">类型名称</label>
         <div class="layui-input-inline">
-          
-          <input type="hidden" autocomplete="off" name="status" class="layui-input" value="{{d.status}}" />
-          <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
-          <input type="text" name="name" data-info="" value="{{=d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="hidden" autocomplete="off" name="status" class="layui-input" value="{{d.status}}" />
+        <input type="text" name="name" data-info="{{d.name}}" value="{{d.name}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">请选择商品包</label>
-        <div class="layui-input-inline" style="width:100px;margin-left:5px;">
-          <select name="pack_id" lay-verify="required" class="goodsBagList">
-            {{# layui.each(d.goodsBagArr,function(index,item){ }}
-              {{# if(item.id==d.pack_id){ }}
-                <option value="{{item.id}}" selected>{{=item.pack_name}}</option>
-              {{# }else{ }}
-                <option value="{{item.id}}">{{=item.pack_name}}</option>
-              {{# } }}
-              
-            {{# }) }}
-            
-          </select>
-        </div>
-    </div>
-    
-    <div class="layui-form-item">
-        <label class="layui-form-label">债券金额</label>
+        <label class="layui-form-label">最小提现金额</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="total_amount" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.total_amount}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=(this.value.replace(/[^\d]/g,'')-0)<=0?1:(this.value.replace(/[^\d]/g,'')-0)" name="min_money" data-info="{{d.min_money}}" value="{{d.min_money}}" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">利润率</label>
+        <label class="layui-form-label">返现比例</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="profit_margin" onkeyup="this.value=this.value.replace(/[^\d|\.]/g,'')"  value="{{=d.profit_margin}}" required  lay-verify="required" placeholder="请输入1-100" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">排队人数</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="number" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.number}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">单天最高单数</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="times_day" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.times_day}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">最高单数</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="times_max" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.times_max}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">间隔人数</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" name="spec" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.spec}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">商品总金额</label>
-        <div class="layui-input-inline">
-        
-        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  name="true_amount" data-info="" value="{{=d.true_amount}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="scale" data-info="{{d.scale}}" value="{{d.scale}}" required  lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=((this.value.replace(/[^\d]/g,'')-0)/100).toFixed(2)" placeholder="1-100之间数字" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">债权金描述</label>
+        <label class="layui-form-label">债权金规则</label>
         <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.desc}}</textarea>
+            <textarea name="rolecon" placeholder="请输入内容" lay-verify="required" class="layui-textarea">{{=d.rolecon}}</textarea>
         </div>
         
     </div>
@@ -407,11 +308,13 @@
                   <thead>
                     <tr>
                       <th>序号</th>
-                      <th>商品编号</th>
-                      <th>商品条形码</th>
-                      <th>商品名称</th>
-                      <th>商品品牌</th>
-                      <th>商品零售价</th>
+                      <th>用户</th>
+                      <th>返现标准</th>
+
+                      <th>应结金额</th>
+                      <th>创建时间</th>
+                      <th>上次结算时间</th>
+                      <th>状态</th>
                       <th>操作</th>
                     </tr> 
                   </thead>
@@ -437,6 +340,88 @@
             </div>
   
 
+<!---================================================================-->
+
+
+<!-- 添加标准时的展示页面 -->
+<div class="layui-form layui-form-pane" id="obligationUserListInfo" action="" method="POST" style="height:100%;overflow:auto;display:none;font-size:14px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+ 
+              
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+                <legend>债权金标准信息</legend>
+
+                
+                
+                  <form class="layui-form layui-form-pane" style="display:inline-block;">
+              
+              
+                    <div class="layui-input-inline" style="width:100px;margin-left:5px;">
+                      <select name="field">
+                        
+                        <option value="barcode" selected>商品条形码</option>
+                        <option value="coding">商品编号</option>
+                        <option value="name">商品名称</option>
+                      </select>
+                    </div>
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" name="value" class="layui-input"  value="">
+                    </div>
+                  </div>
+                  <div class="layui-btn" lay-submit lay-filter="searchFilterGoods">
+                       搜索
+                    </div>
+
+                    <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                        <i class="layui-icon">&#x1002;</i>  
+                    </div>
+                </form>
+
+                
+                
+                
+                
+
+                <table class="layui-table">
+                  <colgroup>
+                    <!-- <col width="100">
+                    <col width="100">
+                    <col>
+                    <col width="100">
+                    <col width="300"> -->
+
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>序号</th>
+                      <th>用户</th>
+                      <th>返现标准</th>
+
+                      <th>应结金额</th>
+                      <th>创建时间</th>
+                      <th>上次结算时间</th>
+                      <th>状态</th>
+                      <th>操作</th>
+                    </tr> 
+                  </thead>
+                  <tbody id="user-goods-orderlist">
+                    
+                  </tbody>
+                  
+              </table>
+              </fieldset>
+
+              
+             
+
+              <!-- ================================================== -->
+        <div style="height:55px;padding-right:10px;">
+            <div id="alertpage" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="obligationTotal">30</span>条数据</div>
+        </div>
+
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </div>
 
 <!-- ========================================================= -->
 <script id="slider" type="text/html">
@@ -462,7 +447,6 @@
 <!--编辑区域内容-->
 <script id="editorAreaCon" type="text/html">
 
-    
     <div class="layui-form-item">
     <label class="layui-form-label">内容</label>
     <div class="layui-input-block">
@@ -481,12 +465,10 @@
 {{# layui.each(d.data,function(index,item){ }}
     <tr>
     <td>{{index+1}}</td>
-    <td class="typeName">{{=item.name}}</td>
-    <td >{{=item.true_amount}}</td>
-    <td >{{=item.total_amount}}</td>
-    <td >{{=item.profit_margin}}%</td>
-    <td >{{=item.number}}人</td>
-    <td>
+    <td class="typeName">{{=new Date(item.settletime*1000).format('yyyy-MM-dd')}}</td>
+    <td >{{=item.back_money}}</td>
+    <td >{{=item.no_back_money}}</td>
+    <!--<td>
       {{# if(item.status=='1'){ }}
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
               启用
@@ -496,13 +478,13 @@
               停用
         </button>
       {{# } }}
-    </td>
-    <td>{{=item.desc}}</td>
+    </td>-->
+    <!--<td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>-->
     <td>
-    <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>
-    <!--<div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.name}}">
+    <!--<div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>-->
+    <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.settletime}}">
             <i class="layui-icon">&#xe608;</i>
-    </div>-->
+    </div>
     </td>
   </tr>
   {{#  layui.each(item.children,function(ind, its){ }}
@@ -546,13 +528,49 @@
 {{# layui.each(d,function(index,item){ }}
   <tr>
     <td>{{index+1}}</td>
-    <td>{{=item.coding}}</td>
-    <td>{{=item.barcode}}</td>
+    <td>{{=item.nikename}}</td>
     <td>{{=item.name}}</td>
-    <td>{{=item.brand}}</td>
-    <td>{{=(item.retails-0).toFixed(2)}}</td>
+    <td>{{=item.money}}</td>
+    <td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>
+    <td>{{=new Date(item.starttime*1000).toLocaleString()}}</td>
     <td>
-      <div class="layui-btn layui-btn-danger layui-btn-small deleteObligationType" data-id="{{item.id}}" >
+        {{# if(item.status==1){ }}
+            已结算
+        {{# }else if(item.status==0){ }}
+            <button class="layui-btn layui-btn-small layui-btn-primary finishObligationMoney" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                结算
+            </button>
+        {{# } }}
+    </td>
+    <td>
+      <div class="layui-btn layui-btn-danger layui-btn-small lookObligationMoney" data-id="{{item.id}}" >
+            <i class="layui-icon">&#xe640;</i>   
+        </div>
+    </td>
+  </tr>
+{{# }) }}
+</script>
+<!--债券金用户信息-->
+<script id="showUserGoodsContent" type="text/html">
+{{# layui.each(d,function(index,item){ }}
+  <tr>
+    <td>{{index+1}}</td>
+    <td>{{=item.nikename}}</td>
+    <td>{{=item.name}}</td>
+    <td>{{=item.money}}</td>
+    <td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>
+    <td>{{=new Date(item.starttime*1000).toLocaleString()}}</td>
+    <td>
+        {{# if(item.status==1){ }}
+            已结算
+        {{# }else if(item.status==0){ }}
+            <button class="layui-btn layui-btn-small layui-btn-primary finishObligationMoney" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+                结算
+            </button>
+        {{# } }}
+    </td>
+    <td>
+      <div class="layui-btn layui-btn-danger layui-btn-small lookObligationMoney" data-id="{{item.id}}" >
             <i class="layui-icon">&#xe640;</i>   
         </div>
     </td>
@@ -608,7 +626,6 @@
       <td>{{=item.name}}</td>
       <td>{{=(item.retails-0).toFixed(2)}}</td>
       <td>{{=item.brand}}</td>
-
     </tr>
 {{# }) }}
   
@@ -617,6 +634,6 @@
 
  <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="./js/config.js"></script>
-<script type="text/javascript" src="./js/filter.js" ></script>
-<script type="text/javascript" src="./js/obligationQueue.js"></script>
+<script type="text/javascript" src="./js/filter.js"></script>
+<script type="text/javascript" src="./js/obligationMoney.js"></script>
 </html>
