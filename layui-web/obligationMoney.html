@@ -266,7 +266,7 @@
 
                 
                 
-                  <form class="layui-form layui-form-pane" style="display:inline-block;">
+                  <form class="layui-form layui-form-pane" style="display:none;">
               
               
                     <div class="layui-input-inline" style="width:100px;margin-left:5px;">
@@ -319,9 +319,7 @@
                     </tr> 
                   </thead>
                   <tbody id="goods-orderlist">
-                    <div id="goods-show">
-                      
-                    </div>
+                   
                   </tbody>
                   
               </table>
@@ -348,7 +346,7 @@
  
               
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
-                <legend>债权金标准信息</legend>
+                <legend>用户商品信息</legend>
 
                 
                 
@@ -356,11 +354,12 @@
               
               
                     <div class="layui-input-inline" style="width:100px;margin-left:5px;">
-                      <select name="field">
+                      <select name="status">
                         
-                        <option value="barcode" selected>商品条形码</option>
-                        <option value="coding">商品编号</option>
-                        <option value="name">商品名称</option>
+                        <option value="" selected>全部</option>
+                        <option value="1">未结算</option>
+                        <option value="2">已结束</option>
+
                       </select>
                     </div>
                   <div class="layui-inline">
@@ -368,7 +367,7 @@
                       <input type="text" name="value" class="layui-input"  value="">
                     </div>
                   </div>
-                  <div class="layui-btn" lay-submit lay-filter="searchFilterGoods">
+                  <div class="layui-btn" lay-submit lay-filter="searchObligationUserInfo">
                        搜索
                     </div>
 
@@ -394,14 +393,15 @@
                   <thead>
                     <tr>
                       <th>序号</th>
-                      <th>用户</th>
-                      <th>返现标准</th>
+                      <th>商品名称</th>
+                      <th>单价</th>
 
-                      <th>应结金额</th>
+                      <th>商品数量</th>
+                      <th>返现比例</th>
+                      <th>返现金额</th>
+                      <th>返现时间</th>
                       <th>创建时间</th>
-                      <th>上次结算时间</th>
-                      <th>状态</th>
-                      <th>操作</th>
+                      <!--<th>操作</th>-->
                     </tr> 
                   </thead>
                   <tbody id="user-goods-orderlist">
@@ -465,7 +465,7 @@
 {{# layui.each(d.data,function(index,item){ }}
     <tr>
     <td>{{index+1}}</td>
-    <td class="typeName">{{=new Date(item.settletime*1000).format('yyyy-MM-dd')}}</td>
+    <td class="typeName">{{=new Date(item.createtime*1000).format('yyyy-MM-dd')}}</td>
     <td >{{=item.back_money}}</td>
     <td >{{=item.no_back_money}}</td>
     <!--<td>
@@ -482,9 +482,13 @@
     <!--<td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>-->
     <td>
     <!--<div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaType" data-id="{{item.id}}" data-name="{{item.typename}}" >编辑</div>-->
-    <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.settletime}}">
+    <div class="layui-btn layui-btn-small addAreaType" data-id="{{item.id}}" data-name="{{=item.createtime}}">
             <i class="layui-icon">&#xe608;</i>
     </div>
+    <div class="layui-btn layui-btn-danger layui-btn-small exportDayExcel" data-id="{{item.id}}" data-name="{{=item.createtime}}">
+            导出
+
+        </div>
     </td>
   </tr>
   {{#  layui.each(item.children,function(ind, its){ }}
@@ -528,7 +532,7 @@
 {{# layui.each(d,function(index,item){ }}
   <tr>
     <td>{{index+1}}</td>
-    <td>{{=item.nikename}}</td>
+    <td>{{=item.nickname}}</td>
     <td>{{=item.name}}</td>
     <td>{{=item.money}}</td>
     <td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>
@@ -537,14 +541,18 @@
         {{# if(item.status==1){ }}
             已结算
         {{# }else if(item.status==0){ }}
-            <button class="layui-btn layui-btn-small layui-btn-primary finishObligationMoney" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
+            <button class="layui-btn layui-btn-small layui-btn-primary finishObligationMoney" data-status="1" data-id="{{=item.id}}" data-debtid="{{=item.debt_nexus_id}}" data-typeid="{{item.id}}">
                 结算
             </button>
         {{# } }}
     </td>
     <td>
       <div class="layui-btn layui-btn-danger layui-btn-small lookObligationMoney" data-id="{{item.id}}" >
-            <i class="layui-icon">&#xe640;</i>   
+            <i class="layui-icon">&#xe615;</i>   
+        </div>
+      <div class="layui-btn layui-btn-danger layui-btn-small exportUserExcel" data-id="{{item.id}}" >
+            导出
+
         </div>
     </td>
   </tr>
@@ -555,24 +563,15 @@
 {{# layui.each(d,function(index,item){ }}
   <tr>
     <td>{{index+1}}</td>
-    <td>{{=item.nikename}}</td>
-    <td>{{=item.name}}</td>
-    <td>{{=item.money}}</td>
-    <td>{{=new Date(item.createtime*1000).toLocaleString()}}</td>
-    <td>{{=new Date(item.starttime*1000).toLocaleString()}}</td>
+    <td>{{=item.goodName}}</td>
+    <td>{{=item.price}}</td>
+    <td>{{=item.num}}</td>
+    <td>{{=item.proportion}}</td>
+    <td>{{=item.back_money}}</td>
+    <td>{{=new Date(item.back_time*1000).toLocaleString()}}</td>
+    
     <td>
-        {{# if(item.status==1){ }}
-            已结算
-        {{# }else if(item.status==0){ }}
-            <button class="layui-btn layui-btn-small layui-btn-primary finishObligationMoney" data-status="1" data-id="{{item.id}}" data-typeid="{{item.id}}">
-                结算
-            </button>
-        {{# } }}
-    </td>
-    <td>
-      <div class="layui-btn layui-btn-danger layui-btn-small lookObligationMoney" data-id="{{item.id}}" >
-            <i class="layui-icon">&#xe640;</i>   
-        </div>
+      {{=new Date(item.createtime*1000).toLocaleString()}}
     </td>
   </tr>
 {{# }) }}

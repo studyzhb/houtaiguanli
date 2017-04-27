@@ -1,6 +1,6 @@
 define({
     preFix:'/shop/shop/public/index.php/admin',
-    obligationPreFix:'http://web.yylm.com/public/bfapp',
+    obligationPreFix:'/shop/shop/public/bfapp',
     obligation:{
         showlist:'/debtnexus/index',
         update:'/debtnexus/edit',
@@ -54,8 +54,11 @@ define({
         currencyMoney:{
             showlist:'/debtreview/listdebt',
             lookOneUserList:'/debtreview/listdebtdes',
-            oneUserGoodsList:'/debtreview/debegoodlist'
-        }
+            oneUserGoodsList:'/debtreview/debegoodlist',
+            finishedMoney:'/debtreview/review'
+        },
+        exportdayExcel:'/debtreview/downdebt',
+        exportUserExcel:'/debtreview/downgood',
     },
     article:{
         showlist:'/Article/lst',

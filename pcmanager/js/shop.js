@@ -34,13 +34,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                  obj.status=ShopObj.data.currentStatus;
                  obj.navId=ShopObj.data.navId;
                  obj.cityid=params.id;
-                 console.log(obj);
+                 
                 layObj.laytpl(ShopObj.data.tempGoodsContent).render(obj,function(html){
                     $('#tableWrapper').append(html);
                 })
             },
             updatePage:function(para){
-                console.log(ShopObj.data.pageCount);
+                
                 layui.use(['laypage', 'layer'],function(){
                     var laypage=layui.laypage;
                     var layer = layui.layer;
@@ -54,12 +54,14 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
                                 if(ShopObj.data.currentStatus=='1'){ 
                                     if(data.curr!=ShopObj.data.currentPage){
                                         ShopObj.data.currentPage=data.curr;
+                                        ShopObj.data.currentRePage=data.curr;
                                         ShopObj.methods.updatePageNum(data.curr,para);
                                     }
                                     
                                 }else if(ShopObj.data.currentStatus=='2'){
                                     if(data.curr!=ShopObj.data.currentRePage){
                                         ShopObj.data.currentRePage=data.curr;
+                                        ShopObj.data.currentPage=data.curr;
                                         ShopObj.methods.updateRecommendList(data.curr,para);
                                     }
                                     
@@ -584,6 +586,11 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         // open('add-shop-goods.html?cityid='+$(this).data('cityid')+'&navid='+$(this).data('navid')+'&shopid='+$(this).data('id'),'_self');
         $('.addShopGoodsForm')[0].reset();
         $('.addShopGoodsForm').find('input:not([type=radio],[type=checkbox])').val('').attr('data-info','');
+        
+        $('form').each(function(){
+            this.reset();
+            $(this).find('input').data('info','');
+        })
         $('.imageadd-single').show().prevAll().remove();
         $('.imageadd').show().prevAll().remove();
         var shopName=$(this).data('name');
@@ -661,7 +668,10 @@ require(['jquery','main','ajaxAddress','lay-model','log','baiduMap','common-imag
         $('.menuForm')[0].reset();
         $('.menuForm').find('input:not([type=radio],[type=checkbox])').val('').attr('data-info','');
         document.getElementById('menuAddShop').reset();
-        
+        $('form').each(function(){
+            this.reset();
+             $(this).find('input').data('info','');
+        })
         $('.imageadd-single').show().prevAll().remove();
         $('.imageadd').show().prevAll().remove();
         $('.addmapWrapper').append($('#mapContainer'));

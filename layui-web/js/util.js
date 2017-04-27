@@ -83,6 +83,7 @@ var config={
 		   	data:data||{date:new Date().getTime()},
 		   	success: function(msg){
               msg=typeof msg==='object'?msg:JSON.parse(msg);
+              console.log(msg);
               if(msg.code&&msg.code=='401'){
                 $(parent.document).find('iframe').remove();
                 open('login.html','_self');

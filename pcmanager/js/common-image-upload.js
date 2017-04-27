@@ -33,8 +33,9 @@ define(['jquery','main'],function($,main){
 
                         // arr=arr.concat($oldInfo.data('info')?JSON.parse($oldInfo.data('info'))||[]:[]);
                         arr=arr.concat($oldInfo.data('info')?eval($oldInfo.data('info'))||[]:[]);
-                        
+                        console.log(arr);
                         $(self).parent('.image-suolve').next('input').data('info',JSON.stringify(arr)).val(JSON.stringify(arr));
+                        arr=[];
                     }else{
                         var arr01=[];
                         $(self).prevAll().remove();
@@ -46,7 +47,7 @@ define(['jquery','main'],function($,main){
                         arr01.push(arg[0].src);
                         
                         $oldInfo.data('info',JSON.stringify(arr01)).val(JSON.stringify(arr01));
-
+                        arr01=[];
                         $(self).hide();
                     }
                 // },1000);

@@ -168,8 +168,20 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         classObj.data.arrData=data.data.queue_list;
                         
-                        classObj.data.pageCount=Math.ceil(data.pageAllNum/10);
+                        classObj.data.pageCount=Math.ceil(data.data.all_num/10);
                         $('.detailCount').text(data.data.all_num);
+                        // var arr=data.data.queue_list;
+                        // var tag=false;
+                        // $.each(arr,function(index,item){
+                        //     tag=false;
+                        //     //item.userid
+                        //     common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation,function(data){
+                        //         if(data.code==200){
+                        //             tag=true;
+
+                        //         }
+                        //     });
+                        // })
                         classObj.methods.updateArealist(data.data.queue_list);
                         if(fistLoad){
                             classObj.methods.updatePage();
@@ -177,7 +189,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }else{
                         layObj.layer.msg(data.msg);
                     }
-                },{page:num});
+                },{p:num});
             },
             updateAreaType:function(data){
                 classObj.data.typeInfo=data;
@@ -372,6 +384,12 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var status=$(this).data('status');
         var upId=$(this).data('id');
         var pId=$(this).data('typeid');
+        layObj.layer.confirm('备货完成?',function(index){
+                layObj.layer.close(index);
+                classObj.methods.updateStatusInfoType(status,upId,this,pId);
+            })
+            return false;
+        layObj.layer.load();
         if(classObj.data.isCanClick){
             classObj.data.isCanClick=false;
              layObj.layer.confirm('备货完成?',function(index){

@@ -58,7 +58,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             tempGoodsContent:$('#sortContent').html(),
             arrData:[],
             alertPageCount:'1',
-            userStatus:'1'
+            userStatus:''
         },
         methods:{
             /**
@@ -88,7 +88,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
                         
                         $('.obligationTotal').html(data.num);
+                        
                         layObj.laytpl(tml).render(data.data,function(html){
+                            
                             $('#goods-orderlist').append(html);
                         })
                         if(alertFirstLoad){
@@ -156,7 +158,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                             classObj.methods.updatePage();
                         }
                     }else{
-                        layObj.layer.msg(data.msg);
+                        layObj.layer.msg(data.message);
                     }
                 },{page:num});
             },
@@ -294,6 +296,24 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         
                     }
                 },{good_id:id});
+            },
+            finishedObligationMoney:function(obj){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.currencyMoney.finishedMoney,function(data){
+                    
+                    
+                    if(data.code==200){
+                        
+                        layObj.layer.closeAll('loading');
+                        
+                        classObj.methods.updateObligationTypeInfoById(classObj.data.obDay);
+                       
+                        
+                    }else{
+                        layObj.layer.closeAll('loading');
+                        layObj.layer.msg(data.message);
+                        
+                    }
+                },obj);
             }
         }
     }
@@ -326,28 +346,39 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 })
             }else{
                 classObj.methods.updateStatusType(status,upId,this);
-
             }
         }else{
             layObj.layer.msg('请勿重复点击');
         }
-        // layObj.layer.load();
         
     })
 
     //结算债券金
     $('#goods-orderlist').on('click','.finishObligationMoney',function(){
         var id=$(this).data('id');
-        layObj.layer.load();
-        layObj.layer.confirm('确定结算?',function(index){
+        var debtid=$(this).data('debtid');
+
+        // layObj.layer.load();
+        layObj.layer.prompt({
+            title:'确定结算',
+            formType:0
+        },function(text,index){
             layObj.layer.close(index);
-            
+            var obj={
+                notes_id:id,
+                debt_nexus_id:debtid,
+                des:text
+            }
+            classObj.methods.finishedObligationMoney(obj);
+        },function(){
+            console.log('no');
         })
+
     })
 
     //查看用户的具体信息
     $('#goods-orderlist').on('click','.lookObligationMoney',function(){
-        var id=$(this).data('id');
+        var id=classObj.data.userid=$(this).data('id');
         
         classObj.methods.updateObligationUserInfoByUserId(id);
         layObj.layer.open({
@@ -362,6 +393,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 $('#obligationUserListInfo').hide();
             }
         })
+    })
+
+    //查看用户的具体信息
+    $('#goods-orderlist').on('click','.exportUserExcel',function(){
+        var id=$(this).data('id');
+        
+        common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.exportUserExcel,function(data){
+            console.log(data);
+        },{notes_id:id})
     })
 
     //删除标准下的商品
@@ -541,6 +581,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             return false;
         })
 
+        form.on('submit(searchObligationUserInfo)',function(formParams){
+            classObj.data.userStatus=formParams.field.status;
+            classObj.methods.updateObligationUserInfoByUserId(classObj.data.userid);
+              
+            return false;
+        })
+
     },1000);
 
     $('.nav-menu-all-area').on('click','a',function(){
@@ -571,7 +618,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     $('#all-sort-list').on('click','.addAreaType',function(){
         classObj.data.typeId=$(this).data('id');
         alertFirstLoad=true;
-        var classN=new Date($(this).data('name')*1000).format('yyyy-MM-dd');
+        var classN=classObj.data.obDay=new Date($(this).data('name')*1000).format('yyyy-MM-dd');
         $('form').each(function(){
             this.reset();
         });
@@ -589,6 +636,16 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             }
         })
     })
+
+    //在标准下添加商品
+    $('#all-sort-list').on('click','.exportDayExcel',function(){
+        var classN=new Date($(this).data('name')*1000).format('yyyy-MM-dd');
+        
+        common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.exportdayExcel,function(data){
+            console.log(data);
+        },{day:classN})
+    })
+
     //编辑区域类型
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
         classObj.data.typeId=$(this).data('id');
