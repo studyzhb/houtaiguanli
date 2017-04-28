@@ -306,8 +306,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
         var obj={id:lId,name:lName,typeid:lTypeid,introduce:lIntro,class:lClass};
         console.log(obj);
+        
         if(lClass=='2'){
-            if(!LabelObj.data.iconlist){
+            
+            if(LabelObj.data.iconlist.length==0){
                 LabelObj.methods.getIconList()
             }
             obj.iconlist=LabelObj.data.iconlist;

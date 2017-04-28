@@ -36,7 +36,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             tempGoodsContent:$('#sortContent').html(),
             arrData:[],
             alertPageCount:'1',
-            currentPage:'1'
+            currentPage:'1',
+            sortTagShow:false,
+            sortTagClickNum:0,
+            isShowSortCon:false
         },
         methods:{
             sortOrderOtherInfo:function(id,order,nowOrderId){
@@ -119,6 +122,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 $('#all-sort-list').html('');
                  var obj={};
                  obj.data=data;
+                 obj.isShowSort=classObj.data.isShowSortCon;
                  log.d(obj);
                 layObj.laytpl(classObj.data.tempGoodsContent).render(obj,function(html){
                     $('#all-sort-list').append(html);
@@ -153,6 +157,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
+                            classObj.data.currentPageNum=data.curr;
                             classObj.methods.updatePageNum(data.curr);
                         }
                     });
@@ -367,6 +372,32 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         //     layObj.layer.msg('请勿重复点击');
         // }
         // layObj.layer.load();
+        
+    })
+
+
+    //显示排序
+    $('.showSortCon').on('click',function(){
+        if(classObj.data.sortTagClickNum==0){
+            classObj.data.sortTagShow=true;
+        }
+        if(classObj.data.sortTagShow){
+            classObj.data.sortTagClickNum++;
+            if(classObj.data.sortTagClickNum>=6){
+                classObj.data.sortTagClickNum=0;
+                layObj.layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
+                    layer.close(index);
+                    if(text=='wdlmzqjsort'){
+                        classObj.data.isShowSortCon=true;
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
+                    }
+                })
+            }
+        }
+        setTimout(function(){
+            classObj.data.sortTagShow=false;
+            classObj.data.sortTagClickNum=0;
+        },500);
         
     })
 

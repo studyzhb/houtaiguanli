@@ -10,6 +10,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="../common/layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
+    <link rel="stylesheet" href="../iconfont/iconfont.css" />
 	  <script src="../common/layui/layui.js"></script>
     <script src="../utf8-php/ueditor.config.js"></script>
     <script src="../utf8-php/ueditor.all.min.js"></script> 
@@ -585,7 +586,7 @@
             {{# if(item.class=='1'){ }}
             <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="{{its.name}}" lay-verify="findLabelToJson" >
             {{# }else{ }}
-            <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="<em class='layui-icon'>{{its.name}}</em>" lay-verify="findLabelToJson" >
+            <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="<em class='iconfont'>{{its.name}}</em>" lay-verify="findLabelToJson" >
             {{# } }}
           {{# }) }}
         </div>
