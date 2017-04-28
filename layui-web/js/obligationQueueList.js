@@ -378,10 +378,12 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     //显示排序
     $('.showSortCon').on('click',function(){
+
         if(classObj.data.sortTagClickNum==0){
             classObj.data.sortTagShow=true;
         }
         if(classObj.data.sortTagShow){
+            classObj.data.clickMore=true;
             classObj.data.sortTagClickNum++;
             if(classObj.data.sortTagClickNum>=6){
                 classObj.data.sortTagClickNum=0;
@@ -393,11 +395,20 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 })
             }
+        }else{
+            classObj.data.clickMore=false;
         }
-        setTimout(function(){
+        
+        setTimeout(function(){
+            if(classObj.data.clickMore){
+                classObj.data.sortTagShow=true;
+                
+                return;
+            }
+            classObj.data.clickMore=false;
             classObj.data.sortTagShow=false;
             classObj.data.sortTagClickNum=0;
-        },500);
+        },200);
         
     })
 
