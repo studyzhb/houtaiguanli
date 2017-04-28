@@ -35,73 +35,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             typeInfo:[],
             tempGoodsContent:$('#sortContent').html(),
             arrData:[],
-            alertPageCount:'1',
-            currentPage:'1',
-            sortTagShow:false,
-            sortTagClickNum:0,
-            isShowSortCon:false
+            alertPageCount:'1'
         },
         methods:{
-            sortOrderOtherInfo:function(id,order,nowOrderId){
-                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.sortInputList,function(data){
-                    if(data.code==200){
-                        layObj.layer.closeAll('loading');
-                        layObj.layer.msg('排序成功');
-                        
-                        classObj.methods.updatePageNum(classObj.data.currPage);
-                        
-                    }else{
-                        layObj.layer.msg(data.msg);
-                    }
-                },{id:id,oldPostion:order,newPostion:nowOrderId});
-            },
-            //排序
-            sortOrderInfo:function(id,order,obj,tag){
-                var targetEl={};
-                var tId,tOrder;
-                if(tag){
-                    tId=obj.prev().data('id');
-                    tOrder=obj.prev().data('order');
-
-                    if(!tId){
-                        targetEl='';
-                    }else{
-                        targetEl.id=tId||'';
-                        targetEl.displayorder=order;
-                    }
-                    
-                }else{
-                     tId=obj.next().data('id');
-                     tOrder=obj.next().data('order');
-                    if(!tId){
-                        targetEl='';
-                    }else{
-                        targetEl.id=tId||'';
-                        targetEl.displayorder=order;
-                    }
-                }
-                var arr=[];
-                arr[0]={id:id,displayorder:tOrder};
-                if(!!targetEl){
-                    arr.push(targetEl);
-                }
-                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.sortList,function(data){
-                    if(data.code==200){
-                        layObj.layer.msg('排序成功');
-                        
-                            classObj.methods.updatePageNum(classObj.data.currPage);
-                        
-                        
-                        
-                    }else{
-                        layObj.layer.msg(data.msg);
-                    }
-                },{positionJson:JSON.stringify(arr)});
-            },
             //获取标准下的商品
             updateObligationTypeInfoById:function(id,p){
                 $('#goods-orderlist').html('');
-                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goodsBag.lookGoodsInBag,function(data){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.updateListByTypeId,function(data){
                     
                     var tml=$('#showGoodsContent').html();
                     if(data.code==200){
@@ -109,20 +49,19 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
                         
                         $('.obligationTotal').html(data.num);
-                        layObj.laytpl(tml).render(data.data.goods_list,function(html){
+                        layObj.laytpl(tml).render(data.data,function(html){
                             $('#goods-orderlist').append(html);
                         })
-                        // if(alertFirstLoad){
-                        //     classObj.methods.updateAlertPage(id);
-                        // }
+                        if(alertFirstLoad){
+                            classObj.methods.updateAlertPage(id);
+                        }
                     }
-                },{id:id,p:p});
+                },{standard_id:id,p:p});
             },
             updateArealist:function(data){
                 $('#all-sort-list').html('');
                  var obj={};
                  obj.data=data;
-                 obj.isShowSort=classObj.data.isShowSortCon;
                  log.d(obj);
                 layObj.laytpl(classObj.data.tempGoodsContent).render(obj,function(html){
                     $('#all-sort-list').append(html);
@@ -165,43 +104,24 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
                 fistLoad=false;
             },
-            updatePageNum:function(num,obj){
-                var para={
-                    p:num
-                }
-                if(obj){
-                    para.queue=obj.queue;
-                }
-
-                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.showlist,function(data){
+            updatePageNum:function(num){
+                
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.convertScore,function(data){
                     log.d(data);
                     
                     if(data.code==200){
                         classObj.data.arrData=data.data.queue_list;
                         
                         classObj.data.pageCount=Math.ceil(data.data.all_num/10);
-                        $('.detailCount').text(data.data.all_num);
-                        // var arr=data.data.queue_list;
-                        // var tag=false;
-                        // $.each(arr,function(index,item){
-                        //     tag=false;
-                        //     //item.userid
-                        //     common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation,function(data){
-                        //         if(data.code==200){
-                        //             tag=true;
-
-                        //         }
-                        //     });
-                        // })
+                        $('.detailCount').text(classObj.data.pageCount);
                         classObj.methods.updateArealist(data.data.queue_list);
                         if(fistLoad){
                             classObj.methods.updatePage();
                         }
                     }else{
-                        classObj.methods.updateArealist([]);
-                        layObj.layer.msg(data.message);
+                        layObj.layer.msg(data.msg);
                     }
-                },para);
+                },{page:num});
             },
             updateAreaType:function(data){
                 classObj.data.typeInfo=data;
@@ -225,60 +145,46 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 },{id:id});
             },
-            updateStatusType:function(sta,upId,obj){
+            updateStatusType:function(upId){
                 // var item=classObj.methods.getSingleInfo(upId);
                 var item={};
-                item.status=sta;
-                item.order_id=upId;
-                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.leaveUser,function(data){
+                // item.status=sta;
+                item.id=upId;
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.updateConvertScore,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
                     if(data.code==200){
                         //location.reload();
                         layObj.layer.closeAll();
-                        layObj.layer.msg(data.message);
-                        classObj.methods.updatePageNum(1);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         
                     }else{
-                        layObj.layer.msg(data.message);
+                        layObj.layer.msg(data.msg);
                         // layObj.layer.closeAll();
                         //location.reload();
                     }
                 },item);
             },
             updateStatusInfoType:function(sta,upId,obj,pId){
-                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.readyGoods,function(data){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusInfoType,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
                     if(data.code==200){
                         //location.reload();
                         layObj.layer.closeAll();
-                        layObj.layer.msg(data.message);
-                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
+                        
+                        if(sta=='1'){
+                            $(obj).text('启用').addClass('active').data('status',0);
+                        }else{
+                            $(obj).text('停用').removeClass('active').data('status',1);
+                        }
                         
                     }else{
                         layObj.layer.msg(data.msg);
                         // layObj.layer.closeAll();
                         //location.reload();
                     }
-                },{order_id:upId});
-            },
-            finishedSatusInfoType:function(sta,upId,obj,pId){
-                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.finishedGoods,function(data){
-                    log.d(data);
-                    classObj.data.isCanClick=true;
-                    if(data.code==200){
-                        //location.reload();
-                        layObj.layer.closeAll();
-                        layObj.layer.msg(data.message);
-                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
-                        
-                    }else{
-                        layObj.layer.msg(data.msg);
-                        // layObj.layer.closeAll();
-                        //location.reload();
-                    }
-                },{order_id:upId});
+                },{navid:classObj.data.navId,status:sta,id:upId,typeid:pId});
             },
             updateSubInfo:function(obj){
 
@@ -302,10 +208,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             //
             updateObligationInfo:function(data){
-                console.log(data);
+                
                 var tpl=$('#editorNavCon').html();
                 $('.editor-area-type').html('');
-                 
+                    data.goodsBagArr=classObj.data.goodsBagArr;
                     layObj.laytpl(tpl).render(data,function(html){
                         $('.editor-area-type').append(html);
                         form.render();
@@ -354,28 +260,16 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 },{good_id:id});
             },
-            getQueueList:function(){
-                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueMode.showlist,function(data){
-                    log.d(data);
+            getGoodsBagList:function(){
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goodsBag.showlist,function(data){
+                    
                     
                     if(data.code==200){
-                        classObj.data.arrData=data.data.queue_list;
-                        $('.selectedQueueList').html('');
-                        $.each(classObj.data.arrData,function(index,item){
-                            if(index==0){
-                                $('<option selected>').appendTo($('.selectedQueueList')).html(item.name).attr('value',item.id);
-                            }else{
-                                $('<option>').appendTo($('.selectedQueueList')).html(item.name).attr('value',item.id);
-                                
-                            }
-                            
-                        })
+                        classObj.data.goodsBagArr=data.data.pack_list;
 
-                        setTimeout(function(){
-                            form.render();
-                        },1000);
                     }else{
-                        layObj.layer.msg(data.msg);
+                        
+                        
                     }
                 });
             }
@@ -401,87 +295,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var status=$(this).data('status');
         var upId=$(this).data('id');
         var self=this;
-        layObj.layer.confirm('你确认执行踢人操作吗?',function(index){
+        layObj.layer.confirm('你确认要执行此操作吗?',function(index){
             layObj.layer.close(index);
-            classObj.methods.updateStatusType(status,upId,self);
+            classObj.methods.updateStatusType(upId);
         })
 
-        // if(classObj.data.isCanClick){
-        //     classObj.data.isCanClick=false;
-        //     if(status=='0'){
-        //         layObj.layer.confirm('你确认要停用此类型吗?',function(index){
-        //             layObj.layer.close(index);
-        //             classObj.methods.updateStatusType(status,upId,self);
-        //         })
-        //     }else{
-        //         classObj.methods.updateStatusType(status,upId,this);
 
-        //     }
-        // }else{
-        //     layObj.layer.msg('请勿重复点击');
-        // }
-        // layObj.layer.load();
         
     })
 
-
-    //显示排序
-    $('.showSortCon').on('click',function(){
-
-        if(classObj.data.sortTagClickNum==0){
-            classObj.data.tagTime=new Date().getTime();
-        }
-        var now=new Date().getTime();
-
-        if(now-classObj.data.tagTime<500){
-            // classObj.data.sortTagShow=false;
-            classObj.data.clickMore=true;
-            classObj.data.sortTagClickNum++;
-            classObj.data.tagTime=new Date().getTime();
-            if(classObj.data.sortTagClickNum>=6){
-                classObj.data.sortTagClickNum=0;
-
-                layObj.layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
-                    layer.close(index);
-                    if(text=='wdlmzqjsort'){
-                        classObj.data.isShowSortCon=true;
-                        classObj.data.sortTagClickNum=0;
-                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
-                    }
-                })
-            }
-        }else{
-            classObj.data.sortTagClickNum=0;
-            classObj.data.tagTime=new Date().getTime();
-            classObj.data.clickMore=false;
-        }
-        
-
-        // setTimeout(function(){
-        //     if(classObj.data.sortTagShow){
-        //         classObj.data.sortTagShow=true;
-
-        //     }else{
-        //         classObj.data.sortTagShow=false;
-        //         classObj.data.sortTagClickNum=0;
-        //     }
-        //     classObj.data.clickMore=false;
-        //     // classObj.data.sortTagShow=false;
-        //     // classObj.data.sortTagClickNum=0;
-        // },200);
-        // setTimeout(function(){
-        //     if(classObj.data.clickMore){
-        //         classObj.data.sortTagShow=true;
-
-        //     }else{
-        //         classObj.data.sortTagShow=false;
-        //         classObj.data.sortTagClickNum=0;
-        //     }
-        //     classObj.data.clickMore=false;
-            
-        // },200);
-        
-    })
+    //获取商品包
+    classObj.methods.getGoodsBagList();
 
     //删除标准下的商品
     $('#goods-orderlist').on('click','.deleteObligationType',function(){
@@ -497,19 +321,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var status=$(this).data('status');
         var upId=$(this).data('id');
         var pId=$(this).data('typeid');
-        layObj.layer.confirm('备货完成?',function(index){
-                layObj.layer.close(index);
-                classObj.methods.updateStatusInfoType(status,upId,this,pId);
-            })
-            return false;
-        layObj.layer.load();
         if(classObj.data.isCanClick){
             classObj.data.isCanClick=false;
-             layObj.layer.confirm('备货完成?',function(index){
-                layObj.layer.close(index);
-                classObj.methods.updateStatusInfoType(status,upId,this,pId);
-            })
-            
+            classObj.methods.updateStatusInfoType(status,upId,this,pId);
             return;
             if(status=='0'){
                 layObj.layer.confirm('你确认要停用此类型吗?',function(index){
@@ -526,53 +340,14 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         // layObj.layer.load();
         
     })
-    //提货完成
-    $('#all-sort-list').on('click','.finishGoodsOb',function(){
-        var status=$(this).data('status');
-        var upId=$(this).data('id');
-        var pId=$(this).data('typeid');
-        layObj.layer.confirm('提货完成?',function(index){
-                layObj.layer.close(index);
-                classObj.methods.finishedSatusInfoType(status,upId,this,pId);
-            })
-            return false;
-        
-        // layObj.layer.load();
-        
-    })
-
-    /**
-     * 排序
-     */
-    $('#all-sort-list').on('click','.upSort',function(){
-        
-         
-         var bid=$(this).data('id');
-         var bOrder=$(this).data('order');
-         classObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),true);
-     })
-
-     $('#all-sort-list').on('click','.downSort',function(){
-        
-        var bid=$(this).data('id');
-         var bOrder=$(this).data('order');
-         classObj.methods.sortOrderInfo(bid,bOrder,$(this).parents('tr'),false);
-     })
-
-     $('#all-sort-list').on('blur','.sortInput',function(){
-         layObj.layer.load();
-        var nowOrderId=$(this).val();
-        var bid=$(this).data('id');
-         var bOrder=$(this).data('order');
-         classObj.methods.sortOrderOtherInfo(bid,bOrder,nowOrderId);
-     })
 
     setTimeout(function(){
         form=layObj.form();
         form.on('submit(shopInfo)',function(formParams){
             log.d(formParams.field)
+            layObj.layer.load();
             formParams.field.navid=classObj.data.navId;
-            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goodsBag.addGoodsBag,function(data){
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueMode.addNewMode,function(data){
                     log.d(data);
                     if(data.code==200){
                         
@@ -583,11 +358,12 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         },1000);
                         
                     }else{
-                        layer.msg('网络错误，请稍后重试');
+                        
                         layObj.layer.closeAll();
+                        layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
                             
-                            //classObj.methods.updatePageNum(1);
+                            classObj.methods.updatePageNum(1);
                         },1000);
                     }
                 },formParams.field);
@@ -627,21 +403,24 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 
             return false;
         })
-        /**
-         * 编辑包的基本信息
-         */
+
         form.on('submit(editorAreaType)',function(formParams){
-            log.d(formParams.field);
+            log.d(formParams.field)
             layObj.layer.load();
-            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goodsBag.updateBagInfo,function(data){
+            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueMode.updateMode,function(data){
                     log.d(data);
                     if(data.code==200){
                         layObj.layer.closeAll();
-                        layer.msg('添加成功');
+                        layer.msg('操作成功');
                         classObj.methods.updatePageNum(1);
+                        setTimeout(function(){
+                            // location.reload();
+                            
+                            
+                        },1000);
                         
                     }else{
-                        layObj.layer.msg('网络错误，请稍后重试');
+                        layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
                             // location.reload();
                         },1000);
@@ -710,15 +489,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             return false;
         })
 
-
-        form.on('submit(searchObligationModelList)',function(formParams){
- 
-            
-            // formParams.field
-                classObj.methods.updatePageNum(1,formParams.field);
-            return false;
-        })
-
     },1000);
 
     $('.nav-menu-all-area').on('click','a',function(){
@@ -732,9 +502,18 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     //添加分类类型
     $('.addArea').on('click',function(){
          $('#authorForm')[0].reset();
+         $('.goodsBagList').html('');
+         $.each(classObj.data.goodsBagArr,function(index,item){
+             if(index==0){
+                $('<option>').appendTo($('.goodsBagList')).html(item.pack_name).attr({'value':item.id,selected:true});
+             }else{
+                $('<option>').appendTo($('.goodsBagList')).html(item.pack_name).attr('value',item.id);
+             }
+             
+         })
+         form.render();
         // $('input.cityid').val(classObj.data.navId);
         layObj.layer.open({
-            title:'生成商品包',
              type:1,
             content: $('#authorForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
@@ -884,5 +663,5 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         classObj.methods.updatePageNum(1);
     });
      classObj.methods.updatePageNum(1);
-     classObj.methods.getQueueList();
+
 })

@@ -1,4 +1,4 @@
-require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','params'],function($,myObj,ajaxAddress,layObj,log,upload,params){
+require(['jquery','main','ajaxAddress','lay-model','log','img-single-load','params'],function($,myObj,ajaxAddress,layObj,log,upload,params){
     
     var common=myObj.load();
     var fistLoad=true;
@@ -665,7 +665,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
         })
 
         form.render();
-        layObj.layer.open({
+        ShopObj.data.confirmLastIndex=layObj.layer.open({
              type:1,
              title:'复制所需要的商品',
             content: $('#sortToWhere'), //这里content是一个DOM
@@ -1087,7 +1087,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','common-image-upload','
                     data=data.data;
                     if(data.code==200){
                             layObj.layer.closeAll('loading');
-                            layObj.layer.close(layObj.layer.index);
+                            layObj.layer.close(ShopObj.data.confirmLastIndex);
                             layObj.layer.close(ShopObj.data.alertIndex);
                             layObj.layer.msg(data.message);
                         

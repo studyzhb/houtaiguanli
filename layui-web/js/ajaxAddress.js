@@ -47,6 +47,7 @@ define({
         queueList:{
             showlist:'/Lines/linesList',
             readyGoods:'/Lines/Stocking',
+            finishedGoods:'/Lines/okStock',
             leaveUser:'/Lines/tiRen',
             sortList:'/Lines/positionChange',
             sortInputList:'/Lines/chSort'
@@ -59,6 +60,8 @@ define({
         },
         exportdayExcel:'/debtreview/downdebt',
         exportUserExcel:'/debtreview/downgood',
+        convertScore:'/Exchange/exList',
+        updateConvertScore:'/Exchange/exOk'
     },
     article:{
         showlist:'/Article/lst',

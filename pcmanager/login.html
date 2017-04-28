@@ -7,11 +7,8 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./css/login.css?v=1.0" />
 	<link rel="stylesheet" href="./layui/css/layui.css" />
-	<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript" src="./js/MD5.js"></script>
+	<script type="text/javascript" src="./js/jquery.js"></script>
 	<script type="text/javascript" src="./js/jquery-form.js"></script>
-	
-	<script src="./js/config.js"></script>
 	<style>
 		input{
 			color: #888;
@@ -32,7 +29,7 @@
 				<ul>
 					<li><label><i class="layui-icon">&#xe612;</i></label><input type="text" class="username" name="job_num" value="" placeholder="请输入管理员名称"></li>
 					<li><label><i class="layui-icon">&#xe63c;</i></label><input type="password" name="password" value="" placeholder="请输入管理员密码" class="md5password"></li>
-					<li class="yz"><label><i class="layui-icon">&#xe61c;</i></label><input type="text" id="code" name="code" value="" placeholder="请输入验证码"><img class="yanzheng" style="position:absolute;right: -106px;width: 106px;" src="/shop/shop/public/index.php/admin/Login/getCode" alt=""></li>
+					<!--<li class="yz"><label><i class="layui-icon">&#xe61c;</i></label><input type="text" id="code" name="code" value="" placeholder="请输入验证码"><img class="yanzheng" style="position:absolute;right: -106px;width: 106px;" src="/shop/shop/public/index.php/admin/Login/getCode" alt=""></li>-->
 					
 				</ul>
 				<div class="submit">
@@ -49,21 +46,64 @@
 	/*config.ajax('get',config.ajaxAddress.getValiCode,function(data){
 		console.log(data);
 	});*/
-	$('.yanzheng').on('click',function($this){
-		this.src="/shop/shop/public/index.php/admin/Login/getCode?"+Math.random();
-	});
+	// $('.yanzheng').on('click',function($this){
+	// 	this.src="/shop/shop/public/index.php/admin/Login/getCode?"+Math.random();
+	// });
+	var loginConfig={
+		formSubmit:function(formId,urlhttp,fun){
+			$(formId).ajaxSubmit({
+			url:urlhttp,
+			type:'post',
+			success:function(data){
+				
+				if(!!fun){
+				fun(data);
+				}  
+			}
+			});
+		}
+	}
+	var cookieUtil={
+    //天数
+    setCookie:function(user,name){
+        document.cookie=user+"="+name;
+    },
+    setExpiresDate:function(user,name,value){
+        var da=new Date();
+        var expiresDay=da.getDate()+value;
+        da.setDate(expiresDay);
+        document.cookie=user+"="+name+";expires="+da+";path=/";
+    },
+    getCookie:function(name) {
+        if(document.cookie.length>0){
+            var start=document.cookie.indexOf(name+"=");
+            if(start!=-1){
+                start=document.cookie.indexOf(name+"=")+name.length+1;
+            }else{
+                return '';
+            }
+            var end=document.cookie.indexOf(';',start)!=-1?document.cookie.indexOf(';',start):document.cookie.length;
+            return document.cookie.substring(start,end);
+        }
+        return "";
+    },
+    removeCookie:function(name){
+        this.setExpiresDate(name,1,-1);
+    }
+}
+
 	$('.submit').on('click',function(){
 		/*var pwd=$('.md5password').val();
 		 pwd=hex_md5(pwd+config.accessKey);
     	$('.md5password').val(pwd);*/
-		config.formSubmit('#loginForm',config.ajaxAddress.loginAdd,function(data){
+		loginConfig.formSubmit('#loginForm','/yylm/public/index.php/unionAdmin/login/login',function(data){
 			if(data.code==200){
 				cookieUtil.setExpiresDate('username',$('.username').val(),7);
 				cookieUtil.setExpiresDate('token',data.token,7);
-				open('index.html','_self');
+				open('mainIndex.html','_self');
 			}else{
 				$("#code").val('');
-				alert(data.mess);
+				alert(data.msg);
 				//$('.yanzheng').src="/shop/shop/public/index.php/admin/Login/getCode?"+Math.random();
 				window.location.reload(); 
 			}

@@ -55,26 +55,24 @@
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
             
-            <form class="layui-form layui-form-pane" style="display:none;">
+            <form class="layui-form layui-form-pane" style="">
               
               
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
-                  <select class="areaType" lay-filter="areaType">
+                  <select name="queue" class="selectedQueueList" lay-filter="areaType">
                     <option value=""></option>
                     
                   </select>
                 </div>
-              <div class="layui-inline">
+              <!--<div class="layui-inline">
                 <div class="layui-input-inline">
                   <input type="text" class="layui-input" name="" value="">
                 </div>
-              </div>
-              <div class="layui-btn searchByKeywords">
+              </div>-->
+              <div class="layui-btn" lay-submit lay-filter="searchObligationModelList">
                    搜索
                 </div>
-                <div class="layui-btn addArea">
-                    添加新的队列模式
-                </div>
+
                 <div class="layui-btn" onclick="location.reload()" style="float: right;">
                     <i class="layui-icon">&#x1002;</i>  
                 </div>
@@ -423,7 +421,9 @@
                                 备货中
                           </button>
                   {{# }else if(item.take_delivery==1){ }}
-                      待提货
+                      <button class="layui-btn layui-btn-small layui-btn-primary finishGoodsOb" data-id="{{item.order_id}}" data-typeid="{{item.id}}">
+                                点击提货
+                          </button>
                   {{# }else if(item.take_delivery==2){ }}
                       已提货
                   {{# } }}
@@ -502,7 +502,9 @@
                                 备货中
                           </button>
                   {{# }else if(item.take_delivery==1){ }}
-                      待提货
+                      <button class="layui-btn layui-btn-small layui-btn-primary finishGoodsOb" data-id="{{item.order_id}}" data-typeid="{{item.id}}">
+                                点击提货
+                          </button>
                   {{# }else if(item.take_delivery==2){ }}
                       已提货
                   {{# } }}

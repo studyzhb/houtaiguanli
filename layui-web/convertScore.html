@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="./layui/css/layui.css" />
+  	<link rel="stylesheet" href="./css/alertcon.css" />
+    <script src="./layui/layui.js"></script>
+    <script data-main="./js/domain" src="./js/require.min.js"></script>
+
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+  <div class="layui-header header header-demo">
+    <a class="logo" href="#">
+        <img src="./img/logo.png" alt="万店联盟">
+    </a>
+    <div class="user-action" style="position:absolute;right:15px;top:25px;">
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="username">demo</a>
+      <a style="color: #e2e2e2;padding: 0 10px;" href="#" class="quit">退出</a> 
+    </div>
+  </div>
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      
+        <ul class="layui-nav layui-nav-tree" id="sliderPage" lay-filter="test">
+<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+  
+</ul>
+
+    </div>
+  </div>
+	
+
+	<!-- ============================主要内容区================================ -->
+
+	<div class="lay-main">
+
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          <li class="layui-this">
+           兑换列表
+          </li>
+          
+        </ul>
+
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+            
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
+              
+              
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
+                  <select class="areaType" lay-filter="areaType">
+                    <option value=""></option>
+                    
+                  </select>
+                </div>
+              <div class="layui-inline">
+                <div class="layui-input-inline">
+                  <input type="text" class="layui-input" name="" value="">
+                </div>
+              </div>
+              <div class="layui-btn">
+                   搜索
+                </div>
+                
+                <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                    <i class="layui-icon">&#x1002;</i>  
+                </div>
+            </form>
+          <table class="layui-table">
+          <colgroup>
+            <col width="100">
+            <col >
+            <col >
+            <col > 
+            <col width="100">
+            <col >
+            <col>
+          </colgroup>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>订单号</th>
+              <th>用户名</th>
+              <th>抵扣债券总额</th>
+              <th>兑换总数</th>
+              <th>创建时间</th>
+              <th>状态</th>
+            </tr> 
+          </thead>
+          <tbody id="all-sort-list">
+
+          </tbody>
+      </table>
+     
+
+          </div>
+        </div>
+
+        <div style="height:55px;padding-right:10px;display: none;">
+            <div id="page" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
+        </div>
+
+
+     </div>
+    </div> 
+  <ul id="biuuu_city_list"></ul>
+
+  <!-- =======================弹出窗========================= -->
+
+
+
+
+
+
+
+<!--编辑-->
+<form class="layui-form layui-form-pane" id="editorAreaWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="editorAreaInfo">
+
+    </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorAreaInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<!--添加类型内容-->
+<form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label sortName">类型内容</label>
+    <div class="layui-input-block">
+        <div class="layui-btn createAreaInfoInput">
+            <i class="layui-icon">&#xe608;</i>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="areaInfoInput">
+            <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
+            
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="areaInfo">立即提交</div>
+    </div>
+    </div>
+    
+</form>
+
+<!-- 添加标准时的展示页面 -->
+<div class="layui-form layui-form-pane" id="obligationTypeListInfo" action="" method="POST" style="height:100%;overflow:auto;display:none;font-size:14px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+ 
+              
+              <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
+                <legend>债权金标准信息</legend>
+
+                
+                
+                  <form class="layui-form layui-form-pane" style="display:inline-block;">
+              
+              
+                    <div class="layui-input-inline" style="width:100px;margin-left:5px;">
+                      <select name="field">
+                        
+                        <option value="barcode" selected>商品条形码</option>
+                        <option value="coding">商品编号</option>
+                        <option value="name">商品名称</option>
+                      </select>
+                    </div>
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" name="value" class="layui-input"  value="">
+                    </div>
+                  </div>
+                  <div class="layui-btn" lay-submit lay-filter="searchFilterGoods">
+                       搜索
+                    </div>
+
+                    <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                        <i class="layui-icon">&#x1002;</i>  
+                    </div>
+                </form>
+
+                
+                
+                
+                
+
+                <table class="layui-table">
+                  <colgroup>
+                    <!-- <col width="100">
+                    <col width="100">
+                    <col>
+                    <col width="100">
+                    <col width="300"> -->
+
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>序号</th>
+                      <th>商品编号</th>
+                      <th>商品条形码</th>
+                      <th>商品名称</th>
+                      <th>商品品牌</th>
+                      <th>商品零售价</th>
+                      <th>操作</th>
+                    </tr> 
+                  </thead>
+                  <tbody id="goods-orderlist">
+                    <div id="goods-show">
+                      
+                    </div>
+                  </tbody>
+                  
+              </table>
+              </fieldset>
+
+              
+             
+
+              <!-- ================================================== -->
+        <div style="height:55px;padding-right:10px;">
+            <div id="alertpage" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="obligationTotal">30</span>条数据</div>
+        </div>
+
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </div>
+  
+
+
+<!-- ========================================================= -->
+<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{=d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+	
+<!--编辑区域内容-->
+<script id="editorAreaCon" type="text/html">
+
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label">内容</label>
+    <div class="layui-input-block">
+        <input type="text" value="{{d.name}}" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.id}}" placeholder="请输入" name="id" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.typeid}}" placeholder="请输入" name="typeid" autocomplete="off" class="layui-input">
+        <input type="hidden" value="{{d.navid}}" placeholder="请输入" name="navid" autocomplete="off" class="layui-input">
+       
+    </div>
+    </div>
+</script>
+
+
+<!-- ------------------------------------------------------------------------------- -->
+<script id="sortContent" type="text/html">
+{{# layui.each(d.data,function(index,item){ }}
+    <tr>
+    <td>{{index+1}}</td>
+    <td class="typeName">{{=item.orders}}</td>
+    <td >{{=item.nickname}}</td>
+    <td >{{=item.dikou}}</td>
+    <td >{{=item.total}}</td>
+    <td >{{=new Date(item.addtime*1000).toLocaleString()}}</td>
+    <td>
+      {{# if(item.status=='1'){ }}
+        
+              已审核
+        
+      {{# }else{ }}
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}">
+              审核
+        </button>
+      {{# } }}
+    </td>
+  </tr>
+  {{#  layui.each(item.children,function(ind, its){ }}
+      <tr>
+        <td>{{index+1}}--{{ind}}</td>
+        <td>| ---- {{its.name}}</td>
+        <td>
+            {{# if(item.status=='1'){ }}
+              {{# if(its.status=='1'){ }}
+                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status='0' data-id="{{its.id}}" data-typeid="{{item.id}}">
+                      启用
+                </button>
+              {{# }else{ }}
+                  <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{its.id}}" data-typeid="{{item.id}}">
+                      停用
+                </button>
+              {{# } }}
+            {{# }else{ }}
+              停用
+            {{# } }}
+            
+        </td>
+        <td>
+          <div class="layui-btn layui-btn-warm layui-btn-small editorSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">编辑</div>
+          <div class="layui-btn layui-btn-danger layui-btn-small deleteSingleAreaInfo" data-id="{{its.id}}" data-name="{{its.name}}">
+            <i class="layui-icon">&#xe640;</i>   
+          </div>
+        </td>
+      </tr>
+    {{#  }); }}
+
+{{# }) }}
+  
+    
+    
+</script>
+
+
+</div>
+<script id="showGoodsContent" type="text/html">
+{{# layui.each(d,function(index,item){ }}
+  <tr>
+    <td>{{index+1}}</td>
+    <td>{{=item.coding}}</td>
+    <td>{{=item.barcode}}</td>
+    <td>{{=item.name}}</td>
+    <td>{{=item.brand}}</td>
+    <td>{{=(item.retails-0).toFixed(2)}}</td>
+    <td>
+      <div class="layui-btn layui-btn-danger layui-btn-small deleteObligationType" data-id="{{item.id}}" >
+            <i class="layui-icon">&#xe640;</i>   
+        </div>
+    </td>
+  </tr>
+{{# }) }}
+</script>
+
+
+<!-- 显示搜索到的商品列表 -->
+<div id="goods-list" style="padding:10px;display:none;">
+  <table class="layui-table" >
+  <colgroup>
+    <col width="100">
+    <col>
+    <col>
+    <col>
+    <col width="100">
+    <col>
+    <col width="100">
+  </colgroup>
+  <thead>
+    <tr>
+      <th><input type="checkbox" class="checkall" name="" value=""></th>
+      <th>商品编号</th>
+      <th>商品条形码</th>
+      <th>商品名称</th>
+      <th>零售价格</th>
+
+      <th>品牌</th>
+
+    </tr> 
+  </thead>
+  <tbody id="searchedlist">
+    
+    
+  </tbody>
+  
+</table>
+<div class="layui-form-item">
+  <div class="layui-input-block">
+    <div class="layui-btn" id="confirmorder">确认订单</div>
+  </div>
+</div>
+</div>
+
+<!-- 渲染搜索到的商品 -->
+<script id="searchedcontent" type="text/html">
+{{# layui.each(d,function(index,item){ }}
+    <tr>
+      <td><input type="checkbox" class="ischecked" data-id="{{item.id}}" name="" value=""></td>
+      <td>{{=item.coding}}</td>
+      <td>{{=item.barcode}}</td>
+      <td>{{=item.name}}</td>
+      <td>{{=(item.retails-0).toFixed(2)}}</td>
+      <td>{{=item.brand}}</td>
+
+    </tr>
+{{# }) }}
+  
+</script>
+</body>
+
+ <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/filter.js" ></script>
+<script type="text/javascript" src="./js/convertScore.js"></script>
+</html>

@@ -89,9 +89,11 @@ var config={
               msg=typeof msg==='object'?msg:JSON.parse(msg);
               if(msg.code&&msg.code=='401'){
                 $(parent.document).find('iframe').remove();
-                open('login.html','_self');
+                // open('login.html','_self');
+                top.location.href="../login.html";
               }else if(msg.code&&msg.code=='402'){
-                  open('login.html','_self');
+                  top.location.href="../login.html";
+                //   open('login.html','_self');
               }
               else{
                  if(fun){
