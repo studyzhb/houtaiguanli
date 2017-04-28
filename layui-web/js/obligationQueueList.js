@@ -380,35 +380,57 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     $('.showSortCon').on('click',function(){
 
         if(classObj.data.sortTagClickNum==0){
-            classObj.data.sortTagShow=true;
+            classObj.data.tagTime=new Date().getTime();
         }
-        if(classObj.data.sortTagShow){
+        var now=new Date().getTime();
+
+        if(now-classObj.data.tagTime<500){
+            // classObj.data.sortTagShow=false;
             classObj.data.clickMore=true;
             classObj.data.sortTagClickNum++;
+            classObj.data.tagTime=new Date().getTime();
             if(classObj.data.sortTagClickNum>=6){
                 classObj.data.sortTagClickNum=0;
+
                 layObj.layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
                     layer.close(index);
                     if(text=='wdlmzqjsort'){
                         classObj.data.isShowSortCon=true;
+                        classObj.data.sortTagClickNum=0;
                         classObj.methods.updatePageNum(classObj.data.currentPageNum);
                     }
                 })
             }
         }else{
+            classObj.data.sortTagClickNum=0;
+            classObj.data.tagTime=new Date().getTime();
             classObj.data.clickMore=false;
         }
         
-        setTimeout(function(){
-            if(classObj.data.clickMore){
-                classObj.data.sortTagShow=true;
-                
-                return;
-            }
-            classObj.data.clickMore=false;
-            classObj.data.sortTagShow=false;
-            classObj.data.sortTagClickNum=0;
-        },200);
+
+        // setTimeout(function(){
+        //     if(classObj.data.sortTagShow){
+        //         classObj.data.sortTagShow=true;
+
+        //     }else{
+        //         classObj.data.sortTagShow=false;
+        //         classObj.data.sortTagClickNum=0;
+        //     }
+        //     classObj.data.clickMore=false;
+        //     // classObj.data.sortTagShow=false;
+        //     // classObj.data.sortTagClickNum=0;
+        // },200);
+        // setTimeout(function(){
+        //     if(classObj.data.clickMore){
+        //         classObj.data.sortTagShow=true;
+
+        //     }else{
+        //         classObj.data.sortTagShow=false;
+        //         classObj.data.sortTagClickNum=0;
+        //     }
+        //     classObj.data.clickMore=false;
+            
+        // },200);
         
     })
 
