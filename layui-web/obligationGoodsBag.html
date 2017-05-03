@@ -360,11 +360,11 @@
     <td>
       {{# if(item.status=='1'){ }}
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">
-              启用
+              已启用
         </button>
       {{# }else{ }}
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn" data-status="1" data-id="{{item.id}}">
-              停用
+              已停用
         </button>
       {{# } }}
     </td>
@@ -383,11 +383,11 @@
             {{# if(item.status=='1'){ }}
               {{# if(its.status=='1'){ }}
                   <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub active" data-status='0' data-id="{{its.id}}" data-typeid="{{item.id}}">
-                      启用
+                      已启用
                 </button>
               {{# }else{ }}
                   <button class="layui-btn layui-btn-small layui-btn-primary icon-btn-sub" data-status="1" data-id="{{its.id}}" data-typeid="{{item.id}}">
-                      停用
+                      已停用
                 </button>
               {{# } }}
             {{# }else{ }}

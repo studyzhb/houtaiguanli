@@ -287,10 +287,11 @@ var config={
                   location.href='http://web.wandlm.com/bclient';
                       parent.window.frames['iframeId']
                   })*/
-                $(parent.document).find('iframe').remove();
-                open('login.html','_self');
+                // $(parent.document).find('iframe').remove();
+                // open('login.html','_self');
+                top.location.href="/login.html";
               }else if(msg.code&&msg.code=='402'){
-                  open('login.html','_self');
+                  top.location.href="/login.html";
               }
               else{
                  if(fun){

@@ -786,3 +786,53 @@ a.active-p {
 .div-inline{
   display: inline-block;
 }
+
+
+.icon-btn.active{
+  border:1px solid #009688
+}
+.icon-btn-sub.active{
+  border:1px solid #009688
+}
+
+.icon-display{
+  display: none;
+  position:absolute;
+  color:#f00;
+  cursor: pointer;
+  height: 20px;
+  line-height: 20px;
+  right:5px;
+  top:0;
+}
+
+.icon-edit{
+  display: none;
+  position:absolute;
+  /*border: 1px solid #666;*/
+  height: 20px;
+  line-height: 20px;
+  right:30px;
+  top:0;
+}
+.labelCon{
+  position:relative;
+  z-index:0;
+}
+.labelIntro{
+  position:absolute;
+  bottom:-40px;
+  z-index:10;
+  left:0;
+  display: none;
+}
+.opacity-z-index{
+  position: absolute;
+  display: none;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+}

@@ -409,10 +409,14 @@
                   被踢出
               {{# }else if(item.status=='1'){ }}
                   <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.order_id}}">
-                        队列中
+                        点击踢人
                   </button>
                 {{# }else if(item.status=='2'){ }}
                   获益出局
+                {{# }else if(item.status=='3'){ }}
+                  兑换中
+                {{# }else if(item.status=='4'){ }}
+                  兑换完成
                 {{# } }}
               </td>
               <td>
@@ -490,10 +494,14 @@
                   被踢出
               {{# }else if(item.status=='1'){ }}
                   <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.order_id}}">
-                        队列中
+                        点击踢人
                   </button>
                 {{# }else if(item.status=='2'){ }}
                   获益出局
+                {{# }else if(item.status=='3'){ }}
+                  兑换中
+                {{# }else if(item.status=='4'){ }}
+                  兑换完成
                 {{# } }}
               </td>
               <td>
