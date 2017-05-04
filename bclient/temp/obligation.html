@@ -139,9 +139,8 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">证件号码</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="card" lay-verify="required | identity" onkeyup="this.value=this.value.replace(/[^\w]/g,'')"   placeholder="请输入" autocomplete="off" class="layui-input">
+                  <input type="text" name="card" lay-verify="identity" onkeyup="this.value=this.value.replace(/[^\w]/g,'')"   placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
-                
               </div>
 
 
@@ -715,14 +714,14 @@
      <div class="layui-form-item">
         <label class="layui-form-label">*债权人</label>
         <div class="layui-input-inline">
-            <input type="text" name="creditor" lay-verify="required" readonly value="{{d.creditor}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
+            <input type="text" name="creditor" lay-verify="required" readonly value="{{=d.creditor}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
         </div>
 
         </div>
         <div class="layui-form-item">
         <label class="layui-form-label">*债权金额</label>
         <div class="layui-input-inline">
-            <input type="text" name="total" lay-verify="required" readonly onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" value="{{d.total}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
+            <input type="text" name="total" lay-verify="required" readonly onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" value="{{=d.total}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
         </div>
 
         </div>
@@ -731,7 +730,7 @@
         <div class="layui-form-item">
         <label class="layui-form-label">证件号码</label>
         <div class="layui-input-inline">
-            <input type="text" name="card" lay-verify="required" value="{{d.card}}" readonly onkeyup="this.value=this.value.replace(/[^\w]/g,'')"   placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="card" lay-verify="required" value="{{=d.card}}" readonly onkeyup="this.value=this.value.replace(/[^\w]/g,'')"   placeholder="请输入" autocomplete="off" class="layui-input">
         </div>
         
         </div>
@@ -742,10 +741,10 @@
                 {{# layui.each(eval(d.pics)||[],function(index,item){ }}
                     <div class="detail-image-col-2 detail-banner-split">
                         <div class="opacity-z-index"></div>
-                        <i class="layui-icon icon-display" data-info="{{item}}">&#xe640;</i>
+                        <i class="layui-icon icon-display" data-info="{{=item}}">&#xe640;</i>
                         <div class="left-block"></div>
                         <div class="right-block"></div>
-                        <img src="{{item}}" width="100%" height="100%" />    
+                        <img src="{{=item}}" width="100%" height="100%" />    
                     </div>
                 {{# }) }}
                     
@@ -756,27 +755,27 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">备注</label>
             <div class="layui-input-block"> 
-                <textarea name="desc" lay-verify="required" placeholder="请输入内容" class="layui-textarea">{{d.desc}}</textarea>
+                <textarea name="desc" lay-verify="required" placeholder="请输入内容" class="layui-textarea">{{=d.desc}}</textarea>
             </div>
         </div>
         {{# layui.each(d.split||[],function(index,item){ }}
             <div class="layui-form-item">
                 <label class="layui-form-label">拆分金额</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="" lay-verify="required" readonly  value="{{item.money}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="" lay-verify="required" readonly  value="{{=item.money}}" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
-                <label class="layui-form-label">数量</label>
+                <label class="layui-form-label">编号</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="" lay-verify="required" readonly value="{{item.num}}" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="" lay-verify="required" readonly value="{{=item.debt_num}}" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
             </div>
         {{# }) }}
-        <div class="layui-form-item">
+        <!--<div class="layui-form-item">
             <label class="layui-form-label">合计</label>
             <div class="layui-input-inline">
-                <input type="text" name="" lay-verify="" readonly value="{{d.confirmTotal}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
+                <input type="text" name="" lay-verify="" readonly value="{{=d.confirmTotal}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
             </div>
-        </div>
+        </div>-->
               
 </script>
 

@@ -1,6 +1,7 @@
 define({
     preFix:'/shop/shop/public/index.php/admin',
     obligationPreFix:'/shop/shop/public/bfapp',
+    obligationOutPreFix:'/shop/shop/public/admin',
     obligation:{
         showlist:'/debtnexus/index',
         update:'/debtnexus/edit',
@@ -25,7 +26,6 @@ define({
             upordownGoods:'/goods/onOff',
             lookInfoCopyed:'/goods/beforeId',
             searchFilterGoods:'/relevance/goodsList'
-            
         },
         goodsBag:{
             showlist:'/package/packList',
@@ -61,7 +61,17 @@ define({
         exportdayExcel:'/debtreview/downdebt',
         exportUserExcel:'/debtreview/downgood',
         convertScore:'/Exchange/exList',
-        updateConvertScore:'/Exchange/exOk'
+        updateConvertScore:'/Exchange/exOk',
+        output:{
+            showlist:'/Userbalanceh/withdrawList',
+            updateStatus:'/Userbalanceh/withdrawCheck',
+            getOneInfo:'/Userbalanceh/withdrawDetail',
+            finished:''
+        },
+        backGoods:{
+            showlist:'/Buyback/backList',
+            updateStatus:'/Buyback/checkBack'
+        }
     },
     article:{
         showlist:'/Article/lst',
