@@ -89,7 +89,7 @@
           <thead>
             <tr>
               <th>序号</th>
-              <th>订单号</th>
+             <!--  <th>订单号</th> -->
               <th>用户</th>
               <th>模式</th>
               <th>开户行</th>
@@ -173,8 +173,7 @@
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
                 <legend>债权金标准信息</legend>
 
-                
-                
+                            
                   <form class="layui-form layui-form-pane" style="display:inline-block;">
               
               
@@ -291,8 +290,8 @@
 {{# layui.each(d.data,function(index,item){ }}
     <tr>
     <td>{{index+1}}</td>
-    <td class="typeName">{{=item.order_sn}}</td>
-    <td >{{=item.nickname}}</td>
+    <!-- <td class="typeName">{{=item.order_sn}}</td> -->
+    <td >{{=item.real_name}}</td>
     <td >{{=item.note}}</td>
     <td >{{=item.card_tip}}</td>
     <td >{{=item.card_num}}</td>

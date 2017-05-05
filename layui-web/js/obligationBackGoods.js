@@ -160,7 +160,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 // var item=classObj.methods.getSingleInfo(upId);
                 var item={};
                 // item.status=sta;
-                item.id=upId;
+                item.order_id=upId;
+                item.status=1;
                 common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.backGoods.updateStatus,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;

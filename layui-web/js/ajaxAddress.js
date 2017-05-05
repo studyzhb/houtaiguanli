@@ -4,6 +4,7 @@ define({
     obligationOutPreFix:'/shop/shop/public/admin',
     obligation:{
         showlist:'/debtnexus/index',
+        check2debtCode:'/Debtnexus/cheackDebtCode',
         update:'/debtnexus/edit',
         typeshow:'/Proportion/show',
         typeAdd:'/Proportion/add',
@@ -66,7 +67,8 @@ define({
             showlist:'/Userbalanceh/withdrawList',
             updateStatus:'/Userbalanceh/withdrawCheck',
             getOneInfo:'/Userbalanceh/withdrawDetail',
-            finished:''
+            finishedOk:'/Userbalanceh/withdrawOk',
+            finishFalse:'/Userbalanceh/withdrawFalse'
         },
         backGoods:{
             showlist:'/Buyback/backList',

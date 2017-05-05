@@ -168,6 +168,28 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         
     })
 
+    /**
+     * 二次校验
+     */
+    $('.editorNavBox').on('click','.checkDebtCode',function(){
+        var money=$(this).data('money');
+        var debtId=$(this).data('debt');
+        var self=this;
+        common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.check2debtCode,function(data){
+            
+            if(data.code==200){
+                $(self).hide();
+                // form.render('radio')
+                
+            }else if(data.code==300){
+                layObj.layer.msg('暂无数据');
+            }else{
+
+            }
+
+        },{money:money,debt_code:debtId});
+    })
+
 
     $('#tableList').on('click','.addRecommend',function(){
         

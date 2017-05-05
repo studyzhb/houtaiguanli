@@ -313,7 +313,49 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var status=$(this).data('status');
         var upId=$(this).data('id');
         var self=this;
-        classObj.methods.updateStatusInfoType(upId);
+        layObj.layer.confirm('确定提现？',{btn:['确认','拒绝'],yes:function(index,layero){
+            
+            var item={};
+                // item.status=sta;
+            item.id=upId;
+            common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.finishedOk,function(data){
+                log.d(data);
+                classObj.data.isCanClick=true;
+                if(data.code==200){
+                    //location.reload();
+                    layObj.layer.closeAll();
+                    layObj.layer.msg(data.message);
+                    classObj.methods.updatePageNum(classObj.data.currentPageNum);
+                    
+                }else{
+                    layObj.layer.msg(data.message);
+                    // layObj.layer.closeAll();
+                    //location.reload();
+                }
+            },item);
+        },
+        btn2:function(index,layero){
+            
+            var item={};
+                // item.status=sta;
+                item.id=upId;
+                common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.finishFalse,function(data){
+                    log.d(data);
+                    classObj.data.isCanClick=true;
+                    if(data.code==200){
+                        //location.reload();
+                        layObj.layer.closeAll();
+                        layObj.layer.msg(data.message);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
+                        
+                    }else{
+                        layObj.layer.msg(data.message);
+                        // layObj.layer.closeAll();
+                        //location.reload();
+                    }
+                },item);
+        }
+        })
   
     })
 

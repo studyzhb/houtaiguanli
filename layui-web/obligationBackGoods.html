@@ -299,16 +299,13 @@
     <td>
       {{# if(item.status=='0'){ }}
         
-        
-        备货中
-      {{# }else if(item.status=='1'){ }}
-        已备货
-    {{# }else if(item.status=='2'){ }}
-        提货完成
-    {{# }else if(item.status=='3'){ }}
-        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn approve" data-status="1" data-id="{{item.id}}">
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn approve" data-status="1" data-id="{{item.order_id}}">
               回购审核
         </button>
+        
+      {{# }else if(item.status=='1'){ }}
+        回购完成
+
       {{# } }}
     </td>
     <td>{{=new Date(item.apply_time*1000).toLocaleString()}}</td>
