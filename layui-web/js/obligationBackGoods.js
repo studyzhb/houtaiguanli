@@ -123,16 +123,16 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         classObj.data.arrData=data.data.queue_list;
                         
-                        classObj.data.pageCount=Math.ceil(data.data.total/data.data.per_page);
-                        $('.detailCount').text(data.data.total);
-                        classObj.methods.updateArealist(data.data.data);
+                        classObj.data.pageCount=Math.ceil(data.data.all_num/10);
+                        $('.detailCount').text(data.data.all_num);
+                        classObj.methods.updateArealist(data.data.queue_list);
                         if(fistLoad){
                             classObj.methods.updatePage();
                         }
                     }else{
                         layObj.layer.msg(data.message);
                     }
-                },{page:num});
+                },{p:num});
             },
             updateAreaType:function(data){
                 classObj.data.typeInfo=data;
@@ -161,7 +161,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 var item={};
                 // item.status=sta;
                 item.id=upId;
-                common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.updateStatus,function(data){
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.backGoods.updateStatus,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
                     if(data.code==200){
