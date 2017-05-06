@@ -17,7 +17,6 @@ var addShopPage={
 	layui.use('laytpl',function(){
 		var laytpl = layui.laytpl;
 		config.ajax('get',config.ajaxAddress.publicAddress+config.ajaxAddress.shopDetail.shopInfo,function(data){
-		console.log(data);
 		//config.formatTemplate(data[0],tmphtml)
 		var tmphtml=$('.editShopCon').html();
 		var atime=data.shopinfo.worktime.split('-')?data.shopinfo.worktime.split('-'):[];
@@ -28,7 +27,6 @@ var addShopPage={
         obj.endTime=atime[1];
 		addShopPage.location.latitude=obj.latitude;
 		addShopPage.location.longitude=obj.longitude;
-		updateMap();
 		/*if(obj.pic){
 			var parPic=JSON.parse(obj.pic)?JSON.parse(obj.pic):[];
 			obj.pic=parPic;

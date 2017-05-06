@@ -8,9 +8,7 @@
 	<link rel="stylesheet" href="../layui/css/layui.css" />
   	<link rel="stylesheet" href="../css/alertcon.css" />
 	<script src="../layui/layui.js"></script>
-  	<script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-form.js"></script>
-    
+  <script data-main="../js/domain" src="../js/require.min.js"></script>
 </head>
 <body>
 	<!-- 框架结构	 -->
@@ -74,7 +72,7 @@
 
 <script type="text/html" id="shophis" >
 <div class="layui-form-item"> 
-                
+                <div style="display:inline-block;">
                   <label class="layui-form-label">店铺余额</label>
                   <div class="layui-input-inline">
                     <input type="text" readonly="" name="" value="{{d.yue}}" class="layui-input" >
@@ -83,6 +81,11 @@
                   <div class="layui-input-inline">
                     <input type="text" readonly="" name="" value="{{d.money}}" class="layui-input" >
                   </div>
+                </div>
+                  <div style="display:inline-block;width:190px;vertical-align:top;">
+                    <div class="layui-btn layui-btn-primary obligation2balance">余额提现</div>
+                  </div>
+                  
               </div>
 
               <table class="layui-table">
@@ -131,6 +134,8 @@
                   <td>提现申请中</td>
                   {{# }else if(item.type=='8'){ }}
                   <td>提现成功</td>
+                  {{# }else{ }}
+                    
                   {{# } }}
                 </tr>
             {{# }) }}
@@ -142,9 +147,30 @@
 
 </div>
 
+<form class="layui-form outputMoneyWrapper" action="" style="padding:20px;font-size: 12px;display: none;">
+  <div class="layui-form-item">
+    <label class="layui-form-label">提现金额</label>
+    <div class="layui-input-block">
+      <input type="text" name="money" required  lay-verify="number" placeholder="请输入金额,整数" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">备注</label>
+    <div class="layui-input-block">
+      <textarea name="note" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <div class="layui-btn" lay-submit lay-filter="outputMoney">立即提交</div>
+    </div>
+  </div>
+</form>
+
 </body>
 <script src="../js/config.js"></script>
 <script src="../js/filter.js"></script>
-<script src="../js/getInfoByUserCard.js"></script>
 <script src="../js/shoppricehis.js?v=1.0"></script>
 </html>

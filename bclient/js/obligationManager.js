@@ -29,13 +29,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
         },
         methods:{
             updateShopList:function(data){
-                 var tempHtml=shophis.innerHTML;
-
-			
-				$('#purchaselist').html('');
-				layObj.laytpl(tempHtml).render(data,function(html){
-						$('#purchaselist').append(html);
-					});
+                 $('#purchaselist').html('');
+                 var obj={};
+                 obj.data=data;
+                 
+                layObj.laytpl(ShopObj.data.tempGoodsContent).render(obj,function(html){
+                    $('#purchaselist').append(html);
+                })
             },
             updatePage:function(para){
                 
@@ -82,7 +82,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                     }else{
                         layObj.layer.msg(data.message);
                     }
-                },options);
+                });
             },
             updatePageNum:function(num,para){
                 
@@ -93,13 +93,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
 
                 $('#tableWrapper').html('');
                 
-                common.tools.ajax('get',ajaxAddress.publicAddress+ajaxAddress.shopDetail.shopbalance,function(data){
+                common.tools.ajax('get',ajaxAddress.obligationManagerPreFix+ajaxAddress.shopObligation.showHisList,function(data){
                     log.d(data);
                     if(data.code==200){
-                        ShopObj.data.obligationBalance=data.yue;
+                        
                         // ShopObj.data.pageCount=Math.ceil(data.data.all_num/10);
                         // $('.detailCount').text(data.data.all_num);
-                        ShopObj.methods.updateShopList(data);
+                        ShopObj.methods.updateShopList(data.data.with_list);
                         //分页，暂时不做
                         //  if(fistLoad){
                         //     ShopObj.methods.updatePage(options);
@@ -146,25 +146,19 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
 
 
 
-    $('#purchaselist').on('click','.obligation2balance',function(){
+    $('.obligation2balance').on('click',function(){
         layObj.layer.load();
-		$('form').each(function(){
-			this.reset();
-		})
         if(ShopObj.data.obligationBalance){
-             ShopObj.data.outputAlertIndex=layObj.layer.open({
-				 type:1,
-				 title:'余额提现，提现至店铺绑定银行卡',
-				content: $('.outputMoneyWrapper'), //这里content是一个DOM
-				shade:[0.8,'#000'],
-				area:'600px',
-				maxmin: true,
-				end:function(){
-					$('.outputMoneyWrapper').hide();
-				}
-			 })
+             layObj.layer.confirm('您的债权金收益为：'+ShopObj.data.obligationBalance+'将全部转为余额',function(index){
+                layObj.layer.close(index);
+                common.tools.ajax('post',ajaxAddress.obligationManagerPreFix+ajaxAddress.shopObligation.obligationScore2Balance,function(data){
+                    layObj.layer.closeAll('loading');
+                    ShopObj.methods.updateObligationBalance();
+                    layObj.layer.msg(data.message);
+                });
+             })
         }else{
-            layObj.layer.msg('您目前暂无余额可提');
+            layObj.layer.msg('您目前暂无收益可转');
             layObj.layer.closeAll('loading');
         }
        
@@ -177,7 +171,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
      * kaishi
      */
      ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
-
+     ShopObj.methods.updateObligationBalance();
 
 
     layui.use('laydate',function(){
@@ -296,26 +290,28 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
 
 
 
-            form.on('submit(outputMoney)',function(paraData){
+            form.on('submit(shopInfo)',function(paraData){
                 log.d(paraData.field);
-				layObj.layer.load();
-				if(paraData.field.money>ShopObj.data.obligationBalance){
-					layObj.layer.msg('超出余额，请修改后尝试');
-					layObj.layer.closeAll('loading');
-					return;
-				}
-                
-                common.tools.ajax('post',ajaxAddress.obligationManagerPreFix+ajaxAddress.shopObligation.outputMoney,function(data){
-					layObj.layer.msg(data.message);
-					layObj.layer.closeAll('loading');
-				    if(data.code==200){
-                        layObj.layer.close(ShopObj.data.outputAlertIndex);
-                        ShopObj.methods.updatePageNum(ShopObj.data.currPage);    
-                    }else{
-                        layObj.layer.msg(data.msg);
-                    }
-                },paraData.field);
+                log.d(ShopObj.data.labelJson);
+                layObj.layer.load();
+                //paraData.field
+                ShopObj.data.firstBaseInfo=paraData.field;
+                layObj.layer.close(ShopObj.data.firstStepIndex);
+                $('.areaInfoInput').html('');
 
+                ShopObj.data.secondStepIndex=layObj.layer.open({
+                    type:1,
+                    title:'拆分债券',
+                    content: $('#areaInfoForm'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:['95%','98%'],
+                    maxmin: true,
+                    end:function(){
+                        $('#areaInfoForm').hide();
+                    }
+                })
+                
+                    
                 return false;
             });
 

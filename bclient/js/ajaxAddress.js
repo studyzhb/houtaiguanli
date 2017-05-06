@@ -1,13 +1,23 @@
 define({
     preFix:'/api/public/bfapp',
+    obligationManagerPreFix:'/api/public/bweb',
+    publicAddress:'/api/public/index.php/bweb',
     /**
-     * 导航模块
+     * 显示债权金信息
      */
     obligation:{
         showlist:'/Debt/debtList',
         showOneInfo:'/Debt/oneDebt',
         addInfo:'/Debt/addDebt'
+    },
+    shopObligation:{
+        showHisList:'/Turnin/withList',
+        obligationScore2Balance:'/Turnin/applyTurn',
+        outputMoney:'/Turnin/withDraw',
+        obligationBalance:'/Turnin/creditorIncome'
+    },
+    shopDetail:{
+      shopInfo:'/Shopdetail/index',
+      shopbalance:'/mypurse/index'
     }
-   
-
 });
