@@ -124,6 +124,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     obj.tel=params.tel
                 }
                 $.extend(true,obj,classObj.data.cacheData||{});
+                
                 common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.viplist.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -469,7 +470,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         form.on('submit(searchResultByTel)',function(formParams){
             log.d(formParams.field)
             fistLoad=true;
-            classObj.cacheData=formParams.field;
+            classObj.data.cacheData=formParams.field;
             classObj.methods.updatePageNum(classObj.data.currentPageNum,formParams.field);                
             return false;
         })
