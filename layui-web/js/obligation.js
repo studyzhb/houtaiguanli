@@ -162,10 +162,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             navObj.updateObligationInfo(sItem);
 
         }
-        
-
-        
-        
+ 
     })
 
     /**

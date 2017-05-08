@@ -213,7 +213,7 @@
               </div>
               <div class="input-wrapper">
                 <label>国际条形码</label>
-                <input type="text" class="w160 barcode" lay-verify="required" id="goods-barcode" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" name="barcode" value="">
+                <input type="text" class="w160 barcode" lay-verify="required" id="goods-barcode" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onblur="checkBarCodeRepeat(this.value)" name="barcode" value="">
               </div>
               <div class="input-wrapper">
                 <label>规格</label>
@@ -845,17 +845,30 @@
   $('.goodsBm').val(da.substring(5));
   
 
-  $('#goods-barcode').on('blur',function(){
-  config.ajax('post',config.ajaxAddress.goodsI18Num,function(data){
-    console.log(data);
-    if(data.code==400){
-      // alert('条形码重复,请更改');
-      layer.msg('条形码重复,请更改');
-    }else{
-      console.log('chengg')
-    }
-  },{barcode:$(this).val()});
-})
+//   $('#goods-barcode').on('blur',function(){
+//   config.ajax('post',config.ajaxAddress.goodsI18Num,function(data){
+//     console.log(data);
+//     if(data.code==400){
+//       // alert('条形码重复,请更改');
+//       layer.msg('条形码重复,请更改');
+//     }else{
+//       console.log('chengg')
+//     }
+//   },{barcode:$(this).val()});
+// })
+
+  function checkBarCodeRepeat(value){
+    config.ajax('post',config.ajaxAddress.goodsI18Num,function(data){
+      console.log(data);
+      if(data.code==400){
+        // alert('条形码重复,请更改');
+        layer.msg('条形码重复,请更改');
+      }else{
+        console.log('chengg')
+      }
+    },{barcode:value});
+  }
+
 </script>
 </body>
 </html>
