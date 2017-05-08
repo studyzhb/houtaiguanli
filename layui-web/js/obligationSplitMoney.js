@@ -736,7 +736,7 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
         // ShopObj.methods.addGoodsGetSortInfo();
     });
 
-    /**
+    /** 
      * 排序
      */
     $('#tableWrapper').on('click','.upSort',function(){

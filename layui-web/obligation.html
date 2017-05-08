@@ -48,16 +48,34 @@
 		</span>
      -->
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-       
+        <form class="layui-form layui-form-pane" style="display:inline-block;">
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
+                  <select name="status">
+                    <option value="0" selected>申请中</option>
+                    <option value="-1">已拒绝</option>
+                    <option value="1">审核通过</option>
+                    
+                  </select>
+                </div>
+              <div class="layui-inline">
+                <div class="layui-input-inline">
+                  <input type="text" class="layui-input" name="tel" value="" placeholder="请输入手机号">
+                </div>
+              </div>
+              <div class="layui-btn" lay-submit lay-filter="searchResultByTel" >
+                   搜索
+                </div>
+                
+                <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                    <i class="layui-icon">&#x1002;</i>  
+                </div>
+            </form>
 
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
-            
+
               <div class="layui-form layui-form-pane">
                   
-                <button class="layui-btn" onclick="location.reload()">
-                    刷新
-                </button>
                   <table class="layui-table" lay-skin="line">
                     <colgroup>
                         <col width="80">
@@ -103,7 +121,10 @@
 
           </div>
         </div>
-
+        <div style="height:55px;padding-right:10px;">
+            <div id="page" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
+        </div>
 
      </div>
 

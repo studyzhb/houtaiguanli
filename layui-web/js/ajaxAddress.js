@@ -8,6 +8,10 @@ define({
         showOneInfo:'/Debt/oneDebt',
         getIsSaveShopGoods:'/relevance/deliveryPoint'
     },
+    viplist:{
+        showlist:'/User/userList',
+        inputMoney:'/User/recharge'
+    },
     obligation:{
         showlist:'/debtnexus/index',
         check2debtCode:'/Debtnexus/cheackDebtCode',

@@ -2,6 +2,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     var common=myObj.load();
     var form;
+    var fistLoad=true;
     var navObj={
         //防止向上向下重复点击标志位
         isUpOrDownClick:true,
@@ -14,20 +15,14 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         /**
          * 展示导航列表信息
          */
-        showNavlist:function(){
+        showNavlist:function(data){
             var tmp=sortContent.innerHTML;
             
             $('#tableList').html('');
-            common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.obligation.showlist,function(data){
-                log.d(data);
-                if(data.code==200){
-                    navObj.data.arrObligation=data.data;
-                    layObj.laytpl(tmp).render(data.data,function(html){
-                        $('#tableList').append(html);
-                    })
-                }
-                
+            layObj.laytpl(tmp).render(data,function(html){
+                $('#tableList').append(html);
             })
+
         },
         /**
          * 根据上移下移按钮进行排序
@@ -61,7 +56,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         },
         //审核
         updateObligationInfo:function(data){
-            console.log(data);
+            
             var tmpl=editorNavCon.innerHTML;
             $('.editorNavBox').html('');
                     layObj.laytpl(tmpl).render(data,function(html){
@@ -94,7 +89,54 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             })
 
             return singleInfo;
-        }
+        },
+        updatePage:function(){
+                layui.use(['laypage', 'layer'],function(){
+                    var laypage=layui.laypage;
+                    var layer = layui.layer;
+                    laypage({
+                        cont: 'page'
+                        ,pages: navObj.data.pageCount //总页数
+                        ,groups: 5 //连续显示分页数
+                        ,jump:function(data){
+                            //得到页数data.curr
+                            if(navObj.data.currentPageNum==data.curr){
+
+                            }else{
+                                navObj.data.currentPageNum=data.curr;
+                                navObj.updatePageNum(data.curr);
+                            }
+                            
+                        }
+                    });
+                });
+
+                fistLoad=false;
+            },
+            updatePageNum:function(num,params){
+                var obj={
+                    page:num
+                }
+                $.extend(true,obj,params||{})
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.obligation.showlist,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        navObj.data.arrObligation=data.data;
+                        // layObj.laytpl(tmp).render(data.data,function(html){
+                        //     $('#tableList').append(html);
+                        // })
+                        navObj.data.pageCount=Math.ceil(data.max/data.limit);
+                        $('.detailCount').text(data.max);
+                        navObj.showNavlist(data.data);
+                        if(fistLoad){
+                            navObj.updatePage();
+                        }
+                    }else{
+                        layObj.layer.msg(data.message);
+                    }
+                    
+                },obj);
+            }
     }
 
     /**
@@ -116,7 +158,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         
 
     // })
-    navObj.showNavlist();
+    navObj.updatePageNum(navObj.data.currentPageNum);
     /**
      * 排序
      */
@@ -414,10 +456,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 		    return false;
 		  });
 
+          form.on('submit(searchResultByTel)',function(formParams){
+                log.d(formParams.field)
+                fistLoad=true;
+                navObj.updatePageNum(navObj.data.currentPageNum,formParams.field);                
+                return false;
+            })
+
           //监听提交
 		  form.on('submit(saveRecommend)', function(data1){
               navObj.data.checkNum=0;
-		    console.log('click-submit');
+		   
 		  	common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.commitRecommend,function(data){
 			    navObj.data.arrRemo=[];
                 navObj.data.checkTypeId='';
