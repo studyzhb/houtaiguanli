@@ -117,7 +117,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 fistLoad=false;
             },
             updatePageNum:function(num){
-                
+                var obj={
+                    page:num
+                }
+                $.extend(true,obj,classObj.data.cacheData||{});
                 common.tools.ajax('get',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -130,9 +133,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                             classObj.methods.updatePage();
                         }
                     }else{
+                        classObj.data.pageCount=1;
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
+                        $('.detailCount').text('0');
+                        classObj.methods.updateArealist([]);
                         layObj.layer.msg(data.message);
                     }
-                },{page:num});
+                },obj);
             },
             updateAreaType:function(data){
                 classObj.data.typeInfo=data;
@@ -519,6 +528,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 },formParams.field);
                 
+            return false;
+        })
+
+        form.on('submit(searchResultByTel)',function(formParams){
+            classObj.data.currentPageNum=1;
+            fistLoad=true;
+            classObj.data.cacheData=formParams.field;
+            classObj.methods.updatePageNum(classObj.data.currentPageNum)
+   
             return false;
         })
 

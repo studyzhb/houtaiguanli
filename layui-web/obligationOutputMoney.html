@@ -57,17 +57,20 @@
               
               
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
-                  <select class="areaType" lay-filter="areaType">
-                    <option value=""></option>
+                  <select class="areaType" name="status" lay-filter="areaType">
+                    <option value="0">未审核</option>
+                    <option value="1">提现中</option>
+                    <option value="2">提现完成</option>
+                    <option value="3">提现被拒绝</option>
                     
                   </select>
                 </div>
-              <div class="layui-inline">
+              <!--<div class="layui-inline">
                 <div class="layui-input-inline">
                   <input type="text" class="layui-input" name="" value="">
                 </div>
-              </div>
-              <div class="layui-btn">
+              </div>-->
+              <div class="layui-btn" lay-submit lay-filter="searchResultByTel" >
                    搜索
                 </div>
                 
@@ -109,7 +112,7 @@
           </div>
         </div>
 
-        <div style="height:55px;padding-right:10px;display: none;">
+        <div style="height:55px;padding-right:10px;">
             <div id="page" style="float:right;"></div>
             <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
         </div>

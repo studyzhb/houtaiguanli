@@ -133,6 +133,12 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                             classObj.methods.updatePage();
                         }
                     }else{
+                        classObj.data.pageCount=1;
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
+                        $('.detailCount').text('0');
+                        classObj.methods.updateArealist([]);
                         layObj.layer.msg(data.message);
                     }
                 },obj);
@@ -485,7 +491,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         })
 
         form.on('submit(searchResultByTel)',function(formParams){
- 
+            classObj.data.currentPageNum=1;
+            fistLoad=true;
             classObj.data.cacheData=formParams.field;
             classObj.methods.updatePageNum(classObj.data.currentPageNum)
    
