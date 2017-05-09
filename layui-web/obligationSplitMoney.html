@@ -171,7 +171,7 @@
               </div>
 
 
-              <div class="layui-form-item layui-form-text">
+              <!--<div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">*债券资料</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
@@ -181,12 +181,12 @@
                   </div>
                   <input type="hidden" lay-verify="required" name="pics" placeholder="请输入" value="['12231']" autocomplete="off" class="layui-input shopinput">
                              </div>
-                </div>
+                </div>-->
                        
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">备注</label>
                 <div class="layui-input-block"> 
-                  <textarea name="desc" lay-verify="required" placeholder="请输入内容" class="layui-textarea"></textarea>
+                  <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>
                 
               </div>
@@ -286,7 +286,7 @@
         </div>
         
         </div>
-        <div class="layui-form-item layui-form-text">
+        <!--<div class="layui-form-item layui-form-text">
         <label class="layui-form-label">*债券资料</label>
         <div class="layui-input-block" style="margin-top:10px;">
             <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
@@ -303,11 +303,11 @@
             </div>
             
         </div>
-        </div>
+        </div>-->
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">备注</label>
             <div class="layui-input-block"> 
-                <textarea name="desc" lay-verify="required" placeholder="请输入内容" class="layui-textarea">{{d.desc}}</textarea>
+                <textarea name="desc" placeholder="请输入内容" class="layui-textarea">{{d.desc}}</textarea>
             </div>
         </div>
         {{# layui.each(JSON.parse(d.split)||[],function(index,item){ }}
@@ -761,7 +761,7 @@
         </div>
         
         </div>
-        <div class="layui-form-item layui-form-text">
+        <!--<div class="layui-form-item layui-form-text">
         <label class="layui-form-label">*债券资料</label>
         <div class="layui-input-block" style="margin-top:10px;">
             <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
@@ -778,11 +778,11 @@
             </div>
             
         </div>
-        </div>
+        </div>-->
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">备注</label>
             <div class="layui-input-block"> 
-                <textarea name="desc" lay-verify="required" placeholder="请输入内容" class="layui-textarea">{{=d.desc}}</textarea>
+                <textarea name="desc" placeholder="请输入内容" class="layui-textarea">{{=d.desc}}</textarea>
             </div>
         </div>
         {{# layui.each(d.split||[],function(index,item){ }}

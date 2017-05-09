@@ -323,17 +323,7 @@
 </script>
 
 </div>
-<script type="text/html" id="editorNavCon">
-    <div class="layui-form-item">
-        <label class="layui-form-label">*名称</label>
-        <div class="layui-input-inline">
-        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
-        <input type="hidden" autocomplete="off" name="user_id" class="layui-input" value="{{d.user_id}}" />
-        <input type="text" data-info="{{d.name}}" lay-verify="isChangeValue" value="{{d.name}}" readonly  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
-        </div>
-        <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
-    </div>
-    <div class="layui-form-item layui-form-text">
+<!--<div class="layui-form-item layui-form-text">
         <label class="layui-form-label">身份证图片</label>
         <div class="layui-input-block" style="margin-top:10px;">
           <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
@@ -349,8 +339,8 @@
           </div>
           
                      </div>
-        </div>
-     <div class="layui-form-item layui-form-text">
+        </div>-->
+     <!--<div class="layui-form-item layui-form-text">
         <label class="layui-form-label">手持身份证</label>
         <div class="layui-input-block" style="margin-top:10px;">
           <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
@@ -366,8 +356,8 @@
           </div>
           
                      </div>
-        </div>
-    <div class="layui-form-item layui-form-text">
+        </div>-->
+    <!--<div class="layui-form-item layui-form-text">
         <label class="layui-form-label">债权证明图片</label>
         <div class="layui-input-block" style="margin-top:10px;">
           <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
@@ -383,7 +373,18 @@
           </div>
           
                      </div>
+        </div>-->
+<script type="text/html" id="editorNavCon">
+    <div class="layui-form-item">
+        <label class="layui-form-label">*名称</label>
+        <div class="layui-input-inline">
+        <input type="hidden" autocomplete="off" name="id" class="layui-input" value="{{d.id}}" />
+        <input type="hidden" autocomplete="off" name="user_id" class="layui-input" value="{{d.user_id}}" />
+        <input type="text" data-info="{{d.name}}" lay-verify="isChangeValue" value="{{d.name}}" readonly  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
         </div>
+        <!--<div class="layui-form-mid layui-word-aux">*必填项</div>-->
+    </div>
+    
     <div class="layui-form-item">
         <label class="layui-form-label">债权证编号</label>
         <div class="layui-input-inline">

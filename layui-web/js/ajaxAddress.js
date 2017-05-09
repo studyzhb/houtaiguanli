@@ -10,7 +10,9 @@ define({
     },
     viplist:{
         showlist:'/User/userList',
-        inputMoney:'/User/recharge'
+        inputMoney:'/User/recharge',
+        updatePayPassword:'/Paypassword/suycPassword',
+        lookVipHisInfo:'/User/userCash'
     },
     obligation:{
         showlist:'/debtnexus/index',

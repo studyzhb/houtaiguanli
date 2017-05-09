@@ -149,7 +149,6 @@
     <div class="layui-form-item">
         <div class="areaInfoInput">
             <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
-            
         </div>
     </div>
     
@@ -166,11 +165,9 @@
  
               
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
-                <legend>债权金标准信息</legend>
+                <legend>交易明细</legend>
 
-                
-                
-                  <form class="layui-form layui-form-pane" style="display:inline-block;">
+                  <form class="layui-form layui-form-pane" style="display:none;">
               
               
                     <div class="layui-input-inline" style="width:100px;margin-left:5px;">
@@ -212,12 +209,10 @@
                   <thead>
                     <tr>
                       <th>序号</th>
-                      <th>商品编号</th>
-                      <th>商品条形码</th>
-                      <th>商品名称</th>
-                      <th>商品品牌</th>
-                      <th>商品零售价</th>
-                      <th>操作</th>
+                      <th>订单号</th>
+                      <th>创建时间</th>
+                      <th>交易金额</th>
+                      <th>类型</th>
                     </tr> 
                   </thead>
                   <tbody id="goods-orderlist">
@@ -233,7 +228,7 @@
              
 
               <!-- ================================================== -->
-        <div style="height:55px;padding-right:10px;">
+        <div style="height:55px;padding-right:10px;display: none;">
             <div id="alertpage" style="float:right;"></div>
             <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="obligationTotal">30</span>条数据</div>
         </div>
@@ -305,10 +300,12 @@
     </td>-->
     <td>
         
-        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn approve" data-status="1" data-id="{{item.user_id}}">
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn approve" data-status="1" data-id="{{item.user_id}}" data-tel="{{=item.tel}}">
               充值
         </button>
-
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn lookInfoHis" data-status="1" data-id="{{item.user_id}}" data-tel="{{=item.tel}}">        
+             查看历史
+        </button>
     </td>
 
   </tr>
@@ -325,16 +322,16 @@
 {{# layui.each(d,function(index,item){ }}
   <tr>
     <td>{{index+1}}</td>
-    <td>{{=item.coding}}</td>
-    <td>{{=item.barcode}}</td>
-    <td>{{=item.name}}</td>
-    <td>{{=item.brand}}</td>
-    <td>{{=(item.retails-0).toFixed(2)}}</td>
-    <td>
+    <td>{{=item.order_sn}}</td>
+    <td>{{=item.create_time}}</td>
+    <td>{{=item.amount}}</td>
+    <td>{{=item.note}}</td>
+
+    <!--<td>
       <div class="layui-btn layui-btn-danger layui-btn-small deleteObligationType" data-id="{{item.id}}" >
             <i class="layui-icon">&#xe640;</i>   
         </div>
-    </td>
+    </td>-->
   </tr>
 {{# }) }}
 </script>
