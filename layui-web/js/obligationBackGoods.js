@@ -117,7 +117,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 fistLoad=false;
             },
             updatePageNum:function(num){
-                
+                var obj={
+                    p:num
+                }
+                $.extend(true,obj,classObj.data.cacheData||{});
                 common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.backGoods.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
@@ -132,7 +135,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }else{
                         layObj.layer.msg(data.message);
                     }
-                },{p:num});
+                },obj);
             },
             updateAreaType:function(data){
                 classObj.data.typeInfo=data;
@@ -478,6 +481,14 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 },formParams.field);
                 
+            return false;
+        })
+
+        form.on('submit(searchResultByTel)',function(formParams){
+ 
+            classObj.data.cacheData=formParams.field;
+            classObj.methods.updatePageNum(classObj.data.currentPageNum)
+   
             return false;
         })
 
