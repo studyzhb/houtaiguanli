@@ -36,28 +36,29 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             tempGoodsContent:$('#sortContent').html(),
             arrData:[],
             alertPageCount:'1',
-            currentPageNum:'1'
+            currentPageNum:'1',
+            cacheData:{status:10}
         },
         methods:{
-            //获取标准下的商品
+            //获取用户历史记录
             updateObligationTypeInfoById:function(id,p){
                 $('#goods-orderlist').html('');
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.updateListByTypeId,function(data){
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.viplist.lookVipHisInfo,function(data){
                     
                     var tml=$('#showGoodsContent').html();
                     if(data.code==200){
                         
-                        classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
+                        // classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
                         
-                        $('.obligationTotal').html(data.num);
-                        layObj.laytpl(tml).render(data.data,function(html){
+                        // $('.obligationTotal').html(data.num);
+                        layObj.laytpl(tml).render(data.data.cash,function(html){
                             $('#goods-orderlist').append(html);
                         })
-                        if(alertFirstLoad){
-                            classObj.methods.updateAlertPage(id);
-                        }
+                        // if(alertFirstLoad){
+                        //     classObj.methods.updateAlertPage(id);
+                        // }
                     }
-                },{standard_id:id,p:p});
+                },{user_id:id});
             },
             updateArealist:function(data){
                 $('#all-sort-list').html('');
@@ -317,6 +318,49 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         })
   
     })
+
+    /**
+     * 2017/5/10
+     * 查看明细
+     */
+    $('#all-sort-list').on('click','.lookInfoHis',function(){
+        var status=$(this).data('status');
+        var upId=$(this).data('id');
+        var tel=$(this).data('tel');
+        var name=$(this).data('name');
+        var self=this;
+        var classN=$(this).data('name');
+        $('form').each(function(){
+            this.reset();
+        });
+        classObj.methods.updateObligationTypeInfoById(upId);
+        layObj.layer.open({
+             type:1,
+             title:'姓名:'+classN,
+            content: $('#obligationTypeListInfo'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:['95%','90%'],
+            maxmin: true,
+            end:function(){
+                classObj.data.isCanClick=true;
+                $('#obligationTypeListInfo').hide();
+            }
+        })
+  
+    })
+
+    /**
+     * 2017/5/10
+     * tab切换状态修改
+     */
+     $('.statusTabMoney').on('click',function(){
+            classObj.data.currentPageNum=1;
+            var status=$(this).data('status');
+            fistLoad=true;
+            classObj.data.cacheData={status:status};
+            classObj.methods.updatePageNum(classObj.data.currentPageNum);
+     })
+
     //确认提现
      $('#all-sort-list').on('click','.confirmapprove',function(){
         var status=$(this).data('status');
@@ -530,15 +574,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 
             return false;
         })
-
-        form.on('submit(searchResultByTel)',function(formParams){
-            classObj.data.currentPageNum=1;
-            fistLoad=true;
-            classObj.data.cacheData=formParams.field;
-            classObj.methods.updatePageNum(classObj.data.currentPageNum)
+        //下拉选择状态删除
+        // form.on('submit(searchResultByTel)',function(formParams){
+        //     classObj.data.currentPageNum=1;
+        //     fistLoad=true;
+        //     classObj.data.cacheData=formParams.field;
+        //     classObj.methods.updatePageNum(classObj.data.currentPageNum)
    
-            return false;
-        })
+        //     return false;
+        // })
 
     },1000);
 

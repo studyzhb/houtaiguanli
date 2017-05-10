@@ -237,7 +237,19 @@
                   
                 </div>
               </div>
-              
+              <div class="layui-form-item">
+                <label class="layui-form-label">设为自提点</label>
+                <div class="layui-input-block">
+                  {{# if(d.pick_point==0){ }}
+                    <input type="radio" name="pick_point" value="0" title="不同意" checked>
+                  <input type="radio" name="pick_point" value="1" title="同意" >
+                  {{# }else if(d.pick_point==1){ }}
+                      <input type="radio" name="pick_point" value="0" title="不同意">
+                    <input type="radio" name="pick_point" value="1" title="同意" checked>
+                  {{# } }}
+                  
+                </div>
+              </div>
                <!-- <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">身份证照片</label>
                 <div class="layui-input-block" style="margin-top:10px;">

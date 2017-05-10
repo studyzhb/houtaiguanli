@@ -53,9 +53,7 @@
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
             
-            <form class="layui-form layui-form-pane" style="display:inline-block;">
-              
-              
+            <form class="layui-form layui-form-pane" style="display:none;">
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
                   <select class="areaType" name="status" lay-filter="areaType">
                     <option value="1">申请回购</option>
@@ -76,6 +74,22 @@
                     <i class="layui-icon">&#x1002;</i>  
                 </div>
             </form>
+            <div style="margin-top:5px;">
+              <ul class="layui-tab-title">
+                <li class="layui-this statusTabMoney" data-status="">
+                    全部
+                </li>
+                <li class="statusTabMoney" data-status="1">
+                    申请回购
+                </li>
+                <li class="statusTabMoney" data-status="2">
+                    审核通过
+                </li>
+                <li class="statusTabMoney" data-status="3">
+                    回购失败
+                </li>
+            </ul>
+            </div>
           <table class="layui-table">
           <colgroup>
             <col width="100">

@@ -340,6 +340,18 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         })
     })
 
+    /**
+     * 2017/5/10
+     * tab切换状态修改
+     */
+     $('.statusTabMoney').on('click',function(){
+            classObj.data.currentPageNum=1;
+            var status=$(this).data('status');
+            fistLoad=true;
+            classObj.data.cacheData={status:status};
+            classObj.methods.updatePageNum(classObj.data.currentPageNum);
+     })
+
 
 
     setTimeout(function(){
@@ -490,14 +502,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             return false;
         })
 
-        form.on('submit(searchResultByTel)',function(formParams){
-            classObj.data.currentPageNum=1;
-            fistLoad=true;
-            classObj.data.cacheData=formParams.field;
-            classObj.methods.updatePageNum(classObj.data.currentPageNum)
+        /**
+         * 暂不使用
+         */
+        // form.on('submit(searchResultByTel)',function(formParams){
+        //     classObj.data.currentPageNum=1;
+        //     fistLoad=true;
+        //     classObj.data.cacheData=formParams.field;
+        //     classObj.methods.updatePageNum(classObj.data.currentPageNum)
    
-            return false;
-        })
+        //     return false;
+        // })
 
     },1000);
 

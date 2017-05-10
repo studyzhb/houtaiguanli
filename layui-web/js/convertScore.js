@@ -35,7 +35,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             typeInfo:[],
             tempGoodsContent:$('#sortContent').html(),
             arrData:[],
-            alertPageCount:'1'
+            alertPageCount:'1',
+            currentPageNum:1
         },
         methods:{
             //获取标准下的商品
@@ -78,8 +79,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            classObj.data.currentPage=data.curr;
-                            classObj.methods.updateObligationTypeInfoById(id,data.curr);
+                            
+                                classObj.data.currentPage=data.curr;
+                                 classObj.methods.updateObligationTypeInfoById(id,data.curr);
+                            
+                            
                         }
                     });
                 });
@@ -96,8 +100,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            classObj.data.currentPageNum=data.curr;
-                            classObj.methods.updatePageNum(data.curr);
+                            if(classObj.data.currentPageNum!=data.curr){
+                                classObj.data.currentPageNum=data.curr;
+                                classObj.methods.updatePageNum(data.curr);
+                            }
+                            
                         }
                     });
                 });
@@ -105,7 +112,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 fistLoad=false;
             },
             updatePageNum:function(num){
-                
+                var obj={
+                    p:num
+                }
+                $.extend(true,obj,classObj.data.cacheData||{});
                 common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.convertScore,function(data){
                     log.d(data);
                     
@@ -113,15 +123,21 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         classObj.data.arrData=data.data.queue_list;
                         
                         classObj.data.pageCount=Math.ceil(data.data.all_num/10);
-                        $('.detailCount').text(classObj.data.pageCount);
+                        $('.detailCount').text(data.data.all_num);
                         classObj.methods.updateArealist(data.data.queue_list);
                         if(fistLoad){
                             classObj.methods.updatePage();
                         }
                     }else{
-                        layObj.layer.msg(data.msg);
+                        classObj.methods.updateArealist([]);
+                        classObj.data.pageCount=1;
+                        $('.detailCount').text(0);
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
+                        layObj.layer.msg(data.message);
                     }
-                },{page:num});
+                },obj);
             },
             updateAreaType:function(data){
                 classObj.data.typeInfo=data;
@@ -156,10 +172,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         //location.reload();
                         layObj.layer.closeAll();
+                        layObj.layer.msg(data.message);
                         classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         
                     }else{
-                        layObj.layer.msg(data.msg);
+                        layObj.layer.msg(data.message);
                         // layObj.layer.closeAll();
                         //location.reload();
                     }
@@ -304,8 +321,21 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         
     })
 
+    /**
+     * 2017/5/10
+     * tab切换状态修改
+     */
+     $('.statusTabMoney').on('click',function(){
+            classObj.data.currentPageNum=1;
+            var status=$(this).data('status');
+            fistLoad=true;
+            classObj.data.cacheData={status:status};
+            classObj.methods.updatePageNum(classObj.data.currentPageNum);
+     })
+
+
     //获取商品包
-    classObj.methods.getGoodsBagList();
+    // classObj.methods.getGoodsBagList();
 
     //删除标准下的商品
     $('#goods-orderlist').on('click','.deleteObligationType',function(){
@@ -662,6 +692,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         // log.d(classObj.data.navId);
         classObj.methods.updatePageNum(1);
     });
-     classObj.methods.updatePageNum(1);
+     classObj.methods.updatePageNum(classObj.data.currentPageNum);
 
 })

@@ -43,22 +43,17 @@
 	<div class="lay-main">
 
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-
-        <a class="layui-btn" href="/shop/shop/public/index.php/admin/Userbalanceh/excel">
-          导出
-        </a>
-
        <ul class="layui-tab-title">
           <li class="layui-this">
            提现列表
           </li>
           
         </ul>
-        
+
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
             
-            <form class="layui-form layui-form-pane" style="display:none;">
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
               
               
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
@@ -67,6 +62,7 @@
                     <option value="1">提现中</option>
                     <option value="2">提现完成</option>
                     <option value="3">提现被拒绝</option>
+                    
                   </select>
                 </div>
               <!--<div class="layui-inline">
@@ -82,25 +78,6 @@
                     <i class="layui-icon">&#x1002;</i>  
                 </div>
             </form>
-            <div style="margin-top:5px;">
-              <ul class="layui-tab-title">
-                <li class="layui-this statusTabMoney" data-status="10">
-                    全部
-                </li>
-                <li class="statusTabMoney" data-status="0">
-                    未审核
-                </li>
-                <li class="statusTabMoney" data-status="1">
-                    提现中
-                </li>
-                <li class="statusTabMoney" data-status="2">
-                    提现完成
-                </li>
-                <li class="statusTabMoney" data-status="3">
-                    提现被拒绝
-                </li>
-            </ul>
-            </div>
           <table class="layui-table">
           <colgroup>
             <col width="100">
@@ -123,7 +100,6 @@
               <th>提现金额</th>
               <th>状态</th>
               <th>创建时间</th>
-              <th>操作</th>
 
             </tr> 
           </thead>
@@ -198,11 +174,11 @@
  
               
               <fieldset class="layui-elem-field site-demo-button" style="padding:10px;">
-                <legend>交易明细</legend>
+                <legend>债权金标准信息</legend>
 
-                  <form class="layui-form layui-form-pane" style="display:none;">
-              
-              
+                            
+                  <form class="layui-form layui-form-pane" style="display:inline-block;">
+               
                     <div class="layui-input-inline" style="width:100px;margin-left:5px;">
                       <select name="field">
                         
@@ -225,11 +201,6 @@
                     </div>
                 </form>
 
-                
-                
-                
-                
-
                 <table class="layui-table">
                   <colgroup>
                     <!-- <col width="100">
@@ -242,10 +213,12 @@
                   <thead>
                     <tr>
                       <th>序号</th>
-                      <th>订单号</th>
-                      <th>创建时间</th>
-                      <th>交易金额</th>
-                      <th>类型</th>
+                      <th>商品编号</th>
+                      <th>商品条形码</th>
+                      <th>商品名称</th>
+                      <th>商品品牌</th>
+                      <th>商品零售价</th>
+                      <th>操作</th>
                     </tr> 
                   </thead>
                   <tbody id="goods-orderlist">
@@ -261,7 +234,7 @@
              
 
               <!-- ================================================== -->
-        <div style="height:55px;padding-right:10px;display: none;">
+        <div style="height:55px;padding-right:10px;">
             <div id="alertpage" style="float:right;"></div>
             <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="obligationTotal">30</span>条数据</div>
         </div>
@@ -338,11 +311,6 @@
       {{# } }}
     </td>
     <td>{{=item.create_time}}</td>
-    <td>
-        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn lookInfoHis" data-status="1" data-id="{{item.user_id}}" data-name="{{=item.real_name}}">
-              查看明细
-        </button>
-    </td>
   </tr>
 
 {{# }) }}
@@ -353,21 +321,20 @@
 
 
 </div>
-
 <script id="showGoodsContent" type="text/html">
 {{# layui.each(d,function(index,item){ }}
   <tr>
     <td>{{index+1}}</td>
-    <td>{{=item.order_sn}}</td>
-    <td>{{=item.create_time}}</td>
-    <td>{{=item.amount}}</td>
-    <td>{{=item.note}}</td>
-
-    <!--<td>
+    <td>{{=item.coding}}</td>
+    <td>{{=item.barcode}}</td>
+    <td>{{=item.name}}</td>
+    <td>{{=item.brand}}</td>
+    <td>{{=(item.retails-0).toFixed(2)}}</td>
+    <td>
       <div class="layui-btn layui-btn-danger layui-btn-small deleteObligationType" data-id="{{item.id}}" >
             <i class="layui-icon">&#xe640;</i>   
         </div>
-    </td>-->
+    </td>
   </tr>
 {{# }) }}
 </script>
