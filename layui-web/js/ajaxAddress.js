@@ -8,11 +8,19 @@ define({
         showOneInfo:'/Debt/oneDebt',
         getIsSaveShopGoods:'/relevance/deliveryPoint'
     },
+    hideRegister:{
+        sendPhoneCode:'/Assistregis/getPhoneCode',
+        getPicCode:'/Assistregis/getCode',
+        register:'/Assistregis/index'
+    },
     viplist:{
         showlist:'/User/userList',
         inputMoney:'/User/recharge',
         updatePayPassword:'/Paypassword/suycPassword',
         lookVipHisInfo:'/User/userCash'
+    },
+    platForm:{
+        showlist:'/Paylog/payList'
     },
     obligation:{
         showlist:'/debtnexus/index',

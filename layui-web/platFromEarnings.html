@@ -42,9 +42,8 @@
      <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
        <ul class="layui-tab-title">
           <li class="layui-this">
-           回购列表
+            平台收益
           </li>
-          
         </ul>
 
         <div class="layui-content">
@@ -77,13 +76,10 @@
                     全部
                 </li>
                 <li class="statusTabMoney" data-status="1">
-                    申请回购
+                    收入
                 </li>
                 <li class="statusTabMoney" data-status="2">
-                    审核通过
-                </li>
-                <li class="statusTabMoney" data-status="3">
-                    回购失败
+                    支出
                 </li>
             </ul>
             </div>
@@ -101,14 +97,10 @@
           <thead>
             <tr>
               <th>序号</th>
-              <th>订单号</th>
-              <th>用户</th>
-              <th>商品包</th>
-              <th>价格</th>
-              <th>服务费</th>
-              <th>回购金额</th>
-              <th>状态</th>
-              <th>申请时间</th>
+              <th>订单</th>
+              <th>金额</th>
+              <th>日志</th>
+              <th>创建时间</th>
             </tr> 
           </thead>
           <tbody id="all-sort-list">
@@ -303,12 +295,9 @@
     <tr>
     <td>{{index+1}}</td>
     <td class="typeName">{{=item.order_id}}</td>
-    <td >{{=item.nickname}}</td>
-    <td >{{=item.goods_name}}</td>
-    <td >{{=item.goods_price}}</td>
-    <td >{{=item.counter_fee}}</td>
-    <td >{{=item.buy_back_price}}</td>
-    <td>
+    <td class="typeName">{{=item.money}}</td>
+    <td >{{=item.log}}</td>
+    <!--<td>
       {{# if(item.status=='0'){ }}
         
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn approve" data-status="1" data-id="{{item.order_id}}">
@@ -319,8 +308,8 @@
         回购完成
 
       {{# } }}
-    </td>
-    <td>{{=new Date(item.apply_time*1000).toLocaleString()}}</td>
+    </td>-->
+    <td>{{=new Date(item.time*1000).toLocaleString()}}</td>
   </tr>
 
 {{# }) }}
@@ -407,5 +396,5 @@
  <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="./js/config.js"></script>
 <script type="text/javascript" src="./js/filter.js" ></script>
-<script type="text/javascript" src="./js/obligationBackGoods.js"></script>
+<script type="text/javascript" src="./js/platFormEarinings.js"></script>
 </html>
