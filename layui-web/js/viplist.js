@@ -460,21 +460,18 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 
             return false;
         })
-
+        //编辑实名认证信息
         form.on('submit(editorAreaInfo)',function(formParams){
             log.d(formParams.field)
             
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateClssInfo,function(data){
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.viplist.editRealName,function(data){
                     log.d(data);
                     if(data.code==200){
-                        layer.msg('添加成功');
-                        setTimeout(function(){
-                            layObj.layer.closeAll();
-                            classObj.methods.updatePageNum(1);
-                        },1000);
-                        
+                        layObj.layer.closeAll();
+                        layer.msg(data.message);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
                     }else{
-                        layer.msg('网络错误，请稍后重试');
+                        layer.msg(data.message);
                         setTimeout(function(){
                             // layObj.layer.closeAll();
                             // classObj.methods.updatePageNum(1);
@@ -626,11 +623,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     $('#all-sort-list').on('click','.editorSingleAreaInfo',function(){
         var self=this;
         layObj.layer.load();
-
+        var name=$(this).data('name');
+        var id=$(this).data('id');
+        var card=$(this).data('card');
 
         var tpml=$('#editorAreaCon').html();
         $('.editorAreaInfo').html('');
-        layObj.laytpl(tpml).render({name:'测试'},function(html){
+        layObj.laytpl(tpml).render({real_name:name,id:id,id_card:card},function(html){
             $('.editorAreaInfo').append(html);
             form.render();
         })
@@ -638,6 +637,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         layObj.layer.closeAll('loading');
         layObj.layer.open({
             type:1,
+            title:'修改实名认证信息',
             content: $('#editorAreaWrapper'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'600px',

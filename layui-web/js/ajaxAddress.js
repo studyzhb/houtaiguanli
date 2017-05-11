@@ -17,7 +17,8 @@ define({
         showlist:'/User/userList',
         inputMoney:'/User/recharge',
         updatePayPassword:'/Paypassword/suycPassword',
-        lookVipHisInfo:'/User/userCash'
+        lookVipHisInfo:'/User/userCash',
+        editRealName:'/Vip/update'
     },
     platForm:{
         showlist:'/Paylog/payList'
