@@ -52,17 +52,19 @@
           <li class="layui-this">
            提现列表
           </li>
-          
+           
         </ul>
         
+		        
+
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
             
-            <form class="layui-form layui-form-pane" style="display:none;">
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
               
               
-                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
-                  <select class="areaType" name="status" lay-filter="areaType">
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;display: none;">
+                  <select class="areaType" name="" lay-filter="areaType">
                     <option value="0">未审核</option>
                     <option value="1">提现中</option>
                     <option value="2">提现完成</option>
@@ -74,11 +76,19 @@
                   <input type="text" class="layui-input" name="" value="">
                 </div>
               </div>-->
+              <div class="layui-inline">
+                  <input class="layui-input dateStart" readonly="readonly" placeholder="开始时间">
+                  <input type="hidden" name="s_time">
+              </div>
+              <div class="layui-inline">
+                  <input class="layui-input dateEnd" readonly="readonly" placeholder="结束时间">
+                  <input type="hidden" name="e_time">
+              </div>
               <div class="layui-btn" lay-submit lay-filter="searchResultByTel" >
                    搜索
                 </div>
                 
-                <div class="layui-btn" onclick="location.reload()" style="float: right;">
+                <div class="layui-btn" onclick="location.reload()" style="float: right;display: none;">
                     <i class="layui-icon">&#x1002;</i>  
                 </div>
             </form>
@@ -425,6 +435,8 @@
 {{# }) }}
   
 </script>
+
+
 </body>
 
  <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>

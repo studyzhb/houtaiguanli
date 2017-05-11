@@ -575,14 +575,14 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             return false;
         })
         //下拉选择状态删除
-        // form.on('submit(searchResultByTel)',function(formParams){
-        //     classObj.data.currentPageNum=1;
-        //     fistLoad=true;
-        //     classObj.data.cacheData=formParams.field;
-        //     classObj.methods.updatePageNum(classObj.data.currentPageNum)
+        form.on('submit(searchResultByTel)',function(formParams){
+            classObj.data.currentPageNum=1;
+            fistLoad=true;
+            $.extend(true,classObj.data.cacheData,formParams.field||{});
+            classObj.methods.updatePageNum(classObj.data.currentPageNum)
    
-        //     return false;
-        // })
+            return false;
+        })
 
     },1000);
 
@@ -695,8 +695,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     classObj.methods.deleteClassInfo(deleId);
 
                 })
-        
-        
+
     })
 
     //复选框选中
@@ -757,6 +756,48 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         // log.d(classObj.data.navId);
         classObj.methods.updatePageNum(1);
     });
+
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        
+        var start = {
+            min: '2017-04-30 23:59:59',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            istime:true
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+            $(this.elem).next('input').val(datas);
+            }
+        };
+        
+        var end = {
+            min: '2017-04-30 23:59:59',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            istime:true
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+            $(this.elem).next('input').val(datas);
+            }
+        };
+        
+        $('.dateStart').on('click',function(){
+            start.elem = this;
+            laydate(start);
+        })
+
+        $('.dateEnd').on('click',function(){
+            end.elem = this
+            laydate(end);
+        })
+
+        });
+
+
      classObj.methods.updatePageNum(classObj.data.currentPageNum);
 
 })

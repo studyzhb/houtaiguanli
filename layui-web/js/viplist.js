@@ -298,7 +298,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         classObj.methods.updatePageNum(classObj.data.currentPageNum);
                     }else if(data.code==409){
                         layObj.layer.msg('请先设置支付密码');
-                        layObj.layer.confirm('是否同意将登录密码同步为支付密码？',function(index){
+                        layObj.layer.confirm('是否同意将支付密码设置为手机后6位？',function(index){
                             layObj.layer.close(index);
                             classObj.methods.syncPassword(id,tel);
                         })
