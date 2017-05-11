@@ -264,7 +264,7 @@
 
     
     <div class="layui-form-item">
-    <label class="layui-form-label">内容</label>
+    <label class="layui-form-label">姓名</label>
     <div class="layui-input-block">
         <input type="text" value="{{d.name}}" placeholder="请输入" name="name" autocomplete="off" class="layui-input">
         <input type="hidden" value="{{d.id}}" placeholder="请输入" name="id" autocomplete="off" class="layui-input">
@@ -273,7 +273,14 @@
        
     </div>
     </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">身份证号</label>
+    <div class="layui-input-block">
+        <input type="text" value="{{d.name}}" placeholder="请输入" name="name" autocomplete="off" class="layui-input"> 
+    </div>
+    </div>
 </script>
+
 
 
 <!-- ------------------------------------------------------------------------------- -->
@@ -299,12 +306,14 @@
       {{# } }}
     </td>-->
     <td>
-        
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn approve" data-status="1" data-id="{{item.user_id}}" data-tel="{{=item.tel}}">
               充值
         </button>
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn lookInfoHis" data-status="1" data-id="{{item.user_id}}" data-tel="{{=item.tel}}">        
              查看历史
+        </button>
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn editorSingleAreaInfo" data-status="1" data-id="{{item.user_id}}" data-tel="{{=item.tel}}">        
+             编辑认证信息
         </button>
     </td>
 

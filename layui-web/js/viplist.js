@@ -622,36 +622,31 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     })
 
-    //编辑类型内容
+    //编辑实名认证信息
     $('#all-sort-list').on('click','.editorSingleAreaInfo',function(){
         var self=this;
         layObj.layer.load();
-        common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.classify.getClassInfo,function(data){
-            if(data.code==200){
-                
-                var tpml=$('#editorAreaCon').html();
-                $('.editorAreaInfo').html('');
-                layObj.laytpl(tpml).render(data.data,function(html){
-                    $('.editorAreaInfo').append(html);
-                    form.render();
-                })
-                
-                layObj.layer.closeAll('loading');
-                layObj.layer.open({
-                    type:1,
-                    content: $('#editorAreaWrapper'), //这里content是一个DOM
-                    shade:[0.8,'#000'],
-                    area:'600px',
-                    maxmin: true,
-                    end:function(){
-                        classObj.data.isCanClick=true;
-                        $('#editorAreaWrapper').hide();
-                    }
-                })
-                
+
+
+        var tpml=$('#editorAreaCon').html();
+        $('.editorAreaInfo').html('');
+        layObj.laytpl(tpml).render({name:'测试'},function(html){
+            $('.editorAreaInfo').append(html);
+            form.render();
+        })
+        
+        layObj.layer.closeAll('loading');
+        layObj.layer.open({
+            type:1,
+            content: $('#editorAreaWrapper'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:'600px',
+            maxmin: true,
+            end:function(){
+                classObj.data.isCanClick=true;
+                $('#editorAreaWrapper').hide();
             }
-            
-        },{id:$(this).data('id')});
+        })
         
     })
 
