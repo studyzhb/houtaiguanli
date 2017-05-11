@@ -341,6 +341,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var tel=$(this).data('tel');
         var self=this;
         layObj.layer.prompt({title: '请输入充值金额', formType: 0}, function(text, index){
+            // layer.load();
             layer.close(index);
             classObj.methods.inputMoney(upId,text,tel);
         });
