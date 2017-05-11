@@ -172,7 +172,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 if(obj){
                     para.queue=obj.queue;
                 }
-
+                $.extend(true,para,classObj.data.cacheData||{});
                 common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.showlist,function(data){
                     log.d(data);
                     
@@ -199,6 +199,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         }
                     }else{
                         classObj.methods.updateArealist([]);
+                        classObj.data.pageCount=1;
+                        $('.detailCount').text(0);
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
                         layObj.layer.msg(data.message);
                     }
                 },para);
@@ -211,7 +216,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 form=layObj.form();
                 form.render();
                 form.on('select(areaType)',function(data){
-                   classObj.methods.updatePageNum(1,data.value); 
+                   classObj.methods.updatePageNum(classObj.data.currentPageNum,data.value); 
                 })
             },
             getAreaInfo:function(id,fn){
@@ -237,7 +242,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         //location.reload();
                         layObj.layer.closeAll();
                         layObj.layer.msg(data.message);
-                        classObj.methods.updatePageNum(1);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         
                     }else{
                         layObj.layer.msg(data.message);
@@ -290,13 +295,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         
                         layObj.layer.closeAll();
-                        classObj.methods.updatePageNum(1);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
                        
                         
                     }else{
                         layObj.layer.msg(data.msg);
                         layObj.layer.closeAll();
-                        classObj.methods.updatePageNum(1);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
                     }
                 },{id:id});
             },
@@ -423,6 +428,18 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         // layObj.layer.load();
         
     })
+
+    /**
+     * 2017/5/11
+     * tab切换状态修改
+     */
+     $('.statusTabMoney').on('click',function(){
+            classObj.data.currentPageNum=1;
+            var status=$(this).data('status');
+            fistLoad=true;
+            classObj.data.cacheData={status:status};
+            classObj.methods.updatePageNum(classObj.data.currentPageNum);
+     })
 
 
     //显示排序
@@ -881,8 +898,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         //log.d($(this))
         classObj.data.navId=$(this).data('id');
         // log.d(classObj.data.navId);
-        classObj.methods.updatePageNum(1);
+        classObj.methods.updatePageNum(classObj.data.currentPageNum);
     });
-     classObj.methods.updatePageNum(1);
+     classObj.methods.updatePageNum(classObj.data.currentPageNum);
      classObj.methods.getQueueList();
 })
