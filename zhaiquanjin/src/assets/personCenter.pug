@@ -1,0 +1,18 @@
+extends header
+block content
+    script(src='../js/personCenter.bundle.js',type='text/javascript')
+    .perWrap
+        .perInfo.clearfix
+            .perLeft
+                dl.listNav
+                    dt(data-url='',style="cursor:pointer;")
+                        span 
+                        | 个人主页
+                    dd
+                        dl
+                            dt
+                                span
+                                | 我的订单
+                            dd 优惠订单
+            .perRight.clearfix(style='height:auto;')
+                block centerContent
