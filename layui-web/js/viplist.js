@@ -291,28 +291,36 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 });
             },
-            inputMoney:function(id,money,tel){
+            inputMoney:function(obj){
+                obj.user_id=classObj.data.user_id;
                 common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.viplist.inputMoney,function(data){
                     if(data.code==200){
+                        layObj.layer.closeAll();
                         layObj.layer.msg(data.message);
+                        $('form').each(function(){
+                            this.reset();
+                        })
                         classObj.methods.updatePageNum(classObj.data.currentPageNum);
                     }else if(data.code==409){
                         layObj.layer.msg('请先设置支付密码');
                         layObj.layer.confirm('是否同意将支付密码设置为手机后6位？',function(index){
                             layObj.layer.close(index);
-                            classObj.methods.syncPassword(id,tel);
+                            classObj.methods.syncPassword(obj.user_id,classObj.data.tel);
                         })
                     }else{
+                        layObj.layer.closeAll('loading');
                         layObj.layer.msg(data.message);
                     }
-                },{user_id:id,money:money});
+                },obj);
             },
             syncPassword:function(id,tel){
                 common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.viplist.updatePayPassword,function(data){
                     if(data.code==200){
+                        layObj.layer.closeAll();
                         layObj.layer.msg(data.message);
                         classObj.methods.updatePageNum(classObj.data.currentPageNum);
                     }else{
+                        layObj.layer.closeAll('loading');
                         layObj.layer.msg(data.message);
                     }
                 },{user_id:id,tel:tel});
@@ -339,12 +347,26 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         var status=$(this).data('status');
         var upId=$(this).data('id');
         var tel=$(this).data('tel');
+        classObj.data.user_id=upId;
+        classObj.data.tel=tel;
         var self=this;
-        layObj.layer.prompt({title: '请输入充值金额', formType: 0}, function(text, index){
-            // layer.load();
-            layer.close(index);
-            classObj.methods.inputMoney(upId,text,tel);
-        });
+        // layObj.layer.prompt({title: '请输入充值金额', formType: 0}, function(text, index){
+        //     // layer.load();
+        //     layer.close(index);
+            // classObj.methods.inputMoney(upId,text,tel);
+        // });
+        layObj.layer.open({
+            type: 1,
+            title:'请输入充值金额并选择类型',
+            content: $('#areaInfoForm'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:'600px',
+            maxmin: true,
+            end:function() {
+            // body...
+            $('#areaInfoForm').hide();
+            }
+        })
   
     })
 
@@ -375,6 +397,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     setTimeout(function(){
         form=layObj.form();
+
         form.on('submit(shopInfo)',function(formParams){
             log.d(formParams.field)
             layObj.layer.load();
@@ -432,6 +455,16 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         },1000);
                     }
                 },dataForm);
+                
+            return false;
+        })
+        /**
+         * 充值
+         */
+        form.on('submit(inputMoney)',function(formParams){
+            log.d(formParams.field)
+            layObj.layer.load();
+            classObj.methods.inputMoney(formParams.field);
                 
             return false;
         })

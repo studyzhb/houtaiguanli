@@ -138,27 +138,31 @@
 <!--添加类型内容-->
 <form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
-    <div class="layui-form-item">
-    <label class="layui-form-label sortName">类型内容</label>
-    <div class="layui-input-block">
-        <div class="layui-btn createAreaInfoInput">
-            <i class="layui-icon">&#xe608;</i>
-        </div>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="areaInfoInput">
-            <input type="text" placeholder="请输入" name="name01" autocomplete="off" class="layui-input">
-        </div>
-    </div>
     
     <div class="layui-form-item">
+        <label class="layui-form-label">充值金额</label>
+        <div class="layui-input-block">
+            <input type="text" placeholder="请输入充值金额" lay-verify="number" name="money" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">支付类型</label>
+        <div class="layui-input-block">
+            <input type="radio"  name="pay_type" lay-verify="required" autocomplete="off" value="1" title="支付宝" class="layui-input">
+            <input type="radio"  name="pay_type" lay-verify="required" autocomplete="off" value="2" title="微信"  class="layui-input">
+            <input type="radio"  name="pay_type" lay-verify="required" autocomplete="off" value="5" title="现金" checked class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+      
     <div class="layui-input-block">
-        <div class="layui-btn" lay-submit lay-filter="areaInfo">立即提交</div>
+        <div class="layui-btn" lay-submit lay-filter="inputMoney">立即提交</div>
     </div>
     </div>
     
 </form>
+
+
 
 <!-- 添加标准时的展示页面 -->
 <div class="layui-form layui-form-pane" id="obligationTypeListInfo" action="" method="POST" style="height:100%;overflow:auto;display:none;font-size:14px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->

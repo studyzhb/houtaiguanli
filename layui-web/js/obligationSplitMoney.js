@@ -761,7 +761,6 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
       $('.createAreaInfoInput').on('click',function(){
           ShopObj.data.addInputId++;
         $($('#singleSplitNum').html()).appendTo($('.areaInfoInput')).find('.obligationMoney').attr('name','money'+ShopObj.data.addInputId).end().find('.obligationNum').attr('name','num'+ShopObj.data.addInputId);
-
     })
     
     /**
@@ -1043,12 +1042,14 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
             }
             ShopObj.data.secondSplitInfo=arrName;
             ShopObj.data.total=0;
+            
             $.each(arrName,function(index,item){
                 ShopObj.data.total+=item.money*item.num;
             })
             if(ShopObj.data.total==ShopObj.data.firstBaseInfo.total){
                 var obj=$.extend(true,ShopObj.data.firstBaseInfo,{split:JSON.stringify(ShopObj.data.secondSplitInfo)});
                 obj.confirmTotal=ShopObj.data.total;
+                $('.newObligationInfo').html('');
                 layObj.laytpl($('#renderConfirmInfo').html()).render(obj,function(html){
                     $('.newObligationInfo').append(html);
                 })
@@ -1083,7 +1084,7 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
                         setTimeout(function(){
                             layObj.layer.close(ShopObj.data.threeStepIndex);
                             layObj.layer.closeAll('loading');
-                            
+                            ShopObj.data.addInputId=0;
                             ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
                         },1000);
                         
