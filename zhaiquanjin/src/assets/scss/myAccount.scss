@@ -37,6 +37,7 @@
                 text-align: center;
                 vertical-align: middle;
             }
+            
             .btn-normal{
                 display: inline-block;
                 cursor:pointer;
@@ -66,9 +67,25 @@
     }
 }
 
+.btn-small-click{
+    display: inline-block;
+    cursor:pointer;
+    border-radius: 5px;
+    margin-right: 58px;
+    margin-left: 20px;
+    width: 112px;
+    height: 30px;
+    border:1px solid #c72d1b;
+    color:#d51b32;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
 .my-record-wrapper{
     padding-top:34px;
     background:#f8f8f8;
+    min-height: 500px;
     h3.my-title{
         height:50px;
         line-height: 50px;

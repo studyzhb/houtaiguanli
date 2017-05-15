@@ -99,7 +99,8 @@ var vm=new Vue({
 		username:'',
 		registerMessageCode:'获取短信验证码',
 		resetMessageCode:'获取短信验证码',
-		isClick:true
+		isClick:true,
+		resetIsClick:true
 	},
 
 	filters:{
@@ -120,7 +121,7 @@ var vm=new Vue({
 	methods:{
 		gotoPersonCenter:function(){
 			if(this.isLogin){
-				open('personCenter.html','_self');
+				open('myAccount.html','_self');
 			}else{
 				layer.msg('请先登录');
 				this.loginIndex='0'
@@ -150,7 +151,7 @@ var vm=new Vue({
 				var body=this.loginUser;
 				body.job_num=this.loginUser.phone;
 				var self=this;
-                console.log(this.$http);
+                
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,body)
 					.then(function(res){
 						
@@ -311,8 +312,8 @@ var vm=new Vue({
 				return;
 			}
 			// layer.load();
-			if(this.isClick){
-				this.isClick=false;
+			if(this.resetIsClick){
+				this.resetIsClick=false;
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{phone:phone,code:code,type:'found'})
 				.then(function(res){
 					if(res.body.code==200){
@@ -334,8 +335,14 @@ var vm=new Vue({
 			var self=this;
 			
 			if(this.timeNum<1){
-				this.isClick=true;
+				if(code=='resetMessageCode'){
+					this.resetIsClick=true;
+				}else{
+					this.isClick=true;
+				}
+				
 				this[code]='获取短信验证码';
+
 				return;
 			}
 			setTimeout(function(){
@@ -398,8 +405,8 @@ var vm=new Vue({
 							self.cityArr=res.body||[];
 							res.body.forEach(function(item){
 								if(item.status==true){
-									cookieUtil.setExpiresDate('cName',item.name,7);
-									cookieUtil.setExpiresDate('cId',item.id,7);
+									cookieUtil.setExpiresDate('cName',item.name,1/96);
+									cookieUtil.setExpiresDate('cId',item.id,1/96);
 									self.cityObj=item;
 								}
 							})
@@ -559,6 +566,8 @@ var vm=new Vue({
 	}
 
 });
+
+
 
 
 
