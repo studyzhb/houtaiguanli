@@ -21,7 +21,9 @@ define({
         editRealName:'/Vip/update'
     },
     platForm:{
-        showlist:'/Paylog/payList'
+        showlist:'/Paylog/payList',
+        //平台支出总数汇总
+        outputlist:'/WidthdrawReport/report'
     },
     obligation:{
         showlist:'/debtnexus/index',

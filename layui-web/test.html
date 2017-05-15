@@ -7,8 +7,125 @@
 	<meta name="description" content="">
 </head>
 <body>
-	
+	<div id="canvas-holder" style="width:40%">
+        <canvas id="chart-area" />
+    </div>
+    <button id="randomizeData">Randomize Data</button>
+    <button id="addDataset">Add Dataset</button>
+    <button id="removeDataset">Remove Dataset</button>
+	<script src="./js/Chart.bundle.min.js"></script>
+	<script src="./js/test.js"></script>
+    <script>
+    var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
+    };
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                ],
+                backgroundColor: [
+                    window.chartColors.red,
+                    window.chartColors.orange,
+                    window.chartColors.yellow,
+                    window.chartColors.green,
+                    window.chartColors.blue,
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                "Red",
+                "Orange",
+                "Yellow",
+                "Green",
+                "Blue"
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+    window.onload = function() {
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myPie = new Chart(ctx, config);
+    };
+    document.getElementById('randomizeData').addEventListener('click', function() {
+        config.data.datasets.forEach(function(dataset) {
+            dataset.data = dataset.data.map(function() {
+                return randomScalingFactor();
+            });
+			console.log(dataset.data);
+        });
+        window.myPie.update();
+    });
+    var colorNames = Object.keys(window.chartColors);
+    document.getElementById('addDataset').addEventListener('click', function() {
+        var newDataset = {
+            backgroundColor: [],
+            data: [],
+            label: 'New dataset ' + config.data.datasets.length,
+        };
+        for (var index = 0; index < config.data.labels.length; ++index) {
+            newDataset.data.push(randomScalingFactor());
+            var colorName = colorNames[index % colorNames.length];;
+            var newColor = window.chartColors[colorName];
+            newDataset.backgroundColor.push(newColor);
+        }
+        config.data.datasets.push(newDataset);
+        window.myPie.update();
+    });
+    document.getElementById('removeDataset').addEventListener('click', function() {
+        config.data.datasets.splice(0, 1);
+        window.myPie.update();
+    });
+    </script>
 </body>
-<script type="text/javascript" src="./js/getInfoByUserCard.js"></script>
 
+<script>
+	// console.log(Chart);
+	// var radom_color = function(){
+    //                 return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6);
+    //             }
+	// var data=[
+    //                     {
+    //                         value: 300,
+    //                         color: radom_color(),
+    //                         highlight:  radom_color(),
+    //                         label: "Red"
+
+    //                     },
+    //                     {
+    //                         value: 200,
+    //                         color:  radom_color(),
+    //                         highlight:  radom_color(),
+    //                         label: "Green"
+    //                     },
+    //                     {
+    //                         value: 100,
+    //                         color:  radom_color(),
+    //                         highlight:  radom_color(),
+    //                         label: "Yellow"
+    //                     },
+    //                     {
+    //                         value: 400,
+    //                         color:  radom_color(),
+    //                         highlight:  radom_color(),
+    //                         label: "Grey"
+    //                     },
+    //                     {
+    //                         value: 120,
+    //                         color:  radom_color(),
+    //                         highlight:  radom_color(),
+    //                         label: "Dark Grey"
+    //                     }
+    //                 ];
+	// var ctx=document.getElementById('chart-area').getContext('2d');
+	// new Chart(ctx).pie(data);
+</script>
 </html>
