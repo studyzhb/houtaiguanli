@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>标题</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="./layui/css/layui.css" />
+  <link rel="stylesheet" href="./css/print.css" />
+  <script src="./layui/layui.js"></script>
+  <script data-main="./js/domain" src="./js/require.min.js"></script>
+
+</head>
+<body>
+  <!--<div><input type="button" value="打印" onclick="Print()" /></div>  -->
+
+
+<!--资金统计-->
+<script type="text/html" id="printOrderList01">
+   <div class="page">
+   
+  <div style="page-break-after:always">
+
+    <header>
+    <h3 class="title">资金统计</h3>
+  </header>
+  <section>
+    <div class="thumbInfo">
+      <div class="infoWrap fl">
+        操作员：<span class="printUser"></span>
+      </div>
+      <div class="infoWrap fr">
+        
+      </div>
+    </div>
+    <table class="layui-table">
+  <colgroup>
+    <col width="50" >
+    <col>
+    <col>
+    <col >
+    <col >
+  </colgroup>
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>日期</th>
+      <th>支付宝</th>
+      <th>银行</th>
+      <th>出金</th>
+    </tr> 
+  </thead>
+  <tbody>
+    {{#  layui.each(d.data,function(index, item){ }}
+      <tr>
+        <td>{{index+1}}</td>
+        <td>{{item.time||0}}</td>
+        <td>{{item.aliPay||0}}</td>
+        <td>{{item.bankPay||0}}</td>
+        <td>{{item.expend||0}}</td>
+      </tr> 
+    {{#  }); }}
+    
+    
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">合计：</td>
+      <td>{{=d.allMoney.ali||0}}</td>
+      <td>{{=d.allMoney.bank||0}}</td>
+      <td>{{=d.allMoney.expend||0}}</td>
+    </tr>
+    <tr>
+      <td colspan="2">入金合计：<span class="printdposit">{{=d.allMoney.ali+d.allMoney.bank}}</span></td>
+      <td colspan="3">出金合计：<span class="printdposit">{{=d.allMoney.expend||0}}</span></td>
+    </tr>
+  </tfoot>
+</table>
+  </section>
+
+  </div>
+  </div>
+</script>
+
+
+<!--店铺出入单相关统计总表-->
+<script type="text/html" id="printOrderList02">
+   <div class="page">
+   
+  <div style="page-break-after:always">
+
+    <header>
+    <h3 class="title">店铺出入单相关统计总表</h3>
+  </header>
+  <section>
+
+    <table class="layui-table">
+  <colgroup>
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+  </colgroup>
+  <thead>
+    <tr>
+      <th>店铺名称</th>
+      <th>认证债权</th>
+      <th>生成编号</th>
+      <th>入单数</th>
+      <th>出单数</th>
+      <th>手续费(合计)</th>
+      <th>认证会员数</th>
+    </tr> 
+  </thead>
+  <tbody>
+    {{#  layui.each(d.data,function(index, item){ }}
+      <tr>
+        <td>{{index}}</td>
+        <td>{{item.debt_count||0}}</td>
+        <td>{{item.debt_id_count||0}}</td>
+        <td>{{item.inline_count||0}}</td>
+        <td>{{item.outline_count||0}}</td>
+        <td>{{item.buy_back_count*20||0}}</td>
+        <td>{{item.vip_count}}</td>
+      </tr>  
+    {{#  }); }}
+    
+    
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>合计：</td>
+      <td>{{=d.total.debt_total}}</td>
+      <td>{{=d.total.debt_id_total}}</td>
+      <td>{{=d.total.debt_inline_total}}</td>
+      <td>{{=d.total.debt_outline_total}}</td>
+      <td>{{=d.total.buy_back_total*20}}</td>
+      <td>{{=d.total.vip_total}}</td>
+      
+    </tr>
+  </tfoot>
+</table>
+  </section>
+
+
+  </div>
+  </div>
+</script>
+
+<!--出入单统计总表-->
+<script type="text/html" id="printOrderList03">
+   <div class="page">
+   
+  <div style="page-break-after:always">
+
+    <header>
+    <h3 class="title">出入单统计总表</h3>
+  </header>
+  <section>
+
+    <table class="layui-table">
+  <colgroup>
+    <col width="" >
+
+    <col width="" >
+    <col width="" >
+    <col width="" >
+
+  </colgroup>
+  <thead>
+    <tr>
+      <th>日期</th>
+      <th>入单数</th>
+      <th>出单数</th>
+      <th>会员数</th>
+    </tr> 
+  </thead>
+  <tbody>
+    {{#  layui.each(d.data,function(index, item){ }}
+      <tr>
+        <td>{{index}}</td>
+        <td>{{item.in_count||0}}</td>
+        <td>{{item.out_count||0}}</td>
+        <td>{{item.vip_count||0}}</td>
+      </tr>  
+    {{#  }); }}
+    
+    
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>合计：<span class="printdposit"></span></td>
+      <td>{{d.total.inputTotal}}</td>
+      <td>{{d.total.outputTotal}}</td>
+      <td>{{d.total.vipTotal}}</td>
+    </tr>
+  </tfoot>
+</table>
+  </section>
+
+
+  </div>
+  </div>
+</script>
+<!--分店铺统计-->
+
+
+<script type="text/html" id="printOrderList04">
+   <div class="page">
+   
+  <div style="page-break-after:always">
+
+    <header>
+    <h3 class="title">分店铺统计</h3>
+  </header>
+  {{# layui.each(d,function(index,item){ }}
+    <section>
+    <div class="thumbInfo">
+      <div class="infoWrap fl">
+        店铺名称：<span class="printUser">{{index}}</span>
+      </div>
+      <div class="infoWrap fr">
+        
+      </div>
+    </div>
+    <table class="layui-table">
+  <colgroup>
+    <col width="50" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+    <col width="" >
+  </colgroup>
+  <thead>
+    <tr>
+      <td colspan="2">店铺名称：{{index}}</td>
+      <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th>序号</th>
+      <th>日期</th>
+      <th>入单数</th>
+      <th>出单数</th>
+      <th>回购</th>
+
+    </tr> 
+  </thead>
+  <tbody>
+    {{#  layui.each(item.data,function(ind, its){ }}
+      <tr>
+        <td>{{ind+1}}</td>
+        <td>{{=its.time}}</td>
+        <td>{{its.in_count||0}}</td>
+        <td>{{its.out_count||0}}</td>
+        <td>{{its.backCount||0}}</td>
+      </tr>  
+    {{#  }); }}
+    
+    
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">入单合计：<span class="printdposit">{{item.total.inputTotal||0}}</span></td>
+      <td colspan="1">出单合计：<span class="printdposit">{{item.total.outputTotal||0}}</span></td>
+      <td colspan="1">回购合计：<span class="printdposit">{{item.total.backTotal||0}}</span></td>
+    </tr>
+  </tfoot>
+</table>
+  </section>
+  {{# }) }}
+  
+  <!--<footer>
+    <div class="thumbInfo">
+      <div class="infoWrap">
+        共{{d.detailPage}}页
+      </div>
+      <div class="infoWrap">
+        当前第{{d.page}}页
+      </div>
+    </div>
+  </footer>-->
+
+  </div>
+  </div>
+</script>
+
+	
+</body>
+
+
+
+<script language="javascript">  
+// var maxNum=7;
+// var oId=location.href.split('?')[1].split('=')[1];
+// layui.use('laytpl',function(){
+//     laytpl = layui.laytpl;
+//     config.ajax('get',config.ajaxAddress.orderlistDetailBack,function(data){
+    
+//     var arr=[];
+//     var page=0;
+//     var dposit=data.dposit;
+//     var detailPage=Math.ceil(data.lst.length/maxNum);
+//     $.each(data.lst,function(index,item){
+//       if(index%maxNum==0){
+        
+//         if(index!=0){
+//           page++;
+//         }
+//         arr[page]={};
+//         arr[page].lst=[];
+//         arr[page].orderlistId=data.oddnum;
+//         arr[page].page=page+1;
+//         arr[page].detailPage=detailPage;
+//         arr[page].dposit=dposit;
+//         arr[page].lst.push(item);        
+//         // page++;
+//       }else{
+//         arr[page].lst.push(item); 
+//       }
+      
+//     });
+    
+//     var tempHtml=printOrderList.innerHTML;
+//     // $('#printOrderWrapper').html('');
+    
+//     $.each(arr,function(index,item){
+//       laytpl(tempHtml).render(item,function(html){
+//         $('body').append(html);
+//       });
+//     })
+    
+//     $('.printdposit').text(dposit+'元');
+//     var user=cookieUtil.getCookie('username')||'';
+       
+//         $('.printUser').text(user);
+//   },{id:oId});
+// });
+
+
+
+
+
+
+//打印代码  
+   function Print()     
+    {      
+         var printStr = ""; 
+
+        var content = "";  
+  
+       /* var str = document.getElementById('page2').innerHTML;     //获取需要打印的页面元素 ，page1元素设置样式page-break-after:always，意思是从下一行开始分割。  
+        content = content + str;  
+        str = document.getElementById('page1').innerHTML;     //获取需要打印的页面元素  
+        content = content + str;  
+          
+        printStr = printStr+content;   */                                             
+        /*var pwin=window.open("Print.htm","print"); //如果是本地测试，需要先新建Print.htm，如果是在域中使用，则不需要  
+        pwin.document.write(printStr);  
+        pwin.document.close();                   //这句很重要，没有就无法实现    
+        pwin.print(); */   
+        
+
+        $('.page').each(function(index,item){
+          printStr+=$(this).html();
+        });
+
+        document.body.innerHTML=printStr;
+        window.print();  
+    }  
+</script> 
+<script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/printPlatFormReport.js" ></script>
+</html>

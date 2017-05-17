@@ -36,94 +36,42 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             tempGoodsContent:$('#sortContent').html(),
             arrData:[],
             alertPageCount:'1',
-            currentPageNum:'1',
-            cacheData:{status:10}
+            currentPageNum:1,
+            currentAlertPageNum:1
         },
         methods:{
-            //获取用户历史记录
+            //获取标准下的商品
             updateObligationTypeInfoById:function(id,p){
                 $('#goods-orderlist').html('');
-                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.viplist.lookVipHisInfo,function(data){
+                var obj={
+                    bonus_id:id,
+                    page:p
+                }
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.discount.lookDiscountInfo,function(data){
                     
                     var tml=$('#showGoodsContent').html();
                     if(data.code==200){
                         
-                        // classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
+                        classObj.data.alertPageCount=Math.ceil(data.data.total/data.data.per_page)||1;
                         
-                        // $('.obligationTotal').html(data.num);
-                        layObj.laytpl(tml).render(data.data.cash,function(html){
+                        $('.obligationTotal').html(data.data.total);
+                        layObj.laytpl(tml).render(data.data.data,function(html){
                             $('#goods-orderlist').append(html);
                         })
-                        // if(alertFirstLoad){
-                        //     classObj.methods.updateAlertPage(id);
-                        // }
+                        if(alertFirstLoad){
+                            classObj.methods.updateAlertPage(id);
+                        }
                     }
-                },{user_id:id});
+                },obj);
             },
             updateArealist:function(data){
                 $('#all-sort-list').html('');
                  var obj={};
                  obj.data=data;
                  log.d(obj);
-                
-                //  var ctx=document.getElementById('all-sort-list').getContext('2d');
-                //  window.myPie=new Chart(ctx).Pie()
-                
-                classObj.methods.renderPieData(data);
-
-                // layObj.laytpl(classObj.data.tempGoodsContent).render(obj,function(html){
-                //     $('#all-sort-list').append(html);
-                // })
-            },
-            renderPieData:function(data){
-                var radom_color = function(){
-                    return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6);
-                }
-                var totalNum=data.numFalse+data.numIng+data.numNo+data.numTrue;
-                // Build the chart
-                Highcharts.chart('all-sort-list', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: '债权金标准下平台支出'
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: false
-                            },
-                            showInLegend: true
-                        }
-                    },
-                    series: [{
-                        name: '平台支出类型',
-                        colorByPoint: true,
-                        data: [{
-                            name: '提现申请中',
-                            y: data.numNo/totalNum
-                        }, {
-                            name: '提现审核中',
-                            y: data.numIng/totalNum,
-                            sliced: true,
-                            selected: true
-                        }, {
-                            name: '提现完成',
-                            y: data.numTrue/totalNum
-                        }, {
-                            name: '提现被拒绝',
-                            y: data.numFalse/totalNum
-                        }]
-                    }]
-                });
+                layObj.laytpl(classObj.data.tempGoodsContent).render(obj,function(html){
+                    $('#all-sort-list').append(html);
+                })
             },
             updateAlertPage:function(id){
                 
@@ -136,14 +84,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                           
-                            if(classObj.data.currentPage==data.curr){
-                                 classObj.data.currentPage=data.curr;
-                            }else{
-                                classObj.data.currentPage=data.curr;
-                                classObj.methods.updateObligationTypeInfoById(id,data.curr);
-                            }
-                            
+                            classObj.data.currentPage=data.curr;
+                            classObj.methods.updateObligationTypeInfoById(id,data.curr);
                         }
                     });
                 });
@@ -160,13 +102,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            if(classObj.data.currentPageNum==data.curr){
-
-                            }else{
-                                classObj.data.currentPageNum=data.curr;
-                                classObj.methods.updatePageNum(data.curr);
-                            }
-                            
+                            classObj.methods.updatePageNum(data.curr);
                         }
                     });
                 });
@@ -178,25 +114,25 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     page:num
                 }
                 $.extend(true,obj,classObj.data.cacheData||{});
-                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.platForm.outputlist,function(data){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.discount.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
-                        classObj.data.arrData=data;
+                        classObj.data.arrData=data.data.data;
                         
-                        // classObj.data.pageCount=Math.ceil(data.data.total/data.data.per_page);
-                        // $('.detailCount').text(data.data.total);
-                        classObj.methods.updateArealist(data);
-                        // if(fistLoad){
-                        //     classObj.methods.updatePage();
-                        // }
+                        classObj.data.pageCount=Math.ceil(data.data.total/data.data.per_page);
+                        $('.detailCount').text(data.data.total);
+                        classObj.methods.updateArealist(data.data.data);
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
                     }else{
-                        // classObj.data.pageCount=1;
-                        // if(fistLoad){
-                        //     classObj.methods.updatePage();
-                        // }
+                        classObj.data.pageCount=1;
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
                         $('.detailCount').text('0');
-                        classObj.methods.updateArealist({});
-                        layObj.layer.msg('获取数据失败');
+                        classObj.methods.updateArealist([]);
+                        layObj.layer.msg(data.message);
                     }
                 },obj);
             },
@@ -222,18 +158,15 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 },{id:id});
             },
-            updateStatusType:function(upId){
-                // var item=classObj.methods.getSingleInfo(upId);
-                var item={};
-                // item.status=sta;
-                item.id=upId;
-                common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.updateStatus,function(data){
+            updateStatusType:function(sta,upId,obj){
+                var item=classObj.methods.getSingleInfo(upId);
+                item.status=sta;
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.updateType,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
                     if(data.code==200){
                         //location.reload();
                         layObj.layer.closeAll();
-                        layObj.layer.msg(data.message);
                         classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         
                     }else{
@@ -243,21 +176,26 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 },item);
             },
-            updateStatusInfoType:function(upId){
-                common.tools.ajax('get',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.getOneInfo,function(data){
+            updateStatusInfoType:function(sta,upId,obj,pId){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.classify.updateStatusInfoType,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
                     if(data.code==200){
                         //location.reload();
                         layObj.layer.closeAll();
                         
+                        if(sta=='1'){
+                            $(obj).text('启用').addClass('active').data('status',0);
+                        }else{
+                            $(obj).text('停用').removeClass('active').data('status',1);
+                        }
                         
                     }else{
                         layObj.layer.msg(data.msg);
                         // layObj.layer.closeAll();
                         //location.reload();
                     }
-                },{id:upId});
+                },{navid:classObj.data.navId,status:sta,id:upId,typeid:pId});
             },
             updateSubInfo:function(obj){
 
@@ -281,10 +219,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             //
             updateObligationInfo:function(data){
-                
+                console.log(data);
                 var tpl=$('#editorNavCon').html();
                 $('.editor-area-type').html('');
-                    data.goodsBagArr=classObj.data.goodsBagArr;
+                 
                     layObj.laytpl(tpl).render(data,function(html){
                         $('.editor-area-type').append(html);
                         form.render();
@@ -332,19 +270,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         
                     }
                 },{good_id:id});
-            },
-            getGoodsBagList:function(){
-                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.goodsBag.showlist,function(data){
-                    
-                    
-                    if(data.code==200){
-                        classObj.data.goodsBagArr=data.data.pack_list;
-
-                    }else{
-                        
-                        
-                    }
-                });
             }
         }
     }
@@ -364,112 +289,27 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     /**
      * 状态更改
      */
-    $('#all-sort-list').on('click','.approve',function(){
+    $('#all-sort-list').on('click','.icon-btn',function(){
         var status=$(this).data('status');
         var upId=$(this).data('id');
         var self=this;
-        layObj.layer.confirm('你确认要执行此操作吗?',function(index){
-            layObj.layer.close(index);
-            classObj.methods.updateStatusType(upId);
-        })
-  
-    })
+        if(classObj.data.isCanClick){
+            classObj.data.isCanClick=false;
+            if(status=='1'){
+                layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+                    layObj.layer.close(index);
+                    classObj.methods.updateStatusType(status,upId,self);
+                })
+            }else{
+                classObj.methods.updateStatusType(status,upId,this);
 
-    /**
-     * 2017/5/10
-     * 查看明细
-     */
-    $('#all-sort-list').on('click','.lookInfoHis',function(){
-        var status=$(this).data('status');
-        var upId=$(this).data('id');
-        var tel=$(this).data('tel');
-        var name=$(this).data('name');
-        var self=this;
-        var classN=$(this).data('name');
-        $('form').each(function(){
-            this.reset();
-        });
-        classObj.methods.updateObligationTypeInfoById(upId);
-        layObj.layer.open({
-             type:1,
-             title:'姓名:'+classN,
-            content: $('#obligationTypeListInfo'), //这里content是一个DOM
-            shade:[0.8,'#000'],
-            area:['95%','90%'],
-            maxmin: true,
-            end:function(){
-                classObj.data.isCanClick=true;
-                $('#obligationTypeListInfo').hide();
             }
-        })
-  
-    })
-
-    /**
-     * 2017/5/10
-     * tab切换状态修改
-     */
-     $('.statusTabMoney').on('click',function(){
-            classObj.data.currentPageNum=1;
-            var status=$(this).data('status');
-            fistLoad=true;
-            classObj.data.cacheData={status:status};
-            classObj.methods.updatePageNum(classObj.data.currentPageNum);
-     })
-
-    //确认提现
-     $('#all-sort-list').on('click','.confirmapprove',function(){
-        var status=$(this).data('status');
-        var upId=$(this).data('id');
-        var self=this;
-        layObj.layer.confirm('确定提现？',{btn:['确认','拒绝'],yes:function(index,layero){
-            
-            var item={};
-                // item.status=sta;
-            item.id=upId;
-            common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.finishedOk,function(data){
-                log.d(data);
-                classObj.data.isCanClick=true;
-                if(data.code==200){
-                    //location.reload();
-                    layObj.layer.closeAll();
-                    layObj.layer.msg(data.message);
-                    classObj.methods.updatePageNum(classObj.data.currentPageNum);
-                    
-                }else{
-                    layObj.layer.msg(data.message);
-                    // layObj.layer.closeAll();
-                    //location.reload();
-                }
-            },item);
-        },
-        btn2:function(index,layero){
-            
-            var item={};
-                // item.status=sta;
-                item.id=upId;
-                common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.finishFalse,function(data){
-                    log.d(data);
-                    classObj.data.isCanClick=true;
-                    if(data.code==200){
-                        //location.reload();
-                        layObj.layer.closeAll();
-                        layObj.layer.msg(data.message);
-                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
-                        
-                    }else{
-                        layObj.layer.msg(data.message);
-                        // layObj.layer.closeAll();
-                        //location.reload();
-                    }
-                },item);
+        }else{
+            layObj.layer.msg('请勿重复点击');
         }
-        })
-  
+        // layObj.layer.load();
+        
     })
-
-    //获取商品包
-    // classObj.methods.getGoodsBagList();
 
     //删除标准下的商品
     $('#goods-orderlist').on('click','.deleteObligationType',function(){
@@ -481,31 +321,50 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         })
     })
 
+    $('#all-sort-list').on('click','.icon-btn-sub',function(){
+        var status=$(this).data('status');
+        var upId=$(this).data('id');
+        var pId=$(this).data('typeid');
+        if(classObj.data.isCanClick){
+            classObj.data.isCanClick=false;
+            classObj.methods.updateStatusInfoType(status,upId,this,pId);
+            return;
+            if(status=='0'){
+                layObj.layer.confirm('你确认要停用此类型吗?',function(index){
+                    
+                    layObj.layer.close(index);
 
+                })
+            }else{
+                classObj.methods.updateStatusInfoType(status,upId,this,pId);
+            }
+        }else{
+            layObj.layer.msg('请勿重复点击');
+        }
+        // layObj.layer.load();
+        
+    })
 
     setTimeout(function(){
         form=layObj.form();
         form.on('submit(shopInfo)',function(formParams){
             log.d(formParams.field)
-            layObj.layer.load();
-            formParams.field.navid=classObj.data.navId;
-            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueMode.addNewMode,function(data){
+            
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.addType,function(data){
                     log.d(data);
                     if(data.code==200){
-                        
-                        layObj.layer.closeAll();
                         layer.msg('添加成功');
+                        layObj.layer.closeAll();
                         setTimeout(function(){
-                            classObj.methods.updatePageNum(1);
+                            classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         },1000);
                         
                     }else{
-                        
+                        layer.msg(data.message);
                         layObj.layer.closeAll();
-                        layer.msg('网络错误，请稍后重试');
                         setTimeout(function(){
                             
-                            classObj.methods.updatePageNum(1);
+                            
                         },1000);
                     }
                 },formParams.field);
@@ -548,21 +407,19 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
         form.on('submit(editorAreaType)',function(formParams){
             log.d(formParams.field)
-            layObj.layer.load();
-            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueMode.updateMode,function(data){
+
+            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.updateType,function(data){
                     log.d(data);
                     if(data.code==200){
-                        layObj.layer.closeAll();
-                        layer.msg('操作成功');
-                        classObj.methods.updatePageNum(1);
+                        layer.msg('添加成功');
                         setTimeout(function(){
                             // location.reload();
-                            
-                            
+                            layObj.layer.closeAll();
+                            classObj.methods.updatePageNum(1);
                         },1000);
                         
                     }else{
-                        layer.msg('网络错误，请稍后重试');
+                        layer.msg(data.message);
                         setTimeout(function(){
                             // location.reload();
                         },1000);
@@ -598,43 +455,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
         form.on('submit(searchFilterGoods)',function(formParams){
  
-            $('#searchedlist').html('');
-            var tempHtml=searchedcontent.innerHTML;
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.searchFilterGoods,function(data){
-                    
-                    if(data.code==200){
-                        
-                        layObj.laytpl(tempHtml).render(data.data,function(html){
-                            $('#searchedlist').append(html);
-                        })
-
-                        classObj.data.alertIndex=layer.open({
-                          type: 1,
-                          content: $('#goods-list'), //这里content是一个DOM
-                          shade:[0.8,'#000'],
-                          area:'900px',
-                          maxmin: true,
-                          end:function() {
-                            // body...
-                            $('#goods-list').hide();
-                          }
-                        })
-                    }else{
-                        
-                        setTimeout(function(){
-                            // layObj.layer.closeAll();
-                            // classObj.methods.updatePageNum(1);
-                        },1000);
-                    }
-                },formParams.field);
+           
+            
+            
                 
             return false;
         })
-        //下拉选择状态删除
+        //展示列表筛选
         form.on('submit(searchResultByTel)',function(formParams){
             classObj.data.currentPageNum=1;
             fistLoad=true;
-            $.extend(true,classObj.data.cacheData,formParams.field||{});
+            classObj.data.cacheData=formParams.field;
             classObj.methods.updatePageNum(classObj.data.currentPageNum)
    
             return false;
@@ -653,16 +484,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     //添加分类类型
     $('.addArea').on('click',function(){
          $('#authorForm')[0].reset();
-         $('.goodsBagList').html('');
-         $.each(classObj.data.goodsBagArr,function(index,item){
-             if(index==0){
-                $('<option>').appendTo($('.goodsBagList')).html(item.pack_name).attr({'value':item.id,selected:true});
-             }else{
-                $('<option>').appendTo($('.goodsBagList')).html(item.pack_name).attr('value',item.id);
-             }
-             
-         })
-         form.render();
         // $('input.cityid').val(classObj.data.navId);
         layObj.layer.open({
              type:1,
@@ -697,6 +518,49 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 $('#obligationTypeListInfo').hide();
             }
         })
+    })
+    //生成优惠券编号 createDissountNumber
+    $('#all-sort-list').on('click','.createDissountNumber',function(){
+        
+        alertFirstLoad=true;
+        var classN=$(this).data('name');
+        $('form').each(function(){
+            this.reset();
+        });
+        var id=$(this).data('id');
+        var obj={
+            bonus_id:id
+        }
+        layObj.layer.prompt({
+            formType: 0,
+            title: '请输入要生成的数量（1-100）',
+            }, function(value, index, elem){
+                if(value<100){
+                    obj.number=value;
+                    layObj.layer.close(index);
+                    common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.discount.createNumber,function(data){
+                        log.d(data);
+                        if(data.code==200){
+                            layObj.layer.closeAll();
+                            layer.msg(data.message);
+                           
+                            
+                        }else{
+                            layObj.layer.closeAll();
+                            layer.msg(data.message);
+                            setTimeout(function(){
+                                // layObj.layer.closeAll();
+                                // classObj.methods.updatePageNum(1);
+                            },1000);
+                        }
+                    },obj);
+                }else{
+                    layObj.layer.msg('请输入1-100之间的数值');
+                }
+                
+                
+
+            })
     })
     //编辑区域类型
      $('#all-sort-list').on('click','.editorSingleAreaType',function(){
@@ -751,7 +615,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     classObj.methods.deleteClassInfo(deleId);
 
                 })
-
+        
+        
     })
 
     //复选框选中
@@ -805,53 +670,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         $('<input type="text" placeholder="请输入" autocomplete="off" class="layui-input">').appendTo($('.areaInfoInput')).attr('name',Math.floor(Math.random()*1000));
     })
 
-    $('.nav-menu-all-area').on('click','a',function(){
-        $(this).addClass('active').siblings().removeClass('active');
-        //log.d($(this))
-        classObj.data.navId=$(this).data('id');
-        // log.d(classObj.data.navId);
-        classObj.methods.updatePageNum(1);
-    });
-
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        
-        var start = {
-            min: '2017-04-30 23:59:59',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            istime:true
-            ,max: '2099-06-16 23:59:59'
-            ,istoday: false
-            ,choose: function(datas){
-            end.min = datas; //开始日选好后，重置结束日的最小日期
-            end.start = datas //将结束日的初始值设定为开始日
-            $(this.elem).next('input').val(datas);
-            }
-        };
-        
-        var end = {
-            min: '2017-04-30 23:59:59',
-            format: 'YYYY-MM-DD hh:mm:ss',
-            istime:true
-            ,max: '2099-06-16 23:59:59'
-            ,istoday: false
-            ,choose: function(datas){
-            start.max = datas; //结束日选好后，重置开始日的最大日期
-            $(this.elem).next('input').val(datas);
-            }
-        };
-        
-        $('.dateStart').on('click',function(){
-            start.elem = this;
-            laydate(start);
-        })
-
-        $('.dateEnd').on('click',function(){
-            end.elem = this
-            laydate(end);
-        })
-
-        });
 
 
      classObj.methods.updatePageNum(classObj.data.currentPageNum);

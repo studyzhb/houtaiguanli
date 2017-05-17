@@ -23,7 +23,22 @@ define({
     platForm:{
         showlist:'/Paylog/payList',
         //平台支出总数汇总
-        outputlist:'/WidthdrawReport/report'
+        outputlist:'/WidthdrawReport/report',
+        //资金统计
+        outAndInputTotalMoney:'/Flowing/getDayInfo',
+        //店铺出入单相关统计总表
+        shopOutAndInputTotal:'/Report/allReport',
+        //出入单统计总表
+        outAndInputPersonTotal:'/Report/Report',
+        //分店铺统计
+        everyShopInfo:'/Report/linesIn'
+    },
+    discount:{
+        showlist:'/Coupon/show',
+        addType:'/Coupon/addHnus',
+        updateType:'/Coupon/editHnus',
+        createNumber:'/Coupon/createUnmber',
+        lookDiscountInfo:'/Userbonus/show'
     },
     obligation:{
         showlist:'/debtnexus/index',
