@@ -6,7 +6,8 @@ define({
         showlist:'/Debt/debtList',
         addInfo:'/Debt/addDebt',
         showOneInfo:'/Debt/oneDebt',
-        getIsSaveShopGoods:'/relevance/deliveryPoint'
+        getIsSaveShopGoods:'/relevance/deliveryPoint',
+        editShopid:'/Debt/editDebt'
     },
     hideRegister:{
         sendPhoneCode:'/Assistregis/getPhoneCode',

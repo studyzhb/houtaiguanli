@@ -96,8 +96,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            classObj.data.currentPage=data.curr;
-                            classObj.methods.updateObligationTypeInfoById(id,data.curr);
+                            if(classObj.data.currentPage!=data.curr){
+                                classObj.data.currentPage=data.curr;
+                                classObj.methods.updateObligationTypeInfoById(id,data.curr);
+                            }
+                            
                         }
                     });
                 });
@@ -114,7 +117,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            classObj.methods.updatePageNum(data.curr);
+                            if(classObj.data.currentPageNum!=data.curr){
+                                classObj.data.currentPageNum=data.curr;
+                                classObj.methods.updatePageNum(data.curr);
+                            }
+                            
                         }
                     });
                 });
@@ -527,6 +534,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             maxmin: true,
             end:function(){
                 classObj.data.isCanClick=true;
+                classObj.data.cacheAlertData={};
                 $('#obligationTypeListInfo').hide();
             }
         })

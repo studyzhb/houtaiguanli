@@ -363,8 +363,10 @@
                         <button data-id="{{item.id}}" class="layui-btn layui-btn-small layui-btn-primary lookObligationInfo">
                             <i class="layui-icon">&#xe642;</i>
                         </button>
+                        <button data-id="{{item.id}}" data-shopid="{{item.shop_id}}" class="layui-btn layui-btn-small layui-btn-primary changeBindShop">
+                            修改绑定的店铺
+                        </button>
                     </td>
-
                 </tr>
 
             {{# }) }}
@@ -692,6 +694,45 @@
 
 
 </form>
+
+<!--修改绑定店铺id-->
+<form class="layui-form layui-form-pane updateBindShopId" method="POST" style="display: none;font-size:14px;padding:20px 20px 100px 20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="updateShopIdWrapper"></div>
+
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn commitMenu" lay-submit lay-filter="editBindShopId" >确认</div>
+    </div>
+    </div>
+
+
+</form>
+
+<script type="text/html" id="updateShopIdCon">
+    <div class="layui-form-item">
+        <input type="hidden" name="id" value="{{d.id}}">
+        <label class="layui-form-label">店铺名称</label>
+        <div class="layui-input-inline">
+            
+            <select name="shop_id" lay-filter="pro" lay-verify="">
+              {{# layui.each(d.list,function(ind,its){ }}
+                {{# if(its.id==d.shopid){ }}
+                    <option value="{{its.id}}" selected>{{its.name}}</option>
+                {{# }else{ }}
+                    <option value="{{its.id}}">{{its.name}}</option>
+                {{# } }}
+
+            {{# }) }}
+            </select>
+            
+        </div> 
+        
+    </div>
+</script>
+
+
+
 <!--旅行输入框-->
 <script type="text/html" id="travelCon">
   <div class="layui-form-item">

@@ -157,8 +157,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            classObj.data.currentPageNum=data.curr;
-                            classObj.methods.updatePageNum(data.curr);
+                            if(classObj.data.currentPageNum!=data.curr){
+                                 classObj.data.currentPageNum=data.curr;
+                                classObj.methods.updatePageNum(data.curr);
+                            }
+                           
                         }
                     });
                 });
@@ -178,7 +181,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     
                     if(data.code==200){
                         classObj.data.arrData=data.data.queue_list;
-                        
+                        $('form').each(function(){
+                            this.reset();
+                        })
                         classObj.data.pageCount=Math.ceil(data.data.all_num/10);
                         $('.detailCount').text(data.data.all_num);
                         // var arr=data.data.queue_list;
@@ -730,9 +735,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
         form.on('submit(searchObligationModelList)',function(formParams){
  
-            
+            classObj.data.cacheData=formParams.field;
+            fistLoad=true;
             // formParams.field
-                classObj.methods.updatePageNum(1,formParams.field);
+            classObj.methods.updatePageNum(1);
             return false;
         })
 

@@ -58,13 +58,14 @@
               
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
                   <select class="areaType" name="status" lay-filter="areaType">
+                    <option value="0">全部</option>
                     <option value="1">已使用</option>
                     <option value="2">已禁用</option>
-                    
                   </select>
                 </div>
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;">
                   <select  name="bonus_type" lay-filter="areaType">
+                    <option value="0">全部</option>
                     <option value="1">现金劵</option>
                     <option value="2">折扣券</option>
                     <option value="3">满减劵</option>
@@ -126,7 +127,7 @@
   <!-- =======================弹出窗========================= -->
 
 <!--添加类型-->
-<form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 12px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <div class="layui-form-item">
         <label class="layui-form-label">类型名称</label>
@@ -137,7 +138,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最小使用金额</label>
+        <label class="layui-form-label">优惠券类型</label>
         <div class="layui-input-inline">
           <select name="bonus_type" id="">
             <option value="1">现金劵</option>
@@ -184,7 +185,7 @@
 </form>
 
 <!--编辑-->
-<form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 12px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <!--<div class="layui-form-item">
     <label class="layui-form-label">编辑</label>
@@ -219,7 +220,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最小使用金额</label>
+        <label class="layui-form-label">优惠券类型</label>
         <div class="layui-input-inline">
           <select name="bonus_type" id="">
             {{# if(d.bonus_type=='1'){ }}
@@ -326,15 +327,15 @@
               
                     <div class="layui-input-inline" style="width:100px;margin-left:5px;">
                       <select name="status">
-                        
-                        <option value="1" selected>未使用</option>
+                        <option value="0" selected>全部</option>
+                        <option value="1">未使用</option>
                         <option value="2">已使用</option>
                         <option value="3">过期</option>
                       </select>
                     </div>
                   <div class="layui-inline">
                     <div class="layui-input-inline">
-                      <input type="text" name="value" class="layui-input"  value="">
+                      <input type="text" name="value" class="layui-input"  value="" placeholder="请输入优惠券编号">
                     </div>
                   </div>
                   <div class="layui-btn" lay-submit lay-filter="searchFilterGoods">

@@ -498,7 +498,7 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
                     if(data.code==200){
                         ShopObj.data.shopInfoSplit=data.list;
                         $('.splitParShop').html('');
-                        console.log(ShopObj.data.shopInfoSplit);
+                        
                         $.each(ShopObj.data.shopInfoSplit,function(index,item){
                             if(index==0){
                                 $('<option selected>').appendTo($('.splitParShop')).html(item.name).attr('value',item.id);
@@ -508,11 +508,33 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
                         });
                         setTimeout(function(){
                             form.render();
-                        },1000);
+                        },2000);
                     }else{
                         // layObj.layer.msg(data.message);
                     }
                 });
+            },
+            //更改绑定店铺
+            editBindShopId:function(id,shopid){
+                // ShopObj.data.shopInfoSplit
+                var tpl=$('#updateShopIdCon').html();
+                $('.updateShopIdWrapper').html('');
+                
+                layObj.laytpl(tpl).render({id:id,shopid:shopid,list:ShopObj.data.shopInfoSplit},function(html){
+                    $('.updateShopIdWrapper').append(html);
+                })
+                form.render();
+                // 打开修改店铺窗口
+                layObj.layer.open({
+                    type:1,
+                    title:'修改绑定店铺',
+                    content: $('.updateBindShopId'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    maxmin: true,
+                    end:function(){
+                        $('.updateBindShopId').hide();
+                    }
+                })
             },
             autoSearch:function(){
                 
@@ -586,6 +608,16 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
      $('#tableWrapper').on('click','.lookObligationInfo',function(){
 
         ShopObj.methods.getSingleInfo($(this).data('id'));
+
+         
+     })
+
+      /**
+     * 修改绑定的店铺
+     */
+     $('#tableWrapper').on('click','.changeBindShop',function(){
+        
+        ShopObj.methods.editBindShopId($(this).data('id'),$(this).data('shopid'));
 
          
      })
@@ -952,6 +984,31 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
                 return false;
             });
 
+            
+            form.on('submit(editBindShopId)',function(paraData){
+                
+                layObj.layer.load();
+                //paraData.field
+                common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligationSplit.editShopid,function(data){
+                        
+                        
+                        if(data.code==200){
+                            layObj.layer.closeAll();
+                            layObj.layer.msg(data.message);
+                            ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+                            
+                        }else{
+                            layObj.layer.closeAll('loading');
+                            layer.msg(data.message);
+                            setTimeout(function(){
+                                
+                            },1000);
+                        }
+                    },paraData.field);
+                    
+                return false;
+            });
+
             form.on('submit(saveShopGoodsInfo)',function(paraData){
                  layObj.layer.load();
                 paraData.field.cityid=params.id;
@@ -1119,7 +1176,7 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
             ShopObj.data.selectedBusinessArea=data.value;
         })
 
-    },1500)
+    },1000)
 
     /**
      * 加载百度编辑器
