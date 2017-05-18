@@ -8,7 +8,9 @@ define({
     obligation:{
         showlist:'/Debt/debtList',
         showOneInfo:'/Debt/oneDebt',
-        addInfo:'/Debt/addDebt'
+        addInfo:'/Debt/addDebt',
+        //展示债权金历史记录
+        showObligationHisInfo:'/Debt/debtLog'
     },
     shopObligation:{
         showHisList:'/Turnin/withList',

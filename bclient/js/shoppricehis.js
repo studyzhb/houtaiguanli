@@ -2,6 +2,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
     
     var common=myObj.load();
     var fistLoad=true;
+    var alertFirstLoad=true;
     var form;
 
     
@@ -23,11 +24,34 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
             sortAnotherArr:[],
             currentPage:'1',
             currentRePage:'1',
+            currentAlertPage:'1',
             //当前处于哪个tab栏 1为全部列表,2为已推荐
             currentStatus:'1',
             searched:true
         },
         methods:{
+            updateAlertPage:function(){
+                
+                layui.use(['laypage', 'layer'],function(){
+                    var laypage=layui.laypage;
+                    var layer = layui.layer;
+                    laypage({
+                        cont: 'alertpage'
+                        ,pages: ShopObj.data.alertPageCount //总页数
+                        ,groups: 5 //连续显示分页数
+                        ,jump:function(data){
+                            //得到页数data.curr
+                            if(ShopObj.data.currentAlertPage!=data.curr){
+                                ShopObj.data.currentAlertPage=data.curr;
+                                ShopObj.methods.getObligationHisInfo(data.curr);
+                            }
+                            
+                        }
+                    });
+                });
+
+                alertFirstLoad=false;
+            },
             updateShopList:function(data){
                  var tempHtml=shophis.innerHTML;
 
@@ -76,13 +100,13 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                 common.tools.ajax('get',ajaxAddress.obligationManagerPreFix+ajaxAddress.shopObligation.obligationBalance,function(data){
                     log.d(data);
                     if(data.code==200){
-                        ShopObj.data.obligationBalance=data.data;
+                        ShopObj.data.obligationMoneyBalance=data.data;
                         $('.obligationBalance').val(data.data||0);
                         
                     }else{
                         layObj.layer.msg(data.message);
                     }
-                },options);
+                });
             },
             updatePageNum:function(num,para){
                 
@@ -127,7 +151,39 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                     }
                 },{id:id,status:sta});
             },
-        
+            getObligationHisInfo:function(p){
+                var tml=$('#showGoodsContent').html();
+                $('#goods-orderlist').html('');
+                var obj={
+                    p:p
+                }
+                common.tools.ajax('get',ajaxAddress.obligationManagerPreFix+ajaxAddress.obligation.showObligationHisInfo,function(data){
+                    if(data.code==200){
+                        layObj.layer.msg(data.message);
+                        ShopObj.data.alertPageCount=Math.ceil(data.data.all_num/10)||1;
+                        
+                        $('.obligationTotal').html(data.data.all_num);
+                        layObj.laytpl(tml).render(data.data.debt_list,function(html){
+                            $('#goods-orderlist').append(html);
+                        })
+                        if(alertFirstLoad){
+                            ShopObj.methods.updateAlertPage();
+                        }
+                        
+                    }else{
+                        ShopObj.data.alertPageCount=1;
+                         layObj.laytpl(tml).render([],function(html){
+                            $('#goods-orderlist').append(html);
+                        })
+                        if(alertFirstLoad){
+                            ShopObj.methods.updateAlertPage();
+                        }
+                        $('.obligationTotal').text('0');
+                        
+                        layObj.layer.msg(data.message);
+                    }
+                },obj);
+            },
             /**
              * 根据关键字查询
              */
@@ -177,8 +233,44 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
      * kaishi
      */
      ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
+     //获取债权金余额
+     ShopObj.methods.updateObligationBalance();
+     //债权金收益转余额
+     $('.obligationMoney2balance').on('click',function(){
+        layObj.layer.load();
+        if(ShopObj.data.obligationMoneyBalance){
+             layObj.layer.confirm('您的债权金收益为：'+ShopObj.data.obligationMoneyBalance+'将全部转为余额',function(index){
+                layObj.layer.close(index);
+                common.tools.ajax('post',ajaxAddress.obligationManagerPreFix+ajaxAddress.shopObligation.obligationScore2Balance,function(data){
+                    layObj.layer.closeAll('loading');
+                    ShopObj.methods.updateObligationBalance();
+                    layObj.layer.msg(data.message);
+                });
+             })
+        }else{
+            layObj.layer.msg('您目前暂无收益可转');
+            layObj.layer.closeAll('loading');
+        }
+    })
 
-
+    //查看债权金历史
+    $('.lookUpObligationHisInfo').on('click',function(){
+        alertFirstLoad=true;
+        ShopObj.methods.getObligationHisInfo(ShopObj.data.currentAlertPage);
+        layObj.layer.open({
+             type:1,
+             title:'查看债权历史',
+            content: $('#obligationTypeListInfo'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:['95%','90%'],
+            maxmin: true,
+            end:function(){
+                ShopObj.data.isCanClick=true;
+                ShopObj.data.cacheAlertData={};
+                $('#obligationTypeListInfo').hide();
+            }
+        })
+    })
 
     layui.use('laydate',function(){
        var laydate=layui.laydate;
