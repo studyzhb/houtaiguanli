@@ -122,7 +122,7 @@
   <!-- =======================弹出窗========================= -->
 
 <!--添加类型-->
-<form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane" id="authorForm" method="POST" action="" style="display: none;font-size: 12px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <div class="layui-form-item">
         <label class="layui-form-label">类型名称</label>
@@ -134,53 +134,60 @@
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">请选择商品包</label>
-        <div class="layui-input-inline" style="width:100px;margin-left:5px;">
+        <div class="layui-input-inline" style="">
           <select name="pack_id" lay-verify="required" class="goodsBagList">
             <option value="barcode" selected>商品包</option>
           </select>
         </div>
     </div>
-    
     <div class="layui-form-item">
-        <label class="layui-form-label">债券金额</label>
+        <label class="layui-form-label">优惠券类型</label>
+        <div class="layui-input-inline" style="">
+          <select name="bonus_id" lay-verify="required" class="discountGoodsInfo">
+            <option value="barcode" selected>商品包</option>
+          </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">参与金额</label>
         <div class="layui-input-inline">
         
         <input type="text" name="total_amount" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
+    <!--<div class="layui-form-item">
         <label class="layui-form-label">利润率</label>
         <div class="layui-input-inline">
         
         <input type="text" name="profit_margin" onkeyup="this.value=this.value.replace(/[^\d|\.]/g,'')"  value="" required  lay-verify="required" placeholder="请输入1-100" autocomplete="off" class="layui-input">
         </div>
-    </div>
+    </div>-->
     <div class="layui-form-item">
-        <label class="layui-form-label">排队人数</label>
+        <label class="layui-form-label">出局人数</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="number" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="number" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入出局人数" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">单天最高单数</label>
+        <label class="layui-form-label">单天最高人次</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="times_day" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="times_day" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="" placeholder="留空为不限制" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最高单数</label>
+        <label class="layui-form-label">当日库存量</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="times_max" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="times_max" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="" placeholder="留空为不限制" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">间隔人数</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="spec" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="spec" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="" required  lay-verify="" placeholder="留空为不限制" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -206,7 +213,7 @@
 </form>
 
 <!--编辑-->
-<form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane" id="editorAreaTypeWrapper" method="POST" action="" style="display: none;font-size: 12px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <!--<div class="layui-form-item">
     <label class="layui-form-label">编辑</label>
@@ -242,7 +249,7 @@
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">请选择商品包</label>
-        <div class="layui-input-inline" style="width:100px;margin-left:5px;">
+        <div class="layui-input-inline" style="">
           <select name="pack_id" lay-verify="required" class="goodsBagList">
             {{# layui.each(d.goodsBagArr,function(index,item){ }}
               {{# if(item.id==d.pack_id){ }}
@@ -256,47 +263,62 @@
           </select>
         </div>
     </div>
-    
     <div class="layui-form-item">
-        <label class="layui-form-label">债券金额</label>
+        <label class="layui-form-label">优惠券类型</label>
+        <div class="layui-input-inline" style="">
+          <select name="bonus_id" lay-verify="required">
+            {{# layui.each(d.discountArrInfo,function(index,item){ }}
+              {{# if(item.id==d.bonus_id){ }}
+                <option value="{{item.id}}" selected>{{=item.bonus_name}}</option>
+              {{# }else{ }}
+                <option value="{{item.id}}">{{=item.bonus_name}}</option>
+              {{# } }}
+              
+            {{# }) }}
+            
+          </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">参与金额</label>
         <div class="layui-input-inline">
         
         <input type="text" name="total_amount" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.total_amount}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
+    <!--<div class="layui-form-item">
         <label class="layui-form-label">利润率</label>
         <div class="layui-input-inline">
         
         <input type="text" name="profit_margin" onkeyup="this.value=this.value.replace(/[^\d|\.]/g,'')"  value="{{=d.profit_margin}}" required  lay-verify="required" placeholder="请输入1-100" autocomplete="off" class="layui-input">
         </div>
-    </div>
+    </div>-->
     <div class="layui-form-item">
-        <label class="layui-form-label">排队人数</label>
+        <label class="layui-form-label">出局人数</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="number" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.number}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="number" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.number}}" required  lay-verify="required" placeholder="请输入出局人数" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">单天最高单数</label>
+        <label class="layui-form-label">当天最高人次</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="times_day" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.times_day}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="times_day" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.times_day}}"   lay-verify="" placeholder="留空为不限制" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">最高单数</label>
+        <label class="layui-form-label">当日库存量</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="times_max" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.times_max}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="times_max" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.times_max}}"   lay-verify="" placeholder="留空为不限制" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">间隔人数</label>
         <div class="layui-input-inline">
         
-        <input type="text" name="spec" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.spec}}" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+        <input type="text" name="spec" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"  value="{{=d.spec}}"   lay-verify="" placeholder="留空为不限制" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">

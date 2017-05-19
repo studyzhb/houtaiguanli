@@ -90,7 +90,8 @@ define({
             finishedGoods:'/Lines/okStock',
             leaveUser:'/Lines/tiRen',
             sortList:'/Lines/positionChange',
-            sortInputList:'/Lines/chSort'
+            sortInputList:'/Lines/chSort',
+            getDiscountType:'/Bonus/bonusList'
         },
         currencyMoney:{
             showlist:'/debtreview/listdebt',

@@ -3,6 +3,51 @@ html,body{
 	width:100%;
 	padding-top:0.3rem;
 }
+.code-wrapper{
+    width:5.04rem;
+    height:2.9rem;
+    h5.code-title{
+        height:1.18rem;
+        font-size:0.26rem;
+        text-align: center;
+        line-height: 1.18rem;
+        color:#c72d1b;
+
+    }
+    .input-code-wrapper{
+       height: 0.62rem;
+       padding-left:0.45rem;
+       line-height: 0.62rem;
+       margin-bottom:0.38rem;
+       position:relative;
+        input{
+            outline: 0;
+            width:2.8rem;
+            border:0.01rem solid #c72d1b;
+            height:0.6rem;
+            margin-right:0.36rem;
+        }
+        img{
+            width:0.9rem;
+            height: 0.36rem;
+            position:absolute;
+            top:0.14rem;
+            right:0.44rem;
+        }
+    }
+
+    .confirm2PhoneCode{
+        width:2.1rem;
+        height: 0.46rem;
+        margin: 0 auto;
+        border-radius: 5px;
+        color:#fff;
+        font-size: 0.2rem;
+        background: #c72d1b;
+        line-height: 0.46rem;
+        text-align: center;
+    }
+}
 header{
     height:0.96rem;
     text-align: center;

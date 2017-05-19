@@ -61,6 +61,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             updateArealist:function(data){
                 $('#all-sort-list').html('');
+                classObj.data.firstBackGoodsInfo=data[0];
                  var obj={};
                  obj.data=data;
                  log.d(obj);
@@ -171,6 +172,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 // item.status=sta;
                 item.order_id=upId;
                 item.status=1;
+                classObj.data.isCanApprove=false;
                 common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.backGoods.updateStatus,function(data){
                     log.d(data);
                     classObj.data.isCanClick=true;
@@ -318,6 +320,41 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         })
   
     })
+
+    /**
+     * 键盘事件
+     */
+    $(document).on('keyup',function(e){
+        
+        //空格
+        if(e.keyCode==32){
+            
+            if(classObj.data.firstBackGoodsInfo.status=='1'){
+                layObj.layer.msg('默认选中第一个，但是状态为审核完成，请切换状态再重试');
+                return;
+            }
+            classObj.data.isCanApprove=true;
+            layObj.layer.confirm('你确认要执行此操作吗?',{
+                end:function(){
+                    
+                    classObj.data.isCanApprove=false;
+                }
+            },function(index){
+                layObj.layer.close(index);
+                classObj.data.isCanApprove=false;
+                classObj.methods.updateStatusType(classObj.data.firstBackGoodsInfo.order_id);
+            },function(){
+                classObj.data.isCanApprove=false;
+                
+            })
+        }
+        if(e.keyCode==13){
+            if(classObj.data.isCanApprove){
+                classObj.methods.updateStatusType(classObj.data.firstBackGoodsInfo.order_id);
+            }
+        }   
+    })
+
     //确认提现
      $('#all-sort-list').on('click','.confirmapprove',function(){
         var status=$(this).data('status');

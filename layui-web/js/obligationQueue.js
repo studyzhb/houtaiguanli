@@ -210,6 +210,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 var tpl=$('#editorNavCon').html();
                 $('.editor-area-type').html('');
                     data.goodsBagArr=classObj.data.goodsBagArr;
+                    data.discountArrInfo=classObj.data.discountArrInfo;
                     layObj.laytpl(tpl).render(data,function(html){
                         $('.editor-area-type').append(html);
                         form.render();
@@ -219,7 +220,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     type:1,
                     content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
                     shade:[0.8,'#000'],
-                    area:'600px',
+                    area:'500px',
                     maxmin: true,
                     end:function(){
                         classObj.data.isCanClick=true;
@@ -270,6 +271,21 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         
                     }
                 });
+            },
+            //获取优惠券信息
+            getDiscountTypeInfo:function(){
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.getDiscountType,function(data){
+                    
+                    
+                    if(data.code==200){
+                        classObj.data.discountArrInfo=data.data;
+
+                    }else{
+
+                        layObj.layer.msg('获取优惠券信息：'+data.message);                        
+                        
+                    }
+                });
             }
         }
     }
@@ -313,6 +329,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
     //获取商品包
     classObj.methods.getGoodsBagList();
+    //获取优惠券信息
+    classObj.methods.getDiscountTypeInfo()
 
     //删除标准下的商品
     $('#goods-orderlist').on('click','.deleteObligationType',function(){
@@ -510,6 +528,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
     $('.addArea').on('click',function(){
          $('#authorForm')[0].reset();
          $('.goodsBagList').html('');
+         $('.discountGoodsInfo').html('');
+         $('<option>').appendTo($('.discountGoodsInfo')).html('无').attr({'value':0,selected:true});
          $.each(classObj.data.goodsBagArr,function(index,item){
              if(index==0){
                 $('<option>').appendTo($('.goodsBagList')).html(item.pack_name).attr({'value':item.id,selected:true});
@@ -518,13 +538,19 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
              }
              
          })
+
+         $.each(classObj.data.discountArrInfo,function(index,item){
+             $('<option>').appendTo($('.discountGoodsInfo')).html(item.bonus_name).attr('value',item.id);
+             
+         })
+
          form.render();
         // $('input.cityid').val(classObj.data.navId);
         layObj.layer.open({
              type:1,
             content: $('#authorForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
-            area:'400px',
+            area:'500px',
             maxmin: true,
             end:function(){
                 classObj.data.isCanClick=true;
