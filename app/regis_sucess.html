@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>万店联盟-e+便利注册页面</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="./css/regis.css" />
+    <script src="./js/rem.js"></script>
+    <script src="./js/zepto.js"></script>
+    <script src="./js/touch.min.js"></script>
+</head>
+<body>
+    <header>
+        注册有礼
+    </header>
+    <div class="regis_bg">
+        <div class="btn-download"></div>
+    </div>
+
+</body>
+<script>
+	function bodyScale(){
+    	var devicewidth=document.documentElement.clientWidth;
+        var scale=devicewidth/750;
+        document.body.style.zoom=scale;
+    }
+
+	window.onload=window.onresize=function(){
+		
+        //
+        $('.img').on('tap',function(){
+            $.ajax({
+                type:'get',
+                url:'',
+                data:{
+                    
+
+                },
+                success:function(data){
+
+                },
+                error:function(){
+
+                }
+            })
+        })
+
+        //提交
+        $('.submit').on('tap',function(){
+            var pwd=$('.passwordnum').val();
+            pwd=hex_md5(pwd).toUpperCase();
+		  	
+            $.ajax({
+                type:'post',
+                url:'',
+                data:{
+                    yzcode:$('.messnum').val(),
+                    tel:$('.telnum').val(),
+                    password:pwd
+
+                },
+                success:function(data){
+
+                },
+                error:function(){
+
+                }
+            })
+        });
+        //获取验证码
+        $('.getCode').on('tap',function(){
+            $.ajax({
+                type:'post',
+                url:'',
+                data:{
+                    tel:$('.telnum').val(),
+                    code:$('.code').val()
+                },
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(){
+
+                }
+            })
+        });
+        
+
+
+        console.log($.ajax({
+            type:'post',
+            url:'',
+            data:{
+
+            },
+            success:function(data){
+
+            },
+            error:function(){
+
+            }
+        }))
+	}
+</script>
+</html>

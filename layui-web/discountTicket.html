@@ -95,7 +95,7 @@
           </colgroup>
           <thead>
             <tr>
-              <th>序号</th>
+              <th>ID</th>
               <th>名称</th>
               <th>优惠券类型</th>
               <th>优惠额度</th>
@@ -435,7 +435,7 @@
 <script id="sortContent" type="text/html">
 {{# layui.each(d.data,function(index,item){ }}
     <tr>
-    <td>{{index+1}}</td>
+    <td>{{=item.id}}</td>
     <td class="typeName">{{=item.bonus_name}}</td>
     <td >
       {{# if(item.bonus_type=='1'){ }}

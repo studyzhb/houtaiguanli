@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>万店联盟-e+便利注册页面</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="./css/regis.css" />
+    <script src="./js/rem.js"></script>
+    <script src="./js/zepto.js"></script>
+    <script src="./js/touch.min.js"></script>
+</head>
+<body>
+    <header>
+        注册有礼
+    </header>
+    <section>
+        <div class="main">
+            <div class="bannner-wrap">
+
+            </div>
+            <div class="register-con">
+                <ul>
+                    <li class="title" style="display: none;">
+
+                    </li>
+                    <li class="recommend-person">
+                        <img src="./img/avata.png" alt="">
+                        <span>你的好友</span>
+                        <em>夏日可可</em>
+                        <span>推荐你加入</span>
+                    </li>
+                    <li><input class="messnum" type="text" placeholder="请输入手机号"></li>
+                    <li><input class="telnum" type="text" placeholder="请输入短信验证码"><div class="yzwraper getCode">获取验证码</div></li>
+                    <li><input class="messnum" type="text" placeholder="请输入密码"></li>
+                </ul>
+                <div class="submit">
+                    <img src="./img/confrim-btn.png" alt="">
+                </div>
+                <!--<p class="role">活动规则：</p>-->
+              <p class="role">1.活动时间：2015年12月23日起</p>
+                <p class="role">2.成功推荐注册会员每次消费，推荐人都可获得相应的奖励</p>
+                  <p class="role">3.所获得的奖励可以直接消费</p>
+                    <p class="role">4.e+便利店可以在法律允许的范围内对本次活动进行解释</p>
+                      
+            </div>
+            
+        </div>
+    </section>
+
+
+
+
+
+</body>
+<script>
+	function bodyScale(){
+    	var devicewidth=document.documentElement.clientWidth;
+        var scale=devicewidth/750;
+        document.body.style.zoom=scale;
+    }
+
+	window.onload=window.onresize=function(){
+		
+        //
+        $('.img').on('tap',function(){
+            $.ajax({
+                type:'get',
+                url:'',
+                data:{
+                    
+
+                },
+                success:function(data){
+
+                },
+                error:function(){
+
+                }
+            })
+        })
+
+        //提交
+        $('.submit').on('tap',function(){
+            var pwd=$('.passwordnum').val();
+            pwd=hex_md5(pwd).toUpperCase();
+		  	
+            $.ajax({
+                type:'post',
+                url:'',
+                data:{
+                    yzcode:$('.messnum').val(),
+                    tel:$('.telnum').val(),
+                    password:pwd
+
+                },
+                success:function(data){
+
+                },
+                error:function(){
+
+                }
+            })
+        });
+        //获取验证码
+        $('.getCode').on('tap',function(){
+            $.ajax({
+                type:'post',
+                url:'',
+                data:{
+                    tel:$('.telnum').val(),
+                    code:$('.code').val()
+                },
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(){
+
+                }
+            })
+        });
+        
+
+
+        console.log($.ajax({
+            type:'post',
+            url:'',
+            data:{
+
+            },
+            success:function(data){
+
+            },
+            error:function(){
+
+            }
+        }))
+	}
+</script>
+</html>

@@ -1,0 +1,180 @@
+@import 'reset';
+html,body{
+	width:100%;
+	padding-top:0.3rem;
+}
+header{
+    height:0.96rem;
+    text-align: center;
+    font-size:0.34rem;
+    color:#000;
+    line-height: 0.96rem;
+}
+.regis_bg{
+    height: 12.10rem;
+    width:7.5rem;
+    background-image: url(../img/regis_sucess_bg.png);
+    background-size:7.5rem auto;
+    background-repeat:no-repeat;
+    position:relative;
+    .btn-download{
+        width:4.28rem;
+        height: 1.1rem;
+        position:absolute;
+        left:1.58rem;
+        top:9.66rem;
+
+    }
+}
+section{
+    width:7.5rem;
+    height:16.57rem;
+    overflow:hidden;
+    background-image: url(../img/regis_bg.png);
+    background-size:7.5rem auto;
+    background-repeat:no-repeat;
+    background-position-x: -1px;
+    .main{
+        border-top:0.01px solid #e3e3e3;
+        display:-webkit-box;
+        display:box;
+        -ms-box-orient:vertical;
+        -moz-box-orient:vertical;
+        -webkit-box-orient:vertical;
+        // height: 100%;
+        // overflow:hidden;
+        .bannner-wrap{
+            width:7.5rem;
+            height:6.1rem;
+            // background-color: #fff;
+            margin-top:0.13rem;
+            background-size:7.5rem 2.58rem;
+            background-repeat: no-repeat;
+            // background-image: url(../img/zhucebg.png);
+        }
+        .register-con{
+
+            -moz-box-flex:1;
+            -webkit-box-flex:1;
+            box-flex:1;
+            overflow: auto;
+            margin-top:0.13rem;
+            ul{
+                width:5.86rem;
+                height:3.3rem;
+                background:#fdffda;
+                padding-left:0.26rem;
+                margin:0 auto;
+                li.title{
+                    height:1.02rem;
+                    background: none;
+                    background-image:url(../img/regis_logo.png);
+                    background-size:2.51rem 1.02rem;
+                    background-repeat: no-repeat; 
+                    background-position-x:1.4rem; 
+                    padding:0;
+                    margin-bottom:0.16rem;
+                    
+                }
+                li.recommend-person{
+                    height:0.64rem;;
+                    background:none; 
+                    padding:0;
+                    padding-left:1.06rem;
+                    margin-bottom:0.16rem;
+                    img{
+                        width:0.64rem;
+                        height:0.64rem;
+                        overflow:hidden;
+                        border-radius: 50%;
+                        position:absolute;
+                        left:0.24rem;
+                        top:0;
+                    }
+                    span,em{
+                        line-height:0.64rem;
+                        font-size:0.26rem;
+                        
+                    }
+                    span{
+                        color:#5c150f;
+                    }
+                    em{
+                        color:#ff4037;
+                    }
+                }
+                li{
+                    width: 5.44rem;
+                    height:0.62rem;
+                    background: #bc8e8b;
+                    padding:0.02rem;
+                    font-size:0.26rem;
+                    line-height:0.62rem;
+                    color:#666;
+                    position:relative;
+                    margin-bottom:0.24rem;
+                    border-radius: 0.05rem;
+                    .lefticon{
+                         width:0.36rem;
+                        height:0.36rem;
+                         position:absolute;
+                        top:0.3rem;
+                        left:0.32rem;
+                    }
+                    input{
+                        border:none;
+                        padding-left:0.16rem;
+                        outline: 0;
+                        width:5.28rem;
+                        height: 0.58rem;
+                    }
+                    
+                    .yzwraper{
+                        width:1.5rem;
+                        height:0.62rem;
+                        text-align: center;
+                        line-height: 0.58rem;
+                        color:#fff;
+                        // border:0.02rem solid #979797;
+                        background: #bc8e8b;
+                        position:absolute;
+                        top:0.02rem;
+                        right:0.02rem;
+                    }
+                    .img{
+                        width:0.29rem;
+                        height:0.3rem;
+                        background: url(../img/update.png) no-repeat;
+                         position:absolute;
+                        top:0.3rem;
+                        right:0.2rem;
+                    }
+
+                }
+            }
+            .submit{
+                        width:6.3rem;
+                        height:1.2rem;
+                        margin:1rem auto 1rem;
+                        // background: #f8c121;
+                        // border-radius:0.2rem;
+                        // text-align: center;
+                        // margin: 0.66rem 0 0.8rem 0.92rem;
+                        color:#fff;
+                        font-size:0.3rem;
+                        line-height: 0.8rem;
+                        img{
+                            width:100%;
+                            height:100%;
+                        }
+                    }
+            p.role{
+                width:5.28rem;
+                padding-left:0.92rem;
+                font-size:0.26rem;
+                line-height: 0.4rem;
+
+            }
+        }
+    }
+}
