@@ -181,9 +181,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     
                     if(data.code==200){
                         classObj.data.arrData=data.data.queue_list;
-                        // $('form').each(function(){
-                        //     this.reset();
-                        // })
+                        $('form').each(function(){
+                            this.reset();
+                        })
                         classObj.data.pageCount=Math.ceil(data.data.all_num/10);
                         $('.detailCount').text(data.data.all_num);
                         // var arr=data.data.queue_list;
@@ -312,7 +312,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             //
             updateObligationInfo:function(data){
-                
+                console.log(data);
                 var tpl=$('#editorNavCon').html();
                 $('.editor-area-type').html('');
                  
@@ -387,7 +387,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }else{
                         layObj.layer.msg(data.msg);
                     }
-                },{status:2});
+                });
             }
         }
     }
@@ -734,12 +734,10 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
 
         form.on('submit(searchObligationModelList)',function(formParams){
-            classObj.data.cacheData=classObj.data.cacheData||{};
-            $.extend(true,classObj.data.cacheData,formParams.field||{});
+ 
+            classObj.data.cacheData=formParams.field;
             fistLoad=true;
             // formParams.field
-            classObj.data.currentPageNum=1;
-            console.log(classObj.data.cacheData)
             classObj.methods.updatePageNum(1);
             return false;
         })

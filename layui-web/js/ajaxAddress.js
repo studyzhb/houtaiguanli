@@ -1,7 +1,7 @@
 define({
     preFix:'/shop/shop/public/index.php/admin',
-    obligationPreFix:'/shop/shop/public/bfapp',
-    obligationOutPreFix:'/shop/shop/public/admin',
+    obligationPreFix:'/shop/shop/public/index.php/bfapp',
+    obligationOutPreFix:'/shop/shop/public/index.php/admin',
     obligationSplit:{
         showlist:'/Debt/debtList',
         addInfo:'/Debt/addDebt',
