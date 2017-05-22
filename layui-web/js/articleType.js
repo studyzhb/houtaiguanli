@@ -125,7 +125,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                             classObj.methods.updatePage();
                         }
                     }else{
-                        layObj.layer.msg(data.msg);
+                         classObj.data.pageCount=0;
+                        $('.detailCount').text(0);
+                        classObj.methods.updateArealist([]);
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
+                        layObj.layer.msg(data.message);
                     }
                 },obj);
             },
@@ -253,8 +259,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             //删除债权金标准下的商品
             deleteGoodsFromObligationType:function(id){
                 common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.deleteObligationGoods,function(data){
-                    
-                    
+        
                     if(data.code==200){
                         
                         layObj.layer.closeAll('loading');
@@ -271,7 +276,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             //删除文章类型
             deleteArticleType:function(id){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.deleteObligationGoods,function(data){
+                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.articleType.deleteType,function(data){
                     
                     
                     if(data.code==200){

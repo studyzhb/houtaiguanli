@@ -162,7 +162,14 @@
     </div>
     
 </form>
+<!-- 查看个人信息 -->
+<div class="layui-form layui-form-pane" id="obligationPersonInfo" action="" method="POST" style="height:100%;overflow:auto;display:none;font-size:12px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+ 
+              
+              <div id="basePersonInfo"></div>
 
+              <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </div>
 
 
 <!-- 添加标准时的展示页面 -->
@@ -315,7 +322,9 @@
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn lookInfoHis" data-status="1" data-id="{{item.user_id}}" data-tel="{{=item.tel}}">        
              查看历史
         </button>
-
+        <button class="layui-btn layui-btn-small layui-btn-primary icon-btn lookupSingleInfo" data-status="1" data-id="{{item.user_id}}" data-tel="{{=item.tel}}">        
+             查看个人信息
+        </button>
         {{# if(item.id_card){ }}
           <button class="layui-btn layui-btn-small layui-btn-primary icon-btn editorSingleAreaInfo" data-status="1" data-id="{{item.user_id}}" data-card="{{=item.id_card}}" data-name="{{=item.real_name}}">        
              编辑认证信息
@@ -352,6 +361,78 @@
 {{# }) }}
 </script>
 
+
+<!--显示用户基本信息-->
+<script id="showBaseInfoCon" type="text/html">
+  <div class="layui-form-item layui-form-text" style="display:none;">
+    <label class="layui-form-label">产品图片</label>
+    <div class="layui-input-block" style="margin-top:10px;">
+      <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
+                <div class="detail-image-col-2 imageadd-single">   
+                </div>
+      </div>
+      <input type="hidden" lay-verify="required" name="goods_logo" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+    </div>
+    
+                  </div>
+  <div class="layui-form-item">
+    <!---->
+    <label class="layui-form-label">名字</label>
+    <div class="layui-input-inline">
+      <input type="text" lay-verify="required" name="goodsname" readonly placeholder="请输入" value="{{=d.baseInfo.name}}" autocomplete="off" class="layui-input">
+    </div>
+    <label class="layui-form-label">身份证号</label>
+    <div class="layui-input-inline">
+      <input type="text" lay-verify="required" readonly  name="num" value="{{=d.baseInfo.cardID}}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+  </div>             
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">余额</label>
+    <div class="layui-input-inline">
+      <input type="text" lay-verify="required"  name="price_sell" readonly value="{{=d.balanceInfo.balance}}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+    <label class="layui-form-label">债权金积分</label>
+    <div class="layui-input-inline">
+      <input type="text" lay-verify="required"  name="price_pay" readonly placeholder="请输入" value="{{=d.balanceInfo.queue_income}}" autocomplete="off" class="layui-input">
+    </div>
+    <label class="layui-form-label">分润金</label>
+    <div class="layui-input-inline">
+      <input type="text" lay-verify="required"  name="price_pay" readonly placeholder="请输入" value="{{=d.balanceInfo.share_money}}" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">债权金额</label>
+    <div class="layui-input-inline">
+        <input type="text" value="{{=d.baseInfo.debt_money}}" readonly placeholder="请输入" name="real_name" autocomplete="off" class="layui-input">
+      
+    </div>
+    <label class="layui-form-label">状态</label>
+    <div class="layui-input-inline">
+      <input type="text" lay-verify="required"  name="price_pay" readonly placeholder="请输入" value="{{=d.baseInfo.status}}" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">申请时间</label>
+    <div class="layui-input-inline">
+        <input type="text" value="{{=new Date(d.baseInfo.createtime*1000).toLocaleString()}}" placeholder="请输入" name="id_card" autocomplete="off" class="layui-input"> 
+    </div>
+    </div>
+
+    <div class="layui-form-item">
+    <label class="layui-form-label">真实姓名</label>
+    <div class="layui-input-inline">
+        <input type="text" value="{{=d.baseInfo.real_name}}" readonly placeholder="请输入" name="real_name" autocomplete="off" class="layui-input">
+      
+    </div>
+    <label class="layui-form-label">身份证号</label>
+    <div class="layui-input-inline">
+      <input type="text" lay-verify="required"  name="price_pay" readonly placeholder="请输入" value="{{=d.baseInfo.id_card}}" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+</script>
 
 <!-- 显示搜索到的商品列表 -->
 <div id="goods-list" style="padding:10px;display:none;">

@@ -26,7 +26,9 @@ define({
         inputMoney:'/User/recharge',
         updatePayPassword:'/Paypassword/suycPassword',
         lookVipHisInfo:'/User/userCash',
-        editRealName:'/Vip/update'
+        editRealName:'/Vip/update',
+        getBaseInfo:'/User/userInfo',
+        getUserBalance:'/User/balance'
     },
     platForm:{
         showlist:'/Paylog/payList',
@@ -124,6 +126,7 @@ define({
     },
     article:{
         showlist:'/Article/lst',
+        showTypeList:"/Article/typeLst",
         addSingle:'/Article/add',
         updateSingle:'/Article/update',
         changeStatus:'/Article/beginStopUse'

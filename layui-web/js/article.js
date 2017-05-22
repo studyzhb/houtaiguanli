@@ -33,8 +33,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             typeId:"",
             typeInfo:[],
             tempGoodsContent:$('#sortContent').html(),
-            arrData:[]
-        },
+            arrData:[],
+            currentPageNum:1
+            },
         methods:{
             updateArealist:function(data){
                 $('#all-sort-list').html('');
@@ -55,7 +56,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         ,groups: 5 //连续显示分页数
                         ,jump:function(data){
                             //得到页数data.curr
-                            classObj.methods.updatePageNum(data.curr);
+                            if(classObj.data.currentPageNum!=data.curr){
+                                classObj.data.currentPageNum=data.curr;
+                                classObj.methods.updatePageNum(data.curr);
+                            }
+                           
                         }
                     });
                 });
@@ -63,21 +68,32 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 fistLoad=false;
             },
             updatePageNum:function(num,type){
-                
+                var obj={
+                    p:num
+                }
+                $.extend(true,obj,classObj.data.cacheData||{})
                 common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.article.showlist,function(data){
                     log.d(data);
                     if(data.code==200){
                         classObj.data.arrData=data.data;
-                        // if(fistLoad){
-                        //     classObj.methods.updatePage();
-                        // }
-                        // classObj.data.pageCount=Math.ceil(data.pageAllNum/10);
-                        // $('.detailCount').text(data.pageAllNum);
+                        
+                        classObj.data.pageCount=Math.ceil(data.total/data.pageSize);
+                        $('.detailCount').text(data.total);
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
                         classObj.methods.updateArealist(data.data);
+
                     }else{
-                        layObj.layer.msg(data.msg);
+                         classObj.data.pageCount=0;
+                        $('.detailCount').text(0);
+                        classObj.methods.updateArealist([]);
+                        if(fistLoad){
+                            classObj.methods.updatePage();
+                        }
+                        layObj.layer.msg(data.message);
                     }
-                },{page:num,type:type});
+                },obj);
             },
             updateAreaType:function(data){
                 classObj.data.typeInfo=data;
@@ -87,8 +103,29 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 form=layObj.form();
                 form.render();
                 form.on('select(areaType)',function(data){
-                   classObj.methods.updatePageNum(1,data.value); 
+                   classObj.methods.updatePageNum(classObj.data.currentPageNum,data.value); 
                 })
+            },
+            /**
+             * 获取文章类型列表
+             */
+            getArticleTypeInfo:function(){
+                common.tools.ajax('get',ajaxAddress.preFix+ajaxAddress.article.showTypeList,function(data){
+                    log.d(data);
+                    if(data.code==200){
+                        classObj.data.articleTypeInfo=data.data;
+                        $('.articleTypeWrapper').html('');
+                        $('.addArticleWrapper').html('');
+                        $('<option>').appendTo($('.articleTypeWrapper')).html('全部').attr({selected:true,value:0})
+                        $('<option>').appendTo($('.addArticleWrapper')).html('全部').attr({selected:true,value:0})
+                        $.each(classObj.data.articleTypeInfo,function(index,item){
+                            $('<option>').appendTo($('.articleTypeWrapper')).html(item.name).attr('value',item.id);
+                            $('<option>').appendTo($('.addArticleWrapper')).html(item.name).attr('value',item.id);
+                        })
+                    }else{
+                        layObj.layer.msg(data.msg);
+                    }
+                });
             },
             getAreaInfo:function(id,fn){
                 log.d(id);
@@ -110,7 +147,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         //location.reload();
                         layObj.layer.closeAll();
-                        classObj.methods.updatePageNum(1);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         
                     }else{
                         layObj.layer.msg(data.msg);
@@ -150,19 +187,20 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     if(data.code==200){
                         
                         layObj.layer.closeAll();
-                        classObj.methods.updatePageNum(1);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
                        
                         
                     }else{
                         layObj.layer.msg(data.msg);
                         layObj.layer.closeAll();
-                        classObj.methods.updatePageNum(1);
+                        classObj.methods.updatePageNum(classObj.data.currentPageNum);
                     }
                 },{id:id});
             },
             //
             updateObligationInfo:function(data){
-                console.log(data);
+                
+                data.articleTypeInfo=classObj.data.arrData;
                 var tpl=$('#editorNavCon').html();
                 $('.editor-area-type').html('');
                  
@@ -210,6 +248,11 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
        
         
     // },{cityId:params.id})
+
+    
+    classObj.methods.getArticleTypeInfo();
+
+
     /**
      * 状态更改
      */
@@ -317,7 +360,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         layer.msg('添加成功');
                         layObj.layer.closeAll();
                         setTimeout(function(){
-                            classObj.methods.updatePageNum(1);
+                            classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         },1000);
                         
                     }else{
@@ -325,7 +368,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         layObj.layer.closeAll();
                         setTimeout(function(){
                             
-                            classObj.methods.updatePageNum(1);
+                            classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         },1000);
                     }
                 },formParams.field);
@@ -351,7 +394,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         layer.msg('添加成功');
                         setTimeout(function(){
                             layObj.layer.closeAll();
-                            classObj.methods.updatePageNum(1);
+                            classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         },1000);
                         
                     }else{
@@ -376,7 +419,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         setTimeout(function(){
                             // location.reload();
                             layObj.layer.closeAll();
-                            classObj.methods.updatePageNum(1);
+                            classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         },1000);
                         
                     }else{
@@ -399,7 +442,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                         layer.msg('添加成功');
                         setTimeout(function(){
                             layObj.layer.closeAll();
-                            classObj.methods.updatePageNum(1);
+                            classObj.methods.updatePageNum(classObj.data.currentPageNum);
                         },1000);
                         
                     }else{
@@ -414,8 +457,21 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             return false;
         })
 
-        form.on('select(areaType)',function(data){
-            classObj.methods.updatePageNum(1,data.value);
+        // form.on('select(areaType)',function(data){
+        //     classObj.methods.updatePageNum(1,data.value);
+        // })
+
+        /**
+         * 筛选
+         *
+         */
+         form.on('submit(searchByKeywords)',function(formParams){
+ 
+            classObj.data.cacheData=formParams.field;
+            fistLoad=true;
+            classObj.methods.updatePageNum(classObj.data.currentPageNum);
+                
+            return false;
         })
 
     },1000);
@@ -530,6 +586,6 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         // log.d(classObj.data.navId);
         classObj.methods.updatePageNum(1);
     });
-     classObj.methods.updatePageNum(1);
+     classObj.methods.updatePageNum(classObj.data.currentPageNum);
 
 })

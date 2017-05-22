@@ -59,6 +59,40 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     }
                 },{user_id:id});
             },
+            //获取用户的个人信息
+            updateObligationPersonInfoById:function(id,p){
+                $('#basePersonInfo').html('');
+                
+                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.viplist.getUserBalance,function(data){
+                    
+                    var tml=$('#showBaseInfoCon').html();
+                    if(data.code==200){
+                        // layObj.laytpl(tml).render(data.data,function(html){
+                        //     $('#basePersonInfo').append(html);
+                        // })
+                       common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.viplist.getBaseInfo,function(toData){
+                            var obj={
+                                balanceInfo:data.data,
+                                baseInfo:toData.data
+                            }
+                            var tml=$('#showBaseInfoCon').html();
+                            if(data.code==200){
+                                
+                                // classObj.data.alertPageCount=Math.ceil(data.num/data.limit)||1;
+                                
+                                // $('.obligationTotal').html(data.num);
+                                layObj.laytpl(tml).render(obj,function(html){
+                                    $('#basePersonInfo').append(html);
+                                })
+                                // if(alertFirstLoad){
+                                //     classObj.methods.updateAlertPage(id);
+                                // }
+                            }
+                        },{user_id:id});
+                    }
+                },{user_id:id});
+
+            },
             updateArealist:function(data){
                 $('#all-sort-list').html('');
                  var obj={};
@@ -464,7 +498,17 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
         form.on('submit(inputMoney)',function(formParams){
             log.d(formParams.field)
             layObj.layer.load();
-            classObj.methods.inputMoney(formParams.field);
+            if(formParams.field.money-0>2000){
+                layObj.layer.confirm('您操作的金额为：'+formParams.field.money+'，确定执行吗？',function(index){
+                    layObj.layer.close(index);
+                    classObj.methods.inputMoney(formParams.field);
+                },function(){
+                    layObj.layer.closeAll('loading');
+                })
+            }else{
+                classObj.methods.inputMoney(formParams.field);
+            }
+            
                 
             return false;
         })
@@ -618,6 +662,33 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             end:function(){
                 classObj.data.isCanClick=true;
                 $('#obligationTypeListInfo').hide();
+            }
+        })
+    })
+
+     //查看个人信息
+    $('#all-sort-list').on('click','.lookupSingleInfo',function(){
+        classObj.data.typeId=$(this).data('id');
+        alertFirstLoad=true;
+        var status=$(this).data('status');
+        var upId=$(this).data('id');
+        var tel=$(this).data('tel');
+        var self=this;
+        var classN=$(this).data('name');
+        $('form').each(function(){
+            this.reset();
+        });
+        classObj.methods.updateObligationPersonInfoById(upId);
+        layObj.layer.open({
+             type:1,
+             title:'手机号为:'+tel,
+            content: $('#obligationPersonInfo'), //这里content是一个DOM
+            shade:[0.8,'#000'],
+            area:['95%','90%'],
+            maxmin: true,
+            end:function(){
+                classObj.data.isCanClick=true;
+                $('#obligationPersonInfo').hide();
             }
         })
     })
