@@ -2,6 +2,9 @@ define({
     preFix:'/shop/shop/public/index.php/admin',
     obligationPreFix:'/shop/shop/public/index.php/bfapp',
     obligationOutPreFix:'/shop/shop/public/index.php/admin',
+    user:{
+        showlist:'/Admin/lst'
+    },
     articleType:{
         showlist:'/ArticlePosition/lst',
         addType:'/ArticlePosition/add',

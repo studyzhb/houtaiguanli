@@ -267,14 +267,25 @@
         <label class="layui-form-label">优惠券类型</label>
         <div class="layui-input-inline" style="">
           <select name="bonus_id" lay-verify="required">
-            {{# layui.each(d.discountArrInfo,function(index,item){ }}
-              {{# if(item.id==d.bonus_id){ }}
-                <option value="{{item.id}}" selected>{{=item.bonus_name}}</option>
-              {{# }else{ }}
+            {{# if(!d.bonus_id){ }}
+              <option value="0" selected>无</option>
+              {{# layui.each(d.discountArrInfo,function(index,item){ }}
                 <option value="{{item.id}}">{{=item.bonus_name}}</option>
-              {{# } }}
-              
-            {{# }) }}
+              {{# }) }}
+            {{# }else{ }}
+              <option value="0">无</option>
+              {{# layui.each(d.discountArrInfo,function(index,item){ }}
+                {{# if(item.id==d.bonus_id){ }}
+                  <option value="{{item.id}}" selected>{{=item.bonus_name}}</option>
+                {{# }else{ }}
+                  <option value="{{item.id}}">{{=item.bonus_name}}</option>
+                {{# } }}
+                
+              {{# }) }}
+
+            {{# } }}
+            
+            
             
           </select>
         </div>
