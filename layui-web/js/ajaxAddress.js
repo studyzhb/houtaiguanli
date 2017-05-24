@@ -3,7 +3,9 @@ define({
     obligationPreFix:'/shop/shop/public/index.php/bfapp',
     obligationOutPreFix:'/shop/shop/public/index.php/admin',
     user:{
-        showlist:'/Admin/lst'
+        showlist:'/Admin/lst',
+        addUser:'/Admin/add',
+        updateUserInfo:'/Admin/edit'
     },
     articleType:{
         showlist:'/ArticlePosition/lst',
