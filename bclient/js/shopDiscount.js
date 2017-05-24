@@ -20,7 +20,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
             currentPage:'1',
             sortTagShow:false,
             sortTagClickNum:0,
-            isShowSortCon:false
+            isShowSortCon:false,
+            currentPageNum:1,
         },
         methods:{
             updateArealist:function(data){
@@ -60,7 +61,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                     para.queue=obj.queue;
                 }
                 $.extend(true,para,classObj.data.cacheData||{});
-                common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.obligationLineList,function(data){
+                common.tools.ajax('get',ajaxAddress.obligationManagerPreFix+ajaxAddress.obligation.obligationLineList,function(data){
                     log.d(data);
                     
                     if(data.code==200){
@@ -174,7 +175,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                     type:1,
                     content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
                     shade:[0.8,'#000'],
-                    area:'600px',
+                    area:'400px',
                     maxmin: true,
                     end:function(){
                         classObj.data.isCanClick=true;
@@ -273,7 +274,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
         form.on('submit(sendPreferGoods)',function(formParams){
             log.d(formParams.field)
             formParams.field.order_id=classObj.data.current_order_id;
-            common.tools.ajax('post',ajaxAddress.obligationPreFix+ajaxAddress.obligation.sendPreFer,function(data){
+            common.tools.ajax('post',ajaxAddress.obligationManagerPreFix+ajaxAddress.obligation.sendPreFer,function(data){
                     log.d(data);
                     if(data.code==200){
                         layObj.layer.closeAll();
