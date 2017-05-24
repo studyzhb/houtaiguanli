@@ -494,13 +494,13 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             
             if(data.value==1){
                 $('.selectedChangeWrapper').find('label').text('优惠金额');
-                $('.selectedChangeWrapper').find('input').attr('onblur',"this.value=this.value.replace(/[^\d]/g,'')");
+                $('.selectedChangeWrapper').find('input').attr('onblur',"");
             }else if(data.value==2){
                 $('.selectedChangeWrapper').find('label').text('折扣额度');
-                $('.selectedChangeWrapper').find('input').attr('onblur',"this.value=(this.value.replace(/[^\d]/g,'')/100-0).toFixed(2)");
+                $('.selectedChangeWrapper').find('input').attr('onblur',"this.value=(this.value/100).toFixed(2)");
             }else if(data.value==3){
                 $('.selectedChangeWrapper').find('label').text('优惠金额');
-                $('.selectedChangeWrapper').find('input').attr('onblur',"this.value=this.value.replace(/[^\d]/g,'')");
+                $('.selectedChangeWrapper').find('input').attr('onblur',"");
             }
         })
 

@@ -1,6 +1,6 @@
 define({
-    preFix:'/api/public/bfapp',
-    obligationManagerPreFix:'/api/public/bweb',
+    preFix:'/api/public/index.php/bfapp',
+    obligationManagerPreFix:'/api/public/index.php/bweb',
     publicAddress:'/api/public/index.php/bweb',
     /**
      * 显示债权金信息
@@ -10,7 +10,9 @@ define({
         showOneInfo:'/Debt/oneDebt',
         addInfo:'/Debt/addDebt',
         //展示债权金历史记录
-        showObligationHisInfo:'/Debt/debtLog'
+        showObligationHisInfo:'/Debt/debtLog',
+        obligationLineList:'/Lines/linesList',
+        sendPreFer:'/Lines/Prefer'
     },
     shopObligation:{
         showHisList:'/Turnin/withList',
