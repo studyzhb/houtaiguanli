@@ -490,6 +490,20 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             return false;
         })
 
+        form.on('select(discountTypeTab)',function(data){
+            
+            if(data.value==1){
+                $('.selectedChangeWrapper').find('label').text('优惠金额');
+                $('.selectedChangeWrapper').find('input').attr('onblur',"this.value=this.value.replace(/[^\d]/g,'')");
+            }else if(data.value==2){
+                $('.selectedChangeWrapper').find('label').text('折扣额度');
+                $('.selectedChangeWrapper').find('input').attr('onblur',"this.value=(this.value.replace(/[^\d]/g,'')/100-0).toFixed(2)");
+            }else if(data.value==3){
+                $('.selectedChangeWrapper').find('label').text('优惠金额');
+                $('.selectedChangeWrapper').find('input').attr('onblur',"this.value=this.value.replace(/[^\d]/g,'')");
+            }
+        })
+
     },1000);
 
     $('.nav-menu-all-area').on('click','a',function(){
