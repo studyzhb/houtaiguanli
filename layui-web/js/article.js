@@ -122,6 +122,9 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                             $('<option>').appendTo($('.articleTypeWrapper')).html(item.name).attr('value',item.id);
                             $('<option>').appendTo($('.addArticleWrapper')).html(item.name).attr('value',item.id);
                         })
+                        setTimeout(function() {
+                            form.render();
+                        }, 1000);
                     }else{
                         layObj.layer.msg(data.msg);
                     }
