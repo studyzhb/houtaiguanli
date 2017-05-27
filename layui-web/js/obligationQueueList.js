@@ -176,6 +176,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     para.queue=obj.queue;
                 }
                 $.extend(true,para,classObj.data.cacheData||{});
+                $('#all-sort-list').html('');
                 common.tools.ajax('get',ajaxAddress.obligationPreFix+ajaxAddress.obligation.queueList.showlist,function(data){
                     log.d(data);
                     
