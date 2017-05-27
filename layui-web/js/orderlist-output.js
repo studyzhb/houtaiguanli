@@ -335,7 +335,7 @@ $('.saveGoodsNum').on('click',function(){
 	config.formSubmit('#confirmInto',config.ajaxAddress.refuseStorelist,function(data){
 			console.log(data+'jujue');
 			//layer.closeAll();
-			if(data.code==200){
+			/*if(data.code==200){
                 layer.msg('操作成功');
                 layer.closeAll();
                 setTimeout(function(){
@@ -350,7 +350,7 @@ $('.saveGoodsNum').on('click',function(){
                 	location.reload();
                     // open('orderlistOutput.html','_self');
                 },500)
-            }
+            }*/
 	});
 });
 

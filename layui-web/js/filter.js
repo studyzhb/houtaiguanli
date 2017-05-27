@@ -141,7 +141,11 @@ function updateList(data)
 					// console.log(item.children);
 					item.thisselc=netPath;
 					item.shai=item.thisselc;
-					
+					// $.each(item.children,function(ind,its){
+					// 	if(item.thisselc.indexOf(item.path)){
+
+					// 	}
+					// })
 					laytpl(tempHtml).render(item,function(html){
 					// console.log(html);
 					

@@ -140,7 +140,7 @@ var addShopPage={
 	$('.addUserInfo').on('click',function(){
 		config.formSubmit('#adminInfo',config.ajaxAddress.editAdminOrigin,function(data){
 			console.log(data);
-			/*if(data.code==200){
+			if(data.code==200){
                 layer.msg('添加成功');
                 setTimeout(function(){
                     open('admin-origin.html','_self');
@@ -150,7 +150,7 @@ var addShopPage={
                 setTimeout(function(){
                     open('admin-origin.html','_self');
                 },1000);
-            }*/
+            }
 		});
 	})
 

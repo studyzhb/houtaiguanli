@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>标题</title>
+  <title>打印采购单</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <link rel="stylesheet" href="./layui/css/layui.css" />
@@ -129,7 +129,7 @@
         <td>{{item.supplier}}</td>
         <td>{{item.price}}</td>
         <td>{{item.unm}}</td>
-        <td>{{item.price*item.unm}}</td>
+        <td>{{(item.price*item.unm).toFixed(2)}}</td>
       </tr>  
     {{#  }); }}
     

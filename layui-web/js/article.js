@@ -203,7 +203,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             //
             updateObligationInfo:function(data){
                 
-                data.articleTypeInfo=classObj.data.arrData;
+                data.articleTypeInfo=classObj.data.articleTypeInfo;
                 var tpl=$('#editorNavCon').html();
                 $('.editor-area-type').html('');
                  

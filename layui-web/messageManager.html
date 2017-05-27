@@ -346,18 +346,18 @@
   <tr>
   <td>{{d.selectedindex+1}}</td>
     {{# if(d.status==1){ }}
-      <td>{{d.user.name||''}}</td>
+      <td>{{=d.user.name||''}}</td>
     {{# }else{ }}
-      <td style="color:#007632;">{{d.user.name||''}}</td>
+      <td style="color:#007632;">{{=d.user.name||''}}</td>
     {{# } }}
     <td>{{d.des}}</td>
     <td>{{d.title}}</td>
     <td>{{new Date(d.createtime*1000).toLocaleString()}}</td>
     <td>
       {{# if(d.status==1){ }}
-      <div class="layui-btn layui-btn-warm layui-btn-small disableMess" data-id="{{d.id}}" data-name="{{d.name}}" >禁用此留言</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small disableMess" data-id="{{d.id}}" data-name="{{=d.name}}" >禁用此留言</div>
     {{# }else{ }}
-      <div class="layui-btn layui-btn-warm layui-btn-small enableMess" data-id="{{d.id}}" data-name="{{d.name}}" >发布留言</div>
+      <div class="layui-btn layui-btn-warm layui-btn-small enableMess" data-id="{{d.id}}" data-name="{{=d.name}}" >发布留言</div>
     {{# } }}
       
     </td>
@@ -370,11 +370,11 @@
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{=item.name}}</span></a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
+          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{=item.name}}</span></a>
         </dd>
       {{# } }}
     {{#  }); }}

@@ -208,7 +208,7 @@
                     {{# }else{ }}
                         <option value="{{its.id}}">{{=its.name}}</option>
                     {{# } }}
-                {{# )} }}
+                {{# }) }}
             </select>
         </div>
     </div>
@@ -219,13 +219,13 @@
         </div>
         
     </div>
-    <div class="layui-form-item layui-form-text">
+    <!-- <div class="layui-form-item layui-form-text">
         <label for="">文章内同</label>
         <div class="layui-input-block">
             <div id="panel-2" class="ui-tabs-panel ui-tabs-hide ui-widget-content ui-corner-bottom" style="display:none;">
               <div class="ncsc-mobile-editor">
                 <div class="pannel">
-                 <!--  <div class="size-tip"><span nctype="img_count_tip">图片总数得超过<em>00</em>张</span><i>|</i><span nctype="txt_count_tip">文字不得超过<em>20</em>字</span></div> -->
+                 
                   <div class="control-panel" nctype="mobile_pannel">
                        
                     </div>
@@ -268,7 +268,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
      <div class="layui-form-item">
         <label class="layui-form-label">发布时间</label>
         <div class="layui-input-inline">
@@ -277,7 +277,7 @@
         </div>
     </div>
 
-    <
+  
 </script>
 
 
@@ -367,7 +367,7 @@
     <td>{{index+1}}</td>
     <td class="typeName">{{=item.title}}</td>
     <td >{{=item.body}}</td>
-    <td >{{=item.type}}</td>
+    <td >{{=item.name}}</td>
     <td>
       {{# if(item.status=='1'){ }}
         <button class="layui-btn layui-btn-small layui-btn-primary icon-btn active" data-status='0' data-id="{{item.id}}">

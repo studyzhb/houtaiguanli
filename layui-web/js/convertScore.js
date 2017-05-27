@@ -317,6 +317,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             classObj.methods.updateStatusType(upId);
         })
 
+
+        
     })
 
     /**

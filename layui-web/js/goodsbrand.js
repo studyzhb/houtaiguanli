@@ -1,6 +1,9 @@
 $(function(){
 	var laytpl;
 	var fistLoad=true;
+	var goodsInfo={//这是品牌搜索
+    goodName:''
+	}
 	var supplierPage={
 		pagecount:''
 	}
@@ -34,7 +37,7 @@ $(function(){
 					$('#all-sort-list').append(html);
 				});
 			});
-		},{p:p1});	
+		},{p:p1,brandName:goodsInfo.goodName});	
 	}
 
 	function updatePage(){
@@ -54,7 +57,18 @@ $(function(){
 
     fistLoad=false;
 }
+	/**
+*商品名称搜索
+*/
+$('.searchByKeywords').on('click',function(){
+    
+    var val=$(this).prev().find('input').val();
+    
+    goodsInfo.goodName=val;
+    fistLoad=true;
+    updatePageNum(1);
 
+});
 	//编辑品牌
 	$('#all-sort-list').on('click','.editor-brand',function(){
 		console.log($(this).data('id'));

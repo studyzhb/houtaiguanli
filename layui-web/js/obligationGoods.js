@@ -30,7 +30,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
 
         },
         methods:{
-            
+
         }
     }
 
@@ -43,6 +43,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             area:['98%','90%'],
             maxmin: true,
             end:function(){
+                classObj.data.isCanClick=true;
                 $('#goodsBag').hide();
             }
         })

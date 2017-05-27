@@ -83,7 +83,6 @@
           <tr>
             <th>ID</th>
             <th>店铺名称</th>
-            <th>是否同意债权金</th>
             <th>地址</th>
             <th>联系人</th>
             <th>电话</th>
@@ -293,12 +292,11 @@
 <script id="menulistContent" type="text/html">
 
   <tr>
-    <td>{{=d.coding}}</td>
-    <td>{{=d.name}}</td>
-    <td>{{=d.is_debt}}</td>
-    <td>{{=d.details}}</td>
-    <td>{{=d.linkname}}</td>
-    <td>{{=d.tel}}</td>
+    <td>{{d.coding}}</td>
+    <td>{{d.name}}</td>
+    <td>{{d.details}}</td>
+    <td>{{d.linkname}}</td>
+    <td>{{d.tel}}</td>
     <td> 
       <div class="layui-btn layui-btn-warm layui-btn-small editorShopInfo" data-id="{{d.id}}" >编辑</div>
     </td>

@@ -220,7 +220,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     type:1,
                     content: $('#editorAreaTypeWrapper'), //这里content是一个DOM
                     shade:[0.8,'#000'],
-                    area:'500px',
+                    area:'600px',
                     maxmin: true,
                     end:function(){
                         classObj.data.isCanClick=true;
@@ -550,7 +550,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
              type:1,
             content: $('#authorForm'), //这里content是一个DOM
             shade:[0.8,'#000'],
-            area:'500px',
+            area:'400px',
             maxmin: true,
             end:function(){
                 classObj.data.isCanClick=true;

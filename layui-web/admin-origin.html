@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>标题</title>
+	<title>组织机构</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./layui/css/layui.css" />
@@ -325,11 +325,11 @@
     {{#  layui.each(d.children,function(index, item){ }}
       {{# if(d.thisselc.indexOf(item.path)>-1){ }}
       <dd class="layui-this">
-        <a href="{{item.path}}">{{item.name}}</a>
+        <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
       </dd>
       {{# }else{ }}
         <dd>
-          <a href="{{item.path}}">{{item.name}}</a>
+          <a href="{{item.path}}"><i class="layui-icon">{{item.iconfont}}</i><span style="padding:0 10px">{{item.name}}</span></a>
         </dd>
       {{# } }}
     {{#  }); }}

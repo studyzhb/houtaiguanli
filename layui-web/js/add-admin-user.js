@@ -21,6 +21,7 @@ $(function(){
 		});
 		$.each(data.role,function(index,item){
 			$('<option>').appendTo($('.rolelist')).attr('value',item.id).html(item.name);
+			
 		});
 		layui.use('form',function(){
 			form = layui.form();
@@ -49,7 +50,7 @@ $(function(){
 		    /*layer.alert(JSON.stringify(data.field), {
 		      title: '最终的提交信息'
 		    })*/
-		  
+
 		  	config.formSubmit('#adminInfo',config.ajaxAddress.addUserInfo,function(data){
 			console.log(data);
 				if(data.code==200){

@@ -346,10 +346,12 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                 })
             }else{
                 classObj.methods.updateStatusType(status,upId,this);
+
             }
         }else{
             layObj.layer.msg('请勿重复点击');
         }
+        // layObj.layer.load();
         
     })
 

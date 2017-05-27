@@ -62,6 +62,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             },
             updateArealist:function(data){
                 $('#all-sort-list').html('');
+                classObj.data.firstBackGoodsInfo=data[0];
+                console.log(classObj.data.firstBackGoodsInfo);
                  var obj={};
                  obj.data=data;
                  log.d(obj);
@@ -317,6 +319,89 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
             classObj.methods.updateStatusType(upId);
         })
   
+    })
+
+    $(document).on('keyup',function(e){
+        
+        //空格
+        if(e.keyCode==32){
+            
+            if(classObj.data.firstBackGoodsInfo.status=='1'){
+               
+                var self=this;
+                classObj.data.isCanApprove=true;
+                layObj.layer.confirm('确定提现？',{end:function(){
+                    classObj.data.isCanApprove=false;
+                },btn:['确认','拒绝'],yes:function(index,layero){
+                    
+                    var item={};
+                    // item.status=sta;
+                    item.id=classObj.data.firstBackGoodsInfo.id;
+                    common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.finishedOk,function(data){
+                        log.d(data);
+                        classObj.data.isCanClick=true;
+                        if(data.code==200){
+                            //location.reload();
+                            layObj.layer.closeAll();
+                            layObj.layer.msg(data.message);
+                            classObj.methods.updatePageNum(classObj.data.currentPageNum);
+                            
+                        }else{
+                            layObj.layer.msg(data.message);
+                            // layObj.layer.closeAll();
+                            //location.reload();
+                        }
+                    },item);
+                },
+                btn2:function(index,layero){
+                    
+                    var item={};
+                        // item.status=sta;
+                        item.id=classObj.data.firstBackGoodsInfo.id;
+                        common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.finishFalse,function(data){
+                            log.d(data);
+                            classObj.data.isCanClick=true;
+                            if(data.code==200){
+                                //location.reload();
+                                layObj.layer.closeAll();
+                                layObj.layer.msg(data.message);
+                                classObj.methods.updatePageNum(classObj.data.currentPageNum);
+                                
+                            }else{
+                                layObj.layer.msg(data.message);
+                                // layObj.layer.closeAll();
+                                //location.reload();
+                            }
+                        },item);
+                }
+                })
+                return;
+            }
+            
+
+        }
+        if(e.keyCode==13){
+            if(classObj.data.isCanApprove){
+                    var item={};
+                    // item.status=sta;
+                    item.id=classObj.data.firstBackGoodsInfo.id;
+                    common.tools.ajax('post',ajaxAddress.obligationOutPreFix+ajaxAddress.obligation.output.finishedOk,function(data){
+                        log.d(data);
+                        classObj.data.isCanClick=true;
+                        if(data.code==200){
+                            //location.reload();
+                            layObj.layer.closeAll();
+                            layObj.layer.msg(data.message);
+                            classObj.methods.updatePageNum(classObj.data.currentPageNum);
+                            
+                        }else{
+                            layObj.layer.msg(data.message);
+                            // layObj.layer.closeAll();
+                            //location.reload();
+                        }
+                    },item);
+            }
+        }   
     })
 
     /**
@@ -695,7 +780,8 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                     classObj.methods.deleteClassInfo(deleId);
 
                 })
-
+        
+        
     })
 
     //复选框选中

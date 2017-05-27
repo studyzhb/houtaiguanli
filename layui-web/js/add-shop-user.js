@@ -45,7 +45,7 @@ $(function(){
 		    })*/
 		  	// console.log(data1);
 		  	var pwd=$('.passwordAddMD5').val();
-		  	pwd=hex_md5(pwd+'5f843e288bb1cabb834b9d20eea3d8c0');
+		  	pwd=hex_md5(pwd+config.accessKey);
 		  	// console.log(pwd);
 		  	$('.passwordAddMD5').val(pwd);
 		  	console.log(pwd);

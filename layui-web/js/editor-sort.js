@@ -8,13 +8,16 @@ $(function(){
 	layui.use('laytpl',function(){
 		laytpl = layui.laytpl;
 	});
+	
+
+
 	console.log(brandId);
 	var bid=brandId[1].split('=')[1];
 	$('.brandId').val(brandId[1].split('=')[1]);
 	$('.brandName').val(unescape(brandId[2].split('=')[1]));
 	var tml=$('.editSortPic').html();
 	config.ajax('get',config.ajaxAddress.editGoodsSort,function(data){
-		console.log(data,tml);
+		console.log(data);
 		$('#authorList').append(config.formatTemplate(data.data,tml));
 	},{id:bid});
 	$('.commit-author').on('click',function(){
@@ -27,9 +30,6 @@ $(function(){
 		});
 	});
 
-
-
-	
       $('#authorList').on('click','.imageaddc',function(){
           
           ImageWrapper.btap=false;

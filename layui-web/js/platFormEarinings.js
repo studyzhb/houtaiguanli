@@ -86,7 +86,7 @@ require(['jquery','main','ajaxAddress','lay-model','log'],function($,myObj,ajaxA
                                 classObj.data.currentPage=data.curr;
                                 classObj.methods.updateObligationTypeInfoById(id,data.curr);
                             }
- 
+                            
                         }
                     });
                 });

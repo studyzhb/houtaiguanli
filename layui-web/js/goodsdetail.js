@@ -256,7 +256,7 @@ $('.fullname').text(unescape(fname));
 
 
         config.ajax('get',config.ajaxAddress.goodsDetail+'/id/'+goodsHouse.goodsId,function(data){
-          console.log(goodsHouse.goodsId,data.info.spic);
+          console.log(goodsHouse.goodsId);
 
           // $('.image-suolve').append(config.formatTemplate({imgsrc:item},$('#image-suolve').html()));
           // $('.image-suolve').html('');
@@ -290,7 +290,7 @@ $('.fullname').text(unescape(fname));
                 $('#demo').html(data.info.text);
              }
           }else{
-            $('<div class="detail-image-col-2" id="imageadd" >').appendTo($('.image-suolve'));
+             $('<div class="detail-image-col-2" id="imageadd" >').appendTo($('.image-suolve'));
           }
           
           /* var ue = UE.getEditor('container',{
@@ -387,7 +387,7 @@ $('.image-suolve').on('click','.deleteAvata',function(){
 layui.use('layedit', function(){
   layedit = layui.layedit;
   editorIndex=layedit.build('demo',{
-    tool: ['left', 'center', 'right']
+    tool: ['left', 'center', 'right', '|', 'face']
   }); //建立编辑器
   console.log(layedit.set);
 });

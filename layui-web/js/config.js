@@ -61,6 +61,37 @@ var config={
   },
   accessKey:'5f843e288bb1cabb834b9d20eea3d8c0',
 	ajaxAddress:{
+    // 公告列表
+    notice:{
+        displayNotice:'/shop/shop/public/index.php/admin/Notice/lst',
+        beginStopUse:'/shop/shop/public/index.php/admin/Notice/beginStopUse',
+        delete:'/shop/shop/public/index.php/admin/Notice/delete',
+        updateNotice:'/shop/shop/public/index.php/admin/Notice/update',
+        Noticeadd:'/shop/shop/public/index.php/admin/Notice/add',
+        NoticePositionlst:'/shop/shop/public/index.php/admin/NoticePosition/lst',
+        Noticeupdate:'/shop/shop/public/index.php/admin/Notice/update',
+    },
+    // ACTIVITI
+    activitybeginStopUse:'/shop/shop/public/index.php/admin/Activity/beginStopUse',
+    activitylst:'/shop/shop/public/index.php/admin/Activity/lst',
+    activitydelete:'/shop/shop/public/index.php/admin/Activity/delete',
+    activityadd:'/shop/shop/public/index.php/admin/Activity/add',
+    activityupdate:'/shop/shop/public/index.php/admin/Activity/update',
+    activityOrder:'/shop/shop/public/index.php/admin/Activity/activityOrder',
+    activitygetinfo:'/shop/shop/public/index.php/admin/Activity/getInfo',
+    // 活动商品
+    ActGoodslst:'/shop/shop/public/index.php/admin/ActivityGoods/lst',
+    ActgoodsbeginStopUse:'/shop/shop/public/index.php/admin/ActivityGoods/beginStopUse',
+    ActGoodsshopLst:'/shop/shop/public/index.php/admin/ActivityGoods/shopLst',
+    ActdeleteGoods:'/shop/shop/public/index.php/admin/ActivityGoods/deleteGoods',
+    ActshopStoreLst:'/shop/shop/public/index.php/admin/ActivityGoods/shopStoreLst',
+    // 广告位图片banner
+    bannerStop:'/shop/shop/public/admin/Cbanners/beginStopUse',
+    bannerList:'/shop/shop/public/admin/Cbanners/lst',
+    bannerdelete:'/shop/shop/public/admin/Cbanners/delete',
+    bannerAdd:'/shop/shop/public/admin/Cbanners/add',
+    getinfobanner:'/shop/shop/public/admin/Cbanners/getInfo',
+    bannerupdate:'/shop/shop/public/admin/Cbanners/update',
     //债权金标准
     obligationType:'/shop/shop/public/index.php/admin/Proportion/show',
     //商品状态导出
@@ -150,6 +181,25 @@ var config={
     expressList:'/shop/shop/public/index.php/admin/Express/show',
     editExpress:'/shop/shop/public/index.php/admin/Express/edit',
     addExpress:'/shop/shop/public/index.php/admin/Express/add',
+
+       //广告位置类型
+    showNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/lst',
+    editNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/update',
+    addNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/add',
+    deleteNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/delete',
+    getNoticePosition:'/shop/shop/public/index.php/admin/NoticePosition/getInfo',
+    beginStopUse:'/shop/shop/public/index.php/admin/NoticePosition/beginStopUse',
+     //版本迭代
+    showVersion:'/shop/shop/public/index.php/admin/Version/lst',
+    editVersion:'/shop/shop/public/index.php/admin/Version/update',
+    addVersion:'/shop/shop/public/index.php/admin/Version/add',
+    getVersion:'/shop/shop/public/index.php/admin/Version/getInfo',
+    //数据字典列表
+    showDictionary:'/shop/shop/public/index.php/admin/Dictionary/lst',
+    editDictionary:'/shop/shop/public/index.php/admin/Dictionary/update',
+    addDictionary:'/shop/shop/public/index.php/admin/Dictionary/add',
+    getDictionary:'/shop/shop/public/index.php/admin/Dictionary/getInfo',
+    deleteDictionary:'/shop/shop/public/index.php/admin/Dictionary/delete',
 
 
 

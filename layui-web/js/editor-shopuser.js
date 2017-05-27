@@ -65,7 +65,7 @@ var addShopPage={
 	}
 	layui.use('laytpl',function(){
         laytpl = layui.laytpl;
-
+        console.log(shopId);
         config.ajax('get',config.ajaxAddress.editshopUser,function(data){
 		console.log(data);
 		//config.formatTemplate(data[0],tmphtml)
