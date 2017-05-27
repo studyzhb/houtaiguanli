@@ -58,7 +58,7 @@ header{
 .regis_bg{
     height: 12.10rem;
     width:7.5rem;
-    background-image: url(../img/regis_sucess_bg.png);
+    background-image: url(../../i/capp/regis_sucess_bg.png);
     background-size:7.5rem auto;
     background-repeat:no-repeat;
     position:relative;
@@ -75,7 +75,7 @@ section{
     width:7.5rem;
     height:16.57rem;
     overflow:hidden;
-    background-image: url(../img/regis_bg.png);
+    background-image: url(../../i/capp/regis_bg.png);
     background-size:7.5rem auto;
     background-repeat:no-repeat;
     background-position-x: -1px;
@@ -95,7 +95,7 @@ section{
             margin-top:0.13rem;
             background-size:7.5rem 2.58rem;
             background-repeat: no-repeat;
-            // background-image: url(../img/zhucebg.png);
+            // background-image: url(../../i/capp/zhucebg.png);
         }
         .register-con{
 
@@ -113,7 +113,7 @@ section{
                 li.title{
                     height:1.02rem;
                     background: none;
-                    background-image:url(../img/regis_logo.png);
+                    background-image:url(../../i/capp/regis_logo.png);
                     background-size:2.51rem 1.02rem;
                     background-repeat: no-repeat; 
                     background-position-x:1.4rem; 
@@ -149,12 +149,12 @@ section{
                     }
                 }
                 li{
-                    width: 5.44rem;
-                    height:0.62rem;
-                    background: #bc8e8b;
-                    padding:0.02rem;
+                    width: 5.42rem;
+                    height:0.6rem;
+                    //background: #bc8e8b;
+                    //padding:0.02rem;
                     font-size:0.26rem;
-                    line-height:0.62rem;
+                    line-height:0.6rem;
                     color:#666;
                     position:relative;
                     margin-bottom:0.24rem;
@@ -167,29 +167,29 @@ section{
                         left:0.32rem;
                     }
                     input{
-                        border:none;
+                        border:0.01rem solid #bc8e8b;
                         padding-left:0.16rem;
                         outline: 0;
-                        width:5.28rem;
+                        width:5.26rem;
                         height: 0.58rem;
                     }
                     
                     .yzwraper{
                         width:1.5rem;
-                        height:0.62rem;
+                        height:0.66rem;
                         text-align: center;
                         line-height: 0.58rem;
                         color:#fff;
                         // border:0.02rem solid #979797;
                         background: #bc8e8b;
                         position:absolute;
-                        top:0.02rem;
+                        top:0;
                         right:0.02rem;
                     }
                     .img{
                         width:0.29rem;
                         height:0.3rem;
-                        background: url(../img/update.png) no-repeat;
+                        background: url(../../i/capp/update.png) no-repeat;
                          position:absolute;
                         top:0.3rem;
                         right:0.2rem;

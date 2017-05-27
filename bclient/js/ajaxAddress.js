@@ -22,6 +22,10 @@ define({
     },
     shopDetail:{
       shopInfo:'/Shopdetail/index',
-      shopbalance:'/mypurse/index'
+      shopbalance:'/mypurse/index',
+      //优惠券列表（已使用）
+      convertedList:'/bonus/index',
+      confirmConvert:'/Bonus/useBonus',
+      scanConvertNum:'/Bonus/scan'
     }
 });

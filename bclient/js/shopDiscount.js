@@ -265,10 +265,6 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
 
     })
 
-
-
-
-
     setTimeout(function(){
         form=layObj.form();
         form.on('submit(sendPreferGoods)',function(formParams){

@@ -1,0 +1,494 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>优惠券信息</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+    <link rel="stylesheet" href="../layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	<script src="../layui/layui.js"></script>
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<div class="lay-main" style="padding-left:10px;overflow:auto;">
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+         <ul class="layui-tab-title">
+          <li class="layui-this">
+            优惠券信息
+          </li>
+          <div style="width: 100px;height:40px;float:right;" class="showSortCon">
+            
+          </div>
+        </ul>
+        <div class="layui-content">
+          <div class="layui-tab-item layui-show" style="padding-top:20px;">
+              
+            <form class="layui-form layui-form-pane" style="display:inline-block;">
+                <div class="layui-input-inline" style="width:70px;margin-left:5px;">
+                  <select name="status">
+                    
+                    <option value="0">未付款</option>
+                    <option value="1">已付款</option>
+                    
+                  </select>
+                </div>
+              <div class="layui-inline">
+                <div class="layui-input-inline">
+                  <input type="text" class="layui-input" name="name" value="">
+                </div>
+              </div>
+              <div class="layui-btn" lay-submit lay-filter="searchByKeywords">
+                搜索
+                </div>
+                <div class="layui-btn" onclick="location.reload()">
+                    刷新
+                </div>
+                <div class="layui-btn verifyOrderCode">
+                    校验
+                </div>
+                
+            </form>
+              <div style="margin-top:20px;">
+              <ul class="layui-tab-title">
+                <li class="layui-this unedit">
+                    订单列表
+                </li>
+                
+            </ul>
+            </div>
+            <table class="layui-table">
+                <colgroup>
+                    <!-- <col width="100">
+                    <col width="100">
+                    <col>
+                    <col width="100">
+                    <col width="300"> -->
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>订单号</th>
+                        <th>商品名字</th>
+                        <th>商品数量</th>
+                        <th>商品价格</th>
+                        <th>创建时间</th>
+                        <th>支付价格</th>
+                        <th>支付类型</th>
+                        <th>支付时间</th>
+                        <th>审核状态</th>
+                    </tr> 
+                </thead>
+                <tbody id="tableWrapper">
+                    
+                </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <div style="height:55px;padding-right:10px;">
+            <div id="page" style="float:right;"></div>
+            <div style="float:right;height:55px;line-height:55px;text-align:center;margin-right:20px;">共<span class="detailCount">30</span>条数据</div>
+        </div>
+
+     </div>
+    </div> 
+	
+    <!-- ========================================================= -->
+<script id="shopGoodsCon" type="text/html">
+    {{# layui.each(d,function(index,item){ }}
+        <tr data-id="{{=item.id}}" data-order="{{=item.displayorder}}">
+            <td>{{index+1}}</td>
+            <td>{{=item.ordernum}}</td>
+            <td>{{=item.goodsname}}</td>
+            <td>{{=item.number}}</td>
+            <td>{{=item.price}}</td>
+            <td>{{=item.addtime}}</td>
+            <td>{{=item.pay_price}}</td>
+            <td>{{=item.pay_type}}</td>
+            <td>{{=item.paytime}}</td>
+           {{# if(item.status=='0'){ }}
+                <td>
+                   未支付
+                </td>
+            {{# }else if(item.status=='0'){ }}
+                <td>
+                    已支付
+                </td>
+            {{# }else if(item.status=='0'){ }}
+                <td>
+                    已消费
+                </td>
+            {{# } }}
+
+
+        </tr>
+
+    {{# }) }}
+  
+</script>
+<script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+<!--编辑店铺信息-->
+<form class="layui-form layui-form-pane editMenuForm" method="POST" style="display: none;font-size:14px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="formWrapper"></div>
+
+    <div class="layui-form-item mapWrapper">
+
+    </div>
+
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="editorDiscountInfo">立即提交</div>
+    </div>
+    </div>
+
+</form>
+
+
+<!--校验券码-->
+<form class="layui-form layui-form-pane checkFormCode" method="POST" style="display: none;font-size:14px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    
+    <div class="layui-form-item">
+    
+    <div class="layui-input-inline">
+        <input type="text" class="layui-input" name="checknum" value="" placeholder="请输入券号" lay-verify="required">
+    </div>
+    </div>
+
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+        <div class="layui-btn" lay-submit lay-filter="checkCode">立即提交</div>
+    </div>
+    </div>
+
+</form>
+
+  <!-- =======================弹出窗========================= -->
+<script type="text/html" id="formCon">
+   <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">产品图片</label>
+    <div class="layui-input-block" style="margin-top:10px;">
+        <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+            
+                <div class="detail-image-col-2 detail-banner-split">
+                    <div class="opacity-z-index"></div>
+                    <i class="layui-icon icon-display" data-info="{{=d.goods_logo}}">&#xe640;</i>
+                    <div class="left-block"></div>
+                    <div class="right-block"></div>
+                    <img src="{{=typeof eval(d.goods_logo)=='string'?d.goods_logo:eval(d.goods_logo)[0]||d.goods_logo}}" width="100%" height="100%" />    
+                </div>
+            
+            {{# if(!d.goods_logo){ }}
+                <div class="detail-image-col-2 imageadd-single" >   
+                                        </div>
+            {{# }else{ }}
+                <div class="detail-image-col-2 imageadd-single" style="display:none;">   
+                                        </div>
+            {{# } }}
+        </div>
+        <input type="hidden" name="goods_logo" data-info="{{=d.goods_logo}}" value='{{=d.goods_logo}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+    </div>
+    
+    <input type="hidden" name="id" placeholder="请输入" value="{{=d.id}}" autocomplete="off" class="layui-input cityInput">
+    <!--<input type="hidden" name="navid" placeholder="请输入" autocomplete="off" class="layui-input navInput">
+    <input type="hidden" name="shopid" placeholder="请输入" autocomplete="off" class="layui-input shopInput">-->
+                    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">产品编号</label>
+    <div class="layui-input-block">
+        <input type="text" name="goodsnum" value="{{=d.goodsnum}}" readonly placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+    </div>             
+    <div class="layui-form-item">
+    <label class="layui-form-label">产品名称</label>
+    <div class="layui-input-inline">
+        <input type="text" name="goodsname" value="{{d.goodsname}}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+    <label class="layui-form-label">产品数量</label>
+    <div class="layui-input-inline">
+      <input type="text" name="num" value="{{=d.num}}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">商品支付价格</label>
+    <div class="layui-input-block">
+        <input type="text" name="price_pay" placeholder="请输入" value="{{=d.price_pay}}" autocomplete="off" class="layui-input">
+    </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">原价</label>
+    <div class="layui-input-block">
+        <input type="text" name="pricrc_sell" value="{{=d.price_sell}}" placeholder="请输入" autocomplete="off" class="layui-input">
+    </div>
+    </div>
+    
+    <!--<div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">产品描述</label>
+    <div class="layui-input-block">
+        <textarea name="introduce" placeholder="请输入内容" class="layui-textarea">{{=d.introduce}}</textarea>
+    </div>
+    </div>-->
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">套餐详情</label>
+    <div class="layui-input-block goodsintro">
+       
+    </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">套餐图片</label>
+    <div class="layui-input-block" style="margin-top:10px;">
+        <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+            {{# layui.each(eval(d.goods_pic)||[],function(index,item){ }}
+                <div class="detail-image-col-2 detail-banner-split">
+                    <div class="opacity-z-index"></div>
+                     <i class="layui-icon icon-display" data-info="{{item}}">&#xe640;</i>
+                    <div class="left-block"></div>
+                    <div class="right-block"></div>
+                    <img src="{{item}}" width="100%" height="100%" />    
+                </div>
+            {{# }) }}
+            {{# if(eval(d.goods_pic)||[].length<=5){ }}
+                <div class="detail-image-col-2 imageadd" >   
+                                            </div>
+            {{# }else{ }}
+                <div class="detail-image-col-2 imageadd" style="display:none;">   
+                                            </div>
+            {{# } }}                
+        </div>
+        <input type="hidden" name="goods_pic" data-info="{{=d.goods_pic}}" value='{{=d.goods_pic}}' placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+    </div>
+    
+                    </div>
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">产品规格</label>
+        <div class="layui-input-block">
+        <input type="radio" name="" title="单人餐">
+        <input type="radio" name="" title="双人餐" checked>
+        <input type="radio" name="" title="3-4人餐">
+        </div>
+    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">到期时间</label>
+        <div class="layui-input-inline">
+        <input type="text" id="date" placeholder="hh:mm:ss" value="{{=new Date(d.validity_time*1000).toLocaleString()}}"  readonly autocomplete="off" class="layui-input">
+        </div>
+        <input type="hidden" name="validity_time" class="worktimesae" value="{{=d.validity_time}}">
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">使用规则</label>
+        <div class="layui-input-inline" style="width: 600px;">
+            {{# if(d.use_time=='1'){ }}
+                <input type="radio" name="use_time" value="1" title="节假日通用" checked lay-filter="isClickTrue">
+                <input type="radio" name="use_time" value="2" title="节假日不能使用"  lay-filter="isClickTrue">
+                <input type="radio" name="use_time" value="3" title="特定日期不能使用" lay-filter="isClickTrue">
+            {{# }else if(d.use_time=='2'){ }}
+                <input type="radio" name="use_time" value="1" title="节假日通用" lay-filter="isClickTrue">
+                <input type="radio" name="use_time" value="2" title="节假日不能使用" checked lay-filter="isClickTrue">
+                <input type="radio" name="use_time" value="3" title="特定日期不能使用" lay-filter="isClickTrue">
+            {{# }else if(d.use_time=='3'){ }}
+                <input type="radio" name="use_time" value="1" title="节假日通用" lay-filter="isClickTrue">
+                <input type="radio" name="use_time" value="2" title="节假日不能使用"  lay-filter="isClickTrue">
+                <input type="radio" name="use_time" value="3" title="特定日期不能使用" checked lay-filter="isClickTrue">
+            {{# }else{ }}
+                <input type="radio" name="use_time" value="1" title="节假日通用" lay-filter="isClickTrue">
+                <input type="radio" name="use_time" value="2" title="节假日不能使用"  lay-filter="isClickTrue">
+                <input type="radio" name="use_time" value="3" title="特定日期不能使用" lay-filter="isClickTrue">
+            {{# } }}
+            
+        </div>
+        {{# if(d.use_time=='3'){ }}
+        <div class="layui-input-inline">
+            <input type="text" value="{{=d.use_time_info}}" name="use_time_info" class="layui-input" placeholder="特殊时间说明">
+        </div>
+        {{# }else{ }}
+            <div class="layui-input-inline" style="display: none;">
+                <input type="text" name="use_time_info" class="layui-input" placeholder="特殊时间说明">
+            </div>
+        {{# } }}
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">预约</label>
+        <div class="layui-input-inline">
+            {{# if(d.bespoke=='1'){ }}
+                <input type="radio" name="bespoke" title="是" value="1" checked lay-filter="isCheckTrue">
+                <input type="radio" name="bespoke" title="否" value="0"  lay-filter="isCheckTrue">
+            {{# }else if(d.bespoke=='2'){ }}
+                <input type="radio" name="bespoke" title="是" value="1" lay-filter="isCheckTrue">
+                <input type="radio" name="bespoke" title="否" value="0" checked lay-filter="isCheckTrue">
+            {{# }else{ }}
+                <input type="radio" name="bespoke" title="是" value="1" lay-filter="isCheckTrue">
+                <input type="radio" name="bespoke" title="否" value="0" lay-filter="isCheckTrue">
+            {{# } }}
+            
+        <!--<input type="radio" name="bespoke" placeholder="至少提前多长时间预约">-->
+        </div>
+        {{# if(d.bespoke=='1'){ }}
+            <div class="layui-input-inline">
+                <input type="text" name="bespoke_info" value="{{=d.bespoke_info}}" class="layui-input" placeholder="至少提前多长时间预约">
+            </div>
+        {{# }else{ }}
+            <div class="layui-input-inline" style="display: none;">
+                <input type="text" name="bespoke_info" class="layui-input" placeholder="至少提前多长时间预约">
+            </div>
+        {{# } }}
+    </div>
+    <!--{{# layui.each(d.classify,function(index,item){ }}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{{=item.typename}}</label>
+                    <div class="layui-input-block">
+                      {{# layui.each(item.children,function(ind,its){ }}
+                        
+                          {{# if(its.selected){ }}
+                              <input type="checkbox" name="{{item.field}}" checked value="{{its.id}}" title="{{=its.name}}" lay-verify="sortAnotherToJson" >
+                          {{# }else{ }}
+                              <input type="checkbox" name="{{item.field}}" value="{{its.id}}" title="{{=its.name}}" lay-verify="sortAnotherToJson" >
+                          {{# } }}
+                        
+                        
+                      {{# }) }}
+                    </div>
+                </div>
+            {{# }) }}-->
+
+            {{# for(var i in d.class){ }}
+                
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{{=i}}</label>
+                        
+                        <div class="layui-input-block">
+                            {{# for(var k in d.class[i]){ }}
+                        
+                            
+                            {{# if(d.class[i][k].selected){ }}
+                                <input type="radio" name="{{d.class[i][k].field}}" checked value="{{d.class[i][k].id}}" title="{{=d.class[i][k].name}}" lay-verify="sortAnotherToJson" >
+                            {{# }else{ }}
+                                <input type="radio" name="{{d.class[i][k].field}}" value="{{d.class[i][k].id}}" title="{{=d.class[i][k].name}}" lay-verify="sortAnotherToJson" >
+                            {{# } }}
+                            
+                            
+                        
+                            {{# } }}
+                        </div>
+                        
+                    </div>
+                
+                
+            {{# } }}
+
+
+               {{# layui.each(d.label,function(index,item){ }}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{{item.name}}</label>
+                    <div class="layui-input-block">
+                      {{# layui.each(item.data,function(ind,its){ }}
+                        {{# if(item.class=='1'){ }}
+                          {{# if(its.selected){ }}
+                              <input type="checkbox" name="{{item.id}}" checked value="{{its.id}}" title="{{=its.name}}" lay-verify="findLabelToJson" >
+                          {{# }else{ }}
+                              <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="{{=its.name}}" lay-verify="findLabelToJson" >
+                          {{# } }}
+                        
+                        {{# }else{ }}
+                          {{# if(its.selected){ }}
+                              <input type="checkbox" name="{{item.id}}" value="{{its.id}}" checked title="<em class='layui-icon'>{{=its.name}}</em>" lay-verify="findLabelToJson" >
+                          {{# }else{ }}
+                              <input type="checkbox" name="{{item.id}}" value="{{its.id}}" title="<em class='layui-icon'>{{=its.name}}</em>" lay-verify="findLabelToJson" >
+                          {{# } }}
+                        
+                        {{# } }}
+                      {{# }) }}
+                    </div>
+                </div>
+            {{# }) }}
+
+
+    
+    
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">自动续期</label>
+        <div class="layui-input-block">
+            {{# if(d.renew=='1'){ }}
+                <input type="radio" name="renew" title="是" value="1" checked>
+                <input type="radio" name="renew" title="否" value="0" >
+            {{# }else if(d.renew=='0'){ }}
+                <input type="radio" name="renew" title="是" value="1">
+                <input type="radio" name="renew" title="否" value="0" checked>
+            {{# }else{ }}
+                <input type="radio" name="renew" title="是" value="1">
+                <input type="radio" name="renew" title="否" value="0">
+            {{# } }}
+            
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">退款</label>
+        <div class="layui-input-block">
+            {{# if(d.refund=='0'){ }}
+                <input type="radio" name="refund" value="2" title="过期退">
+                <input type="radio" name="refund" value="1" title="随时退" >
+                <input type="radio" name="refund" value="0" title="暂定" checked>
+            {{# }else if(d.refund=='1'){ }}
+                <input type="radio" name="refund" value="2" title="过期退">
+                <input type="radio" name="refund" value="1" title="随时退" checked>
+                <input type="radio" name="refund" value="0" title="暂定">
+            {{# }else if(d.refund=='2'){ }}  
+                <input type="radio" name="refund" value="2" title="过期退" checked>
+                <input type="radio" name="refund" value="1" title="随时退" >
+                <input type="radio" name="refund" value="0" title="暂定">
+            {{# }else{ }}
+                <input type="radio" name="refund" value="2" title="过期退">
+                <input type="radio" name="refund" value="1" title="随时退" >
+                <input type="radio" name="refund" value="0" title="暂定">
+            {{# } }}
+        </div>
+    </div>
+    <div class="layui-form-item">
+                
+                  <label class="layui-form-label">审核状态</label>
+                  <div class="layui-input-inline">
+                      <select name="check" lay-filter="pro" lay-verify="isChangeValue" data-info="{{d.check}}">
+                        {{# if(d.check=='0'){ }}
+                        <option value="0" selected>未审核</option>
+                        <option value="1" >审核通过</option>
+                        <option value="2" >拒绝</option>
+                       {{# }else if(d.check=='1'){ }}
+                        <option value="0" >未审核</option>
+                        <option value="1" selected>审核通过</option>
+                        <option value="2" >拒绝</option>
+                       {{# }else if(d.check=='2'){ }}
+                        <option value="0" >未审核</option>
+                        <option value="1" >审核通过</option>
+                        <option value="2" selected>拒绝</option>
+                       {{# } }}
+                      </select>
+                  </div> 
+              </div>
+              
+</script>
+
+<script id="container" name="introduce" type="text/plain" style="width:99.5%;height:300px;overflow:auto;">
+
+</script>
+
+<script type="text/template" id="image-suolve">
+     <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
+         <div class="opacity-z-index"></div>
+        <i class="layui-icon icon-display" data-info="{imgsrc}">&#xe640;</i>
+        <div class="left-block"></div>
+        <div class="right-block"></div>
+        <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
+
+</body>
+<script src="../js/discountconvert.js"></script>
+</html>
