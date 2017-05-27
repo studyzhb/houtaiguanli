@@ -51,16 +51,21 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                 common.tools.ajax('get',ajaxAddress.publicAddress+ajaxAddress.shopDetail.convertedList,function(data){
                     log.d(data);
                     if(data.code==200){
-                        
-                        // GoodsObj.data.pageCount=Math.ceil(data.total/data.pageSize);
-                        // $('.detailCount').text(data.total);
-                        GoodsObj.methods.updateGoodsList(data.data);
+                        data=data.data.list;
+                        GoodsObj.data.pageCount=Math.ceil(data.total/data.per_page);
+                        $('.detailCount').text(data.total);
+                        GoodsObj.methods.updateGoodsList(data.bonus_list);
                         if(fistLoad){
                             GoodsObj.methods.updatePage();
                         }
                     }else{
                         GoodsObj.methods.updateGoodsList([]);
-                        layObj.layer.msg(data.msg);
+                        $('.detailCount').text(0);
+                        GoodsObj.data.pageCount=1;
+                        if(fistLoad){
+                            GoodsObj.methods.updatePage();
+                        }
+                        layObj.layer.msg(data.message);
                     }
                 },obj);
             },
@@ -452,31 +457,38 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
             })
 
             form.on('submit(searchByKeywords)',function(paraData){
-                GoodsObj.methods.updatePageNum(paraData.field);
+                fistLoad=true;
+                GoodsObj.data.cacheData=paraData.field;
+                GoodsObj.data.currentPage=1;
+                GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
             })
 
             /**
              * 查询券码
              */
             form.on('submit(checkCode)',function(paraData){
-                common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopOrder.verifyOrderCode,function(data){
-                    layObj.layer.confirm('确定使用?',function(index){
-                          layObj.layer.close(index);
-                          layObj.layer.load();
-                        //改变状态
-                        common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.shopOrder.orderStatus,function(data){
-                            console.log(data);
-                        },{id:1});
-                    })
-                    // if(data.code==200){
-                    //     layObj.layer.confirm('确定使用?',function(index){
-                            
-                    //     })
-                    // }else{
-                    //     layObj.layer.closeAll();
-                    //     layObj.layer.msg(data.msg);
+                common.tools.ajax('post',ajaxAddress.publicAddress+ajaxAddress.shopDetail.scanConvertNum,function(data){
+                    
+                    if(data.code==200){
+                        layObj.layer.confirm('确定使用?',function(index){
+                            layObj.layer.close(index);
+                            layObj.layer.load();
+                            //改变状态
+                            common.tools.ajax('post',ajaxAddress.publicAddress+ajaxAddress.shopDetail.confirmConvert,function(data){
+                                layObj.layer.closeAll();
+                                layObj.layer.msg(data.message);
+                                if(data.code==200){
+                                    GoodsObj.methods.updatePageNum(GoodsObj.data.currentPage);
+                                }else{
+
+                                }
+                            },paraData.field);
+                        })
+                    }else{
+                        layObj.layer.closeAll('loading');
+                        layObj.layer.msg(data.message);
                         
-                    // }
+                    }
                 },paraData.field);
             })
 
@@ -489,6 +501,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
     $('.verifyOrderCode').on('click',function(){
         layObj.layer.open({
              type:1,
+             title:'优惠券查询',
             content: $('.checkFormCode'), //这里content是一个DOM
             shade:[0.8,'#000'],
             area:'400PX',
