@@ -72,8 +72,7 @@ a:hover, a:active, a:focus {
   display: block; }
 
 html, body {
-  width: 100%;
-  padding-top: 0.3rem; }
+  width: 100%; }
 
 .code-wrapper {
   width: 5.04rem;
@@ -178,7 +177,7 @@ section {
           margin-bottom: 0.16rem; }
         section .main .register-con ul li.recommend-person {
           height: 0.64rem;
-          background: none;
+          border: none;
           padding: 0;
           padding-left: 1.06rem;
           margin-bottom: 0.16rem; }
@@ -200,6 +199,9 @@ section {
         section .main .register-con ul li {
           width: 5.42rem;
           height: 0.6rem;
+          display: -webkit-box;
+          -webkit-box-flex: 1;
+          border: 0.01rem solid #bc8e8b;
           font-size: 0.26rem;
           line-height: 0.6rem;
           color: #666;
@@ -213,21 +215,21 @@ section {
             top: 0.3rem;
             left: 0.32rem; }
           section .main .register-con ul li input {
-            border: 0.01rem solid #bc8e8b;
+            display: -webkit-box;
+            -webkit-box-flex: 1;
+            border: none;
             padding-left: 0.16rem;
             outline: 0;
-            width: 5.26rem;
-            height: 0.58rem; }
+            width: 5.26rem; }
           section .main .register-con ul li .yzwraper {
             width: 1.5rem;
-            height: 0.66rem;
             text-align: center;
-            line-height: 0.58rem;
+            line-height: 0.6rem;
             color: #fff;
             background: #bc8e8b;
             position: absolute;
             top: 0;
-            right: 0.02rem; }
+            right: 0; }
           section .main .register-con ul li .img {
             width: 0.29rem;
             height: 0.3rem;

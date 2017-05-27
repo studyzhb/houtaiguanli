@@ -1051,7 +1051,7 @@ require(['jquery','main','ajaxAddress','lay-model','image-upload','log','params'
 
         form.on('submit(confirmObligationInfo)',function(formParams){
             layObj.layer.load();
-            common.tools.ajax('post',ajaxAddress.preFix+ajaxAddress.obligation.addInfo,function(data){
+            common.tools.ajax('post',ajaxAddress.publicAddress+ajaxAddress.obligation.addInfo,function(data){
                     log.d(data);
                     if(data.code==200){
                         layer.msg('添加成功');

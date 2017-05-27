@@ -188,8 +188,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
     layui.use('laydate',function(){
        var laydate=layui.laydate;
         var start = {
-            min: laydate.now()
-            ,format: 'YYYY-MM-DD hh:mm:ss'
+
+            format: 'YYYY-MM-DD hh:mm:ss'
             ,max: '2099-06-16 23:59:59'
             ,istoday: false
             ,choose: function(datas){
@@ -202,8 +202,8 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
         };
         
         var end = {
-            min: laydate.now()
-            ,format: 'YYYY-MM-DD hh:mm:ss'
+
+            format: 'YYYY-MM-DD hh:mm:ss'
             ,max: '2099-06-16 23:59:59'
             ,istoday: false
             ,choose: function(datas){

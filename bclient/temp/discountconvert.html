@@ -30,7 +30,7 @@
         <div class="layui-content">
           <div class="layui-tab-item layui-show" style="padding-top:20px;">
               
-            <form class="layui-form layui-form-pane" style="display:inline-block;">
+            <form class="layui-form layui-form-pane" style="display:inline-block;padding-left:1px;">
                 <div class="layui-input-inline" style="width:70px;margin-left:5px;display: none;">
                   <select name="">
                     
@@ -41,10 +41,12 @@
                 </div>
               <div class="layui-inline">
                 <div class="layui-input-inline">
-                  <input type="text" class="layui-input" id="date" readonly name="starttime" value="" placeholder="开始时间">
+                  <input type="text" class="layui-input" id="date" readonly name="" value="" placeholder="开始时间">
+                  <input type="hidden" class="layui-input" readonly name="starttime" value="" placeholder="开始时间">
                 </div>
                 <div class="layui-input-inline">
-                  <input type="text" class="layui-input" id="date01" readonly name="endtime" value="" placeholder="结束时间">
+                  <input type="text" class="layui-input" id="date01" readonly  value="" placeholder="结束时间">
+                  <input type="hidden" class="layui-input" readonly name="endtime" value="" placeholder="结束时间">
                 </div>
               </div>
               <div class="layui-btn" lay-submit lay-filter="searchByKeywords">
@@ -54,7 +56,6 @@
                 <div class="layui-btn verifyOrderCode">
                     校验
                 </div>
-                
             </form>
               <div style="margin-top:20px;">
               <ul class="layui-tab-title">

@@ -4,7 +4,7 @@ var $;
 var laytpl;
 var user=cookieUtil.getCookie('username');
 var cookAuthor=cookieUtil.getCookie('authorlist');
-var localAuthor=
+
 $(function(){
 	
 	/*$('.layui-tab-title').on('click',function(){
