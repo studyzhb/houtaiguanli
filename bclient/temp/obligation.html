@@ -25,7 +25,7 @@
          <ul class="layui-tab-title" style="margin-bottom:10px;display: none;">
           
           <li class="layui-this">
-            债券金管理
+            消费返利模式
           </li>
         </ul>
         <div class="layui-content">
@@ -86,7 +86,7 @@
                    搜索
                 </div>-->
                 <div class="layui-btn add-shop-info">
-                    新增债券
+                    新增返利
                 </div>
 
             </form>
@@ -112,23 +112,21 @@
 
      </div>
 
-     
-
     </div> 
 <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
 <!--添加债券第一步-->
-<form class="layui-form layui-form-pane menuForm" id="menuAddShop" method="POST" style="display: none;font-size:14px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+<form class="layui-form layui-form-pane menuForm" id="menuAddShop" method="POST" style="display: none;font-size:12px;padding:20px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
 
                 
               <div class="layui-form-item">
-                <label class="layui-form-label">*债权人</label>
+                <label class="layui-form-label">*姓名</label>
                 <div class="layui-input-inline">
                   <input type="text" name="creditor" lay-verify="required" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">*</div>
               </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">*债权总金额</label>
+                <label class="layui-form-label">*返利总金额</label>
                 <div class="layui-input-inline">
                   <input type="text" name="total" lay-verify="required" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" value="" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
                 </div>
@@ -144,7 +142,7 @@
               </div>
 
 
-              <div class="layui-form-item layui-form-text">
+              <!--<div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">*债券资料</label>
                 <div class="layui-input-block" style="margin-top:10px;">
                   <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
@@ -152,9 +150,9 @@
                                                      </div>
                           
                   </div>
-                  <input type="hidden" lay-verify="required" name="pics" placeholder="请输入" value="['12231']" autocomplete="off" class="layui-input shopinput">
+                  <input type="hidden" lay-verify="" name="pics" placeholder="请输入" value="['12231']" autocomplete="off" class="layui-input shopinput">
                              </div>
-                </div>
+                </div>-->
                        
               <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">备注</label>
@@ -176,7 +174,7 @@
 <form class="layui-form layui-form-pane" id="areaInfoForm" method="POST" action="" style="display: none;font-size: 14px;padding:10px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     
     <div class="layui-form-item">
-    <label class="layui-form-label sortName">拆分债券</label>
+    <label class="layui-form-label sortName">拆分返利金额</label>
     <div class="layui-input-block">
         <div class="layui-btn createAreaInfoInput">
             <i class="layui-icon">&#xe608;</i>
@@ -237,14 +235,14 @@
     
 <script id="renderConfirmInfo" type="text/html">
     <div class="layui-form-item">
-        <label class="layui-form-label">*债权人</label>
+        <label class="layui-form-label">*姓名</label>
         <div class="layui-input-inline">
             <input type="text" name="creditor" lay-verify="required" readonly value="{{d.creditor}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
         </div>
 
         </div>
         <div class="layui-form-item">
-        <label class="layui-form-label">*债权金额</label>
+        <label class="layui-form-label">*返利金额</label>
         <div class="layui-input-inline">
             <input type="text" name="total" lay-verify="required" readonly onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" value="{{d.total}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
         </div>
@@ -258,24 +256,6 @@
             <input type="text" name="card" lay-verify="required" value="{{d.card}}" readonly onkeyup="this.value=this.value.replace(/[^\w]/g,'')"   placeholder="请输入" autocomplete="off" class="layui-input">
         </div>
         
-        </div>
-        <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">*债券资料</label>
-        <div class="layui-input-block" style="margin-top:10px;">
-            <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
-                {{# layui.each(eval(d.pics)||[],function(index,item){ }}
-                    <div class="detail-image-col-2 detail-banner-split">
-                        <div class="opacity-z-index"></div>
-                        <i class="layui-icon icon-display" data-info="{{item}}">&#xe640;</i>
-                        <div class="left-block"></div>
-                        <div class="right-block"></div>
-                        <img src="{{item}}" width="100%" height="100%" />    
-                    </div>
-                {{# }) }}
-                    
-            </div>
-            
-        </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">备注</label>
@@ -316,9 +296,9 @@
           <thead>
               <tr>
                 <th>序号</th>
-                <th>债权人</th>
+                <th>姓名</th>
                 <th>身份证号</th>
-                <th>债券金额</th>
+                <th>返利金额</th>
                 <th>备注</th>
                 <th>操作</th>
               </tr> 
@@ -683,43 +663,19 @@
     </div>
 </script>
 
-<!-- 
 
-<div class="detail-image-col-2 detail-banner-split">
-                                <div class="opacity-z-index"></div>
-                                <i class="layui-icon icon-display" data-info="{{=d.logo}}">&#xe640;</i>
-                                <div class="left-block"></div>
-                                <div class="right-block"></div>
-                                <img src="{{=typeof eval(d.logo)=='object'?eval(d.logo)[0]:d.logo[0]||''}}" width="100%" height="100%" />    
-                            </div>
-
-{{# layui.each(eval(d.logo)||[],function(index,item){ }}
-                              {{# if(index==0){ }}
-                                  <div class="detail-image-col-2 detail-banner-split">
-                                      <div class="opacity-z-index"></div>
-                                      <i class="layui-icon icon-display" data-info="{{item}}">&#xe640;</i>
-                                      <div class="left-block"></div>
-                                      <div class="right-block"></div>
-                                      <img src="{{item}}" width="100%" height="100%" />    
-                                  </div>
-                              {{# } }}
-                              
-                          {{# }) }}
-
-
- -->
 
   <!-- =======================弹出窗========================= -->
 <script type="text/html" id="formCon">
      <div class="layui-form-item">
-        <label class="layui-form-label">*债权人</label>
+        <label class="layui-form-label">*姓名</label>
         <div class="layui-input-inline">
             <input type="text" name="creditor" lay-verify="required" readonly value="{{=d.creditor}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
         </div>
 
         </div>
         <div class="layui-form-item">
-        <label class="layui-form-label">*债权金额</label>
+        <label class="layui-form-label">*消费返利金额</label>
         <div class="layui-input-inline">
             <input type="text" name="total" lay-verify="required" readonly onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onblur="this.value=this.value.replace(/[^\d]/g,'')" value="{{=d.total}}" placeholder="请输入" data-info="123456" autocomplete="off" class="layui-input">
         </div>
@@ -734,24 +690,7 @@
         </div>
         
         </div>
-        <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">*债券资料</label>
-        <div class="layui-input-block" style="margin-top:10px;">
-            <div class="image-suolve" style="position:relative;border: 1px solid #e6e6e6;">
-                {{# layui.each(eval(d.pics)||[],function(index,item){ }}
-                    <div class="detail-image-col-2 detail-banner-split">
-                        <div class="opacity-z-index"></div>
-                        <i class="layui-icon icon-display" data-info="{{=item}}">&#xe640;</i>
-                        <div class="left-block"></div>
-                        <div class="right-block"></div>
-                        <img src="{{=item}}" width="100%" height="100%" />    
-                    </div>
-                {{# }) }}
-                    
-            </div>
-            
-        </div>
-        </div>
+
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">备注</label>
             <div class="layui-input-block"> 
@@ -768,6 +707,19 @@
                 <div class="layui-input-inline">
                     <input type="text" name="" lay-verify="required" readonly value="{{=item.debt_num}}" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
+                {{# if(item.status=='0'){ }}
+                    <div class="layui-input-inline">
+                        可使用
+                    </div>
+                {{# }else if(item.status=='1'){ }}
+                <div class="layui-input-inline">
+                    锁定中
+                </div>
+                {{# }else if(item.status=='2'){ }}
+                    <div class="layui-input-inline">
+                    已占用
+                </div>
+                {{# } }}
             </div>
         {{# }) }}
         <!--<div class="layui-form-item">
