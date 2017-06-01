@@ -151,10 +151,12 @@ section{
                 li{
                     width: 5.42rem;
                     height:0.6rem;
+                    overflow: hidden;
                     //background: #bc8e8b;
                     //padding:0.02rem;
                     display: -webkit-box;
                     -webkit-box-flex: 1;
+                    -webkit-box-orient: vertical;
                     border: 0.01rem solid #bc8e8b;
                     font-size:0.26rem;
                     line-height:0.6rem;
@@ -183,7 +185,7 @@ section{
                         width:1.5rem;
                         // height:0.66rem;
                         text-align: center;
-                        line-height: 0.6rem;
+                        line-height: 0.62rem;
                         color:#fff;
                         // border:0.02rem solid #979797;
                         background: #bc8e8b;

@@ -244,6 +244,7 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
                 common.tools.ajax('post',ajaxAddress.obligationManagerPreFix+ajaxAddress.shopObligation.obligationScore2Balance,function(data){
                     layObj.layer.closeAll('loading');
                     ShopObj.methods.updateObligationBalance();
+                    ShopObj.methods.updatePageNum(ShopObj.data.currentPage);
                     layObj.layer.msg(data.message);
                 });
              })
@@ -402,9 +403,10 @@ require(['jquery','main','ajaxAddress','lay-model','log','params'],function($,my
 					layObj.layer.closeAll('loading');
 				    if(data.code==200){
                         layObj.layer.close(ShopObj.data.outputAlertIndex);
-                        ShopObj.methods.updatePageNum(ShopObj.data.currPage);    
+                        ShopObj.methods.updatePageNum(ShopObj.data.currPage); 
+                        ShopObj.methods.updateObligationBalance();  
                     }else{
-                        layObj.layer.msg(data.msg);
+                        // layObj.layer.msg(data.msg);
                     }
                 },paraData.field);
 

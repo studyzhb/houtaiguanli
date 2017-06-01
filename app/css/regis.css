@@ -199,8 +199,10 @@ section {
         section .main .register-con ul li {
           width: 5.42rem;
           height: 0.6rem;
+          overflow: hidden;
           display: -webkit-box;
           -webkit-box-flex: 1;
+          -webkit-box-orient: vertical;
           border: 0.01rem solid #bc8e8b;
           font-size: 0.26rem;
           line-height: 0.6rem;
@@ -224,7 +226,7 @@ section {
           section .main .register-con ul li .yzwraper {
             width: 1.5rem;
             text-align: center;
-            line-height: 0.6rem;
+            line-height: 0.62rem;
             color: #fff;
             background: #bc8e8b;
             position: absolute;
