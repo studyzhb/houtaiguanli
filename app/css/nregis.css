@@ -1,0 +1,195 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3,
+h4, h5, h6, p, blockquote, pre, a, abbr, acronym,
+address, big, cite, code, del, dfn, em, font, img, ins,
+kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+:focus {
+  outline: 0; }
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+th, td {
+  text-align: left;
+  font-weight: normal; }
+
+img, iframe {
+  border: none;
+  text-decoration: none; }
+
+ol, ul {
+  list-style: none; }
+
+input, textarea, select, button {
+  font-size: 100%;
+  font-family: inherit; }
+
+select {
+  margin: inherit; }
+
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #000;
+  background-color: #000;
+  height: 1px; }
+
+html {
+  font: 125%/1 "microsoft yahei","Arial Narrow"; }
+
+a {
+  text-decoration: none; }
+
+a:visited {
+  color: #666; }
+
+a:hover, a:active, a:focus {
+  color: #ff8400;
+  /* text-decoration:underline;*/ }
+
+.clearfix:after {
+  content: ".";
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+  display: block; }
+
+html, body {
+  width: 100%;
+  height: 16.88rem;
+  background: #ffd618; }
+
+section {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  overflow: hidden; }
+  section .banner-wrap img {
+    position: absolute; }
+  section .banner-wrap img.head1 {
+    width: 3.02rem;
+    height: 0.89rem;
+    left: 0.42rem;
+    top: 0.27rem; }
+  section .banner-wrap img.head2 {
+    width: 1.07rem;
+    height: 0.89rem;
+    right: 0.7rem;
+    top: 0.24rem; }
+  section .banner-wrap img.head3 {
+    width: 6.73rem;
+    height: 2.99rem;
+    left: 0.2rem;
+    top: 0.7rem; }
+  section .banner-wrap img.head4 {
+    width: 5.62rem;
+    height: 0.52rem;
+    left: 0.82rem;
+    top: 3.2rem; }
+  section .banner-wrap img.head5 {
+    width: 4.5rem;
+    height: 1.1rem;
+    left: 1.72rem;
+    top: 4.46rem;
+    z-index: 10; }
+  section .banner-wrap img.head6 {
+    width: 7.44rem;
+    height: 3.36rem;
+    left: 0;
+    top: 4.16rem; }
+  section .register-con {
+    position: absolute;
+    top: 6.37rem; }
+    section .register-con .submit {
+      width: 100%;
+      text-align: center;
+      line-height: 1.84rem;
+      height: 1.84rem; }
+      section .register-con .submit img {
+        display: inline-block;
+        width: 3.6rem;
+        height: 0.8rem; }
+    section .register-con ul {
+      width: 7.5rem;
+      text-align: center;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -moz-box-pack: center;
+      -webkit-box-pack: center;
+      -webkit-box-align: center; }
+      section .register-con ul .recommend-person {
+        width: 100%;
+        margin-bottom: 0;
+        line-height: 1.06rem;
+        background-image: none;
+        display: -webkit-box;
+        -moz-box-orient: horizontal;
+        -webkit-box-orient: horizontal;
+        -moz-box-pack: center;
+        -webkit-box-pack: center;
+        -webkit-box-align: center; }
+        section .register-con ul .recommend-person img {
+          width: 2.8rem;
+          height: 0.4rem; }
+        section .register-con ul .recommend-person span {
+          font-size: 0.36rem;
+          color: #e83828; }
+      section .register-con ul li {
+        width: 4.78rem;
+        height: 1.06rem;
+        margin-bottom: 0.4rem;
+        background-image: url(../image/input.png);
+        background-size: 4.78rem 1.06rem;
+        background-repeat: no-repeat;
+        position: relative; }
+        section .register-con ul li .yzwraper {
+          width: 1.6rem;
+          height: 0.5rem;
+          text-align: center;
+          line-height: 0.5rem;
+          color: #000;
+          font-size: 0.24rem;
+          background: #fcd26b;
+          position: absolute;
+          top: 0.22rem;
+          right: 0.16rem; }
+        section .register-con ul li input {
+          height: 0.92rem;
+          line-height: 0.92rem;
+          font-size: 0.36rem;
+          color: #666;
+          padding-left: 0.24rem;
+          background: none;
+          border: none;
+          float: left; }
+  section .tabwrapper {
+    position: absolute;
+    bottom: 0.94rem;
+    left: 0.46rem;
+    width: 100%;
+    display: -webkit-box;
+    -moz-box-orient: horizontal;
+    -webkit-box-pack: justify;
+    -moz-box-align: center; }
+    section .tabwrapper img {
+      width: 1.84rem;
+      height: 2.5rem; }
+
+/*# sourceMappingURL=nregis.css.map */
